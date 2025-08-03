@@ -12,9 +12,9 @@
   # On laisse la commande vide, car il n'y a rien à construire.
   command = ""
 
-  # On dit à Netlify de publier le contenu du dossier "public".
-  # C'est la correction clé pour résoudre l'erreur de build.
-  publish = "public"
+  # On dit à Netlify de publier le contenu de la racine du projet.
+  # C'est ce qui inclura tous vos dossiers (contact, services, etc.).
+  publish = "."
 
 # --------------------------------------------------------------------------
 # SECTION HEADERS : En-têtes HTTP pour la sécurité et la performance
