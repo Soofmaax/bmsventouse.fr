@@ -4,7 +4,7 @@ Ce dépôt contient le code source du site vitrine officiel de **BMS Ventouse**,
 
 Le projet a été développé en s'appuyant sur du code **HTML, CSS et JavaScript purs**, avec l'assistance d'outils d'intelligence artificielle pour optimiser le processus de développement et garantir un code de haute qualité. Cette approche moderne permet d'allier la performance d'un site statique avec une production rapide et efficace.
 
-**➡️ [Visiter le site en production](https://bmsventouse.fr/https://bmsventouse.com)**
+**➡️ [Visiter le site en production](https://bmsventouse.fr/)**
 
 ---
 
