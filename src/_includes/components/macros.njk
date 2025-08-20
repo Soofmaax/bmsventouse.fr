@@ -1,11 +1,15 @@
-{% macro serviceCard(title, text, image, alt, width, height) %}
+{% macro serviceCard(title, text, image, alt, width, height, href) %}
+  {% if href %}
+  <a href="{{ href }}" class="service-card animated-item" aria-label="{{ title | striptags }}">
+  {% else %}
   <div class="service-card animated-item">
+  {% endif %}
     <div class="service-icon">
       <img src="{{ image }}" alt="{{ alt }}" width="{{ width or 64 }}" height="{{ height or 64 }}" loading="lazy">
     </div>
     <h3>{{ title }}</h3>
     <p>{{ text | safe }}</p>
-  </div>
+  {% if href %}</a>{% else %}</div>{% endif %}
 {% endmacro %}
 
 {% macro referenceCard(image, alt, logo, logoAlt, title, text, listItems=[]) %}

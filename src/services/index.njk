@@ -28,8 +28,17 @@ ogImage: "{{ site.url }}/images/services-hero-background-desktop.webp"
     <p class="section-subtitle animated-item">Des services experts, à la carte ou en package, pour répondre précisément à chaque étape de votre projet.</p>
 
     <div class="services-grid-visual">
-      <!-- Visual cards as before... -->
-      <!-- ...existing cards here... -->
+      {% for s in services %}
+        <a href="/services/{{ s.slug }}/" class="service-card-visual animated-item">
+          <div class="service-card-visual-image">
+            <img src="{{ s.hero.desktop }}" alt="{{ s.hero.alt }}" loading="lazy" width="400" height="250">
+          </div>
+          <div class="service-card-visual-content">
+            <h3>{{ s.h1 }}</h3>
+            <p>{{ s.summary }}</p>
+          </div>
+        </a>
+      {% endfor %}
     </div>
 
     <div class="included-benefits animated-item">
