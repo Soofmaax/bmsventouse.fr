@@ -9,8 +9,8 @@ robots: "noindex, follow"
 ogImage: "{{ site.url }}/images/og-image.webp"
 heroImage: "/images/contact-hero-background-desktop.webp"
 ---
-{% from "../_includes/components/hero.njk" import hero %}
-{% import "../_includes/components/macros.njk" as macros %}
+{% from "components/hero.njk" import hero %}
+{% import "components/macros.njk" as macros %}
 
 {% call hero(imageDesktop="/images/contact-hero-background-desktop.webp", imageMobile="/images/contact-hero-background-mobile.webp", alt="Bureau moderne avec documents légaux et contrats", loading='eager', width=1920, height=1080) %}
   <h1>Mentions Légales</h1>

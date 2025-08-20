@@ -10,8 +10,8 @@ eleventyComputed:
   heroImage: "{{ service.hero.desktop }}"
   ogImage: "{{ site.url }}{{ service.hero.desktop }}"
 ---
-{% from "../_includes/components/hero.njk" import hero %}
-{% import "../_includes/components/macros.njk" as macros %}
+{% from "components/hero.njk" import hero %}
+{% import "components/macros.njk" as macros %}
 
 {% call hero(
   imageDesktop=service.hero.desktop,

@@ -8,10 +8,17 @@ description: "Contactez BMS Ventouse pour un devis gratuit. Joignable 24/7 par t
 ogImage: "{{ site.url }}/images/contact-hero-background-desktop.webp"
 heroImage: "/images/contact-hero-background-desktop.webp"
 ---
-{% from "../_includes/components/hero.njk" import hero %}
-{% import "../_includes/components/macros.njk" as macros %}
+{% from "components/hero.njk" import hero %}
+{% import "components/macros.njk" as macros %}
 
-{% call hero(imageDesktop="/images/contact-hero-background-desktop.webp", imageMobile="/images/contact-hero-background-mobile.webp", alt="Personne utilisant un téléphone pour contacter un service", loading='eager', width=1920, height=1080) %}
+{% call hero(
+  imageDesktop="/images/contact-hero-background-desktop.webp",
+  imageMobile="/images/contact-hero-background-mobile.webp",
+  alt="Personne utilisant un téléphone pour contacter un service",
+  loading='eager',
+  width=1920,
+  height=1080
+) %}
   <h1>Un Projet ? Une Urgence ?</h1>
   <p>Contactez-nous directement. Notre équipe est disponible 24h/24 pour répondre à vos besoins.</p>
 {% endcall %}

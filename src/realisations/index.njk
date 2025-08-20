@@ -8,10 +8,17 @@ description: "Découvrez nos références prestigieuses en logistique audiovisue
 ogImage: "{{ site.url }}/images/realisations-hero-background-desktop.webp"
 heroImage: "/images/realisations-hero-background-desktop.webp"
 ---
-{% from "../_includes/components/hero.njk" import hero %}
-{% import "../_includes/components/macros.njk" as macros %}
+{% from "components/hero.njk" import hero %}
+{% import "components/macros.njk" as macros %}
 
-{% call hero(imageDesktop="/images/realisations-hero-background-desktop.webp", imageMobile="/images/realisations-hero-background-mobile.webp", alt="Équipe de tournage en action dans une rue sécurisée par BMS Ventouse", loading='eager', width=1920, height=1080) %}
+{% call hero(
+  imageDesktop="/images/realisations-hero-background-desktop.webp",
+  imageMobile="/images/realisations-hero-background-mobile.webp",
+  alt="Équipe de tournage en action dans une rue sécurisée par BMS Ventouse",
+  loading='eager',
+  width=1920,
+  height=1080
+) %}
   <h1>La Preuve par l'Action</h1>
   <p>Nous résolvons des problèmes complexes pour garantir le succès de votre production.</p>
 {% endcall %}
