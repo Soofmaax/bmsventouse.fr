@@ -3,7 +3,8 @@
 # ==========================================================================
 
 [build]
-  publish = "."
+  publish = "_site"
+  command = "npm run build"
 
 [[headers]]
   for = "/*"

@@ -1,0 +1,26 @@
+{
+  "url": "https://www.bmsventouse.fr",
+  "brand": "BMS Ventouse",
+  "alternateName": "BMS",
+  "phone": "+33646005642",
+  "emails": {
+    "primary": "bms.ventouse@gmail.com",
+    "contact": "contact@bmsventouse.fr"
+  },
+  "address": {
+    "street": "10 Rue de la République",
+    "locality": "Drancy",
+    "postalCode": "93700",
+    "region": "Île-de-France",
+    "country": "FR"
+  },
+  "geo": { "lat": "48.9242", "lng": "2.4453" },
+  "openingHours": "Mo-Su 00:00-23:59",
+  "areaServed": ["France"],
+  "priceRange": "$$",
+  "socials": {
+    "linkedin": "https://www.linkedin.com/company/bms-ventouse",
+    "facebook": "https://www.facebook.com/bmsventouse"
+  },
+  "themeColor": "#FF8C42"
+}
