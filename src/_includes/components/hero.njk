@@ -1,0 +1,14 @@
+<section class="hero">
+  <picture class="hero-bg">
+    {% if imageMobile %}
+      <source media="(max-width: 767px)" srcset="{{ imageMobile }}" type="image/webp">
+    {% endif %}
+    <img src="{{ imageDesktop }}" alt="{{ alt }}" loading="{{ loading or 'eager' }}" {% if fetchpriority %}fetchpriority="{{ fetchpriority }}"{% endif %} width="{{ width or 1920 }}" height="{{ height or 1080 }}">
+  </picture>
+  <div class="hero-overlay">
+    <div class="container">
+      {% call caller() %}
+      {% endcall %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+{% macro serviceCard(title, text, image, alt, width, height) %}
+  <div class="service-card animated-item">
+    <div class="service-icon">
+      <img src="{{ image }}" alt="{{ alt }}" width="{{ width or 64 }}" height="{{ height or 64 }}" loading="lazy">
+    </div>
+    <h3>{{ title }}</h3>
+    <p>{{ text | safe }}</p>
+  </div>
+{% endmacro %}
+
+{% macro referenceCard(image, alt, logo, logoAlt, title, text, listItems=[]) %}
+  <article class="reference-card animated-item">
+    <div class="reference-card-image">
+      <img src="{{ image }}" alt="{{ alt }}" loading="lazy" width="500" height="300">
+    </div>
+    <div class="reference-card-content">
+      <img src="{{ logo }}" alt="{{ logoAlt }}" class="client-logo" loading="lazy" width="100" height="34">
+      <h3>{{ title }}</h3>
+      <p>{{ text }}</p>
+      {% if listItems.length %}
+        <ul class="challenge-list">
+          {% for li in listItems %}
+            <li>{{ li | safe }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </article>
+{% endmacro %}
+
+{% macro faqItem(question, answer) %}
+  <div class="faq-item animated-item">
+    <h3 class="faq-question">{{ question }}</h3>
+    <div class="faq-answer">
+      <p>{{ answer | safe }}</p>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro ctaButtons(primaryHref, primaryLabel, secondaryHref, secondaryLabel) %}
+  <div class="hero-buttons">
+    <a href="{{ primaryHref }}" class="btn btn-primary">{{ primaryLabel }}</a>
+    <a href="{{ secondaryHref }}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">{{ secondaryLabel }}</a>
+  </div>
+{% endmacro %}
+
+{% macro carousel(slides) %}
+<div class="references-carousel animated-item">
+  <button class="carousel-control prev" aria-label="Logo précédent">
+    <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 320 512">
+      <path d="M34.9 239l194-194c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L97.9 256l165 165c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-194-194c-9.4-9.4-9.4-24.6 0-33.9z"/>
+    </svg>
+  </button>
+  <div class="carousel-track">
+    {% for slide in slides %}
+      <div class="carousel-slide">
+        <img src="{{ slide.src }}" alt="{{ slide.alt }}" width="{{ slide.width or 100 }}" height="{{ slide.height or 45 }}" loading="lazy">
+      </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control next" aria-label="Logo suivant">
+    <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 320 512">
+      <path d="M285.5 272.9l-194 194c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l165-165-165-165c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l194 194c9.4 9.4 9.4 24.6 0 33.9z"/>
+    </svg>
+  </button>
+</div>
+{% endmacro %}
