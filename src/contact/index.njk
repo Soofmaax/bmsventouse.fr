@@ -1,0 +1,168 @@
+---
+layout: layouts/base.njk
+lang: fr
+activeNav: contact
+bodyClass: page-contact
+title: "Contact & Devis Gratuit 24/7 | BMS Ventouse"
+description: "Contactez BMS Ventouse pour un devis gratuit. Joignable 24/7 par téléphone, WhatsApp ou email pour tous vos besoins en logistique de tournage."
+ogImage: "{{ site.url }}/images/contact-hero-background-desktop.webp"
+heroImage: "/images/contact-hero-background-desktop.webp"
+---
+{% from "../_includes/components/hero.njk" import hero %}
+{% import "../_includes/components/macros.njk" as macros %}
+
+{% call hero(
+  imageDesktop="/images/contact-hero-background-desktop.webp",
+  imageMobile="/images/contact-hero-background-mobile.webp",
+  alt="Personne utilisant un téléphone pour contacter un service",
+  loading='eager',
+  width=1920,
+  height=1080
+) %}
+  <h1>Un Projet ? Une Urgence ?</h1>
+  <p>Contactez-nous directement. Notre équipe est disponible 24h/24 pour répondre à vos besoins.</p>
+{% endcall %}
+
+<section id="urgency-contact" class="section urgency-section">
+  <div class="container">
+    <div class="urgency-banner animated-item">
+      <div class="urgency-content">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="urgency-text">
+          <h3>Tournage Urgent ? Besoin Immédiat ?</h3>
+          <p>Appelez maintenant ! Nous pouvons intervenir dans l'heure qui suit votre appel.</p>
+        </div>
+        <div class="urgency-buttons">
+          <a href="tel:+33646005642" class="btn btn-urgent">
+            <i class="fas fa-phone-alt"></i> Appel d'Urgence
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact-options" class="section">
+  <div class="container">
+    <h2 class="section-title animated-item">Demandez votre Devis Gratuit</h2>
+    <p class="section-subtitle animated-item">Choisissez votre moyen de contact préféré. Nous sommes joignables 24/7.</p>
+    <div class="contact-direct-grid">
+      <div class="contact-card animated-item">
+        <div class="contact-icon"><i class="fas fa-phone-volume"></i></div>
+        <h3>Par Téléphone</h3>
+        <div class="contact-details">
+          <p><strong>Béna :</strong> <a href="tel:+33646005642"><span>+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</span></a></p>
+        </div>
+        <p class="contact-note">Idéal pour les urgences et les demandes immédiates.</p>
+      </div>
+      <div class="contact-card animated-item">
+        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+        <h3>Par WhatsApp</h3>
+        <div class="contact-details">
+          <p>Rapide et direct, parfait pour échanger des documents et des plans.</p>
+        </div>
+        <a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Discuter sur WhatsApp</a>
+      </div>
+      <div class="contact-card animated-item">
+        <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <h3>Par Email</h3>
+        <div class="contact-details">
+          <p>Idéal pour les demandes détaillées et les cahiers des charges.</p>
+        </div>
+        <a href="mailto:bms.ventouse@gmail.com?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="coverage-zones" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title animated-item">Nos Zones d'Intervention</h2>
+    <p class="section-subtitle animated-item">Nous intervenons partout en France en moins de 24&nbsp;h.</p>
+    <div class="zones-grid">
+      <div class="zone-card animated-item">
+        <i class="fas fa-city"></i>
+        <h3>Paris &amp; Île‑de‑France</h3>
+        <p>Paris, Boulogne‑Billancourt, Montreuil, Saint‑Denis...</p>
+      </div>
+      <div class="zone-card animated-item">
+        <i class="fas fa-mountain"></i>
+        <h3>Lyon &amp; Sud‑Est</h3>
+        <p>Lyon, Marseille, Nice, Grenoble...</p>
+      </div>
+      <div class="zone-card animated-item">
+        <i class="fas fa-water"></i>
+        <h3>Bordeaux &amp; Sud‑Ouest</h3>
+        <p>Bordeaux, Toulouse, Montpellier, Nantes...</p>
+      </div>
+      <div class="zone-card zone-national animated-item">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>Partout ailleurs en France</h3>
+        <p>Nos équipes mobiles se déplacent rapidement pour répondre à vos urgences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta-contact" class="section cta-section">
+  <div class="container animated-item">
+    <h2 class="cta-title">Une Question ? Un Projet Urgent ?</h2>
+    <p class="cta-subtitle">Contactez‑nous pour une analyse gratuite de vos besoins et un devis personnalisé sous&nbsp;48&nbsp;h.</p>
+    {{ macros.ctaButtons('mailto:bms.ventouse@gmail.com', 'Envoyer un Email', 'https://wa.me/33646005642', 'WhatsApp Direct') }}
+  </div>
+</section>
+
+<a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contacter BMS Ventouse sur WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "mainEntity": {
+    "@type": "ProfessionalService",
+    "name": "BMS Ventouse",
+    "url": "{{ site.url }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10 Rue de la République",
+      "addressLocality": "Drancy",
+      "postalCode": "93700",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "48.9242",
+      "longitude": "2.4453"
+    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+33646005642",
+        "contactType": "customer service",
+        "name": "Béna",
+        "availableLanguage": "French",
+        "hoursAvailable": "Mo-Su 00:00-23:59"
+      }
+    ],
+    "email": "bms.ventouse@gmail.com",
+    "areaServed": {
+      "@type": "Country",
+      "name": "France"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{ site.url }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Contact", "item": "{{ site.url }}/contact/" }
+  ]
+}
+</script>
+{% endblock %}

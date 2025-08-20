@@ -1,0 +1,134 @@
+---
+layout: layouts/base.njk
+lang: fr
+activeNav: null
+bodyClass: page-mentions
+title: "Mentions Légales - RGPD & Propriété Intellectuelle | BMS Ventouse"
+description: "Consultez les informations légales concernant la société BMS Ventouse : éditeur, hébergeur, données personnelles (RGPD), et propriété intellectuelle."
+robots: "noindex, follow"
+ogImage: "{{ site.url }}/images/og-image.webp"
+heroImage: "/images/contact-hero-background-desktop.webp"
+---
+{% from "../_includes/components/hero.njk" import hero %}
+
+{% call hero(
+  imageDesktop="/images/contact-hero-background-desktop.webp",
+  imageMobile="/images/contact-hero-background-mobile.webp",
+  alt="Bureau moderne avec documents légaux et contrats",
+  loading='eager',
+  width=1920,
+  height=1080
+) %}
+  <h1>Mentions Légales</h1>
+  <p>Informations légales et conditions d'utilisation du site BMS Ventouse.</p>
+{% endcall %}
+
+<div class="container content-container animated-item">
+  <nav id="toc" class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title" class="toc-title">Navigation rapide</h2>
+    <ul>
+      <li><a href="#editor">1. Éditeur du Site</a></li>
+      <li><a href="#hosting">2. Hébergement</a></li>
+      <li><a href="#ip">3. Propriété Intellectuelle</a></li>
+      <li><a href="#data">4. Données Personnelles</a></li>
+      <li><a href="#cookies">5. Cookies</a></li>
+      <li><a href="#law">6. Droit Applicable</a></li>
+    </ul>
+  </nav>
+
+  <article id="editor" class="legal-section" role="region" aria-labelledby="editor-title">
+    <h2 id="editor-title">1. Éditeur du Site</h2>
+    <p><strong>Dénomination sociale :</strong> BMS VENTOUSE (SAS )</p>
+    <p><strong>Capital social :</strong> 500,00 €</p>
+    <p><strong>Siège Social :</strong> 10 Rue de la République, 93700 Drancy, France</p>
+    <p><strong>SIRET :</strong> 93198138500015</p>
+    <p><strong>RCS :</strong> Bobigny 931 981 385</p>
+    <p><strong>Responsable de la publication :</strong> CHELDA Béna, en sa qualité de Président</p>
+    <p><strong>Contact :</strong> <a href="mailto:bms.ventouse@gmail.com">bms.ventouse@gmail.com</a> ou par téléphone au <a href="tel:+33646005642">+33 6 46 00 56 42</a></p>
+  </article>
+
+  <article id="hosting" class="legal-section" role="region" aria-labelledby="hosting-title">
+    <h2 id="hosting-title">2. Hébergement</h2>
+    <p><strong>Hébergeur :</strong> Netlify, Inc.</p>
+    <p><strong>Adresse :</strong> 2325 3rd Street, Suite 296, San Francisco, CA 94107, États-Unis</p>
+    <p><strong>Site web :</strong> <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" hreflang="en">www.netlify.com</a></p>
+  </article>
+
+  <article id="ip" class="legal-section" role="region" aria-labelledby="ip-title">
+    <h2 id="ip-title">3. Propriété Intellectuelle</h2>
+    <p>L'ensemble du contenu de ce site (textes, images, logos, vidéos ) est la propriété exclusive de BMS VENTOUSE ou de ses partenaires. Il est protégé par les lois françaises et internationales sur le droit d'auteur. Toute reproduction, même partielle, sans autorisation écrite préalable est strictement interdite.</p>
+  </article>
+
+  <article id="data" class="legal-section" role="region" aria-labelledby="data-title">
+    <h2 id="data-title">4. Protection des Données Personnelles</h2>
+    <p>Les données personnelles éventuellement communiquées par email ou par téléphone sont traitées dans le seul but de répondre à vos demandes commerciales ou informatives. Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, et de suppression de vos données en nous contactant à l'adresse email mentionnée dans la section "Éditeur du Site".</p>
+  </article>
+
+  <article id="cookies" class="legal-section" role="region" aria-labelledby="cookies-title">
+    <h2 id="cookies-title">5. Cookies</h2>
+    <p>Ce site utilise des cookies techniques strictement nécessaires à son bon fonctionnement et à l'amélioration de votre expérience de navigation. Aucun cookie de suivi publicitaire ou de tierce partie n'est utilisé. La poursuite de votre navigation sur ce site vaut pour acceptation de l'utilisation de ces cookies essentiels.</p>
+  </article>
+
+  <article id="law" class="legal-section" role="region" aria-labelledby="law-title">
+    <h2 id="law-title">6. Droit Applicable et Médiation</h2>
+    <p>Les présentes mentions légales sont soumises au droit français. En cas de litige, et après une tentative de résolution amiable, les tribunaux français seront seuls compétents. Conformément à l'article L.616-1 du Code de la consommation, l'entité de médiation retenue est CM2C, joignable sur son site <a href="https://www.cm2c.net" target="_blank" rel="noopener noreferrer" hreflang="fr">www.cm2c.net</a>.</p>
+  </article>
+  <div class="legal-section">
+    <p><em>Dernière mise à jour : 26 juillet 2025</em></p>
+  </div>
+</div>
+
+<section class="section cta-section section-alt">
+  <div class="container animated-item">
+    <h2 class="cta-title">Besoin d'un renseignement ?</h2>
+    <p class="cta-subtitle">Notre équipe est à votre disposition pour toute question sur nos services ou nos conditions.</p>
+    <div class="hero-buttons">
+      <a href="/contact/" class="btn btn-primary"><i class="fas fa-envelope" aria-hidden="true"></i> Nous Contacter</a>
+    </div>
+  </div>
+</section>
+
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mentions Légales",
+  "url": "{{ site.url }}/mentions/",
+  "dateModified": "2025-07-26T10:00:00+00:00",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "BMS Ventouse",
+    "legalName": "BMS VENTOUSE SAS",
+    "url": "{{ site.url }}",
+    "logo": "{{ site.url }}/android-chrome-192x192.webp",
+    "foundingDate": "2023",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10 Rue de la République",
+      "addressLocality": "Drancy",
+      "postalCode": "93700",
+      "addressCountry": "FR"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+33646005642",
+      "contactType": "customer service",
+      "email": "bms.ventouse@gmail.com"
+    },
+    "knowsAbout": ["Logistique audiovisuelle", "Ventousage", "Sécurité de plateau"],
+    "sameAs": ["{{ site.url }}/"]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{ site.url }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Mentions Légales", "item": "{{ site.url }}/mentions/" }
+  ]
+}
+</script>
+{% endblock %}
