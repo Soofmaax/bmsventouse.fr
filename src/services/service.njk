@@ -1,0 +1,83 @@
+---
+layout: layouts/base.njk
+lang: fr
+activeNav: services
+pagination:
+  data: services
+  size: 1
+  alias: service
+permalink: "/services/{{ service.slug }}/"
+eleventyComputed:
+  title: "{{ service.metaTitle }}"
+  description: "{{ service.metaDescription }}"
+  heroImage: "{{ service.hero.desktop }}"
+  ogImage: "{{ site.url }}{{ service.hero.desktop }}"
+---
+{% from "../_includes/components/hero.njk" import hero %}
+{% import "../_includes/components/macros.njk" as macros %}
+
+{% call hero(imageDesktop=service.hero.desktop, imageMobile=service.hero.mobile, alt=service.hero.alt, loading='eager', width=1920, height=1080) %}
+  <h1>{{ service.h1 }}</h1>
+  <p>{{ service.summary }}</p>
+  {{ macros.ctaButtons('/contact/', 'Obtenir un Devis', 'https://wa.me/33646005642?text=Bonjour,%20j%27aimerais%20parler%20de%20{{ service.h1 | urlencode }}', 'WhatsApp Direct') }}
+{% endcall %}
+
+<section class="section">
+  <div class="container">
+    {% for block in service.sections %}
+      <article class="content-block animated-item">
+        <h2>{{ block.title }}</h2>
+        {{ block.html | safe }}
+      </article>
+    {% endfor %}
+
+    {% if service.features and service.features.length %}
+      <div class="included-benefits animated-item">
+        <h2 class="section-title">Pourquoi choisir BMS Ventouse</h2>
+        <ul class="benefits-list">
+          {% for f in service.features %}<li>{{ f }}</li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% if service.faq and service.faq.length %}
+      <section class="section" aria-labelledby="faq-title">
+        <h2 id="faq-title" class="section-title">FAQ {{ service.h1 }}</h2>
+        <div class="faq-container">
+          {% for item in service.faq %}
+            {{ macros.faqItem(item.q, item.a) }}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    <div class="cta-container animated-item">
+      {{ macros.ctaButtons('/contact/', 'Parler à un expert', 'https://wa.me/33646005642', 'WhatsApp Direct') }}
+    </div>
+  </div>
+</section>
+
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "{{ service.h1 }}",
+  "description": "{{ service.metaDescription }}",
+  "provider": { "@type": "Organization", "name": "{{ site.brand }}", "url": "{{ site.url }}" },
+  "areaServed": [{ "@type": "Country", "name": "France" }],
+  "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "{{ site.url }}/contact/", "servicePhone": "{{ site.phone }}" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{ site.url }}/"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "{{ site.url }}/services/"},
+    {"@type": "ListItem", "position": 3, "name": "{{ service.h1 }}", "item": "{{ site.url }}/services/{{ service.slug }}/"}
+  ]
+}
+</script>
+{% endblock %}

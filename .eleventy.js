@@ -12,8 +12,7 @@ module.exports = function(eleventyConfig) {
     "android-chrome-512x512.png",
     "site.webmanifest",
     "robots.txt",
-    "netlify.toml",
-    "sitemap.xml"
+    "netlify.toml"
   ].forEach(asset => eleventyConfig.addPassthroughCopy(asset));
   return {
     dir: {

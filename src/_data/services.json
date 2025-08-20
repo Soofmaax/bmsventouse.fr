@@ -1,0 +1,133 @@
+[
+  {
+    "slug": "ventousage",
+    "metaTitle": "Ventousage & Neutralisation de Stationnement | BMS Ventouse",
+    "metaDescription": "Autorisations, neutralisation de stationnement, signalisation, roulettage et sécurisation pour tournages partout en France.",
+    "h1": "Ventousage & Neutralisation pour Tournages",
+    "hero": {
+      "desktop": "/images/service-ventousage-custom.jpg",
+      "mobile": "/images/service-ventousage-custom.jpg",
+      "alt": "Rues neutralisées pour tournage, cônes et panneaux"
+    },
+    "summary": "Gestion des autorisations, pose de panneaux, neutralisation et sécurisation de périmètres.",
+    "sections": [
+      { "title": "Ce que nous faisons", "html": "<p>Réservations et <strong>neutralisation de stationnement</strong>, <strong>affichage riverains</strong>, <strong>pose de signalisation</strong>, coordination municipale.</p>" },
+      { "title": "Livrables", "html": "<ul><li>Panneaux et affichages posés</li><li>Plan de roulettage</li><li>Autorisation municipale</li></ul>" }
+    ],
+    "features": ["Autorisations municipales", "Affichage riverains", "Roulettage & signalisation"],
+    "faq": [
+      { "q": "Combien de temps pour obtenir une autorisation ?", "a": "Selon la ville, 48h à 10 jours ouvrés. Nous gérons la procédure complète." }
+    ]
+  },
+  {
+    "slug": "securite-gardiennage",
+    "metaTitle": "Sécurité de Plateaux & Gardiennage 24/7 | BMS Ventouse",
+    "metaDescription": "Agents spécialisés, contrôle d'accès, gestion de foules, SSIAP et maîtres-chiens. Partenariat Vista Prime.",
+    "h1": "Sécurité Plateaux & Gardiennage 24/7",
+    "hero": {
+      "desktop": "/images/service-securite-custom.jpg",
+      "mobile": "/images/service-securite-custom.jpg",
+      "alt": "Agent de sécurité sur plateau"
+    },
+    "summary": "Protection 24/7 par agents spécialisés, confidentialité et gestion des flux.",
+    "sections": [
+      { "title": "Compétences", "html": "<ul><li>Contrôle d'accès</li><li>Gardiennage matériel & véhicules</li><li>Gestion de foules</li><li>SSIAP & maîtres‑chiens</li></ul>" }
+    ],
+    "features": ["Agents spécialisés", "Confidentialité", "Réactivité 24/7"],
+    "faq": [
+      { "q": "Intervenez-vous partout en France ?", "a": "Oui, couverture nationale 24/7." }
+    ]
+  },
+  {
+    "slug": "convoyage",
+    "metaTitle": "Convoyage de Véhicules & Décors | BMS Ventouse",
+    "metaDescription": "Transport sécurisé France entière par chauffeurs expérimentés (jusqu'à 22 m³ et poids lourds).",
+    "h1": "Convoyage de Véhicules & Décors",
+    "hero": {
+      "desktop": "/images/service-convoyage-custom.jpg",
+      "mobile": "/images/service-convoyage-custom.jpg",
+      "alt": "Camion de convoyage matériel"
+    },
+    "summary": "Transport sécurisé de véhicules et décors entre sites de tournage.",
+    "sections": [
+      { "title": "Capacités", "html": "<p>Jusqu'à 22 m³, poids lourds via partenaires, assurances adaptées.</p>" }
+    ],
+    "features": ["Chauffeurs expérimentés", "Assurances adaptées", "Couverture nationale"],
+    "faq": []
+  },
+  {
+    "slug": "loges-confort",
+    "metaTitle": "Loges & Confort (Cars Loges) | BMS Ventouse",
+    "metaDescription": "Cars loges premium, espaces chauffés/climatisés, maquillage, repos et sanitaires intégrés.",
+    "h1": "Loges & Confort",
+    "hero": {
+      "desktop": "/images/service-loges-custom.jpg",
+      "mobile": "/images/service-loges-custom.jpg",
+      "alt": "Cars loges et espaces maquillage"
+    },
+    "summary": "Confort optimal pour équipes et talents sur site.",
+    "sections": [],
+    "features": ["Cars loges premium", "Espaces maquillage & repos", "Sanitaires intégrés"],
+    "faq": []
+  },
+  {
+    "slug": "cantine-catering",
+    "metaTitle": "Cantine & Catering | BMS Ventouse",
+    "metaDescription": "Traiteurs partenaires, menus variés et équilibrés, options végétariennes et véganes.",
+    "h1": "Cantine & Catering",
+    "hero": {
+      "desktop": "/images/service-cantine.webp",
+      "mobile": "/images/service-cantine.webp",
+      "alt": "Service de cantine"
+    },
+    "summary": "Restauration de qualité adaptée à vos équipes.",
+    "sections": [],
+    "features": ["Menus variés", "Options végétariennes/véganes", "Service sur site"],
+    "faq": []
+  },
+  {
+    "slug": "logistique-evenementielle",
+    "metaTitle": "Logistique Événementielle (Mode, Publicité) | BMS Ventouse",
+    "metaDescription": "Expertise logistique pour événements majeurs, défilés, publicité.",
+    "h1": "Logistique Événementielle",
+    "hero": {
+      "desktop": "/images/service-evenementiel.webp",
+      "mobile": "/images/service-evenementiel.webp",
+      "alt": "Logistique événementielle"
+    },
+    "summary": "Logistique et sécurité pour événements premium.",
+    "sections": [],
+    "features": ["Mode & défilés", "Publicité", "Adaptation site"] ,
+    "faq": []
+  },
+  {
+    "slug": "regie-materiel",
+    "metaTitle": "Régie & Matériel | BMS Ventouse",
+    "metaDescription": "Personnel et matériel de régie, mise en relation & location via partenaires.",
+    "h1": "Régie & Matériel",
+    "hero": {
+      "desktop": "/images/service-regie-custom.jpg",
+      "mobile": "/images/service-regie-custom.jpg",
+      "alt": "Régie de nuit"
+    },
+    "summary": "Régie expérimentée et matériel pour la fluidité des opérations.",
+    "sections": [],
+    "features": ["Régie expérimentée", "Matériel disponible", "Mise en relation partenaires"],
+    "faq": []
+  },
+  {
+    "slug": "solutions-packagees",
+    "metaTitle": "Solutions Packagées & Offres Partenaires | BMS Ventouse",
+    "metaDescription": "Packages sur mesure combinant logistique et sécurité à prix compétitifs.",
+    "h1": "Solutions Packagées",
+    "hero": {
+      "desktop": "/images/service-package.webp",
+      "mobile": "/images/service-package.webp",
+      "alt": "Package de services"
+    },
+    "summary": "Combinaisons optimisées pour budget et efficacité.",
+    "sections": [],
+    "features": ["Logistique + sécurité", "Optimisation budgétaire", "Sur mesure"],
+    "faq": []
+  }
+]

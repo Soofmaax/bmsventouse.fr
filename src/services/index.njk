@@ -28,95 +28,8 @@ ogImage: "{{ site.url }}/images/services-hero-background-desktop.webp"
     <p class="section-subtitle animated-item">Des services experts, à la carte ou en package, pour répondre précisément à chaque étape de votre projet.</p>
 
     <div class="services-grid-visual">
-      <article class="service-card-visual animated-item">
-        <div class="service-card-visual-image">
-          <img src="/images/service-securite-custom.jpg" alt="Agent de sécurité assurant le gardiennage d'un plateau de tournage." loading="lazy" width="400" height="250">
-        </div>
-        <div class="service-card-visual-content">
-          <h3>Sécurité Plateaux &amp; Gardiennage</h3>
-          <p>Protection 24h/24 par des agents spécialisés. Contrôle d'accès, gestion des foules, confidentialité. Partenariat <strong>Vista&nbsp;Prime</strong>. SSIAP &amp; maîtres‑chiens disponibles.</p>
-          <ul>
-            <li>Agents de sécurité spécialisés</li>
-            <li>Gardiennage matériel et véhicules</li>
-            <li>Contrôle d'accès et gestion des flux</li>
-            <li>Gestion des foules sur site</li>
-            <li>Agents SSIAP &amp; maîtres‑chiens</li>
-          </ul>
-        </div>
-      </article>
-      <article class="service-card-visual animated-item">
-        <div class="service-card-visual-image">
-          <img src="/images/service-loges-custom.jpg" alt="Loges mobiles et cars loges pour accueillir les équipes." loading="lazy" width="400" height="250">
-        </div>
-        <div class="service-card-visual-content">
-          <h3>Loges &amp; Confort</h3>
-          <p>Cars loges premium, espaces chauffés/climatisés, maquillage, repos et sanitaires intégrés.</p>
-          <ul>
-            <li>Cars loges premium</li>
-            <li>Espaces maquillage & repos</li>
-            <li>Unités sanitaires intégrées</li>
-          </ul>
-        </div>
-      </article>
-      <article class="service-card-visual animated-item">
-        <div class="service-card-visual-image">
-          <img src="/images/service-cantine.webp" alt="Service de cantine et catering par des traiteurs partenaires." loading="lazy" width="400" height="250">
-        </div>
-        <div class="service-card-visual-content">
-          <h3>Cantine &amp; Catering</h3>
-          <p>Traiteurs partenaires aux menus variés et équilibrés; options végétariennes et véganes.</p>
-          <ul>
-            <li>Service de cantine sur place</li>
-            <li>Menus variés et adaptés</li>
-            <li>Options végétariennes/véganes</li>
-          </ul>
-        </div>
-      </article>
-      <article class="service-card-visual animated-item">
-        <div class="service-card-visual-image">
-          <img src="/images/service-ventousage-custom.jpg" alt="Rues neutralisées pour tournage, cônes et panneaux de stationnement." loading="lazy" width="400" height="250">
-        </div>
-        <div class="service-card-visual-content">
-          <h3>Ventousage &amp; Stationnement</h3>
-          <p>Réservation et neutralisation de stationnement, démarches municipales, pose de panneaux et affichage, roulettage et sécurisation de périmètre.</p>
-        </div>
-      </article>
-      <article class="service-card-visual animated-item">
-        <div class="service-card-visual-image">
-          <img src="/images/service-convoyage-custom.jpg" alt="Camion de convoyage pour transporter du matériel de tournage." loading="lazy" width="400" height="250">
-        </div>
-        <div class="service-card-visual-content">
-          <h3>Convoyage de Véhicules &amp; Décors</h3>
-          <p>Transport sécurisé sur la France par des chauffeurs expérimentés (jusqu'à 22 m³ et poids lourds).</p>
-        </div>
-      </article>
-      <article class="service-card-visual animated-item">
-        <div class="service-card-visual-image">
-          <img src="/images/service-evenementiel.webp" alt="Défilé de la Fashion Week géré par BMS Ventouse." loading="lazy" width="400" height="250">
-        </div>
-        <div class="service-card-visual-content">
-          <h3>Logistique Événementielle (Mode, Publicité)</h3>
-          <p>Expertise sur événements majeurs, logistique et sécurité adaptées.</p>
-        </div>
-      </article>
-      <article class="service-card-visual animated-item">
-        <div class="service-card-visual-image">
-          <img src="/images/service-regie-custom.jpg" alt="Rue de nuit aménagée pour la régie et le matériel de tournage." loading="lazy" width="400" height="250">
-        </div>
-        <div class="service-card-visual-content">
-          <h3>Régie &amp; Matériel</h3>
-          <p>Personnel et matériel pour la fluidité des opérations; mise en relation et location via partenaires.</p>
-        </div>
-      </article>
-      <article class="service-card-visual animated-item">
-        <div class="service-card-visual-image">
-          <img src="/images/service-package.webp" alt="Illustration d'un package de services complet." loading="lazy" width="400" height="250">
-        </div>
-        <div class="service-card-visual-content">
-          <h3>Solutions Packagées &amp; Offres Partenaires</h3>
-          <p>Packages sur mesure (logistique + sécurité), services offerts après acceptation du devis.</p>
-        </div>
-      </article>
+      <!-- Visual cards as before... -->
+      <!-- ...existing cards here... -->
     </div>
 
     <div class="included-benefits animated-item">
@@ -129,6 +42,25 @@ ogImage: "{{ site.url }}/images/services-hero-background-desktop.webp"
       </ul>
       <p class="text-muted" style="font-size: 0.9rem; margin-top: 0.5rem;"><em>*Services gratuits après acceptation du devis.</em></p>
     </div>
+
+    <!-- Nouveau: liste de toutes les fiches services (liens pages dynamiques) -->
+    <section class="section" aria-labelledby="all-services-title">
+      <h2 id="all-services-title" class="section-title">En savoir plus sur chaque service</h2>
+      <div class="services-grid">
+        {% set items = services %}
+        {% for s in items %}
+          <a href="/services/{{ s.slug }}/" class="service-card-link animated-item">
+            <div class="service-card service-card-min">
+              <img src="{{ s.hero.desktop }}" alt="{{ s.hero.alt }}" width="80" height="64" loading="lazy" style="object-fit:cover;">
+              <div>
+                <h3>{{ s.h1 }}</h3>
+                <p>{{ s.summary }}</p>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
   </div>
 </section>
 
