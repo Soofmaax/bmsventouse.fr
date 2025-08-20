@@ -7,20 +7,19 @@ title: "Nos Services de Logistique Audiovisuelle | BMS Ventouse"
 description: "Découvrez nos services experts pour tournages et événements : ventousage, sécurité plateaux, régie technique, convoyage national. Solutions sur mesure pour une production sereine."
 ogImage: "{{ site.url }}/images/services-hero-background-desktop.webp"
 ---
-{% from "components/hero.njk" import hero %}
 {% import "components/macros.njk" as macros %}
 
-{% call hero(
-  imageDesktop='/images/services-hero-background-desktop.webp',
-  imageMobile='/images/services-hero-background-mobile.webp',
-  alt="Équipe logistique préparant un plateau de tournage",
-  loading='eager',
-  width=1920,
+{% hero
+  imageDesktop='/images/services-hero-background-desktop.webp'
+  imageMobile='/images/services-hero-background-mobile.webp'
+  alt="Équipe logistique préparant un plateau de tournage"
+  loading='eager'
+  width=1920
   height=1080
-) %}
+%}
   <h1>Solutions Logistiques Complètes pour Productions Audiovisuelles</h1>
   <p>Que vous soyez régisseur de long métrage, de série, de publicité ou d'événementiel, nous avons la solution.</p>
-{% endcall %}
+{% endhero %}
 
 <section id="services-list" class="section" role="region" aria-labelledby="catalog-title">
   <div class="container">

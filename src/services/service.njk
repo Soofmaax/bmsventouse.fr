@@ -10,20 +10,19 @@ eleventyComputed:
   heroImage: "{{ service.hero.desktop }}"
   ogImage: "{{ site.url }}{{ service.hero.desktop }}"
 ---
-{% from "components/hero.njk" import hero %}
 {% import "components/macros.njk" as macros %}
 
-{% call hero(
-  imageDesktop=service.hero.desktop,
-  imageMobile=service.hero.mobile,
-  alt=service.hero.alt,
-  loading='eager',
-  width=1920,
+{% hero
+  imageDesktop=service.hero.desktop
+  imageMobile=service.hero.mobile
+  alt=service.hero.alt
+  loading='eager'
+  width=1920
   height=1080
-) %}
+%}
   <h1>{{ service.h1 }}</h1>
   <p>{{ service.summary }}</p>
-{% endcall %}
+{% endhero %}
 
 {% for section in service.sections %}
 <section class="section">
