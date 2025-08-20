@@ -11,12 +11,21 @@
     },
     "summary": "Gestion des autorisations, pose de panneaux, neutralisation et sécurisation de périmètres.",
     "sections": [
-      { "title": "Ce que nous faisons", "html": "<p>Réservations et <strong>neutralisation de stationnement</strong>, <strong>affichage riverains</strong>, <strong>pose de signalisation</strong>, coordination municipale.</p>" },
-      { "title": "Livrables", "html": "<ul><li>Panneaux et affichages posés</li><li>Plan de roulettage</li><li>Autorisation municipale</li></ul>" }
+      {
+        "title": "Ce que nous faisons",
+        "html": "<p>Réservations et <strong>neutralisation de stationnement</strong>, <strong>affichage riverains</strong>, <strong>pose de signalisation</strong>, coordination municipale.</p>"
+      },
+      {
+        "title": "Livrables",
+        "html": "<ul><li>Panneaux et affichages posés</li><li>Plan de roulettage</li><li>Autorisation municipale</li></ul>"
+      }
     ],
     "features": ["Autorisations municipales", "Affichage riverains", "Roulettage & signalisation"],
     "faq": [
-      { "q": "Combien de temps pour obtenir une autorisation ?", "a": "Selon la ville, 48h à 10 jours ouvrés. Nous gérons la procédure complète." }
+      {
+        "q": "Combien de temps pour obtenir une autorisation ?",
+        "a": "Selon la ville, 48h à 10 jours ouvrés. Nous gérons la procédure complète."
+      }
     ]
   },
   {
@@ -31,11 +40,17 @@
     },
     "summary": "Protection 24/7 par agents spécialisés, confidentialité et gestion des flux.",
     "sections": [
-      { "title": "Compétences", "html": "<ul><li>Contrôle d'accès</li><li>Gardiennage matériel & véhicules</li><li>Gestion de foules</li><li>SSIAP & maîtres‑chiens</li></ul>" }
+      {
+        "title": "Compétences",
+        "html": "<ul><li>Contrôle d'accès</li><li>Gardiennage matériel & véhicules</li><li>Gestion de foules</li><li>SSIAP & maîtres‑chiens</li></ul>"
+      }
     ],
     "features": ["Agents spécialisés", "Confidentialité", "Réactivité 24/7"],
     "faq": [
-      { "q": "Intervenez-vous partout en France ?", "a": "Oui, couverture nationale 24/7." }
+      {
+        "q": "Intervenez-vous partout en France ?",
+        "a": "Oui, couverture nationale 24/7."
+      }
     ]
   },
   {
@@ -50,7 +65,10 @@
     },
     "summary": "Transport sécurisé de véhicules et décors entre sites de tournage.",
     "sections": [
-      { "title": "Capacités", "html": "<p>Jusqu'à 22 m³, poids lourds via partenaires, assurances adaptées.</p>" }
+      {
+        "title": "Capacités",
+        "html": "<p>Jusqu'à 22 m³, poids lourds via partenaires, assurances adaptées.</p>"
+      }
     ],
     "features": ["Chauffeurs expérimentés", "Assurances adaptées", "Couverture nationale"],
     "faq": []
@@ -97,7 +115,7 @@
     },
     "summary": "Logistique et sécurité pour événements premium.",
     "sections": [],
-    "features": ["Mode & défilés", "Publicité", "Adaptation site"] ,
+    "features": ["Mode & défilés", "Publicité", "Adaptation site"],
     "faq": []
   },
   {
