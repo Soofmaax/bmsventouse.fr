@@ -11,14 +11,7 @@ heroImage: "/images/contact-hero-background-desktop.webp"
 {% from "../_includes/components/hero.njk" import hero %}
 {% import "../_includes/components/macros.njk" as macros %}
 
-{% call hero(
-  imageDesktop="/images/contact-hero-background-desktop.webp",
-  imageMobile="/images/contact-hero-background-mobile.webp",
-  alt="Personne utilisant un téléphone pour contacter un service",
-  loading='eager',
-  width=1920,
-  height=1080
-) %}
+{% call hero(imageDesktop="/images/contact-hero-background-desktop.webp", imageMobile="/images/contact-hero-background-mobile.webp", alt="Personne utilisant un téléphone pour contacter un service", loading='eager', width=1920, height=1080) %}
   <h1>Un Projet ? Une Urgence ?</h1>
   <p>Contactez-nous directement. Notre équipe est disponible 24h/24 pour répondre à vos besoins.</p>
 {% endcall %}
@@ -104,7 +97,7 @@ heroImage: "/images/contact-hero-background-desktop.webp"
   </div>
 </section>
 
-<section id="cta-contact" class="section cta-section">
+<section class="section cta-section">
   <div class="container animated-item">
     <h2 class="cta-title">Une Question ? Un Projet Urgent ?</h2>
     <p class="cta-subtitle">Contactez‑nous pour une analyse gratuite de vos besoins et un devis personnalisé sous&nbsp;48&nbsp;h.</p>
@@ -123,31 +116,31 @@ heroImage: "/images/contact-hero-background-desktop.webp"
   "@type": "ContactPage",
   "mainEntity": {
     "@type": "ProfessionalService",
-    "name": "BMS Ventouse",
+    "name": "{{ site.brand }}",
     "url": "{{ site.url }}",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "10 Rue de la République",
-      "addressLocality": "Drancy",
-      "postalCode": "93700",
-      "addressCountry": "FR"
+      "streetAddress": "{{ site.address.street }}",
+      "addressLocality": "{{ site.address.locality }}",
+      "postalCode": "{{ site.address.postalCode }}",
+      "addressCountry": "{{ site.address.country }}"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "48.9242",
-      "longitude": "2.4453"
+      "latitude": "{{ site.geo.lat }}",
+      "longitude": "{{ site.geo.lng }}"
     },
     "contactPoint": [
       {
         "@type": "ContactPoint",
-        "telephone": "+33646005642",
+        "telephone": "{{ site.phone }}",
         "contactType": "customer service",
         "name": "Béna",
         "availableLanguage": "French",
-        "hoursAvailable": "Mo-Su 00:00-23:59"
+        "hoursAvailable": "{{ site.openingHours }}"
       }
     ],
-    "email": "bms.ventouse@gmail.com",
+    "email": "{{ site.emails.primary }}",
     "areaServed": {
       "@type": "Country",
       "name": "France"
