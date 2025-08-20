@@ -1,4 +1,18 @@
+// Nunjucks date filter (default yyyy-MM-dd)
+function toDate(value) {
+  if (value instanceof Date) return value;
+  if (typeof value === 'number') return new Date(value);
+  if (typeof value === 'string') return new Date(value);
+  return new Date();
+}
 module.exports = function(eleventyConfig) {
+  eleventyConfig.addNunjucksFilter('date', (value, format = 'yyyy-MM-dd') => {
+    const d = toDate(value);
+    if (!d || isNaN(d.getTime())) return '';
+    if (format === 'yyyy-MM-dd') return d.toISOString().slice(0, 10);
+    // Fallback: return ISO if unknown format
+    return d.toISOString();
+  });
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("js");
