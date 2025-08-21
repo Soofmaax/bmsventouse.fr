@@ -1,0 +1,17 @@
+{
+  "cta": {
+    "reserve": "Réserver votre loge",
+    "contact": "Nous contacter",
+    "quote": "Obtenir un devis",
+    "expert": "Parler à un expert"
+  },
+  "section": {
+    "features": "Nos points forts",
+    "faq": "Questions fréquentes",
+    "presentation": "Présentation"
+  },
+  "misc": {
+    "timeToRead": "Temps de lecture estimé",
+    "toc": "Sommaire"
+  }
+}

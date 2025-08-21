@@ -4,36 +4,36 @@ lang: fr
 activeNav: services
 bodyClass: page-service
 pagination:
-  data: services
+  data: collections.services
   size: 1
   alias: service
-permalink: "/services/{{ service.slug }}/"
+permalink: "/services/{{ service.data.slug }}/"
 eleventyComputed:
-  title: "{{ service.metaTitle }}"
-  description: "{{ service.metaDescription }}"
-  heroImage: "{{ service.hero.desktop }}"
-  ogImage: "{{ site.url }}{{ service.hero.desktop }}"
+  title: "{{ service.data.metaTitle }}"
+  description: "{{ service.data.metaDescription }}"
+  heroImage: "{{ service.data.hero.desktop }}"
+  ogImage: "{{ site.url }}{{ service.data.hero.desktop }}"
 ---
 {% import "components/macros.njk" as macros %}
 
 {% hero {
-  "imageDesktop": service.hero.desktop,
-  "imageMobile": service.hero.mobile,
-  "alt": service.hero.alt,
+  "imageDesktop": service.data.hero.desktop,
+  "imageMobile": service.data.hero.mobile,
+  "alt": service.data.hero.alt,
   "loading": "eager",
   "width": 1920,
   "height": 1080
 } %}
-  <h1>{{ service.h1 }}</h1>
-  <p>{{ service.summary }}</p>
+  <h1>{{ service.data.h1 }}</h1>
+  <p>{{ service.data.summary }}</p>
 {% endhero %}
 
 <section class="band">
   <div class="container">
-    {{ macros.sectionHeader('Présentation', service.h1, 'A Marseille, Paris, Lyon et partout en France') }}
+    {% sectionHeader 'Présentation', service.data.h1, 'A Marseille, Paris, Lyon et partout en France' %}
     <div class="content-cards">
-      {% for section in service.sections %}
-        {{ macros.contentCard(section.title, section.html) }}
+      {% for section in service.data.sections %}
+        {% contentCard section.title, section.html %}
       {% endfor %}
     </div>
   </div>

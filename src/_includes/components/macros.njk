@@ -72,21 +72,6 @@
 </div>
 {% endmacro %}
 
-{% macro contentCard(title, html, className='') %}
-  <article class="content-card{% if className %} {{ className }}{% endif %}">
-    {% if title %}<h3 class="content-card-title">{{ title }}</h3>{% endif %}
-    {{ html | safe }}
-  </article>
-{% endmacro %}
-
-{% macro sectionHeader(eyebrow, title, subtitle) %}
-  <div class="section-header">
-    {% if eyebrow %}<div class="eyebrow" style="color:var(--brand-orange);font-weight:800;letter-spacing:.02em;margin-bottom:.25rem">{{ eyebrow }}</div>{% endif %}
-    <h2 class="section-title" style="margin:.25rem 0 .5rem">{{ title }}</h2>
-    {% if subtitle %}<p class="section-subtitle" style="margin:0;color:#4b5563">{{ subtitle }}</p>{% endif %}
-  </div>
-{% endmacro %}
-
 {% macro callout(kind='info', title='', html='') %}
   {% set color = kind == 'warning' and '#B45309' or kind == 'success' and '#065F46' or '#1F2937' %}
   <aside class="content-card" style="border-left:4px solid {{ color }}">

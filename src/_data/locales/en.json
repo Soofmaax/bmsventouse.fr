@@ -1,0 +1,17 @@
+{
+  "cta": {
+    "reserve": "Book your loge",
+    "contact": "Contact us",
+    "quote": "Get a quote",
+    "expert": "Talk to an expert"
+  },
+  "section": {
+    "features": "Our strengths",
+    "faq": "Frequently Asked Questions",
+    "presentation": "Overview"
+  },
+  "misc": {
+    "timeToRead": "Estimated reading time",
+    "toc": "Table of Contents"
+  }
+}
