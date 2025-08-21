@@ -91,7 +91,7 @@ module.exports = function(eleventyConfig) {
     htmlTemplateEngine: "njk",
     templateFormats: ["njk", "md", "html"]
   };
-};
+}
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("js");
   [
