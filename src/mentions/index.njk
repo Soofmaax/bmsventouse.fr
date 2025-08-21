@@ -11,14 +11,14 @@ heroImage: "/images/contact-hero-background-desktop.webp"
 ---
 {% import "components/macros.njk" as macros %}
 
-{% hero
-  imageDesktop="/images/contact-hero-background-desktop.webp"
-  imageMobile="/images/contact-hero-background-mobile.webp"
-  alt="Bureau moderne avec documents légaux et contrats"
-  loading='eager'
-  width=1920
-  height=1080
-%}
+{% hero {
+  "imageDesktop": "/images/contact-hero-background-desktop.webp",
+  "imageMobile": "/images/contact-hero-background-mobile.webp",
+  "alt": "Bureau moderne avec documents légaux et contrats",
+  "loading": "eager",
+  "width": 1920,
+  "height": 1080
+} %}
   <h1>Mentions Légales</h1>
   <p>Informations légales et conditions d'utilisation du site BMS Ventouse.</p>
 {% endhero %}

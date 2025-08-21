@@ -7,12 +7,6 @@ function toDate(value) {
 }
 module.exports = function(eleventyConfig) {
   // Nunjucks date filter (default yyyy-MM-dd)
-  function toDate(value) {
-    if (value instanceof Date) return value;
-    if (typeof value === 'number') return new Date(value);
-    if (typeof value === 'string') return new Date(value);
-    return new Date();
-  }
   eleventyConfig.addNunjucksFilter('date', (value, format = 'yyyy-MM-dd') => {
     const d = toDate(value);
     if (!d || isNaN(d.getTime())) return '';

@@ -9,14 +9,14 @@ ogImage: "{{ site.url }}/images/services-hero-background-desktop.webp"
 ---
 {% import "components/macros.njk" as macros %}
 
-{% hero
-  imageDesktop='/images/services-hero-background-desktop.webp'
-  imageMobile='/images/services-hero-background-mobile.webp'
-  alt="Équipe logistique préparant un plateau de tournage"
-  loading='eager'
-  width=1920
-  height=1080
-%}
+{% hero {
+  "imageDesktop": "/images/services-hero-background-desktop.webp",
+  "imageMobile": "/images/services-hero-background-mobile.webp",
+  "alt": "Équipe logistique préparant un plateau de tournage",
+  "loading": "eager",
+  "width": 1920,
+  "height": 1080
+} %}
   <h1>Solutions Logistiques Complètes pour Productions Audiovisuelles</h1>
   <p>Que vous soyez régisseur de long métrage, de série, de publicité ou d'événementiel, nous avons la solution.</p>
 {% endhero %}

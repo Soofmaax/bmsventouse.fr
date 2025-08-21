@@ -12,14 +12,14 @@ eleventyComputed:
 ---
 {% import "components/macros.njk" as macros %}
 
-{% hero
-  imageDesktop=service.hero.desktop
-  imageMobile=service.hero.mobile
-  alt=service.hero.alt
-  loading='eager'
-  width=1920
-  height=1080
-%}
+{% hero {
+  "imageDesktop": service.hero.desktop,
+  "imageMobile": service.hero.mobile,
+  "alt": service.hero.alt,
+  "loading": "eager",
+  "width": 1920,
+  "height": 1080
+} %}
   <h1>{{ service.h1 }}</h1>
   <p>{{ service.summary }}</p>
 {% endhero %}

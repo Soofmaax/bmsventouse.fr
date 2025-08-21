@@ -11,12 +11,12 @@ heroImage: "/images/hero-background-custom.jpg"
 
 {% import "components/macros.njk" as macros %}
 
-{% hero
-  imageDesktop=heroImage,
-  alt="Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain",
-  loading='eager',
-  fetchpriority='high'
-%}
+{% hero {
+  "imageDesktop": heroImage,
+  "alt": "Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain",
+  "loading": "eager",
+  "fetchpriority": "high"
+} %}
   <h1>Expert Logistique Audiovisuelle pour Tournages Cinéma et Télévision en France</h1>
   <p>Spécialiste en <strong>ventousage de plateau</strong>, <strong>sécurisation de tournage</strong>, et <strong>convoyage de véhicules</strong>. BMS Ventouse assure la logistique complète de vos tournages, partout en France, 24/7.</p>
   {{ macros.ctaButtons('/contact/', 'Obtenir un Devis Gratuit', 'https://wa.me/33646005642?text=Bonjour,%20j%27aimerais%20obtenir%20un%20devis%20gratuit.', 'WhatsApp Direct') }}
