@@ -2258,6 +2258,62 @@ body:has(.nav-links.active) {
   }
 }
 
+/* ================== FONCTIONNALITÉS NOUVELLES ================== */
+
+/* === ACCESSIBILITÉ SKIP-LINK & FOCUS-VISIBLE === */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  z-index: 100;
+  transition: top .3s;
+}
+.skip-link:focus {
+  top: 8px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+.hero-description-mobile {
+  display: none;
+}
+
+.hero-description-desktop {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hero-description-mobile {
+    display: block;
+  }
+  
+  .hero-description-desktop {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .faq-question {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+  
+  .faq-question::after {
+    right: 1rem;
+  }
+  
+  .faq-answer {
+    padding: 0 1rem;
+  }
+  
+  .faq-item.is-open .faq-answer {
+    padding: 1rem;
+  }
+}
+
 /* === PRO CARD UX PATCH === */
 :root{
   --brand-orange:#FF8C42;--bg:#0a0a0a;--card-bg:#fff;--card-border:rgba(0,0,0,.08);

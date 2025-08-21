@@ -3,7 +3,11 @@
   "private": true,
   "scripts": {
     "build": "eleventy",
-    "dev": "eleventy --serve --port=8080"
+    "dev": "eleventy --serve --port=8080",
+    "lint:js": "eslint src/",
+    "lint:css": "stylelint css/**/*.css",
+    "lint:html": "htmlhint src/**/*.njk",
+    "prettier:check": "prettier --check \"{css,src}/**/*.{css,js,njk,json,md}\""
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

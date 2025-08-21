@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, cosine/seo-code-improvement-vd84bh]
+  push:
+    branches: [main, cosine/seo-code-improvement-vd84bh]
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run lint:js
+      - run: npm run lint:css
+      - run: npm run lint:html
+      - run: npm run prettier:check
+      - run: npm run build
+      - name: Lighthouse CI
+        run: npx lhci autorun --config=.lighthouserc.js || exit 1
