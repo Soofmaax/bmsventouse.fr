@@ -1,10 +1,3 @@
-// Nunjucks date filter (default yyyy-MM-dd)
-function toDate(value) {
-  if (value instanceof Date) return value;
-  if (typeof value === 'number') return new Date(value);
-  if (typeof value === 'string') return new Date(value);
-  return new Date();
-}
 const { EleventyI18nPlugin } = require("@11ty/eleventy-plugin-i18n");
 const fs = require("fs");
 const path = require("path");
@@ -65,7 +58,7 @@ module.exports = function(eleventyConfig) {
     );
   });
 
-  // Passthroughs, etc.
+  // Passthroughs
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("js");
@@ -80,32 +73,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("netlify.toml");
 
-  return {
-    dir: {
-      input: "src",
-      output: "_site",
-      includes: "_includes",
-      data: "_data"
-    },
-    markdownTemplateEngine: "njk",
-    htmlTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html"]
-  };
-}
-  eleventyConfig.addPassthroughCopy("css");
-  eleventyConfig.addPassthroughCopy("js");
-  [
-    "favicon.ico",
-    "favicon-16x16.png",
-    "favicon-32x32.png",
-    "apple-touch-icon.png",
-    "android-chrome-192x192.png",
-    "android-chrome-192x192.webp",
-    "android-chrome-512x512.png",
-    "site.webmanifest",
-    "robots.txt",
-    "netlify.toml"
-  ].forEach(asset => eleventyConfig.addPassthroughCopy(asset));
   return {
     dir: {
       input: "src",
