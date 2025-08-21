@@ -1,12 +1,17 @@
-{%- set pageUrl = page.url | url %}
-{%- set canonical = canonical or site.url + (pageUrl == "/" ? "/" : pageUrl) %}
+{%- set pageUrl = page.url | url -%}
+{%- if pageUrl == '/' -%}
+  {%- set canonicalComputed = site.url + '/' -%}
+{%- else -%}
+  {%- set canonicalComputed = site.url + pageUrl -%}
+{%- endif -%}
+{%- set canonicalHref = canonical or canonicalComputed -%}
 <title>{{ title }}</title>
 <meta name="description" content="{{ description }}">
 <meta name="theme-color" content="{{ site.themeColor }}">
 <meta name="robots" content="{{ robots | default('index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1') }}">
-<link rel="canonical" href="{{ canonical }}">
-<link rel="alternate" hreflang="fr-FR" href="{{ canonical }}">
-<link rel="alternate" hreflang="x-default" href="{{ canonical }}">
+<link rel="canonical" href="{{ canonicalHref }}">
+<link rel="alternate" hreflang="fr-FR" href="{{ canonicalHref }}">
+<link rel="alternate" hreflang="x-default" href="{{ canonicalHref }}">
 
 {# Open Graph / Facebook #}
 <meta property="og:title" content="{{ title }}">
