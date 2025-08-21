@@ -9,25 +9,68 @@
       "mobile": "/images/service-ventousage-custom.jpg",
       "alt": "Rues neutralisées pour tournage, cônes et panneaux"
     },
-    "summary": "Gestion des autorisations, pose de panneaux, neutralisation et sécurisation de périmètres.",
+    "summary": "Obtenez vos autorisations et neutralisations de stationnement rapidement, qu’il s’agisse d’un tournage à Marseille, Paris, Lyon ou partout en France. BMS Ventouse garantit conformité et visibilité grâce à une coordination complète avec les autorités.",
     "sections": [
       {
-        "title": "Ce que nous faisons",
-        "html": "<p>Réservations et <strong>neutralisation de stationnement</strong>, <strong>affichage riverains</strong>, <strong>pose de signalisation</strong>, coordination municipale.</p>"
+        "title": "Introduction",
+        "html": "<p>Le ventousage est la première étape pour garantir la logistique de tout tournage, notamment dans les grandes villes comme <strong>Marseille</strong>, <strong>Paris</strong> et <strong>Lyon</strong>. Notre équipe assure la neutralisation de stationnement et la sécurisation des périmètres sur l’ensemble du territoire national. Chez BMS Ventouse, nous privilégions un accompagnement direct et professionnel pour chaque production.</p>"
+      },
+      {
+        "title": "Problèmes fréquents",
+        "html": "<ul><li>Refus ou retards d’autorisations municipales</li><li>Signalisation non conforme ou absente</li><li>Mauvaise anticipation des délais pour Marseille, Paris, Lyon</li><li>Absence d’affichage riverains ou de plan de roulettage</li><li>Stationnement sauvage malgré neutralisation</li><li>Manque de coordination avec les forces de l’ordre</li><li>Risques de verbalisation ou d’annulation de tournage</li><li>Communication insuffisante auprès des riverains</li></ul>"
+      },
+      {
+        "title": "Notre méthode",
+        "html": "<ol><li>Analyse des besoins du projet et repérage des lieux</li><li>Dépôt et suivi des demandes d’autorisations en mairie (Paris, Marseille, Lyon...)</li><li>Élaboration du plan de roulettage et des supports affichage</li><li>Pose de signalisation et affichage riverains réglementaires</li><li>Coordination avec police municipale et services techniques</li><li>Contrôle terrain la veille et le jour J (photos, PV)</li></ol>"
       },
       {
         "title": "Livrables",
-        "html": "<ul><li>Panneaux et affichages posés</li><li>Plan de roulettage</li><li>Autorisation municipale</li></ul>"
+        "html": "<ul><li>Autorisation municipale officielle (PDF/physique)</li><li>Panneaux de neutralisation posés et conformes</li><li>Affichage riverains complet (avec contact BMS)</li><li>Plan de roulettage détaillé</li><li>Compte-rendu photo du site</li><li>Assistance le jour du tournage</li><li>Coordination en direct avec les autorités</li><li>Suivi administratif post-tournage</li></ul>"
+      },
+      {
+        "title": "Nos différenciants",
+        "html": "<ul><li>Expertise réglementaire actualisée (France entière, Paris, Marseille, Lyon...)</li><li>Réactivité et délais express</li><li>Suivi en temps réel (contrôle terrain, reporting photo)</li><li>Relation privilégiée avec les mairies et polices municipales</li><li>Affichage riverains pédagogique et personnalisé</li><li>Maillage interne renforcé : <a href=\"/realisations/\">voir nos références</a></li></ul>"
+      },
+      {
+        "title": "Zones d’intervention",
+        "html": "<p>Nous intervenons en priorité à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et sur tout le territoire français. Pour organiser un tournage dans une autre ville ou zone sensible, <a href=\"/contact/\">contactez-nous</a> pour un accompagnement sur-mesure.</p>"
+      },
+      {
+        "title": "Liens utiles",
+        "html": "<p>Découvrez nos <a href=\"/realisations/\">références clients</a> ou <a href=\"/contact/\">contactez-nous</a> pour un conseil personnalisé.</p>"
       }
     ],
-    "features": ["Autorisations municipales", "Affichage riverains", "Roulettage & signalisation"],
+    "features": [
+      "Dépôt et suivi d’autorisations municipales",
+      "Plan de roulettage sur-mesure",
+      "Signalisation et affichage riverains réglementaires",
+      "Suivi photo et reporting",
+      "Intervention à Marseille, Paris, Lyon, France entière"
+    ],
     "faq": [
       {
-        "q": "Combien de temps pour obtenir une autorisation ?",
-        "a": "Selon la ville, 48h à 10 jours ouvrés. Nous gérons la procédure complète."
+        "q": "Quels sont les délais pour obtenir une autorisation de ventousage ?",
+        "a": "Selon la ville, de 48h à 10 jours ouvrés. Nous anticipons chaque administration pour éviter tout blocage."
+      },
+      {
+        "q": "L’affichage riverains est-il obligatoire ?",
+        "a": "Oui, il est obligatoire dans la plupart des villes et fait partie de notre prestation. Nous adaptons le contenu à chaque commune."
+      },
+      {
+        "q": "Que se passe-t-il en cas de stationnement gênant le jour du tournage ?",
+        "a": "Nous collaborons avec la police municipale pour la mise en fourrière rapide si besoin, et anticipons ce risque lors du plan de roulettage."
+      },
+      {
+        "q": "Peut-on ventouser plusieurs rues en même temps ?",
+        "a": "Oui, nous gérons la coordination multi-sites, notamment pour Paris, Marseille, Lyon ou tout projet national."
+      },
+      {
+        "q": "BMS Ventouse s’occupe-t-il aussi des autorisations de tournage ?",
+        "a": "Oui, notre équipe gère l’ensemble des démarches administratives liées au tournage, pas uniquement le stationnement."
       }
     ]
   },
+
   {
     "slug": "securite-gardiennage",
     "metaTitle": "Sécurité de Plateaux & Gardiennage 24/7 | BMS Ventouse",
@@ -38,21 +81,68 @@
       "mobile": "/images/service-securite-custom.jpg",
       "alt": "Agent de sécurité sur plateau"
     },
-    "summary": "Protection 24/7 par agents spécialisés, confidentialité et gestion des flux.",
+    "summary": "Sécurisez vos tournages à Marseille, Paris, Lyon ou partout en France avec des agents spécialisés, 24/7, discrets et formés au secteur audiovisuel.",
     "sections": [
       {
-        "title": "Compétences",
-        "html": "<ul><li>Contrôle d'accès</li><li>Gardiennage matériel & véhicules</li><li>Gestion de foules</li><li>SSIAP & maîtres‑chiens</li></ul>"
+        "title": "Introduction",
+        "html": "<p>La sécurité d’un plateau ne s’improvise pas. Présents à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et sur tout le territoire, nos agents spécialisés assurent le gardiennage, la gestion des flux et la confidentialité de vos tournages, 24h/24 et 7j/7.</p>"
+      },
+      {
+        "title": "Problèmes fréquents",
+        "html": "<ul><li>Entrées ou sorties non filtrées</li><li>Vols ou dégradations sur site</li><li>Intrusions sur plateau (fans, curieux ou médias)</li><li>Manque de confidentialité sur des projets sensibles</li><li>Absence de gestion des flux véhicules/personnes</li><li>Mauvaise gestion en cas d’incident ou d’urgence</li><li>Absence d’agents SSIAP ou de maîtres-chiens sur site critique</li><li>Manque de reporting à la production</li></ul>"
+      },
+      {
+        "title": "Notre méthode",
+        "html": "<ol><li>Évaluation du niveau de risque et besoins spécifiques</li><li>Sélection d’agents formés à l’audiovisuel (badge, dress code…)</li><li>Brief et consignes sécurité (flux, confidentialité, urgence…)</li><li>Poste de contrôle et gestion des accès</li><li>Rondes régulières, surveillance matériel/véhicules</li><li>Reporting quotidien à la production</li></ol>"
+      },
+      {
+        "title": "Livrables",
+        "html": "<ul><li>Agents spécialisés affectés au plateau</li><li>Plan de sécurisation du site</li><li>Fiches de consigne et procédure incident</li><li>Reporting quotidien</li><li>Contrôle des accès (checklist)</li><li>Gestion de la confidentialité (NDAs si besoin)</li><li>Présence SSIAP/maîtres‑chiens sur demande</li><li>Maillage interne : <a href=\"/realisations/\">voir nos références</a></li></ul>"
+      },
+      {
+        "title": "Nos différenciants",
+        "html": "<ul><li>Agents expérimentés et discrets (audiovisuel, événementiel)</li><li>Présence 24/7 à Marseille, Paris, Lyon et France entière</li><li>Réactivité incidents (procédures, partenaires fourrière…)</li><li>Confidentialité et gestion NDAs</li><li>Partenariat Vista Prime et équipes SSIAP certifiées</li><li>Suivi production en temps réel (reporting, chef de poste dédié)</li></ul>"
+      },
+      {
+        "title": "Zones d’intervention",
+        "html": "<p>Nos équipes interviennent à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et partout en France. Pour un besoin spécifique ou une zone complexe, <a href=\"/contact/\">contactez-nous</a>.</p>"
+      },
+      {
+        "title": "Liens utiles",
+        "html": "<p>Voir nos <a href=\"/realisations/\">projets sécurisés</a> ou <a href=\"/contact/\">nous contacter</a> pour une analyse gratuite.</p>"
       }
     ],
-    "features": ["Agents spécialisés", "Confidentialité", "Réactivité 24/7"],
+    "features": [
+      "Agents spécialisés audiovisuel",
+      "Contrôle d’accès et confidentialité",
+      "Présence 24/7",
+      "Procédures incidents éprouvées",
+      "Présence SSIAP/maîtres-chiens"
+    ],
     "faq": [
       {
-        "q": "Intervenez-vous partout en France ?",
-        "a": "Oui, couverture nationale 24/7."
+        "q": "Les agents sont-ils formés pour l’audiovisuel ?",
+        "a": "Oui, tous nos agents sont sensibilisés aux exigences des tournages et savent s’adapter à la discrétion requise du secteur."
+      },
+      {
+        "q": "Intervenez-vous la nuit ou le week-end ?",
+        "a": "Oui, nous proposons un service 24h/24, 7j/7 à Marseille, Paris, Lyon et sur toute la France."
+      },
+      {
+        "q": "Gérez-vous la confidentialité des projets ?",
+        "a": "Oui, nous pouvons signer et faire signer des NDAs à toutes les personnes concernées."
+      },
+      {
+        "q": "Peut-on avoir un chef de poste dédié ?",
+        "a": "Oui, selon l’ampleur du projet, nous mettons en place un chef sécurité dédié pour le reporting et la gestion des incidents."
+      },
+      {
+        "q": "Est-il possible d’avoir des agents SSIAP ou des maîtres-chiens ?",
+        "a": "Oui, sur demande, selon la typologie du site et les exigences de la production."
       }
     ]
   },
+
   {
     "slug": "convoyage",
     "metaTitle": "Convoyage de Véhicules & Décors | BMS Ventouse",
@@ -63,16 +153,68 @@
       "mobile": "/images/service-convoyage-custom.jpg",
       "alt": "Camion de convoyage matériel"
     },
-    "summary": "Transport sécurisé de véhicules et décors entre sites de tournage.",
+    "summary": "Transport spécialisé de véhicules et décors de Marseille à Paris, Lyon et partout en France, avec sécurité et ponctualité.",
     "sections": [
       {
-        "title": "Capacités",
-        "html": "<p>Jusqu'à 22 m³, poids lourds via partenaires, assurances adaptées.</p>"
+        "title": "Introduction",
+        "html": "<p>Le convoyage de véhicules et de décors est essentiel à la fluidité d’un tournage, en particulier dans les grandes villes comme <strong>Marseille</strong>, <strong>Paris</strong> et <strong>Lyon</strong>. Notre service s’appuie sur des chauffeurs expérimentés, des procédures strictes de sécurité et une gestion précise du planning, partout en France.</p>"
+      },
+      {
+        "title": "Problèmes fréquents",
+        "html": "<ul><li>Retards de livraison des véhicules ou décors</li><li>Manque d’assurance ou de vérification du matériel</li><li>Volumes ou poids mal anticipés</li><li>Absence de solutions pour déplacer des poids lourds</li><li>Itinéraires non adaptés au calendrier du tournage</li><li>Communication insuffisante avec la production</li><li>Manque de reporting sur la livraison</li></ul>"
+      },
+      {
+        "title": "Notre méthode",
+        "html": "<ol><li>Analyse du besoin (type/volume de véhicules, planning, villes...)</li><li>Planification itinéraire et horaires (Marseille, Paris, Lyon, ou national)</li><li>Sélection de chauffeurs expérimentés avec assurances adaptées</li><li>Chargement sécurisé du matériel/décors</li><li>Transport avec suivi temps réel si besoin</li><li>Remise sur site et reporting photo</li></ol>"
+      },
+      {
+        "title": "Livrables",
+        "html": "<ul><li>Véhicules ou décors livrés sur site</li><li>Preuves de livraison (photos, émargements...)</li><li>Assurances transport adaptées</li><li>Planning précis validé</li><li>Assistance au chargement/déchargement</li><li>Coordination avec la régie et la sécurité</li><li>Liens internes : <a href=\"/contact/\">nous contacter</a> pour un devis spécifique</li></ul>"
+      },
+      {
+        "title": "Nos différenciants",
+        "html": "<ul><li>Réseau de chauffeurs professionnels partout en France</li><li>Gestion de tous types de véhicules (jusqu'à 22 m³, poids lourds via partenaires)</li><li>Assurances adaptées à l’audiovisuel</li><li>Ponctualité et reporting transparent</li><li>Adaptation aux contraintes du plan de tournage</li></ul>"
+      },
+      {
+        "title": "Zones d’intervention",
+        "html": "<p>Convoyage assuré à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et sur tout le territoire national. Pour organiser un transport spécifique, <a href=\"/contact/\">contactez-nous</a>.</p>"
+      },
+      {
+        "title": "Liens utiles",
+        "html": "<p>Consultez également nos <a href=\"/realisations/\">références</a> ou <a href=\"/contact/\">demandez un devis transport</a>.</p>"
       }
     ],
-    "features": ["Chauffeurs expérimentés", "Assurances adaptées", "Couverture nationale"],
-    "faq": []
+    "features": [
+      "Chauffeurs expérimentés",
+      "Assurances adaptées audiovisuel",
+      "Gestion volume/poids lourds",
+      "Ponctualité France entière",
+      "Reporting et suivi"
+    ],
+    "faq": [
+      {
+        "q": "Quels types de véhicules pouvez-vous convoyer ?",
+        "a": "Tous types : utilitaires, camions, poids lourds (via partenaires), véhicules techniques, voitures régie ou comédiens."
+      },
+      {
+        "q": "Votre équipe s’occupe-t-elle du chargement/déchargement ?",
+        "a": "Oui, nous assistons la régie pour optimiser le temps de chargement et sécuriser le matériel."
+      },
+      {
+        "q": "Comment garantir la ponctualité sur des sites sensibles ?",
+        "a": "Nous prévoyons des marges et suivons la circulation en temps réel ; la sécurité est coordonnée avec la régie."
+      },
+      {
+        "q": "Les transports sont-ils assurés ?",
+        "a": "Oui, chaque prestation inclut une assurance adaptée aux risques du secteur audiovisuel."
+      },
+      {
+        "q": "Le service est-il disponible sur toute la France ?",
+        "a": "Oui, de Marseille à Paris, Lyon et partout en France."
+      }
+    ]
   },
+
   {
     "slug": "loges-confort",
     "metaTitle": "Loges & Confort (Cars Loges) | BMS Ventouse",
@@ -83,11 +225,68 @@
       "mobile": "/images/service-loges-custom.jpg",
       "alt": "Cars loges et espaces maquillage"
     },
-    "summary": "Confort optimal pour équipes et talents sur site.",
-    "sections": [],
-    "features": ["Cars loges premium", "Espaces maquillage & repos", "Sanitaires intégrés"],
-    "faq": []
+    "summary": "Confort premium et flexibilité pour vos équipes et talents à Marseille, Paris, Lyon et partout en France.",
+    "sections": [
+      {
+        "title": "Introduction",
+        "html": "<p>Pour le bien-être de vos équipes et talents, nous proposons des loges mobiles de qualité adaptées à tous les tournages à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et en <strong>France</strong>. Nos solutions allient confort, modularité et logistique maîtrisée.</p>"
+      },
+      {
+        "title": "Problèmes fréquents",
+        "html": "<ul><li>Loges indisponibles ou inadaptées au site</li><li>Manque de chauffage ou climatisation</li><li>Absence d’espaces maquillage ou repos</li><li>Sanitaires insuffisants</li><li>Difficultés d’accès (rues étroites, centre-ville…)</li><li>Coûts cachés liés à la location</li><li>Manque de gestion des flux entrants/sortants</li></ul>"
+      },
+      {
+        "title": "Notre méthode",
+        "html": "<ol><li>Sélection du modèle de loge selon le plateau</li><li>Coordination logistique avec la ville (Marseille, Paris, Lyon…)</li><li>Livraison et installation sur site</li><li>Branchement électricité/eau si besoin</li><li>Suivi de l’usage et reporting à la régie</li><li>Désinstallation rapide en fin de tournage</li></ol>"
+      },
+      {
+        "title": "Livrables",
+        "html": "<ul><li>Cars loges premium installés</li><li>Espaces maquillage, repos, préparation</li><li>Sanitaires intégrés ou mobiles</li><li>Fourniture de consommables (si besoin)</li><li>Checklist mise à disposition</li><li>Gestion du flux entrants/sortants</li><li>Assistance technique sur place</li></ul>"
+      },
+      {
+        "title": "Nos différenciants",
+        "html": "<ul><li>Véritable modularité (petites/grandes équipes)</li><li>Confort premium (chauffage, clim, sanitaires…)</li><li>Livraison et installation sur tout site (France entière)</li><li>Assistance technique dédiée</li><li>Intégration logistique avec le reste de la production</li></ul>"
+      },
+      {
+        "title": "Zones d’intervention",
+        "html": "<p>Loges disponibles à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et sur tout le territoire. Pour toute demande spécifique, <a href=\"/contact/\">contactez-nous</a>.</p>"
+      },
+      {
+        "title": "Liens utiles",
+        "html": "<p>Voir nos <a href=\"/realisations/\">références de loges</a> ou <a href=\"/contact/\">nous contacter</a> pour un devis rapide.</p>"
+      }
+    ],
+    "features": [
+      "Cars loges premium et modulaires",
+      "Espaces maquillage/repos/sanitaires",
+      "Confort optimal partout en France",
+      "Suivi technique sur site",
+      "Gestion du flux équipes"
+    ],
+    "faq": [
+      {
+        "q": "Quels équipements sont inclus dans les cars loges ?",
+        "a": "Chauffage, climatisation, espaces maquillage, repos et sanitaires intégrés selon le modèle."
+      },
+      {
+        "q": "Livrez-vous les loges en centre-ville (ex : Paris, Marseille) ?",
+        "a": "Oui, nous gérons les accès même dans les zones complexes grâce à notre expérience locale."
+      },
+      {
+        "q": "Peut-on adapter la configuration selon la taille de l’équipe ?",
+        "a": "Oui, nos solutions sont flexibles et adaptées au nombre de talents et techniciens présents."
+      },
+      {
+        "q": "Assurez-vous la maintenance technique ?",
+        "a": "Oui, nous garantissons une assistance technique sur toute la durée du tournage."
+      },
+      {
+        "q": "Est-ce que les loges sont livrées avec consommables ?",
+        "a": "Sur demande, nous pouvons fournir les consommables nécessaires (serviettes, produits d’hygiène…)."
+      }
+    ]
   },
+
   {
     "slug": "cantine-catering",
     "metaTitle": "Cantine & Catering | BMS Ventouse",
@@ -98,11 +297,68 @@
       "mobile": "/images/service-cantine.webp",
       "alt": "Service de cantine"
     },
-    "summary": "Restauration de qualité adaptée à vos équipes.",
-    "sections": [],
-    "features": ["Menus variés", "Options végétariennes/véganes", "Service sur site"],
-    "faq": []
+    "summary": "Restauration variée et adaptée pour vos équipes de tournage à Marseille, Paris, Lyon et partout en France.",
+    "sections": [
+      {
+        "title": "Introduction",
+        "html": "<p>Garantir une restauration de qualité sur un tournage, c’est aussi garantir la performance de l’équipe. Nous travaillons avec des traiteurs partenaires à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et dans toute la France pour proposer des menus équilibrés, savoureux et adaptés à tous les régimes.</p>"
+      },
+      {
+        "title": "Problèmes fréquents",
+        "html": "<ul><li>Retards ou absence de livraison</li><li>Manque de diversité dans les menus</li><li>Options végétariennes/véganes absentes</li><li>Non-respect des règles d’hygiène</li><li>Allergies non prises en compte</li><li>Difficulté d’installation sur site</li><li>Gestion des déchets mal anticipée</li><li>Manque de flexibilité horaires</li></ul>"
+      },
+      {
+        "title": "Notre méthode",
+        "html": "<ol><li>Sélection de traiteurs selon la localisation et les besoins</li><li>Menus validés avec la production (options végan/végé...)</li><li>Livraison sur site à Marseille, Paris, Lyon ou autre</li><li>Installation du buffet/cantine</li><li>Suivi hygiène et gestion déchets</li><li>Adaptation horaires et régimes spéciaux</li></ol>"
+      },
+      {
+        "title": "Livrables",
+        "html": "<ul><li>Repas complets (petit déj, déjeuner, dîner…)</li><li>Menus adaptés (végé, végan, allergies…)</li><li>Vaisselle et kit hygiène</li><li>Buffet/banc de cantine monté</li><li>Gestion déchets et nettoyage</li><li>Reporting satisfaction</li><li>Coordination avec la régie</li></ul>"
+      },
+      {
+        "title": "Nos différenciants",
+        "html": "<ul><li>Traiteurs partenaires sélectionnés</li><li>Menus variés et équilibrés</li><li>Options végan/végé garanties</li><li>Livraison sur tout site (France entière)</li><li>Adaptation horaires et contraintes tournage</li></ul>"
+      },
+      {
+        "title": "Zones d’intervention",
+        "html": "<p>Nos services de cantine couvrent <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et toute la France. Pour vos besoins spécifiques, <a href=\"/contact/\">contactez-nous</a>.</p>"
+      },
+      {
+        "title": "Liens utiles",
+        "html": "<p>Voir nos <a href=\"/realisations/\">références restauration</a> ou <a href=\"/contact/\">nous contacter</a> pour une proposition adaptée.</p>"
+      }
+    ],
+    "features": [
+      "Traiteurs partenaires partout en France",
+      "Menus variés et équilibrés",
+      "Options végan/végé",
+      "Flexibilité horaires",
+      "Respect hygiène et allergies"
+    ],
+    "faq": [
+      {
+        "q": "Quels types de repas proposez-vous ?",
+        "a": "Petit-déjeuner, déjeuner, dîner, collations, menus végétariens, véganes, sans gluten, etc."
+      },
+      {
+        "q": "Livrez-vous sur tous les sites (ex : Marseille, Paris, Lyon) ?",
+        "a": "Oui, partout en France, même sur des sites complexes ou isolés."
+      },
+      {
+        "q": "Comment gérez-vous les allergies et régimes spéciaux ?",
+        "a": "Nous recueillons les besoins en amont et proposons des menus adaptés à chaque équipe."
+      },
+      {
+        "q": "Qui s’occupe de la logistique sur place ?",
+        "a": "Nos équipes installent, servent, nettoient et assurent la gestion des déchets."
+      },
+      {
+        "q": "Est-ce possible d’avoir des horaires flexibles ?",
+        "a": "Oui, nous adaptons la livraison et le service au rythme du tournage."
+      }
+    ]
   },
+
   {
     "slug": "logistique-evenementielle",
     "metaTitle": "Logistique Événementielle (Mode, Publicité) | BMS Ventouse",
@@ -113,11 +369,68 @@
       "mobile": "/images/service-evenementiel.webp",
       "alt": "Logistique événementielle"
     },
-    "summary": "Logistique et sécurité pour événements premium.",
-    "sections": [],
-    "features": ["Mode & défilés", "Publicité", "Adaptation site"],
-    "faq": []
+    "summary": "Logistique événementielle sur-mesure pour mode, publicité, et événements premium à Marseille, Paris, Lyon et partout en France.",
+    "sections": [
+      {
+        "title": "Introduction",
+        "html": "<p>Défilés de mode, campagnes publicitaires, événements institutionnels : BMS Ventouse apporte une logistique événementielle agile et sécurisée sur tout le territoire, avec un focus sur les grandes villes comme <strong>Marseille</strong>, <strong>Paris</strong> et <strong>Lyon</strong>.</p>"
+      },
+      {
+        "title": "Problèmes fréquents",
+        "html": "<ul><li>Multiplicité des intervenants à coordonner</li><li>Périmètre dynamique, accès restreints (centre-ville)</li><li>Contraintes horaires ou réglementaires sévères</li><li>Gestion du public et des flux</li><li>Manque d’agents spécialisés événementiel/mode</li><li>Délais serrés pour montage/démontage</li><li>Communication déficiente avec collectivités</li></ul>"
+      },
+      {
+        "title": "Notre méthode",
+        "html": "<ol><li>Brief initial et repérage des lieux</li><li>Planification coordination multi-intervenants</li><li>Dépôt autorisations (mairie, police…)</li><li>Montage logistique (signalisation, barriérage…)</li><li>Gestion sécurité et accueil public</li><li>Démontage et restitution site</li></ol>"
+      },
+      {
+        "title": "Livrables",
+        "html": "<ul><li>Périmètre sécurisé et balisé</li><li>Signalisation événementielle conforme</li><li>Gestion des accès, badges invités</li><li>Agents événementiel spécialisés</li><li>Reporting photo et bilan</li><li>Coordination montage/démontage</li></ul>"
+      },
+      {
+        "title": "Nos différenciants",
+        "html": "<ul><li>Expérience défilés, mode, publicité</li><li>Réseau partenaires événementiel France entière</li><li>Réactivité et gestion imprévus</li><li>Respect des délais serrés</li><li>Maillage interne : <a href=\"/realisations/\">voir références</a></li></ul>"
+      },
+      {
+        "title": "Zones d’intervention",
+        "html": "<p>Gestion d’événements à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et France entière. Pour tout événement complexe, <a href=\"/contact/\">contactez-nous</a>.</p>"
+      },
+      {
+        "title": "Liens utiles",
+        "html": "<p>Voir nos <a href=\"/realisations/\">événements passés</a> ou <a href=\"/contact/\">nous contacter</a> pour une étude personnalisée.</p>"
+      }
+    ],
+    "features": [
+      "Événementiel mode/publicité",
+      "Multi-intervenants, délais serrés",
+      "Sécurité et logistique intégrées",
+      "Coordination mairie/police",
+      "Gestion flux public"
+    ],
+    "faq": [
+      {
+        "q": "Quels types d’événements prenez-vous en charge ?",
+        "a": "Défilés de mode, campagnes pub, événements institutionnels, sport, corporate…"
+      },
+      {
+        "q": "Gérez-vous l’ensemble des autorisations ?",
+        "a": "Oui, nous gérons toutes les démarches administratives et réglementaires auprès des mairies et autorités."
+      },
+      {
+        "q": "Avez-vous des agents spécialisés événementiel ?",
+        "a": "Oui, nos agents sont formés et expérimentés pour gérer les exigences événementielles et le public."
+      },
+      {
+        "q": "Intervenez-vous en dehors de Marseille, Paris, Lyon ?",
+        "a": "Oui, notre réseau couvre toutes les grandes villes et régions françaises."
+      },
+      {
+        "q": "Quel est le délai minimum pour organiser une opération ?",
+        "a": "Selon la complexité, nous pouvons intervenir sous 3 à 5 jours ouvrés."
+      }
+    ]
   },
+
   {
     "slug": "regie-materiel",
     "metaTitle": "Régie & Matériel | BMS Ventouse",
@@ -128,11 +441,68 @@
       "mobile": "/images/service-regie-custom.jpg",
       "alt": "Régie de nuit"
     },
-    "summary": "Régie expérimentée et matériel pour la fluidité des opérations.",
-    "sections": [],
-    "features": ["Régie expérimentée", "Matériel disponible", "Mise en relation partenaires"],
-    "faq": []
+    "summary": "Régie terrain, matériel et continuité de service pour vos tournages à Marseille, Paris, Lyon et partout en France.",
+    "sections": [
+      {
+        "title": "Introduction",
+        "html": "<p>Notre cellule régie intervient sur tous types de tournages, à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et partout en France. Nous assurons la continuité logistique et la mise à disposition de matériel et de partenaires fiables.</p>"
+      },
+      {
+        "title": "Problèmes fréquents",
+        "html": "<ul><li>Manque d’effectif sur le terrain</li><li>Absence de checklists ou de briefing</li><li>Problèmes de location matériel (retard, casse…)</li><li>Mauvaise gestion des consommables</li><li>Goulots d’étranglement flux matériel/équipes</li><li>Absence de régisseur dédié</li><li>Pas de solution de secours en cas d’imprévu</li></ul>"
+      },
+      {
+        "title": "Notre méthode",
+        "html": "<ol><li>Définition des besoins avec la production</li><li>Mise à disposition d’un régisseur terrain</li><li>Gestion du matériel (location, consommables, maintenance…)</li><li>Coordination avec les autres pôles (ventousage, sécurité…)</li><li>Checklists et reporting quotidiens</li><li>Plan de secours si besoin</li></ol>"
+      },
+      {
+        "title": "Livrables",
+        "html": "<ul><li>Régisseur dédié sur site</li><li>Matériel prêt à l’emploi</li><li>Mise en relation partenaires location/consommables</li><li>Checklists logistiques</li><li>Reporting quotidien</li><li>Assistance technique</li><li>Maillage interne : <a href=\"/realisations/\">voir références</a></li></ul>"
+      },
+      {
+        "title": "Nos différenciants",
+        "html": "<ul><li>Expérience terrain tous formats (cinéma, pub, doc…)</li><li>Réseau partenaires fiable (France entière)</li><li>Réactivité situations d’urgence</li><li>Reporting transparent</li><li>Gestion continue du matériel</li></ul>"
+      },
+      {
+        "title": "Zones d’intervention",
+        "html": "<p>Régie et matériel disponibles à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et France entière. Pour tout besoin, <a href=\"/contact/\">contactez-nous</a>.</p>"
+      },
+      {
+        "title": "Liens utiles",
+        "html": "<p>Voir nos <a href=\"/realisations/\">références logistiques</a> ou <a href=\"/contact/\">nous contacter</a>.</p>"
+      }
+    ],
+    "features": [
+      "Régie terrain expérimentée",
+      "Gestion location/consommables",
+      "Checklists et reporting",
+      "Plan de secours logistique",
+      "Réseau partenaires France"
+    ],
+    "faq": [
+      {
+        "q": "Avez-vous des régisseurs disponibles partout en France ?",
+        "a": "Oui, notre réseau couvre Marseille, Paris, Lyon et toutes les régions."
+      },
+      {
+        "q": "Proposez-vous la location de matériel ?",
+        "a": "Oui, via nos partenaires, nous proposons tout le matériel régie et consommables nécessaires."
+      },
+      {
+        "q": "Comment garantissez-vous la continuité de service ?",
+        "a": "Grâce à nos checklists, reporting, et à l’anticipation des imprévus par notre équipe terrain."
+      },
+      {
+        "q": "Faites-vous le lien avec d’autres prestataires (sécu, ventousage…) ?",
+        "a": "Oui, nous assurons la coordination avec tous les pôles logistiques nécessaires."
+      },
+      {
+        "q": "Le reporting est-il transmis à la production ?",
+        "a": "Oui, quotidiennement et sur demande après le tournage."
+      }
+    ]
   },
+
   {
     "slug": "solutions-packagees",
     "metaTitle": "Solutions Packagées & Offres Partenaires | BMS Ventouse",
@@ -143,9 +513,65 @@
       "mobile": "/images/service-package.webp",
       "alt": "Package de services"
     },
-    "summary": "Combinaisons optimisées pour budget et efficacité.",
-    "sections": [],
-    "features": ["Logistique + sécurité", "Optimisation budgétaire", "Sur mesure"],
-    "faq": []
+    "summary": "Optimisez votre logistique et votre sécurité grâce à nos solutions packagées sur mesure, partout en France.",
+    "sections": [
+      {
+        "title": "Introduction",
+        "html": "<p>Nos solutions packagées combinent tous les atouts de BMS Ventouse pour des tournages efficaces et sans surprise à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et sur tout le territoire national.</p>"
+      },
+      {
+        "title": "Problèmes fréquents",
+        "html": "<ul><li>Multiplication des prestataires et pertes de temps</li><li>Manque de cohérence globale (planning, reporting, équipe…)</li><li>Surcoûts liés à la sous-traitance dispersée</li><li>Manque d’un interlocuteur unique</li><li>Difficulté à gérer logistique + sécurité ensemble</li><li>Reporting morcelé ou absent</li></ul>"
+      },
+      {
+        "title": "Notre méthode",
+        "html": "<ol><li>Analyse globale du projet et prise de brief</li><li>Construction d’un package logistique + sécurité adapté</li><li>Équipe projet dédiée (chef de projet, référents…)</li><li>Mise en place planning unifié</li><li>Coordination et reporting unique</li><li>Débriefing post-tournage</li></ol>"
+      },
+      {
+        "title": "Livrables",
+        "html": "<ul><li>Package sur mesure (ventousage, sécurité, régie…)</li><li>Équipe dédiée et planning global</li><li>Reporting consolidé</li><li>Suivi budgétaire</li><li>Coordination unique</li><li>Assistance avant/pendant/après tournage</li><li>Liens internes : <a href=\"/contact/\">nous contacter</a>, <a href=\"/realisations/\">voir nos packs réalisés</a></li></ul>"
+      },
+      {
+        "title": "Nos différenciants",
+        "html": "<ul><li>Un seul interlocuteur pour toute la logistique</li><li>Packages flexibles selon le budget</li><li>Équipe dédiée et reporting clair</li><li>Expérience multi-prestations France entière</li><li>Coordination totale planning & sécurité</li></ul>"
+      },
+      {
+        "title": "Zones d’intervention",
+        "html": "<p>Packages disponibles à <strong>Marseille</strong>, <strong>Paris</strong>, <strong>Lyon</strong> et sur tout le territoire. Pour une offre personnalisée, <a href=\"/contact/\">contactez-nous</a>.</p>"
+      },
+      {
+        "title": "Liens utiles",
+        "html": "<p>Voir nos <a href=\"/realisations/\">packs réalisés</a> ou <a href=\"/contact/\">nous contacter</a> pour bâtir votre solution.</p>"
+      }
+    ],
+    "features": [
+      "Combinaison logistique + sécurité",
+      "Chef de projet dédié",
+      "Reporting consolidé",
+      "Flexibilité et adaptation budget",
+      "Coordination France entière"
+    ],
+    "faq": [
+      {
+        "q": "Quels services sont inclus dans les packages ?",
+        "a": "Ventousage, sécurité, régie, convoyage, loges, catering, coordination et reporting… selon vos besoins."
+      },
+      {
+        "q": "Les packs sont-ils personnalisables ?",
+        "a": "Oui, chaque solution est construite sur-mesure selon le projet et le budget."
+      },
+      {
+        "q": "Un interlocuteur unique est-il garanti ?",
+        "a": "Oui, vous bénéficiez d’un chef de projet dédié tout au long de la prestation."
+      },
+      {
+        "q": "Peut-on bénéficier d’un reporting unique ?",
+        "a": "Oui, tous les suivis (logistique, sécurité, budget) sont consolidés dans un seul reporting."
+      },
+      {
+        "q": "Où intervenez-vous ?",
+        "a": "Sur toute la France, avec un focus sur Marseille, Paris, Lyon et les grandes agglomérations."
+      }
+    ]
   }
 ]
