@@ -71,3 +71,10 @@
   </button>
 </div>
 {% endmacro %}
+
+{% macro contentCard(title, html) %}
+  <article class="content-card">
+    {% if title %}<h3 class="content-card-title">{{ title }}</h3>{% endif %}
+    {{ html | safe }}
+  </article>
+{% endmacro %}

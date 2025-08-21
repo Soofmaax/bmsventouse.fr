@@ -28,14 +28,15 @@ eleventyComputed:
   <p>{{ service.summary }}</p>
 {% endhero %}
 
-{% for section in service.sections %}
 <section class="section">
   <div class="container">
-    <h2 class="section-title">{{ section.title }}</h2>
-    {{ section.html | safe }}
+    <div class="content-cards">
+      {% for section in service.sections %}
+        {{ macros.contentCard(section.title, section.html) }}
+      {% endfor %}
+    </div>
   </div>
 </section>
-{% endfor %}
 
 {% if service.features and service.features.length %}
 <section class="section">

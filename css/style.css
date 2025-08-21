@@ -2129,6 +2129,26 @@ body:has(.nav-links.active) {
   gap: 1rem;
 }
 
+/* === PATCH: Cards + Cardified FAQ for service pages === */
+:root { --brand-orange: #FF8C42; }
+
+/* Generic content cards grid */
+.content-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1rem; }
+.content-card { background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 12px; padding: 1.25rem 1.25rem; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+.content-card h3.content-card-title { font-size: 1.1rem; margin: 0 0 .5rem; font-weight: 800; }
+.content-card p, .content-card ul, .content-card ol { margin: .5rem 0; }
+
+/* Emphasis in cards and FAQ */
+.content-card strong, .faq-item strong { color: var(--brand-orange); font-weight: 800; }
+
+/* FAQ as cards (match home style, but cardified) */
+.faq-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.faq-item { background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 12px; padding: 1rem 1.1rem; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+.faq-item .faq-question { margin: 0 0 .5rem; font-weight: 800; font-size: 1.05rem; }
+
+/* Minor polish */
+.section .section-title { scroll-margin-top: 90px; }
+
 .faq-item {
   background: var(--color-light);
   border: 1px solid var(--color-border);
