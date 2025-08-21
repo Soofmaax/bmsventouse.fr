@@ -72,8 +72,8 @@
 </div>
 {% endmacro %}
 
-{% macro contentCard(title, html) %}
-  <article class="content-card">
+{% macro contentCard(title, html, className='') %}
+  <article class="content-card{% if className %} {{ className }}{% endif %}">
     {% if title %}<h3 class="content-card-title">{{ title }}</h3>{% endif %}
     {{ html | safe }}
   </article>

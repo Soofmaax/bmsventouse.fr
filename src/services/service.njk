@@ -42,23 +42,23 @@ eleventyComputed:
 <section class="section">
   <div class="container">
     <h2 class="section-title">Nos atouts</h2>
-    <ul class="benefits-list">
+    <div class="content-cards">
       {% for feat in service.features %}
-        <li>{{ feat }}</li>
+        {{ macros.contentCard('', '<p>' ~ feat ~ '</p>', 'content-card--feature') }}
       {% endfor %}
-    </ul>
+    </div>
   </div>
 </section>
 {% endif %}
 
-{% if service.faq and service.faq.length %}
 <section class="section">
   <div class="container">
-    <h2 class="section-title">Questions fréquentes</h2>
-    <div class="faq-container">
-      {% for q in service.faq %}
-        {{ macros.faqItem(q.q, q.a) }}
-      {% endfor %}
+    <div class="content-cards">
+      {{ macros.contentCard(
+        '',
+        '<div class="cta-card-inner"><h2 class="cta-title">Prêt à démarrer ?</h2><p class="cta-subtitle">Nos équipes interviennent à Marseille, Paris, Lyon et partout en France.</p>' ~ (macros.ctaButtons('/contact/', 'Parler à un expert', 'https://wa.me/33646005642', 'WhatsApp Direct')) ~ '</div>',
+        'cta-card'
+      ) }}
     </div>
   </div>
 </section>
