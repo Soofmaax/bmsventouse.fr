@@ -1,4 +1,3 @@
-const { EleventyI18nPlugin } = require("@11ty/eleventy-plugin-i18n");
 const fs = require("fs");
 const path = require("path");
 
@@ -43,12 +42,6 @@ module.exports = function(eleventyConfig) {
     }<h2 class="section-title" style="margin:.25rem 0 .5rem">${title}</h2>${
       subtitle ? `<p class="section-subtitle" style="margin:0;color:#4b5563">${subtitle}</p>` : ''
     }</div>`;
-  });
-
-  // i18n setup
-  eleventyConfig.addPlugin(EleventyI18nPlugin, {
-    defaultLanguage: "fr",
-    errorMode: "never"
   });
 
   // Collection for services (from Markdown)
