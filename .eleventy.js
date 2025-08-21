@@ -6,6 +6,7 @@ function toDate(value) {
   return new Date();
 }
 const { EleventyI18nPlugin } = require("@11ty/eleventy-plugin-i18n");
+const EleventyOgImagePlugin = require("@11ty/eleventy-plugin-og-image");
 const fs = require("fs");
 const path = require("path");
 
@@ -57,6 +58,28 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/services/*.md").sort((a, b) =>
       (a.data.order || 0) - (b.data.order || 0)
     );
+  });
+
+  // OG Image Plugin
+  eleventyConfig.addPlugin(EleventyOgImagePlugin, {
+    defaults: {
+      font: "Inter",
+      fontWeight: 700,
+      fontSize: 64,
+      background: "#FF8C42",
+      textColor: "#fff",
+      siteName: "BMS Ventouse",
+      logo: "/android-chrome-192x192.png",
+    },
+    template: "./og-template.njk"
+  });
+
+  // Computed property for ogImage (for all pages)
+  eleventyConfig.addGlobalData("ogImage", (data) => {
+    if(data.ogImage) return data.ogImage;
+    if(data.page && data.page.url)
+      return `/og/${data.page.url.replace(/^\/|\/$/g, '') || 'index'}.png`;
+    return "/images/hero-background-custom.jpg";
   });
 
   // Passthroughs, etc.

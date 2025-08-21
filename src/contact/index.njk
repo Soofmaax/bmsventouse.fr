@@ -45,32 +45,35 @@ heroImage: "/images/contact-hero-background-desktop.webp"
   <div class="container">
     <h2 class="section-title animated-item">Demandez votre Devis Gratuit</h2>
     <p class="section-subtitle animated-item">Choisissez votre moyen de contact préféré. Nous sommes joignables 24/7.</p>
-    <div class="contact-direct-grid">
-      <div class="contact-card animated-item">
-        <div class="contact-icon"><i class="fas fa-phone-volume"></i></div>
-        <h3>Par Téléphone</h3>
-        <div class="contact-details">
-          <p><strong>Béna :</strong> <a href="tel:+33646005642"><span>+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</span></a></p>
+    <form name="contact" netlify method="POST">
+      <input type="hidden" name="form-name" value="contact">
+      <div class="contact-direct-grid">
+        <div class="contact-card animated-item">
+          <div class="contact-icon"><i class="fas fa-phone-volume"></i></div>
+          <h3>Par Téléphone</h3>
+          <div class="contact-details">
+            <p><strong>Béna :</strong> <a href="tel:+33646005642"><span>+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</span></a></p>
+          </div>
+          <p class="contact-note">Idéal pour les urgences et les demandes immédiates.</p>
         </div>
-        <p class="contact-note">Idéal pour les urgences et les demandes immédiates.</p>
-      </div>
-      <div class="contact-card animated-item">
-        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-        <h3>Par WhatsApp</h3>
-        <div class="contact-details">
-          <p>Rapide et direct, parfait pour échanger des documents et des plans.</p>
+        <div class="contact-card animated-item">
+          <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+          <h3>Par WhatsApp</h3>
+          <div class="contact-details">
+            <p>Rapide et direct, parfait pour échanger des documents et des plans.</p>
+          </div>
+          <a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Discuter sur WhatsApp</a>
         </div>
-        <a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Discuter sur WhatsApp</a>
-      </div>
-      <div class="contact-card animated-item">
-        <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
-        <h3>Par Email</h3>
-        <div class="contact-details">
-          <p>Idéal pour les demandes détaillées et les cahiers des charges.</p>
+        <div class="contact-card animated-item">
+          <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
+          <h3>Par Email</h3>
+          <div class="contact-details">
+            <p>Idéal pour les demandes détaillées et les cahiers des charges.</p>
+          </div>
+          <a href="mailto:bms.ventouse@gmail.com?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
         </div>
-        <a href="mailto:bms.ventouse@gmail.com?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
       </div>
-    </div>
+    </form>
   </div>
 </section>
 
