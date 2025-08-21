@@ -51,6 +51,19 @@ eleventyComputed:
 </section>
 {% endif %}
 
+{% if service.faq and service.faq.length %}
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Questions fréquentes</h2>
+    <div class="faq-container">
+      {% for q in service.faq %}
+        {{ macros.faqItem(q.q, q.a) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 <section class="section">
   <div class="container">
     <div class="content-cards">
@@ -60,13 +73,6 @@ eleventyComputed:
         'cta-card'
       ) }}
     </div>
-  </div>
-</section>
-{% endif %}
-
-<section class="section cta-section">
-  <div class="container animated-item">
-    {{ macros.ctaButtons('/contact/', 'Demander un devis', 'https://wa.me/33646005642?text=Bonjour,%20je%20souhaite%20en%20savoir%20plus%20sur%20ce%20service.', 'WhatsApp Direct') }}
   </div>
 </section>
 
