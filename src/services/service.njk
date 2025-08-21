@@ -28,8 +28,9 @@ eleventyComputed:
   <p>{{ service.summary }}</p>
 {% endhero %}
 
-<section class="section">
+<section class="band">
   <div class="container">
+    {{ macros.sectionHeader('Présentation', service.h1, 'A Marseille, Paris, Lyon et partout en France') }}
     <div class="content-cards">
       {% for section in service.sections %}
         {{ macros.contentCard(section.title, section.html) }}
@@ -39,9 +40,9 @@ eleventyComputed:
 </section>
 
 {% if service.features and service.features.length %}
-<section class="section">
+<section class="band band--alt">
   <div class="container">
-    <h2 class="section-title">Nos atouts</h2>
+    {{ macros.sectionHeader('Atouts', 'Nos points forts', '') }}
     <div class="content-cards">
       {% for feat in service.features %}
         {{ macros.contentCard('', '<p>' ~ feat ~ '</p>', 'content-card--feature') }}
@@ -52,9 +53,9 @@ eleventyComputed:
 {% endif %}
 
 {% if service.faq and service.faq.length %}
-<section class="section">
+<section class="band">
   <div class="container">
-    <h2 class="section-title">Questions fréquentes</h2>
+    {{ macros.sectionHeader('FAQ', 'Questions fréquentes', '') }}
     <div class="faq-container">
       {% for q in service.faq %}
         {{ macros.faqItem(q.q, q.a) }}
@@ -64,7 +65,7 @@ eleventyComputed:
 </section>
 {% endif %}
 
-<section class="section">
+<section class="band band--alt">
   <div class="container">
     <div class="content-cards">
       {{ macros.contentCard(
