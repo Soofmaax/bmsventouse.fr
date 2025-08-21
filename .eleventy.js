@@ -9,7 +9,13 @@ const { EleventyI18nPlugin } = require("@11ty/eleventy-plugin-i18n");
 const fs = require("fs");
 const path = require("path");
 
-// --- Shortcodes ---
+function toDate(value) {
+  if (value instanceof Date) return value;
+  if (typeof value === 'number') return new Date(value);
+  if (typeof value === 'string') return new Date(value);
+  return new Date();
+}
+
 module.exports = function(eleventyConfig) {
   // Nunjucks date filter (default yyyy-MM-dd)
   eleventyConfig.addNunjucksFilter('date', (value, format = 'yyyy-MM-dd') => {
@@ -34,7 +40,7 @@ module.exports = function(eleventyConfig) {
     return `\n<section class="hero">\n  <picture class="hero-bg">\n    ${imageMobile ? `<source media="(max-width: 767px)" srcset="${imageMobile}" type="image/webp">` : ''}\n    <img src="${imageDesktop}" alt="${alt}" loading="${loading}" ${fetchpriority ? `fetchpriority="${fetchpriority}"` : ''} width="${width}" height="${height}">\n  </picture>\n  <div class="hero-overlay">\n    <div class="container">\n      ${content}\n    </div>\n  </div>\n</section>`;
   });
 
-  // NEW: Shortcodes for contentCard and sectionHeader
+  // Shortcodes for contentCard and sectionHeader
   eleventyConfig.addShortcode('contentCard', function(title, html, className='') {
     return `<article class="content-card${className ? ' ' + className : ''}">${title ? `<h3 class="content-card-title">${title}</h3>` : ''}${html}</article>`;
   });
@@ -59,17 +65,33 @@ module.exports = function(eleventyConfig) {
     );
   });
 
-  // OG images: use static site.ogImage property in templates
-
   // Passthroughs, etc.
   eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("js");
+  eleventyConfig.addPassthroughCopy("android-chrome-192x192.png");
+  eleventyConfig.addPassthroughCopy("android-chrome-192x192.webp");
+  eleventyConfig.addPassthroughCopy("android-chrome-512x512.png");
+  eleventyConfig.addPassthroughCopy("apple-touch-icon.png");
+  eleventyConfig.addPassthroughCopy("favicon-16x16.png");
+  eleventyConfig.addPassthroughCopy("favicon-32x32.png");
+  eleventyConfig.addPassthroughCopy("favicon.ico");
+  eleventyConfig.addPassthroughCopy("site.webmanifest");
+  eleventyConfig.addPassthroughCopy("robots.txt");
+  eleventyConfig.addPassthroughCopy("netlify.toml");
+
+  return {
+    dir: {
+      input: "src",
+      output: "_site",
+      includes: "_includes",
+      data: "_data"
+    },
+    markdownTemplateEngine: "njk",
+    htmlTemplateEngine: "njk",
+    templateFormats: ["njk", "md", "html"]
+  };
 };
-function toDate(value) {
-  if (value instanceof Date) return value;
-  if (typeof value === 'number') return new Date(value);
-  if (typeof value === 'string') return new Date(value);
-  return new Date();
-}
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("js");
   [
