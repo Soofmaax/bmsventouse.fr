@@ -7,9 +7,16 @@
     "lint:js": "eslint src/",
     "lint:css": "stylelint css/**/*.css",
     "lint:html": "htmlhint src/**/*.njk",
-    "prettier:check": "prettier --check \"{css,src}/**/*.{css,js,njk,json,md}\""
+    "prettier:check": "prettier --check \"{css,src}/**/*.{css,js,njk,json,md}\"",
+    "optimize:images": "node scripts/optimize-images.js",
+    "test:e2e": "cypress run"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.0",
+    "imagemin-webp": "^7.0.0",
+    "cypress": "^13.0.0"
   }
 }
