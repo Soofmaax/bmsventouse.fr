@@ -4,15 +4,15 @@ lang: fr
 activeNav: services
 bodyClass: page-service
 pagination:
-  data: collections.services
+  data: services
   size: 1
   alias: service
-permalink: "/services/{{ service.data.slug }}/"
+permalink: "/services/{{ service.slug }}/"
 eleventyComputed:
-  title: "{{ service.data.metaTitle }}"
-  description: "{{ service.data.metaDescription }}"
-  heroImage: "{{ service.data.hero.desktop }}"
-  ogImage: "{{ site.url }}{{ service.data.hero.desktop }}"
+  title: "{{ service.metaTitle }}"
+  description: "{{ service.metaDescription }}"
+  heroImage: "{{ service.hero.desktop }}"
+  ogImage: "{{ site.url }}{{ service.hero.desktop }}"
 ---
 {% import "components/macros.njk" as macros %}
 
