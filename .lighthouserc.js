@@ -11,7 +11,10 @@ module.exports = {
         "http://localhost:8080/contact/",
         "http://localhost:8080/mentions/"
       ],
-      numberOfRuns: 1
+      numberOfRuns: 1,
+      settings: {
+        budgetsPath: "lighthouse-budgets.json"
+      }
     },
     assert: {
       assertions: {
