@@ -5,6 +5,8 @@
   {%- set canonicalComputed = site.url + pageUrl -%}
 {%- endif -%}
 {%- set canonicalHref = canonical or canonicalComputed -%}
+{%- set frHref = site.url + (pageUrl == '/' ? '/' : pageUrl) -%}
+{%- set enHref = site.url + (pageUrl == '/' ? '/en/' : '/en' + pageUrl) -%}
 <title>{{ title }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
@@ -18,7 +20,8 @@
 <meta name="theme-color" content="{{ site.themeColor }}">
 <meta name="robots" content="{{ robots | default('index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1') }}">
 <link rel="canonical" href="{{ canonicalHref }}">
-<link rel="alternate" hreflang="fr-FR" href="{{ canonicalHref }}">
+<link rel="alternate" hreflang="fr" href="{{ frHref }}">
+<link rel="alternate" hreflang="en" href="{{ enHref }}">
 <link rel="alternate" hreflang="x-default" href="{{ canonicalHref }}">
 
 {# Open Graph / Facebook #}

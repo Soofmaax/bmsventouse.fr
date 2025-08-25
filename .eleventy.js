@@ -6,20 +6,56 @@ const pluginSitemap = require('@11ty/eleventy-sitemap');
 const pluginRobotsTxt = require('@11ty/eleventy-robots-txt');
 const htmlmin = require('html-minifier').minify;
 
+// i18n: locale loader and helpers
+const localesCache = {};
+function loadLocale(lang) {
+  if (localesCache[lang]) return localesCache[lang];
+  try {
+    const p = path.join(process.cwd(), 'src', '_data', 'locales', `${lang}.json`);
+    const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+    localesCache[lang] = data;
+    return data;
+  } catch { return {}; }
+}
+function getByPath(obj, key) {
+  return key.split('.').reduce((o,k)=> (o && o[k]!==undefined) ? o[k] : undefined, obj);
+}
+
 // Util: filtre date (yyyy-MM-dd)
 function toDate(value) {
   if (value instanceof Date) return value;
-  if (typeof value === 'number') return new Date(value);
-  if (typeof value === 'string') return new Date(value);
+  if (typeof value === "number") return new Date(value);
+  if (typeof value === "string") return new Date(value);
   return new Date();
 }
 
 module.exports = function(eleventyConfig) {
+  // i18n Nunjucks filter
+  eleventyConfig.addNunjucksFilter('t', (key, lang = 'fr', fallback = '') => {
+    const dict = loadLocale(lang) || {};
+    const val = getByPath(dict, key);
+    return (val !== undefined && val !== null) ? val : (fallback || key);
+  });
+
+  // Passthrough for service worker
+  eleventyConfig.addPassthroughCopy('sw.js');
+
   // Filtre Nunjucks date
-  eleventyConfig.addNunjucksFilter('date', (value, format = 'yyyy-MM-dd') => {
+  eleventyConfig.addNunjucksFilter("date", (value, format = "yyyy-MM-dd") => {
     const d = toDate(value);
-    if (!d || isNaN(d.getTime())) return '';
-    if (format === 'yyyy-MM-dd') return d.toISOString().slice(0, 10);
+    if (!d || isNaN(d.getTime())) return "";
+    if (format === "yyyy-MM-dd") return d.toISOString().slice(0, 10);
+    return d.toISOString();
+  });
+
+  // Passthrough for service worker
+  eleventyConfig.addPassthroughCopy('sw.js');
+
+  // Filtre Nunjucks date
+  eleventyConfig.addNunjucksFilter("date", (value, format = "yyyy-MM-dd") => {
+    const d = toDate(value);
+    if (!d || isNaN(d.getTime())) return "";
+    if (format === "yyyy-MM-dd") return d.toISOString().slice(0, 10);
     return d.toISOString();
   });
 

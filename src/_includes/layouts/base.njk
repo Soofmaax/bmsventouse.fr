@@ -12,5 +12,6 @@
   {% include "footer.njk" %}
   <a href="#" class="back-to-top" aria-label="Retour en haut" title="Retour en haut">↑</a>
   <script src="/js/script.js" defer></script>
+  <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(console.error));}</script>
 </body>
 </html>
