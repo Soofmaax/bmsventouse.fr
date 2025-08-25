@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 // SEO plugins
 const pluginSitemap = require('@11ty/eleventy-sitemap');
@@ -21,13 +22,30 @@ function getByPath(obj, key) {
   return key.split('.').reduce((o,k)=> (o && o[k]!==undefined) ? o[k] : undefined, obj);
 }
 
-// Util: filtre date (yyyy-MM-dd)
-function toDate(value) {
-  if (value instanceof Date) return value;
-  if (typeof value === "number") return new Date(value);
-  if (typeof value === "string") return new Date(value);
-  return new Date();
+// Asset fingerprinting filter (cache-busting)
+const fpCache = new Map();
+function fileHash(relPath){
+  const key = relPath;
+  if (fpCache.has(key)) return fpCache.get(key);
+  try {
+    const p = path.join(process.cwd(), relPath.replace(/^\//,''));
+    const buf = fs.readFileSync(p);
+    const hash = crypto.createHash('md5').update(buf).digest('hex').slice(0,10);
+    fpCache.set(key, hash);
+    return hash;
+  } catch(e){ return Date.now().toString(); }
 }
+
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addNunjucksFilter('fingerprint', p => `${p}${p.includes('?') ? '&' : '?'}v=${fileHash(p)}`);
+
+  // Util: filtre date (yyyy-MM-dd)
+  function toDate(value) {
+    if (value instanceof Date) return value;
+    if (typeof value === "number") return new Date(value);
+    if (typeof value === "string") return new Date(value);
+    return new Date();
+  }
 
 module.exports = function(eleventyConfig) {
   // i18n Nunjucks filter
@@ -128,7 +146,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('favicon-32x32.png');
   eleventyConfig.addPassthroughCopy('favicon.ico');
   eleventyConfig.addPassthroughCopy('site.webmanifest');
-  eleventyConfig.addPassthroughCopy('robots.txt');
   eleventyConfig.addPassthroughCopy('netlify.toml');
 
   return {

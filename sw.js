@@ -1,6 +1,6 @@
 const CACHE = 'bms-static-v1';
 const ASSETS = [
-  '/', '/css/style.css', '/js/script.js', '/site.webmanifest',
+  '/', '/css/style.css', '/js/script.js', '/site.webmanifest', '/offline.html'
 ];
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -25,7 +25,7 @@ self.addEventListener('fetch', e => {
         const copy = res.clone();
         caches.open(CACHE).then(c => c.put(req, copy));
         return res;
-      }).catch(() => caches.match(req).then(m => m || caches.match('/')))
+      }).catch(() => caches.match(req).then(m => m || caches.match('/offline.html')))
     );
     return;
   }

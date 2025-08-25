@@ -24,12 +24,16 @@
     "cypress": "^13.0.0",
     "@lhci/cli": "^0.13.0",
     "axe-core": "^4.7.0",
-    "cypress-axe": "^1.5.0"
+    "cypress-axe": "^1.5.0",
+    "eslint": "^8.57.0",
+    "htmlhint": "^1.1.4",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0"
   },
   "scripts": {
     "build": "eleventy",
     "dev": "eleventy --serve --port=8080",
-    "lint:js": "eslint src/",
+    "lint:js": "eslint src/ js/ --ext .js,.njk --max-warnings=0",
     "lint:css": "stylelint \"css/**/*.css\"",
     "lint:html": "htmlhint src/**/*.njk",
     "prettier:check": "prettier --check \"{css,src}/**/*.{css,js,njk,json,md}\"",
@@ -41,7 +45,13 @@
     "release:prepare": "npm run format && npm run lint:css && npm run test:a11y",
     "release:patch": "npm run release:prepare && npm version patch -m \"chore(release): %s\"",
     "release:minor": "npm run release:prepare && npm version minor -m \"chore(release): %s\"",
-    "release:major": "npm run release:prepare && npm version major -m \"chore(release): %s\""
+    "release:major": "npm run release:prepare && npm version major -m \"chore(release): %s\"",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,njk}": ["eslint --fix"],
+    "*.{css}": ["stylelint --fix"],
+    "*.{md,json}": ["prettier --write"]
   },
   "scripts": {
     "build": "eleventy",
