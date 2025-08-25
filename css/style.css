@@ -2274,6 +2274,15 @@ body:has(.nav-links.active) {
   line-height: var(--line-height-base);
 }
 
+.faq-answer ul {
+  margin: 0.75rem 0 0.75rem 1.25rem;
+  list-style: disc;
+}
+
+.faq-answer li {
+  margin: 0.25rem 0;
+}
+
 .faq-answer strong {
   color: var(--color-primary-dark);
   font-weight: var(--font-weight-medium);
