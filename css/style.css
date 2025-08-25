@@ -1,6 +1,7 @@
-/* ==========================================================================
-   FEUILLE DE STYLE BMS VENTOUSE - VERSION OPTIMISÉE (V8.0) 
-   ========================================================================== */
+/* =========================================
+   FEUILLE DE STYLE BMS VENTOUSE - VERSION OPTIMISÉE (V8.0)
+   Variables, Reset, Layout, Components
+   ========================================= */
 
 /* 1. VARIABLES GLOBALES & FONDATIONS */
 :root {
@@ -1041,6 +1042,27 @@ body.dark-theme .header {
 }
 
 /* 6. RESPONSIVE DESIGN */
+
+/* Utility classes for grid/flex responsive layouts */
+.grid {
+  display: grid !important;
+  gap: var(--grid-gap, 1.5rem);
+}
+
+.flex {
+  display: flex !important;
+  gap: var(--grid-gap, 1.5rem);
+}
+
+.flex-center {
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.flex-col {
+  flex-direction: column !important;
+}
+
 @media (min-width: 600px) {
   .hero-buttons {
     flex-direction: row;
@@ -1054,37 +1076,37 @@ body.dark-theme .header {
     --header-height: 70px;
     --spacing-section: 60px;
   }
-  
-  .section-title { 
-    font-size: 1.8rem; 
+
+  .section-title {
+    font-size: 1.8rem;
   }
-  
-  .header .nav-links { 
-    display: none; 
+
+  .header .nav-links {
+    display: none;
   }
-  
-  .header .hamburger { 
-    display: flex; 
+
+  .header .hamburger {
+    display: flex;
   }
-  
-  .footer-content, .footer-links { 
-    grid-template-columns: 1fr; 
+
+  .footer-content, .footer-links {
+    grid-template-columns: 1fr;
   }
-  
+
   .case-study, .case-study.reverse {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  
+
   .case-study.reverse .case-study-image,
   .case-study.reverse .case-study-content {
     grid-column: 1;
   }
-  
+
   .case-study-image {
-    order: -1; /* Image toujours en premier sur mobile */
+    order: -1;
   }
-  
+
   .nav-link.btn {
     width: 100%;
     margin: 0.3rem 0;
@@ -1092,12 +1114,12 @@ body.dark-theme .header {
     display: block;
     padding: 0.8rem 0;
   }
-  
+
   .hero-bg img {
     min-height: 300px;
     object-position: center;
   }
-  
+
   .hero-overlay {
     padding: 30px 15px 50px;
     min-height: 70vh;
@@ -1105,32 +1127,32 @@ body.dark-theme .header {
     align-items: center;
     justify-content: center;
   }
-  
+
   .hero h1 {
     font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
     line-height: 1.2 !important;
     margin-bottom: 1rem !important;
   }
-  
+
   .hero p {
     font-size: clamp(0.9rem, 4vw, 1.1rem) !important;
     line-height: 1.5 !important;
     margin-bottom: 1.5rem !important;
     max-width: 95% !important;
   }
-  
+
   .hero-buttons {
     gap: 0.8rem !important;
     margin-top: 1rem !important;
   }
-  
+
   .hero-buttons .btn {
     padding: 12px 20px !important;
     font-size: 0.95rem !important;
     width: 100% !important;
     max-width: 280px !important;
   }
-  
+
   .whatsapp-float {
     width: var(--whatsapp-mobile-size);
     height: var(--whatsapp-mobile-size);
@@ -1194,8 +1216,6 @@ body.dark-theme .header {
   text-align: center;
   width: calc(100% - 2rem);
 }
-
-/* SUPPRIMÉ : Duplication de .promo-banner - la définition principale est en ligne 224 */
 
 .promo-banner a {
   color: white;
