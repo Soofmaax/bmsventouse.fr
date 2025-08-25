@@ -13,15 +13,14 @@
   {%- set enPath = pageUrl -%}
 {%- endif -%}
 {%- set frHref = site.url + frPath -%}
-{%- set enHref = site.url + enPath -%}
 <title>{{ title }}</title>
 <meta name="description" content="{{ description }}">
 <meta name="theme-color" content="{{ site.themeColor }}">
 <meta name="robots" content="{{ robots | default('index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1') }}">
 <link rel="canonical" href="{{ canonicalHref }}">
 <link rel="alternate" hreflang="fr-FR" href="{{ frHref }}">
-<link rel="alternate" hreflang="en" href="{{ enHref }}">
 <link rel="alternate" hreflang="x-default" href="{{ canonicalHref }}">
+<script src="{{ '/js/early-theme.js' | fingerprint }}"></script>
 
 {# Open Graph / Facebook #}
 <meta property="og:title" content="{{ title | escape }}">
@@ -56,11 +55,10 @@
 <link rel="shortcut icon" href="/favicon.ico">
 
 {# CSS, fonts, preconnect #}
-<link rel="preload" href="{{ '/css/style.css' | fingerprint }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ '/css/style.css' | fingerprint }}"></noscript>
+<link rel="stylesheet" href="{{ '/css/style.css' | fingerprint }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 {# JSON-LD Schema.org (WebSite, Organization, BreadcrumbList) #}
 <script type="application/ld+json">

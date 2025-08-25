@@ -2,7 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node version](https://img.shields.io/badge/node-%3E%3D%20v20-339933?logo=node.js)](https://nodejs.org/)
-<!-- [![Lighthouse CI](https://github.com/votre-org/votre-repo/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/votre-org/votre-repo/actions/workflows/lighthouse.yml) -->
+[![Lighthouse CI](https://github.com/OWNER/REPO/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/lighthouse.yml)
+[![Build & Tests](https://github.com/OWNER/REPO/actions/workflows/build.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/build.yml)
+<!-- Remplacez OWNER/REPO par le slug réel de votre repo GitHub -->
 
 Démo : [https://www.bmsventouse.fr](https://www.bmsventouse.fr)
 
