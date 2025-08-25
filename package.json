@@ -18,6 +18,19 @@
     "imagemin-mozjpeg": "^10.0.0",
     "imagemin-pngquant": "^9.0.0",
     "imagemin-webp": "^7.0.0",
-    "cypress": "^13.0.0"
+    "cypress": "^13.0.0",
+    "@lhci/cli": "^0.13.0"
+  },
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve --port=8080",
+    "lint:js": "eslint src/",
+    "lint:css": "stylelint \"css/**/*.css\"",
+    "lint:html": "htmlhint src/**/*.njk",
+    "prettier:check": "prettier --check \"{css,src}/**/*.{css,js,njk,json,md}\"",
+    "format": "prettier --write \"{css,src}/**/*.{css,js,njk,json,md}\"",
+    "optimize:images": "node scripts/optimize-images.js",
+    "test:e2e": "cypress run",
+    "ci:lh": "lhci autorun"
   }
 }

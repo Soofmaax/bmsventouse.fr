@@ -5,8 +5,8 @@ const webp = require('imagemin-webp');
 const path = require('path');
 const fs = require('fs');
 
-const inputDir = path.join(__dirname, '..', 'src', 'images');
-const outputDir = path.join(__dirname, '..', 'static', 'images');
+const inputDir = path.join(__dirname, '..', 'images');
+const outputDir = inputDir;
 
 (async () => {
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });

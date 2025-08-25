@@ -11,6 +11,9 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)">
 <script>(function(){try{var k='bms-theme-preference';var s=localStorage.getItem(k);var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;var dark=s?s==='dark':m;if(dark){document.documentElement.classList.add('dark-theme');}}catch(e){}})();</script>
+{%- set dataDomain = site.url | replace('https://','') | replace('http://','') | replace('/','') -%}
+<link rel="preconnect" href="https://plausible.io">
+<script defer data-domain="{{ dataDomain }}" src="https://plausible.io/js/script.js"></script>
 <meta name="description" content="{{ description }}">
 <meta name="theme-color" content="{{ site.themeColor }}">
 <meta name="robots" content="{{ robots | default('index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1') }}">
