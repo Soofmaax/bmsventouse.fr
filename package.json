@@ -1,35 +1,7 @@
 {
   "name": "bms-ventouse-site",
   "private": true,
-  "scripts": {
-    "build": "eleventy",
-    "dev": "eleventy --serve --port=8080",
-    "lint:js": "eslint src/",
-    "lint:css": "stylelint \"css/**/*.css\"",
-    "lint:html": "htmlhint src/**/*.njk",
-    "prettier:check": "prettier --check \"{css,src}/**/*.{css,js,njk,json,md}\"",
-    "format": "prettier --write \"{css,src}/**/*.{css,js,njk,json,md}\"",
-    "optimize:images": "node scripts/optimize-images.js",
-    "test:e2e": "cypress run",
-    "test:a11y": "cypress run --spec cypress/e2e/a11y.cy.js",
-    "ci:lh": "lhci autorun"
-  },
   "version": "1.0.0",
-  "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "imagemin": "^8.0.1",
-    "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-pngquant": "^9.0.0",
-    "imagemin-webp": "^7.0.0",
-    "cypress": "^13.0.0",
-    "@lhci/cli": "^0.13.0",
-    "axe-core": "^4.7.0",
-    "cypress-axe": "^1.5.0",
-    "eslint": "^8.57.0",
-    "htmlhint": "^1.1.4",
-    "husky": "^9.0.0",
-    "lint-staged": "^15.2.0"
-  },
   "scripts": {
     "build": "eleventy",
     "dev": "eleventy --serve --port=8080",
@@ -48,28 +20,25 @@
     "release:major": "npm run release:prepare && npm version major -m \"chore(release): %s\"",
     "prepare": "husky install"
   },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@lhci/cli": "^0.13.0",
+    "axe-core": "^4.7.0",
+    "cypress": "^13.0.0",
+    "cypress-axe": "^1.5.0",
+    "eslint": "^8.57.0",
+    "htmlhint": "^1.1.4",
+    "husky": "^9.0.0",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.0",
+    "imagemin-webp": "^7.0.0",
+    "lint-staged": "^15.2.0"
+  },
   "lint-staged": {
     "*.js": ["eslint --fix"],
     "*.njk": ["htmlhint"],
     "*.css": ["stylelint --fix"],
     "*.{md,json}": ["prettier --write"]
-  },
-  "scripts": {
-    "build": "eleventy",
-    "dev": "eleventy --serve --port=8080",
-    "lint:js": "eslint src/",
-    "lint:css": "stylelint \"css/**/*.css\"",
-    "lint:html": "htmlhint src/**/*.njk",
-    "prettier:check": "prettier --check \"{css,src}/**/*.{css,js,njk,json,md}\"",
-    "format": "prettier --write \"{css,src}/**/*.{css,js,njk,json,md}\"",
-    "optimize:images": "node scripts/optimize-images.js",
-    "test:e2e": "cypress run",
-    "test:a11y": "cypress run --spec cypress/e2e/a11y.cy.js",
-    "ci:lh": "lhci autorun"
-  },
-  "devDependencies": {
-    "axe-core": "^4.7.0",
-    "cypress-axe": "^1.5.0",
-    "ci:lh": "lhci autorun"
   }
 }
