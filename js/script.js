@@ -108,10 +108,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const applyTheme = theme => {
       if (theme === 'dark') {
         document.body.classList.add('dark-theme');
+        document.documentElement.classList.add('dark-theme');
         themeToggleBtn.setAttribute('aria-pressed', 'true');
+        themeToggleBtn.setAttribute('aria-label', 'Activer le thème clair');
+        themeToggleBtn.title = 'Activer le thème clair';
       } else {
         document.body.classList.remove('dark-theme');
+        document.documentElement.classList.remove('dark-theme');
         themeToggleBtn.setAttribute('aria-pressed', 'false');
+        themeToggleBtn.setAttribute('aria-label', 'Activer le thème sombre');
+        themeToggleBtn.title = 'Activer le thème sombre';
       }
     };
 
@@ -221,7 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const slides = track ? Array.from(track.children) : [];
     const prevBtn = document.querySelector('.references-carousel .carousel-control.prev');
     const nextBtn = document.querySelector('.references-carousel .carousel-control.next');
-    
+    const status = document.getElementById('carouselStatus');
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     if (!track || slides.length === 0 || !prevBtn || !nextBtn) {
       console.warn("Éléments du carrousel non trouvés.");
       return;
@@ -237,19 +245,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     const scrollToIndex = (index) => {
+      currentIndex = index;
       const slideWidth = getSlideWidth();
       const position = slideWidth * index;
-      track.scrollTo({ left: position, behavior: 'smooth' });
+      track.scrollTo({ left: position, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      // ARIA live region
+      if (status) { status.textContent = `Logo ${index+1} sur ${slides.length}`; }
+      // aria-current
+      slides.forEach((s, i) => s.setAttribute('aria-current', i === index ? 'true' : 'false'));
     };
     
     nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      scrollToIndex(currentIndex);
+      const nextIndex = (currentIndex + 1) % slides.length;
+      scrollToIndex(nextIndex);
     });
     
     prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      scrollToIndex(currentIndex);
+      const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+      scrollToIndex(prevIndex);
     });
 
     // Keyboard support
@@ -301,6 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
       startX = null;
     });
 
+    // Initialize state
+    scrollToIndex(0);
     console.log(`✅ Carrousel initialisé avec ${slides.length} éléments`);
   };
 
@@ -310,6 +325,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const setupBackToTop = () => {
     const backToTopButton = document.querySelector('.back-to-top');
     if (!backToTopButton) return;
+
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const toggleBackToTop = () => {
       if (window.scrollY > 300) {
@@ -323,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: prefersReducedMotion ? 'auto' : 'smooth'
       });
     };
 

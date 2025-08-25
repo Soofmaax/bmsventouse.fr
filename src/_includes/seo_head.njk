@@ -7,6 +7,10 @@
 {%- set canonicalHref = canonical or canonicalComputed -%}
 <title>{{ title }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)">
+<script>(function(){try{var k='bms-theme-preference';var s=localStorage.getItem(k);var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;var dark=s?s==='dark':m;if(dark){document.documentElement.classList.add('dark-theme');}}catch(e){}})();</script>
 <meta name="description" content="{{ description }}">
 <meta name="theme-color" content="{{ site.themeColor }}">
 <meta name="robots" content="{{ robots | default('index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1') }}">
