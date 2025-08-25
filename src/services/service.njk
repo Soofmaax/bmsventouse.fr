@@ -17,22 +17,22 @@ eleventyComputed:
 {% import "components/macros.njk" as macros %}
 
 {% hero {
-  "imageDesktop": service.data.hero.desktop,
-  "imageMobile": service.data.hero.mobile,
-  "alt": service.data.hero.alt,
+  "imageDesktop": service.hero.desktop,
+  "imageMobile": service.hero.mobile,
+  "alt": service.hero.alt,
   "loading": "eager",
   "width": 1920,
   "height": 1080
 } %}
-  <h1>{{ service.data.h1 }}</h1>
-  <p>{{ service.data.summary }}</p>
+  <h1>{{ service.h1 }}</h1>
+  <p>{{ service.summary }}</p>
 {% endhero %}
 
 <section class="band">
   <div class="container">
-    {% sectionHeader 'Présentation', service.data.h1, 'A Marseille, Paris, Lyon et partout en France' %}
+    {% sectionHeader 'Présentation', service.h1, 'A Marseille, Paris, Lyon et partout en France' %}
     <div class="content-cards">
-      {% for section in service.data.sections %}
+      {% for section in service.sections %}
         {% contentCard section.title, section.html %}
       {% endfor %}
     </div>
@@ -42,10 +42,10 @@ eleventyComputed:
 {% if service.features and service.features.length %}
 <section class="band band--alt">
   <div class="container">
-    {{ macros.sectionHeader('Atouts', 'Nos points forts', '') }}
+    {% sectionHeader 'Atouts', 'Nos points forts', '' %}
     <div class="content-cards">
       {% for feat in service.features %}
-        {{ macros.contentCard('', '<p>' ~ feat ~ '</p>', 'content-card--feature') }}
+        {% contentCard '', '<p>' ~ feat ~ '</p>', 'content-card--feature' %}
       {% endfor %}
     </div>
   </div>
@@ -55,7 +55,7 @@ eleventyComputed:
 {% if service.faq and service.faq.length %}
 <section class="band">
   <div class="container">
-    {{ macros.sectionHeader('FAQ', 'Questions fréquentes', '') }}
+    {% sectionHeader 'FAQ', 'Questions fréquentes', '' %}
     <div class="faq-container">
       {% for q in service.faq %}
         {{ macros.faqItem(q.q, q.a) }}
@@ -68,11 +68,11 @@ eleventyComputed:
 <section class="band band--alt">
   <div class="container">
     <div class="content-cards">
-      {{ macros.contentCard(
+      {% contentCard
         '',
         '<div class="cta-card-inner"><h2 class="cta-title">Prêt à démarrer ?</h2><p class="cta-subtitle">Nos équipes interviennent à Marseille, Paris, Lyon et partout en France.</p>' ~ (macros.ctaButtons('/contact/', 'Parler à un expert', 'https://wa.me/33646005642', 'WhatsApp Direct')) ~ '</div>',
         'cta-card'
-      ) }}
+      %}
     </div>
   </div>
 </section>
@@ -120,7 +120,7 @@ eleventyComputed:
       "latitude": "{{ site.geo.latitude }}",
       "longitude": "{{ site.geo.longitude }}"
     },
-    "areaServed": {"@type": "Country","name": "France"}
+    "areaServed": { "@type": "Country", "name": "France" }
   }
   </script>
   <script type="application/ld+json">
