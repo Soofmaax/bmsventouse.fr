@@ -348,6 +348,89 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTopButton.addEventListener('click', scrollToTop);
   };
 
+  // --------------------------------------------------------------------------
+  // MODULE: ANALYTICS (Plausible conversions tracking: CTA, WhatsApp, phone, email)
+  // --------------------------------------------------------------------------
+  const setupAnalytics = () => {
+    // Utility to get context: find nearest section id or class (e.g. hero)
+    const getContext = (el) => {
+      let node = el;
+      while (node && node !== document.body) {
+        if (node.id) return node.id;
+        if (node.classList && Array.from(node.classList).some(c => c.includes('hero'))) return node.className;
+        node = node.parentElement;
+      }
+      return '';
+    };
+
+    // Utility: send Plausible event with callback support
+    const sendPlausible = (type, label, href, location, callback) => {
+      if (typeof window.plausible !== 'function') return false;
+      const props = { type, label, href, location };
+      window.plausible('CTA Click', { props, callback });
+      return true;
+    };
+
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('a');
+      if (!el) return;
+
+      let type, label;
+      const href = el.getAttribute('href') || '';
+      // 1) data-cta
+      if (el.dataset.cta) {
+        type = el.dataset.cta;
+        label = el.dataset.ctaLabel || el.textContent.trim();
+      }
+      // 2) WhatsApp link
+      else if (/wa\.me|api\.whatsapp\.com/i.test(href)) {
+        type = 'whatsapp';
+        label = el.textContent.trim() || 'WhatsApp';
+      }
+      // 3) Phone link
+      else if (href.startsWith('tel:')) {
+        type = 'phone';
+        label = href.replace('tel:', '');
+      }
+      // 4) Email link
+      else if (href.startsWith('mailto:')) {
+        type = 'email';
+        label = href.replace('mailto:', '');
+      }
+      // Otherwise: do not track
+      else {
+        return;
+      }
+
+      const locationContext = getContext(el);
+
+      // If plausible is not loaded, do not block navigation
+      if (typeof window.plausible !== 'function') return;
+
+      // Open in new tab or with modifier: do not block navigation, just send event
+      if (
+        el.target === '_blank' ||
+        e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1
+      ) {
+        sendPlausible(type, label, href, locationContext);
+        return;
+      }
+
+      // Regular navigation: prevent, send event, then navigate
+      e.preventDefault();
+      let navigated = false;
+      const go = () => {
+        if (!navigated) {
+          navigated = true;
+          window.location.href = el.href;
+        }
+      };
+      const sent = sendPlausible(type, label, href, locationContext, go);
+      // Fallback in case Plausible callback doesn't fire
+      setTimeout(go, 250);
+    });
+  };
+
   // ==========================================================================
   // INITIALISATION DE TOUS LES MODULES
   // ==========================================================================
@@ -358,6 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupReferencesCarousel();
     setupBackToTop();
     setupThemeToggle();
+    setupAnalytics();
     console.log('🚀 BMS Ventouse - Tous les modules initialisés avec succès');
   } catch (error) {
     console.error("Erreur lors de l'initialisation des scripts du site :", error);
