@@ -6,6 +6,7 @@
 {%- endif -%}
 {%- set canonicalHref = canonical or canonicalComputed -%}
 <title>{{ title }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{{ description }}">
 <meta name="theme-color" content="{{ site.themeColor }}">
 <meta name="robots" content="{{ robots | default('index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1') }}">
@@ -14,9 +15,9 @@
 <link rel="alternate" hreflang="x-default" href="{{ canonicalHref }}">
 
 {# Open Graph / Facebook #}
-<meta property="og:title" content="{{ title }}">
-<meta property="og:description" content="{{ description }}">
-<meta property="og:url" content="{{ canonical }}">
+<meta property="og:title" content="{{ title | escape }}">
+<meta property="og:description" content="{{ description | escape }}">
+<meta property="og:url" content="{{ canonicalHref }}">
 <meta property="og:type" content="{{ ogType or 'website' }}">
 <meta property="og:image" content="{{ ogImage or (site.url + '/images/hero-background-custom.jpg') }}">
 <meta property="og:locale" content="fr_FR">
@@ -26,14 +27,17 @@
 
 {# Twitter Cards #}
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ title }}">
-<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:title" content="{{ title | escape }}">
+<meta name="twitter:description" content="{{ description | escape }}">
 <meta name="twitter:image" content="{{ ogImage or (site.url + '/images/hero-background-custom.jpg') }}">
 
 {# Preload hero image if provided #}
 {% if heroImage %}
 <link rel="preload" as="image" href="{{ heroImage }}" fetchpriority="high">
 {% endif %}
+
+{# Preload favicon (perf) #}
+<link rel="preload" as="image" href="/favicon-32x32.png">
 
 {# Favicon and manifest #}
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -48,3 +52,53 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+{# JSON-LD Schema.org (WebSite, Organization, BreadcrumbList) #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "url": "{{ site.url }}",
+      "name": "{{ site.brand }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ site.url }}/search/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "{{ site.brand }}",
+      "url": "{{ site.url }}",
+      "logo": "{{ site.url }}/android-chrome-512x512.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/bms-ventouse",
+        "https://www.facebook.com/bmsventouse"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ site.url }}/"
+        }
+        {%- if breadcrumbs -%}
+          {%- for crumb in breadcrumbs %}
+          ,{
+            "@type": "ListItem",
+            "position": {{ loop.index + 1 }},
+            "name": "{{ crumb.name }}",
+            "item": "{{ site.url }}{{ crumb.url }}"
+          }
+          {%- endfor -%}
+        {%- endif -%}
+      ]
+    }
+  ]
+}
+</script>
