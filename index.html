@@ -196,13 +196,12 @@
 </head>
 <body class="page-accueil">
 
-<!-- Lien d'évitement pour l'accessibilité -->
 <a href="#main-content" class="skip-link">Passer au contenu principal</a>
 
 <!-- ==========================================================================
    EN-TÊTE PRINCIPAL
    ========================================================================== -->
-<header class="header">
+<header class="header" role="banner">
   <div class="container">
     <div class="nav">
       <a href="/" class="logo" aria-label="Retour à l'accueil de BMS Ventouse">
@@ -211,12 +210,12 @@
           <span class="bms">BMS</span> <span class="ventouse">Ventouse</span>
         </span>
       </a>
-      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navigation">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <nav>
+      <nav id="navigation" role="navigation" aria-label="Main navigation">
         <ul id="navLinks" class="nav-links">
           <li><a href="/" class="nav-link active">Accueil</a></li>
           <li><a href="/services/" class="nav-link">Services</a></li>
@@ -238,7 +237,7 @@
 <!-- ==========================================================================
    CONTENU PRINCIPAL
    ========================================================================== -->
-<main id="main-content">
+<main id="main-content" role="main">
 
     <!-- Section Héros -->
     <section id="hero-home" class="hero">
@@ -431,7 +430,7 @@
 <!-- ==========================================================================
    PIED DE PAGE
    ========================================================================== -->
-<footer class="footer">
+<footer class="footer" role="contentinfo">
     <div class="footer-main">
         <div class="container">
             <div class="footer-content">
