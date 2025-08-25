@@ -5,22 +5,21 @@
   {%- set canonicalComputed = site.url + pageUrl -%}
 {%- endif -%}
 {%- set canonicalHref = canonical or canonicalComputed -%}
-{%- set frHref = site.url + (pageUrl == '/' ? '/' : pageUrl) -%}
-{%- set enHref = site.url + (pageUrl == '/' ? '/en/' : '/en' + pageUrl) -%}
+{# Robust hreflang alternates computation #}
+{%- set frPath = pageUrl -%}
+{%- set enPath = '/en' + (pageUrl == '/' ? '/' : pageUrl) -%}
+{%- if (pageUrl | replace('/en/','/')) != pageUrl -%}
+  {%- set frPath = pageUrl | replace('/en/','/') -%}
+  {%- set enPath = pageUrl -%}
+{%- endif -%}
+{%- set frHref = site.url + frPath -%}
+{%- set enHref = site.url + enPath -%}
 <title>{{ title }}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)">
-<script>(function(){try{var k='bms-theme-preference';var s=localStorage.getItem(k);var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;var dark=s?s==='dark':m;if(dark){document.documentElement.classList.add('dark-theme');}}catch(e){}})();</script>
-{%- set dataDomain = site.url | replace('https://','') | replace('http://','') | replace('/','') -%}
-<link rel="preconnect" href="https://plausible.io">
-<script defer data-domain="{{ dataDomain }}" src="https://plausible.io/js/script.js"></script>
 <meta name="description" content="{{ description }}">
 <meta name="theme-color" content="{{ site.themeColor }}">
 <meta name="robots" content="{{ robots | default('index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1') }}">
 <link rel="canonical" href="{{ canonicalHref }}">
-<link rel="alternate" hreflang="fr" href="{{ frHref }}">
+<link rel="alternate" hreflang="fr-FR" href="{{ frHref }}">
 <link rel="alternate" hreflang="en" href="{{ enHref }}">
 <link rel="alternate" hreflang="x-default" href="{{ canonicalHref }}">
 

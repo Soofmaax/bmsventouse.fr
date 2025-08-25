@@ -48,17 +48,6 @@ module.exports = function(eleventyConfig) {
     return d.toISOString();
   });
 
-  // Passthrough for service worker
-  eleventyConfig.addPassthroughCopy('sw.js');
-
-  // Filtre Nunjucks date
-  eleventyConfig.addNunjucksFilter("date", (value, format = "yyyy-MM-dd") => {
-    const d = toDate(value);
-    if (!d || isNaN(d.getTime())) return "";
-    if (format === "yyyy-MM-dd") return d.toISOString().slice(0, 10);
-    return d.toISOString();
-  });
-
   // HTML transform: minify HTML in production
   eleventyConfig.addTransform('htmlmin', function(content, outputPath) {
     if (outputPath && outputPath.endsWith('.html') && process.env.NODE_ENV === 'production') {
