@@ -10,7 +10,9 @@
     "prettier:check": "prettier --check \"{css,src}/**/*.{css,js,njk,json,md}\"",
     "format": "prettier --write \"{css,src}/**/*.{css,js,njk,json,md}\"",
     "optimize:images": "node scripts/optimize-images.js",
-    "test:e2e": "cypress run"
+    "test:e2e": "cypress run",
+    "test:a11y": "cypress run --spec cypress/e2e/a11y.cy.js",
+    "ci:lh": "lhci autorun"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
@@ -19,7 +21,9 @@
     "imagemin-pngquant": "^9.0.0",
     "imagemin-webp": "^7.0.0",
     "cypress": "^13.0.0",
-    "@lhci/cli": "^0.13.0"
+    "@lhci/cli": "^0.13.0",
+    "axe-core": "^4.7.0",
+    "cypress-axe": "^1.5.0"
   },
   "scripts": {
     "build": "eleventy",
