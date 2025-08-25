@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" role="banner">
   <div class="container">
     <div class="nav">
       <a href="/" class="logo" aria-label="Retour à l'accueil de {{ site.brand }}">
@@ -7,12 +7,18 @@
           <span class="bms">BMS</span> <span class="ventouse">Ventouse</span>
         </span>
       </a>
-      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+      <button 
+        class="hamburger" 
+        id="hamburger"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="navigation"
+      >
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <nav>
+      <nav id="navigation" role="navigation" aria-label="Main navigation">
         <ul id="navLinks" class="nav-links">
           <li><a href="/" class="nav-link{% if activeNav == 'home' %} active{% endif %}">Accueil</a></li>
           <li><a href="/services/" class="nav-link{% if activeNav == 'services' %} active{% endif %}">Services</a></li>

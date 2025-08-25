@@ -6,7 +6,7 @@
 <body class="{{ bodyClass }}">
   <a href="#main-content" class="skip-link">Passer au contenu</a>
   {% include "header.njk" %}
-  <main id="main-content">
+  <main id="main-content" role="main">
     {{ content | safe }}
   </main>
   {% include "footer.njk" %}
