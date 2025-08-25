@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.addEventListener('click', handleMenuClick);
     navOverlay.addEventListener('click', () => toggleMenu(false));
     document.addEventListener('keydown', handleKeyDown);
-    
+
     // Fermer le menu quand on clique sur un lien
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
@@ -87,6 +87,43 @@ document.addEventListener('DOMContentLoaded', () => {
           toggleMenu(false);
         }
       });
+    });
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: DARK MODE TOGGLE
+  // --------------------------------------------------------------------------
+  const setupThemeToggle = () => {
+    const themeToggleBtn = document.getElementById('themeToggle');
+    if (!themeToggleBtn) return;
+
+    const storageKey = CONFIG.theme.storageKey;
+    const getPreferredTheme = () => {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) return stored;
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+      return 'light';
+    };
+
+    const applyTheme = theme => {
+      if (theme === 'dark') {
+        document.body.classList.add('dark-theme');
+        themeToggleBtn.setAttribute('aria-pressed', 'true');
+      } else {
+        document.body.classList.remove('dark-theme');
+        themeToggleBtn.setAttribute('aria-pressed', 'false');
+      }
+    };
+
+    // Initial
+    let theme = getPreferredTheme();
+    applyTheme(theme);
+
+    // On click toggle
+    themeToggleBtn.addEventListener('click', () => {
+      theme = (document.body.classList.contains('dark-theme')) ? 'light' : 'dark';
+      localStorage.setItem(storageKey, theme);
+      applyTheme(theme);
     });
   };
 
@@ -215,6 +252,55 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollToIndex(currentIndex);
     });
 
+    // Keyboard support
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        nextBtn.click();
+        e.preventDefault();
+      }
+      if (e.key === 'ArrowLeft') {
+        prevBtn.click();
+        e.preventDefault();
+      }
+    });
+    prevBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        nextBtn.click(); e.preventDefault();
+      } else if (e.key === 'ArrowLeft') {
+        prevBtn.click(); e.preventDefault();
+      }
+    });
+    nextBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevBtn.click(); e.preventDefault();
+      } else if (e.key === 'ArrowRight') {
+        nextBtn.click(); e.preventDefault();
+      }
+    });
+
+    // Swipe support
+    let startX = null;
+    track.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        startX = e.touches[0].clientX;
+      }
+    });
+    track.addEventListener('touchend', (e) => {
+      if (startX === null) return;
+      const endX = (e.changedTouches && e.changedTouches.length) ? e.changedTouches[0].clientX : null;
+      if (endX !== null) {
+        const delta = endX - startX;
+        if (Math.abs(delta) > 30) {
+          if (delta > 0) {
+            prevBtn.click();
+          } else {
+            nextBtn.click();
+          }
+        }
+      }
+      startX = null;
+    });
+
     console.log(`✅ Carrousel initialisé avec ${slides.length} éléments`);
   };
 
@@ -254,6 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFaqAccordion();
     setupReferencesCarousel();
     setupBackToTop();
+    setupThemeToggle();
     console.log('🚀 BMS Ventouse - Tous les modules initialisés avec succès');
   } catch (error) {
     console.error("Erreur lors de l'initialisation des scripts du site :", error);

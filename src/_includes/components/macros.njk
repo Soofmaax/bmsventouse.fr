@@ -51,20 +51,20 @@
 {% endmacro %}
 
 {% macro carousel(slides) %}
-<div class="references-carousel animated-item">
-  <button class="carousel-control prev" aria-label="Logo précédent">
+<div class="references-carousel animated-item" role="region" aria-roledescription="carousel" aria-label="Logos partenaires">
+  <button class="carousel-control prev" aria-label="Logo précédent" aria-controls="refsTrack">
     <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 320 512">
       <path d="M34.9 239l194-194c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L97.9 256l165 165c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-194-194c-9.4-9.4-9.4-24.6 0-33.9z"/>
     </svg>
   </button>
-  <div class="carousel-track">
+  <div class="carousel-track" id="refsTrack" tabindex="0" aria-label="Piste du carrousel">
     {% for slide in slides %}
       <div class="carousel-slide">
         <img src="{{ slide.src }}" alt="{{ slide.alt }}" width="{{ slide.width or 100 }}" height="{{ slide.height or 45 }}" loading="lazy">
       </div>
     {% endfor %}
   </div>
-  <button class="carousel-control next" aria-label="Logo suivant">
+  <button class="carousel-control next" aria-label="Logo suivant" aria-controls="refsTrack">
     <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 320 512">
       <path d="M285.5 272.9l-194 194c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l165-165-165-165c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l194 194c9.4 9.4 9.4 24.6 0 33.9z"/>
     </svg>
