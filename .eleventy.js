@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-
-// SEO plugins
 const pluginSitemap = require('@11ty/eleventy-sitemap');
 const pluginRobotsTxt = require('@11ty/eleventy-robots-txt');
 const htmlmin = require('html-minifier').minify;
@@ -36,29 +34,22 @@ function fileHash(relPath){
   } catch(e){ return Date.now().toString(); }
 }
 
+// Util: filtre date (yyyy-MM-dd)
+function toDate(value) {
+  if (value instanceof Date) return value;
+  if (typeof value === "number") return new Date(value);
+  if (typeof value === "string") return new Date(value);
+  return new Date();
+}
+
 module.exports = function(eleventyConfig) {
+  // Filters
   eleventyConfig.addNunjucksFilter('fingerprint', p => `${p}${p.includes('?') ? '&' : '?'}v=${fileHash(p)}`);
-
-  // Util: filtre date (yyyy-MM-dd)
-  function toDate(value) {
-    if (value instanceof Date) return value;
-    if (typeof value === "number") return new Date(value);
-    if (typeof value === "string") return new Date(value);
-    return new Date();
-  }
-
-module.exports = function(eleventyConfig) {
-  // i18n Nunjucks filter
   eleventyConfig.addNunjucksFilter('t', (key, lang = 'fr', fallback = '') => {
     const dict = loadLocale(lang) || {};
     const val = getByPath(dict, key);
     return (val !== undefined && val !== null) ? val : (fallback || key);
   });
-
-  // Passthrough for service worker
-  eleventyConfig.addPassthroughCopy('sw.js');
-
-  // Filtre Nunjucks date
   eleventyConfig.addNunjucksFilter("date", (value, format = "yyyy-MM-dd") => {
     const d = toDate(value);
     if (!d || isNaN(d.getTime())) return "";
@@ -66,7 +57,7 @@ module.exports = function(eleventyConfig) {
     return d.toISOString();
   });
 
-  // HTML transform: minify HTML in production
+  // Transforms
   eleventyConfig.addTransform('htmlmin', function(content, outputPath) {
     if (outputPath && outputPath.endsWith('.html') && process.env.NODE_ENV === 'production') {
       return htmlmin(content, {
@@ -81,8 +72,6 @@ module.exports = function(eleventyConfig) {
     }
     return content;
   });
-
-  // Universal HTML transform: inject loading="lazy" on all <img> if missing
   eleventyConfig.addTransform('img-lazy', function(content, outputPath) {
     if (outputPath && outputPath.endsWith('.html')) {
       return content.replace(/<img\s+([^>]*?)>/gi, (match, attrs) => {
@@ -93,7 +82,7 @@ module.exports = function(eleventyConfig) {
     return content;
   });
 
-  // Plugins: sitemap and robots.txt
+  // Plugins
   eleventyConfig.addPlugin(pluginSitemap, {
     sitemap: {
       hostname: process.env.SITE_URL || 'https://www.bmsventouse.fr'
@@ -106,7 +95,7 @@ module.exports = function(eleventyConfig) {
       : 'https://www.bmsventouse.fr/sitemap.xml'
   });
 
-  // Shortcode hero (paired)
+  // Shortcodes
   eleventyConfig.addPairedShortcode('hero', (content, kwargs = {}) => {
     const {
       imageDesktop = '', imageMobile = '', alt = '',
@@ -121,8 +110,6 @@ module.exports = function(eleventyConfig) {
   <div class="hero-overlay"><div class="container">${content}</div></div>
 </section>`;
   });
-
-  // Shortcodes UI
   eleventyConfig.addShortcode('contentCard', (title, html, className = '') =>
     `<article class="content-card${className ? ' ' + className : ''}">${title ? `<h3 class="content-card-title">${title}</h3>` : ''}${html}</article>`
   );
@@ -134,7 +121,7 @@ module.exports = function(eleventyConfig) {
     </div>`
   );
 
-  // Passthroughs
+  // Passthroughs (NO robots.txt passthrough, handled by plugin)
   eleventyConfig.addPassthroughCopy('images');
   eleventyConfig.addPassthroughCopy('css');
   eleventyConfig.addPassthroughCopy('js');
@@ -147,6 +134,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy('favicon.ico');
   eleventyConfig.addPassthroughCopy('site.webmanifest');
   eleventyConfig.addPassthroughCopy('netlify.toml');
+  eleventyConfig.addPassthroughCopy('sw.js');
 
   return {
     dir: { input: 'src', output: '_site', includes: '_includes', data: '_data' },
