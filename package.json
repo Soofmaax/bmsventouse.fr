@@ -23,7 +23,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-sitemap": "^3.0.0",
-    "@11ty/eleventy-robots-txt": "^1.0.0",
+    "@11ty/eleventy-plugin-robots-txt": "^1.0.1",
     "@lhci/cli": "^0.13.0",
     "axe-core": "^4.7.0",
     "cypress": "^13.0.0",
