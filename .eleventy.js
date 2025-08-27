@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const pluginSitemap = require('@nichoth/eleventy-plugin-sitemap');
-const pluginRobotsTxt = require('eleventy-plugin-robots-txt');
+const pluginRobotsTxt = require('eleventy-plugin-robotstxt');
 const htmlmin = require('html-minifier').minify;
 
 // i18n: locale loader and helpers
