@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const pluginSitemap = require('@11ty/eleventy-plugin-sitemap');
+const pluginSitemap = require('@nichoth/eleventy-plugin-sitemap');
 const pluginRobotsTxt = require('eleventy-plugin-robots-txt');
 const htmlmin = require('html-minifier').minify;
 
