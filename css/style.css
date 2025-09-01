@@ -2418,7 +2418,7 @@ body:has(.nav-links.active) {
 .hero{position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.15) 40%,rgba(0,0,0,0) 100%);pointer-events:none}
 .hero .hero-overlay .container{position:relative}
-.hero h1,.hero p{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.hero h1,.hero p{color:#fff;text-shadow:0 2px 8px rgba(0 0 0 / 30%)}
 
 /* Motion-safe microinteractions */
 @media (prefers-reduced-motion:reduce){.content-card{transition:none}.content-card:hover{transform:none}}
@@ -2426,18 +2426,5 @@ body:has(.nav-links.active) {
 /* Slightly larger grid on wide screens */
 @media (min-width: 992px){.content-cards{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}}
 
-/* Feature cards */
-.content-card--feature { display: flex; align-items: flex-start; gap: .6rem; }
-.content-card--feature::before { content: '✓'; display: inline-block; color: var(--brand-orange); font-weight: 800; margin-top: .15rem; }
 
-/* CTA card */
-.content-card.cta-card { text-align: center; padding: 1.5rem 1.5rem; }
-.content-card.cta-card .cta-title { margin: 0 0 .4rem; font-size: 1.25rem; font-weight: 800; }
-.content-card.cta-card .cta-subtitle { margin: 0 0 .8rem; }
-.content-card.cta-card .hero-buttons { display: inline-flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
-
-/* Slightly larger grid on wide screens */
-@media (min-width: 992px) {
-  .content-cards { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-}
 

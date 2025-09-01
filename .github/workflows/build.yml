@@ -20,6 +20,8 @@ jobs:
       - name: Prettier (write before check)
         run: npx prettier --write "{css,src}/**/*.{css,js,json,md}"
       - run: npm run prettier:check
+      - name: Stylelint (auto-fix before check)
+        run: npx stylelint "css/**/*.css" --fix
       - run: npm run lint:css
       - run: npm run lint:html
       - run: npm run lint:js
