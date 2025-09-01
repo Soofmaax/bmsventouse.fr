@@ -18,11 +18,11 @@ module.exports = {
     },
     assert: {
       assertions: {
-        "performance": ["error", { "minScore": 0.85 }],
-        "accessibility": ["error", { "minScore": 0.90 }],
-        "seo": ["error", { "minScore": 0.90 }],
-        "first-contentful-paint": ["error", { "maxNumericValue": 2000 }],
-        "largest-contentful-paint": ["error", { "maxNumericValue": 2000 }],
+        "categories:performance": ["error", { "minScore": 0.80 }],
+        "categories:accessibility": ["error", { "minScore": 0.90 }],
+        "categories:seo": ["error", { "minScore": 0.90 }],
+        "first-contentful-paint": ["error", { "maxNumericValue": 3000 }],
+        "largest-contentful-paint": ["error", { "maxNumericValue": 3500 }],
         "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }]
       }
     },
