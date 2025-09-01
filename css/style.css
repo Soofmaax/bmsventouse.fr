@@ -69,6 +69,12 @@
   --z-promo: 2000;
   --z-toast: 3000;
   --z-whatsapp: 2000;
+
+  /* Footer palette (neutral, no blue) */
+  --color-footer-bg: #111111;
+  --color-footer-text: #e5e7eb;
+  --color-footer-link: #a1a1aa;
+  --color-footer-border: #27272a;
 }
 
 /* Thème sombre - avec détection automatique et toggle */
@@ -432,8 +438,8 @@ body.dark-theme .header {
 }
 
 .footer {
-  background-color: var(--color-dark);
-  color: var(--color-light);
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
   padding-top: 4rem;
 }
 
@@ -489,7 +495,7 @@ body.dark-theme .header {
 }
 
 .footer-column a { 
-  color: #a0aec0; 
+  color: var(--color-footer-link); 
   transition: color 0.2s, transform 0.2s;
   display: inline-flex;
   align-items: center;
@@ -507,7 +513,7 @@ body.dark-theme .header {
 }
 
 .footer-bottom {
-  border-top: 1px solid var(--color-dark-lighten);
+  border-top: 1px solid var(--color-footer-border);
   padding: 1.5rem 0;
 }
 
@@ -517,7 +523,7 @@ body.dark-theme .header {
   align-items: center;
   flex-wrap: wrap;
   font-size: 0.9rem;
-  color: #a0aec0;
+  color: var(--color-footer-link);
   gap: 1rem;
 }
 
