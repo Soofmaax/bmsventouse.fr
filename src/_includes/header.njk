@@ -28,13 +28,13 @@
       </nav>
       <button id="themeToggle" class="theme-toggle" aria-pressed="false" title="Basculer le thème (clair/sombre)" aria-label="Basculer le thème">
         <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm8-7a1 1 0 0 1 1 1h1a1 1 0 1 1 0 2h-1a1 1 0 1 1-2 0 1 1 0 0 1 1-1Zm-8 8a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM4 11a1 1 0 0 1 1-1H4a1 1 0 1 0 0 2h1a1 1 0 0 1-1-1Zm12.95-5.536a1 1 0 0 1 1.414 0l.707.707a1 1 0 1 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414ZM6.222 17.778a1 1 0 0 1 1.414 0l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414Zm12.9 1.414a1 1 0 0 1-1.414 0l-.707-.707a1 1 0 1 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414ZM6.343 5.464a1 1 0 0 1 0 1.414l-.707.707A1 1 0 1 1 4.222 6.17l.707-.707a1 1 0 0 1 1.414 0Z"/>
+          <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm8-7a1 1 0 0 1 1 1h1a1 1 0 1 1 0 2h-1a1 1 0 1 1-2 0 1 1 0 0 1 1-1Zm-8 8a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM4 11a1 1 0 0 1 1-1H4a1 1 0 1 0 0 2h1a1 1 0 0 1-1-1Zm12.95-5.536a1 1 0  0 1 1.414 0l.707.707a1 1 0 1 1-1.414 1.414l-.707-.707a1 1 0 0  1 0-1.414ZM6.222 17.778a1 1 0 0 1 1.414 0l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414Zm12.9 1.414a1 1 0 0 1-1.414 0l-.707-.707a1 1 0 1 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414ZM6.343 5.464a1 1 0 0 1 0 1.414l-.707.707A1 1 0 1 1 4.222 6.17l.707-.707a1 1 0  0 1 1.414 0Z"/>
         </svg>
       </button>
       <div class="lang-switcher" aria-label="Language switcher" style="margin-left:1.5rem;">
-        <a href="/" class="nav-link" aria-current="{{ lang == 'fr' ? 'true' : 'false' }}">FR</a>
+        <a href="/" class="nav-link" aria-current="{% if lang == 'fr' %}true{% else %}false{% endif %}">FR</a>
         <span aria-hidden="true" style="opacity:.5;margin:0 .25rem;">|</span>
-        <a href="/en/" class="nav-link" aria-current="{{ lang == 'en' ? 'true' : 'false' }}">EN</a>
+        <a href="/en/" class="nav-link" aria-current="{% if lang == 'en' %}true{% else %}false{% endif %}">EN</a>
       </div>
     </div>
   </div>
