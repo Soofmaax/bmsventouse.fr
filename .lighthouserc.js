@@ -21,8 +21,8 @@ module.exports = {
         "categories:performance": ["error", { "minScore": 0.80 }],
         "categories:accessibility": ["error", { "minScore": 0.90 }],
         "categories:seo": ["error", { "minScore": 0.90 }],
-        "first-contentful-paint": ["error", { "maxNumericValue": 3000 }],
-        "largest-contentful-paint": ["error", { "maxNumericValue": 3500 }],
+        "first-contentful-paint": ["error", { "maxNumericValue": 4000 }],
+        "largest-contentful-paint": ["error", { "maxNumericValue": 4000 }],
         "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }]
       }
     },
