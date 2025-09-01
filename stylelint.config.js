@@ -11,6 +11,7 @@ module.exports = {
     'selector-class-pattern': null,
     'media-feature-range-notation': null,
     'alpha-value-notation': null,
-    'rule-empty-line-before': null
+    'rule-empty-line-before': null,
+    'declaration-block-no-duplicate-properties': null
   }
 };
