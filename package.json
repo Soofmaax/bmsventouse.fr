@@ -2,6 +2,7 @@
   "name": "bms-ventouse-site",
   "private": true,
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "build": "eleventy",
     "dev": "eleventy --serve --port=8080",
