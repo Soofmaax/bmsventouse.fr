@@ -26,6 +26,19 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('netlify.toml');
   eleventyConfig.addPassthroughCopy('sw.js');
 
+  // Copy static HTML site pages that live outside of src/ so they are published under _site/
+  eleventyConfig.addPassthroughCopy('index.html');
+  eleventyConfig.addPassthroughCopy('offline.html');
+  eleventyConfig.addPassthroughCopy('services');
+  eleventyConfig.addPassthroughCopy('contact');
+  eleventyConfig.addPassthroughCopy('mentions');
+  eleventyConfig.addPassthroughCopy('realisations');
+  eleventyConfig.addPassthroughCopy('ventousage-paris');
+  eleventyConfig.addPassthroughCopy('ventousage-lyon');
+  eleventyConfig.addPassthroughCopy('ventousage-marseille');
+  eleventyConfig.addPassthroughCopy('ventousage-bordeaux');
+  eleventyConfig.addPassthroughCopy('ventousage-strasbourg');
+
   return {
     dir: { input: 'src', output: '_site', includes: '_includes', data: '_data' },
     markdownTemplateEngine: 'njk',

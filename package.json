@@ -5,6 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "eleventy",
+    "postbuild": "npm run generate:sitemap",
+    "generate:sitemap": "node scripts/ci/generate-sitemap.js",
     "dev": "eleventy --serve --port=8080",
     "lint:js": "eslint src/ js/ --ext .js --max-warnings=0",
     "lint:css": "stylelint \\\"css/**/*.css\\\"",
