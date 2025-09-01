@@ -7,24 +7,22 @@
     "build": "eleventy",
     "dev": "eleventy --serve --port=8080",
     "lint:js": "eslint src/ js/ --ext .js --max-warnings=0",
-    "lint:css": "stylelint \"css/**/*.css\"",
+    "lint:css": "stylelint \\\"css/**/*.css\\\"",
     "lint:html": "htmlhint src/**/*.njk",
-    "prettier:check": "prettier --check \"{css,src}/**/*.{css,js,json,md}\"",
-    "format": "prettier --write \"{css,src}/**/*.{css,js,json,md}\"",
+    "prettier:check": "prettier --check \\\"{css,src}/**/*.{css,js,json,md}\\\"",
+    "format": "prettier --write \\\"{css,src}/**/*.{css,js,json,md}\\\"",
     "optimize:images": "node scripts/optimize-images.js",
     "test": "vitest run",
     "test:e2e": "cypress run",
     "test:a11y": "cypress run --spec cypress/e2e/a11y.cy.js",
     "ci:lh": "lhci autorun",
     "release:prepare": "npm run format && npm run lint:css && npm run test:a11y",
-    "release:patch": "npm run release:prepare && npm version patch -m \"chore(release): %s\"",
-    "release:minor": "npm run release:prepare && npm version minor -m \"chore(release): %s\"",
-    "release:major": "npm run release:prepare && npm version major -m \"chore(release): %s\"",
+    "release:patch": "npm run release:prepare && npm version patch -m \\\"chore(release): %s\\\"",
+    "release:minor": "npm run release:prepare && npm version minor -m \\\"chore(release): %s\\\"",
+    "release:major": "npm run release:prepare && npm version major -m \\\"chore(release): %s\\\"",
     "prepare": "husky install",
-    "check": "npm run prettier:check && npm run lint:css && npm run test:a11y && npm run build"
-  },
-  "vitest": {
-    "globals": true
+    "check": "npm run prettier:check && npm run lint:css && npm run test:a11y && npm run build",
+    "lint:dupes": "node scripts/ci/check-dup-lines.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
