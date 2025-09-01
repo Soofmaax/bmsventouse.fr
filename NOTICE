@@ -1,0 +1,17 @@
+NOTICE
+
+This project may include third‑party assets for illustration and portfolio purposes. Unless otherwise specified below, such assets are the property of their respective owners and are subject to their own licenses and terms.
+
+Trademarks and logos (examples present in images/)
+- “Netflix” and the Netflix logo are trademarks of Netflix, Inc.
+- The “Paris 2024” and related JO/Paralympics marks are trademarks of their respective organizing committees or rights holders.
+- The “Conseil régional” logo and any other institutional or corporate logos are trademarks of their respective owners.
+These marks are referenced solely for illustrative or portfolio purposes. No endorsement is implied.
+
+Icons
+- images/icons/check.svg – Inline SVG checkmark used in CSS. If replaced by a third‑party icon pack in the future, include attribution and license details here.
+
+Fonts
+- The site primarily uses system fonts (“Inter”, system‑ui, etc.). If external fonts are added in the future (e.g., Google Fonts), include the appropriate license and attribution here.
+
+If you are the rights holder of any asset and have questions or require changes to attribution, please contact us through the website’s contact page: /contact/

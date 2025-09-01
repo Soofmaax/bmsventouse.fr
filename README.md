@@ -121,6 +121,8 @@ npm run optimize:images  # Optimisation images (images/ -> AVIF/WebP/JPEG)
 
 ---
 
-## 📝 Licence
+## 📝 Licences
 
-[MIT](LICENSE)
+- Code (templates, CSS/JS, configuration) — [MIT](LICENSE)
+- Content and brand assets (texts, images, photos, graphics, logos “BMS Ventouse”, identity) — All rights reserved. See [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
+- Third‑party assets and trademarks — see [NOTICE](NOTICE) for attributions and terms.
