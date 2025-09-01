@@ -2,11 +2,33 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node version](https://img.shields.io/badge/node-%3E%3D%20v20-339933?logo=node.js)](https://nodejs.org/)
-[![Lighthouse CI](https://github.com/OWNER/REPO/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/lighthouse.yml)
-[![Build & Tests](https://github.com/OWNER/REPO/actions/workflows/build.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/build.yml)
-<!-- Remplacez OWNER/REPO par le slug réel de votre repo GitHub -->
+[![Lighthouse CI](https://github.com/Soofmax/bmsventouse.fr/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/Soofmax/bmsventouse.fr/actions/workflows/lighthouse.yml)
+[![Build & Tests](https://github.com/Soofmax/bmsventouse.fr/actions/workflows/build.yml/badge.svg)](https://github.com/Soofmax/bmsventouse.fr/actions/workflows/build.yml)
 
 Démo : [https://www.bmsventouse.fr](https://www.bmsventouse.fr)
+
+---
+
+## 📌 Contexte & Propriété
+
+- Projet réel livré pour un client: **BMS Ventouse**. Site statique professionnel, en production.
+- Ce dépôt sert aussi de vitrine/portfolio côté code.
+- Licences:
+  - Le **code** est sous licence [MIT](LICENSE).
+  - Les **contenus et éléments de marque** (textes, images, logos, identité) sont réservés — voir [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
+  - Les **actifs tiers** sont listés/attribués dans [NOTICE](NOTICE).
+- Contributions bienvenues pour le code (performances, accessibilité, qualité), en respectant strictement les droits sur contenus/marques.
+
+---
+
+## 🧰 Stack & Outils
+
+- Générateur statique: **Eleventy v3** (Nunjucks)
+- Qualité: **Prettier**, **Stylelint**, **ESLint**
+- Tests: **Cypress** + **cypress-axe** (accessibilité)
+- Perf: **Lighthouse CI** + budgets
+- Déploiement: **Netlify**
+- Node: version >= 20 (voir [.nvmrc](.nvmrc))
 
 ---
 
@@ -64,6 +86,7 @@ npm run optimize:images  # Optimisation images (images/ -> AVIF/WebP/JPEG)
 - `npm run format` – formatage Prettier
 - `npm run lint:css` – stylelint sur CSS
 - `npm run lint:html` – htmlhint sur layouts/pages
+- `npm run lint:js` – ESLint (zéro warning en CI)
 - `npm run test:e2e` – tests end‑to‑end cypress
 - `npm run test:a11y` – tests accessibilité axe sur pages clés
 - `npm run ci:lh` – Lighthouse CI (budgets/perf)
@@ -75,6 +98,7 @@ npm run optimize:images  # Optimisation images (images/ -> AVIF/WebP/JPEG)
 ## 🚀 Déploiement
 
 - Plateforme : Netlify (config [netlify.toml])
+- CI GitHub Actions : Build & Tests (Prettier, Stylelint, ESLint, a11y Cypress) + Lighthouse CI
 - Build command : `npm run build`
 - Publish : `_site/`
 - Headers sécurité, PWA, analytics déjà intégrés
@@ -124,5 +148,5 @@ npm run optimize:images  # Optimisation images (images/ -> AVIF/WebP/JPEG)
 ## 📝 Licences
 
 - Code (templates, CSS/JS, configuration) — [MIT](LICENSE)
-- Content and brand assets (texts, images, photos, graphics, logos “BMS Ventouse”, identity) — All rights reserved. See [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
-- Third‑party assets and trademarks — see [NOTICE](NOTICE) for attributions and terms.
+- Contenus & marque (textes, images, photos, logos “BMS Ventouse”, identité) — Tous droits réservés. Voir [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
+- Actifs/Marques tiers — voir [NOTICE](NOTICE) pour les attributions et conditions.
