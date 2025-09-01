@@ -150,3 +150,14 @@ npm run optimize:images  # Optimisation images (images/ -> AVIF/WebP/JPEG)
 - Code (templates, CSS/JS, configuration) — [MIT](LICENSE)
 - Contenus & marque (textes, images, photos, logos “BMS Ventouse”, identité) — Tous droits réservés. Voir [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
 - Actifs/Marques tiers — voir [NOTICE](NOTICE) pour les attributions et conditions.
+
+---
+
+## 📣 Note “Portfolio” (pratique professionnelle)
+
+- Ce projet est un site statique professionnel, livré et exploité par le client **BMS Ventouse**.
+- Le dépôt est public afin d’illustrer des pratiques de développement (performance, accessibilité, CI/CD).  
+  Il ne confère aucun droit sur les contenus ou marques du client.
+- Vous pouvez réutiliser le **code** dans les conditions de la licence MIT.  
+  En revanche, les **textes, images, médias et éléments d’identité visuelle** restent la propriété du client (voir [LICENSE-CONTENT.md](LICENSE-CONTENT.md)).
+- Aucune donnée sensible ou privée du client n’est publiée dans ce dépôt.
