@@ -7,10 +7,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          # Use Node from .nvmrc if present, otherwise default to 20
+          # Use Node version from .nvmrc. No explicit node-version and no cache (works without lockfile).
           node-version-file: .nvmrc
-          node-version: '20'
-          cache: 'npm'
       - name: Install dependencies (ci if lockfile, else install)
         run: |
           if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
