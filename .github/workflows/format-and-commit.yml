@@ -2,6 +2,11 @@ name: Format and Commit (one-off)
 
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to format (defaults to current ref)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -11,26 +16,25 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout (with write permission)
+      - name: Determine branch
+        id: ref
+        run: |
+          if [ -n "${{ github.event.inputs.branch }}" ]; then
+            echo "BRANCH=${{ github.event.inputs.branch }}" >> $GITHUB_OUTPUT
+          else
+            # Use the branch name from the triggering ref
+            ref="${GITHUB_REF##*/}"
+            echo "BRANCH=$ref" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout (with write permission) on target branch
         uses: actions/checkout@v4
         with:
           persist-credentials: true
+          ref: ${{ steps.ref.outputs.BRANCH }}
 
-      - name: Use Node from .nvmrc
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-
-      - name: Install dependencies (no lockfile fallback)
-        run: |
-          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
-            npm ci
-          else
-            npm install
-          fi
-
-      - name: Run Prettier (write)
-        run: npm run format
+      - name: Run Prettier directly via npx (no install)
+        run: npx prettier --write "{css,src}/**/*.{css,js,json,md}"
 
       - name: Commit changes if any
         run: |
@@ -39,7 +43,7 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -A
             git commit -m "chore(format): apply prettier"
-            git push
+            git push origin HEAD:${{ steps.ref.outputs.BRANCH }}
           else
             echo "No changes to commit."
           fi
