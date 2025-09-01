@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * ==========================================================================
  * SCRIPT PRINCIPAL POUR BMS VENTOUSE v5.0 (ENTERPRISE EDITION)
@@ -425,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
           window.location.href = el.href;
         }
       };
-      const sent = sendPlausible(type, label, href, locationContext, go);
+      sendPlausible(type, label, href, locationContext, go);
       // Fallback in case Plausible callback doesn't fire
       setTimeout(go, 250);
     });

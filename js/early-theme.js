@@ -8,5 +8,5 @@
       document.documentElement.classList.add('dark-theme');
       document.body&&document.body.classList&&document.body.classList.add('dark-theme');
     }
-  }catch(e){}
+  }catch(e){ void e; }
 })();
