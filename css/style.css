@@ -750,6 +750,11 @@ body.dark-theme .header {
   padding: 40px 5vw 40px;
   width: 100vw;
 }
+@media (max-width: 768px) {
+  .hero-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.78) 100%);
+  }
+}
 
 .hero-overlay .container {
   z-index: var(--z-above);
@@ -1067,6 +1072,13 @@ body.dark-theme .header {
   opacity: 0.7;
   z-index: -1;
   animation: pulse 2s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float::after { animation: none !important; }
+  .references-carousel .carousel-slide,
+  .service-card,
+  .reference-card,
+  .service-card-visual { transition: none !important; }
 }
 
 @keyframes pulse {
