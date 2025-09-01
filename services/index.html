@@ -31,13 +31,7 @@
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
     <link rel="preload" href="/js/script.js" as="script">
-    <link rel="preload" as="image" href="/images/services-hero-background-desktop.webp" imagesrcset="/images/services-hero-background-mobile.webp 767w, /images/services-hero-background-desktop.webp 1920w" imagesizes="(max-width: 767px ) 100vw, 100vw">
-    <link rel="preload" href="/android-chrome-192x192.webp" as="image">
-    <!-- Preload des deux premières images de service -->
-    <link rel="preload" href="/images/service-securite.webp" as="image">
-    <link rel="preload" href="/images/service-ventousage.webp" as="image">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <link rel="preload" as="image" href="/images/services-hero-background-mobile.webp" imagesrcset="/images/services-hero-background-mobile.webp 767w, /images/services-hero-background-desktop.webp 1920w" imagesizes="100vw" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -171,8 +165,9 @@
     <!-- Section Héros -->
     <section class="hero">
         <picture class="hero-bg">
-            <source media="(max-width: 767px )" srcset="/images/services-hero-background-mobile.webp" type="image/webp">
-            <img src="/images/services-hero-background-desktop.webp" alt="Équipe logistique préparant un plateau de tournage" loading="eager" width="1920" height="1080">
+            <source type="image/avif" srcset="/images/services-hero-background-mobile.webp 767w, /images/services-hero-background-desktop.webp 1920w" sizes="100vw">
+            <source type="image/webp" srcset="/images/services-hero-background-mobile.webp 767w, /images/services-hero-background-desktop.webp 1920w" sizes="100vw">
+            <img src="/images/services-hero-background-desktop.webp" alt="Équipe logistique préparant un plateau de tournage" loading="eager" width="1920" height="1080" fetchpriority="high">
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">
