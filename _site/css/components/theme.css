@@ -1,0 +1,31 @@
+/* =========================================
+   Theme Toggle (Light/Dark)
+   ========================================= */
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-dark);
+  font-size: 1.2rem;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0,0,0,0.05);
+  transform: rotate(15deg);
+}
+
+body.dark-theme .theme-toggle {
+  color: var(--color-light);
+}
+
+body.dark-theme .theme-toggle:hover {
+  background-color: rgba(255,255,255,0.1);
+}

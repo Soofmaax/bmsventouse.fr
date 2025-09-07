@@ -1,0 +1,32 @@
+/* =========================================
+   Accessibility (Skip link, Focus, Reduced Motion)
+   ========================================= */
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  z-index: 100;
+  transition: top .3s;
+}
+.skip-link:focus {
+  top: 8px;
+}
+
+/* Focus styles */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Reduced motion adjustments for specific components */
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float::after { animation: none !important; }
+  .references-carousel .carousel-slide,
+  .service-card,
+  .reference-card,
+  .service-card-visual { transition: none !important; }
+}

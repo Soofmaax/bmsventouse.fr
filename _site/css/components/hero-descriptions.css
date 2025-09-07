@@ -1,0 +1,20 @@
+/* =========================================
+   Hero Descriptions (Responsive visibility)
+   ========================================= */
+
+.hero-description-mobile {
+  display: none;
+}
+
+.hero-description-desktop {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hero-description-mobile {
+    display: block;
+  }
+  .hero-description-desktop {
+    display: none;
+  }
+}

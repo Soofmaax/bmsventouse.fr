@@ -1,0 +1,9 @@
+/* =========================================
+   Text Selection Highlight
+   ========================================= */
+
+::selection {
+  background-color: var(--color-primary);
+  color: #fff;
+  text-shadow: none;
+}

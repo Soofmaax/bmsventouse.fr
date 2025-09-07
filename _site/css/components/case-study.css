@@ -1,0 +1,91 @@
+/* =========================================
+   Case Studies (Réalisations)
+   ========================================= */
+
+.case-study {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: var(--spacing-section);
+}
+
+.case-study.reverse { grid-template-columns: 1fr 1fr; }
+.case-study.reverse .case-study-image { grid-column: 2; grid-row: 1; }
+.case-study.reverse .case-study-content { grid-column: 1; grid-row: 1; }
+
+.case-study-image {
+  position: relative;
+  border-radius: var(--border-radius-large);
+  overflow: hidden;
+}
+
+.case-study-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  transition: transform 0.5s;
+}
+
+.case-study:hover .case-study-image img { transform: scale(1.03); }
+
+.client-logo { height: 35px; margin-bottom: 1.5rem; }
+
+.case-study-content h3 {
+  font-size: 2rem;
+  font-weight: var(--font-weight-black);
+  margin-bottom: 1rem;
+}
+
+.case-challenge {
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.case-solution { list-style: none; margin-bottom: 1.5rem; }
+.case-solution li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+}
+.case-solution i {
+  color: var(--color-primary);
+  margin-right: 0.8rem;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* Inline testimonial inside case */
+.testimonial-inline {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
+}
+.testimonial-inline::before {
+  content: '“';
+  font-family: Georgia, serif;
+  position: absolute;
+  left: -15px;
+  top: -20px;
+  font-size: 3rem;
+  color: var(--color-primary);
+  opacity: 0.3;
+}
+.testimonial-inline p { font-style: italic; }
+.testimonial-inline footer { font-weight: var(--font-weight-bold); margin-top: 0.5rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .case-study, .case-study.reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .case-study.reverse .case-study-image,
+  .case-study.reverse .case-study-content {
+    grid-column: 1;
+  }
+  .case-study-image { order: -1; }
+}

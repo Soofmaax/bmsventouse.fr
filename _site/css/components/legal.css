@@ -1,0 +1,81 @@
+/* =========================================
+   Legal Pages (TOC, Legal Sections)
+   ========================================= */
+
+/* Table of contents */
+.toc,
+.toc-card {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  text-align: left;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toc li + li { margin-top: 0.75rem; }
+
+.toc a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.toc a:hover,
+.toc a:focus {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+  transform: translateX(3px);
+}
+
+/* Legal sections as cards */
+.legal-section {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  padding: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.legal-section h2 {
+  margin-top: 0;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Headed paragraphs pairing for legal clauses */
+.content-container > h2[id$='title'] {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
+  box-shadow: var(--box-shadow-base);
+  padding: 1.5rem 2rem 0.5rem;
+  margin-top: 2rem;
+  color: var(--color-primary);
+}
+
+.content-container > h2[id$='title'] + p,
+.content-container > h2[id$='title'] + p + p {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  padding: 0 2rem 1.5rem;
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,87 @@
+/* =========================================
+   CTA Components (CTA section, Urgency Banner)
+   ========================================= */
+
+/* CTA section (dark gradient background with light buttons) */
+.cta-section {
+  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-lighten) 100%);
+  color: var(--color-light);
+  text-align: center;
+}
+
+.cta-section .btn.btn-primary,
+.cta-section .btn.btn-secondary,
+.cta-section .btn.btn-urgent {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: transparent;
+  padding: 0.8rem 1.6rem;
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-base);
+  margin: 0.5rem;
+  transition: var(--transition-base);
+}
+
+.cta-section .btn.btn-primary:hover,
+.cta-section .btn.btn-secondary:hover,
+.cta-section .btn.btn-urgent:hover {
+  background-color: var(--color-light-alt);
+  color: var(--color-primary-dark);
+  transform: translateY(-3px);
+}
+
+/* CTA container centering (e.g., "Découvrir tous nos services") */
+.cta-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+/* Urgency banner (alert-style CTA card) */
+.urgency-banner {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.urgency-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.1) 100%);
+}
+
+.urgency-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.urgency-icon {
+  font-size: 2.5rem;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.urgency-content h3 {
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.urgency-text { flex: 1; }
+
+.urgency-buttons { margin-top: 1rem; }
+
+.urgency-buttons .btn {
+  background-color: var(--color-light);
+  color: var(--color-primary);
+}
+

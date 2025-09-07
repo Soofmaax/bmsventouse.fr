@@ -1,0 +1,306 @@
+/* =========================================
+   Cards Component (Service, Reference, Zones, Benefits)
+   ========================================= */
+
+/* Service and contact cards */
+.service-card,
+.contact-card {
+  background: var(--color-light);
+  border-radius: var(--border-radius-large);
+  text-align: center;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--box-shadow-base);
+  transition: var(--transition-smooth);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid transparent;
+}
+
+.service-card:hover,
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: var(--color-border);
+}
+
+.service-icon,
+.contact-icon {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.service-card h3,
+.contact-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.service-card p,
+.contact-card p {
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+/* Visual service cards (with image) */
+.service-card-visual {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+  height: 100%;
+}
+
+.service-card-visual:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: var(--color-primary);
+}
+
+.service-card-visual-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.service-card-visual-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.service-card-visual:hover .service-card-visual-image img {
+  transform: scale(1.05);
+}
+
+.service-card-visual-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: center;
+  align-items: center;
+}
+
+.service-card-visual-content h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+  margin-bottom: 0.5rem;
+}
+
+.service-card-visual-content p {
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.service-card-visual-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  margin-top: auto;
+  text-align: left;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-card-visual-content ul li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-card-visual-content ul li::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  margin-right: .4em;
+  background: var(--color-primary);
+  -webkit-mask: url('/images/icons/check.svg') no-repeat center / contain;
+          mask: url('/images/icons/check.svg') no-repeat center / contain;
+}
+
+/* Reference cards */
+.reference-card {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.reference-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: var(--color-primary);
+}
+
+.reference-card-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.reference-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.reference-card:hover .reference-card-image img {
+  transform: scale(1.05);
+}
+
+.reference-card-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.reference-card-content h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+  margin-bottom: 0.5rem;
+}
+
+.reference-card-content p {
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.reference-card-content ul.challenge-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  margin-top: auto;
+  text-align: left;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reference-card-content ul.challenge-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.reference-card-content ul.challenge-list li::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  margin-right: .4em;
+  background: var(--color-primary);
+  -webkit-mask: url('/images/icons/check.svg') no-repeat center / contain;
+          mask: url('/images/icons/check.svg') no-repeat center / contain;
+}
+
+/* Zone cards */
+.zone-card {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  padding: 2rem;
+  text-align: center;
+  transition: var(--transition-base);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.zone-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: var(--color-primary);
+}
+
+.zone-card i {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.zone-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--color-dark);
+  font-weight: var(--font-weight-bold);
+}
+
+.zone-card p {
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Included benefits (as card) */
+.included-benefits {
+  margin-top: 2rem;
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  padding: 2rem;
+  text-align: center;
+}
+
+.included-benefits h2,
+.included-benefits h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.benefits-list {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  text-align: left;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.benefits-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.benefits-list li::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  margin-right: .4em;
+  background: var(--color-primary);
+  -webkit-mask: url('/images/icons/check.svg') no-repeat center / contain;
+          mask: url('/images/icons/check.svg') no-repeat center / contain;
+}
