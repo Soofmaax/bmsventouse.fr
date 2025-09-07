@@ -66,7 +66,8 @@
   align-items: center;
 }
 
-.footer-column a:hover {
+.footer-column a:hover,
+.footer-column a:focus {
   color: var(--color-light);
   transform: translateX(3px);
 }

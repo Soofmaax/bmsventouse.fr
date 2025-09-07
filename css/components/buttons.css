@@ -85,6 +85,20 @@
   color: #fff;
 }
 
+/* Outline/secondary uses contrast-aware colors */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  box-shadow: none;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--color-text);
+  color: var(--color-light);
+}
+
 /* Icon sizing for primary/whatsapp buttons */
 .btn-primary i,
 .btn-whatsapp i {
@@ -117,17 +131,4 @@
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-/* Secondary button */
-.btn-secondary {
-  background-color: transparent;
-  color: var(--color-light);
-  border: 2px solid var(--color-light);
-  box-shadow: none;
-}
-
-.btn-secondary:hover {
-  background-color: var(--color-light);
-  color: var(--color-dark);
 }
