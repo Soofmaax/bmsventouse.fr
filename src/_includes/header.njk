@@ -38,8 +38,10 @@
       </div>
     </div>
   </div>
+  {% if promo | default(true) %}
   <div class="promo-banner" id="promoBanner">
     <p><strong>Offre de bienvenue :</strong> -15% à tous les nouveaux clients&nbsp;!</p>
   </div>
+  {% endif %}
 </header>
 <div class="nav-overlay" id="navOverlay"></div>
