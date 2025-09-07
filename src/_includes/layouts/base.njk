@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ lang | default('fr') }}" class="has-promo">
+{% set promo = promo | default(true) %}
+<html lang="{{ lang | default('fr') }}"{% if promo %} class="has-promo"{% endif %}>
 <head>
   {% include "seo_head.njk" %}
   {% include "analytics/ga.njk" %}
