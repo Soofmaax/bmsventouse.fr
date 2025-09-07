@@ -183,9 +183,15 @@
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.15) 40%,rgba(0,0,0,0) 100%);
+  /* top gradient softened for readability yet preserving imagery */
+  background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.2) 40%,rgba(0,0,0,0) 100%);
   pointer-events:none
 }
 .hero .hero-overlay .container { position:relative }
 .hero h1, .hero p { color:#fff; text-shadow:0 2px 8px rgba(0 0 0 / 30%) }
+
+/* Ensure header transparent variant keeps readable links on dark hero */
+.header.header-transparent .nav-link { color: var(--color-light); }
+.header.header-transparent .nav-link:hover,
+.header.header-transparent .nav-link.active { color: #fff; }
 
