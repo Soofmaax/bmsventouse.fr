@@ -1,0 +1,167 @@
+---
+layout: layouts/base.njk
+lang: fr
+activeNav: services
+bodyClass: page-service
+pagination:
+  data: services
+  size: 1
+  alias: service
+permalink: "/services/{{ service.slug }}/"
+eleventyComputed:
+  title: "{{ service.metaTitle }}"
+  description: "{{ service.metaDescription }}"
+  heroImage: "{{ service.hero.desktop }}"
+  ogImage: "{{ site.url }}{{ service.hero.desktop }}"
+---
+{% import "components/macros.njk" as macros %}
+
+{% hero {
+  "imageDesktop": service.hero.desktop,
+  "imageMobile": service.hero.mobile,
+  "alt": service.hero.alt,
+  "loading": "eager",
+  "width": 1920,
+  "height": 1080
+} %}
+  <div class="content-cards">
+    {% contentCard '', '<h1>' ~ service.h1 ~ '</h1><p>' ~ service.summary ~ '</p>', 'content-card--hero' %}
+  </div>
+{% endhero %}
+
+<section class="band">
+  <div class="container">
+    {% sectionHeader 'Présentation', service.h1, 'À Paris, Lyon, Marseille, Bordeaux, Toulouse, Nice et partout en France' %}
+    <div class="content-cards">
+      {% for section in service.sections %}
+        {% contentCard section.title, section.html %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if service.features and service.features.length %}
+<section class="band band--alt">
+  <div class="container">
+    {% sectionHeader 'Atouts', 'Nos points forts', '' %}
+    <div class="content-cards">
+      {% for feat in service.features %}
+        {% contentCard '', '<p>' ~ feat ~ '</p>', 'content-card--feature' %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if service.faq and service.faq.length %}
+<section class="band">
+  <div class="container">
+    {% sectionHeader 'FAQ', 'Questions fréquentes', '' %}
+    <div class="content-cards">
+      {% for q in service.faq %}
+        {% contentCard q.q, q.a, 'faq-card' %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Services connexes (maillage interne standardisé) -->
+<section class="band">
+  <div class="container">
+    {% sectionHeader 'Services connexes', 'Vous pourriez aussi avoir besoin de…', '' %}
+    <div class="content-cards">
+      {% set candidateSlugs = ['loges-confort','plateau-gardiennage','ventousage','cantine-catering','convoyage'] %}
+      {% for s in services %}
+        {% if s.slug != service.slug and s.slug in candidateSlugs %}
+          {% contentCard s.h1, '<p>' ~ s.summary ~ ' <a href="/services/' ~ s.slug ~ '/">Découvrir</a></p>' %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="band band--alt">
+  <div class="container">
+    <div class="content-cards">
+      {% contentCard
+        '',
+        '<div class="cta-card-inner"><h2 class="cta-title">Prêt à démarrer ?</h2><p class="cta-subtitle">Nos équipes interviennent à Paris, Lyon, Marseille, Bordeaux, Toulouse, Nice et partout en France.</p>' ~ (macros.ctaButtons('/contact/', 'Parler à un expert', 'https://wa.me/33646005642', 'WhatsApp Direct')) ~ '</div>',
+        'cta-card'
+      %}
+    </div>
+  </div>
+</section>
+
+{% block jsonld %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "{{ service.h1 }}",
+    "description": "{{ service.metaDescription }}",
+    "provider": {
+      "@type": "Organization",
+      "name": "{{ site.brand }}",
+      "url": "{{ site.url }}"
+    },
+    "areaServed": [
+      { "@type": "Country", "name": "France" },
+      { "@type": "City", "name": "Paris" },
+      { "@type": "City", "name": "Lyon" },
+      { "@type": "City", "name": "Marseille" },
+      { "@type": "City", "name": "Bordeaux" },
+      { "@type": "City", "name": "Toulouse" },
+      { "@type": "City", "name": "Nice" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{ site.brand }}",
+    "url": "{{ site.url }}",
+    "logo": "{{ site.url }}{{ site.logo }}",
+    "telephone": "{{ site.phone }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.address.street }}",
+      "addressLocality": "{{ site.address.city }}",
+      "addressRegion": "{{ site.address.region }}",
+      "postalCode": "{{ site.address.postalCode }}",
+      "addressCountry": "{{ site.address.country }}"
+    },
+    "openingHours": [
+      {% for oh in site.openingHours %}
+      "{{ oh }}"{{ "," if not loop.last }}
+      {% endfor %}
+    ],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "{{ site.geo.latitude }}",
+      "longitude": "{{ site.geo.longitude }}"
+    },
+    "areaServed": [
+      { "@type": "Country", "name": "France" },
+      { "@type": "City", "name": "Paris" },
+      { "@type": "City", "name": "Lyon" },
+      { "@type": "City", "name": "Marseille" },
+      { "@type": "City", "name": "Bordeaux" },
+      { "@type": "City", "name": "Toulouse" },
+      { "@type": "City", "name": "Nice" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{ site.url }}/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "{{ site.url }}/services/" },
+      { "@type": "ListItem", "position": 3, "name": "{{ service.h1 }}", "item": "{{ site.url }}/services/{{ service.slug }}/" }
+    ]
+  }
+  </script>
+{% endblock %}

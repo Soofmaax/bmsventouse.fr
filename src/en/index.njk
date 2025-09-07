@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+lang: en
+bodyClass: page-home
+activeNav: home
+title: "BMS Ventouse | Film Logistics Experts in France"
+description: "Your logistics partner for film and TV productions in France. Parking suspensions, set security, and vehicle convoying 24/7. Free quote."
+ogImage: "{{ site.url }}/images/hero-background-custom.jpg"
+heroImage: "/images/hero-background-custom.jpg"
+---
+{% import "components/macros.njk" as macros %}
+{% hero { "imageDesktop": heroImage, "alt": "A Paris street cordoned off at night for filming", "loading": "eager", "fetchpriority": "high" } %}
+  <h1>Film & TV Production Logistics Across France</h1>
+  <p>We handle <strong>parking suspensions</strong>, <strong>set security</strong>, and <strong>specialized convoying</strong>. BMS Ventouse ensures end-to-end logistics, 24/7, nationwide.</p>
+  {{ macros.ctaButtons('/contact/', 'Get a Free Quote', 'https://wa.me/33646005642?text=Hello%2C%20I%27d%20like%20a%20free%20quote.', 'WhatsApp Direct') }}
+{% endhero %}
+<section id="services" class="section">
+  <div class="container">
+    <h2 class="section-title animated-item">Our Services</h2>
+    <p class="section-subtitle animated-item">We cover every logistics aspect so you can focus on creativity.</p>
+    <div class="services-grid">
+      {{ macros.serviceCard('Parking Suspensions & Permits', 'Full management of <strong>filming permits</strong> in <strong>Paris, Lyon, Marseille</strong> and across France. <strong>Parking suspensions</strong> and signage.', '/images/service-ventousage-custom.jpg', 'Parking and permits', 64, 64, '/services/ventousage/') }}
+      {{ macros.serviceCard('24/7 Set Security & Guarding', '<strong>24/7 protection</strong> with <strong>security agents</strong> specialized in film & TV. <strong>Access control</strong> and confidentiality.', '/images/service-securite-custom.jpg', 'Set security', 64, 64, '/services/plateau-gardiennage/') }}
+      {{ macros.serviceCard('Technical Unit & Specialized Transport', '<strong>Technical crews</strong>, <strong>equipment handling</strong>, and <strong>secure vehicle convoying</strong> nationwide.', '/images/service-convoyage-custom.jpg', 'Technical and convoying', 64, 64, '/services/convoyage/') }}
+    </div>
+    <div class="cta-container animated-item">
+      <a href="/services/" class="btn btn-primary" data-cta="primary" data-cta-label="Explore services">Explore services</a>
+    </div>
+  </div>
+</section>
+<section id="references" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title animated-item">Trusted by Leading Productions</h2>
+    {{ macros.carousel([
+      { "src": "/images/logo-netflix.svg", "alt": "Netflix", "width": 100, "height": 45 },
+      { "src": "/images/logo-jo2024.svg", "alt": "Paris 2024", "width": 70, "height": 55 },
+      { "src": "/images/logo-conseil-regional.svg", "alt": "Regional Council", "width": 120, "height": 50 }
+    ]) }}
+    <div class="cta-container animated-item">
+      <a href="/realisations/" class="btn btn-secondary-alt">See case studies</a>
+    </div>
+  </div>
+</section>
+<section id="faq" class="section">
+  <div class="container">
+    <h2 class="section-title animated-item">Frequently Asked Questions</h2>
+    <p class="section-subtitle animated-item">All you need to know about our logistics and security services.</p>
+    <div class="faq-container">
+      {{ macros.faqItem('How fast can you obtain permits in Paris?', 'We handle administrative requests with the City of Paris and authorities to ensure compliance and safety.') }}
+      {{ macros.faqItem('What is the cost of 24/7 set guarding?', 'Pricing depends on duration, location, and security level. We provide tailored quotes.') }}
+      {{ macros.faqItem('Do you operate outside Paris?', 'Yes, nationwide coverage including Lyon, Marseille, Bordeaux, Lille, and more.') }}
+    </div>
+  </div>
+</section>
+<section id="contact" class="section cta-section">
+  <div class="container animated-item">
+    <h2 class="cta-title">Ready to Secure Your Next Production?</h2>
+    <p class="cta-subtitle">Contact us for a free needs assessment and a tailored quote within 48 hours.</p>
+    {{ macros.ctaButtons('/contact/', 'Get a Free Quote', 'https://wa.me/33646005642?text=Hello%2C%20I%27d%20like%20a%20free%20quote.', 'WhatsApp Direct') }}
+  </div>
+</section>

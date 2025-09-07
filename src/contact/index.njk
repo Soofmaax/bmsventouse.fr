@@ -1,0 +1,197 @@
+---
+layout: layouts/base.njk
+lang: fr
+activeNav: contact
+bodyClass: page-contact
+title: "Contact & Devis Gratuit 24/7 | BMS Ventouse"
+description: "Contactez BMS Ventouse pour un devis gratuit. Joignable 24/7 par téléphone, WhatsApp ou email pour tous vos besoins en logistique de tournage."
+ogImage: "{{ site.url }}/images/contact-hero-background-desktop.webp"
+heroImage: "/images/contact-hero-background-desktop.webp"
+---
+{% import "components/macros.njk" as macros %}
+
+{% hero {
+  "imageDesktop": "/images/contact-hero-background-desktop.webp",
+  "imageMobile": "/images/contact-hero-background-mobile.webp",
+  "alt": "Personne utilisant un téléphone pour contacter un service",
+  "loading": "eager",
+  "width": 1920,
+  "height": 1080
+} %}
+  <h1>Un Projet ? Une Urgence ?</h1>
+  <p>Contactez-nous directement. Notre équipe est disponible 24h/24 pour répondre à vos besoins.</p>
+{% endhero %}
+
+<section id="urgency-contact" class="section urgency-section">
+  <div class="container">
+    <div class="urgency-banner animated-item">
+      <div class="urgency-content">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" viewBox="0 0 512 512" aria-hidden="true" focusable="false" role="img">
+          <path fill="currentColor" d="M256 32 20 464c-9.2 16 2.3 36 21 36h430c18.7 0 30.2-20 21-36L256 32Zm0 128c11 0 20 9 20 20v128c0 11-9 20-20 20s-20-9-20-20V180c0-11 9-20 20-20Zm0 216a28 28 0 1 1 0 56a28 28 0 1 1 0-56Z"/>
+        </svg>
+        <div class="urgency-text">
+          <h3>Tournage Urgent ? Besoin Immédiat ?</h3>
+          <p>Appelez maintenant ! Nous pouvons intervenir dans l'heure qui suit votre appel.</p>
+        </div>
+        <div class="urgency-buttons">
+          <a href="tel:+33646005642" class="btn btn-urgent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512" aria-hidden="true" focusable="false" role="img">
+              <path fill="currentColor" d="M497.4 361.8l-112-48a24 24 0 0 0-28 5.4l-49.6 60.7A370.6 370.6 0 0 1 132.1 204.2l60.7-49.6a24 24 0 0 0 5.4-28l-48-112A24 24 0 0 0 128 0H24A24 24 0 0 0 0 24C0 284.3 227.7 512 488 512a24 24 0 0 0 24-24v-104a24 24 0 0 0-14.6-22.2z"/>
+            </svg>
+            Appel d'Urgence
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact-options" class="section">
+  <div class="container">
+    <h2 class="section-title animated-item">Demandez votre Devis Gratuit</h2>
+    <p class="section-subtitle animated-item">Choisissez votre moyen de contact préféré. Nous sommes joignables 24/7.</p>
+    <form name="contact" netlify method="POST">
+      <input type="hidden" name="form-name" value="contact">
+      <div class="contact-direct-grid">
+        <div class="contact-card animated-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" viewBox="0 0 512 512" aria-hidden="true" focusable="false" role="img">
+              <path fill="currentColor" d="M497.4 361.8l-112-48a24 24 0 0 0-28 5.4l-49.6 60.7A370.6 370.6 0 0 1 132.1 204.2l60.7-49.6a24 24 0 0 0 5.4-28l-48-112A24 24 0 0 0 128 0H24A24 24 0 0 0 0 24C0 284.3 227.7 512 488 512a24 24 0 0 0 24-24v-104a24 24 0 0 0-14.6-22.2z"/>
+            </svg>
+          </div>
+          <h3>Par Téléphone</h3>
+          <div class="contact-details">
+            <p><strong>Béna :</strong> <a href="tel:+33646005642"><span>+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</span></a></p>
+          </div>
+          <p class="contact-note">Idéal pour les urgences et les demandes immédiates.</p>
+        </div>
+        <div class="contact-card animated-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" viewBox="0 0 448 512" aria-hidden="true" focusable="false" role="img">
+              <path fill="currentColor" d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4zM224 392c-92.6 0-168-75.4-168-168S131.4 56 224 56s168 75.4 168 168s-75.4 168-168 168zm91.7-99.1c-2.8-1.4-16.5-8.2-19.1-9.1-2.6-.9-4.5-1.4-6.4 1.4s-7.3 9.1-8.9 11c-1.6 1.8-3.3 2.1-6.1.7-16.6-8.3-27.5-14.8-38.6-33.7-2.9-5 2.9-4.6 8.3-15.2c.9-1.8.5-3.3-.2-4.6s-6.4-15.9-8.8-21.9c-2.3-5.6-4.7-4.8-6.4-4.9-1.7-.1-3.7-.1-5.7-.1s-5.2.7-7.9 3.6c-2.7 2.9-10.4 10.2-10.4 24.9s10.7 28.8 12.2 30.8c1.5 2 21.1 32.3 51.2 44.1 7.2 2.7 12.9 4.3 17.3 5.5 7.2 1.8 13.7 1.5 18.9.9 5.8-.7 17.5-7.2 20-14.2 2.5-7 .9-12.8-.5-14.2z"/>
+            </svg>
+          </div>
+          <h3>Par WhatsApp</h3>
+          <div class="contact-details">
+            <p>Rapide et direct, parfait pour échanger des documents et des plans.</p>
+          </div>
+          <a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Discuter sur WhatsApp</a>
+        </div>
+        <div class="contact-card animated-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" viewBox="0 0 512 512" aria-hidden="true" focusable="false" role="img">
+              <path fill="currentColor" d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8zM480 416H32c-17.7 0-32-14.3-32-32V213.8l197.4 166.8c22.6 19.1 55.8 19.1 78.4 0L512 213.8V384c0 17.7-14.3 32-32 32z"/>
+            </svg>
+          </div>
+          <h3>Par Email</h3>
+          <div class="contact-details">
+            <p>Idéal pour les demandes détaillées et les cahiers des charges.</p>
+          </div>
+          <a href="mailto:bms.ventouse@gmail.com?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="coverage-zones" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title animated-item">Nos Zones d'Intervention</h2>
+    <p class="section-subtitle animated-item">Nous intervenons partout en France en moins de 24&nbsp;h.</p>
+    <div class="zones-grid">
+      <div class="zone-card animated-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 512 512" aria-hidden="true" focusable="false" role="img">
+          <path fill="currentColor" d="M0 480V96l96-32l96 32v64h64V32l96-32l96 32v448h-96V320H192v160H0zm192-192h96v-64h-96v64z"/>
+        </svg>
+        <h3>Paris &amp; Île‑de‑France</h3>
+        <p>Paris, Boulogne‑Billancourt, Montreuil, Saint‑Denis...</p>
+      </div>
+      <div class="zone-card animated-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 640 512" aria-hidden="true" focusable="false" role="img">
+          <path fill="currentColor" d="M0 448l224-256l96 112l64-80l256 224H0z"/>
+        </svg>
+        <h3>Lyon &amp; Sud‑Est</h3>
+        <p>Lyon, Marseille, Nice, Grenoble...</p>
+      </div>
+      <div class="zone-card animated-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 640 512" aria-hidden="true" focusable="false" role="img">
+          <path fill="currentColor" d="M0 384c53 0 80-32 133-32s80 32 133 32s80-32 133-32s80 32 133 32v64c-53 0-80-32-133-32s-80 32-133 32s-80-32-133-32S53 448 0 448V384z"/>
+        </svg>
+        <h3>Bordeaux &amp; Sud‑Ouest</h3>
+        <p>Bordeaux, Toulouse, Montpellier, Nantes...</p>
+      </div>
+      <div class="zone-card zone-national animated-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 384 512" aria-hidden="true" focusable="false" role="img">
+          <path fill="currentColor" d="M168 0C75.3 0 0 75.3 0 168c0 87.1 123.1 240.5 160.3 282.9c4.1 4.7 11.2 4.7 15.3 0C216.9 408.5 340 255.1 340 168C340 75.3 264.7 0 172 0h-4zM168 232c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z"/>
+        </svg>
+        <h3>Partout ailleurs en France</h3>
+        <p>Nos équipes mobiles se déplacent rapidement pour répondre à vos urgences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container animated-item">
+    <h2 class="cta-title">Une Question ? Un Projet Urgent ?</h2>
+    <p class="cta-subtitle">Contactez‑nous pour une analyse gratuite de vos besoins et un devis personnalisé sous&nbsp;48&nbsp;h.</p>
+    {{ macros.ctaButtons('mailto:bms.ventouse@gmail.com', 'Envoyer un Email', 'https://wa.me/33646005642', 'WhatsApp Direct') }}
+  </div>
+</section>
+
+<a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contacter BMS Ventouse sur WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 448 512" aria-hidden="true" focusable="false" role="img">
+    <path fill="currentColor" d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4zM224 392c-92.6 0-168-75.4-168-168S131.4 56 224 56s168 75.4 168 168s-75.4 168-168 168z"/>
+  </svg>
+</a>
+
+{% block jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "mainEntity": {
+    "@type": "ProfessionalService",
+    "name": "{{ site.brand }}",
+    "url": "{{ site.url }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.address.street }}",
+      "addressLocality": "{{ site.address.locality }}",
+      "postalCode": "{{ site.address.postalCode }}",
+      "addressCountry": "{{ site.address.country }}"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "{{ site.geo.lat }}",
+      "longitude": "{{ site.geo.lng }}"
+    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "{{ site.phone }}",
+        "contactType": "customer service",
+        "name": "Béna",
+        "availableLanguage": "French",
+        "hoursAvailable": "{{ site.openingHours }}"
+      }
+    ],
+    "email": "{{ site.emails.primary }}",
+    "areaServed": {
+      "@type": "Country",
+      "name": "France"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{ site.url }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Contact", "item": "{{ site.url }}/contact/" }
+  ]
+}
+</script>
+{% endblock %}

@@ -1,0 +1,117 @@
+/* =========================================
+   Design Tokens (Variables & Themes)
+   ========================================= */
+
+/* Global variables */
+:root {
+  /* Couleurs principales */
+  --color-primary: #FF8C42; /* Orange de référence (même que la barre de recherche) */
+  --color-primary-dark: #c24a00;
+  --color-primary-light: #ffaa70;
+  --color-dark: #2c3e50;
+  --color-dark-lighten: #34495e;
+  --color-light: #ffffff;
+  --color-light-alt: #f8f9fa;
+  --color-text: #333;
+  --color-text-muted: #666;
+  --color-border: #e0e0e0;
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
+  --color-link: var(--color-primary);
+
+  /* Typographie */
+  --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-base: clamp(0.95rem, 1vw, 1rem);
+  --font-size-sm: clamp(0.8rem, 0.9vw, 0.875rem);
+  --font-size-h1: clamp(2.2rem, 6vw, 3.5rem);
+  --font-size-h2: clamp(1.8rem, 4vw, 2.5rem);
+  --font-size-h3: clamp(1.3rem, 3vw, 1.4rem);
+  --line-height-base: 1.7;
+  --line-height-heading: 1.3;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+
+  /* Layout */
+  --container-width: min(1200px, 95vw);
+  --spacing-section: clamp(60px, 8vh, 80px);
+  --header-height: 70px;
+  --promo-banner-height: 50px;
+  --footer-gap: 2rem;
+  --grid-gap: clamp(1.5rem, 3vw, 2rem);
+  --content-padding: clamp(1rem, 5vw, 2rem);
+
+  /* Composants */
+  --border-radius-base: 8px;
+  --border-radius-large: 12px;
+  --border-radius-pill: 32px;
+  --transition-base: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.08);
+  --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.11);
+  --focus-outline-width: 3px;
+  --btn-hover-scale: 1.02;
+  --whatsapp-size: 60px;
+  --whatsapp-mobile-size: 48px;
+  --whatsapp-margin: 24px;
+  
+  /* z-index layers */
+  --z-below: -1;
+  --z-normal: 1;
+  --z-above: 10;
+  --z-fixed: 100;
+  --z-header: 1000;
+  --z-overlay: 1500;
+  --z-promo: 2000;
+  --z-toast: 3000;
+  --z-whatsapp: 2000;
+
+  /* Footer palette (neutral, no blue) */
+  --color-footer-bg: #111111;
+  --color-footer-text: #e5e7eb;
+  --color-footer-link: #a1a1aa;
+  --color-footer-border: #27272a;
+}
+
+/* Dark theme via class or :has() */
+body.dark-theme,
+:root:has(body.dark-theme) {
+  --color-light: #1a202c;
+  --color-light-alt: #2d3748;
+  --color-text: #e2e8f0;
+  --color-text-muted: #b0c0d0;
+  --color-border: #4a5568;
+  --color-dark: #ffffff;
+  --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
+  --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* System dark preference fallback */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-light: #1a202c;
+    --color-light-alt: #2d3748;
+    --color-text: #e2e8f0;
+    --color-text-muted: #b0c0d0;
+    --color-border: #4a5568;
+    --color-dark: #ffffff;
+    --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
+    --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Support for html.dark-theme (anti-flash) */
+html.dark-theme, body.dark-theme {
+  --color-light: #1a202c;
+  --color-light-alt: #2d3748;
+  --color-text: #e2e8f0;
+  --color-text-muted: #b0c0d0;
+  --color-border: #4a5568;
+  --color-dark: #ffffff;
+  --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
+  --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
+  color-scheme: dark;
+}

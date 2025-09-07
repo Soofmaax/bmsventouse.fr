@@ -1,0 +1,24 @@
+name: Lighthouse CI
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # Use Node version from .nvmrc for consistency
+          node-version-file: .nvmrc
+      - name: Install dependencies (ci if lockfile, else install)
+        run: |
+          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+            npm ci
+          else
+            echo "No lockfile found, using 'npm install' (temporary fallback)."
+            npm install
+          fi
+      - run: npm run build
+      - run: npx lhci autorun --config=.lighthouserc.js

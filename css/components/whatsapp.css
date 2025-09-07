@@ -1,0 +1,57 @@
+/* =========================================
+   WhatsApp Floating Button
+   ========================================= */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: var(--whatsapp-margin);
+  right: var(--whatsapp-margin);
+  width: var(--whatsapp-size);
+  height: var(--whatsapp-size);
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-whatsapp);
+  font-size: 2.3rem;
+  transition: transform 0.2s, box-shadow 0.2s, bottom 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.23);
+  background: #20ba5a;
+}
+
+.whatsapp-float i {
+  pointer-events: none;
+}
+
+/* Attention pulse */
+.whatsapp-float::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #25d366;
+  opacity: 0.7;
+  z-index: -1;
+  animation: pulse 2s infinite;
+}
+
+/* Mobile sizing */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    width: var(--whatsapp-mobile-size);
+    height: var(--whatsapp-mobile-size);
+    font-size: 1.8rem;
+    bottom: 12px;
+    right: 12px;
+  }
+}

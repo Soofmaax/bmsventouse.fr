@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{{ lang | default('fr') }}">
+<head>
+  {% include "seo_head.njk" %}
+  {% include "analytics/ga.njk" %}
+</head>
+<body class="{{ bodyClass }}">
+  <a href="#main-content" class="skip-link">Passer au contenu</a>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-consent" class="cookie-consent" role="dialog" aria-modal="true" aria-labelledby="cc-title" hidden>
+    <div class="cookie-consent__inner">
+      <h2 id="cc-title">Votre vie privée</h2>
+      <p>Nous utilisons des cookies pour mesurer l’audience (Google Analytics) et améliorer le site. Vous pouvez refuser, limiter à la mesure d’audience, ou tout accepter. <a href="/mentions/">En savoir plus</a>.</p>
+      <div class="cookie-consent__actions">
+        <button type="button" class="btn btn-secondary" data-action="deny">Refuser tout</button>
+        <button type="button" class="btn btn-secondary-alt" data-action="analytics">Autoriser analytics seulement</button>
+        <button type="button" class="btn btn-primary" data-action="allow">Tout accepter</button>
+      </div>
+    </div>
+  </div>
+
+  {% include "header.njk" %}
+  <main id="main-content" role="main">
+    {{ content | safe }}
+  </main>
+  {% include "footer.njk" %}
+  <a href="#" class="back-to-top" aria-label="Retour en haut" title="Retour en haut">↑</a>
+  <script src="{{ '/js/script.js' | fingerprint }}" defer></script>
+  <script src="{{ '/js/sw-register.js' | fingerprint }}" defer></script>
+
+  <!-- Cookie Consent Script -->
+  <script>
+    (function () {
+      var KEY = 'bms_consent';
+      var banner = document.getElementById('cookie-consent');
+      if (!banner) return;
+
+      function apply(choice) {
+        if (choice === 'all' && window.bmsConsent && window.bmsConsent.allowAll) {
+          window.bmsConsent.allowAll();
+        } else if (choice === 'deny' && window.bmsConsent && window.bmsConsent.denyAll) {
+          window.bmsConsent.denyAll();
+        } else if (choice === 'analytics' && window.bmsConsent && window.bmsConsent.allowAnalyticsOnly) {
+          window.bmsConsent.allowAnalyticsOnly();
+        }
+      }
+
+      // Restore saved choice if any
+      try {
+        var saved = localStorage.getItem(KEY);
+        if (saved) {
+          apply(saved);
+        } else {
+          banner.hidden = false;
+        }
+      } catch (e) {
+        // localStorage might be unavailable; show banner
+        banner.hidden = false;
+      }
+
+      banner.addEventListener('click', function (e) {
+        var btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        var action = btn.getAttribute('data-action');
+        if (action === 'allow') {
+          apply('all');
+          try { localStorage.setItem(KEY, 'all'); } catch (e) {}
+        } else if (action === 'deny') {
+          apply('deny');
+          try { localStorage.setItem(KEY, 'deny'); } catch (e) {}
+        } else if (action === 'analytics') {
+          apply('analytics');
+          try { localStorage.setItem(KEY, 'analytics'); } catch (e) {}
+        }
+        banner.hidden = true;
+      });
+
+      // Manage cookies link
+      document.addEventListener('click', function (e) {
+        var manage = e.target.closest('.js-manage-cookies');
+        if (!manage) return;
+        e.preventDefault();
+        banner.hidden = false;
+      });
+    })();
+  </script>
+
+  
+</body>
+</html>

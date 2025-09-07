@@ -1,0 +1,38 @@
+/* =========================================
+   FEUILLE DE STYLE BMS VENTOUSE - VERSION OPTIMISÉE (V8.0)
+   Variables, Reset, Layout, Components
+   ========================================= */
+
+/* Modular components */
+@import url('./tokens.css');
+@import url('./base.css');
+@import url('./components/accessibility.css');
+@import url('./layout.css');
+@import url('./components/utilities.css');
+@import url('./components/buttons.css');
+@import url('./components/cards.css');
+@import url('./components/cta.css');
+@import url('./components/case-study.css');
+@import url('./components/testimonials.css');
+@import url('./components/legal.css');
+@import url('./components/contact.css');
+@import url('./components/faq.css');
+@import url('./components/references.css');
+@import url('./components/references-logos.css');
+@import url('./components/back-to-top.css');
+@import url('./components/whatsapp.css');
+@import url('./components/scroll-progress.css');
+@import url('./components/pagination.css');
+@import url('./components/theme.css');
+@import url('./components/tooltips.css');
+@import url('./components/selection.css');
+@import url('./components/badges.css');
+@import url('./components/animations.css');
+@import url('./components/stats.css');
+@import url('./components/grids.css');
+@import url('./components/hero.css');
+@import url('./components/hero-descriptions.css');
+@import url('./components/nav.css');
+@import url('./components/promo.css');
+@import url('./components/footer.css');
+@import url('./components/consent.css');

@@ -1,0 +1,111 @@
+/* =========================================
+   Base Styles (Reset, Typography, Accessibility)
+   ========================================= */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root & scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + var(--promo-banner-height) + 10px);
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+/* Body base */
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.4s, color 0.4s;
+  text-rendering: optimizeSpeed;
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: inline-block;
+}
+
+.section-subtitle a, .content-container a, .content-card a:not(.btn), p a, main .section a:not(.btn):not(.nav-link) {
+  color: var(--color-link);
+  font-weight: var(--font-weight-bold);
+  text-decoration: underline;
+}
+
+.section-subtitle a:hover,
+.content-container a:hover,
+.content-card a:not(.btn):hover,
+p a:hover,
+main .section a:not(.btn):not(.nav-link):hover {
+  color: var(--color-primary-dark);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Media */
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form elements inherit fonts */
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Accessibility helpers */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: var(--focus-outline-width) solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-base);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+

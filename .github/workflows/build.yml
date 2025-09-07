@@ -1,0 +1,35 @@
+name: Build & Tests
+on: [push, pull_request]
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # Use Node version from .nvmrc. No explicit node-version and no cache (works without lockfile).
+          node-version-file: .nvmrc
+      - name: Install dependencies (ci if lockfile, else install)
+        run: |
+          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+            npm ci
+          else
+            echo "No lockfile found, using 'npm install' (temporary fallback)."
+            npm install
+          fi
+      - name: Prettier (write before check)
+        run: npx prettier --write "{css,src}/**/*.{css,js,json,md}"
+      - name: Check duplicate adjacent lines in HTML
+        run: npm run lint:dupes
+      - run: npm run prettier:check
+      - name: Stylelint (auto-fix before check)
+        run: npx stylelint "css/**/*.css" --fix
+      - run: npm run lint:css
+      - run: npm run lint:html
+      - run: npm run lint:js
+      - name: Start Eleventy server for Cypress
+        run: |
+          nohup npm run dev >/dev/null 2>&1 &
+          npx wait-on http://localhost:8080
+      - run: npm run test:a11y
+      - run: npm run build

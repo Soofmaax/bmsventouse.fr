@@ -1,0 +1,135 @@
+---
+layout: layouts/base.njk
+lang: fr
+activeNav: services
+bodyClass: page-services
+title: "Nos Services de Logistique Audiovisuelle | BMS Ventouse"
+description: "Découvrez nos services experts pour tournages et événements : ventousage, sécurité plateaux, régie technique, convoyage national. Solutions sur mesure pour une production sereine."
+ogImage: "{{ site.url }}/images/services-hero-background-desktop.webp"
+---
+{% import "components/macros.njk" as macros %}
+
+{% hero {
+  "imageDesktop": "/images/services-hero-background-desktop.webp",
+  "imageMobile": "/images/services-hero-background-mobile.webp",
+  "alt": "Équipe logistique préparant un plateau de tournage",
+  "loading": "eager",
+  "width": 1920,
+  "height": 1080
+} %}
+  <h1>Solutions Logistiques Complètes pour Productions Audiovisuelles</h1>
+  <p>Que vous soyez régisseur de long métrage, de série, de publicité ou d'événementiel, nous avons la solution.</p>
+{% endhero %}
+
+<section id="services-list" class="section" role="region" aria-labelledby="catalog-title">
+  <div class="container">
+    <h2 id="catalog-title" class="section-title animated-item">Notre Catalogue de Prestations</h2>
+    <p class="section-subtitle animated-item">Des services experts, à la carte ou en package, pour répondre précisément à chaque étape de votre projet.</p>
+
+    <div class="services-grid-visual">
+      {% for s in services %}
+        <a href="/services/{{ s.slug }}/" class="service-card-visual animated-item">
+          <div class="service-card-visual-image">
+            <img src="{{ s.hero.desktop }}" alt="{{ s.hero.alt }}" loading="lazy" width="400" height="250">
+          </div>
+          <div class="service-card-visual-content">
+            <h3>{{ s.h1 }}</h3>
+            <p>{{ s.summary }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="included-benefits animated-item">
+      <h2 class="section-title">Avantages Inclus</h2>
+      <ul class="benefits-list">
+        <li>Devis gratuit et rapide</li>
+        <li>Repérage offert pour les projets d'envergure</li>
+        <li>Signalisation &amp; roulettage offerts* après acceptation du devis</li>
+        <li>Support 24/7 et réactivité immédiate</li>
+      </ul>
+      <p class="text-muted" style="font-size: 0.9rem; margin-top: 0.5rem;"><em>*Services gratuits après acceptation du devis.</em></p>
+    </div>
+
+    <!-- Nouveau: liste de toutes les fiches services (liens pages dynamiques) -->
+    <section class="section" aria-labelledby="all-services-title">
+      <h2 id="all-services-title" class="section-title">En savoir plus sur chaque service</h2>
+      <div class="services-grid">
+        {% set items = services %}
+        {% for s in items %}
+          <a href="/services/{{ s.slug }}/" class="service-card-link animated-item">
+            <div class="service-card service-card-min">
+              <img src="{{ s.hero.desktop }}" alt="{{ s.hero.alt }}" width="80" height="64" loading="lazy" style="object-fit:cover;">
+              <div>
+                <h3>{{ s.h1 }}</h3>
+                <p>{{ s.summary }}</p>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container animated-item">
+    <h2 class="cta-title">Un besoin spécifique ? Parlons-en.</h2>
+    <p class="cta-subtitle">Notre équipe est à votre écoute pour construire la solution logistique parfaitement adaptée à votre projet.</p>
+    {{ macros.ctaButtons('/contact/', 'Obtenir un Devis Gratuit', 'https://wa.me/33646005642?text=Bonjour,%20j%27aimerais%20obtenir%20un%20devis%20gratuit.', 'WhatsApp Direct') }}
+  </div>
+</section>
+
+{% block jsonld %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Logistique Audiovisuelle",
+    "provider": {
+      "@type": "Organization",
+      "name": "{{ site.brand }}",
+      "url": "{{ site.url }}"
+    },
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": "{{ site.url }}/contact/",
+      "servicePhone": "{{ site.phone }}"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quels services sont offerts en cas de collaboration ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pour toute collaboration et après acceptation du devis, nous offrons gracieusement la pose de panneaux, le roulettage (sécurisation de périmètre ) et les affichages pour les riverains."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Proposez-vous des packages de services ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, nous proposons des solutions packagées sur mesure, combinant par exemple la logistique et la sécurité, à des prix très compétitifs pour optimiser votre budget."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{ site.url }}/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "{{ site.url }}/services/" }
+    ]
+  }
+  </script>
+{% endblock %}

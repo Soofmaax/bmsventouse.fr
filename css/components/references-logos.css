@@ -1,0 +1,24 @@
+/* =========================================
+   References Logos Strip
+   ========================================= */
+
+.references-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.references-logos img {
+  height: 45px;
+  opacity: 0.7;
+  transition: opacity 0.3s, transform 0.3s;
+  filter: grayscale(100%);
+}
+
+.references-logos img:hover { 
+  opacity: 1; 
+  transform: translateY(-3px);
+  filter: grayscale(0%);
+}

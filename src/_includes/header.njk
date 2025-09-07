@@ -1,0 +1,45 @@
+<header class="header" role="banner">
+  <div class="container">
+    <div class="nav">
+      <a href="/" class="logo" aria-label="Retour à l'accueil de {{ site.brand }}">
+        <img src="/android-chrome-192x192.png" alt="Logo {{ site.brand }}" width="40" height="40">
+        <span class="logo-text">
+          <span class="bms">BMS</span> <span class="ventouse">Ventouse</span>
+        </span>
+      </a>
+      <button 
+        class="hamburger" 
+        id="hamburger"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="navigation" role="navigation" aria-label="Main navigation">
+        <ul id="navLinks" class="nav-links">
+          <li><a href="/" class="nav-link{% if activeNav == 'home' %} active{% endif %}">Accueil</a></li>
+          <li><a href="/services/" class="nav-link{% if activeNav == 'services' %} active{% endif %}">Services</a></li>
+          <li><a href="/realisations/" class="nav-link{% if activeNav == 'realisations' %} active{% endif %}">Références</a></li>
+          <li><a href="/contact/" class="nav-link{% if activeNav == 'contact' %} active{% endif %}">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" title="Basculer le thème (clair/sombre)" aria-label="Basculer le thème">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm8-7a1 1 0 0 1 1 1h1a1 1 0 1 1 0 2h-1a1 1 0 1 1-2 0 1 1 0 0 1 1-1Zm-8 8a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM4 11a1 1 0 0 1 1-1H4a1 1 0 1 0 0 2h1a1 1 0 0 1-1-1Zm12.95-5.536a1 1 0  0 1 1.414 0l.707.707a1 1 0 1 1-1.414 1.414l-.707-.707a1 1 0 0  1 0-1.414ZM6.222 17.778a1 1 0 0 1 1.414 0l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414Zm12.9 1.414a1 1 0 0 1-1.414 0l-.707-.707a1 1 0 1 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414ZM6.343 5.464a1 1 0 0 1 0 1.414l-.707.707A1 1 0 1 1 4.222 6.17l.707-.707a1 1 0  0 1 1.414 0Z"/>
+        </svg>
+      </button>
+      <div class="lang-switcher" aria-label="Language switcher" style="margin-left:1.5rem;">
+        <a href="/" class="nav-link" aria-current="{% if lang == 'fr' %}true{% else %}false{% endif %}">FR</a>
+        <span aria-hidden="true" style="opacity:.5;margin:0 .25rem;">|</span>
+        <a href="/en/" class="nav-link" aria-current="{% if lang == 'en' %}true{% else %}false{% endif %}">EN</a>
+      </div>
+    </div>
+  </div>
+  <div class="promo-banner" id="promoBanner">
+    <p><strong>Offre de bienvenue :</strong> -15% à tous les nouveaux clients&nbsp;!</p>
+  </div>
+</header>
+<div class="nav-overlay" id="navOverlay"></div>

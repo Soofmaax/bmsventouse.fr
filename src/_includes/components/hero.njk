@@ -1,0 +1,33 @@
+{% macro hero(imageDesktop, imageMobile, alt, loading='eager', fetchpriority, width=1920, height=1080, mode='') %}
+{# Background mode: use CSS background to avoid making the image the LCP element #}
+{% if mode == 'background' %}
+<section class="hero hero--bg" style="{% if imageMobile %}--hero-bg-mobile: url('{{ imageMobile }}');{% endif %}{% if imageDesktop %} --hero-bg-desktop: url('{{ imageDesktop }}');{% endif %}">
+  <div class="hero-overlay">
+    <div class="container">
+      {{ caller() }}
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="hero">
+  <picture class="hero-bg">
+    {% if imageMobile %}
+      <source media="(max-width: 767px)" srcset="{{ imageMobile }}" type="image/webp">
+    {% endif %}
+    <img
+      src="{{ imageDesktop }}"
+      {% if imageMobile %}srcset="{{ imageMobile }} 768w, {{ imageDesktop }} 1920w" sizes="100vw"{% endif %}
+      alt="{{ alt }}"
+      loading="{{ loading }}"
+      {% if fetchpriority %}fetchpriority="{{ fetchpriority }}"{% else %}{% if loading == 'eager' %}fetchpriority="high"{% endif %}{% endif %}
+      decoding="async"
+      width="{{ width }}" height="{{ height }}">
+  </picture>
+  <div class="hero-overlay">
+    <div class="container">
+      {{ caller() }}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endmacro %}

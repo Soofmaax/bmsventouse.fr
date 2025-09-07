@@ -1,0 +1,67 @@
+{% if eleventy.env.environment == "production" and site.gaId %}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.gaId }}"></script>
+<script>
+  // DataLayer + gtag helper
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+
+  // Google Consent Mode v2 — defaults for France/EAA: prior consent required
+  // Default: all storages denied until user action via your consent banner
+  // Region-targeting: FR + EEA + CH + GB (adjust if needed)
+  gtag('consent', 'default',
+    {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    },
+    {
+      region: [
+        'FR','AT','BE','BG','HR','CY','CZ','DK','EE','FI','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','CH','GB'
+      ]
+    }
+  );
+
+  // Privacy-friendly flags recommended in EU contexts
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', true);
+
+  // Initialize GA4 (respects Consent Mode; no cookies until consent updates)
+  gtag('js', new Date());
+  gtag('config', '{{ site.gaId }}', { anonymize_ip: true });
+
+  // Expose a tiny API for your banner/controller
+  // Usage examples (wire these to your consent UI):
+  //   window.bmsConsent.allowAll()
+  //   window.bmsConsent.denyAll()
+  //   window.bmsConsent.allowAnalyticsOnly()
+  window.bmsConsent = {
+    allowAll: function () {
+      gtag('consent', 'update', {
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
+      });
+    },
+    denyAll: function () {
+      gtag('consent', 'update', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+    },
+    allowAnalyticsOnly: function () {
+      gtag('consent', 'update', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'granted'
+      });
+    }
+  };
+</script>
+{% endif %}

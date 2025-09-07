@@ -1,0 +1,22 @@
+/* =========================================
+   Utility Classes (layout helpers)
+   ========================================= */
+
+.grid {
+  display: grid !important;
+  gap: var(--grid-gap, 1.5rem);
+}
+
+.flex {
+  display: flex !important;
+  gap: var(--grid-gap, 1.5rem);
+}
+
+.flex-center {
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.flex-col {
+  flex-direction: column !important;
+}

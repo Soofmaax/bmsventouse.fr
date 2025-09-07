@@ -1,0 +1,65 @@
+/* =========================================
+   Layout (Container, Sections, Bands)
+   ========================================= */
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 clamp(15px, 3vw, 20px);
+}
+
+/* Sections */
+.section {
+  padding: var(--spacing-section) 0;
+  position: relative;
+}
+
+.section-title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-black);
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--color-dark);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: var(--color-text-muted);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Bands (section backgrounds) */
+.band {
+  background: #f9fafb;
+  padding: 2.25rem 0;
+  border-radius: var(--radius-16);
+  box-shadow: var(--elev-1);
+  overflow: hidden;
+  margin-inline: clamp(8px, 2vw, 24px);
+  border: 1px solid var(--color-border);
+}
+.band--alt {
+  background: #f6f7f9;
+  border-radius: var(--radius-16);
+  box-shadow: var(--elev-1);
+  overflow: hidden;
+  margin-inline: clamp(8px, 2vw, 24px);
+  border: 1px solid var(--color-border);
+}
+
+/* Subtle vertical rhythm between adjacent sections */
+.section + .section,
+.section + .band,
+.band + .section,
+.band + .band,
+.band + .band--alt,
+.band--alt + .band,
+.band--alt + .section {
+  margin-top: clamp(0.75rem, 1.5vw, 1.25rem);
+}

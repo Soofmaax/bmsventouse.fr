@@ -1,0 +1,32 @@
+/* =========================================
+   Promo Banner
+   ========================================= */
+
+/* Make the promo banner fixed so it doesn't shift layout (reduces CLS) */
+.promo-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-promo);
+  height: var(--promo-banner-height);
+  background-color: var(--color-primary-dark);
+  color: var(--color-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.promo-banner a {
+  color: #fff;
+  text-decoration: underline;
+  margin-left: 0.5rem;
+}
+
+.promo-banner a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}

@@ -1,0 +1,38 @@
+/* =========================================
+   Contact Components
+   ========================================= */
+
+/* Contact Card */
+.contact-card {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.contact-card .contact-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+}
+
+/* National coverage note on contact page */
+.coverage-note-card {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  transition: var(--transition-base);
+}
+
+.coverage-note-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-hover);
+}

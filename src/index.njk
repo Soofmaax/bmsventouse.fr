@@ -1,0 +1,167 @@
+---
+layout: layouts/base.njk
+lang: fr
+bodyClass: page-accueil
+activeNav: home
+title: "BMS Ventouse | Expert Logistique pour Tournages en France"
+description: "Votre partenaire logistique pour tournages en France. BMS Ventouse gère ventousage, sécurité de plateaux, et convoyage 24/7. Devis gratuit."
+ogImage: "{{ site.url }}/images/hero-background-custom.jpg"
+heroImage: "/images/hero-background-custom.jpg"
+heroMode: background
+---
+
+{% import "components/macros.njk" as macros %}
+
+{% hero {
+  "imageDesktop": heroImage,
+  "alt": "Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain",
+  "loading": "eager",
+  "fetchpriority": "high",
+  "mode": "background"
+} %}
+  <h1>Expert Logistique Audiovisuelle pour Tournages Cinéma et Télévision en France</h1>
+  <p>Spécialiste en <strong>ventousage de plateau</strong>, <strong>sécurisation de tournage</strong>, et <strong>convoyage de véhicules</strong>. BMS Ventouse assure la logistique complète de vos tournages, partout en France, 24/7.</p>
+  {{ macros.ctaButtons('/contact/', 'Obtenir un Devis Gratuit', 'https://wa.me/33646005642?text=Bonjour,%20j%27aimerais%20obtenir%20un%20devis%20gratuit.', 'WhatsApp Direct') }}
+{% endhero %}
+
+<section id="services" class="section">
+  <div class="container">
+    <h2 class="section-title animated-item">Services de Logistique Audiovisuelle et Sécurisation de Plateaux de Tournage</h2>
+    <p class="section-subtitle animated-item">BMS Ventouse couvre tous les aspects logistiques de vos productions cinéma et télévision pour vous permettre de vous concentrer sur la création.</p>
+    <div class="services-grid">
+      {{ macros.serviceCard(
+        "Ventousage Plateau & Autorisations de Tournage",
+        "Gestion complète des <strong>autorisations de tournage</strong> pour vos productions à <strong>Paris, Lyon, Marseille</strong> et toute la France. <strong>Neutralisation de stationnement</strong> et pose de signalisation réglementaire.",
+        "/images/service-ventousage-custom.jpg",
+        "Ventousage et autorisations tournage",
+        64, 64,
+        "/services/ventousage/"
+      ) }}
+      {{ macros.serviceCard(
+        "Gardiennage & Sécurité de Plateau 24h/24",
+        "<strong>Protection 24h/24 et 7j/7</strong> de vos plateaux de tournage par des <strong>agents de sécurité spécialisés</strong> dans l'audiovisuel. <strong>Contrôle d'accès</strong> et gestion de la confidentialité.",
+        "/images/service-securite-custom.jpg",
+        "Gardiennage et sécurité plateau",
+        64, 64,
+        "/services/plateau-gardiennage/"
+      ) }}
+      {{ macros.serviceCard(
+        "Régie Technique & Transport Spécialisé",
+        "Équipes de <strong>régie technique audiovisuelle</strong>, <strong>manutention de matériel</strong> et <strong>convoyage sécurisé de véhicules</strong> et décors sur l'ensemble du territoire français.",
+        "/images/service-convoyage-custom.jpg",
+        "Régie technique et convoyage",
+        64, 64,
+        "/services/convoyage/"
+      ) }}
+    </div>
+    <div class="cta-container animated-item">
+      <a href="/services/" class="btn btn-primary">Découvrir tous nos services</a>
+    </div>
+  </div>
+</section>
+
+<section id="references" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title animated-item">Ils Nous Font Confiance</h2>
+    {{
+      macros.carousel([
+        { "src": "/images/logo-netflix.svg", "alt": "Logo Netflix", "width": 100, "height": 45 },
+        { "src": "/images/logo-jo2024.svg", "alt": "Logo Paris 2024", "width": 70, "height": 55 },
+        { "src": "/images/logo-conseil-regional.svg", "alt": "Logo Conseil Régional", "width": 120, "height": 50 },
+        { "src": "/images/logo-netflix.svg", "alt": "Logo Netflix", "width": 100, "height": 45 },
+        { "src": "/images/logo-jo2024.svg", "alt": "Logo Paris 2024", "width": 70, "height": 55 }
+      ])
+    }}
+    <div class="cta-container animated-item">
+      <a href="/realisations/" class="btn btn-secondary-alt">Voir nos réalisations</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="container">
+    <h2 class="section-title animated-item">Questions Fréquentes sur la Logistique de Tournage</h2>
+    <p class="section-subtitle animated-item">Tout ce que vous devez savoir sur nos services de logistique audiovisuelle et sécurisation de plateaux.</p>
+    <div class="faq-container">
+      {{ macros.faqItem("Comment obtenir des autorisations de tournage à Paris rapidement ?", "BMS Ventouse gère l'ensemble des <strong>démarches administratives pour les autorisations de tournage à Paris</strong>. Nous nous occupons des demandes auprès de la Mairie de Paris et des autorités compétentes, pour un tournage conforme et sécurisé.") }}
+      {{ macros.faqItem("Quel est le coût d'un service de gardiennage de plateau 24h/24 ?", "Le tarif du <strong>gardiennage de plateau 24h/24</strong> varie selon la durée, la localisation et le niveau de sécurité requis. Nos <strong>agents de sécurité spécialisés</strong> vous proposeront un devis personnalisé.") }}
+      {{ macros.faqItem(
+        "BMS Ventouse intervient-il pour des tournages en province ?",
+        "<p>Oui, BMS Ventouse assure la <strong>logistique de tournage sur tout le territoire français</strong>. Nos équipes interviennent régulièrement dans les villes suivantes&nbsp;:</p>
+        <ul>
+          <li>Lyon</li>
+          <li>Marseille</li>
+          <li>Bordeaux</li>
+          <li>Lille</li>
+        </ul>
+        <p>…et dans toutes les régions.</p>"
+      ) }}
+      {{ macros.faqItem("Que comprend le service de ventousage professionnel ?", "Notre <strong>service de ventousage professionnel</strong> inclut : neutralisation des places de stationnement, pose de signalisation réglementaire, coordination avec les forces de l'ordre et gestion administrative complète auprès des municipalités.") }}
+      {{ macros.faqItem("Comment se déroule le convoyage de véhicules pour un tournage ?", "Notre équipe de <strong>convoyage spécialisé</strong> prend en charge vos véhicules de tournage avec des chauffeurs expérimentés. Nous assurons le <strong>transport sécurisé</strong> de vos véhicules et décors entre les sites de tournage.") }}
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section cta-section">
+  <div class="container animated-item">
+    <h2 class="cta-title">Prêt à Sécuriser Votre Prochaine Production ?</h2>
+    <p class="cta-subtitle">Contactez-nous pour une analyse gratuite de vos besoins et un devis personnalisé sous 48h.</p>
+    {{ macros.ctaButtons('/contact/', 'Envoyer un message', 'https://wa.me/33646005642?text=Bonjour,%20j%27aimerais%20obtenir%20un%20devis%20gratuit.', 'WhatsApp Direct') }}
+  </div>
+</section>
+
+{% block jsonld %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["ProfessionalService", "LocalBusiness"],
+    "name": "{{ site.brand }}",
+    "alternateName": "{{ site.alternateName }}",
+    "description": "Expert en logistique audiovisuelle, ventousage, sécurisation de plateaux et gardiennage pour productions en France.",
+    "url": "{{ site.url }}",
+    "logo": "{{ site.url }}/android-chrome-512x512.png",
+    "image": "{{ site.url }}/images/hero-background-custom.jpg",
+    "telephone": "{{ site.phone }}",
+    "email": "{{ site.emails.contact }}",
+    "priceRange": "{{ site.priceRange }}",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Virement, Chèque, Espèces",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.address.street }}",
+      "addressLocality": "{{ site.address.locality }}",
+      "postalCode": "{{ site.address.postalCode }}",
+      "addressRegion": "{{ site.address.region }}",
+      "addressCountry": "{{ site.address.country }}"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "{{ site.geo.lat }}",
+      "longitude": "{{ site.geo.lng }}"
+    },
+    "areaServed": [
+      { "@type": "Country", "name": "France" }
+    ],
+    "openingHours": "{{ site.openingHours }}",
+    "sameAs": [
+      "{{ site.socials.linkedin }}",
+      "{{ site.socials.facebook }}"
+    ],
+    "foundingDate": "2020",
+    "slogan": "Votre partenaire logistique pour tournages en France"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Comment obtenir des autorisations de tournage à Paris rapidement ?", "acceptedAnswer": { "@type": "Answer", "text": "BMS Ventouse gère l'ensemble des démarches administratives pour les autorisations de tournage à Paris. Nous nous occupons des demandes auprès de la Mairie de Paris et des autorités compétentes, pour un tournage conforme et sécurisé." }},
+      { "@type": "Question", "name": "Quel est le coût d'un service de gardiennage de plateau 24h/24 ?", "acceptedAnswer": { "@type": "Answer", "text": "Le tarif du gardiennage de plateau 24h/24 varie selon la durée, la localisation et le niveau de sécurité requis. Nos agents de sécurité spécialisés vous proposeront un devis personnalisé." }},
+      { "@type": "Question", "name": "BMS Ventouse intervient-il pour des tournages en province ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, BMS Ventouse assure la logistique de tournage sur tout le territoire français. Nos équipes interviennent régulièrement à Lyon, Marseille, Bordeaux, Lille et dans toutes les régions." }},
+      { "@type": "Question", "name": "Que comprend le service de ventousage professionnel ?", "acceptedAnswer": { "@type": "Answer", "text": "Notre service de ventousage professionnel inclut : neutralisation des places de stationnement, pose de signalisation réglementaire, coordination avec les forces de l'ordre et gestion administrative complète auprès des municipalités." }},
+      { "@type": "Question", "name": "Comment se déroule le convoyage de véhicules pour un tournage ?", "acceptedAnswer": { "@type": "Answer", "text": "Notre équipe de convoyage spécialisé prend en charge vos véhicules de tournage avec des chauffeurs expérimentés. Nous assurons le transport sécurisé de vos véhicules et décors entre les sites de tournage." }}
+    ]
+  }
+  </script>
+{% endblock %}

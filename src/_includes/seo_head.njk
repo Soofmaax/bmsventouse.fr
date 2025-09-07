@@ -1,0 +1,133 @@
+{%- set pageUrl = page.url | url -%}
+{%- if pageUrl == '/' -%}
+  {%- set canonicalComputed = site.url + '/' -%}
+{%- else -%}
+  {%- set canonicalComputed = site.url + pageUrl -%}
+{%- endif -%}
+{%- set canonicalHref = canonical or canonicalComputed -%}
+{# Robust hreflang alternates computation #}
+{%- set frPath = pageUrl -%}
+{%- if pageUrl == '/' -%}
+  {%- set enPath = '/en/' -%}
+{%- else -%}
+  {%- set enPath = '/en' + pageUrl -%}
+{%- endif -%}
+{%- if (pageUrl | replace('/en/','/')) != pageUrl -%}
+  {%- set frPath = pageUrl | replace('/en/','/') -%}
+  {%- set enPath = pageUrl -%}
+{%- endif -%}
+{%- set frHref = site.url + frPath -%}
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<meta name="theme-color" content="{{ site.themeColor }}">
+<meta name="robots" content="{{ robots | default('index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1') }}">
+<link rel="canonical" href="{{ canonicalHref }}">
+<link rel="alternate" hreflang="fr-FR" href="{{ frHref }}">
+<link rel="alternate" hreflang="x-default" href="{{ canonicalHref }}">
+<script>
+  (function(){
+    try{
+      var k='bms-theme-preference';
+      var s=localStorage.getItem(k);
+      var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var dark=s?s==='dark':m;
+      if(dark){
+        document.documentElement.classList.add('dark-theme');
+        document.body&&document.body.classList&&document.body.classList.add('dark-theme');
+      }
+    }catch(e){ void e; }
+  })();
+</script>
+
+{# Open Graph / Facebook #}
+<meta property="og:title" content="{{ title | escape }}">
+<meta property="og:description" content="{{ description | escape }}">
+<meta property="og:url" content="{{ canonicalHref }}">
+<meta property="og:type" content="{{ ogType or 'website' }}">
+<meta property="og:image" content="{{ ogImage or (site.url + '/images/hero-background-custom.jpg') }}">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="{{ site.brand }}">
+{% if ogImageWidth %}<meta property="og:image:width" content="{{ ogImageWidth }}">{% endif %}
+{% if ogImageHeight %}<meta property="og:image:height" content="{{ ogImageHeight }}">{% endif %}
+
+{# Twitter Cards #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title | escape }}">
+<meta name="twitter:description" content="{{ description | escape }}">
+<meta name="twitter:image" content="{{ ogImage or (site.url + '/images/hero-background-custom.jpg') }}">
+
+{# Responsive preload for hero when provided (works for both <img> and CSS background heroes).
+   Allow opt-out via heroDefer flag for pages where we intentionally delay the hero image. #}
+{% if heroImage and not heroDefer %}
+  {% if heroImageMobile %}
+<link rel="preload" as="image" imagesrcset="{{ heroImageMobile }} 768w, {{ heroImage }} 1920w" imagesizes="100vw" fetchpriority="high">
+  {% else %}
+<link rel="preload" as="image" href="{{ heroImage }}" fetchpriority="high">
+  {% endif %}
+{% endif %}
+
+{# Preload favicon (perf) #}
+<link rel="preload" as="image" href="/favicon-32x32.png">
+
+{# Favicon and manifest #}
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="shortcut icon" href="/favicon.ico">
+
+{# CSS, fonts, preconnect #}
+<link rel="stylesheet" href="{{ '/css/style.bundle.css' | fingerprint }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=optional" rel="stylesheet">
+
+{# JSON-LD Schema.org (WebSite, Organization, BreadcrumbList) #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "url": "{{ site.url }}",
+      "name": "{{ site.brand }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ site.url }}/search/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "{{ site.brand }}",
+      "url": "{{ site.url }}",
+      "logo": "{{ site.url }}/android-chrome-512x512.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/bms-ventouse",
+        "https://www.facebook.com/bmsventouse"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ site.url }}/"
+        },
+        {%- if breadcrumbs -%}
+          {%- for crumb in breadcrumbs %}
+          ,{
+            "@type": "ListItem",
+            "position": {{ loop.index + 1 }},
+            "name": "{{ crumb.name }}",
+            "item": "{{ site.url }}{{ crumb.url }}"
+          }
+          {%- endfor -%}
+        {%- endif -%}
+      ]
+    }
+  ]
+}
+</script>

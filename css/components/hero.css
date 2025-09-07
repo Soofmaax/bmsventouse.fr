@@ -1,0 +1,191 @@
+/* =========================================
+   Hero Component (Background image + overlay)
+   ========================================= */
+
+.hero {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  color: var(--color-light);
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: var(--z-below);
+  pointer-events: none;
+  display: flex;
+  align-items: stretch;
+}
+
+.hero-bg img {
+  width: 100vw;
+  height: 100%;
+  max-height: 650px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Background-mode variant: image as CSS background so text becomes LCP.
+   Do not apply background-image until the 'hero--loaded' class is present (to avoid impacting LCP). */
+.hero--bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Apply the background image only after we mark it as loaded */
+.hero--bg.hero--loaded {
+  background-image: var(--hero-bg-desktop);
+}
+
+/* Hide the picture element when background mode is active (safety) */
+.hero--bg .hero-bg { display: none !important; }
+
+@media (max-width: 767px) {
+  .hero--bg.hero--loaded {
+    background-image: var(--hero-bg-mobile, var(--hero-bg-desktop));
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 40px 5vw 40px;
+  width: 100vw;
+}
+
+@media (max-width: 768px) {
+  .hero-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.78) 100%);
+  }
+}
+
+.hero-overlay .container {
+  z-index: var(--z-above);
+  position: relative;
+  padding: 0 clamp(15px, 5vw, 40px);
+}
+
+/* Optional: enable entrance animation only when explicitly requested */
+.hero--animate .hero-overlay .container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1,
+.hero p {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.44);
+}
+
+.hero h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-black);
+  margin-bottom: 1rem;
+  line-height: 1.18;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  margin-bottom: 2rem;
+  opacity: 0.97;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .hero-buttons {
+    flex-direction: row;
+    gap: 1.5rem;
+    width: auto;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .hero-bg img {
+    min-height: 300px;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    padding: 30px 15px 50px;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .hero p {
+    font-size: clamp(0.9rem, 4vw, 1.1rem) !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.5rem !important;
+    max-width: 95% !important;
+  }
+
+  .hero-buttons {
+    gap: 0.8rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .hero-buttons .btn {
+    padding: 12px 20px !important;
+    font-size: 0.95rem !important;
+    width: 100% !important;
+    max-width: 280px !important;
+  }
+}
+
+/* Hero gradient overlay enhancement */
+.hero { position:relative; overflow:hidden }
+.hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.15) 40%,rgba(0,0,0,0) 100%);
+  pointer-events:none
+}
+.hero .hero-overlay .container { position:relative }
+.hero h1, .hero p { color:#fff; text-shadow:0 2px 8px rgba(0 0 0 / 30%) }
+
