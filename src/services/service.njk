@@ -7,12 +7,12 @@ pagination:
   data: services
   size: 1
   alias: service
-permalink: "/services/{{ service.slug }}/"
 eleventyComputed:
   title: "{{ service.metaTitle }}"
   description: "{{ service.metaDescription }}"
   heroImage: "{{ service.hero.desktop }}"
   ogImage: "{{ site.url }}{{ service.hero.desktop }}"
+  permalink: "{% if service.slug == 'ventousage' %}/services/ventousage-legacy/{% else %}/services/{{ service.slug }}/{% endif %}"
 ---
 {% import "components/macros.njk" as macros %}
 
