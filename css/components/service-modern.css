@@ -349,6 +349,59 @@
   font-weight: 600;
 }
 
+/* Engagements */
+.engagements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.engagement-card {
+  background: var(--color-light);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.3s;
+  border: 1px solid var(--color-border);
+}
+
+.engagement-card:hover { transform: translateY(-4px); }
+
+.engagement-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.engagement-card h3 {
+  color: var(--color-text);
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* Services connexes */
+.services-connexes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.service-connexe {
+  background: var(--color-light);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  text-align: center;
+  border: 1px solid var(--color-border);
+}
+
+.service-connexe .service-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
 /* TYPOGRAPHIE GÉNÉRALE */
 h2.section-heading {
   font-size: 32px;
