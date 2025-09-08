@@ -114,16 +114,39 @@
 
 <a href="#main-content" class="skip-link">Passer au contenu principal</a>
 
-<!-- EN-TÊTE -->
+<!-- EN-TÊTE MODERNE -->
 <header class="header" role="banner">
+  <!-- Top Bar -->
+  <div class="top-bar" role="note" aria-label="Disponibilité et villes">
+    <div class="container">
+      <div class="left-info">
+        <span class="status">
+          <span class="green-dot"></span>
+          Disponible 24h/24 - 7j/7
+        </span>
+        <span class="cities">
+          Paris • Lyon • Marseille • Bordeaux • Toulouse • Nice
+        </span>
+      </div>
+      <div class="right-contact">
+        <a href="tel:+33646005642" class="phone" rel="nofollow">
+          06 46 00 56 42 (Béna)
+        </a>
+        <a href="https://wa.me/33646005642" class="whatsapp" target="_blank" rel="noopener">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Main nav -->
   <div class="container">
     <div class="nav">
       <a href="/" class="logo" aria-label="Retour à l'accueil de BMS Ventouse">
-        <img src="/android-chrome-192x192.png" alt="Logo BMS Ventouse" width="40" height="40">
-        <span class="logo-text"><span class="bms">BMS</span> <span class="ventouse">Ventouse</span></span>
+        <span class="logo-square">BMS</span>
+        <span class="logo-text">Ventouse</span>
       </a>
       <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navigation">
-        <span class="bar bar--top"></span><span class="bar bar--mid"></span><span class="bar bar--bot"></span>
+        <span></span><span></span><span></span>
       </button>
       <nav id="navigation" role="navigation" aria-label="Main navigation">
         <ul id="navLinks" class="nav-links">
@@ -131,16 +154,36 @@
           <li><a href="/services/" class="nav-link">Services</a></li>
           <li><a href="/realisations/" class="nav-link">Références</a></li>
           <li><a href="/contact/" class="nav-link">Contact</a></li>
+          <li class="nav-cta-desktop"><a href="/contact/" class="nav-link btn">Devis Gratuit</a></li>
         </ul>
       </nav>
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" title="Basculer le thème (clair/sombre)" aria-label="Basculer le thème">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm8-7a1 1 0 0 1 1 1h1a1 1 0 1 1 0 2h-1a1 1 0 1 1-2 0 1 1 0 0 1 1-1Zm-8 8a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1ZM4 11a1 1 0 0 1 1-1H4a1 1 0 1 0 0 2h1a1 1 0 0 1-1-1Zm12.95-5.536a1 1 0  0 1 1.414 0l.707.707a1 1 0 1 1-1.414 1.414l-.707-.707a1 1 0 0  1 0-1.414ZM6.222 17.778a1 1 0 0 1 1.414 0l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0  1 0-1.414Zm12.9 1.414a1 1 0 0  1-1.414 0l-.707-.707a1 1 0 1 1 1.414-1.414l.707.707a1 1 0 0 1 0 1.414ZM6.343 5.464a1 1 0 0 1 0 1.414l-.707.707A1 1 0 1 1 4.222 6.17l.707-.707a1 1 0  0 1 1.414 0Z"/></svg>
+      </button>
+      <div class="lang-switcher" aria-label="Language switcher" style="margin-left:1.5rem;">
+        <a href="/" class="nav-link" aria-current="true">FR</a>
+        <span aria-hidden="true" style="opacity:.5;margin:0 .25rem;">|</span>
+        <a href="/en/" class="nav-link" aria-current="false">EN</a>
+      </div>
     </div>
-  </div></div>
+  </div>
   <div class="promo-banner" id="promoBanner">
     <p><strong>Offre de bienvenue :</strong> -15% à tous les nouveaux clients&nbsp;!</p>
   </div>
 </header>
 
 <div class="nav-overlay" id="navOverlay"></div>
+
+<!-- NAVIGATION INTERNE STICKY -->
+<nav class="page-nav">
+  <div class="container">
+    <a href="#overview">Vue d'ensemble</a>
+    <a href="#cities">Nos villes</a>
+    <a href="#methode">Notre méthode</a>
+    <a href="#garanties">Garanties</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
 <main id="main-content" role="main">
 
@@ -153,7 +196,7 @@
     <div class="hero-overlay">
       <div class="container animated-item">
         <h1>Ventousage Paris, Lyon, Marseille | BMS Ventouse - Autorisations Tournage Express</h1>
-        <p>Autorisation tournage Paris, <strong>neutralisation stationnement Paris</strong>, signalisation tournage conforme, <strong>affichage riverains</strong> et <strong>coordination police municipale</strong> : notre service de ventousage Paris/Lyon/Marseille est piloté par un fondateur expert, avec une approche moderne et un suivi temps réel.</p>
+        <p>Autorisation tournage Paris, <strong>neutralisation stationnement Paris</strong>, signalisation tournage conforme, <strong>affichage riverains</strong> et <strong>coordination police municipale</strong>.</p>
         <div class="hero-buttons">
           <a href="/contact/" class="btn btn-primary">Devis personnalisé sous 2&nbsp;h</a>
           <a href="/ventousage-paris/" class="btn btn-secondary">Focus : Ventousage à Paris</a>
@@ -161,117 +204,149 @@
       </div></div>
   </section>
 
-  <!-- EXPERTISE RÉGLEMENTAIRE PAR VILLE -->
-  <section class="section" role="region" aria-labelledby="reglement-title">
+  <!-- Section 1: Vue d'ensemble -->
+  <section id="overview" class="section-white">
     <div class="container">
-      <h2 id="reglement-title" class="section-title animated-item">Expertise réglementaire par ville</h2>
-      <p class="animated-item">Le <strong>ventousage Paris</strong> requiert une maîtrise fine de la <strong>réglementation tournage</strong> locale : <strong>autorisation tournage Paris</strong> en 48–72 h pour les cas standard, <strong>affichage riverains</strong> au moins 48 h avant, suivi d’<strong>autorisations municipales</strong> par arrondissement et <strong>coordination police municipale</strong>. Certaines zones sensibles (1er, 4e, 7e, 8e, 16e) demandent des précautions supplémentaires et un balisage rigoureux. Notre méthode réduit l’aléa autour de la <strong>neutralisation stationnement Paris</strong> le jour J.</p>
-      <p class="animated-item">À Lyon, nos équipes gèrent le <strong>ventousage Lyon</strong> selon les procédures de la Métropole : <strong>autorisations municipales</strong> spécifiques, délais de 3–5 jours ouvrés, et contraintes de la zone UNESCO. Nous calibrons la <strong>signalisation tournage</strong> en centre‑ville pour garantir la lisibilité publique et la conformité des dispositifs.</p>
-      <p class="animated-item">À Marseille, le <strong>ventousage Marseille</strong> tient compte des spécificités du centre historique, de secteurs sensibles (Vieux‑Port, Canebière), et parfois d’une <strong>coordination police municipale</strong> complétée par la préfecture. Les délais varient selon les arrondissements : nous adaptons le plan d’implantation et l’<strong>affichage riverains</strong> pour sécuriser la disponibilité.</p>
-      <p class="animated-item">Au‑delà du triptyque Paris/Lyon/Marseille, nous gérons le ventousage dans d’autres grandes villes (Bordeaux, Toulouse, Nice, Lille) avec un même niveau d’exigence. L’essentiel : une <strong>réglementation tournage</strong> actualisée, un traitement précis des <strong>autorisations municipales</strong> et une <strong>signalisation tournage</strong> conforme, quel que soit le territoire.</p>
-      <ul class="benefits-list animated-item">
-        <li><strong>Ventousage Paris</strong> : <strong>autorisation tournage Paris</strong>, <strong>neutralisation stationnement Paris</strong>, <strong>affichage riverains</strong>, zones sensibles</li>
-        <li><strong>Ventousage Lyon</strong> : procédures Métropole, zones UNESCO, <strong>signalisation tournage</strong> renforcée</li>
-        <li><strong>Ventousage Marseille</strong> : secteurs historiques, préfecture selon cas, <strong>coordination police municipale</strong></li>
-        <li>Grandes villes (Bordeaux, Toulouse, Nice, Lille) : <strong>autorisations municipales</strong> et <strong>réglementation tournage</strong> locales</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- SOLUTIONS AUX PROBLÈMES FRÉQUENTS -->
-  <section class="section section-alt" role="region" aria-labelledby="solutions-title">
-    <div class="container">
-      <h2 id="solutions-title" class="section-title animated-item">Solutions aux problèmes fréquents</h2>
-      <p class="animated-item">Les difficultés les plus courantes en ventousage proviennent d’une sous‑estimation des délais d’<strong>autorisations municipales</strong>, d’une <strong>signalisation tournage</strong> non conforme, d’une coordination tardive ou d’une <strong>communication riverains</strong> insuffisante. Notre service corrige ces biais grâce à des repérages approfondis, une <strong>réglementation tournage</strong> à jour et un pilotage continu.</p>
-      <div class="services-grid">
-        <article class="service-card animated-item">
-          <h3>Repérages & anticipations</h3>
-          <ul>
-            <li>Repérages détaillés et alternatives en cas d’imprévu</li>
-            <li>Anticipation météo, solutions de repli</li>
-            <li>Calage des délais <strong>autorisation tournage Paris</strong> et autres villes</li>
-          </ul>
-        </article>
-        <article class="service-card animated-item">
-          <h3>Conformité & coordination</h3>
-          <ul>
-            <li><strong>Signalisation tournage</strong> conforme et vérifiée</li>
-            <li><strong>Affichage riverains</strong> documenté (photos, délais)</li>
-            <li><strong>Coordination police municipale</strong> et acteurs locaux</li>
-          </ul>
-        </article>
-        <article class="service-card animated-item">
-          <h3>Suivi & réactivité</h3>
-          <ul>
-            <li>Suivi administratif temps réel</li>
-            <li>Contrôles terrain et photos de conformité</li>
-            <li>Gestion d’urgences, plans B immédiats</li>
-          </ul>
-        </article>
+      <h2 class="section-heading">Notre expertise ventousage</h2>
+      <p class="lead">Gestion complète des autorisations de tournage et neutralisation des places, avec signalisation conforme et coordination locale. Délais optimisés, reporting clair, intervention 24/7.</p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-number">48h</div>
+          <div class="stat-label">Délai Paris</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Conformité</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Disponible</div>
+        </div>
       </div>
-      <p class="animated-item">Résultat : un <strong>ventousage Paris</strong> maîtrisé, un <strong>ventousage Lyon</strong> et un <strong>ventousage Marseille</strong> alignés sur leurs contextes spécifiques, et des tournages fluides malgré les aléas.</p>
     </div>
   </section>
 
-  <!-- PROCESSUS BMS OPTIMISÉ -->
-  <section class="section" role="region" aria-labelledby="process-title">
+  <!-- Section 2: Villes -->
+  <section id="cities" class="section-gray">
     <div class="container">
-      <h2 id="process-title" class="section-title animated-item">Processus BMS Ventouse optimisé</h2>
-      <p class="animated-item">Notre méthode industrialise les étapes clés du <strong>ventousage Paris</strong> et des autres villes afin de sécuriser la disponibilité des emplacements le jour J, sans surprises.</p>
-
-      <h3 class="animated-item">Analyse préalable des contraintes locales</h3>
-      <p class="animated-item">Étude du site, des zones sensibles, des circuits riverains et des spécificités de la <strong>réglementation tournage</strong> (dont <strong>autorisation tournage Paris</strong>). Nous évaluons les impacts sur la <strong>neutralisation stationnement Paris</strong> et les adaptations nécessaires pour Lyon et Marseille.</p>
-
-      <h3 class="animated-item">Dépôt accéléré des demandes d’autorisation</h3>
-      <p class="animated-item">Constitution de dossiers complets pour les <strong>autorisations municipales</strong>, avec un calage fin des délais (48–72 h à Paris, 3–5 jours ouvrés à Lyon, variables à Marseille). Suivi administratif temps réel et relances si besoin.</p>
-
-      <h3 class="animated-item">Pose de signalisation 48 h avant</h3>
-      <p class="animated-item"><strong>Signalisation tournage</strong> conforme posée dans les temps, <strong>affichage riverains</strong> respecté et documenté, vérifications de lisibilité et d’implantation.</p>
-
-      <h3 class="animated-item">Contrôle terrain & photos</h3>
-      <p class="animated-item">Tournées de contrôle, photos de conformité, ajustements immédiats, <strong>coordination police municipale</strong> si nécessaire.</p>
-
-      <h3 class="animated-item">Assistance jour J</h3>
-      <p class="animated-item">Présence sur zone, libération effective, gestion des imprévus. Notre équipe garde le cap sur votre priorité : tourner dans le créneau prévu.</p>
-
-      <ul class="benefits-list animated-item">
-        <li><strong>Ventousage Paris</strong> optimisé (dossiers, délais, <strong>signalisation tournage</strong>)</li>
-        <li>Prise en charge Lyon/Marseille (<strong>autorisations municipales</strong>, contraintes UNESCO/centre historique)</li>
-        <li>Photos, <strong>affichage riverains</strong>, <strong>coordination police municipale</strong></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- DIFFÉRENCIATEURS & GARANTIES -->
-  <section class="section section-alt" role="region" aria-labelledby="diff-title">
-    <div class="container">
-      <h2 id="diff-title" class="section-title animated-item">Différenciateurs & garanties</h2>
-      <ul class="benefits-list animated-item">
-        <li><strong>Expertise réglementaire actualisée 2025</strong> (veille active)</li>
-        <li><strong>Délais d’autorisation raccourcis</strong> via nos relations et dossiers complets</li>
-        <li><strong>Signalisation conforme garantie</strong> (ou remboursé si non‑conformité avérée de notre fait)</li>
-        <li><strong>Solutions de repli</strong> en cas d’imprévu (plan B)</li>
-        <li><strong>Suivi photo et reporting</strong> temps réel</li>
-        <li><strong>Coordination complète</strong> avec autorités locales</li>
-      </ul>
-      <div class="cta-container animated-item">
-        <a href="/contact/" class="btn btn-primary">Demander un devis sous 2&nbsp;h</a>
-        <a href="/ventousage-paris/" class="btn btn-secondary">Focus Ventousage Paris</a>
-      </div></div>
-  </section>
-
-  <!-- CTA FINAL -->
-  <section class="section cta-section">
-    <div class="container animated-item">
-      <h2 class="cta-title">Besoin d’un ventousage à Paris, Lyon ou Marseille ?</h2>
-      <p class="cta-subtitle">Expliquez‑nous votre projet : <strong>autorisation tournage Paris</strong>, <strong>neutralisation stationnement Paris</strong>, <strong>signalisation tournage</strong> et <strong>affichage riverains</strong>. Devis sous 2&nbsp;h.</p>
-      <div class="hero-buttons">
-        <a href="/contact/" class="btn btn-primary">Obtenir un devis</a>
-        <a href="/services/" class="btn btn-secondary">Tous nos services</a>
+      <h2 class="section-heading">Nos villes d'intervention</h2>
+      <div class="cities-grid">
+        <div class="city-card paris">
+          <div class="city-icon">🏛️</div>
+          <h3>Paris & Île-de-France</h3>
+          <div class="city-features">
+            <div class="feature"><span class="feature-label">Délais :</span><span class="feature-value">48–72h</span></div>
+            <div class="feature"><span class="feature-label">Zones :</span><span class="feature-value">1er, 4e, 7e, 8e, 16e</span></div>
+            <div class="feature"><span class="feature-label">Spécialité :</span><span class="feature-value">Fashion Week, Champs‑Élysées</span></div>
+          </div>
+          <a href="/contact/" class="city-cta">Devis Paris</a>
+        </div>
+        <div class="city-card lyon">
+          <div class="city-icon">🦁</div>
+          <h3>Lyon & Sud-Est</h3>
+          <div class="city-features">
+            <div class="feature"><span class="feature-label">Délais :</span><span class="feature-value">3–5 jours</span></div>
+            <div class="feature"><span class="feature-label">Zones :</span><span class="feature-value">UNESCO, Presqu'île</span></div>
+            <div class="feature"><span class="feature-label">Spécialité :</span><span class="feature-value">Tramways TCL</span></div>
+          </div>
+          <a href="/contact/" class="city-cta">Devis Lyon</a>
+        </div>
+        <div class="city-card marseille">
+          <div class="city-icon">⚓</div>
+          <h3>Marseille & PACA</h3>
+          <div class="city-features">
+            <div class="feature"><span class="feature-label">Zones :</span><span class="feature-value">Centre historique</span></div>
+            <div class="feature"><span class="feature-label">Coordination :</span><span class="feature-value">Préfecture</span></div>
+            <div class="feature"><span class="feature-label">Adaptation :</span><span class="feature-value">Météo mistral</span></div>
+          </div>
+          <a href="/contact/" class="city-cta">Devis Marseille</a>
+        </div>
       </div>
-      <p class="section-subtitle"><a href="/services/plateau-gardiennage/">Besoin d’agents sur site ? Voir sécurité plateau</a></p>
-      <p class="section-subtitle">Voir aussi notre <a href="/services/convoyage/">service de convoyage véhicules</a> (transport + parking/stockage sécurisés).</p>
-      <p class="section-subtitle"><a href="/services/regie-exterieure/">Besoin d’une coordination terrain ? Voir régie extérieure</a></p>
+    </div>
+  </section>
+
+  <!-- Section 3: Méthode -->
+  <section id="methode" class="section-white">
+    <div class="container">
+      <h2 class="section-heading">Notre méthode en 4 étapes</h2>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-icon">📋</div>
+          <h3>Analyse</h3>
+          <p>Étude contraintes locales et reconnaissance terrain</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-icon">📄</div>
+          <h3>Dépôt</h3>
+          <p>Dossiers complets et suivi administratif</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-icon">🚧</div>
+          <h3>Installation</h3>
+          <p>Signalisation conforme et équipes certifiées</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-icon">👁️</div>
+          <h3>Supervision</h3>
+          <p>Présence équipe et gestion incidents</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Garanties -->
+  <section id="garanties" class="section-gray">
+    <div class="container">
+      <h2 class="section-heading">Garanties</h2>
+      <div class="stats-row">
+        <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Signalisation conforme</div></div>
+        <div class="stat-item"><div class="stat-number">2 M€</div><div class="stat-label">RC pro audiovisuel</div></div>
+        <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Support opérationnel</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Contact -->
+  <section id="contact" class="section-white">
+    <div class="container">
+      <h2 class="section-heading">Parlez-nous de votre tournage</h2>
+      <p class="lead">Réponse sous 2 h. Devis immédiat par téléphone ou WhatsApp.</p>
+      <div class="hero-buttons" style="justify-content:center;">
+        <a href="/contact/" class="btn btn-primary">Demander un devis</a>
+        <a href="https://wa.me/33646005642" class="btn btn-secondary" target="_blank" rel="noopener">WhatsApp Direct</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenu détaillé conservé (repli) -->
+  <section class="section">
+    <div class="container">
+      <details>
+        <summary>Voir le contenu détaillé</summary>
+        <!-- Anciennes sections conservées pour SEO / lecture approfondie -->
+        <!-- EXPERTISE RÉGLEMENTAIRE PAR VILLE -->
+        <div role="region" aria-labelledby="reglement-title">
+          <h2 id="reglement-title" class="section-title">Expertise réglementaire par ville</h2>
+          <p>Le <strong>ventousage Paris</strong> requiert une maîtrise fine de la <strong>réglementation tournage</strong> locale : <strong>autorisation tournage Paris</strong> en 48–72 h pour les cas standard, <strong>affichage riverains</strong> au moins 48 h avant, suivi d’<strong>autorisations municipales</strong> par arrondissement et <strong>coordination police municipale</strong>. Certaines zones sensibles (1er, 4e, 7e, 8e, 16e) demandent des précautions supplémentaires et un balisage rigoureux. Notre méthode réduit l’aléa autour de la <strong>neutralisation stationnement Paris</strong> le jour J.</p>
+          <p>À Lyon, nos équipes gèrent le <strong>ventousage Lyon</strong> selon les procédures de la Métropole : <strong>autorisations municipales</strong> spécifiques, délais de 3–5 jours ouvrés, et contraintes de la zone UNESCO. Nous calibrons la <strong>signalisation tournage</strong> en centre‑ville pour garantir la lisibilité publique et la conformité des dispositifs.</p>
+          <p>À Marseille, le <strong>ventousage Marseille</strong> tient compte des spécificités du centre historique, de secteurs sensibles (Vieux‑Port, Canebière), et parfois d’une <strong>coordination police municipale</strong> complétée par la préfecture. Les délais varient selon les arrondissements : nous adaptons le plan d’implantation et l’<strong>affichage riverains</strong> pour sécuriser la disponibilité.</p>
+          <p>Au‑delà du triptyque Paris/Lyon/Marseille, nous gérons le ventousage dans d’autres grandes villes (Bordeaux, Toulouse, Nice, Lille) avec un même niveau d’exigence. L’essentiel : une <strong>réglementation tournage</strong> actualisée, un traitement précis des <strong>autorisations municipales</strong> et une <strong>signalisation tournage</strong> conforme, quel que soit le territoire.</p>
+        </div>
+        <!-- SOLUTIONS AUX PROBLÈMES FRÉQUENTS -->
+        <div role="region" aria-labelledby="solutions-title">
+          <h2 id="solutions-title" class="section-title">Solutions aux problèmes fréquents</h2>
+          <p>Les difficultés les plus courantes en ventousage proviennent d’une sous‑estimation des délais d’<strong>autorisations municipales</strong>, d’une <strong>signalisation tournage</strong> non conforme, d’une coordination tardive ou d’une <strong>communication riverains</strong> insuffisante. Notre service corrige ces biais grâce à des repérages approfondis, une <strong>réglementation tournage</strong> à jour et un pilotage continu.</p>
+        </div>
+        <!-- PROCESSUS BMS OPTIMISÉ -->
+        <div role="region" aria-labelledby="process-title">
+          <h2 id="process-title" class="section-title">Processus BMS Ventouse optimisé</h2>
+          <p>Notre méthode industrialise les étapes clés du <strong>ventousage Paris</strong> et des autres villes afin de sécuriser la disponibilité des emplacements le jour J, sans surprises.</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -284,51 +359,62 @@
   </svg>
 </a>
 
-<!-- PIED DE PAGE -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-main">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <img src="/android-chrome-192x192.png" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
-            <div class="footer-brand-text">
-              <span class="footer-bms">BMS</span><span class="footer-ventouse">Ventouse</span>
-            </div>
-          </div>
-          <p class="footer-description">Votre partenaire logistique et sécurité pour des productions sereines et efficaces, partout en France.</p>
+<!-- PIED DE PAGE MODERNE -->
+<footer class="main-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-square">BMS</div>
+          <span class="logo-text">Ventouse</span>
         </div>
-        <div class="footer-links">
-          <div class="footer-column">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="/">Accueil</a></li>
-              <li><a href="/services/">Services</a></li>
-              <li><a href="/realisations/">Références</a></li>
-              <li><a href="/contact/">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h4>Contact Direct</h4>
-            <ul>
-              <li><a href="tel:+33646005642"><i class="fas fa-phone-alt"></i> +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42 (Béna)</a></li>
-              <li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp Direct</a></li>
-              <li><a href="mailto:bms.ventouse@gmail.com"><i class="fas fa-envelope"></i> bms.ventouse@gmail.com</a></li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <h4>Légal</h4>
-            <ul>
-              <li><a href="/mentions/">Mentions Légales</a></li>
-            </ul>
-          </div>
+        <p>Expert en logistique audiovisuelle depuis plusieurs années. Solutions complètes pour vos tournages et événements.</p>
+        <div class="availability">
+          <span class="green-dot"></span>
+          Disponible 24h/24 - 7j/7
         </div>
-      </div></div></div>
-  <div class="footer-bottom">
-    <div class="container">
-      <div class="footer-bottom-content">
-        <p>&copy; 2025 BMS Ventouse. Tous droits réservés.</p>
-      </div></div></div>
+      </div>
+      <div class="footer-col">
+        <h3>Nos Services</h3>
+        <ul>
+          <li><a href="/services/#ventousage">Ventousage</a></li>
+          <li><a href="/services/#securite-plateau">Sécurité Plateau</a></li>
+          <li><a href="/services/#convoyage">Convoyage</a></li>
+          <li><a href="/services/#regie-technique">Régie Technique</a></li>
+          <li><a href="/services/#loges-mobiles">Loges Mobiles</a></li>
+          <li><a href="/services/#catering">Catering</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Zones d'Intervention</h3>
+        <ul class="cities-list">
+          <li>📍 Paris</li>
+          <li>📍 Lyon</li>
+          <li>📍 Marseille</li>
+          <li>📍 Bordeaux</li>
+          <li>📍 Toulouse</li>
+          <li>📍 Nice</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <div class="contact-info">
+          <a href="tel:+33646005642" class="contact-item">📞 06 46 00 56 42 (Béna)</a>
+          <a href="mailto:bms.ventouse@gmail.com" class="contact-item">✉ bms.ventouse@gmail.com</a>
+          <a href="https://wa.me/33646005642" class="contact-item">💬 WhatsApp Direct</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="left">
+        <p>© 2025 BMS Ventouse. Tous droits réservés.</p>
+      </div>
+      <div class="right">
+        <a href="/mentions/">Mentions légales</a>
+        <a href="/politique-confidentialite/">Gérer les cookies</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <!-- SCRIPTS -->

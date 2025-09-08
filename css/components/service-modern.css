@@ -1,0 +1,323 @@
+/* =========================================
+   Modern Service Pages (sticky nav, sections, grids)
+   ========================================= */
+
+/* NAVIGATION INTERNE */
+.page-nav {
+  background: var(--color-light);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: var(--promo-banner-height);
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+}
+
+.page-nav .container {
+  display: flex;
+  gap: 30px;
+  padding: 12px 0;
+  overflow-x: auto;
+}
+
+.page-nav a {
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  white-space: nowrap;
+  border: 2px solid transparent;
+}
+
+.page-nav a:hover {
+  background: var(--color-primary);
+  color: var(--color-light);
+  border-color: var(--color-primary);
+}
+
+/* SECTIONS */
+.section-white {
+  background: var(--color-light);
+  padding: 60px 0;
+}
+
+.section-gray {
+  background: var(--color-light-alt);
+  padding: 60px 0;
+}
+
+/* STATISTIQUES */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 20px;
+  background: var(--color-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border: 1px solid var(--color-border);
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+/* CARTES VILLES */
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.city-card {
+  background: var(--color-light);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+  border: 1px solid var(--color-border);
+}
+
+.city-card:hover {
+  transform: translateY(-4px);
+}
+
+.city-icon {
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.city-card h3 {
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: 18px;
+  font-size: 20px;
+}
+
+.city-features {
+  margin-bottom: 20px;
+}
+
+.feature {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.feature:last-child {
+  border-bottom: none;
+}
+
+.feature-label {
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.feature-value {
+  color: var(--color-text);
+}
+
+.city-cta {
+  display: block;
+  background: var(--color-primary);
+  color: var(--color-light);
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.25s;
+}
+
+.city-cta:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+/* PROCESSUS */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.process-step {
+  text-align: center;
+  position: relative;
+  padding: 24px 16px;
+  background: var(--color-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border: 1px solid var(--color-border);
+}
+
+.step-number {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: var(--color-light);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: 13px;
+}
+
+.step-icon {
+  font-size: 42px;
+  margin: 16px 0;
+}
+
+.process-step h3 {
+  color: var(--color-text);
+  margin-bottom: 10px;
+}
+
+.process-step p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* CARTES SERVICE (ACCUEIL) */
+.services-grid.modern {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.service-card.modern {
+  background: var(--color-light);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+  border: 1px solid var(--color-border);
+}
+
+.service-card.modern:hover {
+  transform: translateY(-4px);
+}
+
+.service-header {
+  padding: 20px 20px 0;
+  text-align: center;
+}
+
+.service-icon {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.service-header h3 {
+  color: var(--color-text);
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.service-content {
+  padding: 16px 20px;
+}
+
+.service-content p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.service-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-benefits li {
+  padding: 5px 0;
+  color: var(--color-text);
+  position: relative;
+  padding-left: 18px;
+}
+
+.service-benefits li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #28a745;
+  font-weight: bold;
+}
+
+.service-footer {
+  padding: 0 20px 20px;
+}
+
+.service-link {
+  display: block;
+  background: var(--color-primary);
+  color: var(--color-light);
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.25s;
+}
+
+.service-link:hover {
+  background: var(--color-primary-dark);
+}
+
+/* TYPOGRAPHIE GÉNÉRALE */
+h2.section-heading {
+  font-size: 32px;
+  margin-bottom: 16px;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.lead {
+  font-size: 18px;
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+}
+
+/* SUPPRESSION DES SURLIGNAGES ORANGE ALÉATOIRES */
+.highlight,
+.orange-text {
+  background: none !important;
+  color: inherit !important;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-nav .container { gap: 16px; }
+  .section-white, .section-gray { padding: 40px 0; }
+  .stats-row { gap: 16px; }
+  .process-grid { gap: 18px; grid-template-columns: 1fr; }
+  .cities-grid { grid-template-columns: 1fr; }
+}
