@@ -6,6 +6,7 @@ description: "Ventousage Paris, Lyon, Marseille : autorisation tournage, neutral
 activeNav: services
 ---
 
+{% import "components/macros.njk" as macros %}
 <!-- NAVIGATION INTERNE STICKY -->
 <nav class="page-nav" aria-label="Navigation de section">
   <div class="container">
@@ -147,31 +148,13 @@ activeNav: services
   <section id="faq" class="section-white">
     <div class="container">
       <h2>Questions Fréquentes - Ventousage</h2>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h3>Comment obtenir des autorisations de tournage à Paris rapidement ?</h3>
-          <p>BMS Ventouse gère l'ensemble des <strong>démarches administratives pour les autorisations de tournage à Paris</strong>. Nous nous occupons des demandes auprès de la Mairie de Paris et des autorités compétentes, pour un tournage conforme et sécurisé. Délais standard : 48-72h pour les zones classiques, 5-10 jours pour les zones sensibles (1er, 4e, 7e, 8e, 16e arrondissements).</p>
-        </div>
-        <div class="faq-item">
-          <h3>Quels sont les délais pour un ventousage à Lyon ?</h3>
-          <p>Pour un <strong>ventousage Lyon</strong>, nos délais sont de 3-5 jours ouvrés. Nous coordonnons avec la Métropole de Lyon et gérons les spécificités des zones UNESCO (Vieux Lyon, Presqu'île). Notre expertise locale nous permet d'anticiper les contraintes liées aux tramways TCL et aux événements lyonnais.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Comment se déroule un ventousage à Marseille ?</h3>
-          <p>Le <strong>ventousage Marseille</strong> nécessite une coordination avec la Préfecture et la prise en compte des spécificités météorologiques (mistral). Nous intervenons dans tout le centre historique et adaptons notre signalisation aux contraintes du Vieux-Port et de la Canebière.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Que comprend exactement le service de ventousage ?</h3>
-          <p>Notre <strong>service de ventousage professionnel</strong> inclut : neutralisation des places de stationnement, pose de signalisation réglementaire, affichage riverains documenté, coordination avec les forces de l'ordre, gestion administrative complète auprès des municipalités, et supervision terrain le jour J.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Intervenez-vous pour des tournages en province ?</h3>
-          <p>Oui, BMS Ventouse assure la <strong>logistique de tournage sur tout le territoire français</strong>. Nos équipes interviennent régulièrement à Bordeaux, Toulouse, Nice, Lille et dans toutes les grandes villes. Chaque ville a ses spécificités réglementaires que nous maîtrisons parfaitement.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Quels sont vos tarifs de ventousage ?</h3>
-          <p>Nos <strong>tarifs de ventousage</strong> varient selon la ville, la durée et la complexité. Paris : calcul au nombre de places/jour avec taxes variables par arrondissement. Lyon et Marseille : tarification adaptée aux spécificités locales. Devis gratuit sous 2h par téléphone ou WhatsApp.</p>
-        </div>
+      <div class="faq-container">
+        {{ macros.faqItem("Comment obtenir des autorisations de tournage à Paris rapidement ?", "BMS Ventouse gère l'ensemble des <strong>démarches administratives pour les autorisations de tournage à Paris</strong>. Nous nous occupons des demandes auprès de la Mairie de Paris et des autorités compétentes, pour un tournage conforme et sécurisé. Délais standard : 48-72h pour les zones classiques, 5-10 jours pour les zones sensibles (1er, 4e, 7e, 8e, 16e arrondissements).") }}
+        {{ macros.faqItem("Quels sont les délais pour un ventousage à Lyon ?", "Pour un <strong>ventousage Lyon</strong>, nos délais sont de 3-5 jours ouvrés. Nous coordonnons avec la Métropole de Lyon et gérons les spécificités des zones UNESCO (Vieux Lyon, Presqu'île). Notre expertise locale nous permet d'anticiper les contraintes liées aux tramways TCL et aux événements lyonnais.") }}
+        {{ macros.faqItem("Comment se déroule un ventousage à Marseille ?", "Le <strong>ventousage Marseille</strong> nécessite une coordination avec la Préfecture et la prise en compte des spécificités météorologiques (mistral). Nous intervenons dans tout le centre historique et adaptons notre signalisation aux contraintes du Vieux-Port et de la Canebière.") }}
+        {{ macros.faqItem("Que comprend exactement le service de ventousage ?", "Notre <strong>service de ventousage professionnel</strong> inclut : neutralisation des places de stationnement, pose de signalisation réglementaire, affichage riverains documenté, coordination avec les forces de l'ordre, gestion administrative complète auprès des municipalités, et supervision terrain le jour J.") }}
+        {{ macros.faqItem("Intervenez-vous pour des tournages en province ?", "Oui, BMS Ventouse assure la <strong>logistique de tournage sur tout le territoire français</strong>. Nos équipes interviennent régulièrement à Bordeaux, Toulouse, Nice, Lille et dans toutes les grandes villes. Chaque ville a ses spécificités réglementaires que nous maîtrisons parfaitement.") }}
+        {{ macros.faqItem("Quels sont vos tarifs de ventousage ?", "Nos <strong>tarifs de ventousage</strong> varient selon la ville, la durée et la complexité. Paris : calcul au nombre de places/jour avec taxes variables par arrondissement. Lyon et Marseille : tarification adaptée aux spécificités locales. Devis gratuit sous 2h par téléphone ou WhatsApp.") }}
       </div>
     </div>
   </section>
