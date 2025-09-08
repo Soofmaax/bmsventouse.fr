@@ -27,6 +27,24 @@
   z-index: var(--z-normal);
 }
 
+/* Sheen effect */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+.btn:hover::before,
+.btn:focus::before {
+  left: 120%;
+}
+
 /* Ripple effect */
 .btn::after {
   content: '';
@@ -115,6 +133,10 @@
 }
 
 .btn.loading::before {
+  display: none;
+}
+
+.btn.loading::after {
   content: '';
   position: absolute;
   top: 50%;

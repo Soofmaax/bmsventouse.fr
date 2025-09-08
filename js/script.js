@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('is-visible', 'animate-in');
           observer.unobserve(entry.target);
         }
       });
@@ -632,6 +632,44 @@ document.addEventListener('DOMContentLoaded', () => {
     imgs.forEach(img => io.observe(img));
   };
 
+  // --------------------------------------------------------------------------
+  // MODULE: COMPTEURS ANIMÉS (stat-number[data-count])
+  // --------------------------------------------------------------------------
+  const setupCounters = () => {
+    const numbers = document.querySelectorAll('.stat-number[data-count]');
+    if (numbers.length === 0) return;
+
+    const animate = (el) => {
+      const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 1200;
+      const step = Math.max(1, Math.ceil(target / (duration / 16)));
+      let current = 0;
+      const tick = () => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          el.textContent = `${current}${suffix}`;
+        } else {
+          el.textContent = `${current}${suffix}`;
+          requestAnimationFrame(tick);
+        }
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+
+    numbers.forEach(n => io.observe(n));
+  };
+
   try {
     setupHamburgerMenu();
     setupScrollAnimations();
@@ -642,6 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupAnalytics();
     setupGAEvents();
     setupLazyLoad();
+    setupCounters();
     
   } catch (error) {
     if (DEBUG) {
