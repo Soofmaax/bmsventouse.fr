@@ -4,19 +4,43 @@ lang: fr
 title: "Ventousage Paris, Lyon, Marseille | BMS Ventouse - Autorisations Tournage Express"
 description: "Ventousage Paris, Lyon, Marseille : autorisation tournage, neutralisation stationnement, signalisation conforme, affichage riverains, coordination police municipale. Devis sous 2 h."
 activeNav: services
+bodyClass: page-ventousage
+heroImage: "/images/service-ventousage-custom.jpg"
 ---
 
 {% import "components/macros.njk" as macros %}
-<!-- NAVIGATION INTERNE STICKY -->
-<nav class="page-nav" aria-label="Navigation de section">
-  <div class="container">
-    <a href="#overview">Vue d'ensemble</a>
-    <a href="#cities">Nos villes</a>
-    <a href="#methode">Notre méthode</a>
-    <a href="#garanties">Garanties</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contenu-detaille">Détails techniques</a>
-    <a href="#contact">Contact</a>
+<!-- NAVIGATION INTELLIGENTE (Sticky + progress) -->
+<nav class="page-navigation" role="navigation" aria-label="Navigation de section">
+  <div class="nav-container container">
+    <div class="nav-progress" aria-hidden="true">
+      <div class="nav-progress-bar" id="navProgressBar"></div>
+    </div>
+    <div class="nav-links" role="tablist">
+      <a href="#overview" class="nav-link active" data-section="overview" role="tab" aria-selected="true">
+        <span class="nav-icon">👁️</span>
+        <span class="nav-text">Vue d'ensemble</span>
+      </a>
+      <a href="#cities" class="nav-link" data-section="cities" role="tab" aria-selected="false">
+        <span class="nav-icon">🏛️</span>
+        <span class="nav-text">Nos villes</span>
+      </a>
+      <a href="#methode" class="nav-link" data-section="methode" role="tab" aria-selected="false">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-text">Notre méthode</span>
+      </a>
+      <a href="#garanties" class="nav-link" data-section="garanties" role="tab" aria-selected="false">
+        <span class="nav-icon">🛡️</span>
+        <span class="nav-text">Garanties</span>
+      </a>
+      <a href="#faq" class="nav-link" data-section="faq" role="tab" aria-selected="false">
+        <span class="nav-icon">❓</span>
+        <span class="nav-text">FAQ</span>
+      </a>
+      <a href="#contact" class="nav-link" data-section="contact" role="tab" aria-selected="false">
+        <span class="nav-icon">📞</span>
+        <span class="nav-text">Contact</span>
+      </a>
+    </div>
   </div>
 </nav>
 
@@ -255,4 +279,99 @@ activeNav: services
       </div>
     </div>
   </section>
+
+  <!-- Scripts spécifiques page Ventousage (animations + navigation + analytics) -->
+  <script>
+  (function(){
+    // Animations avancées au scroll (stagger)
+    const targets = document.querySelectorAll('.card, .service-card, .city-card, .faq-item, .engagement-card, .service-connexe');
+    const animationObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('in-view');
+          }, index * 100);
+          animationObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    targets.forEach(el => {
+      el.classList.add('animate-on-scroll');
+      animationObserver.observe(el);
+    });
+
+    // Parallax léger pour le hero
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+      if (hero && scrolled < hero.offsetHeight) {
+        hero.style.transform = 'translateY(' + (scrolled * 0.5) + 'px)';
+      }
+    }, { passive: true });
+
+    // Navigation intelligente (scrollspy + barre de progression)
+    class SmartNavigation {
+      constructor() {
+        this.sections = Array.from(document.querySelectorAll('section[id]'));
+        this.navLinks = document.querySelectorAll('.nav-link');
+        this.progressBar = document.getElementById('navProgressBar');
+        this.init();
+      }
+      init() { this.setupScrollSpy(); this.setupSmoothScroll(); this.setupProgressBar(); }
+      setupScrollSpy() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              this.updateActiveLink(entry.target.id);
+            }
+          });
+        }, { threshold: 0.3, rootMargin: '-20% 0px -70% 0px' });
+        this.sections.forEach(section => observer.observe(section));
+      }
+      setupSmoothScroll() {
+        this.navLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+      }
+      setupProgressBar() {
+        const onScroll = () => {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const docHeight = document.body.scrollHeight - window.innerHeight;
+          const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          if (this.progressBar) this.progressBar.style.width = Math.min(scrollPercent, 100) + '%';
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+      updateActiveLink(activeId) {
+        this.navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + activeId);
+        });
+      }
+    }
+    new SmartNavigation();
+
+    // GA4: enrichissement page spécifique (si gtag chargé)
+    function gtagSafe(){ if (typeof window.gtag === 'function') return window.gtag; return null; }
+    document.addEventListener('DOMContentLoaded', () => {
+      const g = gtagSafe();
+      if (g) {
+        g('config', 'G-0PKKCL3346', {
+          page_title: 'Ventousage Paris Lyon Marseille - BMS Ventouse',
+          page_location: window.location.href,
+          content_group1: 'Services',
+          content_group2: 'Ventousage'
+        });
+      }
+    });
+  })();
+  </script>
 

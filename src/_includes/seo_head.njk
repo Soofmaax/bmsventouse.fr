@@ -98,6 +98,71 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=optional" rel="stylesheet">
 
+{# JSON-LD spécifiques à la page Ventousage #}
+{% if page.url == '/services/ventousage/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://bmsventouse.fr/#business",
+      "name": "BMS Ventouse",
+      "description": "Expert ventousage et autorisations tournage Paris, Lyon, Marseille. Signalisation conforme, délais optimisés, intervention 24/7.",
+      "url": "https://bmsventouse.fr",
+      "telephone": "+33646005642",
+      "email": "bms.ventouse@gmail.com",
+      "address": { "@type": "PostalAddress", "addressCountry": "FR" },
+      "areaServed": [
+        { "@type": "City", "name": "Paris" },
+        { "@type": "City", "name": "Lyon" },
+        { "@type": "City", "name": "Marseille" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services de ventousage",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ventousage Paris", "description": "Autorisations tournage Paris, neutralisation stationnement, signalisation conforme" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ventousage Lyon", "description": "Autorisations tournage Lyon, zones UNESCO, coordination TCL" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ventousage Marseille", "description": "Autorisations tournage Marseille, adaptation mistral, centre historique" } }
+        ]
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://bmsventouse.fr/services/ventousage/#webpage",
+      "url": "https://bmsventouse.fr/services/ventousage/",
+      "name": "Ventousage Paris, Lyon, Marseille | BMS Ventouse",
+      "description": "Expert ventousage autorisations tournage. Délais 48h Paris, 3-5j Lyon/Marseille. Signalisation conforme garantie. Devis gratuit sous 2h.",
+      "inLanguage": "fr-FR",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://bmsventouse.fr" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://bmsventouse.fr/services" },
+          { "@type": "ListItem", "position": 3, "name": "Ventousage", "item": "https://bmsventouse.fr/services/ventousage" }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://bmsventouse.fr/services/ventousage/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Comment obtenir des autorisations de tournage à Paris rapidement ?", "acceptedAnswer": { "@type": "Answer", "text": "BMS Ventouse gère l'ensemble des démarches administratives pour les autorisations de tournage à Paris. Délais standard : 48-72h pour les zones classiques, 5-10 jours pour les zones sensibles." } },
+        { "@type": "Question", "name": "Quels sont les délais pour un ventousage à Lyon ?", "acceptedAnswer": { "@type": "Answer", "text": "Pour un ventousage Lyon, nos délais sont de 3-5 jours ouvrés. Nous coordonnons avec la Métropole de Lyon et gérons les spécificités des zones UNESCO." } }
+      ]
+    }
+  ]
+}
+</script>
+{% endif %}
+
 {# JSON-LD Schema.org (WebSite, Organization, BreadcrumbList) #}
 <script type="application/ld+json">
 {
