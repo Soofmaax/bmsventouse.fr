@@ -427,6 +427,33 @@ h2.section-heading {
   font-weight: 600;
 }
 
+/* Animations (scroll reveal) */
+.animated-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.animated-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Premium hover effects */
+.service-card.modern:hover,
+.service-connexe:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Lazy loading blur */
+.lazy-load {
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+}
+.loaded {
+  filter: blur(0);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .page-nav .container { gap: 16px; }
