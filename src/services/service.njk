@@ -12,7 +12,7 @@ eleventyComputed:
   description: "{{ service.metaDescription }}"
   heroImage: "{{ service.hero.desktop }}"
   ogImage: "{{ site.url }}{{ service.hero.desktop }}"
-  permalink: "{% if service.slug == 'ventousage' %}/services/ventousage-legacy/{% else %}/services/{{ service.slug }}/{% endif %}"
+  permalink: "{% if service.slug == 'ventousage' %}/services/ventousage-legacy/{% elif service.slug == 'plateau-gardiennage' %}/services/plateau-gardiennage-legacy/{% else %}/services/{{ service.slug }}/{% endif %}"
 ---
 {% import "components/macros.njk" as macros %}
 
