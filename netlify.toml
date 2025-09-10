@@ -6,6 +6,10 @@
   publish = "_site"
   command = "npm run build"
 
+  # Force l'image Netlify à utiliser une version Node supportée
+  [build.environment]
+    NODE_VERSION = "18"
+
 [[headers]]
   for = "/*"
   [headers.values]

@@ -335,6 +335,110 @@
         </div>
     </section>
 
+    <!-- Formulaire intelligent -->
+    <section id="contact-form-section" class="section">
+      <div class="container">
+        <h2 class="section-title">Formulaire de contact</h2>
+        <p class="section-subtitle">Devis personnalisé sous 2&nbsp;heures.</p>
+
+        <form id="contact-form" class="smart-form" novalidate>
+          <div class="form-group">
+            <input type="text" id="nom" name="nom" required aria-required="true" autocomplete="name" placeholder=" ">
+            <label for="nom">Nom *</label>
+            <span class="form-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="email" name="email" required aria-required="true" autocomplete="email" placeholder=" ">
+            <label for="email">Email *</label>
+            <span class="form-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="ville" name="ville" list="villes" required aria-required="true" placeholder=" ">
+            <label for="ville">Ville de tournage *</label>
+            <datalist id="villes">
+              <option value="Paris">
+              <option value="Lyon">
+              <option value="Marseille">
+              <option value="Bordeaux">
+              <option value="Toulouse">
+            </datalist>
+            <span class="form-error" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-submit">
+            <span class="btn-text">Envoyer</span>
+            <span class="btn-loading">Envoi...</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      (function(){
+        const form = document.getElementById('contact-form');
+        if (!form) return;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        const showError = (field, message) => {
+          field.classList.add('error');
+          field.classList.remove('success');
+          const err = field.parentNode.querySelector('.form-error');
+          if (err) err.textContent = message || '';
+        };
+
+        const showSuccess = (field) => {
+          field.classList.remove('error');
+          field.classList.add('success');
+          const err = field.parentNode.querySelector('.form-error');
+          if (err) err.textContent = '';
+        };
+
+        const validateField = (field) => {
+          const value = (field.value || '').trim();
+          if (field.hasAttribute('required') && !value) {
+            showError(field, 'Ce champ est requis');
+            return false;
+          }
+          if (field.type === 'email' && value && !emailRegex.test(value)) {
+            showError(field, 'Email invalide');
+            return false;
+          }
+          showSuccess(field);
+          return true;
+        };
+
+        form.querySelectorAll('input').forEach(input => {
+          input.addEventListener('blur', () => validateField(input));
+          input.addEventListener('input', () => {
+            input.classList.remove('error');
+            const err = input.parentNode.querySelector('.form-error');
+            if (err) err.textContent = '';
+          });
+        });
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          let ok = true;
+          form.querySelectorAll('input').forEach(input => { if (!validateField(input)) ok = false; });
+          if (!ok) return;
+
+          const btn = form.querySelector('.btn-submit');
+          btn.classList.add('loading');
+
+          // Simulation d'envoi
+          await new Promise(r => setTimeout(r, 1500));
+
+          btn.classList.remove('loading');
+          alert('Message envoyé !');
+          form.reset();
+          form.querySelectorAll('input').forEach(i => i.classList.remove('success'));
+        });
+      })();
+    </script>
+
 </main>
 
 <!-- Bouton Flottant WhatsApp -->

@@ -7,7 +7,7 @@
   width: 100%;
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 clamp(15px, 3vw, 20px);
+  padding: 0 clamp(15px, 4vw, 24px);
 }
 
 /* Sections */
@@ -27,7 +27,7 @@
 .section-subtitle {
   font-size: 1.1rem;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   color: var(--color-text-muted);
   max-width: 700px;
   margin-left: auto;
@@ -36,20 +36,20 @@
 
 /* Bands (section backgrounds) */
 .band {
-  background: #f9fafb;
+  background: var(--color-light-alt);
   padding: 2.25rem 0;
   border-radius: var(--radius-16);
   box-shadow: var(--elev-1);
   overflow: hidden;
-  margin-inline: clamp(8px, 2vw, 24px);
+  margin-inline: clamp(8px, 3vw, 24px);
   border: 1px solid var(--color-border);
 }
 .band--alt {
-  background: #f6f7f9;
+  background: var(--color-light);
   border-radius: var(--radius-16);
   box-shadow: var(--elev-1);
   overflow: hidden;
-  margin-inline: clamp(8px, 2vw, 24px);
+  margin-inline: clamp(8px, 3vw, 24px);
   border: 1px solid var(--color-border);
 }
 
@@ -61,5 +61,12 @@
 .band + .band--alt,
 .band--alt + .band,
 .band--alt + .section {
-  margin-top: clamp(0.75rem, 1.5vw, 1.25rem);
+  margin-top: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+/* Mobile-first adjustments */
+@media (max-width: 640px) {
+  .section { padding: clamp(40px, 10vh, 60px) 0; }
+  .section-subtitle { margin-bottom: 2rem; }
+  .container { padding: 0 clamp(16px, 5vw, 24px); }
 }

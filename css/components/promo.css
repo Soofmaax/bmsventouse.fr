@@ -10,7 +10,7 @@
   right: 0;
   z-index: var(--z-promo);
   height: var(--promo-banner-height);
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-primary);
   color: var(--color-light);
   display: flex;
   align-items: center;
@@ -27,6 +27,7 @@
   margin-left: 0.5rem;
 }
 
-.promo-banner a:hover {
+.promo-banner a:hover,
+.promo-banner a:focus {
   color: rgba(255, 255, 255, 0.9);
 }

@@ -153,13 +153,31 @@ document.addEventListener('DOMContentLoaded', () => {
      - IntersectionObserver avec threshold léger pour déclencher l'animation d'apparition.
      - Désinscription après première visibilité pour limiter le coût. */
   const setupScrollAnimations = () => {
+    // Auto-mark elements for reveal if not already marked
+    const selectors = [
+      '.stat-item',
+      '.city-card',
+      '.process-step',
+      '.faq-item',
+      '.content-block',
+      '.engagement-card',
+      '.service-connexe',
+      '.service-card',
+      '.reference-card',
+      '.contact-card',
+      '.zone-card'
+    ];
+    selectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => el.classList.add('animated-item'));
+    });
+
     const animatedItems = document.querySelectorAll('.animated-item');
     if (animatedItems.length === 0) return;
 
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('is-visible', 'animate-in');
           observer.unobserve(entry.target);
         }
       });
@@ -489,6 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return 'generic';
     };
 
+    // CTA clicks
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a, button');
       if (!a) return;
@@ -503,7 +522,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const isTel = (href || '').startsWith('tel:');
       const isMail = (href || '').startsWith('mailto:');
 
-      if (!isButton && !inHeroButtons && !inCTASection && !isWA && !isTel && !isMail) {
+      // Extra: specific 'devis' event for links containing devis/contact
+      const isDevis = /devis|contact/i.test((href || '') + (a.textContent || ''));
+
+      if (!isButton && !inHeroButtons && !inCTASection && !isWA && !isTel && !isMail && !isDevis) {
         return; // not a CTA
       }
 
@@ -514,15 +536,61 @@ document.addEventListener('DOMContentLoaded', () => {
       const cta_url = href || (a.tagName === 'BUTTON' ? '' : '');
 
       try {
+        // Generic CTA event
         window.gtag('event', 'cta_click', {
           cta_label,
           cta_location,
           cta_url
         });
+
+        // Specific conversion marker for devis/contact
+        if (isDevis) {
+          window.gtag('event', 'devis_click', {
+            event_category: 'conversion',
+            event_label: cta_label
+          });
+        }
       } catch (_) {
         // swallow to avoid breaking UX
       }
     }, { capture: true });
+
+    // Scroll depth (25%, 50%, 75%, 100%)
+    let maxScrollSent = 0;
+    const sendScrollDepth = (val) => {
+      if (!isGAReady()) return;
+      try {
+        window.gtag('event', 'scroll_depth', {
+          event_category: 'engagement',
+          value: val
+        });
+      } catch (_) {}
+    };
+    const onScroll = () => {
+      const h = document.documentElement;
+      const scrolled = Math.round((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100);
+      const checkpoints = [25, 50, 75, 100];
+      for (const cp of checkpoints) {
+        if (scrolled >= cp && cp > maxScrollSent) {
+          maxScrollSent = cp;
+          sendScrollDepth(cp);
+        }
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Time on page
+    const startTime = Date.now();
+    window.addEventListener('beforeunload', () => {
+      if (!isGAReady()) return;
+      try {
+        const timeSpent = Math.round((Date.now() - startTime) / 1000);
+        window.gtag('event', 'time_on_page', {
+          event_category: 'engagement',
+          value: timeSpent
+        });
+      } catch (_) {}
+    });
   };
 
   // ==========================================================================
@@ -531,6 +599,77 @@ document.addEventListener('DOMContentLoaded', () => {
   /* EXPLICATION (2025): Initialisation résiliente
      - Chaque module est autonome; une erreur dans l’un ne bloque pas les autres.
      - En production, on n’expose pas les erreurs (DEBUG=false). */
+  // --------------------------------------------------------------------------
+  // MODULE: LAZY LOAD IMAGES (Intersection Observer)
+  // --------------------------------------------------------------------------
+  const setupLazyLoad = () => {
+    const imgs = document.querySelectorAll('img.lazy-load');
+    if (imgs.length === 0) return;
+
+    const loadImg = (img) => {
+      const src = img.getAttribute('data-src');
+      if (src) {
+        img.src = src;
+      }
+      img.classList.remove('lazy-load');
+      img.classList.add('loaded');
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      imgs.forEach(loadImg);
+      return;
+    }
+
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadImg(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px 200px 0px', threshold: 0.01 });
+
+    imgs.forEach(img => io.observe(img));
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: COMPTEURS ANIMÉS (stat-number[data-count])
+  // --------------------------------------------------------------------------
+  const setupCounters = () => {
+    const numbers = document.querySelectorAll('.stat-number[data-count]');
+    if (numbers.length === 0) return;
+
+    const animate = (el) => {
+      const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 1200;
+      const step = Math.max(1, Math.ceil(target / (duration / 16)));
+      let current = 0;
+      const tick = () => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          el.textContent = `${current}${suffix}`;
+        } else {
+          el.textContent = `${current}${suffix}`;
+          requestAnimationFrame(tick);
+        }
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+
+    numbers.forEach(n => io.observe(n));
+  };
+
   try {
     setupHamburgerMenu();
     setupScrollAnimations();
@@ -540,6 +679,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupThemeToggle();
     setupAnalytics();
     setupGAEvents();
+    setupLazyLoad();
+    setupCounters();
     
   } catch (error) {
     if (DEBUG) {

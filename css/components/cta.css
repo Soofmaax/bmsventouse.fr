@@ -2,19 +2,19 @@
    CTA Components (CTA section, Urgency Banner)
    ========================================= */
 
-/* CTA section (dark gradient background with light buttons) */
+/* CTA section with neutral gradient background to match theme */
 .cta-section {
-  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-lighten) 100%);
-  color: var(--color-light);
+  background: linear-gradient(135deg, var(--color-light-alt) 0%, var(--color-light) 100%);
+  color: var(--color-text);
   text-align: center;
 }
 
+/* Buttons inside CTA: primary uses brand orange; secondary outline adapts */
 .cta-section .btn.btn-primary,
-.cta-section .btn.btn-secondary,
 .cta-section .btn.btn-urgent {
-  background-color: #fff;
-  color: var(--color-primary);
-  border-color: transparent;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  border-color: var(--color-primary);
   padding: 0.8rem 1.6rem;
   font-weight: var(--font-weight-medium);
   border-radius: var(--border-radius-base);
@@ -23,10 +23,29 @@
 }
 
 .cta-section .btn.btn-primary:hover,
+.cta-section .btn.btn-urgent:hover,
+.cta-section .btn.btn-primary:focus,
+.cta-section .btn.btn-urgent:focus {
+  background-color: var(--color-primary-dark);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.cta-section .btn.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  padding: 0.8rem 1.6rem;
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-base);
+  margin: 0.5rem;
+  transition: var(--transition-base);
+}
+
 .cta-section .btn.btn-secondary:hover,
-.cta-section .btn.btn-urgent:hover {
-  background-color: var(--color-light-alt);
-  color: var(--color-primary-dark);
+.cta-section .btn.btn-secondary:focus {
+  background-color: var(--color-text);
+  color: var(--color-light);
   transform: translateY(-3px);
 }
 

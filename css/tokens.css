@@ -4,16 +4,25 @@
 
 /* Global variables */
 :root {
-  /* Couleurs principales */
-  --color-primary: #FF8C42; /* Orange de référence (même que la barre de recherche) */
-  --color-primary-dark: #c24a00;
-  --color-primary-light: #ffaa70;
+  /* Palette accessible - Mode clair */
+  --orange-primary: #E97316;
+  --orange-hover: #EA580C;
+  --text-primary: #111827;        /* 7:1 on white */
+  --text-secondary: #374151;      /* 4.5:1 on white */
+  --bg-primary: #FFFFFF;
+  --bg-section: #F9FAFB;
+
+  /* Bridge vers anciennes variables (compatibilité) */
+  --color-primary: var(--orange-primary);
+  --color-primary-dark: var(--orange-hover);
+  --color-primary-light: #ffaa70; /* conservé si utilisé quelque part */
   --color-dark: #2c3e50;
   --color-dark-lighten: #34495e;
-  --color-light: #ffffff;
-  --color-light-alt: #f8f9fa;
-  --color-text: #333;
-  --color-text-muted: #666;
+
+  --color-light: var(--bg-primary);
+  --color-light-alt: var(--bg-section);
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-secondary);
   --color-border: #e0e0e0;
   --color-success: #28a745;
   --color-error: #dc3545;
@@ -76,42 +85,52 @@
   --color-footer-border: #27272a;
 }
 
-/* Dark theme via class or :has() */
+/* Dark mode - support data-theme=\"dark\", body/html.dark-theme et prefers-color-scheme */
+[data-theme="dark"],
 body.dark-theme,
+html.dark-theme,
 :root:has(body.dark-theme) {
-  --color-light: #1a202c;
-  --color-light-alt: #2d3748;
-  --color-text: #e2e8f0;
-  --color-text-muted: #b0c0d0;
-  --color-border: #4a5568;
-  --color-dark: #ffffff;
+  /* Palette accessible - Mode sombre */
+  --orange-primary: #FB923C;
+  --orange-hover: #FDBA74;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --bg-primary: #0F172A;
+  --bg-section: #1E293B;
+
+  /* Bridge */
+  --color-primary: var(--orange-primary);
+  --color-primary-dark: var(--orange-hover);
+  --color-light: var(--bg-primary);
+  --color-light-alt: var(--bg-section);
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-secondary);
+  --color-border: #334155;
+
   --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
   --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
+  color-scheme: dark;
 }
 
 /* System dark preference fallback */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-light: #1a202c;
-    --color-light-alt: #2d3748;
-    --color-text: #e2e8f0;
-    --color-text-muted: #b0c0d0;
-    --color-border: #4a5568;
-    --color-dark: #ffffff;
+  :root:not([data-theme="light"]) {
+    --orange-primary: #FB923C;
+    --orange-hover: #FDBA74;
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --bg-primary: #0F172A;
+    --bg-section: #1E293B;
+
+    --color-primary: var(--orange-primary);
+    --color-primary-dark: var(--orange-hover);
+    --color-light: var(--bg-primary);
+    --color-light-alt: var(--bg-section);
+    --color-text: var(--text-primary);
+    --color-text-muted: var(--text-secondary);
+    --color-border: #334155;
+
     --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
     --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
   }
-}
-
-/* Support for html.dark-theme (anti-flash) */
-html.dark-theme, body.dark-theme {
-  --color-light: #1a202c;
-  --color-light-alt: #2d3748;
-  --color-text: #e2e8f0;
-  --color-text-muted: #b0c0d0;
-  --color-border: #4a5568;
-  --color-dark: #ffffff;
-  --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
-  --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
-  color-scheme: dark;
 }

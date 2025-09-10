@@ -27,6 +27,24 @@
   z-index: var(--z-normal);
 }
 
+/* Sheen effect */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+.btn:hover::before,
+.btn:focus::before {
+  left: 120%;
+}
+
 /* Ripple effect */
 .btn::after {
   content: '';
@@ -85,6 +103,20 @@
   color: #fff;
 }
 
+/* Outline/secondary uses contrast-aware colors */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  box-shadow: none;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--color-text);
+  color: var(--color-light);
+}
+
 /* Icon sizing for primary/whatsapp buttons */
 .btn-primary i,
 .btn-whatsapp i {
@@ -101,6 +133,10 @@
 }
 
 .btn.loading::before {
+  display: none;
+}
+
+.btn.loading::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -117,17 +153,4 @@
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-/* Secondary button */
-.btn-secondary {
-  background-color: transparent;
-  color: var(--color-light);
-  border: 2px solid var(--color-light);
-  box-shadow: none;
-}
-
-.btn-secondary:hover {
-  background-color: var(--color-light);
-  color: var(--color-dark);
 }

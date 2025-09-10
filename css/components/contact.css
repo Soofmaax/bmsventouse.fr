@@ -36,3 +36,67 @@
   transform: translateY(-3px);
   box-shadow: var(--box-shadow-hover);
 }
+
+/* =========================================
+   Smart Contact Form
+   ========================================= */
+.smart-form .form-group {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.smart-form input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-light);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.smart-form input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(233, 115, 22, 0.15);
+}
+
+.smart-form input.error {
+  border-color: #dc3545;
+  animation: smart-shake 0.5s;
+}
+
+.smart-form input.success {
+  border-color: #28a745;
+}
+
+@keyframes smart-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.smart-form .form-error {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+  display: block;
+}
+
+.btn-submit {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-loading {
+  display: none;
+}
+
+.btn-submit.loading .btn-text {
+  display: none;
+}
+
+.btn-submit.loading .btn-loading {
+  display: inline;
+}

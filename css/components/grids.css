@@ -37,3 +37,15 @@
   gap: var(--grid-gap);
 }
 
+/* Mobile adjustments for tighter screens */
+@media (max-width: 640px) {
+  .services-grid,
+  .services-grid-visual,
+  .references-grid,
+  .zones-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: calc(var(--grid-gap) + 0.5rem);
+  }
+}
+

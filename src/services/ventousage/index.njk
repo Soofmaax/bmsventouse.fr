@@ -1,0 +1,377 @@
+---
+layout: layouts/base.njk
+lang: fr
+title: "Ventousage Paris, Lyon, Marseille | BMS Ventouse - Autorisations Tournage Express"
+description: "Ventousage Paris, Lyon, Marseille : autorisation tournage, neutralisation stationnement, signalisation conforme, affichage riverains, coordination police municipale. Devis sous 2 h."
+activeNav: services
+bodyClass: page-ventousage
+heroImage: "/images/service-ventousage-custom.jpg"
+---
+
+{% import "components/macros.njk" as macros %}
+<!-- NAVIGATION INTELLIGENTE (Sticky + progress) -->
+<nav class="page-navigation" role="navigation" aria-label="Navigation de section">
+  <div class="nav-container container">
+    <div class="nav-progress" aria-hidden="true">
+      <div class="nav-progress-bar" id="navProgressBar"></div>
+    </div>
+    <div class="nav-links" role="tablist">
+      <a href="#overview" class="nav-link active" data-section="overview" role="tab" aria-selected="true">
+        <span class="nav-icon">👁️</span>
+        <span class="nav-text">Vue d'ensemble</span>
+      </a>
+      <a href="#cities" class="nav-link" data-section="cities" role="tab" aria-selected="false">
+        <span class="nav-icon">🏛️</span>
+        <span class="nav-text">Nos villes</span>
+      </a>
+      <a href="#methode" class="nav-link" data-section="methode" role="tab" aria-selected="false">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-text">Notre méthode</span>
+      </a>
+      <a href="#garanties" class="nav-link" data-section="garanties" role="tab" aria-selected="false">
+        <span class="nav-icon">🛡️</span>
+        <span class="nav-text">Garanties</span>
+      </a>
+      <a href="#faq" class="nav-link" data-section="faq" role="tab" aria-selected="false">
+        <span class="nav-icon">❓</span>
+        <span class="nav-text">FAQ</span>
+      </a>
+      <a href="#contact" class="nav-link" data-section="contact" role="tab" aria-selected="false">
+        <span class="nav-icon">📞</span>
+        <span class="nav-text">Contact</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HÉROS -->
+<section class="hero">
+  <picture class="hero-bg">
+    <source media="(max-width: 767px)" srcset="/images/service-ventousage-custom.jpg" type="image/jpeg">
+    <img src="/images/service-ventousage-custom.jpg" alt="Neutralisation de stationnement à Paris pour tournage avec signalisation conforme" loading="eager" width="1920" height="1080">
+  </picture>
+  <div class="hero-overlay">
+    <div class="container">
+      <h1>Ventousage Paris, Lyon, Marseille</h1>
+      <p>Autorisation tournage, <strong>neutralisation stationnement</strong>, signalisation conforme, <strong>affichage riverains</strong> et <strong>coordination locale</strong>. Méthode moderne, délais optimisés, reporting clair.</p>
+      <div class="hero-buttons">
+        <a href="/contact/" class="btn btn-primary">Devis personnalisé sous 2&nbsp;h</a>
+        <a href="/ventousage-paris/" class="btn btn-secondary">Focus : Ventousage à Paris</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 1: Vue d'ensemble -->
+<section id="overview" class="section-white" aria-labelledby="overview-title">
+  <div class="container">
+    <h2 id="overview-title" class="section-heading">Notre expertise ventousage</h2>
+    <p class="lead">Gestion complète des autorisations de tournage et neutralisation des places, avec signalisation conforme et coordination locale. Délais accélérés, conformité garantie, intervention 24/7.</p>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-number" data-count="48" data-suffix="h">48h</div>
+        <div class="stat-label">Délai Paris</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-count="100" data-suffix="%">100%</div>
+        <div class="stat-label">Conformité</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Disponible</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Villes -->
+<section id="cities" class="section-gray" aria-labelledby="cities-title">
+  <div class="container">
+    <h2 id="cities-title" class="section-heading">Nos villes d'intervention</h2>
+    <div class="cities-grid">
+      <div class="city-card paris">
+        <div class="city-icon">🏛️</div>
+        <h3>Paris & Île-de-France</h3>
+        <div class="city-features">
+          <div class="feature"><span class="feature-label">Délais :</span><span class="feature-value">48–72h</span></div>
+          <div class="feature"><span class="feature-label">Zones :</span><span class="feature-value">1er, 4e, 7e, 8e, 16e</span></div>
+          <div class="feature"><span class="feature-label">Spécialité :</span><span class="feature-value">Fashion Week, Champs‑Élysées</span></div>
+        </div>
+        <a href="/contact/" class="city-cta">Devis Paris</a>
+      </div>
+      <div class="city-card lyon">
+        <div class="city-icon">🦁</div>
+        <h3>Lyon & Sud-Est</h3>
+        <div class="city-features">
+          <div class="feature"><span class="feature-label">Délais :</span><span class="feature-value">3–5 jours</span></div>
+          <div class="feature"><span class="feature-label">Zones :</span><span class="feature-value">UNESCO, Presqu'île</span></div>
+          <div class="feature"><span class="feature-label">Spécialité :</span><span class="feature-value">Tramways TCL</span></div>
+        </div>
+        <a href="/contact/" class="city-cta">Devis Lyon</a>
+      </div>
+      <div class="city-card marseille">
+        <div class="city-icon">⚓</div>
+        <h3>Marseille & PACA</h3>
+        <div class="city-features">
+          <div class="feature"><span class="feature-label">Zones :</span><span class="feature-value">Centre historique</span></div>
+          <div class="feature"><span class="feature-label">Coordination :</span><span class="feature-value">Préfecture</span></div>
+          <div class="feature"><span class="feature-label">Adaptation :</span><span class="feature-value">Météo mistral</span></div>
+        </div>
+        <a href="/contact/" class="city-cta">Devis Marseille</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Méthode -->
+<section id="methode" class="section-white" aria-labelledby="method-title">
+  <div class="container">
+    <h2 id="method-title" class="section-heading">Notre méthode en 4 étapes</h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <div class="step-icon">📋</div>
+        <h3>Analyse</h3>
+        <p>Étude contraintes locales et reconnaissance terrain</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <div class="step-icon">📄</div>
+        <h3>Dépôt</h3>
+        <p>Dossiers complets et suivi administratif</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <div class="step-icon">🚧</div>
+        <h3>Installation</h3>
+        <p>Signalisation conforme et équipes certifiées</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <div class="step-icon">👁️</div>
+        <h3>Supervision</h3>
+        <p>Présence équipe et gestion incidents</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: Garanties -->
+  <section id="garanties" class="section-gray">
+    <div class="container">
+      <h2 class="section-heading">Garanties</h2>
+      <div class="stats-row">
+        <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Signalisation conforme</div></div>
+        <div class="stat-item"><div class="stat-number">2 M€</div><div class="stat-label">RC pro audiovisuel</div></div>
+        <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Support opérationnel</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: FAQ complète -->
+  <section id="faq" class="section-white">
+    <div class="container">
+      <h2>Questions Fréquentes - Ventousage</h2>
+      <div class="faq-container">
+        {{ macros.faqItem("Comment obtenir des autorisations de tournage à Paris rapidement ?", "BMS Ventouse gère l'ensemble des <strong>démarches administratives pour les autorisations de tournage à Paris</strong>. Nous nous occupons des demandes auprès de la Mairie de Paris et des autorités compétentes, pour un tournage conforme et sécurisé. Délais standard : 48-72h pour les zones classiques, 5-10 jours pour les zones sensibles (1er, 4e, 7e, 8e, 16e arrondissements).") }}
+        {{ macros.faqItem("Quels sont les délais pour un ventousage à Lyon ?", "Pour un <strong>ventousage Lyon</strong>, nos délais sont de 3-5 jours ouvrés. Nous coordonnons avec la Métropole de Lyon et gérons les spécificités des zones UNESCO (Vieux Lyon, Presqu'île). Notre expertise locale nous permet d'anticiper les contraintes liées aux tramways TCL et aux événements lyonnais.") }}
+        {{ macros.faqItem("Comment se déroule un ventousage à Marseille ?", "Le <strong>ventousage Marseille</strong> nécessite une coordination avec la Préfecture et la prise en compte des spécificités météorologiques (mistral). Nous intervenons dans tout le centre historique et adaptons notre signalisation aux contraintes du Vieux-Port et de la Canebière.") }}
+        {{ macros.faqItem("Que comprend exactement le service de ventousage ?", "Notre <strong>service de ventousage professionnel</strong> inclut : neutralisation des places de stationnement, pose de signalisation réglementaire, affichage riverains documenté, coordination avec les forces de l'ordre, gestion administrative complète auprès des municipalités, et supervision terrain le jour J.") }}
+        {{ macros.faqItem("Intervenez-vous pour des tournages en province ?", "Oui, BMS Ventouse assure la <strong>logistique de tournage sur tout le territoire français</strong>. Nos équipes interviennent régulièrement à Bordeaux, Toulouse, Nice, Lille et dans toutes les grandes villes. Chaque ville a ses spécificités réglementaires que nous maîtrisons parfaitement.") }}
+        {{ macros.faqItem("Quels sont vos tarifs de ventousage ?", "Nos <strong>tarifs de ventousage</strong> varient selon la ville, la durée et la complexité. Paris : calcul au nombre de places/jour avec taxes variables par arrondissement. Lyon et Marseille : tarification adaptée aux spécificités locales. Devis gratuit sous 2h par téléphone ou WhatsApp.") }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Contenu détaillé -->
+  <section id="contenu-detaille" class="section-gray">
+    <div class="container">
+      <h2>Expertise Ventousage - Détails Techniques</h2>
+      <div class="content-blocks">
+        <div class="content-block">
+          <h3>Ventousage Paris - Procédures Spécialisées</h3>
+          <p>Les <strong>procédures d'autorisation tournage Paris</strong> requièrent une expertise pointue des arrêtés municipaux. Constitution de dossiers complets, numérotation d'arrêtés, échanges quotidiens avec les services municipaux. Zones sensibles et patrimoine : 1er, 4e, 7e, 8e, 16e arrondissements nécessitent un <strong>ventousage Paris renforcé</strong> avec coordination police municipale et agents de surveillance de la voie publique.</p>
+          <p>Délais optimisés : 48-72h en standard, 5-10 jours en zones complexes. Anticipation Fashion Week et événements Champs-Élysées. Tarification transparente avec calcul places/jour et taxes variables par arrondissement. Plan de roulettage inclus.</p>
+        </div>
+        <div class="content-block">
+          <h3>Ventousage Lyon - Coordination Métropolitaine</h3>
+          <p>Le <strong>ventousage Lyon</strong> s'appuie sur notre connaissance approfondie de la Métropole de Lyon. Gestion des zones UNESCO (Vieux Lyon, Presqu'île) avec contraintes patrimoniales renforcées. Coordination spécialisée avec les tramways TCL pour éviter les perturbations de trafic.</p>
+          <p>Expertise des événements lyonnais (Fête des Lumières, Nuits Sonores) avec anticipation des restrictions. Délais standard 3-5 jours, procédures accélérées possibles selon urgence production.</p>
+        </div>
+        <div class="content-block">
+          <h3>Ventousage Marseille - Adaptation Méditerranéenne</h3>
+          <p>Le <strong>ventousage Marseille</strong> intègre les spécificités méditerranéennes : adaptation météorologique (mistral), coordination préfectorale renforcée, gestion du centre historique (1er, 2e, 7e arrondissements). Expertise Vieux-Port et Canebière avec contraintes touristiques.</p>
+          <p>Signalisation adaptée aux vents forts, matériel renforcé, équipes formées aux conditions locales. Coordination avec les autorités portuaires pour les tournages littoraux.</p>
+        </div>
+        <div class="content-block">
+          <h3>Réglementation et Conformité</h3>
+          <p>Maîtrise complète de la <strong>réglementation tournage française</strong> : Code de la route, arrêtés municipaux, signalisation temporaire, affichage riverains obligatoire. Conformité garantie avec les normes de sécurité et les exigences assurantielles.</p>
+          <p>Veille réglementaire permanente, formation continue des équipes, certification matériel de signalisation. Assurance RC professionnelle 2M€ spécialisée audiovisuel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Nos engagements (moderne) -->
+  <section id="nos-engagements" class="section-white">
+    <div class="container">
+      <h2>Nos engagements qualité</h2>
+      <div class="engagements-grid">
+        <div class="engagement-card">
+          <div class="engagement-icon">📸</div>
+          <h3>Suivi photo temps réel</h3>
+          <p>Documentation complète avec photos de conformité et reporting en temps réel.</p>
+        </div>
+        <div class="engagement-card">
+          <div class="engagement-icon">🛡️</div>
+          <h3>Signalisation garantie</h3>
+          <p>Conformité garantie ou remboursement. Matériel certifié et équipes formées.</p>
+        </div>
+        <div class="engagement-card">
+          <div class="engagement-icon">⚡</div>
+          <h3>Délais accélérés</h3>
+          <p>Relations privilégiées avec les autorités pour des délais optimisés.</p>
+        </div>
+        <div class="engagement-card">
+          <div class="engagement-icon">🔄</div>
+          <h3>Solutions de repli</h3>
+          <p>Plan B systématique en cas d'imprévu. Anticipation et alternatives préparées.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Services complémentaires (moderne) -->
+  <section id="services-connexes" class="section-gray">
+    <div class="container">
+      <h2>Services complémentaires</h2>
+      <div class="services-connexes-grid">
+        <div class="service-connexe">
+          <div class="service-icon">🛡️</div>
+          <h3>Sécurité & Gardiennage</h3>
+          <p>Protection 24h/24 de vos plateaux avec agents spécialisés audiovisuel.</p>
+          <a href="/services/plateau-gardiennage/" class="service-link">En savoir plus</a>
+        </div>
+        <div class="service-connexe">
+          <div class="service-icon">🚛</div>
+          <h3>Transport & Convoyage</h3>
+          <p>Convoyage sécurisé de vos véhicules et matériel entre sites.</p>
+          <a href="/services/convoyage/" class="service-link">En savoir plus</a>
+        </div>
+        <div class="service-connexe">
+          <div class="service-icon">🎬</div>
+          <h3>Régie Technique</h3>
+          <p>Coordination technique complète et gestion logistique plateau.</p>
+          <a href="/services/regie-exterieure/" class="service-link">En savoir plus</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: Contact -->
+  <section id="contact" class="section-white">
+    <div class="container">
+      <h2 class="section-heading">Parlez-nous de votre tournage</h2>
+      <p class="lead">Réponse sous 2 h. Devis immédiat par téléphone ou WhatsApp.</p>
+      <div class="hero-buttons" style="justify-content:center;">
+        <a href="/contact/" class="btn btn-primary">Demander un devis</a>
+        <a href="https://wa.me/33646005642" class="btn btn-secondary" target="_blank" rel="noopener">WhatsApp Direct</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts spécifiques page Ventousage (animations + navigation + analytics) -->
+  <script>
+  (function(){
+    // Animations avancées au scroll (stagger)
+    const targets = document.querySelectorAll('.card, .service-card, .city-card, .faq-item, .engagement-card, .service-connexe');
+    const animationObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('in-view');
+          }, index * 100);
+          animationObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    targets.forEach(el => {
+      el.classList.add('animate-on-scroll');
+      animationObserver.observe(el);
+    });
+
+    // Parallax léger pour le hero
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+      if (hero && scrolled < hero.offsetHeight) {
+        hero.style.transform = 'translateY(' + (scrolled * 0.5) + 'px)';
+      }
+    }, { passive: true });
+
+    // Navigation intelligente (scrollspy + barre de progression)
+    class SmartNavigation {
+      constructor() {
+        this.sections = Array.from(document.querySelectorAll('section[id]'));
+        this.navLinks = document.querySelectorAll('.nav-link');
+        this.progressBar = document.getElementById('navProgressBar');
+        this.init();
+      }
+      init() { this.setupScrollSpy(); this.setupSmoothScroll(); this.setupProgressBar(); }
+      setupScrollSpy() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              this.updateActiveLink(entry.target.id);
+            }
+          });
+        }, { threshold: 0.3, rootMargin: '-20% 0px -70% 0px' });
+        this.sections.forEach(section => observer.observe(section));
+      }
+      setupSmoothScroll() {
+        this.navLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+      }
+      setupProgressBar() {
+        const onScroll = () => {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const docHeight = document.body.scrollHeight - window.innerHeight;
+          const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          if (this.progressBar) this.progressBar.style.width = Math.min(scrollPercent, 100) + '%';
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+      updateActiveLink(activeId) {
+        this.navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + activeId);
+        });
+      }
+    }
+    new SmartNavigation();
+
+    // GA4: enrichissement page spécifique (si gtag chargé)
+    function gtagSafe(){ if (typeof window.gtag === 'function') return window.gtag; return null; }
+    document.addEventListener('DOMContentLoaded', () => {
+      const g = gtagSafe();
+      if (g) {
+        g('config', 'G-0PKKCL3346', {
+          page_title: 'Ventousage Paris Lyon Marseille - BMS Ventouse',
+          page_location: window.location.href,
+          content_group1: 'Services',
+          content_group2: 'Ventousage'
+        });
+      }
+    });
+  })();
+  </script>
+

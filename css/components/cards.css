@@ -304,3 +304,22 @@
   -webkit-mask: url('/images/icons/check.svg') no-repeat center / contain;
           mask: url('/images/icons/check.svg') no-repeat center / contain;
 }
+
+/* Mobile improvements */
+@media (max-width: 640px) {
+  .service-card,
+  .contact-card,
+  .service-card-visual,
+  .reference-card,
+  .zone-card,
+  .included-benefits {
+    padding: clamp(1.25rem, 4vw, 1.75rem);
+    border-radius: 12px;
+  }
+
+  .service-card-visual-image,
+  .reference-card-image { height: 180px; }
+
+  .service-card h3,
+  .contact-card h3 { font-size: 1.15rem; }
+}
