@@ -34,8 +34,7 @@
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
   transition: transform 0.3s ease, background 0.4s, color 0.4s;
-  /* Reserve space below the fixed promo banner to avoid overlap at initial load */
-  margin-top: var(--promo-banner-height);
+  /* No extra margin-top here to avoid double offset with sticky top */
 }
 
 /* Scroll behavior (optional) */
