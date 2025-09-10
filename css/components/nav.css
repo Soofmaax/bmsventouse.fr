@@ -3,6 +3,8 @@
    ========================================= */
 
 /* Top bar */
+:root { --top-bar-height: 44px; }
+@media (max-width: 768px) { :root { --top-bar-height: 60px; } }
 .top-bar {
   background: #2c3e50; /* fallback */
   background: var(--color-dark);
@@ -25,7 +27,7 @@
 
 /* Header */
 .header {
-  position: sticky;
+  position: fixed;
   top: var(--promo-banner-height);
   left: 0;
   right: 0;
@@ -34,7 +36,7 @@
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
   transition: transform 0.3s ease, background 0.4s, color 0.4s;
-  /* No extra margin-top here to avoid double offset with sticky top */
+  z-index: var(--z-header, 1000);
 }
 
 /* Scroll behavior (optional) */
@@ -199,7 +201,7 @@
   .nav-links {
     display: none; /* default hidden */
     position: fixed;
-    top: calc(var(--header-height) + var(--promo-banner-height));
+    top: calc(var(--promo-banner-height) + var(--top-bar-height) + var(--header-height));
     left: 0;
     right: 0;
     flex-direction: column;
@@ -245,8 +247,8 @@
 /* Patch: ensure active menu overlays correctly and locks scroll */
 .nav-links.active {
   z-index: 1501 !important;
-  top: calc(var(--promo-banner-height) + var(--header-height)) !important;
-  height: calc(100vh - var(--promo-banner-height) - var(--header-height)) !important;
+  top: calc(var(--promo-banner-height) + var(--top-bar-height) + var(--header-height)) !important;
+  height: calc(100vh - var(--promo-banner-height) - var(--top-bar-height) - var(--header-height)) !important;
   overflow-y: auto !important;
   left: 0 !important;
   right: 0 !important;
@@ -259,9 +261,15 @@ body:has(.nav-links.active) { overflow: hidden; }
 /* Ensure header remains above everything */
 .header { z-index: 1502 !important; }
 
-/* Scroll-padding tuned for in-page anchors */
-html { scroll-padding-top: calc(var(--header-height) + 10px); }
-html.has-promo { scroll-padding-top: calc(var(--header-height) + var(--promo-banner-height) + 10px); }
+/* Scroll-padding tuned for in-page anchors + space reservation for fixed header */
+html { 
+  scroll-padding-top: calc(var(--top-bar-height) + var(--header-height) + 10px);
+  padding-top: calc(var(--top-bar-height) + var(--header-height));
+}
+html.has-promo { 
+  scroll-padding-top: calc(var(--top-bar-height) + var(--header-height) + var(--promo-banner-height) + 10px);
+  padding-top: calc(var(--promo-banner-height) + var(--top-bar-height) + var(--header-height));
+}
 
 /* Responsive top-bar stacking */
 @media (max-width: 768px) {
