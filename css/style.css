@@ -66,13 +66,12 @@
   --z-overlay: 1500;
   --z-promo: 2000;
   --z-toast: 3000;
-  --z-whatsapp: 2000;
+  --z-whatsapp: 1400;
 }
 
 /* Thème sombre - avec détection automatique et toggle */
-body.dark-theme, 
-:root:has(body.dark-theme),
-@media (prefers-color-scheme: dark) {
+/* Définition explicite pour le mode sombre forcé via classe */
+body.dark-theme {
   --color-light: #1a202c;
   --color-light-alt: #2d3748;
   --color-text: #e2e8f0;
@@ -81,6 +80,19 @@ body.dark-theme,
   --color-dark: #ffffff;
   --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
   --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+/* Détection auto du thème sombre par préférence utilisateur */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-light: #1a202c;
+    --color-light-alt: #2d3748;
+    --color-text: #e2e8f0;
+    --color-text-muted: #b0c0d0;
+    --color-border: #4a5568;
+    --color-dark: #ffffff;
+    --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
+    --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
+  }
 }
 
 /* 2. RESET & ACCESSIBILITÉ */
@@ -2098,6 +2110,8 @@ body:has(.nav-links.active) {
   top: calc(var(--promo-banner-height) + var(--header-height)) !important;
   
   /* On lui donne la hauteur restante de l'écran pour éviter le "trou" en bas */
+  /* Utiliser 100dvh pour iOS modernes + fallback 100vh */
+  height: calc(100dvh - var(--promo-banner-height) - var(--header-height)) !important;
   height: calc(100vh - var(--promo-banner-height) - var(--header-height)) !important;
   
   /* On ajoute une barre de scroll si le menu est plus grand que l'écran */

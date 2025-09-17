@@ -40,6 +40,8 @@
     
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Fallback sûr pour Safari iOS: charge la feuille si le preload+onload ne se déclenche pas -->
+    <link rel="stylesheet" href="/css/style.css">
     <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
     <link rel="prefetch" href="/services/" as="document">
     <link rel="preconnect" href="https://fonts.googleapis.com">
