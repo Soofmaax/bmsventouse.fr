@@ -1536,9 +1536,39 @@ body.dark-theme .header {
 }
 
 .contact-card .contact-icon {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+  /* Icône bien centrée et mise en valeur sur les cartes de la page contact */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: rgba(255, 140, 66, 0.12);
+  border: 1px solid rgba(255, 140, 66, 0.25);
   color: var(--color-primary);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.contact-card .contact-icon i {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+/* L’icône gagne en relief quand on survole la carte (sans toucher aux boutons) */
+.contact-card:hover .contact-icon {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  background: rgba(255, 140, 66, 0.16);
+}
+
+@media (max-width: 480px) {
+  .contact-card .contact-icon {
+    width: 64px;
+    height: 64px;
+  }
+  .contact-card .contact-icon i {
+    font-size: 1.6rem;
+  }
 }
 
 /* Cartes de services améliorées */
