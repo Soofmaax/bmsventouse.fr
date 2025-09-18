@@ -644,6 +644,23 @@ body.dark-theme .header {
   margin-bottom: 1.5rem;
 }
 
+/* Centrage fort des icônes dans les cartes de la page d'accueil (n'affecte pas les boutons) */
+.service-card .service-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  color: var(--color-primary);
+}
+
+.service-card .service-icon svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+}
+
 .service-card h3, .contact-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
