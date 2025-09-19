@@ -579,6 +579,17 @@ body.dark-theme .header {
   vertical-align: middle;
 }
 
+/* Assurer l'affichage et la taille des icônes SVG dans les boutons (ex: WhatsApp dans le hero) */
+.btn svg {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  flex-shrink: 0;
+  fill: currentColor; /* forcer l'héritage de la couleur du texte */
+}
+
 /* État de chargement du bouton */
 .btn.loading {
   pointer-events: none;
