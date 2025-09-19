@@ -744,7 +744,7 @@ body.dark-theme .header {
   place-items: center;
   padding: 0 clamp(12px, 4vw, 28px);
   /* Légèrement plus haut que le centre */
-  transform: translateY(-6%);
+  transform: translateY(-12%);
   animation: fadeInUp 1s ease-out;
 }
 
@@ -1141,7 +1141,7 @@ body.dark-theme .header {
   }
   /* Légèrement plus haut sur mobile */
   .hero-overlay .container {
-    transform: translateY(-8%);
+    transform: translateY(-16%);
   }
   
   .hero h1 {
