@@ -1327,6 +1327,34 @@ body.dark-theme .header {
   z-index: 2;
 }
 
+/* Mise en page mobile de la bannière d'urgence (Contact) :
+   - Texte centré
+   - Bouton sous le texte, centré */
+@media (max-width: 768px) {
+  .urgency-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .urgency-icon {
+    margin: 0 auto 0.5rem;
+  }
+  .urgency-text {
+    max-width: 28rem;
+  }
+  .urgency-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.25rem;
+  }
+  .urgency-buttons .btn {
+    width: auto;
+    min-width: 220px;
+  }
+}
+
 .urgency-icon {
   font-size: 2.5rem;
   color: white;
