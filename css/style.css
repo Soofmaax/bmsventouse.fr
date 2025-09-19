@@ -66,13 +66,12 @@
   --z-overlay: 1500;
   --z-promo: 2000;
   --z-toast: 3000;
-  --z-whatsapp: 2000;
+  --z-whatsapp: 1400;
 }
 
 /* Thème sombre - avec détection automatique et toggle */
-body.dark-theme, 
-:root:has(body.dark-theme),
-@media (prefers-color-scheme: dark) {
+/* Définition explicite pour le mode sombre forcé via classe */
+body.dark-theme {
   --color-light: #1a202c;
   --color-light-alt: #2d3748;
   --color-text: #e2e8f0;
@@ -81,6 +80,19 @@ body.dark-theme,
   --color-dark: #ffffff;
   --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
   --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+/* Détection auto du thème sombre par préférence utilisateur */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-light: #1a202c;
+    --color-light-alt: #2d3748;
+    --color-text: #e2e8f0;
+    --color-text-muted: #b0c0d0;
+    --color-border: #4a5568;
+    --color-dark: #ffffff;
+    --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
+    --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
+  }
 }
 
 /* 2. RESET & ACCESSIBILITÉ */
@@ -567,6 +579,17 @@ body.dark-theme .header {
   vertical-align: middle;
 }
 
+/* Assurer l'affichage et la taille des icônes SVG dans les boutons (ex: WhatsApp dans le hero) */
+.btn svg {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  flex-shrink: 0;
+  fill: currentColor; /* forcer l'héritage de la couleur du texte */
+}
+
 /* État de chargement du bouton */
 .btn.loading {
   pointer-events: none;
@@ -630,6 +653,23 @@ body.dark-theme .header {
   font-size: 2.5rem;
   color: var(--color-primary);
   margin-bottom: 1.5rem;
+}
+
+/* Centrage fort des icônes dans les cartes de la page d'accueil (n'affecte pas les boutons) */
+.service-card .service-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  color: var(--color-primary);
+}
+
+.service-card .service-icon svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
 }
 
 .service-card h3, .contact-card h3 {
@@ -696,21 +736,26 @@ body.dark-theme .header {
   position: absolute;
   inset: 0;
   z-index: var(--z-normal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  /* Centrage parfait du contenu */
+  display: grid;
+  place-items: center;
   background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.55) 100%);
   color: #fff;
   text-align: center;
-  padding: 40px 5vw 40px;
+  /* Réduction du padding pour remonter le bloc visuellement */
+  padding: 20px 5vw;
   width: 100vw;
 }
 
 .hero-overlay .container {
   z-index: var(--z-above);
   position: relative;
-  padding: 0 clamp(15px, 5vw, 40px);
+  /* Centrer le contenu et éviter un padding latéral excessif */
+  display: grid;
+  place-items: center;
+  padding: 0 clamp(12px, 4vw, 28px);
+  /* Légèrement plus haut que le centre */
+  transform: translateY(-18%);
   animation: fadeInUp 1s ease-out;
 }
 
@@ -1099,23 +1144,27 @@ body.dark-theme .header {
   }
   
   .hero-overlay {
-    padding: 30px 15px 50px;
+    /* Centrage net sur mobile et padding réduit */
+    display: grid;
+    place-items: center;
+    padding: 16px 12px 24px;
     min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
+  /* Légèrement plus haut sur mobile */
+  .hero-overlay .container {
+    transform: translateY(-22%);
   }
   
   .hero h1 {
     font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
     line-height: 1.2 !important;
-    margin-bottom: 1rem !important;
+    margin-bottom: 0.8rem !important;
   }
   
   .hero p {
     font-size: clamp(0.9rem, 4vw, 1.1rem) !important;
     line-height: 1.5 !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.2rem !important;
     max-width: 95% !important;
   }
   
@@ -1193,6 +1242,7 @@ body.dark-theme .header {
   padding: 0.8rem 1rem;
   text-align: center;
   width: calc(100% - 2rem);
+  border-radius: var(--border-radius-pill);
 }
 
 /* SUPPRIMÉ : Duplication de .promo-banner - la définition principale est en ligne 224 */
@@ -1287,6 +1337,34 @@ body.dark-theme .header {
   gap: 1.5rem;
   position: relative;
   z-index: 2;
+}
+
+/* Mise en page mobile de la bannière d'urgence (Contact) :
+   - Texte centré
+   - Bouton sous le texte, centré */
+@media (max-width: 768px) {
+  .urgency-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .urgency-icon {
+    margin: 0 auto 0.5rem;
+  }
+  .urgency-text {
+    max-width: 28rem;
+  }
+  .urgency-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.25rem;
+  }
+  .urgency-buttons .btn {
+    width: auto;
+    min-width: 220px;
+  }
 }
 
 .urgency-icon {
@@ -1524,9 +1602,39 @@ body.dark-theme .header {
 }
 
 .contact-card .contact-icon {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+  /* Icône bien centrée et mise en valeur sur les cartes de la page contact */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: rgba(255, 140, 66, 0.12);
+  border: 1px solid rgba(255, 140, 66, 0.25);
   color: var(--color-primary);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.contact-card .contact-icon i {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+/* L’icône gagne en relief quand on survole la carte (sans toucher aux boutons) */
+.contact-card:hover .contact-icon {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  background: rgba(255, 140, 66, 0.16);
+}
+
+@media (max-width: 480px) {
+  .contact-card .contact-icon {
+    width: 64px;
+    height: 64px;
+  }
+  .contact-card .contact-icon i {
+    font-size: 1.6rem;
+  }
 }
 
 /* Cartes de services améliorées */
@@ -2059,13 +2167,17 @@ mark, .highlight {
     width: 100%;
     text-align: center;
     padding: 1rem;
-    border-radius: 0;
+    border-radius: var(--border-radius-pill);
     color: var(--color-dark);
+    background-color: var(--color-light-alt);
+    border: 1px solid var(--color-border);
   }
 
   .nav-link:hover, .nav-link.active {
     transform: none;
-    background-color: var(--color-primary-light);
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    border-color: transparent;
   }
   
   .nav-link.btn {
@@ -2098,6 +2210,8 @@ body:has(.nav-links.active) {
   top: calc(var(--promo-banner-height) + var(--header-height)) !important;
   
   /* On lui donne la hauteur restante de l'écran pour éviter le "trou" en bas */
+  /* Utiliser 100dvh pour iOS modernes + fallback 100vh */
+  height: calc(100dvh - var(--promo-banner-height) - var(--header-height)) !important;
   height: calc(100vh - var(--promo-banner-height) - var(--header-height)) !important;
   
   /* On ajoute une barre de scroll si le menu est plus grand que l'écran */

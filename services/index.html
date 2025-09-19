@@ -21,6 +21,8 @@
     
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Fallback sûr pour Safari iOS -->
+    <link rel="stylesheet" href="/css/style.css">
     <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
     <link rel="preload" href="/js/script.js" as="script">
     <link rel="preload" as="image" href="/images/services-hero-background-desktop.webp" imagesrcset="/images/services-hero-background-mobile.webp 767w, /images/services-hero-background-desktop.webp 1920w" imagesizes="(max-width: 767px ) 100vw, 100vw">
@@ -99,8 +101,7 @@
 </head>
 <body>
 
-<!-- Lien d'évitement pour l'accessibilité -->
-<a href="#main-content" class="skip-link">Passer au contenu principal</a>
+
 
 <!-- ==========================================================================
    EN-TÊTE PRINCIPAL
@@ -146,8 +147,12 @@
     <!-- Section Héros -->
     <section class="hero">
         <picture class="hero-bg">
+            <!-- Formats modernes -->
             <source media="(max-width: 767px )" srcset="/images/services-hero-background-mobile.webp" type="image/webp">
-            <img src="/images/services-hero-background-desktop.webp" alt="Équipe logistique préparant un plateau de tournage" loading="eager" width="1920" height="1080">
+            <source media="(min-width: 768px )" srcset="/images/services-hero-background-desktop.webp" type="image/webp">
+            <!-- Fallback JPEG universel pour anciens iPhone -->
+            <source srcset="/images/hero-background-custom.jpg" type="image/jpeg">
+            <img src="/images/hero-background-custom.jpg" alt="Équipe logistique préparant un plateau de tournage" loading="eager" width="1920" height="1080">
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">

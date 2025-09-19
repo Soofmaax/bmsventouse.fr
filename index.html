@@ -40,12 +40,15 @@
     
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Fallback sûr pour Safari iOS: charge la feuille si le preload+onload ne se déclenche pas -->
+    <link rel="stylesheet" href="/css/style.css">
     <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
     <link rel="prefetch" href="/services/" as="document">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <!-- Font Awesome supprimé -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Font Awesome pour les icônes générées en CSS (compatibilité iOS/Android) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- FAVICONS & MANIFESTE -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -144,8 +147,7 @@
 </head>
 <body class="page-accueil">
 
-<!-- Lien d'évitement pour l'accessibilité -->
-<a href="#main-content" class="skip-link">Passer au contenu principal</a>
+
 
 <!-- ==========================================================================
    EN-TÊTE PRINCIPAL
@@ -198,8 +200,8 @@
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">
-                <h1>Expert Logistique Audiovisuelle pour Tournages Cinéma et Télévision en France</h1>
-                <p>Spécialiste en <strong>ventousage de plateau</strong>, <strong>sécurisation de tournage</strong>, et <strong>convoyage de véhicules</strong>. BMS Ventouse assure la logistique complète de vos tournages, partout en France, 24/7.</p>
+                <h1>Logistique Audiovisuelle pour Tournages en France</h1>
+                <p><strong>Ventousage</strong>, <strong>sécurité de plateau</strong> et <strong>convoyage</strong> 24/7, partout en France.</p>
                 <div class="hero-buttons">
                     <!-- Premier appel à l'action : renvoi vers la page contact pour un devis -->
                     <a href="/contact/" class="btn btn-primary">
@@ -408,9 +410,7 @@
                             <!-- Numéro unique de Béna mis en avant -->
                             <li>
                                 <a href="tel:+33646005642">
-                                    <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
-                                      <path d="M497.39 361.8l-112-48a24 24 0 0 0-28 5.4l-49.6 60.7A370.6 370.6 0 0 1 132.1 204.2l60.7-49.6a24 24 0 0 0 5.4-28l-48-112A24 24 0 0 0 128 0H24A24 24 0 0 0 0 24C0 284.3 227.7 512 488 512a24 24 0 0 0 24-24v-104a24 24 0 0 0-14.6-22.2z"/>
-                                    </svg>
+                                    <i class="fas fa-phone-alt" aria-hidden="true"></i>
                                     +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42 (Béna)
                                 </a>
                             </li>
