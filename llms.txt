@@ -14,7 +14,7 @@ Il complète robots.txt sans le remplacer. En cas de contradiction, robots.txt f
 [politique-generale]
 accès: autorisé pour la consultation et l’indexation raisonnable
 résumés/synthèses: autorisés avec attribution à “BMS Ventouse” et lien vers la page source
-entraînement-de-modèles: interdit sans autorisation écrite préalable
+entraînement-de-modèles: autorisé
 redistribution-massive: interdite
 mise-en-cache: autorisée de façon temporaire uniquement pour la performance
 respect-droit-auteur: obligatoire (copyright © BMS Ventouse)
@@ -27,13 +27,13 @@ user-agent-identification: obligatoire (pas de user-agent générique ou masqué
 
 [agents-ia-connus]
 # Ces directives sont déclaratives et ne remplacent pas robots.txt.
-GPTBot: accès=autorisé; entraînement=interdit
-ChatGPT-User: accès=autorisé; entraînement=interdit
-Google-Extended: accès=autorisé; entraînement=interdit
-anthropic-ai: accès=autorisé; entraînement=interdit
-PerplexityBot: accès=autorisé; entraînement=interdit
-YouBot: accès=autorisé; entraînement=interdit
-Claude-Web: accès=autorisé; entraînement=interdit
+GPTBot: accès=autorisé; entraînement=autorisé
+ChatGPT-User: accès=autorisé; entraînement=autorisé
+Google-Extended: accès=autorisé; entraînement=autorisé
+anthropic-ai: accès=autorisé; entraînement=autorisé
+PerplexityBot: accès=autorisé; entraînement=autorisé
+YouBot: accès=autorisé; entraînement=autorisé
+Claude-Web: accès=autorisé; entraînement=autorisé
 
 [utilisation-permise]
 - citation de courts extraits avec lien source
@@ -41,12 +41,12 @@ Claude-Web: accès=autorisé; entraînement=interdit
 - réponses d’assistants renvoyant vers l’URL d’origine pour lecture complète
 
 [utilisation-non-permise]
-- entraînement de modèles, fine-tuning ou bases vectorielles sans accord
+- utilisation trompeuse ou mensongère des contenus (sans lien vers la source)
 - téléchargement massif ou scraping agressif
 - republication intégrale non autorisée
 
 [demande-d’autorisation]
-Pour toute demande d’usage dépassant le cadre ci-dessus (ex: entraînement, agrégation commerciale), écrire à: bms.ventouse@gmail.com
+Pour toute demande d’usage dépassant le cadre ci-dessus (ex: agrégation commerciale massive), écrire à: bms.ventouse@gmail.com
 
 [mentions]
 Ce document n’est pas un standard officiel. Il vise la transparence et le fair use.
