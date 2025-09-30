@@ -1,5 +1,12 @@
 # BMS Ventouse — Site vitrine statique
 
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.bmsventouse.fr)](https://www.bmsventouse.fr)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![CI](https://img.shields.io/badge/CI-GitHub_Actions-blue)](.github/workflows/ci.yml)
+[![A11y](https://img.shields.io/badge/A11y-WCAG_2.1_AAA-5c2)](docs/ACCESSIBILITY.md)
+[![Analytics](https://img.shields.io/badge/Analytics-GA4_Consent_Mode_v2-ff7f50)](docs/ANALYTICS_GA4.md)
+[![Hosting](https://img.shields.io/badge/Hosting-Netlify-00ad9f)](https://www.netlify.com)
+
 Dépôt du site officiel de BMS Ventouse (logistique pour tournages et événements).
 Empilement simple et robuste: HTML, CSS, JavaScript.
 
