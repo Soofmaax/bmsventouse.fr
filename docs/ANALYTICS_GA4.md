@@ -1,4 +1,7 @@
+[← Retour à l’index de la documentation](./README.md)
+
 # Analytics — GA4 + Consent Mode v2
+[Docs](./README.md) • [Dév](./DEVELOPMENT.md) • [SEO](./SEO_GUIDE.md) • [A11y](./ACCESSIBILITY.md) • [Analytics](./ANALYTICS_GA4.md) • [Contenu](./CONTENT_GUIDELINES.md) • [Release](./RELEASE_CHECKLIST.md) • [Contrib](./CONTRIBUTING.md)
 
 Implémentation
 - gtag.js chargé en async sur toutes les pages.

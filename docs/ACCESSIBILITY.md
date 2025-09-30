@@ -1,4 +1,7 @@
-# Accessibilité (a11y)
+[← Retour à l’index de la documentation](./README.md)
+
+# Accessibilité (A11y)
+[Docs](./README.md) • [Dév](./DEVELOPMENT.md) • [SEO](./SEO_GUIDE.md) • [A11y](./ACCESSIBILITY.md) • [Analytics](./ANALYTICS_GA4.md) • [Contenu](./CONTENT_GUIDELINES.md) • [Release](./RELEASE_CHECKLIST.md) • [Contrib](./CONTRIBUTING.md)
 
 Objectifs
 - Garantir une navigation clavier fluide.

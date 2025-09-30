@@ -1,4 +1,5 @@
 # Guide de développement
+[Docs](./README.md) • [Dév](./DEVELOPMENT.md) • [SEO](./SEO_GUIDE.md) • [A11y](./ACCESSIBILITY.md) • [Analytics](./ANALYTICS_GA4.md) • [Contenu](./CONTENT_GUIDELINES.md) • [Release](./RELEASE_CHECKLIST.md) • [Contrib](./CONTRIBUTING.md)
 
 Ce guide explique comment travailler localement, lancer les vérifications, et ajouter des pages.
 

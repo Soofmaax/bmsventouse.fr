@@ -1,4 +1,5 @@
 # Démarrage développeur
+[Docs](./README.md) • [Dév](./DEVELOPMENT.md) • [SEO](./SEO_GUIDE.md) • [A11y](./ACCESSIBILITY.md) • [Analytics](./ANALYTICS_GA4.md) • [Contenu](./CONTENT_GUIDELINES.md) • [Release](./RELEASE_CHECKLIST.md) • [Contrib](./CONTRIBUTING.md)
 
 Prérequis
 - Node.js 18+ (recommandé Node 20) ou Python 3.

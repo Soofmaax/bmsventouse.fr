@@ -1,9 +1,10 @@
 # BMS Ventouse — Site vitrine statique
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.bmsventouse.fr)](https://www.bmsventouse.fr)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.bmsventouse.fr&label=website&logo=netlify&logoColor=white)](https://www.bmsventouse.fr/)
+[![Node](https://img.shields.io/badge/node-20.x-339933?logo=node.js&logoColor=white)](.nvmrc)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![CI](https://img.shields.io/badge/CI-GitHub_Actions-blue)](.github/workflows/ci.yml)
-[![A11y](https://img.shields.io/badge/A11y-WCAG_2.1_AAA-5c2)](docs/ACCESSIBILITY.md)
+[![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](.github/workflows/ci.yml)
+[![A11y](https://img.shields.io/badge/A11y-WCAG_2.1_AAA-0a7ea4)](docs/ACCESSIBILITY.md)
 [![Analytics](https://img.shields.io/badge/Analytics-GA4_Consent_Mode_v2-ff7f50)](docs/ANALYTICS_GA4.md)
 [![Hosting](https://img.shields.io/badge/Hosting-Netlify-00ad9f)](https://www.netlify.com)
 
@@ -15,16 +16,16 @@ Lien production: https://www.bmsventouse.fr/
 ---
 
 Sommaire
-- Points forts techniques
-- Démarrer en local
-- Qualité & CI
-- Déploiement Netlify
-- SEO: bonnes pratiques
-- Accessibilité
-- Analytics (GA4 + Consent Mode)
-- Structure du projet
-- Contribution
-- Licence
+- [Points forts techniques](#points-forts-techniques)
+- [Démarrer en local](#démarrer-en-local)
+- [Qualité & CI](#qualité--ci)
+- [Déploiement Netlify](#déploiement-netlify)
+- [SEO: bonnes pratiques](#seo-bonnes-pratiques-résumé)
+- [Accessibilité](#accessibilité-résumé)
+- [Analytics (GA4 + Consent Mode)](#analytics-ga4--consent-mode)
+- [Structure du projet](#structure-du-projet)
+- [Contribution](#contribution)
+- [Licence](#licence)
 
 Points forts techniques
 - Performance

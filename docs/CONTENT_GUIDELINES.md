@@ -1,4 +1,5 @@
 # Lignes éditoriales & modèles de contenu
+[Docs](./README.md) • [Dév](./DEVELOPMENT.md) • [SEO](./SEO_GUIDE.md) • [A11y](./ACCESSIBILITY.md) • [Analytics](./ANALYTICS_GA4.md) • [Contenu](./CONTENT_GUIDELINES.md) • [Release](./RELEASE_CHECKLIST.md) • [Contrib](./CONTRIBUTING.md)
 
 Objectif: produire des pages claires, utiles, bien structurées, qui se positionnent et convertissent.
 

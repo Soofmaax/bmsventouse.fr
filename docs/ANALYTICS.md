@@ -1,4 +1,5 @@
 # Analytics (GA4) — Consent Mode v2
+[Docs](./README.md) • [Dév](./DEVELOPMENT.md) • [SEO](./SEO_GUIDE.md) • [A11y](./ACCESSIBILITY.md) • [Analytics](./ANALYTICS_GA4.md) • [Contenu](./CONTENT_GUIDELINES.md) • [Release](./RELEASE_CHECKLIST.md) • [Contrib](./CONTRIBUTING.md)
 
 Ce site utilise Google Analytics 4 avec Consent Mode v2, configuré pour respecter la confidentialité (IP anonymisée, aucun tracking tant que l’utilisateur n’a pas consenti).
 

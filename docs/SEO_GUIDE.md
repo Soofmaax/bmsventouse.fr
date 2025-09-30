@@ -1,4 +1,5 @@
 # Guide SEO (BMS Ventouse)
+[Docs](./README.md) • [Dév](./DEVELOPMENT.md) • [SEO](./SEO_GUIDE.md) • [A11y](./ACCESSIBILITY.md) • [Analytics](./ANALYTICS_GA4.md) • [Contenu](./CONTENT_GUIDELINES.md) • [Release](./RELEASE_CHECKLIST.md) • [Contrib](./CONTRIBUTING.md)
 
 Objectif
 - Uniformiser les pratiques SEO on‑page pour toutes les pages du site.
