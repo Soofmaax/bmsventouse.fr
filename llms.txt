@@ -1,0 +1,53 @@
+# llms.txt — Politique d’accès et d’usage des contenus par les IA/LLM
+# Domaine: https://www.bmsventouse.fr/
+# Propriétaire: BMS Ventouse
+# Contact: bms.ventouse@gmail.com
+# Langue: fr
+# Dernière mise à jour: 2025-09-30
+# Référence robots: https://www.bmsventouse.fr/robots.txt
+# Sitemap: https://www.bmsventouse.fr/sitemap.xml
+
+[but]
+Ce fichier explicite notre politique concernant l’accès, l’indexation et l’usage de nos contenus par des systèmes d’intelligence artificielle (IA) et de modèles de langage (LLM).
+Il complète robots.txt sans le remplacer. En cas de contradiction, robots.txt fait foi pour le crawling.
+
+[politique-generale]
+accès: autorisé pour la consultation et l’indexation raisonnable
+résumés/synthèses: autorisés avec attribution à “BMS Ventouse” et lien vers la page source
+entraînement-de-modèles: interdit sans autorisation écrite préalable
+redistribution-massive: interdite
+mise-en-cache: autorisée de façon temporaire uniquement pour la performance
+respect-droit-auteur: obligatoire (copyright © BMS Ventouse)
+
+[paramètres-techniques]
+taux-crawl-recommandé: max 1 requête/seconde
+crawl-delay-recommandé: 10 secondes
+fenêtre-lecture: 10 000 pages/mois (au-delà: nous contacter)
+user-agent-identification: obligatoire (pas de user-agent générique ou masqué)
+
+[agents-ia-connus]
+# Ces directives sont déclaratives et ne remplacent pas robots.txt.
+GPTBot: accès=autorisé; entraînement=interdit
+ChatGPT-User: accès=autorisé; entraînement=interdit
+Google-Extended: accès=autorisé; entraînement=interdit
+anthropic-ai: accès=autorisé; entraînement=interdit
+PerplexityBot: accès=autorisé; entraînement=interdit
+YouBot: accès=autorisé; entraînement=interdit
+Claude-Web: accès=autorisé; entraînement=interdit
+
+[utilisation-permise]
+- citation de courts extraits avec lien source
+- génération de résumés factuels non trompeurs
+- réponses d’assistants renvoyant vers l’URL d’origine pour lecture complète
+
+[utilisation-non-permise]
+- entraînement de modèles, fine-tuning ou bases vectorielles sans accord
+- téléchargement massif ou scraping agressif
+- republication intégrale non autorisée
+
+[demande-d’autorisation]
+Pour toute demande d’usage dépassant le cadre ci-dessus (ex: entraînement, agrégation commerciale), écrire à: bms.ventouse@gmail.com
+
+[mentions]
+Ce document n’est pas un standard officiel. Il vise la transparence et le fair use.
+Nous encourageons les acteurs IA à l’honorer en complément de robots.txt.
