@@ -1,0 +1,15 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "wait": 500,
+    "includeNotices": false,
+    "includeWarnings": false,
+    "timeout": 30000
+  },
+  "urls": [
+    "http://localhost:8080/",
+    "http://localhost:8080/services/",
+    "http://localhost:8080/contact/",
+    "http://localhost:8080/realisations/"
+  ]
+}
