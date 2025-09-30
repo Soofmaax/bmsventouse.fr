@@ -4,6 +4,23 @@
     <!-- MÉTADONNÉES ESSENTIELLES -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics 4 (Consent Mode v2) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent par défaut: aucune donnée analytics tant que vous n'obtenez pas le consentement
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'security_storage': 'granted'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXX', { anonymize_ip: true });
+    </script>
 
     <!-- SEO & PARTAGE (OPEN GRAPH) - Optimisé pour la page d'accueil -->
     <title>BMS Ventouse | Expert Logistique pour Tournages en France</title>
