@@ -1,12 +1,48 @@
 # BMS Ventouse — Site vitrine statique
 
+<!-- Status & Déploiement -->
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.bmsventouse.fr&label=website&logo=netlify&logoColor=white)](https://www.bmsventouse.fr/)
+[![Hosting](https://img.shields.io/badge/Hosting-Netlify-00ad9f)](https://www.netlify.com)
+
+<!-- Tech & Standards -->
 [![Node](https://img.shields.io/badge/node-20.x-339933?logo=node.js&logoColor=white)](.nvmrc)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+<!-- Qualité & Conformité -->
 [![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](.github/workflows/ci.yml)
 [![A11y](https://img.shields.io/badge/A11y-WCAG_2.1_AAA-0a7ea4)](docs/ACCESSIBILITY.md)
 [![Analytics](https://img.shields.io/badge/Analytics-GA4_Consent_Mode_v2-ff7f50)](docs/ANALYTICS_GA4.md)
-[![Hosting](https://img.shields.io/badge/Hosting-Netlify-00ad9f)](https://www.netlify.com)
+
+## Quick Start
+
+```bash
+git clone https://github.com/votre-org/bms-ventouse.git
+cd bms-ventouse
+# Option 1: serveur local Node
+npx http-server -p 8080
+# Option 2: Python
+python3 -m http.server 8080
+```
+
+Visitez http://localhost:8080 — pas de compilation, site 100% statique.
+
+## Apercu
+
+![Aperçu accueil](images/hero-background-custom.jpg)
+![Aperçu service ventousage](images/service-ventousage-custom.jpg)
+
+## Tech Stack
+
+| Catégorie      | Technologies                                      |
+|----------------|----------------------------------------------------|
+| Frontend       | HTML5, CSS3, JavaScript (vanilla)                 |
+| Hébergement    | Netlify                                           |
+| Qualité        | HTMLHint, Stylelint, ESLint, Markdownlint, Pa11y  |
+| Liens          | lychee                                            |
+| SEO            | JSON-LD, Sitemap, Robots.txt, OG, Twitter Cards   |
+| Sécurité       | Security Headers, CSP (Netlify + page Mentions)   |
+| Analytics      | Google Analytics 4 (Consent Mode v2)              |
+| CI/CD          | GitHub Actions                                    |
 
 Dépôt du site officiel de BMS Ventouse (logistique pour tournages et événements).
 Empilement simple et robuste: HTML, CSS, JavaScript.
@@ -16,6 +52,19 @@ Lien production: https://www.bmsventouse.fr/
 ---
 
 Sommaire
+- [Quick Start](#quick-start)
+- [Apercu](#apercu)
+- [Tech Stack](#tech-stack)
+- [Points forts techniques](#points-forts-techniques)
+- [Démarrer en local](#démarrer-en-local)
+- [Qualité & CI](#qualité--ci)
+- [Déploiement Netlify](#déploiement-netlify)
+- [SEO: bonnes pratiques](#seo-bonnes-pratiques-résumé)
+- [Accessibilité](#accessibilité-résumé)
+- [Analytics (GA4 + Consent Mode)](#analytics-ga4--consent-mode)
+- [Structure du projet](#structure-du-projet)
+- [Contribution](#contribution)
+- [Licence](#licence)
 - [Points forts techniques](#points-forts-techniques)
 - [Démarrer en local](#démarrer-en-local)
 - [Qualité & CI](#qualité--ci)
@@ -50,9 +99,14 @@ Démarrer en local
 Prérequis
 - Node 18+ recommandé (Node 20 utilisé en CI) ou Python 3 pour un serveur local.
 
+Installation des dépendances (optionnel)
+- Aucune dépendance requise pour servir le site.
+- Pour utiliser les linters localement sans `npx`, vous pouvez installer des outils en dev (optionnel), sinon utilisez `npx` comme ci-dessous.
+
 Lancer un serveur local (au choix)
-- npx http-server -p 8080
-- python3 -m http.server 8080
+- Option 1 (Node): `npx http-server -p 8080`
+- Option 2 (Python): `python3 -m http.server 8080`
+- Option 3 (VS Code): extension “Live Server”
 
 Ensuite ouvrez http://localhost:8080/
 
@@ -119,13 +173,23 @@ Structure du projet
 - .pa11yci.json, .htmlhintrc, .stylelintrc.json, .eslintrc.json, .markdownlint.json: configs de qualité.
 
 Contribution
-- Règles: docs/CONTRIBUTING.md
-- Guides:
-  - docs/SEO_GUIDE.md
-  - docs/CONTENT_GUIDELINES.md
-  - docs/ACCESSIBILITY.md
-  - docs/ANALYTICS_GA4.md
-  - docs/RELEASE_CHECKLIST.md
+Nous acceptons les contributions ! Veuillez consulter :
+- 📖 Guide de contribution: [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)
+- ✅ Checklist de release: [docs/RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md)
+
+Workflow recommandé
+1. Fork du projet
+2. Créez une branche: `git checkout -b feature/amelioration`
+3. Commits clairs: `git commit -m "Add: nouvelle feature"`
+4. Poussez: `git push origin feature/amelioration`
+5. Ouvrez une Pull Request vers `main`
+
+Les PR doivent passer le job CI bloquant `lint-and-validate` avant merge.  
+Consultez aussi:
+- [docs/SEO_GUIDE.md](docs/SEO_GUIDE.md)
+- [docs/CONTENT_GUIDELINES.md](docs/CONTENT_GUIDELINES.md)
+- [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md)
+- [docs/ANALYTICS_GA4.md](docs/ANALYTICS_GA4.md)
 
 Licence
 - MIT — voir LICENSE.
