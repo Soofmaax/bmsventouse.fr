@@ -1,0 +1,47 @@
+name: CI - Lint and Validate
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint HTML/XML and Workflows
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Use GitHub Super-Linter (slim) to validate HTML and XML (e.g., sitemap),
+      # and also check GitHub workflow YAML files.
+      # More linters (CSS/JS/Markdown) can be enabled later with repo-specific configs.
+      - name: Super-Linter
+        uses: github/super-linter/slim@v6
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: true
+
+          # Enable core validations
+          VALIDATE_HTML: true
+          VALIDATE_XML: true
+          VALIDATE_YAML: true
+
+          # Optional: validate GitHub Actions workflow files
+          VALIDATE_GITHUB_ACTIONS: true
+
+          # Disable stricter linters for now (no project configs yet)
+          VALIDATE_CSS: false
+          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_MARKDOWN: false
