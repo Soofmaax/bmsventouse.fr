@@ -1,10 +1,10 @@
-name: CI - Lint and Validate
+name: CI - Full Quality Gate
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
   push:
-    branches: [ main ]
+    branches: [ main, master ]
 
 permissions:
   contents: read
@@ -83,17 +83,20 @@ jobs:
 
       - name: Install local server and pa11y-ci
         run: |
-          npm i -g http-server pa11y-ci
+          npm i -g http-server pa11y-ci wait-on
 
       - name: Serve site locally
         run: |
           nohup npx http-server -p 8080 >/dev/null 2>&1 &
-          sleep 2
+          npx wait-on http://localhost:8080
 
       - name: Accessibility audit (Pa11y CI - WCAG2AA)
-        run: npx pa11y-ci
+        run: npx pa11y-ci -c .pa11yci.json
 
-      - name: Link check (including external; non-blocking)
+      - name: Accessibility audit (Pa11y CI - WCAG2AAA; non-blocking)
+        run: npx pa11y-ci -c .pa11yci.json --standard WCAG2AAA
+
+      - name: Link check (including external; HTML)
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
@@ -101,7 +104,24 @@ jobs:
             --verbose
             --retry 2
             --timeout 30
+            --max-concurrency 5
+            --accept 200..399
             --exclude-mail
             **/*.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Link check (including external; Markdown)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --verbose
+            --retry 2
+            --timeout 30
+            --max-concurrency 5
+            --accept 200..399
+            --exclude-mail
+            **/*.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
