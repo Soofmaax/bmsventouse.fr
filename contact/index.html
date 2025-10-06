@@ -36,12 +36,16 @@
     <meta property="og:url" content="https://www.bmsventouse.fr/contact/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:site_name" content="BMS Ventouse">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact & Devis Gratuit 24/7 | BMS Ventouse">
     <meta name="twitter:description" content="Contactez BMS Ventouse pour un devis gratuit. Joignable 24/7 par téléphone, WhatsApp ou email.">
     <meta name="twitter:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta name="twitter:image:alt" content="Personne utilisant un téléphone pour contacter un service (image héro)">
     
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -100,6 +104,18 @@
           "name": "France"
         }
       }
+    }
+    </script>
+
+    <!-- Fil d’Ariane JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.bmsventouse.fr/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.bmsventouse.fr/contact/" }
+      ]
     }
     </script>
 </head>
