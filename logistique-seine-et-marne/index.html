@@ -4,6 +4,24 @@
     <!-- MÉTADONNÉES ESSENTIELLES -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics 4 (Consent Mode v2) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'security_storage': 'granted'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
+    </script>
 
     <!-- SEO & PARTAGE (OPEN GRAPH) - Landing page Logistique Seine-et-Marne -->
     <title>Entreprise Logistique Seine‑et‑Marne | Tournages & événements — BMS Ventouse</title>
@@ -19,6 +37,13 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
     <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="BMS Ventouse">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Entreprise Logistique Seine‑et‑Marne | Tournages & événements — BMS Ventouse">
+    <meta name="twitter:description" content="Ventousage, sécurité plateau, convoyage en Seine‑et‑Marne. Intervention 24/7. Devis gratuit.">
+    <meta name="twitter:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta property="og:site_name" content="BMS Ventouse">
 
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -70,6 +95,7 @@
     </script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Aller au contenu</a>
 
 <header class="header">
   <div class="container">
@@ -103,7 +129,7 @@
     <picture class="hero-bg">
       <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
       <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <img src="/images/hero-background-custom.jpg" alt="Neutralisation de stationnement et sécurité de tournage en Seine-et-Marne" loading="eager">
+      <img src="/images/hero-background-custom.jpg" alt="Neutralisation de stationnement et sécurité de tournage en Seine-et-Marne" loading="eager" fetchpriority="high" width="1920" height="1080">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
@@ -169,7 +195,7 @@
         <div class="footer-links">
           <div class="footer-column"><h4>Navigation</h4><ul><li><a href="/">Accueil</a></li><li><a href="/services/">Services</a></li><li><a href="/realisations/">Références</a></li><li><a href="/contact/">Contact</a></li></ul></div>
           <div class="footer-column"><h4>Contact Direct</h4><ul><li><a href="tel:+33646005642"><i class="fas fa-phone-alt" aria-hidden="true"></i> +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42 (Béna)</a></li><li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp Direct</a></li><li><a href="mailto:bms.ventouse@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> bms.ventouse@gmail.com</a></li></ul></div>
-          <div class="footer-column"><h4>Légal</h4><ul><li><a href="/mentions/">Mentions Légales</a></li></ul></div>
+          <div class="footer-column"><h4>Légal</h4><ul><li><a href="/mentions/">Mentions Légales</a></li><li><a href="/llms.txt">Infos IA (llms.txt)</a></li><li><a href="/ai.txt">Infos IA (ai.txt)</a></li><li><a href="/infos-ia/">Infos IA (page)</a></li></ul></div>
         </div>
       </div>
     </div>

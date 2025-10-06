@@ -23,6 +23,30 @@ Allow: /
 
 
 # --------------------------------------------------------------------------
+# Règles explicites pour certains agents IA (complémentaires à User-agent: *)
+# --------------------------------------------------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# --------------------------------------------------------------------------
 # Emplacement du plan du site (Sitemap)
 # --------------------------------------------------------------------------
 # Cette ligne est l'une des plus importantes. Elle indique aux robots

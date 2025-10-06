@@ -1,0 +1,27 @@
+{
+  "defaults": {
+    "standard": "WCAG2AAA",
+    "includeNotices": false,
+    "includeWarnings": true,
+    "timeout": 30000,
+    "hideElements": "#cookie-banner"
+  },
+  "urls": [
+    "http://localhost:8080/",
+    "http://localhost:8080/services/",
+    "http://localhost:8080/realisations/",
+    "http://localhost:8080/contact/",
+    "http://localhost:8080/mentions/",
+    "http://localhost:8080/ventousage-paris/",
+    "http://localhost:8080/ventousage-cinema/",
+    "http://localhost:8080/securite-tournage-strasbourg/",
+    "http://localhost:8080/transport-materiel-audiovisuel-paris/",
+    "http://localhost:8080/logistique-seine-saint-denis/",
+    "http://localhost:8080/logistique-seine-et-marne/",
+    "http://localhost:8080/logistique-val-d-oise/",
+    "http://localhost:8080/autorisation-occupation-domaine-public-tournage-paris/",
+    "http://localhost:8080/definition-ventousage/",
+    "http://localhost:8080/ventousage-pantin/",
+    "http://localhost:8080/404.html"
+  ]
+}

@@ -4,21 +4,48 @@
     <!-- MÉTADONNÉES ESSENTIELLES -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics 4 (Consent Mode v2) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'security_storage': 'granted'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
+    </script>
 
     <!-- SEO & PARTAGE (OPEN GRAPH) - Landing page Ventousage Paris -->
     <title>Ventousage à Paris — Ventouseur cinéma & événementiel | BMS Ventouse</title>
-    <meta name="description" content="Ventousage à Paris pour tournages et événements : neutralisation du stationnement, pose de signalisation, gestion des autorisations. Intervention 24/7. Devis gratuit.">
+    <meta name="description" content="Ventousage à Paris — ventouseur cinéma & événementiel : neutralisation du stationnement, pose de signalisation, gestion des autorisations. Intervention 24/7. Devis gratuit.">
     <meta name="author" content="BMS Ventouse">
     <meta name="robots" content="index, follow, max-snippet:160">
     <link rel="canonical" href="https://www.bmsventouse.fr/ventousage-paris/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Ventousage à Paris — Ventouseur cinéma & événementiel | BMS Ventouse">
-    <meta property="og:description" content="Neutralisation de stationnement, pose de panneaux, autorisations de tournage à Paris. Intervention 24/7. Devis gratuit.">
+    <meta property="og:description" content="Ventousage à Paris — ventouseur à Paris pour tournages &amp; événements : neutralisation du stationnement, AOT/OTDP, signalisation réglementaire. Intervention 24/7. Devis gratuit.">
     <meta property="og:url" content="https://www.bmsventouse.fr/ventousage-paris/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
     <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="BMS Ventouse">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ventousage à Paris — Ventouseur cinéma & événementiel | BMS Ventouse">
+    <meta name="twitter:description" content="Ventousage à Paris — ventouseur à Paris pour tournages &amp; événements : neutralisation du stationnement, AOT/OTDP, signalisation réglementaire. Intervention 24/7. Devis gratuit.">
+    <meta name="twitter:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta name="twitter:image:alt" content="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire (image héro)">
 
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -44,7 +71,8 @@
         "@context": "https://schema.org",
         "@type": "Service",
         "serviceType": "Ventousage à Paris",
-        "name": "Ventousage & Neutralisation de stationnement",
+        "name": "Ventousage à Paris — ventouseur à Paris",
+        "description": "Neutralisation du stationnement, AOT/OTDP, signalisation réglementaire. Intervention 24/7.",
         "provider": {
           "@type": "Organization",
           "name": "BMS Ventouse",
@@ -89,8 +117,21 @@
       }
     ]
     </script>
+
+    <!-- Fil d’Ariane JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.bmsventouse.fr/" },
+        { "@type": "ListItem", "position": 2, "name": "Ventousage à Paris", "item": "https://www.bmsventouse.fr/ventousage-paris/" }
+      ]
+    }
+    </script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Aller au contenu</a>
 
 <!-- ==========================================================================
    EN-TÊTE PRINCIPAL
@@ -137,12 +178,12 @@
     <picture class="hero-bg">
       <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
       <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire" loading="eager">
+      <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire" loading="eager" fetchpriority="high" width="1920" height="1080">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
         <h1>Ventousage à Paris — Ventouseur cinéma & événementiel</h1>
-        <p>Neutralisation de stationnement, pose de panneaux et autorisations de tournage. Intervention <strong>24/7</strong> dans tous les arrondissements.</p>
+        <p>Neutralisation de stationnement, pose de panneaux et autorisations de tournage. Intervention <strong>24/7</strong> dans tous les arrondissements. Basés en <strong>Seine‑Saint‑Denis (93)</strong>, nos <strong>ventouseurs professionnels à Paris</strong> interviennent également en petite couronne.</p>
         <div class="hero-buttons">
           <a href="/contact/" class="btn btn-primary"><i class="fas fa-envelope" aria-hidden="true"></i> Obtenir un Devis Gratuit</a>
           <a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20un%20ventousage%20%C3%A0%20Paris." class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp Direct</a>
@@ -159,7 +200,7 @@
         <article class="service-card-visual animated-item">
           <div class="service-card-visual-content">
             <h3>Neutralisation & Signalisation</h3>
-            <p>Réservation et neutralisation de places, pose de <strong>panneaux réglementaires</strong>, affichage riverains et périmètre sécurisé (<em>roulettage</em>).</p>
+            <p>Réservation et neutralisation de places, pose de <strong>panneaux réglementaires</strong>, affichage riverains et périmètre sécurisé (<em>roulettage</em>). Nos <strong>ventouseurs à Paris</strong> assurent une exécution rapide et discrète.</p>
           </div>
         </article>
         <article class="service-card-visual animated-item">
@@ -268,6 +309,9 @@
             <h4>Légal</h4>
             <ul>
               <li><a href="/mentions/">Mentions Légales</a></li>
+              <li><a href="/llms.txt">Infos IA (llms.txt)</a></li>
+              <li><a href="/ai.txt">Infos IA (ai.txt)</a></li>
+              <li><a href="/infos-ia/">Infos IA (page)</a></li>
             </ul>
           </div>
         </div>

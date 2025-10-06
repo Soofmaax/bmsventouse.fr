@@ -4,14 +4,33 @@
     <!-- MÉTADONNÉES ESSENTIELLES -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics 4 (Consent Mode v2) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent par défaut: aucune donnée analytics tant que vous n'obtenez pas le consentement
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'security_storage': 'granted'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
+    </script>
 
     <!-- SEO & PARTAGE (OPEN GRAPH) - Optimisé pour la page d'accueil -->
     <title>BMS Ventouse | Expert Logistique pour Tournages en France</title>
     <meta name="description" content="Votre partenaire logistique pour tournages en France. BMS Ventouse gère ventousage, sécurité de plateaux, et convoyage 24/7. Devis gratuit.">
-    <meta name="keywords" content="logistique tournage, ventousage plateau, sécurité plateau, gardiennage, convoyage, autorisations tournage, régie technique, logistique audiovisuelle France">
+    
     <meta name="author" content="BMS Ventouse">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="theme-color" content="#FF8C42">
+    <meta name="color-scheme" content="light dark">
     
     <link rel="canonical" href="https://www.bmsventouse.fr/">
     
@@ -31,6 +50,7 @@
     <meta name="twitter:title" content="BMS Ventouse | Expert Logistique pour Tournages en France">
     <meta name="twitter:description" content="Partenaire logistique pour productions audiovisuelles. Ventousage, gardiennage, régie. Intervention 24/7 partout en France.">
     <meta name="twitter:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta name="twitter:image:alt" content="Rue parisienne neutralisée pour un tournage (image héro)">
     
     <!-- Géolocalisation pour SEO local -->
     <meta name="geo.region" content="FR">
@@ -46,6 +66,8 @@
     <link rel="prefetch" href="/services/" as="document">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <!-- Font Awesome pour les icônes générées en CSS (compatibilité iOS/Android) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -67,7 +89,7 @@
       "description": "Expert en logistique audiovisuelle, ventousage, sécurisation de plateaux et gardiennage pour productions en France.",
       "url": "https://www.bmsventouse.fr",
       "logo": "https://www.bmsventouse.fr/android-chrome-512x512.png",
-      "image": "https://www.bmsventouse.fr/images/og-image.png",
+      "image": "https://www.bmsventouse.fr/images/hero-background-custom.jpg",
       "telephone": "+33646005642",
       "email": "contact@bmsventouse.fr",
       "priceRange": "$$",
@@ -146,6 +168,7 @@
     </script>
 </head>
 <body class="page-accueil">
+<a href="#main-content" class="skip-link">Aller au contenu</a>
 
 
 
@@ -196,11 +219,11 @@
             <!-- Image Héros personnalisée : rue parisienne neutralisée avec cônes, de nuit -->
             <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
             <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-            <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain" loading="eager">
+            <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain" loading="eager" fetchpriority="high" width="1920" height="1080">
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">
-                <h1>Logistique Audiovisuelle pour Tournages en France</h1>
+                <h1>Ventouseur à Paris : Ventousage, Sécurité et Logistique de Tournage</h1>
                 <p><strong>Ventousage</strong>, <strong>sécurité de plateau</strong> et <strong>convoyage</strong> 24/7, partout en France.</p>
                 <div class="hero-buttons">
                     <!-- Premier appel à l'action : renvoi vers la page contact pour un devis -->
@@ -235,7 +258,7 @@
                         </svg>
                     </div>
                     <h3>Ventousage Plateau & Autorisations de Tournage</h3>
-                    <p>Gestion complète des <strong>autorisations de tournage</strong> pour vos productions à <strong>Paris, Lyon, Marseille</strong> et toute la France. <strong>Neutralisation de stationnement</strong> et pose de signalisation réglementaire. <span class="more-links">En savoir plus: <a href="/ventousage-paris/">Ventousage à Paris</a> • <a href="/ventousage-cinema/">Ventousage cinéma</a> • <a href="/logistique-seine-saint-denis/">Logistique Seine‑Saint‑Denis</a></span></p>
+                    <p>Gestion complète des <strong>autorisations de tournage</strong> pour vos productions à <strong>Paris, Lyon, Marseille</strong> et toute la France. Nos <strong>ventouseurs professionnels à Paris</strong> assurent la <strong>neutralisation de stationnement</strong> et la pose de signalisation réglementaire, en tenant compte des contraintes du <strong>ventousage pour le cinéma</strong> (rapidité, discrétion, coordination régie). <span class="more-links">En savoir plus: <a href="/ventousage-paris/">Ventousage à Paris</a> • <a href="/ventousage-cinema/">Ventousage cinéma</a> • <a href="/logistique-seine-saint-denis/">Logistique Seine‑Saint‑Denis</a></span></p>
                 </div>
                 <div class="service-card animated-item">
                     <div class="service-icon">
@@ -259,6 +282,49 @@
             <div class="cta-container animated-item">
                 <a href="/services/" class="btn btn-primary">Découvrir tous nos services</a>
             </div>
+        </div>
+    </section>
+
+    <!-- Section Prestations -->
+    <section id="prestations" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title animated-item">Prestations prioritaires</h2>
+            <p class="section-subtitle animated-item">Accès direct à nos services clés pour vos tournages et événements.</p>
+            <div class="services-grid">
+                <div class="service-card animated-item">
+                    <h3><a href="/ventousage/">Ventousage</a></h3>
+                    <p>Neutralisation de stationnement, AOT/OTDP et signalisation.</p>
+                </div>
+                <div class="service-card animated-item">
+                    <h3><a href="/securite-plateaux/">Sécurité de plateaux</a></h3>
+                    <p>Agents spécialisés, contrôle d’accès, SSIAP &amp; maîtres‑chiens.</p>
+                </div>
+                <div class="service-card animated-item">
+                    <h3><a href="/convoyage-vehicules-decors/">Convoyage véhicules &amp; décors</a></h3>
+                    <p>Transport sécurisé, chauffeurs expérimentés, 24/7.</p>
+                </div>
+                <div class="service-card animated-item">
+                    <h3><a href="/regie-materiel/">Régie &amp; matériel</a></h3>
+                    <p>Agents de régie, loges, cantines et consommables.</p>
+                </div>
+                <div class="service-card animated-item">
+                    <h3><a href="/affichage-riverains/">Affichage riverains</a></h3>
+                    <p>Pose/retrait et preuves conformes pour la voie publique.</p>
+                </div>
+                <div class="service-card animated-item">
+                    <h3><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></h3>
+                    <p>Cônes, rubalise, barrières et jalonnage conformes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Couverture locale -->
+    <section id="couverture-locale" class="section">
+        <div class="container">
+            <h2 class="section-title animated-item">Votre expert en ventousage à Paris et en Île‑de‑France</h2>
+            <p class="section-subtitle animated-item">Entreprise de logistique basée en Seine‑Saint‑Denis (93). Nos ventouseurs interviennent principalement à Paris (tous arrondissements) et en Île‑de‑France, avec déploiements nationaux selon vos besoins.</p>
+            <p class="animated-item">En savoir plus : <a href="/ventousage-paris/">Ventousage Paris</a> • <a href="/logistique-seine-saint-denis/">Logistique 93</a> • <a href="/ventousage-cinema/">Ventousage cinéma</a>.</p>
         </div>
     </section>
 
@@ -400,8 +466,24 @@
                         <ul>
                             <li><a href="/">Accueil</a></li>
                             <li><a href="/services/">Services</a></li>
+                            <li><a href="/affichage-riverains/">Affichage riverains</a></li>
+                            <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
                             <li><a href="/realisations/">Références</a></li>
                             <li><a href="/contact/">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Territoires</h4>
+                        <ul>
+                            <li><a href="/ventousage-paris/">Paris</a></li>
+                            <li><a href="/ventousage-pantin/">Pantin</a></li>
+                            <li><a href="/ventousage-lyon/">Lyon</a></li>
+                            <li><a href="/ventousage-marseille/">Marseille</a></li>
+                            <li><a href="/ventousage-bordeaux/">Bordeaux</a></li>
+                            <li><a href="/ventousage-strasbourg/">Strasbourg</a></li>
+                            <li><a href="/ventousage-nice/">Nice</a></li>
+                            <li><a href="/ventousage-toulouse/">Toulouse</a></li>
+                            <li><a href="/ventousage-lille/">Lille</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
@@ -431,12 +513,19 @@
                                     bms.ventouse@gmail.com
                                 </a>
                             </li>
+                            <!-- NAP visible pour SEO local -->
+                            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 10&nbsp;Rue de la République, 93700&nbsp;Drancy</li>
+                            <li><i class="fas fa-clock" aria-hidden="true"></i> Disponible&nbsp;24/7</li>
                         </ul>
                     </div>
                     <div class="footer-column">
                         <h4>Légal</h4>
                         <ul>
                             <li><a href="/mentions/">Mentions Légales</a></li>
+                            <li><a href="/llms.txt">Infos IA (llms.txt)</a></li>
+                            <li><a href="/ai.txt">Infos IA (ai.txt)</a></li>
+                            <li><a href="/infos-ia/">Infos IA (page)</a></li>
+                            <li><a href="#" class="manage-cookies" data-cookie="manage">Gérer les cookies</a></li>
                             <!-- Le numéro de SIRET a été retiré conformément aux nouvelles consignes -->
                         </ul>
                     </div>
