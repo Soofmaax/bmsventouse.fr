@@ -130,7 +130,7 @@
     </div>
   </section>
 
-  <!-- Lien vers AOT & Paris -->
+  <!-- Aller plus loin -->
   <section class="section section-alt">
     <div class="container">
       <h2 class="section-title animated-item">Aller plus loin</h2>
@@ -141,7 +141,47 @@
     </div>
   </section>
 
-  <!-- FAQ courte -->
+  <!-- Ce qu'inclut un ventousage -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Ce qu’inclut un ventousage professionnel</h2>
+      <ul class="animated-item">
+        <li>Neutralisation &amp; <strong>signalisation réglementaire</strong> (panneaux, périmètre jalonné)</li>
+        <li><strong>Affichage riverains</strong> en amont, <strong>photos horodatées</strong> (pose/retrait)</li>
+        <li><em>Roulettage</em> &amp; jalonnage du périmètre selon les flux</li>
+        <li>Coordination <strong>AOT/OTDP</strong> &amp; autorités le jour J</li>
+        <li>Compte‑rendu &amp; récapitulatif du périmètre</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Processus en pratique -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title animated-item">Processus en pratique</h2>
+      <ol class="animated-item" style="margin:0 auto; max-width:900px; line-height:1.7;">
+        <li><strong>Brief</strong> — périmètre, dates, contraintes (fiction, pub, mode, événement).</li>
+        <li><strong>Repérage</strong> — accès, jalonnage, affichage à prévoir.</li>
+        <li><strong>Autorisations</strong> — AOT/OTDP si nécessaire.</li>
+        <li><strong>Mise en place</strong> — panneaux, affichage, roulettage &amp; barriérage.</li>
+        <li><strong>Retrait &amp; preuves</strong> — retrait signalisation, photos horodatées.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Délais & conformité -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Délais &amp; conformité</h2>
+      <div class="services-grid animated-item" style="margin-top:1rem;">
+        <div class="service-card"><h3>Affichage</h3><p><strong>48–72 h</strong> avant l’intervention en général (selon arrêté).</p></div>
+        <div class="service-card"><h3>AOT/OTDP</h3><p><strong>5–15 jours ouvrés</strong> selon zone &amp; sensibilité du site.</p></div>
+        <div class="service-card"><h3>Jour J</h3><p>Contrôles de <strong>signalisation</strong>, <em>roulettage</em>, respect des créneaux, coordination autorités.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
   <section class="section">
     <div class="container">
       <h2 class="section-title animated-item">FAQ</h2>
@@ -153,6 +193,14 @@
         <div class="faq-item animated-item">
           <h3 class="faq-question">Que faire en cas de “voiture ventouse” ?</h3>
           <div class="faq-answer"><p>Nos équipes coordonnent avec les autorités pour libérer les emplacements conformément à l’arrêté d’interdiction temporaire.</p></div>
+        </div>
+        <div class="faq-item animated-item">
+          <h3 class="faq-question">Quels délais pour l’affichage riverains ?</h3>
+          <div class="faq-answer"><p>En général <strong>48–72 h</strong> avant l’intervention, conformément à l’arrêté et aux usages locaux. Nous fournissons modèle, pose et <strong>photos horodatées</strong>.</p></div>
+        </div>
+        <div class="faq-item animated-item">
+          <h3 class="faq-question">Quelle signalisation est obligatoire ?</h3>
+          <div class="faq-answer"><p>Panneaux réglementaires, périmètre <em>rouletté</em> (jalonnage), barriérage si nécessaire. Nous posons et retirons l’ensemble du dispositif.</p></div>
         </div>
       </div>
     </div>
@@ -199,5 +247,19 @@
 </footer>
 
 <script src="/js/script.js" defer></script>
+
+<!-- DONNÉES STRUCTURÉES FAQ POUR RICH SNIPPETS -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Est-ce légal de ventouser sans autorisation ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. L’occupation de la voie publique nécessite une AOT/OTDP. Nous gérons l’intégralité de la procédure pour vous." } },
+    { "@type": "Question", "name": "Quels délais pour l’affichage riverains ?", "acceptedAnswer": { "@type": "Answer", "text": "Généralement 48–72 h avant l’intervention, conformément à l’arrêté et aux usages locaux. Nous fournissons modèle, pose et photos horodatées." } },
+    { "@type": "Question", "name": "Quelle signalisation est obligatoire ?", "acceptedAnswer": { "@type": "Answer", "text": "Panneaux réglementaires, périmètre jalonné (roulettage), barriérage si nécessaire. Nous posons et retirons l’ensemble du dispositif." } },
+    { "@type": "Question", "name": "Que faire en cas de “voiture ventouse” ?", "acceptedAnswer": { "@type": "Answer", "text": "Nous coordonnons avec les autorités pour libérer les emplacements conformément à l’arrêté d’interdiction temporaire." } }
+  ]
+}
+</script>
 </body>
 </html>
