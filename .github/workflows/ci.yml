@@ -1,0 +1,127 @@
+name: CI - Full Quality Gate
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-validate:
+    name: Lint and Validate (core; blocking)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Super-Linter (slim) validates HTML/XML/YAML and, with repo configs, CSS/JS/Markdown.
+      - name: Super-Linter
+        uses: github/super-linter/slim@v6
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: true
+
+          # Enable core validations
+          VALIDATE_HTML: true
+          VALIDATE_XML: true
+          VALIDATE_YAML: true
+
+          # Validate GitHub Actions workflow files
+          VALIDATE_GITHUB_ACTIONS: true
+
+          # Project linters (configs present in repo)
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_MARKDOWN: true
+
+      - name: Link check (internal links only)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --base .
+            --no-progress
+            --verbose
+            --retry 1
+            --timeout 20
+            --exclude-mail
+            --exclude "https?://.*"
+            --exclude "mailto:.*"
+            --exclude "tel:.*"
+            **/*.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lint netlify.toml (Taplo)
+        uses: taplo/actions@v1
+        with:
+          args: check netlify.toml
+
+  quality:
+    name: Accessibility & External links (non-blocking)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install local server and pa11y-ci
+        run: |
+          npm i -g http-server pa11y-ci wait-on
+
+      - name: Serve site locally
+        run: |
+          nohup npx http-server -p 8080 >/dev/null 2>&1 &
+          npx wait-on http://localhost:8080
+
+      - name: Accessibility audit (Pa11y CI - WCAG2AA)
+        run: npx pa11y-ci -c .pa11yci.json
+
+      - name: Accessibility audit (Pa11y CI - WCAG2AAA; non-blocking)
+        run: npx pa11y-ci -c .pa11yci.json --standard WCAG2AAA
+
+      - name: Link check (including external; HTML)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --verbose
+            --retry 2
+            --timeout 30
+            --max-concurrency 5
+            --accept 200..399
+            --exclude-mail
+            **/*.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Link check (including external; Markdown)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --verbose
+            --retry 2
+            --timeout 30
+            --max-concurrency 5
+            --accept 200..399
+            --exclude-mail
+            **/*.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

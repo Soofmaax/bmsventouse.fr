@@ -4,11 +4,29 @@
     <!-- MÉTADONNÉES ESSENTIELLES -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics 4 (Consent Mode v2) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'security_storage': 'granted'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
+    </script>
 
     <!-- SEO & PARTAGE (OPEN GRAPH) - Optimisé pour la page Contact -->
     <title>Contact & Devis Gratuit 24/7 | BMS Ventouse</title>
     <meta name="description" content="Contactez BMS Ventouse pour un devis gratuit. Joignable 24/7 par téléphone, WhatsApp ou email pour tous vos besoins en logistique de tournage.">
-    <meta name="keywords" content="contact BMS Ventouse, devis gratuit tournage, logistique audiovisuelle paris, ventousage urgence, sécurité plateau 24h">
+    
     <meta name="author" content="BMS Ventouse">
     <meta name="robots" content="index, follow, max-snippet:160">
     <link rel="canonical" href="https://www.bmsventouse.fr/contact/">
@@ -18,13 +36,17 @@
     <meta property="og:description" content="Joignable 24/7 par téléphone, WhatsApp ou email pour vos besoins en logistique de tournage.">
     <meta property="og:url" content="https://www.bmsventouse.fr/contact/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://www.bmsventouse.fr/images/og-image.png">
+    <meta property="og:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:site_name" content="BMS Ventouse">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact & Devis Gratuit 24/7 | BMS Ventouse">
     <meta name="twitter:description" content="Contactez BMS Ventouse pour un devis gratuit. Joignable 24/7 par téléphone, WhatsApp ou email.">
-    <meta name="twitter:image" content="https://www.bmsventouse.fr/images/og-image.png">
+    <meta name="twitter:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta name="twitter:image:alt" content="Personne utilisant un téléphone pour contacter un service (image héro)">
     
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -85,8 +107,21 @@
       }
     }
     </script>
+
+    <!-- Fil d’Ariane JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.bmsventouse.fr/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.bmsventouse.fr/contact/" }
+      ]
+    }
+    </script>
 </head>
 <body class="page-contact">
+<a href="#main-content" class="skip-link">Aller au contenu</a>
 
 
 
@@ -139,7 +174,7 @@
             <source media="(max-width: 767px)" srcset="/images/contact-hero-background-mobile.webp" type="image/webp">
             <!-- Fallback JPEG universel -->
             <source srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-            <img src="/images/hero-background-custom.jpg" alt="Personne utilisant un téléphone pour contacter un service" loading="eager">
+            <img src="/images/hero-background-custom.jpg" alt="Personne utilisant un téléphone pour contacter un service" loading="eager" fetchpriority="high" width="1920" height="1080">
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">
@@ -156,7 +191,7 @@
           <div class="urgency-content">
             <i class="fas fa-exclamation-triangle"></i>
             <div class="urgency-text">
-              <h3>Un Tournage de derniere minutes ?</h3>
+              <h3>Un tournage de dernière minute ?</h3>
               <p>Appelez maintenant ! Nous pouvons intervenir dans l'heure qui suit votre appel.</p>
             </div>
             <div class="urgency-buttons">
@@ -279,8 +314,24 @@
                       <ul>
                           <li><a href="/">Accueil</a></li>
                           <li><a href="/services/">Services</a></li>
+                          <li><a href="/affichage-riverains/">Affichage riverains</a></li>
+                          <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
                           <li><a href="/realisations/">Références</a></li>
                           <li><a href="/contact/">Contact</a></li>
+                      </ul>
+                  </div>
+                  <div class="footer-column">
+                      <h4>Territoires</h4>
+                      <ul>
+                          <li><a href="/ventousage-paris/">Paris</a></li>
+                          <li><a href="/ventousage-pantin/">Pantin</a></li>
+                          <li><a href="/ventousage-lyon/">Lyon</a></li>
+                          <li><a href="/ventousage-marseille/">Marseille</a></li>
+                          <li><a href="/ventousage-bordeaux/">Bordeaux</a></li>
+                          <li><a href="/ventousage-strasbourg/">Strasbourg</a></li>
+                          <li><a href="/ventousage-nice/">Nice</a></li>
+                          <li><a href="/ventousage-toulouse/">Toulouse</a></li>
+                          <li><a href="/ventousage-lille/">Lille</a></li>
                       </ul>
                   </div>
                   <div class="footer-column">
@@ -297,6 +348,9 @@
                         <h4>Légal</h4>
                         <ul>
                             <li><a href="/mentions/">Mentions Légales</a></li>
+                            <li><a href="/llms.txt">Infos IA (llms.txt)</a></li>
+                            <li><a href="/ai.txt">Infos IA (ai.txt)</a></li>
+                            <li><a href="/infos-ia/">Infos IA (page)</a></li>
                             <!-- SIRET retiré pour harmoniser le footer sur toutes les pages -->
                         </ul>
                     </div>

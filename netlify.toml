@@ -41,5 +41,5 @@
 
 [[redirects]]
   from = "/services"
-  to = "/#services"
+  to = "/services/"
   status = 301

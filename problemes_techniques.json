@@ -1,0 +1,77 @@
+{
+  "generated_at": "2025-09-30T00:00:00Z",
+  "domain": "bmsventouse.fr",
+  "summary": {
+    "high": [
+      "Absence de page Politique de confidentialité dédiée (à créer pour transparence RGPD).",
+      "Pas de lien persistant pour re-gérer le consentement cookies (hors bannière initiale)."
+    ],
+    "medium": [
+      "Styles inline injectés via JS (bannière cookie, breadcrumb) à déplacer en CSS dédié.",
+      "Quelques constantes « magiques » dans js/script.js (seuils d’animations, offsets)."
+    ],
+    "low": [
+      "Harmonisation Twitter Cards encore à surveiller lors des futures pages.",
+      "Uniformiser l’usage de .webp pour certaines images (fallback jpeg ok)."
+    ]
+  },
+  "issues": [
+    {
+      "id": "A11Y-001",
+      "area": "accessibility",
+      "severity": "medium",
+      "description": "Pas de lien persistant pour re-ouvrir la gestion du consentement cookie (post-choix).",
+      "files": ["js/script.js", "index.html", "contact/index.html"],
+      "recommendation": "Ajouter un lien « Gérer les cookies » en pied de page qui ouvre un mini-dialog pour modifier le consentement Analytics."
+    },
+    {
+      "id": "JS-001",
+      "area": "javascript",
+      "severity": "medium",
+      "description": "Styles CSS injectés en inline dans la bannière cookie et le breadcrumb.",
+      "files": ["js/script.js"],
+      "recommendation": "Déplacer ces styles vers /css/style.css (classes .cookie-banner, .breadcrumb...) et ne conserver que le DOM dans JS."
+    },
+    {
+      "id": "JS-002",
+      "area": "javascript",
+      "severity": "low",
+      "description": "Valeurs constantes (threshold, margins) codées en dur.",
+      "files": ["js/script.js"],
+      "recommendation": "Centraliser dans une section CONFIG documentée avec noms explicites et commentaire d’usage."
+    },
+    {
+      "id": "SEC-001",
+      "area": "security",
+      "severity": "low",
+      "description": "CSP principalement en meta; optimum via en-têtes Netlify.",
+      "files": ["netlify.toml", "index.html"],
+      "recommendation": "Renforcer la CSP dans netlify.toml (headers) et supprimer l’éventuelle meta CSP redondante."
+    },
+    {
+      "id": "SEO-001",
+      "area": "seo",
+      "severity": "low",
+      "description": "Harmonisation Twitter Cards complétée sur pages clés, à garder pour futures pages.",
+      "files": [
+        "services/index.html",
+        "realisations/index.html",
+        "ventousage-cinema/index.html",
+        "transport-materiel-audiovisuel-paris/index.html",
+        "logistique-seine-saint-denis/index.html",
+        "logistique-seine-et-marne/index.html",
+        "logistique-val-d-oise/index.html",
+        "securite-tournage-strasbourg/index.html"
+      ],
+      "recommendation": "Inclure systématiquement les 4 metas (card, title, description, image) lors de toute nouvelle page."
+    },
+    {
+      "id": "SEO-002",
+      "area": "seo",
+      "severity": "low",
+      "description": "Suppression des meta keywords résiduels effectuée; surveiller les ajouts futurs.",
+      "files": ["index.html", "contact/index.html"],
+      "recommendation": "Ne pas réintroduire meta keywords; non utilisées par Google."
+    }
+  ]
+}

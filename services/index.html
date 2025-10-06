@@ -4,6 +4,24 @@
     <!-- MÉTADONNÉES ESSENTIELLES -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics 4 (Consent Mode v2) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'security_storage': 'granted'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
+    </script>
 
     <!-- SEO & PARTAGE (OPEN GRAPH) - Optimisé pour la page Services -->
     <title>Nos Services de Logistique Audiovisuelle | BMS Ventouse</title>
@@ -17,7 +35,16 @@
     <meta property="og:description" content="Découvrez nos services experts : ventousage, sécurité plateaux, régie, convoyage.">
     <meta property="og:url" content="https://www.bmsventouse.fr/services/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://www.bmsventouse.fr/images/og-image.webp">
+    <meta property="og:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:site_name" content="BMS Ventouse">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nos Services de Logistique Audiovisuelle | BMS Ventouse">
+    <meta name="twitter:description" content="Découvrez nos services experts : ventousage, sécurité plateaux, régie, convoyage.">
+    <meta name="twitter:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta name="twitter:image:alt" content="Équipe logistique préparant un plateau de tournage (image héro)">
     
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -34,6 +61,8 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     <!-- FAVICONS & MANIFESTE -->
@@ -57,12 +86,12 @@
           "areaServed": {
             "@type": "Country",
             "name": "France"
-          }
+          },
+          "telephone": "+33646005642"
         },
         "availableChannel": {
           "@type": "ServiceChannel",
-          "serviceUrl": "https://www.bmsventouse.fr/contact/",
-          "servicePhone": "+33646005642"
+          "serviceUrl": "https://www.bmsventouse.fr/contact/"
         },
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
@@ -98,8 +127,21 @@
       }
     ]
     </script>
+
+    <!-- Fil d’Ariane JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.bmsventouse.fr/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.bmsventouse.fr/services/" }
+      ]
+    }
+    </script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Aller au contenu</a>
 
 
 
@@ -152,12 +194,12 @@
             <source media="(min-width: 768px )" srcset="/images/services-hero-background-desktop.webp" type="image/webp">
             <!-- Fallback JPEG universel pour anciens iPhone -->
             <source srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-            <img src="/images/hero-background-custom.jpg" alt="Équipe logistique préparant un plateau de tournage" loading="eager" width="1920" height="1080">
+            <img src="/images/hero-background-custom.jpg" alt="Équipe logistique préparant un plateau de tournage" loading="eager" fetchpriority="high" width="1920" height="1080">
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">
                 <h1>Solutions Logistiques Complètes pour Productions Audiovisuelles</h1>
-                <p>Que vous soyez régisseur de long métrage, de série, de publicité ou d'événementiel, nous avons la solution.</p>
+                <p>Que vous soyez régisseur de long métrage, de série, de publicité ou d'événementiel, nous avons la solution. Entreprise de logistique basée en Seine‑Saint‑Denis (93), nos ventouseurs interviennent principalement à Paris et en Île‑de‑France.</p>
             </div>
         </div>
     </section>
@@ -179,7 +221,7 @@
                         <p>
                           Protection 24h/24 de vos équipes, de votre matériel et de vos sites par des agents hautement qualifiés, en partenariat avec
                           <strong>Vista&nbsp;Prime</strong>. Nous assurons le contrôle d'accès, la gestion des foules et la confidentialité des tournages.
-                          Possibilité de faire intervenir des agents SSIAP et des maîtres‑chiens selon vos besoins. <a href="/realisations/">Voir nos références en sécurité.</a>
+                          Possibilité de faire intervenir des agents SSIAP et des maîtres‑chiens selon vos besoins. <a href="/realisations/">Voir nos références en sécurité.</a> <a href="/securite-tournage-strasbourg/">Sécurité de tournage à Strasbourg</a>. <a href="/securite-plateaux/">Page service Sécurité de plateaux</a>.
                         </p>
                         <ul>
                             <li>Agents de sécurité spécialisés</li>
@@ -236,12 +278,50 @@
                         <p>
                           Notre cœur de métier&nbsp;: la réservation et la neutralisation de stationnement pour vos tournages, événements ou déménagements.
                           Nous gérons les démarches auprès des municipalités et intervenons aussi bien pour des shootings photo, la Fashion Week que pour des tournages et déménagements.
+                          Nos <strong>ventouseurs professionnels à Paris</strong> assurent la neutralisation et la pose de signalisation réglementaire, en tenant compte des contraintes du <strong>ventousage pour le cinéma</strong> (rapidité, discrétion, coordination régie).
+                          En savoir plus&nbsp;: <a href="/ventousage-paris/">Ventousage à Paris</a> • <a href="/ventousage-nice/">Ventousage Nice</a> • <a href="/ventousage-toulouse/">Ventousage Toulouse</a> • <a href="/ventousage-lille/">Ventousage Lille</a> • <a href="/ventousage/">Page dédiée Ventousage</a> • <a href="/affichage-riverains/">Affichage riverains</a> • <a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a>.
                         </p>
                         <ul>
                             <li>Prise en charge des démarches administratives</li>
                             <li>Pose de panneaux et affichage (offert*)</li>
                             <li>"Roulettage" et sécurisation de périmètre (offert*)</li>
                             <li>Réservation de places pour shootings photo, événements de mode et déménagements</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Affichage riverains (carte dédiée) -->
+                <article class="service-card-visual animated-item">
+                    <div class="service-card-visual-image">
+                        <img src="/images/service-ventousage-custom.jpg" alt="Affichage riverains informant dates et périmètre de neutralisation pour tournage." loading="lazy" width="400" height="250">
+                    </div>
+                    <div class="service-card-visual-content">
+                        <h3>Affichage riverains</h3>
+                        <p>
+                          Information préalable conforme aux arrêtés (OTDP/AOT) : rédaction, pose et retrait, preuves photo horodatées. <a href="/affichage-riverains/">Page dédiée Affichage riverains</a>.
+                        </p>
+                        <ul>
+                            <li>Modèles conformes &amp; impression</li>
+                            <li>Pose &amp; retrait sur périmètre</li>
+                            <li>Photos horodatées (preuves)</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Signalisation & Barriérage (carte dédiée) -->
+                <article class="service-card-visual animated-item">
+                    <div class="service-card-visual-image">
+                        <img src="/images/service-ventousage-custom.jpg" alt="Périmètre sécurisé avec cônes et rubalise pour un tournage." loading="lazy" width="400" height="250">
+                    </div>
+                    <div class="service-card-visual-content">
+                        <h3>Signalisation &amp; Barriérage</h3>
+                        <p>
+                          Cônes, rubalise et barrières pour périmètres conformes et sûrs. Jalonnage adapté et coordination réglementaire. <a href="/signalisation-barrierage/">Page dédiée Signalisation &amp; barriérage</a>.
+                        </p>
+                        <ul>
+                            <li>Cônes &amp; rubalise</li>
+                            <li>Barrières &amp; jalonnage</li>
+                            <li>Conformité arrêtés temporaires</li>
                         </ul>
                     </div>
                 </article>
@@ -253,7 +333,7 @@
                     <div class="service-card-visual-content">
                         <h3>Convoyage de Véhicules &amp; Décors</h3>
                         <p>
-                          Transport sécurisé sur toute la France par une équipe sérieuse et qualifiée. Nos chauffeurs prennent en charge des véhicules techniques jusqu'à 22&nbsp;m³ et des poids lourds, avec un respect strict des délais et des normes de sécurité. <a href="/contact/">Demandez un devis de transport.</a>
+                          Transport sécurisé sur toute la France par une équipe sérieuse et qualifiée. Nos chauffeurs prennent en charge des véhicules techniques jusqu'à 22&nbsp;m³ et des poids lourds, avec un respect strict des délais et des normes de sécurité. <a href="/contact/">Demandez un devis de transport.</a> <a href="/transport-materiel-audiovisuel-paris/">Transport audiovisuel à Paris</a>. <a href="/convoyage-vehicules-decors/">Page dédiée Convoyage</a>.
                         </p>
                         <ul>
                             <li>Convoyage de véhicules techniques (jusqu'à 22&nbsp;m³, poids lourds)</li>
@@ -286,7 +366,7 @@
                         <h3>Régie &amp; Matériel</h3>
                         <p>
                           Mise à disposition de personnel et de matériel pour assurer la fluidité de vos opérations sur le terrain.
-                          Nous proposons également des partenariats pour la location de matériel spécifique et de consommables nécessaires à votre production.
+                          Nous proposons également des partenariats pour la location de matériel spécifique et de consommables nécessaires à votre production. <a href="/regie-materiel/">Page dédiée Régie &amp; matériel</a>.
                         </p>
                         <ul>
                             <li>Agents de régie et manutentionnaires</li>
@@ -322,6 +402,25 @@
                     <li>Support 24/7 et réactivité immédiate</li>
                 </ul>
                 <p class="text-muted" style="font-size: 0.9rem; margin-top: 0.5rem;"><em>*Services gratuits après acceptation du devis.</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Villes desservies (maillage interne) -->
+    <section class="section section-alt" id="villes">
+        <div class="container">
+            <h2 class="section-title animated-item">Villes desservies</h2>
+            <p class="section-subtitle animated-item">Interventions rapides en Île‑de‑France et grandes villes nationales.</p>
+            <div class="zones-grid">
+                <div class="zone-card animated-item"><i class="fas fa-city" aria-hidden="true"></i><h3><a href="/ventousage-paris/">Paris</a></h3><p>Ventousage &amp; AOT sur la capitale.</p></div>
+                <div class="zone-card animated-item"><i class="fas fa-city" aria-hidden="true"></i><h3><a href="/ventousage-pantin/">Pantin</a></h3><p>Neutralisation &amp; affichage riverains en 93.</p></div>
+                <div class="zone-card animated-item"><i class="fas fa-city" aria-hidden="true"></i><h3><a href="/ventousage-lyon/">Lyon</a></h3><p>Neutralisation &amp; AOT en Rhône.</p></div>
+                <div class="zone-card animated-item"><i class="fas fa-city" aria-hidden="true"></i><h3><a href="/ventousage-marseille/">Marseille</a></h3><p>Coordination &amp; signalisation en 13.</p></div>
+                <div class="zone-card animated-item"><i class="fas fa-city" aria-hidden="true"></i><h3><a href="/ventousage-bordeaux/">Bordeaux</a></h3><p>Ventousage &amp; affichage en Gironde.</p></div>
+                <div class="zone-card animated-item"><i class="fas fa-city" aria-hidden="true"></i><h3><a href="/ventousage-strasbourg/">Strasbourg</a></h3><p>Neutralisation &amp; AOT en 67.</p></div>
+                <div class="zone-card animated-item"><i class="fas fa-city" aria-hidden="true"></i><h3><a href="/ventousage-nice/">Nice</a></h3><p>Ventousage &amp; AOT sur la Côte d’Azur.</p></div>
+                <div class="zone-card animated-item"><i class="fas fa-city" aria-hidden="true"></i><h3><a href="/ventousage-toulouse/">Toulouse</a></h3><p>Neutralisation &amp; AOT en Haute‑Garonne.</p></div>
+                <div class="zone-card animated-item"><i class="fas fa-city" aria-hidden="true"></i><h3><a href="/ventousage-lille/">Lille</a></h3><p>Stationnement réservé &amp; coordination.</p></div>
             </div>
         </div>
     </section>
@@ -369,8 +468,24 @@
                         <ul>
                             <li><a href="/">Accueil</a></li>
                             <li><a href="/services/">Services</a></li>
+                            <li><a href="/affichage-riverains/">Affichage riverains</a></li>
+                            <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
                             <li><a href="/realisations/">Références</a></li>
                             <li><a href="/contact/">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Territoires</h4>
+                        <ul>
+                            <li><a href="/ventousage-paris/">Paris</a></li>
+                            <li><a href="/ventousage-pantin/">Pantin</a></li>
+                            <li><a href="/ventousage-lyon/">Lyon</a></li>
+                            <li><a href="/ventousage-marseille/">Marseille</a></li>
+                            <li><a href="/ventousage-bordeaux/">Bordeaux</a></li>
+                            <li><a href="/ventousage-strasbourg/">Strasbourg</a></li>
+                            <li><a href="/ventousage-nice/">Nice</a></li>
+                            <li><a href="/ventousage-toulouse/">Toulouse</a></li>
+                            <li><a href="/ventousage-lille/">Lille</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
@@ -381,12 +496,19 @@
                             <!-- Contact WhatsApp direct -->
                             <li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp Direct</a></li>
                             <li><a href="mailto:bms.ventouse@gmail.com"><i class="fas fa-envelope"></i> bms.ventouse@gmail.com</a></li>
+                            <!-- NAP visible pour SEO local -->
+                            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 10&nbsp;Rue de la République, 93700&nbsp;Drancy</li>
+                            <li><i class="fas fa-clock" aria-hidden="true"></i> Disponible&nbsp;24/7</li>
                         </ul>
                     </div>
                     <div class="footer-column">
                         <h4>Légal</h4>
                         <ul>
                             <li><a href="/mentions/">Mentions Légales</a></li>
+                            <li><a href="/llms.txt">Infos IA (llms.txt)</a></li>
+                            <li><a href="/ai.txt">Infos IA (ai.txt)</a></li>
+                            <li><a href="/infos-ia/">Infos IA (page)</a></li>
+                            <li><a href="#" class="manage-cookies" data-cookie="manage">Gérer les cookies</a></li>
                             <!-- Le numéro de SIRET a été retiré conformément aux nouvelles consignes -->
                         </ul>
                     </div>

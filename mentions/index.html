@@ -4,12 +4,30 @@
     <!-- MÉTADONNÉES ESSENTIELLES -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics 4 (Consent Mode v2) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'security_storage': 'granted'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
+    </script>
     <meta name="color-scheme" content="light">
     <meta name="theme-color" content="#FF8C42">
     <meta name="view-transition" content="same-origin">
 
     <!-- HEADERS DE SÉCURITÉ MODERNES -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; img-src 'self' data:;">
+    <!-- CSP ajustée pour autoriser le chargement de GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com; img-src 'self' data:;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
@@ -26,7 +44,7 @@
     <meta property="og:description" content="Informations légales concernant la société BMS Ventouse.">
     <meta property="og:url" content="https://www.bmsventouse.fr/mentions/">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="https://www.bmsventouse.fr/images/og-image.webp">
+    <meta property="og:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
     
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -80,6 +98,7 @@
     </script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Aller au contenu</a>
 
 <!-- Liens d'évitement pour l'accessibilité -->
 
@@ -134,7 +153,7 @@
             <source media="(max-width: 767px)" srcset="/images/contact-hero-background-mobile.webp" type="image/webp">
             <!-- Fallback JPEG universel -->
             <source srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-            <img src="/images/hero-background-custom.jpg" alt="Bureau moderne avec documents légaux et contrats" loading="eager">
+            <img src="/images/hero-background-custom.jpg" alt="Bureau moderne avec documents légaux et contrats" loading="eager" fetchpriority="high" width="1920" height="1080">
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">
@@ -262,6 +281,9 @@
                         <h4>Légal</h4>
                         <ul>
                             <li><a href="/mentions/">Mentions Légales</a></li>
+                            <li><a href="/llms.txt">Infos IA (llms.txt)</a></li>
+                            <li><a href="/ai.txt">Infos IA (ai.txt)</a></li>
+                            <li><a href="/infos-ia/">Infos IA (page)</a></li>
                             <!-- SIRET retiré pour harmoniser le footer sur toutes les pages -->
                         </ul>
                     </div>
