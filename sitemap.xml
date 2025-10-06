@@ -91,4 +91,22 @@
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
       </url>
+      <url>
+        <loc>https://www.bmsventouse.fr/ventousage-nice/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+      </url>
+      <url>
+        <loc>https://www.bmsventouse.fr/ventousage-toulouse/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+      </url>
+      <url>
+        <loc>https://www.bmsventouse.fr/ventousage-lille/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+      </url>
 </urlset>
