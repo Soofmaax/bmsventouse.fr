@@ -4,6 +4,7 @@
     <!-- MÉTADONNÉES ESSENTIELLES -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
     <!-- Google Analytics 4 (Consent Mode v2) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
     <script>
@@ -25,7 +26,8 @@
     <meta name="view-transition" content="same-origin">
 
     <!-- HEADERS DE SÉCURITÉ MODERNES -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self'; img-src 'self' data:;">
+    <!-- CSP ajustée pour autoriser le chargement de GA4 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com; img-src 'self' data:;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 

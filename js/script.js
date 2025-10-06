@@ -476,6 +476,21 @@ document.addEventListener('DOMContentLoaded', () => {
     setupBackToTop();
     setupAnalyticsEvents();
     setupBreadcrumbs();
+
+    // Debug/override consent via query string: ?consent=granted|denied
+    try {
+      const qs = new URLSearchParams(window.location.search);
+      const consentParam = qs.get('consent');
+      if (consentParam && typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          analytics_storage: consentParam === 'granted' ? 'granted' : 'denied'
+        });
+        console.log('Consent override via query param:', consentParam);
+      }
+    } catch (e) {
+      // non-bloquant
+    }
+
     console.log('🚀 BMS Ventouse - Tous les modules initialisés avec succès');
   } catch (error) {
     console.error("Erreur lors de l'initialisation des scripts du site :", error);
