@@ -491,6 +491,22 @@ document.addEventListener('DOMContentLoaded', () => {
       // non-bloquant
     }
 
+    // Lien \"Gérer les cookies\" en footer: permet de rouvrir la bannière de consentement
+    try {
+      document.querySelectorAll('.manage-cookies,[data-cookie=\"manage\"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Réinitialise le consentement et réaffiche la bannière
+          try {
+            localStorage.removeItem('bms_cookie_consent');
+          } catch (_) {}
+          setupCookieBanner();
+        });
+      });
+    } catch (_) {
+      // non-bloquant
+    }
+
     console.log('🚀 BMS Ventouse - Tous les modules initialisés avec succès');
   } catch (error) {
     console.error("Erreur lors de l'initialisation des scripts du site :", error);
