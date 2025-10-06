@@ -157,4 +157,16 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
       </url>
+      <url>
+        <loc>https://www.bmsventouse.fr/affichage-riverains/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://www.bmsventouse.fr/signalisation-barrierage/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
 </urlset>
