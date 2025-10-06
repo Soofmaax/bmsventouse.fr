@@ -133,4 +133,28 @@
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
       </url>
+      <url>
+        <loc>https://www.bmsventouse.fr/ventousage/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://www.bmsventouse.fr/securite-plateaux/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://www.bmsventouse.fr/convoyage-vehicules-decors/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://www.bmsventouse.fr/regie-materiel/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
 </urlset>
