@@ -92,7 +92,7 @@ site: https://www.bmsventouse.fr/
 ventousage; neutralisation; AOT; OTDP; autorisations de tournage; sécurité plateau; gardiennage; SSIAP; maîtres-chiens; convoyage; régie; logistique audiovisuelle; cars loges; cantine; fashion week; shooting; publicité; déménagement; périmètre; roulettage; affichage riverains; panneaux; stationnement
 
 [zones-fr]
-Paris; Île-de-France; Seine-Saint-Denis; Val-d'Oise; Seine-et-Marne; Strasbourg; Nice; Marseille; Lyon; Bordeaux; France entière
+Paris; Île-de-France; Seine-Saint-Denis; Val-d'Oise; Seine-et-Marne; Strasbourg; Nice; Marseille; Lyon; Bordeaux; Toulouse; Lille; France entière
 
 [services-catalog-fr]
 - Ventousage & Stationnement: neutralisation de places, pose de panneaux, affichage riverains, AOT/OTDP, roulettage (offerts après acceptation du devis)
