@@ -45,9 +45,15 @@ Objectif
 
 7) Pages locales (modèle)
 - URL: /ville-ou-service-local/
-- Title: “Service à Ville — … | BMS Ventouse”.
-- Description: 140–160 car., localisée, avec CTA.
-- JSON‑LD Service + FAQPage (questions locales).
+- Title: “Ventousage à [Ville] — Ventouseur [Ville] | BMS Ventouse”.
+- Description: 140–160 car., localisée, inclure “ventouseur [Ville]”, AOT/OTDP, 24/7, CTA.
+- JSON‑LD:
+  - Service.name: “Ventousage à [Ville] — ventouseur à [Ville]”
+  - Service.description: “Neutralisation du stationnement, AOT/OTDP, signalisation réglementaire. Intervention 24/7.”
+  - FAQPage: questions locales (2+)
+- Social (OG/Twitter):
+  - Aligner title/description sur le wording ci‑dessus (inclure “ventouseur [Ville]”)
+  - Image 1200×630 (JPEG/WEBP), descriptive twitter:image:alt
 - Contenu: explication du service à Ville, sections pratiques (AOT/OTDP), FAQ locale.
 - Liens: vers Contact, Services, autres pages locales pertinentes.
 
@@ -55,6 +61,7 @@ Objectif
 - CI (Super‑Linter + lychee interne) doit passer.
 - Pa11y CI (AAA) rapport non bloquant; corriger si erreurs majeures.
 - Valider OG/Twitter via les outils officiels quand images/titres changent.
+- Vérifier l’alignement meta description ↔ OG/Twitter ↔ JSON‑LD Service (name/description) pour les pages locales (inclure “ventouseur [Ville]”).
 
 Annexe: exemples
 - Un exemple de JSON‑LD Service et FAQ est présent dans /services/ et pages locales.

@@ -11,6 +11,8 @@ Cette liste permet d’éviter les régressions SEO/Perf/A11y.
 - [ ] Open Graph: og:title/description/url/type/image(1200×630)
 - [ ] Twitter Cards: summary_large_image + title/description/image
 - [ ] JSON-LD adapté (Service/FAQ/Breadcrumb/Article)
+- [ ] Alignement meta ↔ OG/Twitter ↔ JSON-LD Service (name/description)
+- [ ] Pages locales: wording “ventouseur [Ville]” présent (meta, OG/Twitter, JSON‑LD, contenu)
 - [ ] `meta keywords` absents
 - [ ] Skip link présent; `<main id="main-content">` existant
 

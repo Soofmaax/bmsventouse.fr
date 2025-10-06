@@ -42,11 +42,11 @@ Objectif: produire des pages claires, utiles, bien structurées, qui se position
 ## Modèles rapides
 
 - Titre (H1):
-  - “Ventousage à [Ville] — Neutralisation & AOT | BMS Ventouse”
+  - “Ventousage à [Ville] — ventouseur à [Ville]”
 - Meta description:
-  - “Neutralisation de stationnement et AOT pour tournages/événements à [Ville]. Intervention 24/7, devis gratuit.”
+  - “Ventousage à [Ville] — ventouseur à [Ville] : neutralisation du stationnement, AOT/OTDP, signalisation réglementaire. Intervention 24/7. Devis gratuit.”
 - OG/Twitter:
-  - Même titre/description, image 1200×630
+  - Aligner title/description (inclure “ventouseur [Ville]”), image 1200×630, `twitter:image:alt` descriptif
 
 ## Pages locales
 

@@ -29,6 +29,8 @@ Consent management
 
 Vérifier l’intégration
 - GA4 DebugView ou Realtime après acceptation du consentement.
+- Test rapide: ajouter `?consent=granted` (ou `?consent=denied`) à l’URL pour forcer le consentement durant le test.
+- DevTools Réseau: filtrer `g/collect` pour confirmer les hits.
 - Le Consent Mode bloque tout tracking tant que l’utilisateur n’a pas consenti.
 
 Confidentialité
