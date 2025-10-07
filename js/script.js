@@ -5,7 +5,7 @@
  * Gère toutes les interactions du site avec une architecture modulaire,
  * performante et accessible (Focus Trap, Escape Key, etc.).
  */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
   // --------------------------------------------------------------------------
   // CONFIGURATION CENTRALISÉE
@@ -465,35 +465,93 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --------------------------------------------------------------------------
-  // MODULE: THEME CLAIR/SOMBRE (toggle + persistance)
+  // MODULE: SOUS-MENU NAV — toutes les pages via sitemap.xml
   // --------------------------------------------------------------------------
-  const setupThemeToggle = () => {
-    const KEY = CONFIG.theme.storageKey;
-    const apply = (mode) => {
-      document.body.classList.toggle('dark-theme', mode === 'dark');
-      try { localStorage.setItem(KEY, mode); } catch (_) {}
-    };
-    let initial = 'light';
-    try {
-      const saved = localStorage.getItem(KEY);
-      if (saved) initial = saved;
-      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) initial = 'dark';
-    } catch (_) {}
-    apply(initial);
+  const setupAllPagesSubmenu = async () => {
+    const navLinks = document.getElementById('navLinks');
+    if (!navLinks) return;
 
-    const nav = document.querySelector('.nav');
-    if (!nav) return;
+    // Crée l'item de sous-menu
+    const li = document.createElement('li');
+    li.className = 'has-submenu';
+
     const btn = document.createElement('button');
-    btn.className = 'theme-toggle';
-    btn.setAttribute('aria-label', 'Basculer clair/sombre');
+    btn.className = 'nav-link submenu-trigger';
     btn.type = 'button';
-    btn.innerHTML = initial === 'dark' ? '🌙' : '☀️';
-    btn.addEventListener('click', () => {
-      const next = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
-      apply(next);
-      btn.innerHTML = next === 'dark' ? '🌙' : '☀️';
+    btn.setAttribute('aria-haspopup', 'true');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = 'Pages';
+
+    const submenu = document.createElement('ul');
+    submenu.className = 'nav-submenu';
+
+    // Récupère et parse le sitemap
+    let urls = [];
+    try {
+      const res = await fetch('/sitemap.xml', { cache: 'no-store' });
+      const xml = await res.text();
+      const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)];
+      urls = matches.map(m => m[1].trim()).filter(Boolean);
+    } catch (e) {
+      console.warn('Sitemap non récupéré, sous-menu non généré:', e);
+      return;
+    }
+
+    // Transforme en libellés lisibles
+    const seen = new Set();
+    const slugToTitle = (url) => {
+      try {
+        const u = new URL(url);
+        let path = u.pathname.replace(/\/$/, '');
+        if (path === '' || path === '/') return 'Accueil';
+        const parts = path.split('/').filter(Boolean);
+        const slug = parts.pop();
+        return slug
+          .replace(/-/g, ' ')
+          .replace(/\b\w/g, c => c.toUpperCase());
+      } catch {
+        return url;
+      }
+    };
+
+    urls.forEach(url => {
+      try {
+        const u = new URL(url);
+        const path = u.pathname.replace(/\/$/, '/') // normaliser
+        // Filtrage basique (pas de duplication, mêmes hôtes)
+        if (u.hostname && window.location.hostname && u.hostname !== window.location.hostname) return;
+        if (seen.has(path)) return;
+        seen.add(path);
+
+        const item = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = path;
+        a.className = 'nav-submenu-link';
+        a.textContent = slugToTitle(url);
+        item.appendChild(a);
+        submenu.appendChild(item);
+      } catch (_) { /* noop */ }
     });
-    nav.appendChild(btn);
+
+    // Gestion ouverture/fermeture
+    const toggle = (open) => {
+      li.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    btn.addEventListener('click', () => {
+      const isOpen = li.classList.contains('open');
+      toggle(!isOpen);
+    });
+    document.addEventListener('click', (e) => {
+      if (!li.contains(e.target)) toggle(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggle(false);
+    });
+
+    li.appendChild(btn);
+    li.appendChild(submenu);
+    navLinks.appendChild(li);
   };
 
   // --------------------------------------------------------------------------
@@ -525,7 +583,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupBackToTop();
     setupAnalyticsEvents();
     setupBreadcrumbs();
-    setupThemeToggle();
+    await setupAllPagesSubmenu();
     setupScrollProgress();
 
     // Debug/override consent via query string: ?consent=granted|denied
