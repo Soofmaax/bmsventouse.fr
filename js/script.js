@@ -464,6 +464,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // --------------------------------------------------------------------------
+  // MODULE: THEME CLAIR/SOMBRE (toggle + persistance)
+  // --------------------------------------------------------------------------
+  const setupThemeToggle = () => {
+    const KEY = CONFIG.theme.storageKey;
+    const apply = (mode) => {
+      document.body.classList.toggle('dark-theme', mode === 'dark');
+      try { localStorage.setItem(KEY, mode); } catch (_) {}
+    };
+    let initial = 'light';
+    try {
+      const saved = localStorage.getItem(KEY);
+      if (saved) initial = saved;
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) initial = 'dark';
+    } catch (_) {}
+    apply(initial);
+
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+    const btn = document.createElement('button');
+    btn.className = 'theme-toggle';
+    btn.setAttribute('aria-label', 'Basculer clair/sombre');
+    btn.type = 'button';
+    btn.innerHTML = initial === 'dark' ? '🌙' : '☀️';
+    btn.addEventListener('click', () => {
+      const next = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+      apply(next);
+      btn.innerHTML = next === 'dark' ? '🌙' : '☀️';
+    });
+    nav.appendChild(btn);
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: BARRE DE PROGRESSION DE SCROLL
+  // --------------------------------------------------------------------------
+  const setupScrollProgress = () => {
+    const bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
+    const update = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const p = h > 0 ? (window.scrollY / h) * 100 : 0;
+      bar.style.width = p + '%';
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+  };
+
   // ==========================================================================
   // INITIALISATION DE TOUS LES MODULES
   // ==========================================================================
@@ -476,6 +525,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupBackToTop();
     setupAnalyticsEvents();
     setupBreadcrumbs();
+    setupThemeToggle();
+    setupScrollProgress();
 
     // Debug/override consent via query string: ?consent=granted|denied
     try {
