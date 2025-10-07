@@ -16,8 +16,8 @@ const ENDPOINT = `https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?api
 const CHANGED_ONLY = process.argv.includes('--changed-only');
 
 if (!API_KEY) {
-  console.error('❌ Missing BING_API_KEY environment variable. Set it in GitHub Secrets.');
-  process.exit(1);
+  console.log('ℹ️ No BING_API_KEY set. Skipping Bing submission gracefully.');
+  process.exit(0);
 }
 
 function readSitemapUrls(filePath) {
