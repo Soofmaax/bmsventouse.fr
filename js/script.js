@@ -639,8 +639,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.body.appendChild(bar);
     const update = () => {
       const h = document.documentElement.scrollHeight - window.innerHeight;
-      const p = h > 0 ? (window.scrollY / h) * 100 : 0;
-      bar.style.width = p + '%';
+      const ratio = h > 0 ? (window.scrollY / h) : 0;
+      bar.style.transform = 'scaleX(' + ratio + ')';
     };
     update();
     window.addEventListener('scroll', update, { passive: true });

@@ -2096,9 +2096,13 @@ body.dark-theme .header {
   left: 0;
   height: 3px;
   background: var(--color-primary);
-  width: 0;
+  width: 100%;
   z-index: var(--z-header);
-  transition: width 0.1s;
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+  pointer-events: none;
+  transition: transform 0.1s;
 }
 
 /* 2. Mode sombre toggle */
