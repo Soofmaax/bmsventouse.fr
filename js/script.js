@@ -647,6 +647,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.addEventListener('resize', update);
   };
 
+  // --------------------------------------------------------------------------
+  // MODULE: Microsoft Clarity (chargé après consentement analytics)
+  // --------------------------------------------------------------------------
+  const setupClarity = () => {
+    try {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "tm9ex1xsa4");
+      console.log('✅ Microsoft Clarity chargé');
+    } catch (e) {
+      // non-bloquant
+    }
+  };
+
+  const loadClarityIfConsented = () => {
+    try {
+      const KEY = 'bms_cookie_consent';
+      const saved = localStorage.getItem(KEY);
+      if (saved === 'accepted') {
+        setupClarity();
+        return;
+      }
+      // Si l'utilisateur accepte via la bannière, on charge Clarity
+      document.addEventListener('click', (e) => {
+        const el = e.target;
+        if (el && el.id === 'cookie-accept') {
+          setTimeout(setupClarity, 0);
+        }
+      });
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
   // ==========================================================================
   // INITIALISATION DE TOUS LES MODULES
   // ==========================================================================
@@ -661,6 +697,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupBreadcrumbs();
     await setupAllPagesSubmenu();
     setupScrollProgress();
+    loadClarityIfConsented();
 
     // Debug/override consent via query string: ?consent=granted|denied
     try {
@@ -676,9 +713,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       // non-bloquant
     }
 
-    // Lien \"Gérer les cookies\" en footer: permet de rouvrir la bannière de consentement
+    // Lien "Gérer les cookies" en footer: permet de rouvrir la bannière de consentement
     try {
-      document.querySelectorAll('.manage-cookies,[data-cookie=\"manage\"]').forEach(link => {
+      document.querySelectorAll('.manage-cookies,[data-cookie="manage"]').forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
           // Réinitialise le consentement et réaffiche la bannière
