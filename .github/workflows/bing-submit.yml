@@ -1,0 +1,26 @@
+name: Bing URL Submission
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 10 * * 1" # Every Monday at 10:00 UTC (after IndexNow)
+
+jobs:
+  submit-bing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Submit URLs to Bing
+        env:
+          BING_API_KEY: ${{ secrets.BING_API_KEY }}
+          SITE_URL: https://www.bmsventouse.fr
+        run: node scripts/bing-submit.js
