@@ -1,7 +1,7 @@
 /**
  * Bing URL Submission API
  * - Default: reads sitemap.xml and submits ALL URLs (manual run).
- * - With --changed-only: submits ONLY URLs added in latest sitemap.xml diff (HEAD^..HEAD).
+ * - With --changed-only: submits ONLY URLs added or UPDATED in latest sitemap.xml diff (HEAD^..HEAD).
  * Requires env BING_API_KEY (Bing Webmaster Tools) and optional SITE_URL.
  * Docs: https://learn.microsoft.com/en-us/bingwebmaster/api/url-submission-api
  */
@@ -27,21 +27,52 @@ function readSitemapUrls(filePath) {
   return [...new Set(urls)];
 }
 
-function readChangedUrlsFromDiff() {
-  try {
-    const diff = execSync('git diff --unified=0 HEAD^ HEAD -- sitemap.xml', { encoding: 'utf-8' });
-    const lines = diff.split('\n');
-    const added = lines
-      .filter(l => l.startsWith('+') && !l.startsWith('+++'))
-      .map(l => l.replace(/^\+/, ''))
-      .join('\n');
-    const matches = [...added.matchAll(/<loc>([^<]+)<\/loc>/g)];
-    const urls = matches.map(m => m[1].trim()).filter(Boolean);
-    return [...new Set(urls)];
-  } catch (e) {
-    console.log('ℹ️ No diff available for sitemap.xml (first run or shallow clone).');
-    return [];
+function parseUrlBlocks(xml) {
+  const blocks = {};
+  const re = /<url[^>]*>([\s\S]*?)<\/url>/g;
+  let m;
+  while ((m = re.exec(xml)) !== null) {
+    const block = m[0];
+    const locM = block.match(/<loc>([^<]+)<\/loc>/);
+    if (locM) {
+      const loc = locM[1].trim();
+      blocks[loc] = block.replace(/\s+/g, ' ').trim();
+    }
   }
+  return blocks;
+}
+
+function getChangedOrUpdatedUrls() {
+  let oldXml = null;
+  try {
+    oldXml = execSync('git show HEAD^:sitemap.xml', { encoding: 'utf-8' });
+  } catch {
+    // fallback to added <loc> lines
+    try {
+      const diff = execSync('git diff --unified=0 HEAD^ HEAD -- sitemap.xml', { encoding: 'utf-8' });
+      const lines = diff.split('\n');
+      const added = lines.filter(l => l.startsWith('+') && !l.startsWith('+++')).map(l => l.replace(/^\+/, '')).join('\n');
+      const matches = [...added.matchAll(/<loc>([^<]+)<\/loc>/g)];
+      const urls = matches.map(m => m[1].trim());
+      return [...new Set(urls)];
+    } catch {
+      return [];
+    }
+  }
+
+  const newXml = fs.readFileSync(SITEMAP_PATH, 'utf-8');
+  const oldBlocks = parseUrlBlocks(oldXml);
+  const newBlocks = parseUrlBlocks(newXml);
+
+  const changed = [];
+  Object.entries(newBlocks).forEach(([loc, block]) => {
+    if (!(loc in oldBlocks)) {
+      changed.push(loc);
+    } else if (oldBlocks[loc] !== block) {
+      changed.push(loc);
+    }
+  });
+  return [...new Set(changed)];
 }
 
 async function submitToBing(urls) {
@@ -73,12 +104,12 @@ async function main() {
 
   let urls = [];
   if (CHANGED_ONLY) {
-    urls = readChangedUrlsFromDiff();
+    urls = getChangedOrUpdatedUrls();
     if (urls.length === 0) {
-      console.log('ℹ️ No new URLs detected in sitemap.xml diff. Skipping Bing submission.');
+      console.log('ℹ️ No new or updated URLs detected in sitemap.xml diff. Skipping Bing submission.');
       return;
     }
-    console.log(`Submitting ${urls.length} NEW URL(s) to Bing...`);
+    console.log(`Submitting ${urls.length} NEW/UPDATED URL(s) to Bing...`);
   } else {
     urls = readSitemapUrls(SITEMAP_PATH);
     if (urls.length === 0) {
