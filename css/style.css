@@ -456,7 +456,7 @@ body.dark-theme .header {
 
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 
@@ -512,7 +512,7 @@ body.dark-theme .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   font-size: 0.9rem;
   color: #a0aec0;
   gap: 1rem;
