@@ -251,7 +251,7 @@ input, button, textarea, select {
 
 /* Header repositionné en relative */
 .header {
-  position: relative;
+  position: sticky; /* Fixe le header en haut pour éviter les chevauchements */
   top: 0;
   left: 0; 
   right: 0;
@@ -318,6 +318,29 @@ body.dark-theme .header {
 .logo .bms { 
   color: var(--color-primary); 
 }
+
+/* Garantit l'affichage correct du texte de marque dans le header */
+.logo-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  line-height: 1;
+}
+
+/* Assure la visibilité de \"Ventouse\" dans le header */
+.logo .ventouse {
+  color: var(--color-dark);
+  font-weight: var(--font-weight-black);
+}
+
+/* Harmonise l'affichage du texte de marque en footer */
+.footer-brand-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.footer-bms { color: var(--color-primary); }
 
 .nav-links {
   display: flex;
