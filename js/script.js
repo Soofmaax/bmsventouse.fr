@@ -465,7 +465,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
-  // MODULE: SOUS-MENU NAV — toutes les pages via sitemap.xml
+  // MODULE: SOUS-MENU NAV — toutes les pages regroupées par sections
   // --------------------------------------------------------------------------
   const setupAllPagesSubmenu = async () => {
     const navLinks = document.getElementById('navLinks');
@@ -497,8 +497,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    // Transforme en libellés lisibles
+    // Utils
     const seen = new Set();
+    const normalizePath = (p) => (p || '').replace(/\/+$/, '/') || '/';
     const slugToTitle = (url) => {
       try {
         const u = new URL(url);
@@ -514,23 +515,98 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     };
 
+    // Groupes
+    const groups = {
+      'Services': [],
+      'Ventousage': [],
+      'Sécurité': [],
+      'Villes': [],
+      'Autres': []
+    };
+
+    // Listes/regex pour classer
+    const servicePaths = new Set([
+      '/services/',
+      '/affichage-riverains/',
+      '/signalisation-barrierage/',
+      '/convoyage-vehicules-decors/',
+      '/regie-materiel/',
+      '/transport-materiel-audiovisuel-paris/',
+      '/gardiennage/'
+    ]);
+
+    const ventousagePaths = new Set([
+      '/ventousage/',
+      '/ventousage-cinema/',
+      '/definition-ventousage/',
+      '/autorisation-occupation-domaine-public-tournage-paris/'
+    ]);
+
+    const reVilleVentousage = /^\/ventousage-[^/]+\/$/;
+    const reLogistiqueDept = /^\/logistique-(seine-saint-denis|seine-et-marne|val-d-oise)\/$/;
+    const reSecurite = /^\/securite-(plateaux|tournage-[^/]+)\/$/;
+
+    // Classement
     urls.forEach(url => {
       try {
         const u = new URL(url);
-        const path = u.pathname.replace(/\/$/, '/') // normaliser
-        // Filtrage basique (pas de duplication, mêmes hôtes)
         if (u.hostname && window.location.hostname && u.hostname !== window.location.hostname) return;
+        const path = normalizePath(u.pathname);
         if (seen.has(path)) return;
         seen.add(path);
 
-        const item = document.createElement('li');
+        const label = slugToTitle(url);
+        const item = { path, label };
+
+        // Ordre de priorité pour éviter doubles classements
+        if (reVilleVentousage.test(path) || reLogistiqueDept.test(path)) {
+          groups['Villes'].push(item);
+        } else if (reSecurite.test(path)) {
+          groups['Sécurité'].push(item);
+        } else if (ventousagePaths.has(path)) {
+          groups['Ventousage'].push(item);
+        } else if (servicePaths.has(path)) {
+          groups['Services'].push(item);
+        } else {
+          groups['Autres'].push(item);
+        }
+      } catch (_) { /* noop */ }
+    });
+
+    // Tri alphabétique par label dans chaque groupe
+    Object.keys(groups).forEach(k => {
+      groups[k].sort((a, b) => a.label.localeCompare(b.label, 'fr', { sensitivity: 'base' }));
+    });
+
+    // Rendu des groupes (n'affiche pas un groupe vide)
+    const order = ['Services', 'Ventousage', 'Sécurité', 'Villes', 'Autres'];
+    order.forEach(groupName => {
+      const items = groups[groupName];
+      if (!items || items.length === 0) return;
+
+      const groupLi = document.createElement('li');
+      groupLi.className = 'nav-submenu-group';
+
+      const title = document.createElement('span');
+      title.className = 'group-title';
+      title.textContent = groupName;
+
+      const groupUl = document.createElement('ul');
+      groupUl.className = 'group-list';
+
+      items.forEach(({ path, label }) => {
+        const liItem = document.createElement('li');
         const a = document.createElement('a');
         a.href = path;
         a.className = 'nav-submenu-link';
-        a.textContent = slugToTitle(url);
-        item.appendChild(a);
-        submenu.appendChild(item);
-      } catch (_) { /* noop */ }
+        a.textContent = label;
+        liItem.appendChild(a);
+        groupUl.appendChild(liItem);
+      });
+
+      groupLi.appendChild(title);
+      groupLi.appendChild(groupUl);
+      submenu.appendChild(groupLi);
     });
 
     // Gestion ouverture/fermeture
