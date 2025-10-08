@@ -1,0 +1,28 @@
+name: Bing URL Submission
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "sitemap.xml"
+  workflow_dispatch:
+
+jobs:
+  submit-bing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (fetch previous commit for diff)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Submit NEW URLs to Bing (changed-only)
+        env:
+          BING_API_KEY: ${{ secrets.BING_API_KEY }}
+          SITE_URL: https://www.bmsventouse.fr
+        run: node scripts/bing-submit.js --changed-only

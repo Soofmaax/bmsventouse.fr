@@ -5,7 +5,7 @@
  * Gère toutes les interactions du site avec une architecture modulaire,
  * performante et accessible (Focus Trap, Escape Key, etc.).
  */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
   // --------------------------------------------------------------------------
   // CONFIGURATION CENTRALISÉE
@@ -465,35 +465,172 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --------------------------------------------------------------------------
-  // MODULE: THEME CLAIR/SOMBRE (toggle + persistance)
+  // MODULE: SOUS-MENU NAV — toutes les pages regroupées par sections
   // --------------------------------------------------------------------------
-  const setupThemeToggle = () => {
-    const KEY = CONFIG.theme.storageKey;
-    const apply = (mode) => {
-      document.body.classList.toggle('dark-theme', mode === 'dark');
-      try { localStorage.setItem(KEY, mode); } catch (_) {}
-    };
-    let initial = 'light';
-    try {
-      const saved = localStorage.getItem(KEY);
-      if (saved) initial = saved;
-      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) initial = 'dark';
-    } catch (_) {}
-    apply(initial);
+  const setupAllPagesSubmenu = async () => {
+    const navLinks = document.getElementById('navLinks');
+    if (!navLinks) return;
 
-    const nav = document.querySelector('.nav');
-    if (!nav) return;
+    // Crée l'item de sous-menu
+    const li = document.createElement('li');
+    li.className = 'has-submenu';
+
     const btn = document.createElement('button');
-    btn.className = 'theme-toggle';
-    btn.setAttribute('aria-label', 'Basculer clair/sombre');
+    btn.className = 'nav-link submenu-trigger';
     btn.type = 'button';
-    btn.innerHTML = initial === 'dark' ? '🌙' : '☀️';
-    btn.addEventListener('click', () => {
-      const next = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
-      apply(next);
-      btn.innerHTML = next === 'dark' ? '🌙' : '☀️';
+    btn.setAttribute('aria-haspopup', 'true');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = 'Pages';
+
+    const submenu = document.createElement('ul');
+    submenu.className = 'nav-submenu';
+
+    // Récupère et parse le sitemap
+    let urls = [];
+    try {
+      const res = await fetch('/sitemap.xml', { cache: 'no-store' });
+      const xml = await res.text();
+      const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)];
+      urls = matches.map(m => m[1].trim()).filter(Boolean);
+    } catch (e) {
+      console.warn('Sitemap non récupéré, sous-menu non généré:', e);
+      return;
+    }
+
+    // Utils
+    const seen = new Set();
+    const normalizePath = (p) => (p || '').replace(/\/+$/, '/') || '/';
+    const slugToTitle = (url) => {
+      try {
+        const u = new URL(url);
+        let path = u.pathname.replace(/\/$/, '');
+        if (path === '' || path === '/') return 'Accueil';
+        const parts = path.split('/').filter(Boolean);
+        const slug = parts.pop();
+        return slug
+          .replace(/-/g, ' ')
+          .replace(/\b\w/g, c => c.toUpperCase());
+      } catch {
+        return url;
+      }
+    };
+
+    // Groupes
+    const groups = {
+      'Services': [],
+      'Ventousage': [],
+      'Sécurité': [],
+      'Villes': [],
+      'Autres': []
+    };
+
+    // Listes/regex pour classer
+    const servicePaths = new Set([
+      '/services/',
+      '/affichage-riverains/',
+      '/signalisation-barrierage/',
+      '/convoyage-vehicules-decors/',
+      '/regie-materiel/',
+      '/transport-materiel-audiovisuel-paris/',
+      '/gardiennage/'
+    ]);
+
+    const ventousagePaths = new Set([
+      '/ventousage/',
+      '/ventousage-cinema/',
+      '/definition-ventousage/',
+      '/autorisation-occupation-domaine-public-tournage-paris/'
+    ]);
+
+    const reVilleVentousage = /^\/ventousage-[^/]+\/$/;
+    const reLogistiqueDept = /^\/logistique-(seine-saint-denis|seine-et-marne|val-d-oise)\/$/;
+    const reSecurite = /^\/securite-(plateaux|tournage-[^/]+)\/$/;
+
+    // Classement
+    urls.forEach(url => {
+      try {
+        const u = new URL(url);
+        // Accepte apex et sous-domaine www comme équivalents
+        const hostA = (u.hostname || '').replace(/^www\./, '');
+        const hostB = (window.location.hostname || '').replace(/^www\./, '');
+        if (hostA && hostB && hostA !== hostB) return;
+        const path = normalizePath(u.pathname);
+        if (seen.has(path)) return;
+        seen.add(path);
+
+        const label = slugToTitle(url);
+        const item = { path, label };
+
+        // Ordre de priorité pour éviter doubles classements
+        if (reVilleVentousage.test(path) || reLogistiqueDept.test(path)) {
+          groups['Villes'].push(item);
+        } else if (reSecurite.test(path)) {
+          groups['Sécurité'].push(item);
+        } else if (ventousagePaths.has(path)) {
+          groups['Ventousage'].push(item);
+        } else if (servicePaths.has(path)) {
+          groups['Services'].push(item);
+        } else {
+          groups['Autres'].push(item);
+        }
+      } catch (_) { /* noop */ }
     });
-    nav.appendChild(btn);
+
+    // Tri alphabétique par label dans chaque groupe
+    Object.keys(groups).forEach(k => {
+      groups[k].sort((a, b) => a.label.localeCompare(b.label, 'fr', { sensitivity: 'base' }));
+    });
+
+    // Rendu des groupes (n'affiche pas un groupe vide)
+    const order = ['Services', 'Ventousage', 'Sécurité', 'Villes', 'Autres'];
+    order.forEach(groupName => {
+      const items = groups[groupName];
+      if (!items || items.length === 0) return;
+
+      const groupLi = document.createElement('li');
+      groupLi.className = 'nav-submenu-group';
+
+      const title = document.createElement('span');
+      title.className = 'group-title';
+      title.textContent = groupName;
+
+      const groupUl = document.createElement('ul');
+      groupUl.className = 'group-list';
+
+      items.forEach(({ path, label }) => {
+        const liItem = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = path;
+        a.className = 'nav-submenu-link';
+        a.textContent = label;
+        liItem.appendChild(a);
+        groupUl.appendChild(liItem);
+      });
+
+      groupLi.appendChild(title);
+      groupLi.appendChild(groupUl);
+      submenu.appendChild(groupLi);
+    });
+
+    // Gestion ouverture/fermeture
+    const toggle = (open) => {
+      li.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    btn.addEventListener('click', () => {
+      const isOpen = li.classList.contains('open');
+      toggle(!isOpen);
+    });
+    document.addEventListener('click', (e) => {
+      if (!li.contains(e.target)) toggle(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggle(false);
+    });
+
+    li.appendChild(btn);
+    li.appendChild(submenu);
+    navLinks.appendChild(li);
   };
 
   // --------------------------------------------------------------------------
@@ -505,12 +642,48 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(bar);
     const update = () => {
       const h = document.documentElement.scrollHeight - window.innerHeight;
-      const p = h > 0 ? (window.scrollY / h) * 100 : 0;
-      bar.style.width = p + '%';
+      const ratio = h > 0 ? (window.scrollY / h) : 0;
+      bar.style.transform = 'scaleX(' + ratio + ')';
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: Microsoft Clarity (chargé après consentement analytics)
+  // --------------------------------------------------------------------------
+  const setupClarity = () => {
+    try {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "tm9ex1xsa4");
+      console.log('✅ Microsoft Clarity chargé');
+    } catch (e) {
+      // non-bloquant
+    }
+  };
+
+  const loadClarityIfConsented = () => {
+    try {
+      const KEY = 'bms_cookie_consent';
+      const saved = localStorage.getItem(KEY);
+      if (saved === 'accepted') {
+        setupClarity();
+        return;
+      }
+      // Si l'utilisateur accepte via la bannière, on charge Clarity
+      document.addEventListener('click', (e) => {
+        const el = e.target;
+        if (el && el.id === 'cookie-accept') {
+          setTimeout(setupClarity, 0);
+        }
+      });
+    } catch (_) {
+      // non-bloquant
+    }
   };
 
   // ==========================================================================
@@ -525,8 +698,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupBackToTop();
     setupAnalyticsEvents();
     setupBreadcrumbs();
-    setupThemeToggle();
+    await setupAllPagesSubmenu();
     setupScrollProgress();
+    loadClarityIfConsented();
 
     // Debug/override consent via query string: ?consent=granted|denied
     try {
@@ -542,9 +716,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // non-bloquant
     }
 
-    // Lien \"Gérer les cookies\" en footer: permet de rouvrir la bannière de consentement
+    // Lien "Gérer les cookies" en footer: permet de rouvrir la bannière de consentement
     try {
-      document.querySelectorAll('.manage-cookies,[data-cookie=\"manage\"]').forEach(link => {
+      document.querySelectorAll('.manage-cookies,[data-cookie="manage"]').forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
           // Réinitialise le consentement et réaffiche la bannière

@@ -1,0 +1,25 @@
+name: IndexNow Submit
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "sitemap.xml"
+  workflow_dispatch:
+
+jobs:
+  submit-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (fetch previous commit for diff)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Submit NEW URLs to IndexNow (changed-only)
+        run: node scripts/indexnow-submit.js --changed-only
