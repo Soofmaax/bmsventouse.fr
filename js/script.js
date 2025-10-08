@@ -550,7 +550,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     urls.forEach(url => {
       try {
         const u = new URL(url);
-        if (u.hostname && window.location.hostname && u.hostname !== window.location.hostname) return;
+        // Accepte apex et sous-domaine www comme équivalents
+        const hostA = (u.hostname || '').replace(/^www\./, '');
+        const hostB = (window.location.hostname || '').replace(/^www\./, '');
+        if (hostA && hostB && hostA !== hostB) return;
         const path = normalizePath(u.pathname);
         if (seen.has(path)) return;
         seen.add(path);
