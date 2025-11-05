@@ -1184,6 +1184,26 @@ body.dark-theme .header {
   }
 }
 
+/* Tablet gap tweak: slightly tighter spacing for grids */
+@media (min-width: 600px) and (max-width: 992px) {
+  .services-grid,
+  .services-grid-visual,
+  .references-grid,
+  .zones-grid {
+    gap: clamp(1rem, 2.2vw, 1.2rem);
+  }
+}
+
+/* Mobile gap tweak: tighter spacing on small screens */
+@media (max-width: 600px) {
+  .services-grid,
+  .services-grid-visual,
+  .references-grid,
+  .zones-grid {
+    gap: clamp(0.75rem, 2.5vw, 1rem);
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --header-height: 70px;
