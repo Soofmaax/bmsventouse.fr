@@ -44,7 +44,6 @@ jobs:
             --max-retries 1
             --retry-wait-time 2
             --timeout 20
-            --exclude-mail
             --exclude "https?://.*"
             --exclude "mailto:.*"
             --exclude "tel:.*"
