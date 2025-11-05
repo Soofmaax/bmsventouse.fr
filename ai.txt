@@ -89,13 +89,13 @@ horaires: 24/7
 site: https://www.bmsventouse.fr/
 
 [keywords-fr]
-ventousage; neutralisation; AOT; OTDP; autorisations de tournage; sécurité plateau; gardiennage; SSIAP; maîtres-chiens; convoyage; régie; logistique audiovisuelle; cars loges; cantine; fashion week; shooting; publicité; déménagement; périmètre; roulettage; affichage riverains; panneaux; stationnement
+ventousage; neutralisation; AOT; OTDP; autorisations de tournage; sécurité plateau; gardiennage; SSIAP; maîtres-chiens; convoyage; régie; logistique audiovisuelle; cars loges; cantine; fashion week; shooting; publicité; déménagement; périmètre; affichage riverains; panneaux; stationnement
 
 [zones-fr]
 Paris; Île-de-France; Seine-Saint-Denis; Val-d'Oise; Seine-et-Marne; Strasbourg; Nice; Marseille; Lyon; Bordeaux; Toulouse; Lille; France entière
 
 [services-catalog-fr]
-- Ventousage & Stationnement: neutralisation de places, pose de panneaux, affichage riverains, AOT/OTDP, roulettage (offerts après acceptation du devis)
+- Ventousage & Stationnement: neutralisation de places, pose de panneaux, affichage riverains, AOT/OTDP (offerts après acceptation du devis)
 - Sécurité Plateaux & Gardiennage: contrôle d’accès, gestion des foules, confidentialité, agents SSIAP et maîtres-chiens
 - Convoyage de Véhicules & Décors: transport sécurisé, véhicules techniques jusqu’à 22 m³, poids lourds sur demande
 - Agents de Régie: personnel pour manutention et déménagements sur sites de production

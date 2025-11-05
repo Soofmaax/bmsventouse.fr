@@ -13,7 +13,7 @@
 - CTA: Devis gratuit (/contact/), WhatsApp Direct (wa.me/33646005642)
 
 ### Ce que comprend le service
-- Neutralisation & Signalisation: panneaux réglementaires, affichage riverains, roulettage.
+- Neutralisation & Signalisation: panneaux réglementaires, affichage riverains.
 - Autorisations de tournage: mairie/préfecture, conformité sécurité.
 - Domaines: cinéma, publicité, mode (Fashion Week), shootings, déménagements.
 

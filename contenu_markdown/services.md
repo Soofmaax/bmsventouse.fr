@@ -12,7 +12,7 @@
 - Texte: Solutions pour régie cinéma/série/pub/événementiel
 
 ### Catalogue de prestations (cartes)
-- Sécurité Plateaux & Gardiennage (partenariat Vista Prime, SSIAP/maîtres‑chiens)
+- Sécurité Plateaux & Gardiennage (SSIAP/maîtres‑chiens)
 - Loges & Confort (cars loges, sanitaires)
 - Cantine & Catering (partenaires traiteurs)
 - Ventousage & Stationnement (autorisations, signalisation, affichage)
@@ -23,7 +23,7 @@
 
 ### Avantages inclus
 - Devis gratuit, repérage offert (projets d’envergure)
-- Signalisation & roulettage offerts après devis accepté
+- Signalisation offerte après devis accepté
 - Support 24/7
 
 ### CTA

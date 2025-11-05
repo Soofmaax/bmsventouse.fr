@@ -17,7 +17,7 @@
 2. Préparer plan de situation et lettre motivée
 3. Dépôt mairie d’arrondissement (+ préfecture si besoin)
 4. Installation signalisation réglementaire + affichage riverains
-5. Jour J : contrôle, roulettage, coordination autorités
+5. Jour J : contrôle, coordination autorités
 
 - Délais indicatifs : 5 à 15 jours ouvrés selon zone
 
