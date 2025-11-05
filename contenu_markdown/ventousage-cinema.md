@@ -13,7 +13,7 @@
 - Image : /images/hero-background-custom.jpg (alt : Rue neutralisée pour tournage cinéma)
 
 ### Prestations dédiées
-- Neutralisation & périmètre (roulettage)
+- Neutralisation & périmètre (jalonnage)
 - Autorisations de tournage (Mairie de Paris, arrondissements, préfecture)
 - Discrétion & horaires (nocturne, protocoles de confidentialité)
 

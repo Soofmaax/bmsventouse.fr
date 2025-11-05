@@ -94,14 +94,42 @@ document.addEventListener('DOMContentLoaded', async () => {
   // MODULE: ANIMATIONS AU DÉFILEMENT (Intersection Observer)
   // --------------------------------------------------------------------------
   const setupScrollAnimations = () => {
-    const animatedItems = document.querySelectorAll('.animated-item');
+    // Collecte des éléments à animer
+    const animatedItemsSet = new Set(document.querySelectorAll('.animated-item'));
+    // Ajoute les logos du carrousel pour des apparitions progressives
+    document.querySelectorAll('.references-carousel .carousel-slide').forEach(el => {
+      el.classList.add('animated-item');
+      animatedItemsSet.add(el);
+    });
+
+    const animatedItems = Array.from(animatedItemsSet);
     if (animatedItems.length === 0) return;
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    // Stagger: assigne un index par groupe (section/hero/footer)
+    const groups = new Map();
+    animatedItems.forEach(el => {
+      const parent = el.closest('.section') || el.closest('.hero') || el.closest('.footer') || document.body;
+      if (!groups.has(parent)) groups.set(parent, []);
+      groups.get(parent).push(el);
+    });
+    groups.forEach(items => {
+      items.forEach((el, idx) => {
+        el.dataset.staggerIndex = String(idx);
+      });
+    });
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+          const el = entry.target;
+          const idx = parseInt(el.dataset.staggerIndex || '0', 10);
+          if (!prefersReducedMotion) {
+            el.style.transitionDelay = (idx * 0.15) + 's'; // 150 ms entre éléments
+          }
+          el.classList.add('is-visible');
+          obs.unobserve(el);
         }
       });
     }, {
@@ -129,7 +157,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       if (!question || !answer) return;
 
-      // Ajouter les attributs d'accessibilité
+      // Accessibilité
       const questionId = `faq-question-${Math.random().toString(36).substr(2, 9)}`;
       const answerId = `faq-answer-${Math.random().toString(36).substr(2, 9)}`;
       
@@ -142,25 +170,36 @@ document.addEventListener('DOMContentLoaded', async () => {
       answer.setAttribute('id', answerId);
       answer.setAttribute('aria-labelledby', questionId);
       answer.setAttribute('role', 'region');
+      answer.style.maxHeight = '0px';
 
-      // Gestionnaire de clic
+      // Toggle avec transition fluide de la hauteur
       const toggleFAQ = () => {
         const isOpen = item.classList.contains('is-open');
         
-        // Fermer tous les autres éléments FAQ
+        // Fermer les autres éléments
         faqItems.forEach(otherItem => {
           if (otherItem !== item) {
             otherItem.classList.remove('is-open');
             const otherQuestion = otherItem.querySelector('.faq-question');
+            const otherAnswer = otherItem.querySelector('.faq-answer');
             if (otherQuestion) {
               otherQuestion.setAttribute('aria-expanded', 'false');
+            }
+            if (otherAnswer) {
+              otherAnswer.style.maxHeight = '0px';
             }
           }
         });
         
         // Basculer l'élément actuel
         item.classList.toggle('is-open', !isOpen);
-        question.setAttribute('aria-expanded', !isOpen);
+        question.setAttribute('aria-expanded', String(!isOpen));
+        // Smooth expand/collapse
+        if (!isOpen) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+          answer.style.maxHeight = '0px';
+        }
       };
 
       // Événements
@@ -693,6 +732,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupCookieBanner();
     setupHamburgerMenu();
     setupScrollAnimations();
+    setupHeroParallax();
     setupFaqAccordion();
     setupReferencesCarousel();
     setupBackToTop();
@@ -737,4 +777,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error("Erreur lors de l'initialisation des scripts du site :", error);
   }
 });
+
+// --------------------------------------------------------------------------
+// MODULE: PARALLAX HERO
+// --------------------------------------------------------------------------
+function setupHeroParallax() {
+  const hero = document.querySelector('.hero');
+  const img = hero ? hero.querySelector('.hero-bg img') : null;
+  if (!hero || !img) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  img.style.willChange = 'transform';
+  let ticking = false;
+
+  const update = () => {
+    const rect = hero.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      const offset = -rect.top * 0.5; // vitesse 0.5x pour effet parallax léger
+      img.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
+    }
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
 

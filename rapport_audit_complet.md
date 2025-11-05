@@ -43,7 +43,7 @@ Shooting et Événements
 
 Sécurité et Gardiennage
 - Sécurité plateaux de tournage: ✅
-- Gardiennage Vista Prime: ✅ (services)
+- Gardiennage: ✅ (services)
 - Ventouseur professionnel: ✅ (pages ventousage)
 - Gardiennage Paris et Île‑de‑France: ✅
 - Certifications/agréments de sécurité: ❌ (non listés)
@@ -68,13 +68,8 @@ Services Spécialisés
 
 Offres Opérationnelles
 - Pose de panneaux: ✅
-- Roulettage: ✅
-- Affichages et avis riverains: ✅
-- Package « tout‑en‑un »: ✅
-- Mise en avant prix compétitifs: ✅
-- Mise en relation secteurs difficiles: ✅
-- Gestion complète « on s’occupe de tout »: ✅
-- Prestation gratuite en cas de collaboration: ✅ (pose/roulettage offerts après devis accepté)
+- Jalonnage: ✅
+- Prestation gratuite en cas de collaboration: ✅ (pose et jalonnage offerts après devis accepté)
 
 Informations Légales et Contact
 - Mentions légales: ✅ (noindex)
@@ -128,7 +123,7 @@ Arborescence (principale)
 - /logistique-seine-saint-denis/ (93)
 - /logistique-seine-et-marne/ (77)
 - /logistique-val-d-oise/ (95)
-- /autorisation-occupation-domaine-public-tournage-paris/ (AOT/OTDP)
+- /autorisation-occupation-domaine-public-tournage-paris/ (AOT)
 - /definition-ventousage/
 - /ventousage-pantin/
 - /infos-ia/

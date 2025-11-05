@@ -3,18 +3,18 @@
 ## Meta informations
 - URL : https://www.bmsventouse.fr/ventousage-pantin/
 - Title tag : Ventousage à Pantin — Neutralisation & AOT | BMS Ventouse
-- Meta description : Ventousage à Pantin pour tournages & événements : neutralisation, AOT/OTDP, signalisation. Intervention 24/7.
+- Meta description : Ventousage à Pantin pour tournages & événements : neutralisation, AOT, signalisation. Intervention 24/7.
 
 ## Contenu principal
 
 ### Héros
 - Titre : Ventousage à Pantin (93)
-- Texte : Neutralisation, AOT/OTDP, signalisation et affichage riverains. Intervention 24/7.
+- Texte : Neutralisation, AOT, signalisation et affichage riverains. Intervention 24/7.
 - Image : /images/hero-background-custom.jpg (alt : Neutralisation temporaire à Pantin)
 
 ### Prestations
 - Neutralisation & signalisation (panneaux, affichage, périmètre)
-- Gestion AOT/OTDP (constitution, dépôt, suivi)
+- Gestion AOT (constitution, dépôt, suivi)
 - Coordination 24/7
 
 ### Lien territorial

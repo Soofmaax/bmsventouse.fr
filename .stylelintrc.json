@@ -4,6 +4,21 @@
   ],
   "rules": {
     "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["has"] }],
-    "unit-no-unknown": [true, { "ignoreUnits": ["dvh"] }]
+    "selector-pseudo-element-no-unknown": [true, { "ignorePseudoElements": ["selection"] }],
+    "unit-no-unknown": [true, { "ignoreUnits": ["dvh"] }],
+    "no-descending-specificity": null,
+    "property-no-vendor-prefix": null,
+    "selector-no-vendor-prefix": null,
+    "value-no-vendor-prefix": null,
+    "property-no-unknown": [true, { "ignoreProperties": [
+      "text-size-adjust",
+      "-webkit-text-size-adjust",
+      "-moz-text-size-adjust",
+      "text-rendering",
+      "backdrop-filter",
+      "-webkit-backdrop-filter",
+      "-webkit-font-smoothing",
+      "-moz-osx-font-smoothing"
+    ] }]
   }
 }

@@ -3,12 +3,12 @@
 ## Meta informations
 - URL : https://www.bmsventouse.fr/autorisation-occupation-domaine-public-tournage-paris/
 - Title tag : Autorisation AOT pour tournage à Paris | BMS Ventouse
-- Meta description : Demande AOT/OTDP, délais et obligations voie publique. BMS gère l’autorisation, la signalisation et l’affichage riverain.
+- Meta description : Demande AOT, délais et obligations voie publique. BMS gère l’autorisation, la signalisation et l’affichage riverain.
 
 ## Contenu principal
 
 ### Héros
-- Titre : AOT/OTDP pour tournage à Paris
+- Titre : AOT pour tournage à Paris
 - Texte : Gestion complète de votre autorisation d’occupation du domaine public : dossier, délais, signalisation et affichage riverains.
 - Image : /images/hero-background-custom.jpg (alt : Signalisation d’interdiction temporaire sur voie publique pour tournage à Paris)
 
@@ -17,7 +17,7 @@
 2. Préparer plan de situation et lettre motivée
 3. Dépôt mairie d’arrondissement (+ préfecture si besoin)
 4. Installation signalisation réglementaire + affichage riverains
-5. Jour J : contrôle, roulettage, coordination autorités
+5. Jour J : contrôle, coordination autorités
 
 - Délais indicatifs : 5 à 15 jours ouvrés selon zone
 
