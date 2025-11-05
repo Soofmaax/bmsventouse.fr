@@ -2326,6 +2326,121 @@ body:has(.nav-links.active) {
   z-index: 1502 !important; 
 }
 
+/* === Animations globales et effets premium === */
+
+/* Apparition progressive des éléments au scroll */
+.animated-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+.animated-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Soulignement animé des liens de navigation (depuis le centre) */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 60%;
+  height: 2px;
+  background: currentColor;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Accent de bordure en haut des cartes (apparition au hover) */
+.service-card,
+.contact-card,
+.service-card-visual,
+.reference-card,
+.zone-card,
+.stat-item,
+.coverage-note-card {
+  position: relative;
+}
+.service-card::before,
+.service-card-visual::before,
+.reference-card::before,
+.zone-card::before,
+.stat-item::before,
+.coverage-note-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-out;
+}
+.service-card:hover::before,
+.service-card-visual:hover::before,
+.reference-card:hover::before,
+.zone-card:hover::before,
+.stat-item:hover::before,
+.coverage-note-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Hover intensifié sur cartes */
+.service-card:hover,
+.service-card-visual:hover,
+.reference-card:hover,
+.zone-card:hover,
+.stat-item:hover,
+.coverage-note-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+/* Icône des cartes qui grandit légèrement au hover */
+.service-card:hover .service-icon {
+  transform: scale(1.15) rotate(1deg);
+}
+
+/* Effet hover renforcé sur les boutons CTA */
+.btn:hover, .btn:focus {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  filter: brightness(1.08);
+}
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Apparition progressive des logos (confiance) au scroll */
+.references-carousel .carousel-slide {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.references-carousel .carousel-slide.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FAQ: fade-in du contenu lors de l'ouverture */
+@keyframes faqFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.faq-item.is-open .faq-answer {
+  animation: faqFade 0.2s ease both;
+}
+
 
 
 
