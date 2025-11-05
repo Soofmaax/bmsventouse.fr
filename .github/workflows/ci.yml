@@ -41,7 +41,6 @@ jobs:
           # Project linters (configs present in repo)
           VALIDATE_CSS: true
           VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_JAVASCRIPT_STANDARD: false
           VALIDATE_MARKDOWN: true
 
       - name: Link check (internal links only)
@@ -64,7 +63,7 @@ jobs:
       - name: Setup Taplo CLI
         uses: uncenter/setup-taplo@v1
         with:
-          version: "0.10.0"
+          version: "0.8.1"
 
       - name: Lint netlify.toml (Taplo)
         run: taplo check netlify.toml
