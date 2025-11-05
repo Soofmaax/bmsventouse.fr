@@ -13,7 +13,7 @@
 - Image : /images/hero-background-custom.jpg
 
 ### Prestations
-- Ventousage & AOT/OTDP
+- Ventousage & AOT
 - Sécurité plateaux (agents, MC)
 - Convoyage (chauffeurs, utilitaires)
 

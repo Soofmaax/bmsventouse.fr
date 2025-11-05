@@ -123,7 +123,7 @@ Arborescence (principale)
 - /logistique-seine-saint-denis/ (93)
 - /logistique-seine-et-marne/ (77)
 - /logistique-val-d-oise/ (95)
-- /autorisation-occupation-domaine-public-tournage-paris/ (AOT/OTDP)
+- /autorisation-occupation-domaine-public-tournage-paris/ (AOT)
 - /definition-ventousage/
 - /ventousage-pantin/
 - /infos-ia/

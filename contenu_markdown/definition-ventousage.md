@@ -15,14 +15,14 @@
 ### Clarification
 - Ventousage ≠ “ventouse” (l’outil)
 - But : réserver l’espace public pour camions, matériel et sécurité équipes
-- Encadrement : AOT/OTDP obligatoire (zone, durée, obligations)
+- Encadrement : AOT obligatoire (zone, durée, obligations)
 
 ### Liens utiles
 - AOT Paris → /autorisation-occupation-domaine-public-tournage-paris/
 - Ventousage Paris → /ventousage-paris/
 
 ### FAQ courte
-- Légal sans autorisation ? Non, une AOT/OTDP est requise.
+- Légal sans autorisation ? Non, une AOT est requise.
 - Voiture ventouse ? Coordination avec les autorités selon l’arrêté d’interdiction.
 
 ### CTA
