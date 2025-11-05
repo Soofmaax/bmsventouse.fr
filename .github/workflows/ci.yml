@@ -38,7 +38,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
-            --base .
+            --root-dir "$GITHUB_WORKSPACE"
             --no-progress
             --verbose
             --retry 1
