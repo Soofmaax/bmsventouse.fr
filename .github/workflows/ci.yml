@@ -93,9 +93,11 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
+            --root-dir "$GITHUB_WORKSPACE"
             --no-progress
             --verbose
-            --retry 2
+            --max-retries 2
+            --retry-wait-time 2
             --timeout 30
             --max-concurrency 5
             --accept 200..399
@@ -108,9 +110,11 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
+            --root-dir "$GITHUB_WORKSPACE"
             --no-progress
             --verbose
-            --retry 2
+            --max-retries 2
+            --retry-wait-time 2
             --timeout 30
             --max-concurrency 5
             --accept 200..399
