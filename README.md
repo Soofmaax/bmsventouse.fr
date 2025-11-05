@@ -184,7 +184,7 @@ Workflow recommandé
 4. Poussez: `git push origin feature/amelioration`
 5. Ouvrez une Pull Request vers `main`
 
-Les PR doivent passer le job CI bloquant `lint-and-validate` avant merge.  
+Les PR doivent passer le job CI bloquant `lint-and-validate` avant merge.
 Consultez aussi:
 - [docs/SEO_GUIDE.md](docs/SEO_GUIDE.md)
 - [docs/CONTENT_GUIDELINES.md](docs/CONTENT_GUIDELINES.md)
