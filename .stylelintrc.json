@@ -5,6 +5,6 @@
   "rules": {
     "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["has"] }],
     "unit-no-unknown": [true, { "ignoreUnits": ["dvh"] }],
-    "property-no-unknown": [true, { "ignoreProperties": ["text-size-adjust", "text-rendering"] }]
+    "property-no-unknown": [true, { "ignoreProperties": ["text-size-adjust", "-webkit-text-size-adjust", "-moz-text-size-adjust", "text-rendering", "-webkit-backdrop-filter"] }]
   }
 }
