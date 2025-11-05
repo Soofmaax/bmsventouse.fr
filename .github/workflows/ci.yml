@@ -61,10 +61,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Lint netlify.toml (Taplo)
-        uses: taplo/actions@v1
+      - name: Setup Taplo CLI
+        uses: uncenter/setup-taplo@v1
         with:
-          args: check netlify.toml
+          version: "0.10.0"
+
+      - name: Lint netlify.toml (Taplo)
+        run: taplo check netlify.toml
 
   quality:
     name: Accessibility & External links (non-blocking)
