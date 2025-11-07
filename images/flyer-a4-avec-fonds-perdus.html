@@ -264,7 +264,7 @@
       <div class="safe">
         <div class="brand">
           <!-- Remplace le src par ton PNG au moment d'envoyer à l'imprimeur -->
-          <img id="brandLogo" class="logo" alt="Logo BMS Ventouse" width="60" height="60">
+          <img class="logo" src="/android-chrome-192x192.webp" alt="Logo BMS Ventouse" width="60" height="60">
           <span class="bms">BMS</span><span class="ventouse">Ventouse</span>
         </div>
 
@@ -300,33 +300,6 @@
       <li>Si ton imprimeur demande un bleed différent (ex: 5 mm), modifie <code>--bleed</code> en haut du fichier.</li>
     </ul>
   </div>
-<!-- Résolution robuste du logo (relative, absolue, fallback) -->
-  <script>
-    (function(){
-      const el = document.getElementById('brandLogo');
-      if (!el) return;
-      const candidates = [
-        '../android-chrome-512x512.png',
-        '/android-chrome-512x512.png',
-        '../android-chrome-192x192.webp',
-        '/android-chrome-192x192.webp',
-        '../apple-touch-icon.png',
-        '/apple-touch-icon.png'
-      ];
-      function tryNext(i){
-        if(i >= candidates.length){
-          const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 120 120"><rect width="120" height="120" rx="20" fill="white"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="28" fill="%23FF8C42">BMS</text></svg>';
-          el.src = 'data:image/svg+xml;utf8,' + svg;
-          return;
-        }
-        const url = candidates[i];
-        const test = new Image();
-        test.onload = () => { el.src = url; };
-        test.onerror = () => tryNext(i+1);
-        test.src = url;
-      }
-      tryNext(0);
-    })();
-  </script>
+
 </body>
 </html>
