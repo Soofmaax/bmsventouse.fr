@@ -132,7 +132,7 @@
       letter-spacing: -0.3mm;
       margin: 2mm 0 3mm 0;
       max-width: 150mm;
-      color: var(--ink);
+      color: #000; /* texte principal en noir */
       z-index: 2;
     }
     .title strong { color: var(--primary); }
@@ -140,14 +140,14 @@
     .subtitle {
       font-size: 8mm;
       font-weight: 700;
-      color: var(--ink-soft);
+      color: #000; /* sous-titre en noir */
       margin-bottom: 4mm;
       z-index: 2;
     }
 
     .bullets {
       font-size: 6mm;
-      color: var(--muted);
+      color: #111; /* puces plus foncées */
       font-weight: 600;
       margin-bottom: 8mm;
       z-index: 2;
@@ -220,14 +220,21 @@
     .crop-marks .bl { position:absolute; left: var(--bleed); bottom: var(--bleed); width:0; height:0; }
     .crop-marks .br { position:absolute; right: var(--bleed); bottom: var(--bleed); width:0; height:0; }
 
-    /* Longueur des traits de coupe */
-    :root { --crop: 6mm; --crop-w: 0.3mm; }
-
-    /* TL */
-    .crop-marks .tl::before { left: -var(--crop); top: 0; width: var(--crop); height: var(--crop-w); }
-    .crop-marks .tl::after  { left: 0; top: -var(--crop); width: var(--crop-w); height: var(--crop); }
-    /* TR */
-    .crop-marks .tr::before { right: -var(--crop); top: 0; width: var(--crop); height: var(--crop-w); }
+    /* Liseré vertical pour mentions légales latérales */
+    .side-legal {
+      position: absolute;
+      top: calc(var(--margin-safe));
+      bottom: calc(var(--margin-safe));
+      left: calc(var(--margin-safe) / 2);
+      width: 0;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg); /* lecture de bas en haut discrète */
+      font-size: 3.5mm;
+      color: #444;
+      letter-spacing: .1mm;
+      opacity: 0.9;
+    }
     .crop-marks .tr::after  { right: 0; top: -var(--crop); width: var(--crop-w); height: var(--crop); }
     /* BL */
     .crop-marks .bl::before { left: -var(--crop); bottom: 0; width: var(--crop); height: var(--crop-w); }
@@ -261,6 +268,7 @@
 
     <!-- Zone utile A4 -->
     <div class="trim">
+      <div class="side-legal">Ne pas jeter sur la voie publique • Directeur de publication : BMS Ventouse • Impression : (à compléter)</div>
       <!-- Zone sûre pour le contenu -->
       <div class="safe">
         <div class="brand">
@@ -285,7 +293,6 @@
           <div class="mentions">
             BMS Ventouse — 10&nbsp;Rue de la République, 93700&nbsp;Drancy — contact@bmsventouse.fr — +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42<br>
             Offre -15% réservée aux nouveaux clients, applicable sur la première prestation. Hors frais administratifs et déplacements. Non cumulable avec d’autres offres.<br>
-            Ne pas jeter sur la voie publique. Directeur de publication : BMS Ventouse. Impression : (à compléter si imprimeur).<br>
             Crédits visuels : BMS Ventouse (ou à compléter). 
           </div>
         </div>

@@ -92,8 +92,12 @@
     .safe::before {
       content: "";
       position: absolute;
-      inset: -2mm; /* léger débord pour couvrir sous le texte */
-      background: rgba(255,255,255,0.98); /* panneau blanc franc pour lisibilité maximale */
+      inset: -4mm -4mm -4mm -4mm; /* déborde légèrement */
+      background: linear-gradient(90deg,
+                  rgba(255,255,255,0.98) 0%,
+                  rgba(255,255,255,0.92) 35%,
+                  rgba(255,255,255,0.85) 55%,
+                  rgba(255,255,255,0.0) 78%);
       z-index: -1;
       pointer-events: none;
     }
@@ -128,7 +132,7 @@
       letter-spacing: -0.25mm;
       margin: 1mm 0 2mm 0;
       max-width: 120mm;
-      color: var(--ink);
+      color: #000; /* texte principal en noir pour une lisibilité maximale */
       z-index: 2;
     }
     .title strong { color: var(--primary); }
@@ -136,14 +140,14 @@
     .subtitle {
       font-size: 6mm;
       font-weight: 700;
-      color: var(--ink-soft);
+      color: #000; /* sous-titre en noir */
       margin-bottom: 3mm;
       z-index: 2;
     }
 
     .bullets {
       font-size: 4.8mm;
-      color: var(--muted);
+      color: #111; /* puces plus foncées */
       font-weight: 600;
       margin-bottom: 6mm;
       z-index: 2;
@@ -188,6 +192,22 @@
       font-size: 3.2mm;
       line-height: 1.4;
       color: #555;
+    }
+
+    /* Liseré vertical pour mentions légales latérales */
+    .side-legal {
+      position: absolute;
+      top: calc(var(--margin-safe));
+      bottom: calc(var(--margin-safe));
+      left: calc(var(--margin-safe) / 2);
+      width: 0;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg); /* lecture de bas en haut discrète */
+      font-size: 3.2mm;
+      color: #444;
+      letter-spacing: .1mm;
+      opacity: 0.9;
     }
 
     /* Traits de coupe (aux coins du format A5) */
@@ -243,6 +263,7 @@
 
     <!-- Zone utile A5 -->
     <div class="trim">
+      <div class="side-legal">Ne pas jeter sur la voie publique • Directeur de publication : BMS Ventouse • Impression : (à compléter)</div>
       <div class="safe">
         <div class="brand">
           <!-- Remplace le src par ton PNG pour impression -->
@@ -268,7 +289,6 @@
           <div class="mentions">
             BMS Ventouse — 10&nbsp;Rue de la République, 93700&nbsp;Drancy — contact@bmsventouse.fr — +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42<br>
             Offre -15% réservée aux nouveaux clients, applicable sur la première prestation. Hors frais administratifs et déplacements. Non cumulable avec d’autres offres.<br>
-            Ne pas jeter sur la voie publique. Directeur de publication : BMS Ventouse. Impression : (à compléter si imprimeur).<br>
             Crédits visuels : BMS Ventouse (ou à compléter).
           </div>
         </div>
