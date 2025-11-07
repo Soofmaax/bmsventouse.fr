@@ -58,15 +58,13 @@
 
     .accent {
       position: absolute;
-      right: calc(-45mm);
+      left: calc(-45mm);  /* accent déplacé à gauche */
       top: calc(-45mm);
       width: 230mm;
       height: 230mm;
       transform: rotate(35deg);
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       filter: drop-shadow(0 3mm 8mm rgba(0,0,0,0.15));
-      opacity: .95;
-    }
 
     /* Zone utile A5 (sans bleed) */
     .trim {
