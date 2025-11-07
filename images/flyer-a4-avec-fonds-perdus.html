@@ -206,10 +206,12 @@
       text-orientation: mixed;
       transform: rotate(180deg);
       font-size: 3.5mm;
-      color: #444;
+      color: #222;
       letter-spacing: .1mm;
-      opacity: 0.85;
-      z-index: 1;
+      opacity: 0.95;
+      z-index: 4;               /* au-dessus de l'accent */
+      pointer-events: none;
+      text-shadow: 0 0.25mm 0.5mm rgba(255,255,255,0.6);
     }
     /* GAUCHE */
     .side-legal { left: calc(var(--bleed) - 0.5mm); text-align: left; }
