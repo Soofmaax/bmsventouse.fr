@@ -19,7 +19,7 @@ async function svgToPng(svgPath, outPath, width, height) {
   const svg = await fs.readFile(svgPath);
   const image = sharp(svg, { density: 300 }); // high density for crisp text
   const buffer = await image
-    .resize(width, height, { fit: 'cover', position: 'centre' })
+    .resize(width, height, { fit: 'cover', position: 'center' })
     .png({ quality: 95, compressionLevel: 9 })
     .toBuffer();
 
