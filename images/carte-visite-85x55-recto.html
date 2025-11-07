@@ -43,7 +43,7 @@
     /* Accent diagonal orange à droite */
     .accent {
       position: absolute;
-      right: -24mm;
+      left: -24mm; /* harmonisation A5: accent à gauche */
       top: -24mm;
       width: 90mm;
       height: 90mm;
@@ -83,7 +83,7 @@
       border-radius: 2mm;
       background: #fff;
       object-fit: cover;
-      box-shadow: 0 0.6mm 2mm rgba(0,0,0,0.15);
+      box-shadow: none; /* harmonisation A5 */
     }
     .bms { color: var(--primary); }
 
@@ -147,7 +147,7 @@
     <div class="trim">
       <div class="safe">
         <div class="brand">
-          <img class="logo" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Logo" width="40" height="40">
+          <img class="logo" src="/android-chrome-192x192.webp" alt="Logo" width="40" height="40">
           <span class="bms">BMS</span><span> Ventouse</span>
         </div>
         <div class="tagline">Ventousage • Sécurité de plateau • Convoyage</div>
