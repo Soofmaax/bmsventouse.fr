@@ -90,6 +90,20 @@
       bottom: calc(var(--bleed) + var(--margin-safe));
       display: flex;
       flex-direction: column;
+      z-index: 2;
+    }
+    /* Voile de lisibilité sous la zone de texte (contraste amélioré) */
+    .safe::before {
+      content: "";
+      position: absolute;
+      inset: -5mm -5mm -5mm -5mm; /* déborde légèrement */
+      background: linear-gradient(90deg,
+                  rgba(255,255,255,0.98) 0%,
+                  rgba(255,255,255,0.92) 35%,
+                  rgba(255,255,255,0.85) 55%,
+                  rgba(255,255,255,0.0) 78%);
+      z-index: -1;
+      pointer-events: none;
     }
 
     /* En-tête marque */
@@ -107,7 +121,7 @@
       width: 16mm; height: 16mm;
       border-radius: 3mm;
       background: var(--paper);
-      box-shadow: 0 1mm 3mm rgba(0,0,0,0.15);
+      box-shadow: none;
       object-fit: cover;
       display: block;
     }
