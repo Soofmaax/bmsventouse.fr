@@ -195,10 +195,9 @@
       color: #555;
     }
 
-    /* Liserés verticaux (tous à DROITE pour éviter toute superposition avec le contenu) */
+    /* Liserés verticaux (un à GAUCHE, un à DROITE) */
     .side-legal,
-    .side-legal.right,
-    .side-legal.right.second {
+    .side-legal.right {
       position: absolute;
       top: var(--bleed);
       bottom: var(--bleed);
@@ -211,10 +210,11 @@
       letter-spacing: .1mm;
       opacity: 0.85;
       z-index: 1;
-      text-align: right;
     }
-    .side-legal.right { right: calc(var(--bleed) - 0.5mm); }
-    .side-legal.right.second { right: calc(var(--bleed) + 6mm); }
+    /* GAUCHE */
+    .side-legal { left: calc(var(--bleed) - 0.5mm); text-align: left; }
+    /* DROITE */
+    .side-legal.right { right: calc(var(--bleed) - 0.5mm); text-align: right; }
     .crop-marks .tl { position:absolute; left: var(--bleed); top: var(--bleed); width:0; height:0; }
     .crop-marks .tr { position:absolute; right: var(--bleed); top: var(--bleed); width:0; height:0; }
     .crop-marks .bl { position:absolute; left: var(--bleed); bottom: var(--bleed); width:0; height:0; }
@@ -269,9 +269,9 @@
 
     <!-- Zone utile A4 -->
     <div class="trim">
-      <!-- Deux liserés alignés à DROITE -->
-      <div class="side-legal right">Offre -15% réservée aux nouveaux clients • Première prestation • Hors frais administratifs et déplacements • Non cumulable</div>
-      <div class="side-legal right second">Ne pas jeter sur la voie publique • Directeur de publication : BMS Ventouse • Impression : (à compléter)</div>
+      <!-- Liserés opposés -->
+      <div class="side-legal">Offre -15% réservée aux nouveaux clients • Première prestation • Hors frais administratifs et déplacements • Non cumulable</div>
+      <div class="side-legal right">Ne pas jeter sur la voie publique • Directeur de publication : BMS Ventouse • Impression : (à compléter)</div>
       <!-- Zone sûre pour le contenu -->
       <div class="safe">
         <div class="brand">
