@@ -18,7 +18,8 @@
     .content{ position:relative; z-index:2; height:100%; padding:120px 140px; display:flex; flex-direction:column;}
     .content::before{ content:""; position:absolute; inset:80px 80px auto 80px; height:60%; background:linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 35%, rgba(255,255,255,0.85) 55%, rgba(255,255,255,0.0) 78%); z-index:-1;}
     .brand{ display:inline-flex; align-items:center; gap:16px; margin-bottom:18px; font-weight:800; font-size:28px;}
-    .logo{ width:84px; height:84px; border-radius:16px; background:#fff; object-fit:cover; box-shadow:none;}
+    .logo{ width:84px; height:84px; border-radius:16px; background:#fff; object-fit:cover; box-shadow:none; display:none;}
+    .logo-placeholder{ width:84px; height:84px; border-radius:16px; border:3px dashed rgba(44,62,80,0.35); background:#fff; display:block;}
     .bms{ color:var(--primary);}
     .title{ font-size:96px; line-height:1.06; font-weight:800; letter-spacing:-0.5px; margin:6px 0 10px; color:#000;}
     .title strong{ color:#000;}
@@ -40,7 +41,7 @@
 
     <div class="content">
       <div class="brand">
-        <img class="logo" src="/android-chrome-192x192.webp" alt="Logo BMS Ventouse" width="84" height="84">
+        <div class="logo-placeholder" aria-label="Espace logo (à coller dans Canva)"></div>
         <span class="bms">BMS</span><span> Ventouse</span>
       </div>
       <h1 class="title"><strong>Logistique de tournage 24/7</strong><br>Ventousage, sécurité, convoyage</h1>

@@ -54,7 +54,8 @@
     /* Brand */
     .brand{ display:inline-flex; align-items:center; gap:18px; margin-bottom:22px; font-weight:800; font-size:38px;}
     .brand .bms{ color:var(--primary);}
-    .logo{ width:112px; height:112px; border-radius:24px; background:#fff; object-fit:cover; box-shadow:none; display:block;}
+    .logo{ width:112px; height:112px; border-radius:24px; background:#fff; object-fit:cover; box-shadow:none; display:none;}
+    .logo-placeholder{ width:112px; height:112px; border-radius:24px; border:4px dashed rgba(44,62,80,0.35); background:#fff; display:block;}
 
     /* Texte principal (noir pour lisibilité sur orange) */
     .title{ font-size:112px; line-height:1.04; font-weight:800; letter-spacing:-0.5px; margin:8px 0 12px; color:#000; }
@@ -93,7 +94,7 @@
 
     <div class="content">
       <div class="brand">
-        <img class="logo" src="/android-chrome-192x192.webp" alt="Logo BMS Ventouse" width="112" height="112">
+        <div class="logo-placeholder" aria-label="Espace logo (à coller dans Canva)"></div>
         <span class="bms">BMS</span><span> Ventouse</span>
       </div>
 

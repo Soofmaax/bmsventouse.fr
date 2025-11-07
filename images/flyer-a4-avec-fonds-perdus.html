@@ -123,6 +123,13 @@
       background: var(--paper);
       box-shadow: none;
       object-fit: cover;
+      display: none;
+    }
+    .logo-placeholder {
+      width: 16mm; height: 16mm;
+      border-radius: 3mm;
+      border: 0.7mm dashed rgba(44,62,80,0.35);
+      background: #fff;
       display: block;
     }
     .brand .bms { color: var(--primary); }
@@ -269,7 +276,7 @@
       <div class="safe">
         <div class="brand">
           <!-- Remplace le src par ton PNG au moment d'envoyer à l'imprimeur -->
-          <img class="logo" src="/android-chrome-192x192.webp" alt="Logo BMS Ventouse" width="60" height="60">
+          <div class="logo-placeholder" aria-label="Espace logo (à coller dans Canva)"></div>
           <span class="bms">BMS</span><span class="ventouse">Ventouse</span>
         </div>
 

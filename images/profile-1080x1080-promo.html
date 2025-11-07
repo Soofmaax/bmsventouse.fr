@@ -33,7 +33,8 @@
     }
     .brand{ display:flex; align-items:center; gap:16px; margin-bottom:18px; font-weight:800; font-size:44px; color:var(--ink);}
     .brand .bms{ color:var(--primary);}
-    .logo{ width:108px; height:108px; border-radius:22px; background:#fff; object-fit:cover; box-shadow:0 6px 18px rgba(0,0,0,0.15); display:block;}
+    .logo{ width:108px; height:108px; border-radius:22px; background:#fff; object-fit:cover; box-shadow:0 6px 18px rgba(0,0,0,0.15); display:none;}
+    .logo-placeholder{ width:108px; height:108px; border-radius:22px; border:4px dashed rgba(44,62,80,0.35); background:#fff; display:block;}
     .headline{ font-size:88px; font-weight:800; line-height:1.04; letter-spacing:-0.5px; color:var(--ink); margin:8px 0 10px;}
     /* Harmonisation A5: texte accentué en noir au-dessus de l'accent orange */
     .headline strong{ color:#000;}
@@ -48,7 +49,7 @@
     <div class="accent"></div>
     <div class="content">
       <div class="brand">
-        <img id="logo" class="logo" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Logo" width="108" height="108">
+        <div class="logo-placeholder" aria-label="Espace logo (à coller dans Canva)"></div>
         <span class="bms">BMS</span><span> Ventouse</span>
       </div>
       <div class="headline"><strong>Logistique</strong> de tournage</div>

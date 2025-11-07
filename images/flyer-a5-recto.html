@@ -26,7 +26,8 @@
     .safe{ position:absolute; left:calc(var(--bleed) + var(--margin-safe)); top:calc(var(--bleed) + var(--margin-safe)); right:calc(var(--bleed) + var(--margin-safe)); bottom:calc(var(--bleed) + var(--margin-safe)); display:flex; flex-direction:column; z-index:2;}
     .safe::before{ content:""; position:absolute; inset:-4mm; background:linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 35%, rgba(255,255,255,0.85) 55%, rgba(255,255,255,0.0) 78%); z-index:-1; pointer-events:none;}
     .brand{ display:inline-flex; align-items:center; gap:4mm; margin-bottom:5mm; font-weight:800; font-size:6mm; color:#2c3e50;}
-    .logo{ width:14mm; height:14mm; border-radius:3mm; background:#fff; object-fit:cover; box-shadow:none; display:block;}
+    .logo{ width:14mm; height:14mm; border-radius:3mm; background:#fff; object-fit:cover; box-shadow:none; display:none;}
+    .logo-placeholder{ width:14mm; height:14mm; border-radius:3mm; border:0.6mm dashed rgba(44,62,80,0.35); background:#fff; display:block;}
     .bms{ color:var(--primary); }
     .title{ font-size:14mm; line-height:1.06; font-weight:800; letter-spacing:-0.25mm; margin:1mm 0 2mm 0; max-width:120mm; color:#000;}
     .title strong{ color:#000;}
@@ -68,7 +69,7 @@
 
       <div class="safe">
         <div class="brand">
-          <img class="logo" src="/android-chrome-192x192.webp" alt="Logo BMS Ventouse" width="50" height="50">
+          <div class="logo-placeholder" aria-label="Espace logo (à coller dans Canva)"></div>
           <span class="bms">BMS</span><span class="ventouse">Ventouse</span>
         </div>
 
