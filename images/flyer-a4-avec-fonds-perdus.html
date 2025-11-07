@@ -214,9 +214,9 @@
       text-shadow: 0 0.4mm 0.7mm rgba(255,255,255,0.85);
     }
     /* GAUCHE: 3mm à l'intérieur du bord utile */
-    .side-legal { left: calc(var(--bleed) + 3mm); text-align: left; }
+    .side-legal { left: calc(var(--bleed) + 3mm); right: auto; text-align: left; }
     /* DROITE: 3mm à l'intérieur du bord utile */
-    .side-legal.right { right: calc(var(--bleed) + 3mm); text-align: right; }
+    .side-legal.right { right: calc(var(--bleed) + 3mm); left: auto; text-align: right; }
     .crop-marks .tl { position:absolute; left: var(--bleed); top: var(--bleed); width:0; height:0; }
     .crop-marks .tr { position:absolute; right: var(--bleed); top: var(--bleed); width:0; height:0; }
     .crop-marks .bl { position:absolute; left: var(--bleed); bottom: var(--bleed); width:0; height:0; }
