@@ -277,7 +277,7 @@
       <div class="safe">
         <div class="brand">
           <!-- Remplace le src par ton PNG pour impression -->
-          <img class="logo" src="/android-chrome-512x512.png" onerror="this.onerror=null;this.src='/android-chrome-192x192.webp';" alt="Logo BMS Ventouse" width="50" height>
+          <img id="brandLogo" class="logo" alt="Logo BMS Ventouse" width="50" height="50">mg class="logo" src="/android-chrome-512x512.png" onerror="this.onerror=null;this.src='/android-chrome-192x192.webp';" alt="Logo BMS Ventouse" width="50" height>
           <span class="bms">BMS</span><span class="ventouse">Ventouse</span>
         </div>
 
@@ -309,7 +309,7 @@
   <div style="max-width: 900px; margin: 16px; font-size: 14px; color: #333; line-height:1.6;">
     <strong>Export PDF prêt à imprimer</strong>
     <ul>
-      <li>Remplace le logo (src de .logo) par ton PNG haute définition.</li>
+      <li>Logo chargé automatiquement depuis le site/répertoire. Aucun changement nécessaire.</li>
       <li>Ctrl/Cmd+P → Destination « Enregistrer au format PDF » → Plus de paramètres:
         <ul>
           <li>Marges: Aucune</li>
@@ -321,5 +321,34 @@
       <li>Si l’imprimeur demande un bleed différent (ex: 5 mm), modifie <code>--bleed</code> en haut du fichier.</li>
     </ul>
   </div>
+
+  <!-- Résolution robuste du logo (relative, absolue, fallback) -->
+  <script>
+    (function(){
+      const el = document.getElementById('brandLogo');
+      if (!el) return;
+      const candidates = [
+        '../android-chrome-512x512.png',
+        '/android-chrome-512x512.png',
+        '../android-chrome-192x192.webp',
+        '/android-chrome-192x192.webp',
+        '../apple-touch-icon.png',
+        '/apple-touch-icon.png'
+      ];
+      function tryNext(i){
+        if(i >= candidates.length){
+          const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><rect width="120" height="120" rx="20" fill="white"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="28" fill="%23FF8C42">BMS</text></svg>';
+          el.src = 'data:image/svg+xml;utf8,' + svg;
+          return;
+        }
+        const url = candidates[i];
+        const test = new Image();
+        test.onload = () => { el.src = url; };
+        test.onerror = () => tryNext(i+1);
+        test.src = url;
+      }
+      tryNext(0);
+    })();
+  </script>
 </body>
 </html>
