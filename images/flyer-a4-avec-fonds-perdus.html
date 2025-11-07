@@ -223,22 +223,7 @@
     .crop-marks .bl { position:absolute; left: var(--bleed); bottom: var(--bleed); width:0; height:0; }
     .crop-marks .br { position:absolute; right: var(--bleed); bottom: var(--bleed); width:0; height:0; }
 
-    /* Liseré vertical pour mentions légales latérales */
-    .side-legal {
-      position: absolute;
-      top: var(--bleed);              /* en dehors de la zone de sécurité */
-      bottom: var(--bleed);
-      left: calc(var(--bleed) - 0.5mm);
-      width: 0;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg); /* lecture de bas en haut discrète */
-      font-size: 3.5mm;
-      color: #444;
-      letter-spacing: .1mm;
-      opacity: 0.85;
-      z-index: 1;
-    }
+    
     .crop-marks .tr::after  { right: 0; top: -var(--crop); width: var(--crop-w); height: var(--crop); }
     /* BL */
     .crop-marks .bl::before { left: -var(--crop); bottom: 0; width: var(--crop); height: var(--crop-w); }
