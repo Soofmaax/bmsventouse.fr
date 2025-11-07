@@ -197,9 +197,9 @@
     /* Liseré vertical droit pour conditions d'offre */
     .side-legal.right {
       position: absolute;
-      top: calc(var(--margin-safe));
-      bottom: calc(var(--margin-safe));
-      right: calc(var(--margin-safe) / 2);
+      top: var(--bleed);
+      bottom: var(--bleed);
+      right: calc(var(--bleed) - 0.5mm);
       width: 0;
       writing-mode: vertical-rl;
       text-orientation: mixed;
@@ -207,16 +207,17 @@
       font-size: 3.2mm;
       color: #444;
       letter-spacing: .1mm;
-      opacity: 0.9;
+      opacity: 0.85;
       text-align: right;
+      z-index: 1;
     }
 
     /* Liseré vertical pour mentions légales latérales */
     .side-legal {
       position: absolute;
-      top: calc(var(--margin-safe));
-      bottom: calc(var(--margin-safe));
-      left: calc(var(--margin-safe) / 2);
+      top: var(--bleed);            /* en dehors de la zone de sécurité */
+      bottom: var(--bleed);
+      left: calc(var(--bleed) - 0.5mm);  /* plus près du bord pour ne pas empiéter */
       width: 0;
       writing-mode: vertical-rl;
       text-orientation: mixed;
@@ -224,7 +225,8 @@
       font-size: 3.2mm;
       color: #444;
       letter-spacing: .1mm;
-      opacity: 0.9;
+      opacity: 0.85;
+      z-index: 1;                 /* sous le contenu */
     }
 
     /* Traits de coupe (aux coins du format A5) */
