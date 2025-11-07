@@ -195,7 +195,7 @@
       color: #555;
     }
 
-    /* Liserés verticaux (un à GAUCHE, un à DROITE) */
+    /* Liserés verticaux (un à GAUCHE, un à DROITE) — positionnés à l'intérieur, bien visibles */
     .side-legal,
     .side-legal.right {
       position: absolute;
@@ -205,18 +205,18 @@
       writing-mode: vertical-rl;
       text-orientation: mixed;
       transform: rotate(180deg);
-      font-size: 3.5mm;
-      color: #222;
+      font-size: 3.7mm;          /* légèrement plus grand pour lisibilité A4 */
+      color: #111;
       letter-spacing: .1mm;
-      opacity: 0.95;
-      z-index: 4;               /* au-dessus de l'accent */
+      opacity: 0.98;
+      z-index: 6;                /* au-dessus de l'accent */
       pointer-events: none;
-      text-shadow: 0 0.25mm 0.5mm rgba(255,255,255,0.6);
+      text-shadow: 0 0.4mm 0.7mm rgba(255,255,255,0.85);
     }
-    /* GAUCHE */
-    .side-legal { left: calc(var(--bleed) - 0.5mm); text-align: left; }
-    /* DROITE */
-    .side-legal.right { right: calc(var(--bleed) - 0.5mm); text-align: right; }
+    /* GAUCHE: 3mm à l'intérieur du bord utile */
+    .side-legal { left: calc(var(--bleed) + 3mm); text-align: left; }
+    /* DROITE: 3mm à l'intérieur du bord utile */
+    .side-legal.right { right: calc(var(--bleed) + 3mm); text-align: right; }
     .crop-marks .tl { position:absolute; left: var(--bleed); top: var(--bleed); width:0; height:0; }
     .crop-marks .tr { position:absolute; right: var(--bleed); top: var(--bleed); width:0; height:0; }
     .crop-marks .bl { position:absolute; left: var(--bleed); bottom: var(--bleed); width:0; height:0; }
