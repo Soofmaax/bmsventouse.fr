@@ -19,7 +19,7 @@
 
       /* Impression */
       --bleed: 3mm;         /* fonds perdus (3 mm) */
-      --margin-safe: 12mm;  /* marge de sécurité (augmentée pour aérer le design) */
+      --margin-safe: 10mm;  /* marge de sécurité (alignée sur A5) */
     }
 
     /* Page imprimée A4 portrait avec fonds perdus */
@@ -96,8 +96,12 @@
     .safe::before {
       content: "";
       position: absolute;
-      inset: -3mm; /* léger débord pour couvrir sous le texte */
-      background: rgba(255,255,255,0.98); /* panneau blanc franc pour lisibilité maximale */
+      inset: -4mm -4mm -4mm -4mm; /* déborde légèrement (même style que A5) */
+      background: linear-gradient(90deg,
+                  rgba(255,255,255,0.98) 0%,
+                  rgba(255,255,255,0.92) 35%,
+                  rgba(255,255,255,0.85) 55%,
+                  rgba(255,255,255,0.0) 78%);
       z-index: -1;
       pointer-events: none;
     }
@@ -135,7 +139,8 @@
       color: #000; /* texte principal en noir */
       z-index: 2;
     }
-    .title strong { color: var(--primary); }
+    /* Si un texte orange tombe sur fond orange, on force le noir pour lisibilité */
+    .title strong { color: #000; }
 
     .subtitle {
       font-size: 8mm;

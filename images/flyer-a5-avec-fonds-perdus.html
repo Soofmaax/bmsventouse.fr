@@ -135,7 +135,8 @@
       color: #000; /* texte principal en noir pour une lisibilité maximale */
       z-index: 2;
     }
-    .title strong { color: var(--primary); }
+    /* Si un texte orange tombe sur fond orange, on force le noir pour lisibilité */
+    .title strong { color: #000; }
 
     .subtitle {
       font-size: 6mm;
