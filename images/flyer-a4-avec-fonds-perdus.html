@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>BMS Ventouse — Flyer A4 avec fonds perdus et traits de coupe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Police Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary: #FF8C42;
+      --primary-dark:#e67e22;
+      --ink: #2c3e50;
+      --ink-soft:#34495e;
+      --muted:#566573;
+      --paper:#ffffff;
+
+      /* Impression */
+      --bleed: 3mm;         /* fonds perdus (3 mm) */
+      --margin-safe: 10mm;  /* marge de sécurité */
+    }
+
+    /* Page imprimée A4 portrait avec fonds perdus */
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    /* Mise en page globale:
+       On crée une surface plus grande que l'A4 pour inclure le bleed,
+       puis on dessine des traits de coupe aux coins du format fini. */
+    html, body {
+      background: #ededed;
+      height: 100%;
+    }
+    body {
+      display: grid;
+      place-items: center;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      color: var(--ink);
+    }
+
+    /* Surface totale = A4 + bleed tout autour */
+    .sheet {
+      position: relative;
+      width: calc(210mm + var(--bleed)*2);
+      height: calc(297mm + var(--bleed)*2);
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    /* Zone de fond (design qui peut aller jusqu'au bleed) */
+    .bleed-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, var(--paper) 0%, var(--paper) 44%, rgba(0,0,0,0.05) 46%, rgba(0,0,0,0) 50%) no-repeat;
+    }
+
+    /* Accent diagonal orange (va jusqu'au bleed) */
+    .accent {
+      position: absolute;
+      right: calc(-60mm);
+      top: calc(-60mm);
+      width: 300mm;
+      height: 300mm;
+      transform: rotate(35deg);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      filter: drop-shadow(0 4mm 10mm rgba(0,0,0,0.15));
+      opacity: .95;
+    }
+
+    /* Zone utile A4 (sans bleed) */
+    .trim {
+      position: absolute;
+      left: var(--bleed);
+      top: var(--bleed);
+      width: 210mm;
+      height: 297mm;
+    }
+
+    /* Marge de sécurité pour le contenu (pour éviter les coupes) */
+    .safe {
+      position: absolute;
+      left: calc(var(--bleed) + var(--margin-safe));
+      top: calc(var(--bleed) + var(--margin-safe));
+      right: calc(var(--bleed) + var(--margin-safe));
+      bottom: calc(var(--bleed) + var(--margin-safe));
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* En-tête marque */
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 4mm;
+      margin-bottom: 6mm;
+      font-weight: 800;
+      font-size: 7mm;
+      color: var(--ink);
+      z-index: 2;
+    }
+    .logo {
+      width: 16mm; height: 16mm;
+      border-radius: 3mm;
+      background: var(--paper);
+      box-shadow: 0 1mm 3mm rgba(0,0,0,0.15);
+      object-fit: cover;
+      display: block;
+    }
+    .brand .bms { color: var(--primary); }
+    .brand .ventouse { color: var(--ink); }
+
+    /* Titre et contenus */
+    .title {
+      font-size: 22mm;
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.3mm;
+      margin: 2mm 0 3mm 0;
+      max-width: 150mm;
+      color: var(--ink);
+      z-index: 2;
+    }
+    .title strong { color: var(--primary); }
+
+    .subtitle {
+      font-size: 8mm;
+      font-weight: 700;
+      color: var(--ink-soft);
+      margin-bottom: 4mm;
+      z-index: 2;
+    }
+
+    .bullets {
+      font-size: 6mm;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 8mm;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,140,66,0.10);
+      color: var(--primary);
+      border: 0.6mm solid rgba(255,140,66,0.65);
+      border-radius: 20mm;
+      padding: 3mm 6mm;
+      font-size: 6mm;
+      font-weight: 800;
+      letter-spacing: .2mm;
+      z-index: 2;
+      width: fit-content;
+    }
+
+    /* Pied de page avec contact et mentions légales */
+    .footer {
+      margin-top: auto;
+      z-index: 2;
+    }
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 6mm;
+      font-size: 6mm;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 3mm;
+    }
+    .contact .sep {
+      flex: 1;
+      height: 1.2mm;
+      background: var(--primary);
+      border-radius: 1mm;
+      opacity: .95;
+    }
+
+    .mentions {
+      font-size: 3.5mm;
+      line-height: 1.4;
+      color: #555;
+    }
+
+    /* Traits de coupe (aux coins du format A4) */
+    .crop-marks::before,
+    .crop-marks::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+    }
+    /* Coin haut gauche */
+    .crop-marks .tl::before,
+    .crop-marks .tl::after,
+    .crop-marks .tr::before,
+    .crop-marks .tr::after,
+    .crop-marks .bl::before,
+    .crop-marks .bl::after,
+    .crop-marks .br::before,
+    .crop-marks .br::after {
+      content: '';
+      position: absolute;
+      background: #000;
+    }
+    .crop-marks .tl { position:absolute; left: var(--bleed); top: var(--bleed); width:0; height:0; }
+    .crop-marks .tr { position:absolute; right: var(--bleed); top: var(--bleed); width:0; height:0; }
+    .crop-marks .bl { position:absolute; left: var(--bleed); bottom: var(--bleed); width:0; height:0; }
+    .crop-marks .br { position:absolute; right: var(--bleed); bottom: var(--bleed); width:0; height:0; }
+
+    /* Longueur des traits de coupe */
+    :root { --crop: 6mm; --crop-w: 0.3mm; }
+
+    /* TL */
+    .crop-marks .tl::before { left: -var(--crop); top: 0; width: var(--crop); height: var(--crop-w); }
+    .crop-marks .tl::after  { left: 0; top: -var(--crop); width: var(--crop-w); height: var(--crop); }
+    /* TR */
+    .crop-marks .tr::before { right: -var(--crop); top: 0; width: var(--crop); height: var(--crop-w); }
+    .crop-marks .tr::after  { right: 0; top: -var(--crop); width: var(--crop-w); height: var(--crop); }
+    /* BL */
+    .crop-marks .bl::before { left: -var(--crop); bottom: 0; width: var(--crop); height: var(--crop-w); }
+    .crop-marks .bl::after  { left: 0; bottom: -var(--crop); width: var(--crop-w); height: var(--crop); }
+    /* BR */
+    .crop-marks .br::before { right: -var(--crop); bottom: 0; width: var(--crop); height: var(--crop-w); }
+    .crop-marks .br::after  { right: 0; bottom: -var(--crop); width: var(--crop-w); height: var(--crop); }
+
+    /* A l'écran, on montre la zone bleed/trim/safe avec une grille légère (non imprimée) */
+    @media screen {
+      .trim { outline: 0.6mm dashed rgba(0,0,0,0.08); }
+      .safe { outline: 0.6mm dashed rgba(255,140,66,0.25); }
+    }
+
+    /* En impression, fond gris de page invisible */
+    @media print {
+      html, body { background: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet crop-marks">
+    <div class="bleed-bg"></div>
+    <div class="accent"></div>
+
+    <!-- Points de coupe aux 4 coins -->
+    <div class="tl"></div>
+    <div class="tr"></div>
+    <div class="bl"></div>
+    <div class="br"></div>
+
+    <!-- Zone utile A4 -->
+    <div class="trim">
+      <!-- Zone sûre pour le contenu -->
+      <div class="safe">
+        <div class="brand">
+          <!-- Remplace le src par ton PNG au moment d'envoyer à l'imprimeur -->
+          <img class="logo" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Logo BMS Ventouse" width="60" height="60">
+          <span class="bms">BMS</span><span class="ventouse">Ventouse</span>
+        </div>
+
+        <h1 class="title"><strong>Logistique de tournage 24/7</strong><br>Ventousage, sécurité, convoyage</h1>
+        <div class="subtitle">Expert en Île‑de‑France • Déploiements nationaux</div>
+        <div class="bullets">Autorisations • Neutralisation stationnement • Signalisation • Gardiennage</div>
+
+        <div class="badge">-15% Nouveaux clients — CODE : NOUVEAU15</div>
+
+        <div class="footer">
+          <div class="contact">
+            <span>Contact : +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</span>
+            <span class="sep"></span>
+            <span>bmsventouse.fr</span>
+          </div>
+
+          <div class="mentions">
+            BMS Ventouse — 10&nbsp;Rue de la République, 93700&nbsp;Drancy — contact@bmsventouse.fr — +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42<br>
+            Offre -15% réservée aux nouveaux clients, applicable sur la première prestation. Hors frais administratifs et déplacements. Non cumulable avec d’autres offres.<br>
+            Ne pas jeter sur la voie publique. Directeur de publication : BMS Ventouse. Impression : (à compléter si imprimeur).<br>
+            Crédits visuels : BMS Ventouse (ou à compléter). 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conseils (affichés à l'écran uniquement) -->
+  <div style="max-width: 900px; margin: 16px; font-size: 14px; color: #333; line-height:1.6;">
+    <strong>Export PDF prêt à imprimer</strong>
+    <ul>
+      <li>Remplace l’image du logo (src de .logo) par ton PNG sur fond blanc ou transparent.</li>
+      <li>Ctrl/Cmd+P → Destination « Enregistrer au format PDF » → Plus de paramètres → Imprimer les arrière-plans (si nécessaire) → Marges: Aucune.</li>
+      <li>Le PDF inclura les <em>fonds perdus (3 mm)</em> et les <em>traits de coupe</em>.</li>
+      <li>Si ton imprimeur demande un bleed différent (ex: 5 mm), modifie <code>--bleed</code> en haut du fichier.</li>
+    </ul>
+  </div>
+</body>
+</html>
