@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>BMS Ventouse — Centre de visuels (préviews + téléchargements)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#FF8C42;
+      --ink:#2c3e50;
+      --muted:#6b7b8a;
+      --bg:#f7f8fa;
+      --card:#ffffff;
+      --border:#e6e8eb;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    }
+    header{
+      padding:24px;
+      background:#fff;
+      border-bottom:1px solid var(--border);
+      position:sticky; top:0; z-index:10;
+    }
+    .container{max-width:1200px; margin:0 auto; padding:0 16px;}
+    h1{margin:0 0 6px 0; font-size:22px; font-weight:800;}
+    .subtitle{color:var(--muted); font-size:14px;}
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+      gap:18px;
+      padding:22px 0 32px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    }
+    .preview{
+      width:100%;
+      aspect-ratio: 16/9;
+      background:#fff;
+      border-bottom:1px solid var(--border);
+    }
+    .preview.square{ aspect-ratio: 1/1; }
+    .preview.card-size{ aspect-ratio: 85/55; }
+    .preview.flyer-a4{ aspect-ratio: 210/297; }
+    .preview.flyer-a5{ aspect-ratio: 148/210; }
+
+    .card iframe{
+      width:100%; height:100%;
+      border:0;
+      background:#fff;
+    }
+    .content{
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .title{font-weight:800; font-size:15px;}
+    .meta{color:var(--muted); font-size:13px;}
+    .actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;}
+    a.btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:8px; padding:8px 10px; font-weight:700; font-size:13px; text-decoration:none;
+      color:#fff; background:var(--primary); border-radius:8px; border:1px solid transparent;
+    }
+    a.btn.secondary{ background:#fff; color:var(--ink); border-color:var(--border);}
+    footer{
+      padding:24px; color:var(--muted); font-size:13px; text-align:center;
+      border-top:1px solid var(--border); background:#fff;
+    }
+    .note{font-size:12px; color:var(--muted); margin-top:6px;}
+    .warn{color:#c05621; font-weight:600;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Centre de visuels BMS Ventouse</h1>
+      <div class="subtitle">Prévisualisez et téléchargez tous les visuels (promo, couverture, cartes, flyers). Remplacez le logo dans chaque fichier si nécessaire.</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+
+      <!-- Bannière Offre 1200x900 -->
+      <div class="card">
+        <div class="preview">
+          <iframe src="./offre-15-nouveaux-clients.html" title="Bannière -15% (1200×900)"></iframe>
+        </div>
+        <div class="content">
+          <div class="title">Bannière -15% (1200×900)</div>
+          <div class="meta">Promo Nouveaux clients — PNG téléchargeable (depuis la page)</div>
+          <div class="actions">
+            <a class="btn" href="./offre-15-nouveaux-clients.html" target="_blank" rel="noopener">Ouvrir</a>
+            <a class="btn secondary" href="./offre-15-nouveaux-clients.svg" target="_blank" rel="noopener">SVG</a>
+            <a class="btn secondary" href="./offre-15-nouveaux-clients.png" target="_blank" rel="noopener">PNG (si généré)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Couverture GBP 1600x900 -->
+      <div class="card">
+        <div class="preview">
+          <iframe src="./couverture-google-business-1600x900.html" title="Couverture Google Business 1600×900"></iframe>
+        </div>
+        <div class="content">
+          <div class="title">Couverture Google Business (1600×900)</div>
+          <div class="meta">Version lisible avec voile — PNG auto au chargement</div>
+          <div class="actions">
+            <a class="btn" href="./couverture-google-business-1600x900.html" target="_blank" rel="noopener">Ouvrir</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo profil 1080x1080 -->
+      <div class="card">
+        <div class="preview square">
+          <iframe src="./profile-1080x1080-promo.html" title="Profil 1080×1080"></iframe>
+        </div>
+        <div class="content">
+          <div class="title">Photo de profil (1080×1080)</div>
+          <div class="meta">Carré — PNG auto au chargement</div>
+          <div class="actions">
+            <a class="btn" href="./profile-1080x1080-promo.html" target="_blank" rel="noopener">Ouvrir</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flyer A5 -->
+      <div class="card">
+        <div class="preview flyer-a5">
+          <iframe src="./flyer-a5-avec-fonds-perdus.html" title="Flyer A5"></iframe>
+        </div>
+        <div class="content">
+          <div class="title">Flyer A5 (fonds perdus + coupes)</div>
+          <div class="meta">Bleed 3 mm • Marges 8 mm • Mentions légales</div>
+          <div class="actions">
+            <a class="btn" href="./flyer-a5-avec-fonds-perdus.html" target="_blank" rel="noopener">Ouvrir</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flyer A4 -->
+      <div class="card">
+        <div class="preview flyer-a4">
+          <iframe src="./flyer-a4-avec-fonds-perdus.html" title="Flyer A4"></iframe>
+        </div>
+        <div class="content">
+          <div class="title">Flyer A4 (fonds perdus + coupes)</div>
+          <div class="meta">Bleed 3 mm • Marges 10 mm • Mentions légales</div>
+          <div class="actions">
+            <a class="btn" href="./flyer-a4-avec-fonds-perdus.html" target="_blank" rel="noopener">Ouvrir</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte de visite recto -->
+      <div class="card">
+        <div class="preview card-size">
+          <iframe src="./carte-visite-85x55-recto.html" title="Carte de visite Recto"></iframe>
+        </div>
+        <div class="content">
+          <div class="title">Carte de visite — Recto</div>
+          <div class="meta">85×55 mm • Bleed 3 mm • Promo incluse</div>
+          <div class="actions">
+            <a class="btn" href="./carte-visite-85x55-recto.html" target="_blank" rel="noopener">Ouvrir</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte de visite verso -->
+      <div class="card">
+        <div class="preview card-size">
+          <iframe src="./carte-visite-85x55-verso.html" title="Carte de visite Verso"></iframe>
+        </div>
+        <div class="content">
+          <div class="title">Carte de visite — Verso</div>
+          <div class="meta">Coordonnées complètes • Bleed 3 mm</div>
+          <div class="actions">
+            <a class="btn" href="./carte-visite-85x55-verso.html" target="_blank" rel="noopener">Ouvrir</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="note">
+      Astuces:
+      - Remplace le logo (src des balises &lt;img class="logo"&gt;) par ton PNG/WEBP pour l’impression.
+      - Pour PDF, utilise Ctrl/Cmd+P → Enregistrer en PDF → Marges: Aucune → Échelle: 100% → Imprimer les arrière-plans.
+      - Le PNG “offre-15-nouveaux-clients.png” est généré au build; si le lien ne marche pas en local, il fonctionnera après déploiement Netlify.
+    </p>
+  </main>
+
+  <footer>
+    © BMS Ventouse — Centre de visuels
+  </footer>
+</body>
+</html>
