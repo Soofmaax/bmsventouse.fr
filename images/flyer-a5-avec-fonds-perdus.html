@@ -194,30 +194,13 @@
       color: #555;
     }
 
-    /* Liseré vertical droit pour conditions d'offre */
-    .side-legal.right {
-      position: absolute;
-      top: var(--bleed);
-      bottom: var(--bleed);
-      right: calc(var(--bleed) - 0.5mm);
-      width: 0;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      font-size: 3.2mm;
-      color: #444;
-      letter-spacing: .1mm;
-      opacity: 0.85;
-      text-align: right;
-      z-index: 1;
-    }
-
-    /* Liseré vertical pour mentions légales latérales */
-    .side-legal {
+    /* Liserés verticaux (tous à DROITE pour éviter toute superposition avec le contenu) */
+    .side-legal,
+    .side-legal.right,
+    .side-legal.right.second {
       position: absolute;
       top: var(--bleed);            /* en dehors de la zone de sécurité */
       bottom: var(--bleed);
-      left: calc(var(--bleed) - 0.5mm);  /* plus près du bord pour ne pas empiéter */
       width: 0;
       writing-mode: vertical-rl;
       text-orientation: mixed;
@@ -227,7 +210,12 @@
       letter-spacing: .1mm;
       opacity: 0.85;
       z-index: 1;                 /* sous le contenu */
+      text-align: right;
     }
+    /* Premier liseré à l'extrême droite (dans le bleed) */
+    .side-legal.right { right: calc(var(--bleed) - 0.5mm); }
+    /* Second liseré juste à gauche du premier (toujours côté droit) */
+    .side-legal.right.second { right: calc(var(--bleed) + 5mm); }
 
     /* Traits de coupe (aux coins du format A5) */
     .crop-marks::before,
@@ -282,8 +270,9 @@
 
     <!-- Zone utile A5 -->
     <div class="trim">
-      <div class="side-legal">Offre -15% réservée aux nouveaux clients • Première prestation • Hors frais administratifs et déplacements • Non cumulable</div>
-      <div class="side-legal right">Ne pas jeter sur la voie publique • Directeur de publication : BMS Ventouse • Impression : (à compléter)</div>
+      <!-- Deux liserés alignés à DROITE (pour ne rien superposer côté gauche) -->
+      <div class="side-legal right">Offre -15% réservée aux nouveaux clients • Première prestation • Hors frais administratifs et déplacements • Non cumulable</div>
+      <div class="side-legal right second">Ne pas jeter sur la voie publique • Directeur de publication : BMS Ventouse • Impression : (à compléter)</div>
       <div class="safe">
         <div class="brand">
           <!-- Remplace le src par ton PNG pour impression -->
