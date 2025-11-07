@@ -194,6 +194,45 @@
       color: #555;
     }
 
+    /* Bloc d'infos complémentaires (pour occuper le bas/droite) */
+    .extras {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      max-width: 70mm;
+      background: rgba(255,255,255,0.96);
+      border: 0.5mm solid rgba(255,140,66,0.55);
+      border-radius: 4mm;
+      padding: 3mm 4mm;
+      display: grid;
+      gap: 2mm;
+    }
+    .extras-title {
+      font-weight: 800;
+      color: var(--ink);
+      font-size: 5mm;
+    }
+    .extras-list {
+      margin: 0; padding-left: 0; list-style: none;
+      display: grid; gap: 1.4mm;
+      font-size: 4mm; color: #222; font-weight: 600;
+    }
+    .extras-list li::before {
+      content: "• ";
+      color: var(--primary);
+      font-weight: 800;
+    }
+    .qr {
+      display: grid; grid-template-columns: 16mm 1fr; gap: 3mm; align-items: center;
+      font-size: 3.6mm; color: #333;
+    }
+    .qr .box {
+      width: 16mm; height: 16mm; border: 0.6mm solid #333; border-radius: 1mm;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.08) 50%, transparent 0) 0 0/2mm 2mm,
+        linear-gradient(0deg, rgba(0,0,0,0.08) 50%, transparent 0) 0 0/2mm 2mm;
+    }
+
     /* Liseré vertical pour mentions légales latérales */
     .side-legal {
       position: absolute;
@@ -290,6 +329,21 @@
             BMS Ventouse — 10&nbsp;Rue de la République, 93700&nbsp;Drancy — contact@bmsventouse.fr — +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42<br>
             Offre -15% réservée aux nouveaux clients, applicable sur la première prestation. Hors frais administratifs et déplacements. Non cumulable avec d’autres offres.<br>
             Crédits visuels : BMS Ventouse (ou à compléter).
+          </div>
+
+          <!-- Bloc extras en bas à droite -->
+          <div class="extras">
+            <div class="extras-title">Infos clés</div>
+            <ul class="extras-list">
+              <li>Devis sous 24–48 h</li>
+              <li>Intervention nationale</li>
+              <li>Agents spécialisés plateau</li>
+              <li>Assurance RC Pro</li>
+            </ul>
+            <div class="qr">
+              <div class="box" aria-hidden="true"></div>
+              <div>Scannez pour demander un devis</div>
+            </div>
           </div>
         </div>
       </div>
