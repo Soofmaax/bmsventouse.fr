@@ -19,7 +19,7 @@
 
       /* Impression */
       --bleed: 3mm;         /* fonds perdus (3 mm) */
-      --margin-safe: 10mm;  /* marge de sécurité */
+      --margin-safe: 12mm;  /* marge de sécurité (augmentée pour aérer le design) */
     }
 
     /* Page imprimée A4 portrait avec fonds perdus */
@@ -199,13 +199,14 @@
     .side-legal,
     .side-legal.right {
       position: absolute;
-      top: var(--bleed);
-      bottom: var(--bleed);
+      top: auto;                             /* partent du bas */
+      bottom: calc(var(--bleed) + 0mm);
+      height: calc(100% - 2*var(--bleed));
       width: 0;
       writing-mode: vertical-rl;
       text-orientation: mixed;
       transform: rotate(180deg);
-      font-size: 3.7mm;          /* légèrement plus grand pour lisibilité A4 */
+      font-size: 3.3mm;          /* plus discret en A4 */
       color: #111;
       letter-spacing: .1mm;
       opacity: 0.98;
@@ -278,7 +279,7 @@
       <div class="safe">
         <div class="brand">
           <!-- Remplace le src par ton PNG au moment d'envoyer à l'imprimeur -->
-          <img class="logo" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Logo BMS Ventouse" width="60" height="60">
+          <img class="logo" src="https://www.bmsventouse.fr/android-chrome-512x512.png" crossorigin="anonymous" referrerpolicy="no-referrer" alt="Logo BMS Ventouse" width="60" height="60">
           <span class="bms">BMS</span><span class="ventouse">Ventouse</span>
         </div>
 

@@ -19,7 +19,7 @@
 
       /* Impression */
       --bleed: 3mm;         /* fonds perdus (3 mm) */
-      --margin-safe: 8mm;   /* marge de sécurité */
+      --margin-safe: 10mm;   /* marge de sécurité (augmentée pour aérer le design) */
     }
 
     /* Page imprimée A5 portrait avec fonds perdus */
@@ -198,19 +198,20 @@
     .side-legal,
     .side-legal.right {
       position: absolute;
-      top: var(--bleed);
-      bottom: var(--bleed);
+      top: auto;                             /* partent du bas */
+      bottom: calc(var(--bleed) + 0mm);
+      height: calc(100% - 2*var(--bleed));   /* conserve la hauteur utile */
       width: 0;
       writing-mode: vertical-rl;
       text-orientation: mixed;
-      transform: rotate(180deg);
-      font-size: 3.4mm;          /* légèrement plus grand pour lisibilité */
-      color: #111;               /* plus foncé pour bien ressortir */
+      transform: rotate(180deg);             /* lecture bottom -> top */
+      font-size: 3mm;                        /* un peu plus discret */
+      color: #111;
       letter-spacing: .1mm;
       opacity: 0.98;
-      z-index: 6;                /* au-dessus des décors */
-      pointer-events: none;      /* n'interfère pas avec le contenu */
-      text-shadow: 0 0.35mm 0.6mm rgba(255,255,255,0.85); /* halo pour contraste sur l'orange */
+      z-index: 6;
+      pointer-events: none;
+      text-shadow: 0 0.35mm 0.6mm rgba(255,255,255,0.85);
     }
     /* GAUCHE: 3mm à l'intérieur du bord utile */
     .side-legal { left: calc(var(--bleed) + 3mm); right: auto; text-align: left; }
@@ -276,7 +277,7 @@
       <div class="safe">
         <div class="brand">
           <!-- Remplace le src par ton PNG pour impression -->
-          <img class="logo" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Logo BMS Ventouse" width="50" height="50">
+          <img class="logo" src="https://www.bmsventouse.fr/android-chrome-512x512.png" crossorigin="anonymous" referrerpolicy="no-referrer" alt="Logo BMS Ventouse" width="50" height="50">
           <span class="bms">BMS</span><span class="ventouse">Ventouse</span>
         </div>
 
