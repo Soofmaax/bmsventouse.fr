@@ -67,3 +67,53 @@ jobs:
 
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
       # (OUTPUT_DETAILS=detailed). Pas besoin d'artefacts dédiés.
+
+  codeql:
+    name: CodeQL (SAST)
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  accessibility:
+    name: Accessibility (Pa11y)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Start static server and run Pa11y CI
+        run: |
+          npx http-server -p 8080 -c-1 . &
+          npx wait-on http://localhost:8080
+          npx pa11y-ci
+
+  npm_audit:
+    name: Dependencies Audit (npm audit)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install deps
+        run: npm install --no-fund --no-audit
+      - name: Audit for vulnerabilities (high+)
+        run: npm audit --audit-level=high
