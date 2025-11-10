@@ -66,6 +66,32 @@ jobs:
         if: always()
         run: mkdir -p super-linter-output
 
+      - name: Print Super-Linter summary to logs
+        if: always()
+        shell: bash
+        run: |
+          echo "----- super-linter-summary.md (first 400 lines) -----"
+          if [ -f "super-linter-output/super-linter-summary.md" ]; then
+            sed -n '1,400p' super-linter-output/super-linter-summary.md
+          else
+            echo "Summary file not found. Listing super-linter-output directory:"
+            ls -la super-linter-output || true
+            echo "Listing workspace to help diagnose:"
+            ls -la
+          fi
+
+      - name: Attach Super-Linter summary to Job Summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f "super-linter-output/super-linter-summary.md" ]; then
+            {
+              echo "## Super-Linter Summary"
+              echo
+              cat super-linter-output/super-linter-summary.md
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: Upload Super-Linter results (artifact)
         if: always()
         uses: actions/upload-artifact@v4
