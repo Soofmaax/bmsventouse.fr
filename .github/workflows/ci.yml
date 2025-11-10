@@ -57,4 +57,4 @@ jobs:
           VALIDATE_CSS_PRETTIER: false
           VALIDATE_JSCPD: false
           # Exclure les maquettes HTML sous /images
-          FILTER_REGEX_EXCLUDE: '(^|/)(images/.*\.html)
+          FILTER_REGEX_EXCLUDE: '(^|/)(images/.*\.html)$'
