@@ -37,6 +37,171 @@ jobs:
         run: npm i --no-save stylelint-config-standard@latest
 
       - name: Run super-linter
+        uses: super-linter/super-linter@v7.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Use the repository's default branch dynamically
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          # Lint everything to provide a true "quality gate"
+          VALIDATE_ALL_CODEBASE: true
+          # Logs plus verbeux pour diagnostiquer les erreurs dans les jobs
+          LOG_LEVEL: DEBUG
+          # Ignore linter spécifique aux workflows GitHub (actionlint) pour éviter des faux positifs bloquants
+          VALIDATE_GITHUB_ACTIONS: false
+          # Gitleaks: pointer explicitement sur le fichier de configuration local
+          GITLEAKS_CONFIG: ".gitleaks.toml"
+          # Désactiver les vérifications Prettier pour HTML/CSS afin d'éviter du bruit de formatage
+          VALIDATE_HTML_PRETTIER: false
+          VALIDATE_CSS_PRETTIER: false
+          # Désactiver le détecteur de duplication (JSCPD) pour éviter des faux positifs sur assets HTML/CSS
+          VALIDATE_JSCPD: false
+          # Répertoire & fichier de sortie pour récupérer les rapports depuis le runner
+          SUPER_LINTER_OUTPUT_DIRECTORY_NAME: "super-linter-output"
+          SUPER_LINTER_SUMMARY_FILE_NAME: "super-linter-summary.md"
+          # Exclure les maquettes HTML dans /images (non-déployées) de la validation
+          FILTER_REGEX_EXCLUDE: '(^|/)(images/.*\.html)un super-linter
+        uses: super-linter/super-linter@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Use the repository's default branch dynamically
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          # Lint everything to provide a true "quality gate"
+          VALIDATE_ALL_CODEBASE: true
+          # Logs plus verbeux pour diagnostiquer les erreurs dans les jobs
+          LOG_LEVEL: DEBUG
+          # Ignore linter spécifique aux workflows GitHub (actionlint) pour éviter des faux positifs bloquants
+          VALIDATE_GITHUB_ACTIONS: false
+          # Gitleaks: pointer explicitement sur le fichier de configuration local
+          GITLEAKS_CONFIG: ".gitleaks.toml"
+          # Désactiver les vérifications Prettier pour HTML/CSS afin d'éviter du bruit de formatage
+          VALIDATE_HTML_PRETTIER: false
+          VALIDATE_CSS_PRETTIER: false
+          # Désactiver le détecteur de duplication (JSCPD) pour éviter des faux positifs sur assets HTML/CSS
+          VALIDATE_JSCPD: false
+          # Répertoire & fichier de sortie pour récupérer les rapports depuis le runner
+          SUPER_LINTER_OUTPUT_DIRECTORY_NAME: "super-linter-output"
+          SUPER_LINTER_SUMMARY_FILE_NAME: "super-linter-summary.md"
+          # Exclure les maquettes HTML dans /images (non-déployées) de la validation
+          FILTER_REGEX_EXCLUDE: '(^|/)(images/.*\.html)
+
+  codeql:
+    name: Analyze (${{ matrix.language }})
+    # Runner size impacts CodeQL analysis time. To learn more, please see:
+    #   - https://gh.io/recommended-hardware-resources-for-running-codeql
+    #   - https://gh.io/supported-runners-and-hardware-resources
+    #   - https://gh.io/using-larger-runners (GitHub.com only)
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    # Conserver la logique d'origine: push/pull_request uniquement sur main + planification
+    if: github.event_name == 'schedule' || github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.base_ref == 'main')
+    permissions:
+      # requis pour toutes les workflows
+      security-events: write
+      # requis pour récupérer des CodeQL packs privés/internes
+      packages: read
+      # requis uniquement pour les dépôts privés
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+        # CodeQL supporte: 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'rust', 'swift'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Initialise CodeQL
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          # Pour des requêtes personnalisées, voir la doc CodeQL.
+
+      # Build manuel si nécessaire
+      - if: matrix.build-mode == 'manual'
+        shell: bash
+        run: |
+          echo 'If you are using a "manual" build mode for one or more of the' \
+            'languages you are analyzing, replace this with the commands to build' \
+            'your code, for example:'
+          echo '  make bootstrap'
+          echo '  make release'
+          exit 1
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
+
+      - name: Ensure output folder exists (for artifact)
+        if: always()
+        run: mkdir -p super-linter-output
+
+      - name: Upload Super-Linter results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: super-linter-output
+          path: super-linter-output/**
+
+  codeql:
+    name: Analyze (${{ matrix.language }})
+    # Runner size impacts CodeQL analysis time. To learn more, please see:
+    #   - https://gh.io/recommended-hardware-resources-for-running-codeql
+    #   - https://gh.io/supported-runners-and-hardware-resources
+    #   - https://gh.io/using-larger-runners (GitHub.com only)
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    # Conserver la logique d'origine: push/pull_request uniquement sur main + planification
+    if: github.event_name == 'schedule' || github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.base_ref == 'main')
+    permissions:
+      # requis pour toutes les workflows
+      security-events: write
+      # requis pour récupérer des CodeQL packs privés/internes
+      packages: read
+      # requis uniquement pour les dépôts privés
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+        # CodeQL supporte: 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'rust', 'swift'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Initialise CodeQL
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          # Pour des requêtes personnalisées, voir la doc CodeQL.
+
+      # Build manuel si nécessaire
+      - if: matrix.build-mode == 'manual'
+        shell: bash
+        run: |
+          echo 'If you are using a "manual" build mode for one or more of the' \
+            'languages you are analyzing, replace this with the commands to build' \
+            'your code, for example:'
+          echo '  make bootstrap'
+          echo '  make release'
+          exit 1
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"un super-linter
         uses: super-linter/super-linter@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
