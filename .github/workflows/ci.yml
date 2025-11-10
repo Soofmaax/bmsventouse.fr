@@ -1,14 +1,12 @@
 name: CI - Full Quality Gate
 
 on:
-  push:
-    branches:
-      - '**'
-  pull_request_target:
-    branches:
-      - '**'
+  # Lancement manuel à la demande
+  workflow_dispatch:
+
+  # Contrôle qualité planifié une fois par mois (1er du mois à 03:00 UTC)
   schedule:
-    - cron: '37 22 * * 5'
+    - cron: '0 3 1 * *'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -38,72 +36,34 @@ jobs:
       - name: Install stylelint shared config
         run: npm i --no-save stylelint-config-standard@latest
 
-      - name: Run super-linter
+      - name: Run super-linter (full, blocking)
         uses: super-linter/super-linter@v7.4.0
-        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Utiliser dynamiquement la branche par défaut du repo
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          # Linter uniquement les fichiers modifiés pour débloquer la CI (temporaire)
-          VALIDATE_ALL_CODEBASE: false
-          # Logs verbeux pour diagnostiquer
+          # Linter tout le code pour un vrai "quality gate"
+          VALIDATE_ALL_CODEBASE: true
+          # Logs verbeux et erreurs détaillées dans les logs
           LOG_LEVEL: DEBUG
-          # Afficher le détail des erreurs directement dans les logs
           OUTPUT_DETAILS: detailed
-          # Désactiver temporairement actionlint
-          VALIDATE_GITHUB_ACTIONS: false
-          # Gitleaks: charger la config locale (temp désactivé pour isoler 9 erreurs)
+          # Valider les workflows GitHub Actions
+          VALIDATE_GITHUB_ACTIONS: true
+          # Gitleaks: valider avec allowlist locale
           GITLEAKS_CONFIG: ".gitleaks.toml"
-          VALIDATE_GITLEAKS: false
-          # Désactiver temporairement HTMLHint pour débloquer (on réactivera après corrections ciblées)
-          VALIDATE_HTML: false
-          # Désactiver d'autres validateurs susceptibles de bloquer (temporaire)
+          VALIDATE_GITLEAKS: true
+          # HTMLHint activé (les maquettes /images/*.html sont exclues ci-dessous)
+          VALIDATE_HTML: true
+          # Checkov inutile pour ce site statique (laisse OFF)
           VALIDATE_CHECKOV: false
-          VALIDATE_GIT_MERGE_CONFLICT_MARKERS: false
-          # Réduire le bruit (préférences)
+          # Marqueurs de conflits git
+          VALIDATE_GIT_MERGE_CONFLICT_MARKERS: true
+          # Préférences (réduire le bruit)
           VALIDATE_HTML_PRETTIER: false
           VALIDATE_CSS_PRETTIER: false
           VALIDATE_JSCPD: false
           # Exclure les maquettes HTML sous /images
           FILTER_REGEX_EXCLUDE: 'images/.*\.html'
-          # Export des rapports dans le workspace pour diagnostic
-          SUPER_LINTER_OUTPUT_DIRECTORY_NAME: "super-linter-output"
-          SUPER_LINTER_SUMMARY_FILE_NAME: "super-linter-summary.md"
 
-      - name: Ensure output folder exists (for artifact)
-        if: always()
-        run: mkdir -p super-linter-output
-
-      - name: Print Super-Linter summary to logs
-        if: always()
-        shell: bash
-        run: |
-          echo "----- super-linter-summary.md (first 400 lines) -----"
-          if [ -f "super-linter-output/super-linter-summary.md" ]; then
-            sed -n '1,400p' super-linter-output/super-linter-summary.md
-          else
-            echo "Summary file not found. Listing super-linter-output directory:"
-            ls -la super-linter-output || true
-            echo "Listing workspace to help diagnose:"
-            ls -la
-          fi
-
-      - name: Attach Super-Linter summary to Job Summary
-        if: always()
-        shell: bash
-        run: |
-          if [ -f "super-linter-output/super-linter-summary.md" ]; then
-            {
-              echo "## Super-Linter Summary"
-              echo
-              cat super-linter-output/super-linter-summary.md
-            } >> "$GITHUB_STEP_SUMMARY"
-          fi
-
-      - name: Upload Super-Linter results (artifact)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: super-linter-output
-          path: super-linter-output/**
+      # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
+      # (OUTPUT_DETAILS=detailed). Pas besoin d'artefacts dédiés.
