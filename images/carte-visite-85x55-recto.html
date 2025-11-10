@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>BMS Ventouse — Carte de visite (Recto) 85×55 mm avec fonds perdus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Police Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary: #FF8C42;
+      --primary-dark:#e67e22;
+      --ink: #2c3e50;
+      --muted:#566573;
+      --paper:#ffffff;
+
+      --bleed: 3mm;         /* fonds perdus */
+      --margin-safe: 3.5mm; /* marge de sécurité (cartes) */
+      --width: 85mm;        /* format fini */
+      --height: 55mm;
+    }
+
+    @page { size: var(--width) var(--height); margin: 0; }
+
+    html, body { background: #f0f0f0; height: 100%; }
+    body {
+      display: grid;
+      place-items: center;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      color: var(--ink);
+    }
+
+    .sheet {
+      position: relative;
+      width: calc(var(--width) + var(--bleed)*2);
+      height: calc(var(--height) + var(--bleed)*2);
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    /* Accent diagonal orange à droite */
+    .accent {
+      position: absolute;
+      left: -24mm; /* harmonisation A5: accent à gauche */
+      top: -24mm;
+      width: 90mm;
+      height: 90mm;
+      transform: rotate(35deg);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      filter: drop-shadow(0 2mm 5mm rgba(0,0,0,0.2));
+      opacity: .95;
+    }
+
+    .trim {
+      position: absolute;
+      left: var(--bleed);
+      top: var(--bleed);
+      width: var(--width);
+      height: var(--height);
+    }
+
+    .safe {
+      position: absolute;
+      inset: calc(var(--bleed) + var(--margin-safe));
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* En-tête marque + logo */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 2.5mm;
+      font-weight: 800;
+      font-size: 6mm;
+      color: var(--ink);
+      margin-bottom: 2mm;
+    }
+    .logo {
+      width: 10mm; height: 10mm;
+      border-radius: 2mm;
+      background: #fff;
+      object-fit: cover;
+      box-shadow: none; /* harmonisation A5 */
+    }
+    .bms { color: var(--primary); }
+
+    .tagline {
+      font-size: 3.4mm;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 3mm;
+    }
+
+    .promo {
+      display: inline-block;
+      background: rgba(255,140,66,0.10);
+      color: var(--primary);
+      border: 0.5mm solid rgba(255,140,66,0.6);
+      border-radius: 50mm;
+      padding: 1.2mm 2.8mm;
+      font-size: 3.2mm;
+      font-weight: 800;
+      letter-spacing: .15mm;
+      width: fit-content;
+    }
+
+    /* Traits de coupe */
+    :root { --crop: 4mm; --crop-w: 0.25mm; }
+    .tl,.tr,.bl,.br { position:absolute; width:0; height:0; }
+    .tl { left: var(--bleed); top: var(--bleed); }
+    .tr { right: var(--bleed); top: var(--bleed); }
+    .bl { left: var(--bleed); bottom: var(--bleed); }
+    .br { right: var(--bleed); bottom: var(--bleed); }
+    .tl::before,.tl::after,.tr::before,.tr::after,.bl::before,.bl::after,.br::before,.br::after {
+      content:''; position:absolute; background:#000;
+    }
+    .tl::before { left: -var(--crop); top: 0; width: var(--crop); height: var(--crop-w); }
+    .tl::after  { left: 0; top: -var(--crop); width: var(--crop-w); height: var(--crop); }
+    .tr::before { right: -var(--crop); top: 0; width: var(--crop); height: var(--crop-w); }
+    .tr::after  { right: 0; top: -var(--crop); width: var(--crop-w); height: var(--crop); }
+    .bl::before { left: -var(--crop); bottom: 0; width: var(--crop); height: var(--crop-w); }
+    .bl::after  { left: 0; bottom: -var(--crop); width: var(--crop-w); height: var(--crop); }
+    .br::before { right: -var(--crop); bottom: 0; width: var(--crop); height: var(--crop-w); }
+    .br::after  { right: 0; bottom: -var(--crop); width: var(--crop-w); height: var(--crop); }
+
+    @media screen {
+      .trim { outline: 0.4mm dashed rgba(0,0,0,0.08); }
+      .safe { outline: 0.4mm dashed rgba(255,140,66,0.25); }
+    }
+
+    @media print { html, body { background: transparent; } }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="accent"></div>
+
+    <!-- Traits de coupe -->
+    <div class="tl"></div>
+    <div class="tr"></div>
+    <div class="bl"></div>
+    <div class="br"></div>
+
+    <div class="trim">
+      <div class="safe">
+        <div class="brand">
+          <span class="logo" style="display:none;"></span>
+          <span class="logo-placeholder" aria-label="Espace logo (à coller dans Canva)" style="width:10mm;height:10mm;border-radius:2mm;border:0.6mm dashed rgba(44,62,80,0.35);display:block;background:#fff;"></span>
+          <span class="bms">BMS</span><span> Ventouse</span>
+        </div>
+        <div class="tagline">Ventousage • Sécurité de plateau • Convoyage</div>
+        <div class="promo">-15% Nouveaux clients — CODE : NOUVEAU15</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 700px; margin: 12px; font-size: 14px; color:#333;">
+    Impression: Ctrl/Cmd+P → PDF → Marges: Aucune → Échelle: 100% → Imprimer les arrière‑plans. Format fini 85×55 mm, fonds perdus 3 mm, traits de coupe inclus.
+  </div>
+</body>
+</html>

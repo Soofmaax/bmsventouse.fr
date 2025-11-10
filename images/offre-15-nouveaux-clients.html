@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>BMS Ventouse — Offre -15% Nouveaux Clients (1200×900)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Police Inter (fallback Arial pour rendu Image) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Mise à zéro */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      display: grid;
+      place-items: center;
+      background: #111; /* tour de contrôle */
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+    }
+    /* Canvas fixe 1200x900 pour export */
+    .banner {
+      width: 1200px;
+      height: 900px;
+      position: relative;
+      overflow: hidden;
+      color: #ffffff;
+      background:
+        linear-gradient(135deg, #2c3e50 0%, #34495e 60%) no-repeat;
+    }
+    /* Accent diagonal orange */
+    .accent {
+      position: absolute;
+      right: -180px;
+      top: -180px;
+      width: 800px;
+      height: 800px;
+      transform: rotate(35deg);
+      background: linear-gradient(135deg, #FF8C42 0%, #e67e22 100%);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      opacity: 0.95;
+    }
+    .content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 80px 100px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      font-size: 28px;
+    }
+    .brand .bms { color: #FF8C42; }
+    .brand .ventouse { color: #fff; }
+
+    .title {
+      font-size: 120px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .title .minus { color: #FF8C42; }
+    .subtitle {
+      font-size: 34px;
+      color: #eaeaea;
+      margin-bottom: 28px;
+      font-weight: 700;
+    }
+    .details {
+      font-size: 26px;
+      color: #d6d6d6;
+      margin-bottom: 40px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,140,66,0.15);
+      color: #FF8C42;
+      border: 2px solid rgba(255,140,66,0.6);
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+    .footer {
+      position: absolute;
+      bottom: 40px;
+      left: 100px;
+      right: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #cfd8dc;
+      font-size: 22px;
+    }
+    .footer .sep {
+      flex: 1;
+      height: 4px;
+      margin: 0 20px;
+      background: #FF8C42;
+      opacity: .9;
+    }
+    .logo {
+      width: 84px; height: 84px;
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    }
+    /* Bouton d'export (facultatif) */
+    .toolbar {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      background: #FF8C42;
+      color: #fff;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+    .btn.secondary {
+      background: #2c3e50;
+      color: #fff;
+    }
+    /* Aide visuelle: guide des zones de sécurité (non imprimé) */
+    .banner::after {
+      content: '';
+      position: absolute;
+      inset: 40px;
+      border: 0 solid rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="banner" class="banner" aria-label="BMS Ventouse - Offre -15% Nouveaux Clients (1200x900)">
+    <div class="accent"></div>
+    <div class="content">
+      <div class="brand">
+        <img src="/android-chrome-192x192.webp" alt="Logo BMS Ventouse" class="logo" width="84" height="84">
+        <span class="bms">BMS</span><span class="ventouse">Ventouse</span>
+      </div>
+      <h1 class="title"><span class="minus">-15%</span> Nouveaux&nbsp;clients</h1>
+      <p class="subtitle">Sur votre première prestation</p>
+      <p class="details">Ventousage • Sécurité de plateau • Convoyage</p>
+      <span class="badge">CODE&nbsp;: NOUVEAU15</span>
+    </div>
+    <div class="footer">
+      <span>Contact: +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</span>
+      <span class="sep"></span>
+      <span>bmsventouse.fr</span>
+    </div>
+  </div>
+
+  <!-- Outils d'export -->
+  <div class="toolbar" aria-hidden="false">
+    <button class="btn" id="downloadPng">Télécharger en PNG (1200×900)</button>
+    <a class="btn secondary" href="/contact/" target="_blank" rel="noopener">Contact</a>
+  </div>
+
+  <!-- html2canvas pour export PNG -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    (function(){
+      const btn = document.getElementById('downloadPng');
+      btn.addEventListener('click', async () => {
+        const node = document.getElementById('banner');
+        const canvas = await html2canvas(node, {
+          backgroundColor: null,
+          scale: 1, /* taille exacte 1200x900 */
+          useCORS: true
+        });
+        const link = document.createElement('a');
+        link.download = 'bms-ventouse-offre-15-nouveaux-clients-1200x900.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    })();
+  </script>
+</body>
+</html>

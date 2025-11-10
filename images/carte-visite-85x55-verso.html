@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>BMS Ventouse — Carte de visite (Verso) 85×55 mm avec fonds perdus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Police Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary: #FF8C42;
+      --primary-dark:#e67e22;
+      --ink: #2c3e50;
+      --muted:#566573;
+      --paper:#ffffff;
+
+      --bleed: 3mm;
+      --margin-safe: 3.5mm;
+      --width: 85mm;
+      --height: 55mm;
+    }
+    @page { size: var(--width) var(--height); margin: 0; }
+    html, body { background: #f0f0f0; height: 100%; }
+    body { display: grid; place-items: center; font-family:'Inter',Arial,Helvetica,sans-serif; color: var(--ink); }
+
+    .sheet {
+      position: relative;
+      width: calc(var(--width) + var(--bleed)*2);
+      height: calc(var(--height) + var(--bleed)*2);
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .accent {
+      position: absolute;
+      left: -24mm;  /* harmonisation A5: accent à gauche */
+      bottom: -24mm;
+      width: 90mm;
+      height: 90mm;
+      transform: rotate(35deg);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      filter: drop-shadow(0 2mm 5mm rgba(0,0,0,0.2));
+      opacity: .95;
+    }
+
+    .trim { position:absolute; left:var(--bleed); top:var(--bleed); width:var(--width); height:var(--height); }
+    .safe { position:absolute; inset: calc(var(--bleed) + var(--margin-safe)); display:flex; flex-direction: column; justify-content:center; }
+
+    .title { font-size: 6.2mm; font-weight:800; color: var(--ink); margin-bottom: 2mm; }
+    .list { font-size: 3.6mm; color: var(--muted); line-height:1.5; }
+
+    .contact {
+      margin-top: auto;
+      font-size: 3.8mm;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      gap: 4mm;
+      align-items: center;
+    }
+    .sep { flex:1; height: 1mm; background: var(--primary); border-radius: 1mm; opacity: .95; }
+
+    /* Traits de coupe */
+    :root { --crop: 4mm; --crop-w: 0.25mm; }
+    .tl,.tr,.bl,.br { position:absolute; width:0; height:0; }
+    .tl { left: var(--bleed); top: var(--bleed); }
+    .tr { right: var(--bleed); top: var(--bleed); }
+    .bl { left: var(--bleed); bottom: var(--bleed); }
+    .br { right: var(--bleed); bottom: var(--bleed); }
+    .tl::before,.tl::after,.tr::before,.tr::after,.bl::before,.bl::after,.br::before,.br::after {
+      content:''; position:absolute; background:#000;
+    }
+    .tl::before { left: -var(--crop); top: 0; width: var(--crop); height: var(--crop-w); }
+    .tl::after  { left: 0; top: -var(--crop); width: var(--crop-w); height: var(--crop); }
+    .tr::before { right: -var(--crop); top: 0; width: var(--crop); height: var(--crop-w); }
+    .tr::after  { right: 0; top: -var(--crop); width: var(--crop-w); height: var(--crop); }
+    .bl::before { left: -var(--crop); bottom: 0; width: var(--crop); height: var(--crop-w); }
+    .bl::after  { left: 0; bottom: -var(--crop); width: var(--crop-w); height: var(--crop); }
+    .br::before { right: -var(--crop); bottom: 0; width: var(--crop); height: var(--crop-w); }
+    .br::after  { right: 0; bottom: -var(--crop); width: var(--crop-w); height: var(--crop); }
+
+    @media screen {
+      .trim { outline: 0.4mm dashed rgba(0,0,0,0.08); }
+      .safe { outline: 0.4mm dashed rgba(255,140,66,0.25); }
+    }
+    @media print { html, body { background: transparent; } }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="accent"></div>
+
+    <!-- Traits de coupe -->
+    <div class="tl"></div><div class="tr"></div><div class="bl"></div><div class="br"></div>
+
+    <div class="trim">
+      <div class="safe">
+        <div class="title">Contact Direct / Devis</div>
+        <div class="list">
+          Tél. : +33 6 46 00 56 42<br>
+          Email : bms.ventouse@gmail.com<br>
+          Site : bmsventouse.fr<br>
+          Adresse : 10 Rue de la République, 93700 Drancy
+        </div>
+
+        <div class="contact" style="margin-top: 6mm;">
+          <span>Logistique audiovisuelle • Ventousage • Sécurité • Convoyage</span>
+          <span class="sep"></span>
+          <span>-15% Nouveau client</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 700px; margin: 12px; font-size: 14px; color:#333;">
+    Impression: Ctrl/Cmd+P → PDF → Marges: Aucune → Échelle: 100% → Imprimer les arrière‑plans. Format fini 85×55 mm, fonds perdus 3 mm, traits de coupe inclus.
+  </div>
+</body>
+</html>
