@@ -57,10 +57,14 @@ jobs:
           VALIDATE_CSS_PRETTIER: false
           VALIDATE_JSCPD: false
           # Exclure les maquettes HTML sous /images
-          FILTER_REGEX_EXCLUDE: '(^|/)(images/.*\.html)
+          FILTER_REGEX_EXCLUDE: '(^|/)(images/.*\.html)$'
           # Export des rapports dans le workspace pour diagnostic
           SUPER_LINTER_OUTPUT_DIRECTORY_NAME: "super-linter-output"
           SUPER_LINTER_SUMMARY_FILE_NAME: "super-linter-summary.md"
+
+      - name: Ensure output folder exists (for artifact)
+        if: always()
+        run: mkdir -p super-linter-output
 
       - name: Upload Super-Linter results (artifact)
         if: always()
