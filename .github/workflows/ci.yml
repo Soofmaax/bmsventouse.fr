@@ -49,6 +49,8 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           # Logs verbeux pour diagnostiquer
           LOG_LEVEL: DEBUG
+          # Afficher le détail des erreurs directement dans les logs
+          OUTPUT_DETAILS: detailed
           # Désactiver temporairement actionlint
           VALIDATE_GITHUB_ACTIONS: false
           # Gitleaks: charger la config locale (temp désactivé pour isoler 9 erreurs)
