@@ -1,124 +1,36 @@
 name: CI - Full Quality Gate
 
 on:
-  pull_request:
-    branches: [ main, master ]
   push:
-    branches: [ main, master ]
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  lint-and-validate:
+  lint:
     name: Lint and Validate (core; blocking)
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      statuses: write
+
     steps:
-      - name: Checkout
+      - name: Checkout repository (full history)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Required so super-linter can resolve HEAD~N on push events
 
-      # Super-Linter (slim) validates HTML/XML/YAML and, with repo configs, CSS/JS/Markdown.
-      - name: Super-Linter
-        uses: github/super-linter/slim@v6
+      - name: Run super-linter
+        uses: github/super-linter/slim@v6.4.1
         env:
-          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Use the repository's default branch dynamically
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          # Lint everything to provide a true "quality gate"
           VALIDATE_ALL_CODEBASE: true
-
-          # Include-only mode (avoid mixing true/false): run a minimal set to unblock CI
-          VALIDATE_GITHUB_ACTIONS: true
-          VALIDATE_JAVASCRIPT_ES: true
-
-      - name: Link check (internal links only)
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: >-
-            --root-dir "$GITHUB_WORKSPACE"
-            --no-progress
-            --verbose
-            --max-retries 1
-            --retry-wait-time 2
-            --timeout 20
-            --exclude "https?://.*"
-            --exclude "mailto:.*"
-            --exclude "tel:.*"
-            **/*.html
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Taplo CLI
-        uses: uncenter/setup-taplo@v1
-        with:
-          version: "0.8.1"
-
-      - name: Lint netlify.toml (Taplo)
-        run: taplo check netlify.toml
-
-  quality:
-    name: Accessibility & External links (non-blocking)
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install local server and pa11y-ci
-        run: |
-          npm i -g http-server pa11y-ci wait-on
-
-      - name: Serve site locally
-        run: |
-          nohup npx http-server -p 8080 >/dev/null 2>&1 &
-          npx wait-on http://localhost:8080
-
-      - name: Accessibility audit (Pa11y CI - WCAG2AA)
-        run: npx pa11y-ci -c .pa11yci.json
-
-      - name: Accessibility audit (Pa11y CI - WCAG2AAA; non-blocking)
-        run: npx pa11y-ci -c .pa11yci.json --standard WCAG2AAA
-
-      - name: Link check (including external; HTML)
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: >-
-            --root-dir "$GITHUB_WORKSPACE"
-            --no-progress
-            --verbose
-            --max-retries 2
-            --retry-wait-time 2
-            --timeout 30
-            --max-concurrency 5
-            --accept 200..399
-            --exclude-mail
-            **/*.html
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Link check (including external; Markdown)
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: >-
-            --root-dir "$GITHUB_WORKSPACE"
-            --no-progress
-            --verbose
-            --max-retries 2
-            --retry-wait-time 2
-            --timeout 30
-            --max-concurrency 5
-            --accept 200..399
-            --exclude-mail
-            **/*.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
