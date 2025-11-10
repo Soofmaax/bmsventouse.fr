@@ -14,6 +14,9 @@ regexes = [
   # IndexNow ownership key in content or file references (public by design)
   '''indexnow-[a-f0-9]{32}''',
 
+  # Specific IndexNow key literal used in scripts/indexnow-submit.js (public)
+  '''\b4f9c42a5b1e34cb08b65e0a9d3c7f864\b''',
+
   # Public WhatsApp contact links
   '''https?://wa\.me/\d+''',
 
@@ -24,5 +27,5 @@ regexes = [
 # Path-based allowlist for files that intentionally contain public verification keys
 paths = [
   # IndexNow key file present at repo root, required to be public
-  '''^indexnow-[a-f0-9]{32}\.txt$'''
+  '''^indexnow-[a-f0-9]{32}\.txt''
 ]

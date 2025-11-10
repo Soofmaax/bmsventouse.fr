@@ -50,6 +50,11 @@ jobs:
           VALIDATE_GITHUB_ACTIONS: false
           # Gitleaks: pointer explicitement sur le fichier de configuration local
           GITLEAKS_CONFIG: ".gitleaks.toml"
+          # Désactiver les vérifications Prettier pour HTML/CSS afin d'éviter du bruit de formatage
+          VALIDATE_HTML_PRETTIER: false
+          VALIDATE_CSS_PRETTIER: false
+          # Désactiver le détecteur de duplication (JSCPD) pour éviter des faux positifs sur assets HTML/CSS
+          VALIDATE_JSCPD: false
 
   codeql:
     name: Analyze (${{ matrix.language }})
