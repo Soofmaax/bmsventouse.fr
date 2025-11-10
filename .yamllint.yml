@@ -1,0 +1,11 @@
+extends: default
+
+rules:
+  # Les workflows et fichiers YAML CI contiennent des URL et des lignes longues
+  # -> on relâche la règle de longueur pour éviter le bruit
+  line-length:
+    max: 200
+    level: warning
+
+  # Ne pas exiger l'entête '---' en début de document
+  document-start: disable
