@@ -5,14 +5,16 @@ description = "Allow non-secret public identifiers and site-verification keys th
 # Regex-based allowlist for content that may look like secrets but are intentionally public.
 regexes = [
   # Google Analytics 4 Measurement IDs, e.g., G-VCB3QB5P4L
-  '''G-[A-Z0-9]{6,}''',
+  '''\bG-[A-Z0-9]{6,}\b''',
+  # GA4 loader URL including the ID
+  '''https://www\.googletagmanager\.com/gtag/js\?id=G-[A-Z0-9]{6,}''',
 
-  # Microsoft Clarity project ID passed to loader snippet:
-  # (window, document, "clarity", "script", "tm9ex1xsa4")
+  # Microsoft Clarity project ID (allow matching the bare ID token as well)
   '''"clarity",\s*"script",\s*"[a-z0-9]{8,12}"''',
+  '''\btm9ex1xsa4\b''',
 
   # IndexNow ownership key in content or file references (public by design)
-  '''indexnow-[a-f0-9]{32}''',
+  '''\bindexnow-[a-f0-9]{32}\b''',
 
   # Specific IndexNow key literal used in scripts/indexnow-submit.js (public)
   '''\b4f9c42a5b1e34cb08b65e0a9d3c7f864\b''',
@@ -30,5 +32,5 @@ regexes = [
 # Path-based allowlist for files that intentionally contain public verification keys
 paths = [
   # IndexNow key file present at repo root, required to be public
-  '''^indexnow-[a-f0-9]{32}\.txt''
+  '''^indexnow-[a-f0-9]{32}\.txt'''
 ]

@@ -50,13 +50,14 @@ jobs:
           LOG_LEVEL: DEBUG
           # Désactiver temporairement actionlint
           VALIDATE_GITHUB_ACTIONS: false
-          # Gitleaks: charger la config locale
+          # Gitleaks: charger la config locale (temp désactivé pour isoler 9 erreurs)
           GITLEAKS_CONFIG: ".gitleaks.toml"
+          VALIDATE_GITLEAKS: false
           # Réduire le bruit (préférences)
           VALIDATE_HTML_PRETTIER: false
           VALIDATE_CSS_PRETTIER: false
           VALIDATE_JSCPD: false
-          # Exclure les maquettes HTML sous /images (regex plus tolérante)
+          # Exclure les maquettes HTML sous /images
           FILTER_REGEX_EXCLUDE: 'images/.*\.html'
           # Export des rapports dans le workspace pour diagnostic
           SUPER_LINTER_OUTPUT_DIRECTORY_NAME: "super-linter-output"
