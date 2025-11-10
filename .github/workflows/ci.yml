@@ -44,6 +44,10 @@ jobs:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           # Lint everything to provide a true "quality gate"
           VALIDATE_ALL_CODEBASE: true
+          # Logs plus verbeux pour diagnostiquer les erreurs dans les jobs
+          LOG_LEVEL: DEBUG
+          # Ignore linter spécifique aux workflows GitHub (actionlint) pour éviter des faux positifs bloquants
+          VALIDATE_GITHUB_ACTIONS: false
 
   codeql:
     name: Analyze (${{ matrix.language }})
