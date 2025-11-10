@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 0 # Required so super-linter can resolve HEAD~N on push events
 
       - name: Run super-linter
-        uses: github/super-linter/slim@v6.4.1
+        uses: super-linter/super-linter/slim@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Use the repository's default branch dynamically
