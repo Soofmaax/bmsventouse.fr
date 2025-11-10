@@ -48,6 +48,8 @@ jobs:
           LOG_LEVEL: DEBUG
           # Ignore linter spécifique aux workflows GitHub (actionlint) pour éviter des faux positifs bloquants
           VALIDATE_GITHUB_ACTIONS: false
+          # Gitleaks: pointer explicitement sur le fichier de configuration local
+          GITLEAKS_CONFIG: ".gitleaks.toml"
 
   codeql:
     name: Analyze (${{ matrix.language }})

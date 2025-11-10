@@ -1,0 +1,28 @@
+title = "BMS Ventouse - gitleaks config (allowlist for public identifiers)"
+
+[allowlist]
+description = "Allow non-secret public identifiers and site-verification keys that are expected to be public."
+# Regex-based allowlist for content that may look like secrets but are intentionally public.
+regexes = [
+  # Google Analytics 4 Measurement IDs, e.g., G-VCB3QB5P4L
+  '''G-[A-Z0-9]{6,}''',
+
+  # Microsoft Clarity project ID passed to loader snippet:
+  # (window, document, "clarity", "script", "tm9ex1xsa4")
+  '''"clarity",\s*"script",\s*"[a-z0-9]{8,12}"''',
+
+  # IndexNow ownership key in content or file references (public by design)
+  '''indexnow-[a-f0-9]{32}''',
+
+  # Public WhatsApp contact links
+  '''https?://wa\.me/\d+''',
+
+  # Public contact email used on the site
+  '''bms\.ventouse@gmail\.com'''
+]
+
+# Path-based allowlist for files that intentionally contain public verification keys
+paths = [
+  # IndexNow key file present at repo root, required to be public
+  '''^indexnow-[a-f0-9]{32}\.txt$'''
+]
