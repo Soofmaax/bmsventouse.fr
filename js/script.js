@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const navLinks = document.getElementById('navLinks');
     if (!navLinks) return;
 
-    // Crée l'item de sous-menu
+    // Crée uniquement l'item et le bouton au chargement
     const li = document.createElement('li');
     li.className = 'has-submenu';
 
@@ -524,141 +524,147 @@ document.addEventListener('DOMContentLoaded', async () => {
     const submenu = document.createElement('ul');
     submenu.className = 'nav-submenu';
 
-    // Récupère et parse le sitemap
-    let urls = [];
-    try {
-      const res = await fetch('/sitemap.xml', { cache: 'no-store' });
-      const xml = await res.text();
-      const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)];
-      urls = matches.map(m => m[1].trim()).filter(Boolean);
-    } catch (e) {
-      console.warn('Sitemap non récupéré, sous-menu non généré:', e);
-      return;
-    }
+    // Construction paresseuse du contenu au premier clic pour réduire la taille du DOM initial
+    let built = false;
+    const buildSubmenu = async () => {
+      if (built) return;
+      built = true;
 
-    // Utils
-    const seen = new Set();
-    const normalizePath = (p) => (p || '').replace(/\/+$/, '/') || '/';
-    const slugToTitle = (url) => {
+      // Récupère et parse le sitemap
+      let urls = [];
       try {
-        const u = new URL(url);
-        let path = u.pathname.replace(/\/$/, '');
-        if (path === '' || path === '/') return 'Accueil';
-        const parts = path.split('/').filter(Boolean);
-        const slug = parts.pop();
-        return slug
-          .replace(/-/g, ' ')
-          .replace(/\b\w/g, c => c.toUpperCase());
-      } catch {
-        return url;
+        const res = await fetch('/sitemap.xml', { cache: 'no-store' });
+        const xml = await res.text();
+        const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)];
+        urls = matches.map(m => m[1].trim()).filter(Boolean);
+      } catch (e) {
+        console.warn('Sitemap non récupéré, sous-menu non généré:', e);
+        return;
       }
-    };
 
-    // Groupes
-    const groups = {
-      'Services': [],
-      'Ventousage': [],
-      'Sécurité': [],
-      'Villes': [],
-      'Autres': []
-    };
-
-    // Listes/regex pour classer
-    const servicePaths = new Set([
-      '/services/',
-      '/affichage-riverains/',
-      '/signalisation-barrierage/',
-      '/convoyage-vehicules-decors/',
-      '/regie-materiel/',
-      '/transport-materiel-audiovisuel-paris/',
-      '/gardiennage/'
-    ]);
-
-    const ventousagePaths = new Set([
-      '/ventousage/',
-      '/ventousage-cinema/',
-      '/definition-ventousage/',
-      '/autorisation-occupation-domaine-public-tournage-paris/'
-    ]);
-
-    const reVilleVentousage = /^\/ventousage-[^/]+\/$/;
-    const reLogistiqueDept = /^\/logistique-(seine-saint-denis|seine-et-marne|val-d-oise)\/$/;
-    const reSecurite = /^\/securite-(plateaux|tournage-[^/]+)\/$/;
-
-    // Classement
-    urls.forEach(url => {
-      try {
-        const u = new URL(url);
-        // Accepte apex et sous-domaine www comme équivalents
-        const hostA = (u.hostname || '').replace(/^www\./, '');
-        const hostB = (window.location.hostname || '').replace(/^www\./, '');
-        if (hostA && hostB && hostA !== hostB) return;
-        const path = normalizePath(u.pathname);
-        if (seen.has(path)) return;
-        seen.add(path);
-
-        const label = slugToTitle(url);
-        const item = { path, label };
-
-        // Ordre de priorité pour éviter doubles classements
-        if (reVilleVentousage.test(path) || reLogistiqueDept.test(path)) {
-          groups['Villes'].push(item);
-        } else if (reSecurite.test(path)) {
-          groups['Sécurité'].push(item);
-        } else if (ventousagePaths.has(path)) {
-          groups['Ventousage'].push(item);
-        } else if (servicePaths.has(path)) {
-          groups['Services'].push(item);
-        } else {
-          groups['Autres'].push(item);
+      // Utils
+      const seen = new Set();
+      const normalizePath = (p) => (p || '').replace(/\/+$/, '/') || '/';
+      const slugToTitle = (url) => {
+        try {
+          const u = new URL(url);
+          let path = u.pathname.replace(/\/$/, '');
+          if (path === '' || path === '/') return 'Accueil';
+          const parts = path.split('/').filter(Boolean);
+          const slug = parts.pop();
+          return slug
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase());
+        } catch {
+          return url;
         }
-      } catch (_) { /* noop */ }
-    });
+      };
 
-    // Tri alphabétique par label dans chaque groupe
-    Object.keys(groups).forEach(k => {
-      groups[k].sort((a, b) => a.label.localeCompare(b.label, 'fr', { sensitivity: 'base' }));
-    });
+      // Groupes
+      const groups = {
+        'Services': [],
+        'Ventousage': [],
+        'Sécurité': [],
+        'Villes': [],
+        'Autres': []
+      };
 
-    // Rendu des groupes (n'affiche pas un groupe vide)
-    const order = ['Services', 'Ventousage', 'Sécurité', 'Villes', 'Autres'];
-    order.forEach(groupName => {
-      const items = groups[groupName];
-      if (!items || items.length === 0) return;
+      // Listes/regex pour classer
+      const servicePaths = new Set([
+        '/services/',
+        '/affichage-riverains/',
+        '/signalisation-barrierage/',
+        '/convoyage-vehicules-decors/',
+        '/regie-materiel/',
+        '/transport-materiel-audiovisuel-paris/',
+        '/gardiennage/'
+      ]);
 
-      const groupLi = document.createElement('li');
-      groupLi.className = 'nav-submenu-group';
+      const ventousagePaths = new Set([
+        '/ventousage/',
+        '/ventousage-cinema/',
+        '/definition-ventousage/',
+        '/autorisation-occupation-domaine-public-tournage-paris/'
+      ]);
 
-      const title = document.createElement('span');
-      title.className = 'group-title';
-      title.textContent = groupName;
+      const reVilleVentousage = /^\/ventousage-[^/]+\/$/;
+      const reLogistiqueDept = /^\/logistique-(seine-saint-denis|seine-et-marne|val-d-oise)\/$/;
+      const reSecurite = /^\/securite-(plateaux|tournage-[^/]+)\/$/;
 
-      const groupUl = document.createElement('ul');
-      groupUl.className = 'group-list';
+      // Classement
+      urls.forEach(url => {
+        try {
+          const u = new URL(url);
+          const hostA = (u.hostname || '').replace(/^www\./, '');
+          const hostB = (window.location.hostname || '').replace(/^www\./, '');
+          if (hostA && hostB && hostA !== hostB) return;
+          const path = normalizePath(u.pathname);
+          if (seen.has(path)) return;
+          seen.add(path);
 
-      items.forEach(({ path, label }) => {
-        const liItem = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = path;
-        a.className = 'nav-submenu-link';
-        a.textContent = label;
-        liItem.appendChild(a);
-        groupUl.appendChild(liItem);
+          const label = slugToTitle(url);
+          const item = { path, label };
+
+          if (reVilleVentousage.test(path) || reLogistiqueDept.test(path)) {
+            groups['Villes'].push(item);
+          } else if (reSecurite.test(path)) {
+            groups['Sécurité'].push(item);
+          } else if (ventousagePaths.has(path)) {
+            groups['Ventousage'].push(item);
+          } else if (servicePaths.has(path)) {
+            groups['Services'].push(item);
+          } else {
+            groups['Autres'].push(item);
+          }
+        } catch (_) { /* noop */ }
       });
 
-      groupLi.appendChild(title);
-      groupLi.appendChild(groupUl);
-      submenu.appendChild(groupLi);
-    });
+      // Tri alphabétique
+      Object.keys(groups).forEach(k => {
+        groups[k].sort((a, b) => a.label.localeCompare(b.label, 'fr', { sensitivity: 'base' }));
+      });
 
-    // Gestion ouverture/fermeture
-    const toggle = (open) => {
+      // Rendu
+      const order = ['Services', 'Ventousage', 'Sécurité', 'Villes', 'Autres'];
+      order.forEach(groupName => {
+        const items = groups[groupName];
+        if (!items || items.length === 0) return;
+
+        const groupLi = document.createElement('li');
+        groupLi.className = 'nav-submenu-group';
+
+        const title = document.createElement('span');
+        title.className = 'group-title';
+        title.textContent = groupName;
+
+        const groupUl = document.createElement('ul');
+        groupUl.className = 'group-list';
+
+        items.forEach(({ path, label }) => {
+          const liItem = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = path;
+          a.className = 'nav-submenu-link';
+          a.textContent = label;
+          liItem.appendChild(a);
+          groupUl.appendChild(liItem);
+        });
+
+        groupLi.appendChild(title);
+        groupLi.appendChild(groupUl);
+        submenu.appendChild(groupLi);
+      });
+    };
+
+    const toggle = async (open) => {
+      if (open) await buildSubmenu();
       li.classList.toggle('open', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     };
-    btn.addEventListener('click', () => {
+
+    btn.addEventListener('click', async () => {
       const isOpen = li.classList.contains('open');
-      toggle(!isOpen);
+      await toggle(!isOpen);
     });
     document.addEventListener('click', (e) => {
       if (!li.contains(e.target)) toggle(false);

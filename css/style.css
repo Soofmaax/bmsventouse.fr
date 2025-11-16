@@ -245,7 +245,8 @@ input, button, textarea, select {
   z-index: 1000;
   height: var(--promo-banner-height);
   background-color: var(--color-primary);
-  color: var(--color-light);
+  /* Contraste AAA: texte sombre sur fond orange */
+  color: var(--color-dark);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -366,7 +367,8 @@ body.dark-theme .header {
 
 .nav-link:hover, .nav-link.active {
   background-color: var(--color-primary);
-  color: var(--color-light);
+  /* Contraste AA/AAA: texte sombre */
+  color: var(--color-dark);
   transform: translateY(-2px);
 }
 
@@ -1358,7 +1360,7 @@ body.dark-theme .header {
 /* SUPPRIMÉ : Duplication de .promo-banner - la définition principale est en ligne 224 */
 
 .promo-banner a {
-  color: white;
+  color: var(--color-dark);
   text-decoration: underline;
   margin-left: 0.5rem;
 }
@@ -2005,9 +2007,10 @@ body.dark-theme .header {
   box-shadow: var(--box-shadow-hover);
 }
 
-.back-to-top i {
+.back-to-top svg {
   pointer-events: none;
-  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 /* ================== BLOC FAQ FINAL (UTILISER CE BLOC POUR MAINTENANCE) ================== */
