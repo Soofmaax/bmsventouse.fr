@@ -107,6 +107,24 @@
       width: fit-content;
     }
 
+    /* Bloc contact cohérent avec le kit social et la carte améliorée */
+    .contact {
+      display: flex;
+      gap: 2mm;
+      flex-wrap: wrap;
+      margin-top: 2mm;
+    }
+    .chip {
+      display: inline-block;
+      background: rgba(44,62,80,0.06);
+      color: var(--ink);
+      border: 0.4mm solid rgba(44,62,80,0.12);
+      border-radius: 50mm;
+      padding: 1mm 2.2mm;
+      font-size: 3.2mm;
+      font-weight: 700;
+    }
+
     /* Traits de coupe */
     :root { --crop: 4mm; --crop-w: 0.25mm; }
     .tl,.tr,.bl,.br { position:absolute; width:0; height:0; }
@@ -147,11 +165,16 @@
     <div class="trim">
       <div class="safe">
         <div class="brand">
-          <span class="logo" style="display:none;"></span>
-          <span class="logo-placeholder" aria-label="Espace logo (à coller dans Canva)" style="width:10mm;height:10mm;border-radius:2mm;border:0.6mm dashed rgba(44,62,80,0.35);display:block;background:#fff;"></span>
+          <span class="logo"><img src="/android-chrome-512x512.png" alt="Logo BMS Ventouse" style="width:100%;height:100%;object-fit:contain;border-radius:2mm;"></span>
           <span class="bms">BMS</span><span> Ventouse</span>
         </div>
-        <div class="tagline">Ventousage • Sécurité de plateau • Convoyage</div>
+        <div class="tagline">Ventousage • Sécurité • Convoyage • Régie</div>
+        <div class="contact">
+          <span class="chip">+33 6 46 00 56 42</span>
+          <span class="chip">contact@bmsventouse.fr</span>
+          <span class="chip">bmsventouse.fr/contact</span>
+          <span class="chip">@bmsventouse</span>
+        </div>
         <div class="promo">-15% Nouveaux clients — CODE : NOUVEAU15</div>
       </div>
     </div>
