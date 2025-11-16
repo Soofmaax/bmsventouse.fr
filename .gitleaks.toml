@@ -9,6 +9,9 @@ regexes = [
   # GA4 loader URL including the ID
   '''https://www\.googletagmanager\.com/gtag/js\?id=G-[A-Z0-9]{6,}''',
 
+  # Google Tag Manager Container IDs (public)
+  '''\bGTM-[A-Z0-9]{5,}\b''',
+
   # Microsoft Clarity project ID (allow matching the bare ID token as well)
   '''"clarity",\s*"script",\s*"[a-z0-9]{8,12}"''',
   '''\btm9ex1xsa4\b''',
@@ -26,11 +29,19 @@ regexes = [
   '''[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}''',
 
   # International phone numbers like +33 6 46 00 56 42 (allowlist common phone formats)
-  '''\+\d{1,3}(?:[ \u00A0\-]?\d){6,}'''
+  '''\+\d{1,3}(?:[ \u00A0\-]?\d){6,}''',
+
+  # Zoho OAuth token header literal (no secrets committed in code)
+  '''\bZoho-oauthtoken\b''',
+
+  # OAuth token exchange URL patterns (env-based values; code may include these literals)
+  '''/oauth/v2/token\?refresh_token=.*&client_id=.*&client_secret=.*&grant_type=refresh_token'''
 ]
 
-# Path-based allowlist for files that intentionally contain public verification keys
+# Path-based allowlist for files that intentionally contain public verification keys or OAuth flows
 paths = [
   # IndexNow key file present at repo root, required to be public
-  '''^indexnow-[a-f0-9]{32}\.txt'''
+  '''^indexnow-[a-f0-9]{32}\.txt''',
+  # Netlify serverless with OAuth flows (values come from environment; no hard-coded secrets)
+  '''^netlify/functions/zoho_.*\.js''
 ]

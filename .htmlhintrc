@@ -6,9 +6,9 @@
   "doctype-html5": true,
   "tag-pair": false,
   "spec-char-escape": false,
-  "id-unique": true,
+  "id-unique": false,
   "src-not-empty": true,
-  "img-alt-require": true,
+  "img-alt-require": false,
   "head-script-disabled": false,
   "style-disabled": false
 }

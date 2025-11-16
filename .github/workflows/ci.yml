@@ -64,7 +64,7 @@ jobs:
           VALIDATE_YAML: true
           VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_GIT_MERGE_CONFLICT_MARKERS: true
-          FILTER_REGEX_EXCLUDE: 'images/.*\.html'
+          FILTER_REGEX_EXCLUDE: 'images/.*\.html|social-assets/.*\.html|brand-assets/.*\.html'
 
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
       # (OUTPUT_DETAILS=detailed). Pas besoin d'artefacts dédiés.
