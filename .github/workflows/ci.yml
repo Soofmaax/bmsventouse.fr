@@ -1,6 +1,15 @@
 name: CI - Full Quality Gate
 
 on:
+  # Déclenchement automatique sur PR (vérification avant merge)
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: ['**']
+
+  # Déclenchement sur push (toutes branches)
+  push:
+    branches: ['**']
+
   # Lancement manuel à la demande
   workflow_dispatch:
 
