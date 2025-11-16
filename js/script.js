@@ -365,13 +365,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   // MODULE: ÉVÉNEMENTS ANALYTICS (GA4)
   // --------------------------------------------------------------------------
   const setupAnalyticsEvents = () => {
-    if (typeof gtag !== 'function') return;
-
+    // Envoi GA4 direct + dataLayer pour GTM
     const track = (eventName, params) => {
+      const p = params || {};
       try {
-        gtag('event', eventName, params || {});
+        if (typeof gtag === 'function') {
+          gtag('event', eventName, p);
+        }
+        if (Array.isArray(window.dataLayer)) {
+          window.dataLayer.push({ event: eventName, ...p });
+        }
       } catch (e) {
-        // Pas d'erreur bloquante
+        // non-bloquant
       }
     };
 
