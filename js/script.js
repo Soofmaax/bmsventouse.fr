@@ -747,6 +747,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     await setupAllPagesSubmenu();
     setupScrollProgress();
     loadClarityIfConsented();
+    // Google Tag Manager (GTM) - chargement dynamique si un ID est fourni
+    setupGTM();
+    // Message de succès pour le formulaire Contact (?success=1)
+    setupContactSuccessNotice();
 
     // Debug/override consent via query string: ?consent=granted|denied
     try {
@@ -815,5 +819,57 @@ function setupHeroParallax() {
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Google Tag Manager (GTM) — chargement dynamique
+// --------------------------------------------------------------------------
+function setupGTM() {
+  try {
+    // Récupère l'ID GTM depuis une meta tag ou variable globale (window.GTM_ID)
+    const meta = document.querySelector('meta[name="gtm-id"]');
+    const id = (meta && meta.content || (window.GTM_ID || '')).trim();
+    if (!id) {
+      console.warn('GTM ID non défini. Ajoutez <meta name="gtm-id" content="GTM-XXXXXXX"> dans le <head> ou définissez window.GTM_ID.');
+      return;
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(id);
+    document.head.appendChild(s);
+    console.log('✅ GTM chargé avec l’ID', id);
+  } catch (e) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Message de succès sur /contact/ après soumission Netlify (?success=1)
+// --------------------------------------------------------------------------
+function setupContactSuccessNotice() {
+  try {
+    const qs = new URLSearchParams(window.location.search);
+    const isSuccess = qs.get('success') === '1';
+    if (!isSuccess) return;
+
+    // Trouve le formulaire et son conteneur
+    const form = document.querySelector('form[name="contact"]');
+    const container = form ? form.closest('.container') : document.querySelector('main .container');
+    if (!container) return;
+
+    const note = document.createElement('div');
+    note.className = 'coverage-note-card';
+    note.setAttribute('role', 'status');
+    note.setAttribute('aria-live', 'polite');
+    note.style.marginBottom = '1rem';
+    note.innerHTML = '<strong>Merci !</strong> Votre demande a été envoyée. Nous revenons vers vous sous 24–48&nbsp;h ouvrées. Vous pouvez aussi nous joindre directement au <a href="tel:+33646005642">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</a>.';
+
+    // Insère la note en tête du conteneur de formulaire
+    container.insertBefore(note, container.firstChild);
+  } catch (e) {
+    // non-bloquant
+  }
 }
 
