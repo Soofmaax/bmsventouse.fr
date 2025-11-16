@@ -49,29 +49,16 @@ jobs:
         uses: super-linter/super-linter@v7.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Utiliser dynamiquement la branche par défaut du repo
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          # Linter tout le code pour un vrai "quality gate"
           VALIDATE_ALL_CODEBASE: true
-          # Logs verbeux et erreurs détaillées dans les logs
           LOG_LEVEL: DEBUG
           OUTPUT_DETAILS: detailed
-          # Valider les workflows GitHub Actions
+          # Include-only mode: enable selected linters; do not set any VALIDATE_* to false
           VALIDATE_GITHUB_ACTIONS: true
-          # Gitleaks: valider avec allowlist locale
           GITLEAKS_CONFIG: ".gitleaks.toml"
           VALIDATE_GITLEAKS: true
-          # HTMLHint activé (les maquettes /images/*.html sont exclues ci-dessous)
           VALIDATE_HTML: true
-          # Checkov inutile pour ce site statique (laisse OFF)
-          VALIDATE_CHECKOV: false
-          # Marqueurs de conflits git
           VALIDATE_GIT_MERGE_CONFLICT_MARKERS: true
-          # Préférences (réduire le bruit)
-          VALIDATE_HTML_PRETTIER: false
-          VALIDATE_CSS_PRETTIER: false
-          VALIDATE_JSCPD: false
-          # Exclure les maquettes HTML sous /images
           FILTER_REGEX_EXCLUDE: 'images/.*\.html'
 
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
