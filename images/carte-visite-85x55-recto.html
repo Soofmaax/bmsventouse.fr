@@ -43,14 +43,14 @@
     /* Accent diagonal orange à droite */
     .accent {
       position: absolute;
-      left: -24mm; /* harmonisation A5: accent à gauche */
-      top: -24mm;
-      width: 90mm;
-      height: 90mm;
-      transform: rotate(35deg);
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      filter: drop-shadow(0 2mm 5mm rgba(0,0,0,0.2));
-      opacity: .25;
+      left: -20mm; /* accent discret en haut-gauche, identique recto/verso */
+      top: -20mm;
+      width: 70mm;
+      height: 70mm;
+      transform: rotate(30deg);
+      background: radial-gradient(closest-side at 12mm 12mm, var(--primary-light, #ffaa70) 0%, var(--primary) 60%, transparent 100%);
+      filter: none;
+      opacity: .20;
     }
 
     .trim {
