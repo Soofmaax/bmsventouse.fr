@@ -56,6 +56,10 @@
     <link rel="prefetch" href="/" as="document">
     <link rel="prefetch" href="/services/" as="document">
     <link rel="dns-prefetch" href="//wa.me">
+    <!-- Preload de l'image héros Contact pour optimiser le LCP -->
+    <link rel="preload" as="image" href="/images/contact-hero-background-desktop.webp"
+          imagesrcset="/images/contact-hero-background-mobile.webp 767w, /images/contact-hero-background-desktop.webp 1920w"
+          imagesizes="(max-width: 767px ) 100vw, 100vw">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -181,7 +185,12 @@
             <source media="(min-width: 768px )" srcset="/images/contact-hero-background-desktop.webp" type="image/webp">
             <source media="(max-width: 767px)" srcset="/images/contact-hero-background-mobile.webp" type="image/webp">
             <!-- Fallback JPEG universel -->
-            <source srcset="/images/hero-background-custom.jpg" type="image/jpeg">
+            <source type="image/jpeg"
+                    srcset="/images/hero-background-custom-640.jpg 640w,
+                            /images/hero-background-custom-960.jpg 960w,
+                            /images/hero-background-custom-1280.jpg 1280w,
+                            /images/hero-background-custom-1920.jpg 1920w"
+                    sizes="100vw">
             <img src="/images/hero-background-custom.jpg" alt="Personne utilisant un téléphone pour contacter un service" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
         </picture>
         <div class="hero-overlay">
