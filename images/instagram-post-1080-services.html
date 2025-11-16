@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>BMS Ventouse — Post Instagram (1080×1080) Services + CTA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Police Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#FF8C42;
+      --primary-dark:#e67e22;
+      --primary-light:#FFAA70;
+      --ink:#2c3e50;
+      --muted:#566573;
+      --bg:#ffffff;
+    }
+    html,body{height:100%}
+    body{
+      margin:0; background:#fff; color:var(--ink);
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+      display:grid; place-items:center;
+    }
+    .canvas{ width:1080px; height:1080px; position:relative; overflow:hidden; background:#fff; }
+    .accent{
+      position:absolute; left:-120px; top:-120px; width:560px; height:560px;
+      background: radial-gradient(closest-side at 120px 120px, var(--primary-light) 0%, var(--primary) 60%, transparent 100%);
+      opacity:.22;
+    }
+    .content{ position:relative; z-index:2; height:100%; padding:80px; display:flex; flex-direction:column; justify-content:space-between; }
+    .brand{ display:flex; align-items:center; gap:16px; margin-bottom:4px; font-weight:800; font-size:46px; color:var(--ink);}
+    .brand .bms{ color:var(--primary);}
+    .tagline{ font-size:28px; font-weight:700; color:var(--muted); margin-bottom:12px;}
+    .grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+    .feature{ background:rgba(44,62,80,.06); border:2px solid rgba(44,62,80,.12); border-radius:16px; padding:14px; font-weight:700; }
+    .cta{ display:flex; gap:10px; flex-wrap:wrap; }
+    .pill{ background:#fff; border:2px solid var(--primary); color:var(--ink); border-radius:999px; padding:10px 16px; font-weight:800; }
+  </style>
+</head>
+<body>
+  <div class="canvas" aria-label="Post Instagram 1080×1080 — services + CTA">
+    <div class="accent"></div>
+    <div class="content">
+      <div>
+        <div class="brand">
+          <span class="bms">BMS</span><span> Ventouse</span>
+        </div>
+        <div class="tagline">Ventousage • Sécurité • Convoyage • Régie</div>
+        <div class="grid">
+          <div class="feature">Ventousage & AOT • Panneaux B6/BK6A</div>
+          <div class="feature">Affichage riverains • Jalonnage & barriérage</div>
+          <div class="feature">Sécurité de plateaux • Gardiennage • SSIAP</div>
+          <div class="feature">Convoyage véhicules & décors • Régie & matériel</div>
+        </div>
+      </div>
+      <div class="cta">
+        <span class="pill">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</span>
+        <span class="pill">bmsventouse.fr/contact</span>
+        <span class="pill">@bmsventouse</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export PNG auto -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    (async function(){
+      if (document.fonts && document.fonts.ready) { try{ await document.fonts.ready; }catch(e){} }
+      await new Promise(r=>setTimeout(r,150));
+      const node=document.querySelector('.canvas');
+      const canvas=await html2canvas(node,{backgroundColor:'#ffffff',scale:1,useCORS:false,allowTaint:true});
+      const name='bms-ventouse-instagram-post-1080-services.png';
+      function dl(url){const a=document.createElement('a');a.href=url;a.download=name;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>{document.body.removeChild(a);if(!document.hasFocus())window.open(url,'_blank')},120)}
+      if(canvas.toBlob){canvas.toBlob(b=>{if(!b){dl(canvas.toDataURL('image/png'));return;}const url=URL.createObjectURL(b);dl(url);setTimeout(()=>URL.revokeObjectURL(url),800);},'image/png');}
+      else{dl(canvas.toDataURL('image/png'))}
+    })();
+  </script>
+</body>
+</html>
