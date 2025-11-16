@@ -257,6 +257,61 @@
                     <a href="mailto:bms.ventouse@gmail.com?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
                 </div>
             </div>
+
+            <!-- Formulaire de contact (Netlify Forms) -->
+            <section class="section" aria-labelledby="form-title">
+              <div class="container">
+                <h2 id="form-title" class="section-title">Formulaire de Contact</h2>
+                <p class="section-subtitle">Envoyez‑nous votre demande directement via le formulaire ci‑dessous.</p>
+                <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact/?success=1">
+                  <!-- Champ honeypot anti-spam -->
+                  <input type="hidden" name="form-name" value="contact">
+                  <p class="visually-hidden"><label>Ne pas remplir: <input name="bot-field"></label></p>
+
+                  <div class="services-grid">
+                    <div class="contact-card">
+                      <label for="name"><strong>Nom et Prénom</strong></label>
+                      <input id="name" name="name" type="text" required aria-required="true" placeholder="Jean Dupont" autocomplete="name">
+                    </div>
+                    <div class="contact-card">
+                      <label for="email"><strong>Email</strong></label>
+                      <input id="email" name="email" type="email" required aria-required="true" placeholder="nom@domaine.fr" autocomplete="email">
+                    </div>
+                    <div class="contact-card">
+                      <label for="phone"><strong>Téléphone</strong></label>
+                      <input id="phone" name="phone" type="tel" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+                    </div>
+                    <div class="contact-card">
+                      <label for="subject"><strong>Objet</strong></label>
+                      <input id="subject" name="subject" type="text" required aria-required="true" placeholder="Demande de devis">
+                    </div>
+                    <div class="contact-card" style="grid-column: 1 / -1;">
+                      <label for="message"><strong>Message</strong></label>
+                      <textarea id="message" name="message" rows="6" required aria-required="true" placeholder="Décrivez votre projet, vos dates et vos besoins précis."></textarea>
+                    </div>
+                    <div class="contact-card" style="grid-column: 1 / -1;">
+                      <label for="consent" class="checkbox">
+                        <input id="consent" name="consent" type="checkbox" required aria-required="true">
+                        J’accepte que mes informations soient utilisées pour me recontacter (RGPD).
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="hero-buttons" style="margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary">
+                      <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+                        <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
+                      </svg>
+                      Envoyer ma demande
+                    </button>
+                  </div>
+
+                  <p class="section-subtitle" style="margin-top:.75rem">Réponse sous 24–48h ouvrées. Vous pouvez aussi nous joindre via <a href="https://wa.me/33646005642" target="_blank" rel="noopener">WhatsApp</a>.</p>
+                </form>
+              </div>
+            </section>
+
+          </div>
         </div>
     </section>
 
