@@ -59,7 +59,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome retiré; icônes via SVG inline pour performances -->
 
     <!-- FAVICONS & MANIFESTE -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -182,7 +182,7 @@
             <source media="(max-width: 767px)" srcset="/images/contact-hero-background-mobile.webp" type="image/webp">
             <!-- Fallback JPEG universel -->
             <source srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-            <img src="/images/hero-background-custom.jpg" alt="Personne utilisant un téléphone pour contacter un service" loading="eager" fetchpriority="high" width="1920" height="1080">
+            <img src="/images/hero-background-custom.jpg" alt="Personne utilisant un téléphone pour contacter un service" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">
@@ -197,14 +197,17 @@
       <div class="container">
         <div class="urgency-banner animated-item">
           <div class="urgency-content">
-            <i class="fas fa-exclamation-triangle"></i>
+            <svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 576 512"><path d="M569.5 440.6 327.4 37.4c-11.7-19.5-39.1-19.5-50.8 0L6.5 440.6C-5.7 460.2 8.6 485.3 32 485.3h512c23.4 0 37.7-25.1 25.5-44.7zM288 176c13.3 0 24 10.7 24 24v96c0 13.3-10.7 24-24 24s-24-10.7-24-24v-96c0-13.3 10.7-24 24-24zm0 208c-17.7 0-32 14.3-32 32 0 17.7 14.3 32 32 32s32-14.3 32-32c0-17.7-14.3-32-32-32z"/></svg>
             <div class="urgency-text">
               <h3>Un tournage de dernière minute ?</h3>
               <p>Appelez maintenant ! Nous pouvons intervenir dans l'heure qui suit votre appel.</p>
             </div>
             <div class="urgency-buttons">
               <a href="tel:+33646005642" class="btn btn-urgent">
-                <i class="fas fa-phone-alt"></i> Appel d'Urgence
+                <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+                  <path d="M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z"/>
+                </svg>
+                Appel d'Urgence
               </a>
             </div>
           </div>
@@ -220,7 +223,7 @@
             
             <div class="contact-direct-grid">
                 <div class="contact-card animated-item">
-                    <div class="contact-icon"><i class="fas fa-phone-volume"></i></div>
+                    <div class="contact-icon"><svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512"><path d="M301.1 13.3c-7.7-17.9-28.8-26.1-46.7-18.4s-26.1 28.8-18.4 46.7l9.5 22.1c4.9 11.4 16 18.8 28.5 18.8 21.6 0 36.1-22.4 28.5-43.1l-1.4-3.9zm183.6 306c-6.9-17.2-27-25.6-44.4-18.9l-58.5 22.8c-61.2 23.9-130-9-153.9-70.2l-22.8-58.5c-6.6-17.1-25.8-25.7-43-19.3l-60.5 22.6c-17.4 6.5-26.2 25.9-19.5 43.4l22.6 60.5c38.7 103.6 153.9 155.8 257.5 117.1l60.5-22.6c17.5-6.5 26.3-25.9 19.5-43.4l-7.9-20.4z"/></svg></div>
                     <h3>Par Téléphone</h3>
                     <div class="contact-details">
                         <p><strong>Béna :</strong> <a href="tel:+33646005642" itemscope itemtype="https://schema.org/Person"><span itemprop="telephone">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</span></a></p>
@@ -229,7 +232,7 @@
                     <p class="contact-note">Idéal pour les urgences et les demandes immédiates.</p>
                 </div>
                 <div class="contact-card animated-item">
-                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="contact-icon"><svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512"><path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/></svg></div>
                     <h3>Par WhatsApp</h3>
                     <div class="contact-details">
                         <p>Rapide et direct, parfait pour échanger des documents et des plans.</p>
@@ -237,7 +240,7 @@
                     <a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Discuter sur WhatsApp</a>
                 </div>
                 <div class="contact-card animated-item">
-                    <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
+                    <div class="contact-icon"><svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512"><path d="M64 112c0-26.5 21.5-48 48-48h288c26.5 0 48 21.5 48 48v16l-192 96-192-96v-16zm0 64v224c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V176l-176 88c-9.5 4.8-20.5 4.8-30 0L64 176z"/></svg></div>
                     <h3>Par Email</h3>
                     <div class="contact-details">
                         <p>Idéal pour les demandes détaillées et les cahiers des charges.</p>
@@ -257,25 +260,25 @@
         <div class="zones-grid">
           <!-- Carte pour Paris & Île-de-France -->
           <div class="zone-card animated-item">
-            <i class="fas fa-city"></i>
+            <svg width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512"><path d="M128 148v-40c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v40h24c13.3 0 24 10.7 24 24v296H80V172c0-13.3 10.7-24 24-24h24zm64-28v36h64v-36h-64zM96 480h256v16c0 8.8-7.2 16-16 16H112c-8.8 0-16-7.2-16-16v-16z"/></svg>
             <h3>Paris &amp; Île‑de‑France</h3>
             <p>Paris, Boulogne‑Billancourt, Montreuil, Saint‑Denis...</p>
           </div>
           <!-- Carte pour Lyon & Sud-Est -->
           <div class="zone-card animated-item">
-            <i class="fas fa-mountain"></i>
+            <svg width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 640 512"><path d="M640 480H0l240-320 96 128 64-64 240 256z"/></svg>
             <h3>Lyon &amp; Sud‑Est</h3>
             <p>Lyon, Marseille, Nice, Grenoble...</p>
           </div>
           <!-- Carte pour Bordeaux & Sud-Ouest -->
           <div class="zone-card animated-item">
-            <i class="fas fa-water"></i>
+            <svg width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512"><path d="M256 24C180 86 64 232 64 312c0 79.5 64.5 144 144 144s144-64.5 144-144C352 232 236 86 256 24z"/></svg>
             <h3>Bordeaux &amp; Sud‑Ouest</h3>
             <p>Bordeaux, Toulouse, Montpellier, Nantes...</p>
           </div>
           <!-- Zone nationale - NOUVEAU FORMAT (À L'INTÉRIEUR DE LA GRILLE) -->
           <div class="zone-card zone-national animated-item">
-            <i class="fas fa-map-marked-alt"></i>
+            <svg width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 384 512"><path d="M168 0C75 0 0 75 0 168c0 87.1 151.6 302.4 160 314.3 5.8 8.3 17.2 8.3 23 0C232.4 470.4 384 255.1 384 168 384 75 309 0 216 0h-48zm24 240a72 72 0 1 1 0-144 72 72 0 1 1 0 144z"/></svg>
             <h3>Partout ailleurs en France</h3>
             <p>Nos équipes mobiles se déplacent rapidement pour répondre à vos urgences.</p>
           </div>
@@ -289,8 +292,18 @@
             <h2 class="cta-title">Une Question ? Un Projet Urgent ?</h2>
             <p class="cta-subtitle">Contactez‑nous pour une analyse gratuite de vos besoins et un devis personnalisé sous&nbsp;48&nbsp;h.</p>
             <div class="hero-buttons">
-                <a href="mailto:bms.ventouse@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> Envoyer un Email</a>
-                <a href="https://wa.me/33646005642" class="btn btn-secondary" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp Direct</a>
+                <a href="mailto:bms.ventouse@gmail.com" class="btn btn-primary">
+                  <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+                    <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
+                  </svg>
+                  Envoyer un Email
+                </a>
+                <a href="https://wa.me/33646005642" class="btn btn-secondary" target="_blank" rel="noopener">
+                  <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512">
+                    <path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/>
+                  </svg>
+                  WhatsApp Direct
+                </a>
             </div>
         </div>
     </section>
@@ -299,7 +312,9 @@
 
 <!-- Bouton Flottant WhatsApp -->
 <a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contacter BMS Ventouse sur WhatsApp">
-    <i class="fab fa-whatsapp"></i>
+    <svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512">
+      <path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/>
+    </svg>
 </a>
 
 <!-- PIED DE PAGE SPÉCIALISÉ CONTACT -->
@@ -347,10 +362,10 @@
                       <h4>Contact Direct</h4>
                       <ul>
                           <!-- Numéro unique de Béna mis en avant -->
-                          <li><a href="tel:+33646005642"><i class="fas fa-phone-alt"></i> +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42 (Béna)</a></li>
-                          <li><a href="tel:+33640982156"><i class="fas fa-phone-alt"></i> +33&nbsp;6&nbsp;40&nbsp;98&nbsp;21&nbsp;56 (Yann)</a></li>
+                          <li><a href="tel:+33646005642"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z"/></svg> +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42 (Béna)</a></li>
+                          <li><a href="tel:+33640982156"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z"/></svg> +33&nbsp;6&nbsp;40&nbsp;98&nbsp;21&nbsp;56 (Yann)</a></li>
                           <!-- Contact WhatsApp direct -->
-                          <li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp Direct</a></li>
+                          <li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512" style="margin-right:8px"><path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/></svg> WhatsApp Direct</a></li>
                           <li><a href="mailto:bms.ventouse@gmail.com"><i class="fas fa-envelope"></i> bms.ventouse@gmail.com</a></li>
                       </ul>
                   </div>
