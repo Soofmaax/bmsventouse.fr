@@ -261,8 +261,8 @@
             <!-- Formulaire de contact (Netlify Forms) -->
             <section class="section" aria-labelledby="form-title">
               <div class="container">
-                <h2 id="form-title" class="section-title">Formulaire de Contact</h2>
-                <p class="section-subtitle">Envoyez‑nous votre demande directement via le formulaire ci‑dessous.</p>
+                <h2 id="form-title" class="section-title">Formulaire de Devis</h2>
+                <p class="section-subtitle">Renseignez les informations demandées pour un devis précis. Réponse sous 24–48h ouvrées.</p>
                 <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact/?success=1">
                   <!-- Champ honeypot anti-spam -->
                   <input type="hidden" name="form-name" value="contact">
@@ -274,6 +274,25 @@
                       <input id="name" name="name" type="text" required aria-required="true" placeholder="Jean Dupont" autocomplete="name">
                     </div>
                     <div class="contact-card">
+                      <label for="role"><strong>Poste / Fonction</strong></label>
+                      <input id="role" name="role" type="text" required aria-required="true" placeholder="Régisseur général, Producteur, etc." list="role-suggestions" autocomplete="organization-title">
+                      <datalist id="role-suggestions">
+                        <option value="Producteur / Productrice"></option>
+                        <option value="Directeur·trice de production"></option>
+                        <option value="Régisseur·se général·e"></option>
+                        <option value="Régisseur·se adjoint·e"></option>
+                        <option value="Chargé·e de production"></option>
+                        <option value="Coordinateur·trice logistique"></option>
+                        <option value="Réalisateur / Réalisatrice"></option>
+                        <option value="Chef·fe de projet"></option>
+                        <option value="Autre"></option>
+                      </datalist>
+                    </div>
+                    <div class="contact-card">
+                      <label for="company"><strong>Boîte de production (optionnel)</strong></label>
+                      <input id="company" name="company" type="text" placeholder="Nom de la société / structure" autocomplete="organization">
+                    </div>
+                    <div class="contact-card">
                       <label for="email"><strong>Email</strong></label>
                       <input id="email" name="email" type="email" required aria-required="true" placeholder="nom@domaine.fr" autocomplete="email">
                     </div>
@@ -282,12 +301,30 @@
                       <input id="phone" name="phone" type="tel" placeholder="+33 6 12 34 56 78" autocomplete="tel">
                     </div>
                     <div class="contact-card">
-                      <label for="subject"><strong>Objet</strong></label>
-                      <input id="subject" name="subject" type="text" required aria-required="true" placeholder="Demande de devis">
+                      <label for="service"><strong>Service demandé</strong></label>
+                      <select id="service" name="service" required aria-required="true">
+                        <option value="" disabled selected>Choisir un service…</option>
+                        <option value="Ventousage & autorisations">Ventousage & autorisations</option>
+                        <option value="Sécurité de plateaux / Gardiennage">Sécurité de plateaux / Gardiennage</option>
+                        <option value="Convoyage véhicules & décors">Convoyage véhicules & décors</option>
+                        <option value="Régie & matériel">Régie & matériel</option>
+                        <option value="Affichage riverains">Affichage riverains</option>
+                        <option value="Signalisation & barriérage">Signalisation & barriérage</option>
+                        <option value="Logistique événementielle (mode, publicité)">Logistique événementielle (mode, publicité)</option>
+                        <option value="Autre">Autre</option>
+                      </select>
+                    </div>
+                    <div class="contact-card">
+                      <label for="date_start"><strong>Date de début (souhaitée)</strong></label>
+                      <input id="date_start" name="date_start" type="date">
+                    </div>
+                    <div class="contact-card">
+                      <label for="date_end"><strong>Date de fin (souhaitée)</strong></label>
+                      <input id="date_end" name="date_end" type="date">
                     </div>
                     <div class="contact-card" style="grid-column: 1 / -1;">
-                      <label for="message"><strong>Message</strong></label>
-                      <textarea id="message" name="message" rows="6" required aria-required="true" placeholder="Décrivez votre projet, vos dates et vos besoins précis."></textarea>
+                      <label for="details"><strong>Informations complémentaires</strong></label>
+                      <textarea id="details" name="details" rows="8" placeholder="Détaillez le projet (lieux, créneaux, accès, besoins spécifiques, contraintes, etc.)."></textarea>
                     </div>
                     <div class="contact-card" style="grid-column: 1 / -1;">
                       <label for="consent" class="checkbox">
@@ -306,7 +343,7 @@
                     </button>
                   </div>
 
-                  <p class="section-subtitle" style="margin-top:.75rem">Réponse sous 24–48h ouvrées. Vous pouvez aussi nous joindre via <a href="https://wa.me/33646005642" target="_blank" rel="noopener">WhatsApp</a>.</p>
+                  <p class="section-subtitle" style="margin-top:.75rem">Vous pouvez aussi nous joindre via <a href="https://wa.me/33646005642" target="_blank" rel="noopener">WhatsApp</a>.</p>
                 </form>
               </div>
             </section>
