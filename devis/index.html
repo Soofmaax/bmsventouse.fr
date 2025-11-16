@@ -180,6 +180,16 @@
             <option value="loges">Loges & Confort</option>
             <option value="cantine">Cantine & Catering</option>
           </select>
+
+          <!-- Préférences pour le calculateur -->
+          <label for="lead_days" style="margin-top:.6rem;">Nombre de jours (pré‑remplissage)</label>
+          <input id="lead_days" name="lead_days" type="number" min="1" step="1" value="1">
+
+          <label for="lead_urgent" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
+            <input id="lead_urgent" name="lead_urgent" type="checkbox" value="1">
+            Intervention urgente (pré‑sélection)
+          </label>
+
           <label for="lead_consent" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
             <input id="lead_consent" name="consent" type="checkbox" required aria-required="true">
             J’accepte l’usage de mes données pour être recontacté (RGPD).
@@ -339,6 +349,35 @@
     if (lead && calc) {
       lead.style.display = isSuccess ? 'none' : '';
       calc.style.display = isSuccess ? '' : 'none';
+      if (isSuccess) {
+        // Vérification d'éligibilité à l'offre -15% via Zoho
+        try {
+          const email = localStorage.getItem('bms_last_email') || '';
+          const phone = localStorage.getItem('bms_last_phone') || '';
+          if (email || phone) {
+            fetch('/.netlify/functions/zoho_check', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, phone }),
+              keepalive: true
+            })
+            .then(r => r.json())
+            .then(data => {
+              const eligible = !!(data && (data.eligible ?? data.isNew));
+              const note = document.createElement('div');
+              note.className = 'coverage-note-card';
+              note.setAttribute('role', 'status');
+              note.setAttribute('aria-live', 'polite');
+              note.style.marginBottom = '1rem';
+              note.innerHTML = eligible
+                ? '<strong>Éligible — remise -15% nouveaux clients</strong> (appliquée lors du premier devis hors frais administratifs et déplacements).'
+                : 'Client existant — remise nouveaux clients non applicable.';
+              calc.insertBefore(note, calc.firstChild);
+            })
+            .catch(()=>{});
+          }
+        } catch(_) {}
+      }
     }
   } catch(_){}
 
@@ -348,17 +387,27 @@
     if (leadForm) {
       leadForm.addEventListener('submit', () => {
         try {
+          const lead_days = parseInt(((document.getElementById('lead_days') || {}).value || '1'), 10);
+          const lead_urgent = !!((document.getElementById('lead_urgent') || {}).checked);
           const payload = {
             fullname: (document.getElementById('lead_fullname') || {}).value || '',
             company: (document.getElementById('lead_company') || {}).value || '',
             email: (document.getElementById('lead_email') || {}).value || '',
             phone: (document.getElementById('lead_phone') || {}).value || '',
             service_interest: (document.getElementById('lead_interest') || {}).value || '',
+            days: lead_days,
+            urgent: lead_urgent,
             consent: true,
             source: 'calculator_lead'
           };
-          // Stocke le service d’intérêt pour préremplir l’étape 2
-          try { localStorage.setItem('bms_calc_interest', payload.service_interest || ''); } catch(_){}
+          // Stocke les préférences pour préremplir l’étape 2
+          try {
+            localStorage.setItem('bms_calc_interest', payload.service_interest || '');
+            localStorage.setItem('bms_calc_days', String(lead_days));
+            localStorage.setItem('bms_calc_urgent', lead_urgent ? '1' : '0');
+            localStorage.setItem('bms_last_email', payload.email || '');
+            localStorage.setItem('bms_last_phone', payload.phone || '');
+          } catch(_){}
 
           fetch('/.netlify/functions/zoho_lead', {
             method: 'POST',
@@ -544,6 +593,14 @@
     if (pref && fields.service && fields.service.querySelector('option[value="' + pref + '"]')) {
       fields.service.value = pref;
     }
+  } catch (_) {}
+
+  // Préremplissage des jours et de l'urgence depuis l'étape 1 (lead)
+  try {
+    const pd = parseInt(localStorage.getItem('bms_calc_days') || '0', 10);
+    if (pd > 0 && fields.days) fields.days.value = String(pd);
+    const pu = (localStorage.getItem('bms_calc_urgent') || '') === '1';
+    if (fields.urgent) fields.urgent.checked = pu;
   } catch (_) {}
 
   showRelevant();
