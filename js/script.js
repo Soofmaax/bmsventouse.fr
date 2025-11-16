@@ -756,6 +756,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupGTM();
     // Message de succès pour le formulaire Contact (?success=1)
     setupContactSuccessNotice();
+    // Capture des leads du formulaire Contact vers Zoho (non bloquant)
+    setupContactLeadCapture();
 
     // Debug/override consent via query string: ?consent=granted|denied
     try {
@@ -873,6 +875,59 @@ function setupContactSuccessNotice() {
 
     container.insertBefore(note, container.firstChild);
   } catch (e) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Capture du formulaire Contact vers Zoho CRM (non bloquant)
+// --------------------------------------------------------------------------
+function setupContactLeadCapture() {
+  try {
+    const form = document.querySelector('form[name="contact"]');
+    if (!form) return;
+    form.addEventListener('submit', () => {
+      try {
+        const payload = {
+          fullname: (document.getElementById('name') || {}).value || '',
+          role: (document.getElementById('role') || {}).value || '',
+          company: (document.getElementById('company') || {}).value || '',
+          email: (document.getElementById('email') || {}).value || '',
+          phone: (document.getElementById('phone') || {}).value || '',
+          service: (document.getElementById('service') || {}).value || '',
+          package: (document.getElementById('package') || {}).value || '',
+          location: (document.getElementById('location') || {}).value || '',
+          address: (document.getElementById('address') || {}).value || '',
+          schedule: (document.getElementById('schedule') || {}).value || '',
+          urgent: !!((document.getElementById('urgent') || {}).checked),
+          date_start: (document.getElementById('date_start') || {}).value || '',
+          date_end: (document.getElementById('date_end') || {}).value || '',
+          payment_preference: (document.getElementById('payment') || {}).value || '',
+          budget: (document.getElementById('budget') || {}).value || '',
+          details: (document.getElementById('details') || {}).value || '',
+          consent: !!((document.getElementById('consent') || {}).checked),
+          source: 'contact_form'
+        };
+        // On stocke email/phone pour le check d’éligibilité -15% côté /devis/ si l’utilisateur y va ensuite
+        try {
+          localStorage.setItem('bms_lead_email', payload.email || '');
+          localStorage.setItem('bms_lead_phone', payload.phone || '');
+        } catch (_){}
+
+        fetch('/.netlify/functions/zoho_lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(()=>{});
+
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'contact_submitted', ...payload });
+        } catch(_){}
+      } catch (_){}
+    });
+  } catch (_) {
     // non-bloquant
   }
 }

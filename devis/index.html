@@ -194,6 +194,13 @@
             Intervention urgente (afficher l’option en étape 2)
           </label>
 
+          <label for="lead_payment" style="margin-top:.6rem;">Préférence de paiement</label>
+          <select id="lead_payment" name="payment_preference">
+            <option value="">À définir avec le devis</option>
+            <option value="rib">Virement (RIB)</option>
+            <option value="link">Lien de paiement sécurisé</option>
+          </select>
+
           <label for="lead_consent" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
             <input id="lead_consent" name="consent" type="checkbox" required aria-required="true">
             J’accepte l’usage de mes données pour être recontacté (RGPD).
@@ -403,6 +410,7 @@
             localStorage.setItem('bms_lead_phone', payload.phone || '');
             localStorage.setItem('bms_lead_urgent', payload.urgent ? '1' : '0');
             localStorage.setItem('bms_lead_package', payload.package || '');
+            localStorage.setItem('bms_lead_payment', payload.payment_preference || '');
           } catch(_){}eadForm = document.getElementById('leadForm');
     if (leadForm) {
       leadForm.addEventListener('submit', () => {

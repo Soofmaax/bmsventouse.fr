@@ -106,7 +106,7 @@
           },
           
         ],
-        "email": "bms.ventouse@gmail.com",
+        "email": "contact@bmsventouse.fr",
         "areaServed": {
           "@type": "Country",
           "name": "France"
@@ -205,7 +205,7 @@
             <svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 576 512"><path d="M569.5 440.6 327.4 37.4c-11.7-19.5-39.1-19.5-50.8 0L6.5 440.6C-5.7 460.2 8.6 485.3 32 485.3h512c23.4 0 37.7-25.1 25.5-44.7zM288 176c13.3 0 24 10.7 24 24v96c0 13.3-10.7 24-24 24s-24-10.7-24-24v-96c0-13.3 10.7-24 24-24zm0 208c-17.7 0-32 14.3-32 32 0 17.7 14.3 32 32 32s32-14.3 32-32c0-17.7-14.3-32-32-32z"/></svg>
             <div class="urgency-text">
               <h3>Un tournage de dernière minute ?</h3>
-              <p>Appelez maintenant ! Nous pouvons intervenir dans l'heure qui suit votre appel.</p>
+              <p>Appelez maintenant ! Nous vous recontactons au plus vite en fonction de l'urgence.</p>
             </div>
             <div class="urgency-buttons">
               <a href="tel:+33646005642" class="btn btn-urgent">
@@ -250,7 +250,7 @@
                     <div class="contact-details">
                         <p>Idéal pour les demandes détaillées et les cahiers des charges.</p>
                     </div>
-                    <a href="mailto:bms.ventouse@gmail.com?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
+                    <a href="mailto:contact@bmsventouse.fr?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
                 </div>
             </div>
 
@@ -259,7 +259,7 @@
               <div class="container">
                 <h2 id="form-title" class="section-title">Formulaire de Devis</h2>
                 <p class="section-subtitle">Renseignez les informations demandées pour un devis précis. Réponse sous 24–48h ouvrées.</p>
-                <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact/?success=1">
+                <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact/?success=1" enctype="multipart/form-data">
                   <!-- Champ honeypot anti-spam -->
                   <input type="hidden" name="form-name" value="contact">
                   <p class="visually-hidden"><label>Ne pas remplir: <input name="bot-field"></label></p>
@@ -311,6 +311,45 @@
                       </select>
                     </div>
                     <div class="contact-card">
+                      <label for="package"><strong>Pack souhaité (optionnel)</strong></label>
+                      <select id="package" name="package">
+                        <option value="">Sans pack / Au choix</option>
+                        <option value="pack_stationnement">Pack Stationnement (Ventousage + Affichage + Signalisation)</option>
+                        <option value="pack_securisation">Pack Sécurisation Plateau (Sécurité/Gardiennage + Signalisation)</option>
+                        <option value="pack_confort">Pack Confort Tournage (Régie + Loges & Confort + Cantine)</option>
+                      </select>
+                    </div>
+                    <div class="contact-card">
+                      <label for="location"><strong>Ville / Lieu principal</strong></label>
+                      <input id="location" name="location" type="text" placeholder="Ex: Paris 11e, Lyon Part-Dieu">
+                    </div>
+                    <div class="contact-card">
+                      <label for="address"><strong>Adresse du site (si connue)</strong></label>
+                      <input id="address" name="address" type="text" placeholder="Rue, code postal, accès, etc.">
+                    </div>
+                    <div class="contact-card">
+                      <label for="schedule"><strong>Créneaux / Horaires (si connus)</strong></label>
+                      <input id="schedule" name="schedule" type="text" placeholder="Ex: Nuit 22h–6h, Jour 8h–18h">
+                    </div>
+                    <div class="contact-card">
+                      <label for="urgent" class="checkbox">
+                        <input id="urgent" name="urgent" type="checkbox" value="1">
+                        Demande urgente (rappel prioritaire sans engagement de délai précis)
+                      </label>
+                    </div>
+                    <div class="contact-card">
+                      <label for="payment"><strong>Préférence de paiement</strong></label>
+                      <select id="payment" name="payment_preference">
+                        <option value="">À définir avec le devis</option>
+                        <option value="rib">Virement (RIB)</option>
+                        <option value="link">Lien de paiement sécurisé</option>
+                      </select>
+                    </div>
+                    <div class="contact-card">
+                      <label for="budget"><strong>Budget indicatif (optionnel)</strong></label>
+                      <input id="budget" name="budget" type="text" placeholder="Ex: 2 000–3 000 € HT">
+                    </div>
+                    <div class="contact-card">
                       <label for="date_start"><strong>Date de début (souhaitée)</strong></label>
                       <input id="date_start" name="date_start" type="date">
                     </div>
@@ -320,7 +359,11 @@
                     </div>
                     <div class="contact-card" style="grid-column: 1 / -1;">
                       <label for="details"><strong>Informations complémentaires</strong></label>
-                      <textarea id="details" name="details" rows="8" placeholder="Détaillez le projet (lieux, créneaux, accès, besoins spécifiques, contraintes, etc.)."></textarea>
+                      <textarea id="details" name="details" rows="8" placeholder="Détaillez le projet (périmètre, zones/panneaux, contraintes, accès régie, documents utiles, etc.)."></textarea>
+                    </div>
+                    <div class="contact-card" style="grid-column: 1 / -1;">
+                      <label for="attachment"><strong>Pièce jointe (optionnel)</strong></label>
+                      <input id="attachment" name="attachment" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp">
                     </div>
                     <div class="contact-card" style="grid-column: 1 / -1;">
                       <label for="consent" class="checkbox">
@@ -387,7 +430,7 @@
     <section id="cta-contact" class="section cta-section">
         <div class="container animated-item">
             <h2 class="cta-title">Une Question ? Un Projet Urgent ?</h2>
-            <p class="cta-subtitle">Contactez‑nous pour une analyse gratuite de vos besoins et un devis personnalisé sous&nbsp;48&nbsp;h.</p>
+            <p class="cta-subtitle">Contactez‑nous pour une analyse gratuite de vos besoins et un devis personnalisé sous&nbsp;24–48&nbsp;h.</p>
             <div class="hero-buttons">
                 <a href="mailto:bms.ventouse@gmail.com" class="btn btn-primary">
                   <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
@@ -463,7 +506,7 @@
                           
                           <!-- Contact WhatsApp direct -->
                           <li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512" style="margin-right:8px"><path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/></svg> WhatsApp Direct</a></li>
-                          <li><a href="mailto:bms.ventouse@gmail.com"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/></svg> bms.ventouse@gmail.com</a></li>
+                          <li><a href="mailto:contact@bmsventouse.fr"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/></svg> contact@bmsventouse.fr</a></li>
                       </ul>
                   </div>
                     <div class="footer-column">
