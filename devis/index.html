@@ -181,13 +181,17 @@
             <option value="cantine">Cantine & Catering</option>
           </select>
 
-          <!-- Préférences pour le calculateur -->
-          <label for="lead_days" style="margin-top:.6rem;">Nombre de jours (pré‑remplissage)</label>
-          <input id="lead_days" name="lead_days" type="number" min="1" step="1" value="1">
+          <label for="lead_pack" style="margin-top:.6rem;">Pack souhaité (optionnel)</label>
+          <select id="lead_pack" name="package">
+            <option value="">Sans pack / Au choix</option>
+            <option value="pack_stationnement">Pack Stationnement (Ventousage + Affichage + Signalisation)</option>
+            <option value="pack_securisation">Pack Sécurisation Plateau (Sécurité/Gardiennage + Signalisation)</option>
+            <option value="pack_confort">Pack Confort Tournage (Régie + Loges & Confort + Cantine)</option>
+          </select>
 
           <label for="lead_urgent" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
-            <input id="lead_urgent" name="lead_urgent" type="checkbox" value="1">
-            Intervention urgente (pré‑sélection)
+            <input id="lead_urgent" name="urgent" type="checkbox" value="1">
+            Intervention urgente (afficher l’option en étape 2)
           </label>
 
           <label for="lead_consent" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
@@ -349,34 +353,28 @@
     if (lead && calc) {
       lead.style.display = isSuccess ? 'none' : '';
       calc.style.display = isSuccess ? '' : 'none';
-      if (isSuccess) {
-        // Vérification d'éligibilité à l'offre -15% via Zoho
-        try {
-          const email = localStorage.getItem('bms_last_email') || '';
-          const phone = localStorage.getItem('bms_last_phone') || '';
-          if (email || phone) {
-            fetch('/.netlify/functions/zoho_check', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email, phone }),
-              keepalive: true
-            })
-            .then(r => r.json())
-            .then(data => {
-              const eligible = !!(data && (data.eligible ?? data.isNew));
-              const note = document.createElement('div');
-              note.className = 'coverage-note-card';
-              note.setAttribute('role', 'status');
-              note.setAttribute('aria-live', 'polite');
-              note.style.marginBottom = '1rem';
-              note.innerHTML = eligible
-                ? '<strong>Éligible — remise -15% nouveaux clients</strong> (appliquée lors du premier devis hors frais administratifs et déplacements).'
-                : 'Client existant — remise nouveaux clients non applicable.';
-              calc.insertBefore(note, calc.firstChild);
-            })
-            .catch(()=>{});
+    }
+    // Si succès, on vérifie l’éligibilité -15% en interrogeant Zoho
+    if (isSuccess && calc) {
+      const email = localStorage.getItem('bms_lead_email') || '';
+      const phone = localStorage.getItem('bms_lead_phone') || '';
+      if (email || phone) {
+        fetch('/.netlify/functions/zoho_check', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, phone })
+        }).then(r => r.json()).then(res => {
+          if (res && res.eligible) {
+            const note = document.createElement('div');
+            note.className = 'coverage-note-card';
+            note.innerHTML = '<strong>Bonne nouvelle :</strong> vous êtes <strong>éligible à -15%</strong> (nouveau client). Remise appliquée sur votre premier devis.';
+            calc.insertBefore(note, calc.firstChild);
           }
-        } catch(_) {}
+          try {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'eligibility_checked', eligible_15: !!(res && res.eligible) });
+          } catch(_){}
+        }).catch(()=>{});
       }
     }
   } catch(_){}
@@ -384,6 +382,28 @@
   // Envoi vers Zoho au submit du lead (étape 1)
   try {
     const leadForm = document.getElementById('leadForm');
+    if (leadForm) {
+      leadForm.addEventListener('submit', () => {
+        try {
+          const payload = {
+            fullname: (document.getElementById('lead_fullname') || {}).value || '',
+            company: (document.getElementById('lead_company') || {}).value || '',
+            email: (document.getElementById('lead_email') || {}).value || '',
+            phone: (document.getElementById('lead_phone') || {}).value || '',
+            service_interest: (document.getElementById('lead_interest') || {}).value || '',
+            package: (document.getElementById('lead_pack') || {}).value || '',
+            urgent: !!((document.getElementById('lead_urgent') || {}).checked),
+            consent: true,
+            source: 'calculator_lead'
+          };
+          // Stocke pour l’étape 2
+          try {
+            localStorage.setItem('bms_calc_interest', payload.service_interest || '');
+            localStorage.setItem('bms_lead_email', payload.email || '');
+            localStorage.setItem('bms_lead_phone', payload.phone || '');
+            localStorage.setItem('bms_lead_urgent', payload.urgent ? '1' : '0');
+            localStorage.setItem('bms_lead_package', payload.package || '');
+          } catch(_){}eadForm = document.getElementById('leadForm');
     if (leadForm) {
       leadForm.addEventListener('submit', () => {
         try {
@@ -593,14 +613,9 @@
     if (pref && fields.service && fields.service.querySelector('option[value="' + pref + '"]')) {
       fields.service.value = pref;
     }
-  } catch (_) {}
-
-  // Préremplissage des jours et de l'urgence depuis l'étape 1 (lead)
-  try {
-    const pd = parseInt(localStorage.getItem('bms_calc_days') || '0', 10);
-    if (pd > 0 && fields.days) fields.days.value = String(pd);
-    const pu = (localStorage.getItem('bms_calc_urgent') || '') === '1';
-    if (fields.urgent) fields.urgent.checked = pu;
+    // Urgent prérempli depuis l’étape 1
+    const leadUrgent = localStorage.getItem('bms_lead_urgent') === '1';
+    if (fields.urgent) fields.urgent.checked = leadUrgent;
   } catch (_) {}
 
   showRelevant();
@@ -608,7 +623,11 @@
   attachEvents();
 
   // Nettoyage: on évite les préremplissages involontaires lors de visites ultérieures
-  try { localStorage.removeItem('bms_calc_interest'); } catch (_) {}
+  try { 
+    localStorage.removeItem('bms_calc_interest'); 
+    localStorage.removeItem('bms_lead_urgent');
+    localStorage.removeItem('bms_lead_package');
+  } catch (_) {}
 
   // Envoi en parallèle vers la fonction Netlify (Zoho CRM) si consentement
   form.addEventListener('submit', () => {

@@ -15,6 +15,9 @@ exports.handler = async (event) => {
       email = '',
       phone = '',
       service = '',
+      service_interest = '',
+      package: wanted_package = '',
+      urgent = false,
       estimate_min = 0,
       estimate_max = 0
     } = payload;
@@ -48,7 +51,9 @@ exports.handler = async (event) => {
     const lastName = rest.join(' ') || firstName || 'N/A';
 
     const description = [
-      `Service: ${service || 'N/A'}`,
+      `Service: ${service || service_interest || 'N/A'}`,
+      `Pack: ${wanted_package || 'N/A'}`,
+      `Urgent: ${urgent ? 'Oui' : 'Non'}`,
       `Estimation: ${estimate_min || 0} – ${estimate_max || 0} EUR`,
       `Payload: ${safeStringify(payload)}`
     ].join(' | ');
