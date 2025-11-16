@@ -148,23 +148,69 @@
     </div>
   </section>
 
-  <!-- CALCULATEUR -->
+  <!-- LEAD CAPTURE (Étape 1) -->
+  <section class="section" id="lead-step">
+    <div class="container" id="lead-capture">
+      <h2 class="section-title animated-item">D’abord vos coordonnées</h2>
+      <p class="section-subtitle animated-item">Après envoi du formulaire ci-dessous, le calculateur de devis s’ouvrira.</p>
+
+      <form id="leadForm" name="quote_lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/devis/?success=1" class="services-grid animated-item">
+        <input type="hidden" name="form-name" value="quote_lead">
+        <p class="visually-hidden"><label>Ne pas remplir si humain: <input name="bot-field"></label></p>
+
+        <div class="service-card">
+          <h3>Vos coordonnées</h3>
+          <label for="lead_fullname">Nom et Prénom</label>
+          <input id="lead_fullname" name="fullname" type="text" required aria-required="true" autocomplete="name">
+          <label for="lead_company" style="margin-top:.6rem;">Boîte de production (optionnel)</label>
+          <input id="lead_company" name="company" type="text" autocomplete="organization">
+          <label for="lead_email" style="margin-top:.6rem;">Email</label>
+          <input id="lead_email" name="email" type="email" required aria-required="true" autocomplete="email">
+          <label for="lead_phone" style="margin-top:.6rem;">Téléphone (optionnel)</label>
+          <input id="lead_phone" name="phone" type="tel" autocomplete="tel">
+          <label for="lead_interest" style="margin-top:.6rem;">Service d’intérêt (optionnel)</label>
+          <select id="lead_interest" name="service_interest">
+            <option value="">Choisir…</option>
+            <option value="ventousage">Ventousage & Autorisations</option>
+            <option value="securite">Sécurité & Gardiennage</option>
+            <option value="convoyage">Convoyage véhicules & décors</option>
+            <option value="regie">Régie & matériel</option>
+            <option value="signalisation">Signalisation & barriérage</option>
+            <option value="affichage">Affichage riverains</option>
+            <option value="loges">Loges & Confort</option>
+            <option value="cantine">Cantine & Catering</option>
+          </select>
+          <label for="lead_consent" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
+            <input id="lead_consent" name="consent" type="checkbox" required aria-required="true">
+            J’accepte l’usage de mes données pour être recontacté (RGPD).
+          </label>
+        </div>
+
+        <div class="service-card" style="display:flex; align-items:center; justify-content:center;">
+          <button type="submit" class="btn btn-primary">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+              <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
+            </svg>
+            Accéder au calculateur
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- CALCULATEUR (Étape 2, après lead) -->
   <section class="section">
-    <div class="container" id="quote-calculator">
+    <div class="container" id="quote-calculator" style="display:none">
       <h2 class="section-title animated-item">Estimation Indicative</h2>
       <p class="section-subtitle animated-item">Renseignez quelques paramètres. Le calcul donne un <strong>ordre de grandeur</strong> (HT), à confirmer via devis final.</p>
 
-      <!-- Affichage de l'estimation -->
       <div class="coverage-note-card animated-item" aria-live="polite" role="status" style="margin-bottom:1rem;">
         Estimation indicative: <strong id="estimateValue">—</strong> HT
       </div>
 
-      <!-- Formulaire (Netlify Forms) -->
       <form name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/devis/?success=1" class="services-grid animated-item" aria-describedby="estimateValue">
         <input type="hidden" name="form-name" value="quote">
-        <p class="visually-hidden">
-          <label>Ne pas remplir si humain: <input name="bot-field"></label>
-        </p>
+        <p class="visually-hidden"><label>Ne pas remplir si humain: <input name="bot-field"></label></p>
 
         <div class="service-card">
           <h3>Service</h3>
@@ -226,22 +272,6 @@
           </label>
         </div>
 
-        <div class="service-card">
-          <h3>Vos coordonnées</h3>
-          <label for="fullname">Nom et Prénom</label>
-          <input id="fullname" name="fullname" type="text" required aria-required="true">
-          <label for="company" style="margin-top:.6rem;">Boîte de production (optionnel)</label>
-          <input id="company" name="company" type="text">
-          <label for="email" style="margin-top:.6rem;">Email</label>
-          <input id="email" name="email" type="email" required aria-required="true">
-          <label for="phone" style="margin-top:.6rem;">Téléphone (optionnel)</label>
-          <input id="phone" name="phone" type="tel">
-          <label for="consent" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
-            <input id="consent" name="consent" type="checkbox" required aria-required="true">
-            J’accepte l’usage de mes données pour être recontacté (RGPD).
-          </label>
-        </div>
-
         <!-- Champs cachés pour transmettre l’estimation -->
         <input type="hidden" id="estimate_min" name="estimate_min" value="">
         <input type="hidden" id="estimate_max" name="estimate_max" value="">
@@ -300,6 +330,46 @@
 <script src="/js/script.js" defer></script>
 <script>
 (function(){
+  // Gating: afficher d'abord l'étape Lead puis le calculateur après succès
+  try {
+    const qs = new URLSearchParams(window.location.search);
+    const isSuccess = qs.get('success') === '1';
+    const lead = document.getElementById('lead-capture');
+    const calc = document.getElementById('quote-calculator');
+    if (lead && calc) {
+      lead.style.display = isSuccess ? 'none' : '';
+      calc.style.display = isSuccess ? '' : 'none';
+    }
+  } catch(_){}
+
+  // Envoi vers Zoho au submit du lead (étape 1)
+  try {
+    const leadForm = document.getElementById('leadForm');
+    if (leadForm) {
+      leadForm.addEventListener('submit', () => {
+        try {
+          const payload = {
+            fullname: (document.getElementById('lead_fullname') || {}).value || '',
+            company: (document.getElementById('lead_company') || {}).value || '',
+            email: (document.getElementById('lead_email') || {}).value || '',
+            phone: (document.getElementById('lead_phone') || {}).value || '',
+            service_interest: (document.getElementById('lead_interest') || {}).value || '',
+            consent: true,
+            source: 'calculator_lead'
+          };
+          fetch('/.netlify/functions/zoho_lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            keepalive: true
+          }).catch(()=>{});
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'lead_submitted', ...payload });
+        } catch(_){}
+      });
+    }
+  } catch(_){}
+
   // Affiche un message de succès si ?success=1
   try {
     const qs = new URLSearchParams(window.location.search);
