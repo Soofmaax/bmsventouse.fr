@@ -45,7 +45,7 @@ jobs:
       - name: Install stylelint shared config
         run: npm i --no-save stylelint-config-standard@latest
 
-      - name: Run super-linter (minimal, blocking)
+      - name: Run super-linter (full, blocking)
         uses: super-linter/super-linter@v7.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -56,7 +56,26 @@ jobs:
           # Include-only mode: enable selected linters; do not set any VALIDATE_* to false
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_GIT_MERGE_CONFLICT_MARKERS: true
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_MARKDOWN: true
+          VALIDATE_JSON: true
+          VALIDATE_YAML: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_GITLEAKS: true
+          GITLEAKS_CONFIG: ".gitleaks.toml"
           FILTER_REGEX_EXCLUDE: 'images/.*\.html|social-assets/.*\.html|brand-assets/.*\.html'
+
+      - name: Upload Super-Linter summary and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: super-linter-report
+          path: |
+            super-linter.log
+            super-linter-output/super-linter-summary.md
+            super-linter-output/super-linter/**
+          if-no-files-found: ignore
 
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
       # (OUTPUT_DETAILS=detailed). Pas besoin d'artefacts dédiés.
