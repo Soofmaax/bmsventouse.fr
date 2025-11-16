@@ -2249,6 +2249,75 @@ mark, .highlight {
 }
 
 /* ==========================================================================
+   Breadcrumb (CSS, sans styles inline)
+   ========================================================================== */
+.breadcrumb {
+  background: var(--color-light-alt);
+  border-bottom: 1px solid var(--color-border);
+  font-size: .95rem;
+  padding: .6rem 0;
+}
+.breadcrumb .breadcrumb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.breadcrumb .breadcrumb-link {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+.breadcrumb .breadcrumb-sep {
+  opacity: .6;
+  margin: 0 .2rem;
+}
+.breadcrumb .breadcrumb-current {
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Cookie banner (CSS, sans styles inline)
+   ========================================================================== */
+.cookie-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 3000;
+  background: var(--color-light);
+  color: var(--color-dark);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.cookie-banner__content {
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.cookie-banner__text {
+  margin:0;
+  flex:1;
+  min-width:260px;
+}
+.cookie-banner__link {
+  text-decoration: underline;
+  color: var(--color-primary);
+}
+.cookie-banner__actions {
+  display:flex;
+  gap:0.5rem;
+  flex-wrap:wrap;
+}
+
+/* ==========================================================================
    6. RESPONSIVE & MENU MOBILE (VERSION FINALE)
    ========================================================================== */
 

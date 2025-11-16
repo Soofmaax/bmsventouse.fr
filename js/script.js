@@ -5,6 +5,9 @@
  * Gère toutes les interactions du site avec une architecture modulaire,
  * performante et accessible (Focus Trap, Escape Key, etc.).
  */
+/* Production logging gate: silence console in production unless window.DEBUG=true */
+(function(){ try{ var DEBUG = !!(window.DEBUG); if(!DEBUG){ ['log','info','debug','warn'].forEach(function(k){ try{ console[k] = function(){}; }catch(e){} }); } window.__BMS_DEBUG__ = DEBUG; }catch(e){} })();
+
 document.addEventListener('DOMContentLoaded', async () => {
 
   // --------------------------------------------------------------------------
@@ -225,7 +228,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const nextBtn = document.querySelector('.references-carousel .carousel-control.next');
     
     if (!track || slides.length === 0 || !prevBtn || !nextBtn) {
-      console.warn("Éléments du carrousel non trouvés.");
       return;
     }
 
@@ -253,8 +255,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       scrollToIndex(currentIndex);
     });
-
-    console.log(`✅ Carrousel initialisé avec ${slides.length} éléments`);
   };
 
   // --------------------------------------------------------------------------
@@ -306,36 +306,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
       }
 
-      // Création de la bannière
+      // Création de la bannière (CSS via classes, pas de styles inline)
       const banner = document.createElement('div');
       banner.id = 'cookie-banner';
+      banner.className = 'cookie-banner';
       banner.setAttribute('role', 'dialog');
       banner.setAttribute('aria-live', 'polite');
       banner.setAttribute('aria-label', 'Bannière de consentement aux cookies');
-      banner.style.position = 'fixed';
-      banner.style.left = '1rem';
-      banner.style.right = '1rem';
-      banner.style.bottom = '1rem';
-      banner.style.zIndex = '3000';
-      banner.style.background = 'var(--color-light)';
-      banner.style.color = 'var(--color-dark)';
-      banner.style.border = '1px solid var(--color-border)';
-      banner.style.borderRadius = '12px';
-      banner.style.boxShadow = '0 8px 30px rgba(0,0,0,0.12)';
-      banner.style.padding = '1rem';
-      banner.style.maxWidth = '900px';
-      banner.style.margin = '0 auto';
 
       banner.innerHTML = `
-        <div style="display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap;">
-          <p style="margin:0; flex:1; min-width:260px;">
-            Nous utilisons un cookie de mesure d’audience (Google Analytics) pour améliorer le site. 
+        <div class="cookie-banner__content">
+          <p class="cookie-banner__text">
+            Nous utilisons un cookie de mesure d’audience (Google Analytics) pour améliorer le site.
             Aucune publicité, et IP anonymisée. Vous pouvez refuser.
-            <a href="/mentions/" style="text-decoration:underline; color:var(--color-primary);">En savoir plus</a>.
+            <a class="cookie-banner__link" href="/mentions/">En savoir plus</a>.
           </p>
-          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-            <button id="cookie-decline" class="btn" style="background:#f3f4f6; color:#111827; border:1px solid #e5e7eb; padding:.6rem 1rem; border-radius:8px;">Refuser</button>
-            <button id="cookie-accept" class="btn btn-primary" style="padding:.6rem 1rem; border-radius:8px;">Accepter</button>
+          <div class="cookie-banner__actions">
+            <button id="cookie-decline" class="btn">Refuser</button>
+            <button id="cookie-accept" class="btn btn-primary">Accepter</button>
           </div>
         </div>
       `;
@@ -357,7 +345,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         banner.remove();
       });
     } catch (e) {
-      console.warn('Cookie banner non initialisé:', e);
+      // non-bloquant
     }
   };
 
@@ -435,42 +423,31 @@ document.addEventListener('DOMContentLoaded', async () => {
       const h1 = document.querySelector('main h1');
       const pageName = h1 ? h1.textContent.trim() : (document.title || 'Page');
 
-      // Construit le fil d'ariane
+      // Construit le fil d'ariane (classes CSS, pas de styles inline)
       const nav = document.createElement('nav');
       nav.className = 'breadcrumb';
       nav.setAttribute('aria-label', "Fil d’Ariane");
-      nav.style.background = 'var(--color-light-alt)';
-      nav.style.borderBottom = '1px solid var(--color-border)';
-      nav.style.fontSize = '.95rem';
-      nav.style.padding = '.6rem 0';
 
       const container = document.createElement('div');
       container.className = 'container';
 
       const ol = document.createElement('ol');
-      ol.style.listStyle = 'none';
-      ol.style.margin = '0';
-      ol.style.padding = '0';
-      ol.style.display = 'flex';
-      ol.style.flexWrap = 'wrap';
-      ol.style.gap = '.5rem';
+      ol.className = 'breadcrumb-list';
 
       const homeLi = document.createElement('li');
       const homeA = document.createElement('a');
       homeA.href = '/';
       homeA.textContent = 'Accueil';
-      homeA.style.textDecoration = 'none';
-      homeA.style.color = 'var(--color-primary)';
+      homeA.className = 'breadcrumb-link';
       homeLi.appendChild(homeA);
 
       const sep = document.createElement('span');
       sep.textContent = '›';
-      sep.style.opacity = '.6';
-      sep.style.margin = '0 .2rem';
+      sep.className = 'breadcrumb-sep';
 
       const currentLi = document.createElement('li');
       currentLi.textContent = pageName;
-      currentLi.style.color = 'var(--color-text-muted)';
+      currentLi.className = 'breadcrumb-current';
 
       ol.appendChild(homeLi);
       ol.appendChild(sep);
@@ -504,7 +481,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       script.textContent = JSON.stringify(ld);
       document.head.appendChild(script);
     } catch (e) {
-      console.warn('Breadcrumb non initialisé:', e);
+      // non-bloquant
     }
   };
 
@@ -760,6 +737,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupContactLeadCapture();
     // Harmonisation des emails (remplacement Gmail -> contact@bmsventouse.fr)
     replaceLegacyEmail();
+    // PWA: enregistrement du Service Worker (pour PWA=100)
+    setupServiceWorker();
+    // Perf: améliorer le lazy/decoding des images (hors héros)
+    enhanceImages();
 
     // Debug/override consent via query string: ?consent=granted|denied
     try {
@@ -839,7 +820,7 @@ function setupGTM() {
     const meta = document.querySelector('meta[name="gtm-id"]');
     const id = (meta && meta.content || (window.GTM_ID || '')).trim();
     if (!id) {
-      console.warn('GTM ID non défini. Ajoutez <meta name="gtm-id" content="GTM-XXXXXXX"> dans le <head> ou définissez window.GTM_ID.');
+      // Ne pas loguer en production
       return;
     }
     window.dataLayer = window.dataLayer || [];
@@ -848,7 +829,6 @@ function setupGTM() {
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(id);
     document.head.appendChild(s);
-    console.log('✅ GTM chargé avec l’ID', id);
   } catch (e) {
     // non-bloquant
   }
@@ -969,5 +949,35 @@ function replaceLegacyEmail() {
   } catch (_) {
     // non-bloquant
   }
+}
+
+// --------------------------------------------------------------------------
+// PWA: Service Worker registration
+// --------------------------------------------------------------------------
+function setupServiceWorker() {
+  try {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  } catch (_) { /* non-bloquant */ }
+}
+
+// --------------------------------------------------------------------------
+// Perf: améliorer les attributs des images (lazy/decoding) hors héros
+// --------------------------------------------------------------------------
+function enhanceImages() {
+  try {
+    document.querySelectorAll('img').forEach(img => {
+      const inHero = img.closest('.hero-bg');
+      if (!img.hasAttribute('loading') && !inHero) {
+        img.setAttribute('loading', 'lazy');
+      }
+      if (!img.hasAttribute('decoding')) {
+        img.setAttribute('decoding', 'async');
+      }
+    });
+  } catch (_) { /* non-bloquant */ }
 }
 
