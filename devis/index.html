@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- MÉTADONNÉES ESSENTIELLES -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Google Analytics 4 (Consent Mode v2) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'denied',
+      'security_storage': 'granted'
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
+  </script>
+  <!-- Google Tag Manager ID (à renseigner: GTM-XXXXXXX) -->
+  <meta name="gtm-id" content="">
+
+  <!-- SEO -->
+  <title>Calculateur de Devis — Estimation instantanée | BMS Ventouse</title>
+  <meta name="description" content="Obtenez une estimation instantanée pour ventousage, sécurité de plateaux, convoyage et régie. Devis indicatif en 1 minute, puis envoi au contact pour validation.">
+  <link rel="canonical" href="https://www.bmsventouse.fr/devis/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Calculateur de Devis — Estimation instantanée | BMS Ventouse">
+  <meta property="og:description" content="Estimez votre budget: ventousage, sécurité, convoyage, régie. Devis indicatif puis prise de contact rapide.">
+  <meta property="og:url" content="https://www.bmsventouse.fr/devis/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="BMS Ventouse">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculateur de Devis — Estimation instantanée | BMS Ventouse">
+  <meta name="twitter:description" content="Devis indicatif en 1 minute pour vos prestations de tournage.">
+  <meta name="twitter:image" content="https://www.bmsventouse.fr/images/hero-background-custom.jpg">
+
+  <!-- PERFORMANCE & RESSOURCES -->
+  <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/css/style.css">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  <link rel="preload" href="/js/script.js" as="script">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+  <!-- FAVICONS & MANIFESTE -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- DONNÉES STRUCTURÉES -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Calculateur de devis",
+    "name": "Devis indicatif — Logistique de tournage",
+    "description": "Estimation indicatives pour ventousage, sécurité de plateaux, convoyage et régie.",
+    "provider": { "@type": "Organization", "name": "BMS Ventouse", "url": "https://www.bmsventouse.fr" },
+    "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://www.bmsventouse.fr/contact/" }
+  }
+  </script>
+
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<header class="header">
+  <div class="container">
+    <div class="nav">
+      <a href="/" class="logo" aria-label="Retour à l'accueil de BMS Ventouse">
+        <img src="/android-chrome-192x192.png" alt="Logo BMS Ventouse" width="40" height="40">
+        <span class="logo-text"><span class="bms">BMS</span> <span class="ventouse">Ventouse</span></span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <ul id="navLinks" class="nav-links">
+          <li><a href="/" class="nav-link">Accueil</a></li>
+          <li><a href="/services/" class="nav-link">Services</a></li>
+          <li><a href="/realisations/" class="nav-link">Références</a></li>
+          <li><a href="/devis/" class="nav-link active">Devis</a></li>
+          <li><a href="/contact/" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="promo-banner" id="promoBanner">
+    <p><strong>Offre de bienvenue :</strong> -15% à tous les nouveaux clients&nbsp;!</p>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay"></div>
+
+<main id="main-content">
+  <!-- HERO -->
+  <section class="hero">
+    <picture class="hero-bg">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
+      <img src="/images/hero-background-custom.jpg" alt="Calculateur de devis pour prestations logistiques de tournage" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
+    </picture>
+    <div class="hero-overlay">
+      <div class="container animated-item">
+        <h1>Calculateur de Devis — Estimation en 1 minute</h1>
+        <p>Obtenez une estimation indicative pour ventousage, sécurité, convoyage ou régie. Devis final sur mesure après contact.</p>
+        <div class="hero-buttons">
+          <a href="/contact/" class="btn btn-primary">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+              <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
+            </svg>
+            Nous Contacter
+          </a>
+          <a href="https://wa.me/33646005642?text=Bonjour,%20je%20souhaite%20un%20devis%20pour%20une%20prestation." class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512">
+              <path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/>
+            </svg>
+            WhatsApp Direct
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD CAPTURE (Étape 1) -->
+  <section class="section" id="lead-step">
+    <div class="container" id="lead-capture">
+      <h2 class="section-title animated-item">D’abord vos coordonnées</h2>
+      <p class="section-subtitle animated-item">Après envoi du formulaire ci-dessous, le calculateur de devis s’ouvrira.</p>
+
+      <form id="leadForm" name="quote_lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/devis/?success=1" class="services-grid animated-item">
+        <input type="hidden" name="form-name" value="quote_lead">
+        <p class="visually-hidden"><label>Ne pas remplir si humain: <input name="bot-field"></label></p>
+
+        <div class="service-card">
+          <h3>Vos coordonnées</h3>
+          <label for="lead_fullname">Nom et Prénom</label>
+          <input id="lead_fullname" name="fullname" type="text" required aria-required="true" autocomplete="name">
+          <label for="lead_company" style="margin-top:.6rem;">Boîte de production (optionnel)</label>
+          <input id="lead_company" name="company" type="text" autocomplete="organization">
+          <label for="lead_email" style="margin-top:.6rem;">Email</label>
+          <input id="lead_email" name="email" type="email" required aria-required="true" autocomplete="email">
+          <label for="lead_phone" style="margin-top:.6rem;">Téléphone (optionnel)</label>
+          <input id="lead_phone" name="phone" type="tel" autocomplete="tel">
+          <label for="lead_interest" style="margin-top:.6rem;">Service d’intérêt (optionnel)</label>
+          <select id="lead_interest" name="service_interest">
+            <option value="">Choisir…</option>
+            <option value="ventousage">Ventousage & Autorisations</option>
+            <option value="securite">Sécurité & Gardiennage</option>
+            <option value="convoyage">Convoyage véhicules & décors</option>
+            <option value="regie">Régie & matériel</option>
+            <option value="signalisation">Signalisation & barriérage</option>
+            <option value="affichage">Affichage riverains</option>
+            <option value="loges">Loges & Confort</option>
+            <option value="cantine">Cantine & Catering</option>
+          </select>
+
+          <label for="lead_pack" style="margin-top:.6rem;">Pack souhaité (optionnel)</label>
+          <select id="lead_pack" name="package">
+            <option value="">Sans pack / Au choix</option>
+            <option value="pack_stationnement">Pack Stationnement (Ventousage + Affichage + Signalisation)</option>
+            <option value="pack_securisation">Pack Sécurisation Plateau (Sécurité/Gardiennage + Signalisation)</option>
+            <option value="pack_confort">Pack Confort Tournage (Régie + Loges & Confort + Cantine)</option>
+          </select>
+
+          <label for="lead_urgent" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
+            <input id="lead_urgent" name="urgent" type="checkbox" value="1">
+            Intervention urgente (afficher l’option en étape 2)
+          </label>
+
+          <label for="lead_payment" style="margin-top:.6rem;">Préférence de paiement</label>
+          <select id="lead_payment" name="payment_preference">
+            <option value="">À définir avec le devis</option>
+            <option value="rib">Virement (RIB)</option>
+            <option value="link">Lien de paiement sécurisé</option>
+          </select>
+
+          <label for="lead_consent" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
+            <input id="lead_consent" name="consent" type="checkbox" required aria-required="true">
+            J’accepte l’usage de mes données pour être recontacté (RGPD).
+          </label>
+        </div>
+
+        <div class="service-card" style="display:flex; align-items:center; justify-content:center;">
+          <button type="submit" class="btn btn-primary">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+              <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
+            </svg>
+            Accéder au calculateur
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- CALCULATEUR (Étape 2, après lead) -->
+  <section class="section">
+    <div class="container" id="quote-calculator" style="display:none">
+      <h2 class="section-title animated-item">Estimation Indicative</h2>
+      <p class="section-subtitle animated-item">Renseignez quelques paramètres. Le calcul donne un <strong>ordre de grandeur</strong> (HT), à confirmer via devis final.</p>
+
+      <div class="coverage-note-card animated-item" aria-live="polite" role="status" style="margin-bottom:1rem;">
+        Estimation indicative: <strong id="estimateValue">—</strong> HT
+      </div>
+
+      <form name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/devis/?success=1" class="services-grid animated-item" aria-describedby="estimateValue">
+        <input type="hidden" name="form-name" value="quote">
+        <p class="visually-hidden"><label>Ne pas remplir si humain: <input name="bot-field"></label></p>
+
+        <div class="service-card">
+          <h3>Service</h3>
+          <label for="service">Type de prestation</label>
+          <select id="service" name="service" required aria-required="true">
+            <option value="">Choisir…</option>
+            <option value="ventousage">Ventousage & Autorisations</option>
+            <option value="securite">Sécurité & Gardiennage</option>
+            <option value="convoyage">Convoyage de véhicules & décors</option>
+            <option value="regie">Régie & matériel</option>
+            <option value="signalisation">Signalisation & barriérage</option>
+            <option value="affichage">Affichage riverains</option>
+            <option value="loges">Loges & Confort</option>
+            <option value="cantine">Cantine & Catering</option>
+          </select>
+        </div>
+
+        <div class="service-card">
+          <h3>Durée / Jours</h3>
+          <label for="days">Nombre de jours</label>
+          <input id="days" name="days" type="number" min="1" step="1" value="1" required aria-required="true">
+          <div class="text-muted" style="margin-top:.5rem;">Pour les prestations à la journée.</div>
+        </div>
+
+        <div class="service-card" data-show="ventousage,signalisation,affichage">
+          <h3>Zones / Périmètre</h3>
+          <label for="zones">Nombre de zones/panneaux</label>
+          <input id="zones" name="zones" type="number" min="0" step="1" value="0">
+        </div>
+
+        <div class="service-card" data-show="securite,regie">
+          <h3>Agents</h3>
+          <label for="agents">Nombre d’agents</label>
+          <input id="agents" name="agents" type="number" min="0" step="1" value="0">
+          <label for="hours" style="margin-top:.6rem;">Heures par jour</label>
+          <input id="hours" name="hours" type="number" min="0" step="1" value="8">
+          <label for="ssiappremium" style="display:flex; align-items:center; gap:.5rem; margin-top:.6rem;">
+            <input id="ssiappremium" name="ssiappremium" type="checkbox" value="1">
+            SSIAP / niveau renforcé
+          </label>
+        </div>
+
+        <div class="service-card" data-show="convoyage">
+          <h3>Convoyage</h3>
+          <label for="km">Distance (km estimés)</label>
+          <input id="km" name="km" type="number" min="0" step="1" value="0">
+          <label for="volume" style="margin-top:.6rem;">Volume</label>
+          <select id="volume" name="volume">
+            <option value="moyen">Moyen</option>
+            <option value="grand">Grand (jusqu’à 22 m³)</option>
+          </select>
+        </div>
+
+        <div class="service-card">
+          <h3>Urgence</h3>
+          <label for="urgent" style="display:flex; align-items:center; gap:.5rem;">
+            <input id="urgent" name="urgent" type="checkbox" value="1">
+            Intervention urgente (majoration)
+          </label>
+        </div>
+
+        <!-- Champs cachés pour transmettre l’estimation -->
+        <input type="hidden" id="estimate_min" name="estimate_min" value="">
+        <input type="hidden" id="estimate_max" name="estimate_max" value="">
+
+        <div class="service-card" style="display:flex; align-items:center; justify-content:center;">
+          <button type="submit" class="btn btn-primary">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+              <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
+            </svg>
+            Envoyer ma demande
+          </button>
+        </div>
+      </form>
+
+      <div class="coverage-note-card animated-item" style="margin-top:1rem;">
+        <strong>À noter :</strong> l’estimation est <strong>indicative</strong> et peut varier selon le site, les horaires, les autorisations et la configuration. Un devis détaillé vous est adressé rapidement après analyse.
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">FAQ Devis</h2>
+      <div class="faq-container">
+        <div class="faq-item animated-item"><h3 class="faq-question">L’estimation est-elle engageante ?</h3><div class="faq-answer"><p>Non, elle donne un <strong>ordre de grandeur</strong>. Un devis formel est établi après analyse de votre brief et des contraintes de site.</p></div></div>
+        <div class="faq-item animated-item"><h3 class="faq-question">Pouvez-vous intervenir en urgence ?</h3><div class="faq-answer"><p>Oui, nous gérons les urgences <strong>24/7</strong> selon le périmètre, avec majoration adaptée.</p></div></div>
+        <div class="faq-item animated-item"><h3 class="faq-question">Prise en charge des autorisations ?</h3><div class="faq-answer"><p>Oui, pour <strong>ventousage</strong> nous gérons les démarches administratives, pose/retrait et <strong>affichage riverains</strong> avec photos horodatées.</p></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="/android-chrome-192x192.png" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
+            <div class="footer-brand-text"><span class="footer-bms">BMS</span><span class="footer-ventouse">Ventouse</span></div>
+          </div>
+          <p class="footer-description">Votre partenaire logistique et sécurité pour des productions sereines et efficaces, partout en France.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column"><h4>Navigation</h4><ul><li><a href="/">Accueil</a></li><li><a href="/services/">Services</a></li><li><a href="/realisations/">Références</a></li><li><a href="/devis/">Devis</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+          <div class="footer-column"><h4>Contact Direct</h4><ul><li><a href="tel:+33646005642"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z"/></svg> +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42 (Béna)</a></li><li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512" style="margin-right:8px"><path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/></svg> WhatsApp Direct</a></li><li><a href="mailto:bms.ventouse@gmail.com"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/></svg> bms.ventouse@gmail.com</a></li></ul></div>
+          <div class="footer-column"><h4>Légal</h4><ul><li><a href="/mentions/">Mentions Légales</a></li><li><a href="/llms.txt">Infos IA (llms.txt)</a></li><li><a href="/ai.txt">Infos IA (ai.txt)</a></li><li><a href="/infos-ia/">Infos IA (page)</a></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-content"><p>&copy; 2025 BMS Ventouse. Tous droits réservés.</p></div></div></div>
+</footer>
+
+<script src="/js/script.js" defer></script>
+<script>
+(function(){
+  // Gating: afficher d'abord l'étape Lead puis le calculateur après succès
+  try {
+    const qs = new URLSearchParams(window.location.search);
+    const isSuccess = qs.get('success') === '1';
+    const lead = document.getElementById('lead-capture');
+    const calc = document.getElementById('quote-calculator');
+    if (lead && calc) {
+      lead.style.display = isSuccess ? 'none' : '';
+      calc.style.display = isSuccess ? '' : 'none';
+    }
+    // Si succès, on vérifie l’éligibilité -15% en interrogeant Zoho
+    if (isSuccess && calc) {
+      const email = localStorage.getItem('bms_lead_email') || '';
+      const phone = localStorage.getItem('bms_lead_phone') || '';
+      if (email || phone) {
+        fetch('/.netlify/functions/zoho_check', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, phone })
+        }).then(r => r.json()).then(res => {
+          if (res && res.eligible) {
+            const note = document.createElement('div');
+            note.className = 'coverage-note-card';
+            note.innerHTML = '<strong>Bonne nouvelle :</strong> vous êtes <strong>éligible à -15%</strong> (nouveau client). Remise appliquée sur votre premier devis.';
+            calc.insertBefore(note, calc.firstChild);
+          }
+          try {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'eligibility_checked', eligible_15: !!(res && res.eligible) });
+          } catch(_){}
+        }).catch(()=>{});
+      }
+    }
+  } catch(_){}
+
+  // Envoi vers Zoho au submit du lead (étape 1)
+  try {
+    const leadForm = document.getElementById('leadForm');
+    if (leadForm) {
+      leadForm.addEventListener('submit', () => {
+        try {
+          const payload = {
+            fullname: (document.getElementById('lead_fullname') || {}).value || '',
+            company: (document.getElementById('lead_company') || {}).value || '',
+            email: (document.getElementById('lead_email') || {}).value || '',
+            phone: (document.getElementById('lead_phone') || {}).value || '',
+            service_interest: (document.getElementById('lead_interest') || {}).value || '',
+            package: (document.getElementById('lead_pack') || {}).value || '',
+            urgent: !!((document.getElementById('lead_urgent') || {}).checked),
+            consent: true,
+            source: 'calculator_lead'
+          };
+          // Stocke pour l’étape 2
+          try {
+            localStorage.setItem('bms_calc_interest', payload.service_interest || '');
+            localStorage.setItem('bms_lead_email', payload.email || '');
+            localStorage.setItem('bms_lead_phone', payload.phone || '');
+            localStorage.setItem('bms_lead_urgent', payload.urgent ? '1' : '0');
+            localStorage.setItem('bms_lead_package', payload.package || '');
+            localStorage.setItem('bms_lead_payment', payload.payment_preference || '');
+          } catch(_){}eadForm = document.getElementById('leadForm');
+    if (leadForm) {
+      leadForm.addEventListener('submit', () => {
+        try {
+          const lead_days = parseInt(((document.getElementById('lead_days') || {}).value || '1'), 10);
+          const lead_urgent = !!((document.getElementById('lead_urgent') || {}).checked);
+          const payload = {
+            fullname: (document.getElementById('lead_fullname') || {}).value || '',
+            company: (document.getElementById('lead_company') || {}).value || '',
+            email: (document.getElementById('lead_email') || {}).value || '',
+            phone: (document.getElementById('lead_phone') || {}).value || '',
+            service_interest: (document.getElementById('lead_interest') || {}).value || '',
+            days: lead_days,
+            urgent: lead_urgent,
+            consent: true,
+            source: 'calculator_lead'
+          };
+          // Stocke les préférences pour préremplir l’étape 2
+          try {
+            localStorage.setItem('bms_calc_interest', payload.service_interest || '');
+            localStorage.setItem('bms_calc_days', String(lead_days));
+            localStorage.setItem('bms_calc_urgent', lead_urgent ? '1' : '0');
+            localStorage.setItem('bms_last_email', payload.email || '');
+            localStorage.setItem('bms_last_phone', payload.phone || '');
+          } catch(_){}
+
+          fetch('/.netlify/functions/zoho_lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            keepalive: true
+          }).catch(()=>{});
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'lead_submitted', ...payload });
+        } catch(_){}
+      });
+    }
+  } catch(_){}
+
+  // Affiche un message de succès si ?success=1
+  try {
+    const qs = new URLSearchParams(window.location.search);
+    if (qs.get('success') === '1') {
+      const container = document.querySelector('#quote-calculator');
+      if (container) {
+        const note = document.createElement('div');
+        note.className = 'coverage-note-card';
+        note.setAttribute('role', 'status');
+        note.setAttribute('aria-live', 'polite');
+        note.style.marginBottom = '1rem';
+        note.innerHTML = '<strong>Merci !</strong> Votre demande a été envoyée. Nous vous contactons sous 24–48&nbsp;h.';
+        container.insertBefore(note, container.firstChild);
+      }
+    }
+  } catch (_){}
+
+  const el = document.getElementById('quote-calculator');
+  if (!el) return;
+
+  const form = el.querySelector('form[name="quote"]');
+  const estimateEl = el.querySelector('#estimateValue');
+  const estimateMinInput = el.querySelector('#estimate_min');
+  const estimateMaxInput = el.querySelector('#estimate_max');
+
+  const fields = {
+    service: el.querySelector('#service'),
+    days: el.querySelector('#days'),
+    zones: el.querySelector('#zones'),
+    agents: el.querySelector('#agents'),
+    hours: el.querySelector('#hours'),
+    ssiap: el.querySelector('#ssiappremium'),
+    km: el.querySelector('#km'),
+    volume: el.querySelector('#volume'),
+    urgent: el.querySelector('#urgent')
+  };
+
+  // Config tarifs indicatifs (à ajuster)
+  const PRICING = {
+    ventousage: { baseDay: [300, 500], perZone: [40, 80], urgentFactor: 1.25 },
+    securite:   { perAgentHour: [23, 38], minHoursPerDay: 8, urgentFactor: 1.2, ssiapPremiumPerHour: [3, 6] },
+    convoyage:  { perKm: [1.2, 1.9], perHour: [45, 75], volumePremiumDay: { grand: [50, 120], moyen: [0, 0] } },
+    regie:      { perAgentHour: [28, 45], minHoursPerDay: 8, urgentFactor: 1.15 },
+    signalisation: { basePerimeter: [250, 450], perZone: [30, 60], urgentFactor: 1.20 },
+    affichage:     { basePerimeter: [180, 320], perZone: [20, 40], urgentFactor: 1.15 },
+    loges:         { baseDay: [350, 600], urgentFactor: 1.15 },
+    cantine:       { baseDay: [300, 500], urgentFactor: 1.10 }
+  };
+
+  function showRelevant() {
+    const service = (fields.service.value || '').trim();
+    el.querySelectorAll('[data-show]').forEach(card => {
+      const list = card.getAttribute('data-show') || '';
+      const should = list.split(',').map(s=>s.trim()).includes(service);
+      card.style.display = should ? '' : 'none';
+    });
+  }
+
+  function computeEstimate() {
+    const s = (fields.service.value || '').trim();
+    if (!s || !PRICING[s]) {
+      estimateEl.textContent = '—';
+      estimateMinInput.value = '';
+      estimateMaxInput.value = '';
+      return;
+    }
+
+    const days = Math.max(1, parseInt(fields.days.value || '1', 10));
+    const urgent = !!fields.urgent.checked;
+
+    let min = 0, max = 0;
+
+    switch (s) {
+      case 'ventousage': {
+        const zones = Math.max(0, parseInt(fields.zones.value || '0', 10));
+        const [bdMin, bdMax] = PRICING.ventousage.baseDay;
+        const [pzMin, pzMax] = PRICING.ventousage.perZone;
+        min = days * bdMin + zones * pzMin;
+        max = days * bdMax + zones * pzMax;
+        if (urgent) { min *= PRICING.ventousage.urgentFactor; max *= PRICING.ventousage.urgentFactor; }
+        break;
+      }
+      case 'securite': {
+        const agents = Math.max(0, parseInt(fields.agents.value || '0', 10));
+        const hours = Math.max(PRICING.securite.minHoursPerDay, parseInt(fields.hours.value || String(PRICING.securite.minHoursPerDay), 10));
+        const ssiap = !!fields.ssiap.checked;
+        const [phMin, phMax] = PRICING.securite.perAgentHour;
+        const [ppMin, ppMax] = PRICING.securite.ssiapPremiumPerHour;
+        const baseMin = phMin + (ssiap ? ppMin : 0);
+        const baseMax = phMax + (ssiap ? ppMax : 0);
+        min = days * agents * hours * baseMin;
+        max = days * agents * hours * baseMax;
+        if (urgent) { min *= PRICING.securite.urgentFactor; max *= PRICING.securite.urgentFactor; }
+        break;
+      }
+      case 'convoyage': {
+        const km = Math.max(0, parseFloat(fields.km.value || '0'));
+        const vol = (fields.volume.value || 'moyen').trim();
+        const [pkmMin, pkmMax] = PRICING.convoyage.perKm;
+        const [phMin, phMax] = PRICING.convoyage.perHour;
+        const premium = PRICING.convoyage.volumePremiumDay[vol] || [0,0];
+        min = days * premium[0] + km * pkmMin + days * phMin; // base + km + heures (indicatif)
+        max = days * premium[1] + km * pkmMax + days * phMax;
+        break;
+      }
+      case 'regie': {
+        const agents = Math.max(0, parseInt(fields.agents.value || '0', 10));
+        const hours = Math.max(PRICING.regie.minHoursPerDay, parseInt(fields.hours.value || String(PRICING.regie.minHoursPerDay), 10));
+        const [phMin, phMax] = PRICING.regie.perAgentHour;
+        min = days * agents * hours * phMin;
+        max = days * agents * hours * phMax;
+        if (urgent) { min *= PRICING.regie.urgentFactor; max *= PRICING.regie.urgentFactor; }
+        break;
+      }
+      case 'signalisation': {
+        const zones = Math.max(0, parseInt(fields.zones.value || '0', 10));
+        const [bpMin, bpMax] = PRICING.signalisation.basePerimeter;
+        const [pzMin, pzMax] = PRICING.signalisation.perZone;
+        min = days * bpMin + zones * pzMin;
+        max = days * bpMax + zones * pzMax;
+        if (urgent) { min *= PRICING.signalisation.urgentFactor; max *= PRICING.signalisation.urgentFactor; }
+        break;
+      }
+      case 'affichage': {
+        const zones = Math.max(0, parseInt(fields.zones.value || '0', 10));
+        const [bpMin, bpMax] = PRICING.affichage.basePerimeter;
+        const [pzMin, pzMax] = PRICING.affichage.perZone;
+        min = days * bpMin + zones * pzMin;
+        max = days * bpMax + zones * pzMax;
+        if (urgent) { min *= PRICING.affichage.urgentFactor; max *= PRICING.affichage.urgentFactor; }
+        break;
+      }
+      case 'loges': {
+        const [bdMin, bdMax] = PRICING.loges.baseDay;
+        min = days * bdMin; max = days * bdMax;
+        if (urgent) { min *= PRICING.loges.urgentFactor; max *= PRICING.loges.urgentFactor; }
+        break;
+      }
+      case 'cantine': {
+        const [bdMin, bdMax] = PRICING.cantine.baseDay;
+        min = days * bdMin; max = days * bdMax;
+        if (urgent) { min *= PRICING.cantine.urgentFactor; max *= PRICING.cantine.urgentFactor; }
+        break;
+      }
+    }
+
+    const fmt = (v) => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.max(0, Math.round(v)));
+    estimateEl.textContent = fmt(min) + ' – ' + fmt(max);
+    estimateMinInput.value = String(Math.round(min));
+    estimateMaxInput.value = String(Math.round(max));
+
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'estimate_updated', service: s, estimate_min: Math.round(min), estimate_max: Math.round(max) });
+    } catch(_){}
+  }
+
+  function attachEvents() {
+    ['change', 'input'].forEach(evt => {
+      Object.values(fields).forEach(input => {
+        if (input) input.addEventListener(evt, () => { showRelevant(); computeEstimate(); });
+      });
+    });
+  }
+
+  // Préremplissage du service depuis le lead (localStorage)
+  try {
+    const pref = localStorage.getItem('bms_calc_interest') || '';
+    if (pref && fields.service && fields.service.querySelector('option[value="' + pref + '"]')) {
+      fields.service.value = pref;
+    }
+    // Urgent prérempli depuis l’étape 1
+    const leadUrgent = localStorage.getItem('bms_lead_urgent') === '1';
+    if (fields.urgent) fields.urgent.checked = leadUrgent;
+  } catch (_) {}
+
+  showRelevant();
+  computeEstimate();
+  attachEvents();
+
+  // Nettoyage: on évite les préremplissages involontaires lors de visites ultérieures
+  try { 
+    localStorage.removeItem('bms_calc_interest'); 
+    localStorage.removeItem('bms_lead_urgent');
+    localStorage.removeItem('bms_lead_package');
+  } catch (_) {}
+
+  // Envoi en parallèle vers la fonction Netlify (Zoho CRM) si consentement
+  form.addEventListener('submit', () => {
+    try {
+      const consentEl = form.querySelector('#consent');
+      if (!consentEl || !consentEl.checked) return;
+      const payload = {
+        service: fields.service.value,
+        days: parseInt(fields.days.value || '1', 10),
+        zones: parseInt((fields.zones && fields.zones.value) || '0', 10),
+        agents: parseInt((fields.agents && fields.agents.value) || '0', 10),
+        hours: parseInt((fields.hours && fields.hours.value) || '0', 10),
+        ssiap: !!(fields.ssiap && fields.ssiap.checked),
+        km: parseFloat((fields.km && fields.km.value) || '0'),
+        volume: (fields.volume && fields.volume.value) || '',
+        urgent: !!(fields.urgent && fields.urgent.checked),
+        fullname: (form.querySelector('#fullname') || {}).value || '',
+        company: (form.querySelector('#company') || {}).value || '',
+        email: (form.querySelector('#email') || {}).value || '',
+        phone: (form.querySelector('#phone') || {}).value || '',
+        estimate_min: parseInt(estimateMinInput.value || '0', 10),
+        estimate_max: parseInt(estimateMaxInput.value || '0', 10),
+        consent: true,
+        source: 'calculator'
+      };
+      fetch('/.netlify/functions/zoho_lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(()=>{});
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'estimate_submitted', ...payload });
+    } catch (_) {}
+  });
+})();
+</script>
+</body>
+</html>

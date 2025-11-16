@@ -22,6 +22,8 @@
       gtag('js', new Date());
       gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
     </script>
+    <!-- Google Tag Manager ID (à renseigner: GTM-XXXXXXX) -->
+    <meta name="gtm-id" content="">
 
     <!-- SEO & PARTAGE (OPEN GRAPH) - Optimisé pour la page d'accueil -->
     <title>BMS Ventouse | Expert Logistique pour Tournages en France</title>
@@ -74,8 +76,7 @@
     <!-- Preload de l'image héros pour optimiser le LCP -->
     <link rel="preload" as="image" href="/images/hero-background-custom.jpg">
     <!-- Font Awesome pour les icônes -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <!-- Supprimé Font Awesome CSS sur la page d'accueil pour améliorer FCP/TBT et éviter le chargement de polices -->
 
     <!-- FAVICONS & MANIFESTE -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -165,7 +166,8 @@
       },
       "sameAs": [
         "https://www.linkedin.com/company/bms-ventouse",
-        "https://www.facebook.com/bmsventouse"
+        "https://www.facebook.com/bmsventouse",
+        "https://www.instagram.com/bmsventouse/"
       ],
       "foundingDate": "2020",
       "slogan": "Votre partenaire logistique pour tournages en France"
@@ -243,6 +245,7 @@
     </script>
 </head>
 <body class="page-accueil">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
@@ -269,6 +272,7 @@
           <li><a href="/" class="nav-link active">Accueil</a></li>
           <li><a href="/services/" class="nav-link">Services</a></li>
           <li><a href="/realisations/" class="nav-link">Références</a></li>
+          <li><a href="/devis/" class="nav-link">Devis</a></li>
           <li><a href="/contact/" class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -291,10 +295,20 @@
     <!-- Section Héros -->
     <section id="hero-home" class="hero">
         <picture class="hero-bg">
-            <!-- Image Héros personnalisée : rue parisienne neutralisée avec cônes, de nuit -->
-            <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-            <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-            <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain" loading="eager" fetchpriority="high" width="1920" height="1080">
+            <!-- Variantes responsive générées en build (WebP + JPG) -->
+            <source type="image/webp"
+                    srcset="/images/hero-background-custom-640.webp 640w,
+                            /images/hero-background-custom-960.webp 960w,
+                            /images/hero-background-custom-1280.webp 1280w,
+                            /images/hero-background-custom-1920.webp 1920w"
+                    sizes="100vw">
+            <source type="image/jpeg"
+                    srcset="/images/hero-background-custom-640.jpg 640w,
+                            /images/hero-background-custom-960.jpg 960w,
+                            /images/hero-background-custom-1280.jpg 1280w,
+                            /images/hero-background-custom-1920.jpg 1920w"
+                    sizes="100vw">
+            <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">
@@ -514,7 +528,9 @@
 
 <!-- Bouton Retour en haut -->
 <a href="#" class="back-to-top" aria-label="Retour en haut de la page">
-    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512">
+      <path d="M201.4 107.7L7 302.1c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0L224 220.1l160.5 160.5c9.4 9.4 24.6 9.4 33.9 0l22.6-22.6c9.4-9.4 9.4-24.6 0-33.9L246.6 107.7c-9.4-9.4-24.6-9.4-33.2 0z"/>
+    </svg>
 </a>
 
 <!-- Bouton Flottant WhatsApp -->
@@ -572,16 +588,13 @@
                             <!-- Numéro unique de Béna mis en avant -->
                             <li>
                                 <a href="tel:+33646005642">
-                                    <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                                    <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px">
+                                      <path d="M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z"/>
+                                    </svg>
                                     +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42 (Béna)
                                 </a>
                             </li>
-                            <li>
-                                <a href="tel:+33640982156">
-                                    <i class="fas fa-phone-alt" aria-hidden="true"></i>
-                                    +33&nbsp;6&nbsp;40&nbsp;98&nbsp;21&nbsp;56 (Yann)
-                                </a>
-                            </li>
+                            
                             <!-- Contact WhatsApp direct -->
                             <li>
                                 <a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer">
@@ -592,16 +605,26 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="mailto:bms.ventouse@gmail.com">
+                                <a href="mailto:contact@bmsventouse.fr">
                                     <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
                                       <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
                                     </svg>
-                                    bms.ventouse@gmail.com
+                                    contact@bmsventouse.fr
                                 </a>
                             </li>
                             <!-- NAP visible pour SEO local -->
-                            <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 10&nbsp;Rue de la République, 93700&nbsp;Drancy</li>
-                            <li><i class="fas fa-clock" aria-hidden="true"></i> Disponible&nbsp;24/7</li>
+                            <li>
+                                <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 384 512" style="margin-right:8px">
+                                  <path d="M168 0C75 0 0 75 0 168c0 87.1 151.6 302.4 160 314.3 5.8 8.3 17.2 8.3 23 0C232.4 470.4 384 255.1 384 168 384 75 309 0 216 0h-48zm24 240a72 72 0 1 1 0-144 72 72 0 1 1 0 144z"/>
+                                </svg>
+                                10&nbsp;Rue de la République, 93700&nbsp;Drancy
+                            </li>
+                            <li>
+                                <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px">
+                                  <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm36 120v120c0 6.6-5.4 12-12 12h-120c-6.6 0-12-5.4-12-12v-16c0-6.6 5.4-12 12-12h84V128c0-6.6 5.4-12 12-12h16c6.6 0 12 5.4 12 12z"/>
+                                </svg>
+                                Disponible&nbsp;24/7
+                            </li>
                         </ul>
                     </div>
                     <div class="footer-column">

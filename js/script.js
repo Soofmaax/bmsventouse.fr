@@ -365,13 +365,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   // MODULE: ÉVÉNEMENTS ANALYTICS (GA4)
   // --------------------------------------------------------------------------
   const setupAnalyticsEvents = () => {
-    if (typeof gtag !== 'function') return;
-
+    // Envoi GA4 direct + dataLayer pour GTM
     const track = (eventName, params) => {
+      const p = params || {};
       try {
-        gtag('event', eventName, params || {});
+        if (typeof gtag === 'function') {
+          gtag('event', eventName, p);
+        }
+        if (Array.isArray(window.dataLayer)) {
+          window.dataLayer.push({ event: eventName, ...p });
+        }
       } catch (e) {
-        // Pas d'erreur bloquante
+        // non-bloquant
       }
     };
 
@@ -510,7 +515,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const navLinks = document.getElementById('navLinks');
     if (!navLinks) return;
 
-    // Crée l'item de sous-menu
+    // Crée uniquement l'item et le bouton au chargement
     const li = document.createElement('li');
     li.className = 'has-submenu';
 
@@ -524,141 +529,147 @@ document.addEventListener('DOMContentLoaded', async () => {
     const submenu = document.createElement('ul');
     submenu.className = 'nav-submenu';
 
-    // Récupère et parse le sitemap
-    let urls = [];
-    try {
-      const res = await fetch('/sitemap.xml', { cache: 'no-store' });
-      const xml = await res.text();
-      const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)];
-      urls = matches.map(m => m[1].trim()).filter(Boolean);
-    } catch (e) {
-      console.warn('Sitemap non récupéré, sous-menu non généré:', e);
-      return;
-    }
+    // Construction paresseuse du contenu au premier clic pour réduire la taille du DOM initial
+    let built = false;
+    const buildSubmenu = async () => {
+      if (built) return;
+      built = true;
 
-    // Utils
-    const seen = new Set();
-    const normalizePath = (p) => (p || '').replace(/\/+$/, '/') || '/';
-    const slugToTitle = (url) => {
+      // Récupère et parse le sitemap
+      let urls = [];
       try {
-        const u = new URL(url);
-        let path = u.pathname.replace(/\/$/, '');
-        if (path === '' || path === '/') return 'Accueil';
-        const parts = path.split('/').filter(Boolean);
-        const slug = parts.pop();
-        return slug
-          .replace(/-/g, ' ')
-          .replace(/\b\w/g, c => c.toUpperCase());
-      } catch {
-        return url;
+        const res = await fetch('/sitemap.xml', { cache: 'no-store' });
+        const xml = await res.text();
+        const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)];
+        urls = matches.map(m => m[1].trim()).filter(Boolean);
+      } catch (e) {
+        console.warn('Sitemap non récupéré, sous-menu non généré:', e);
+        return;
       }
-    };
 
-    // Groupes
-    const groups = {
-      'Services': [],
-      'Ventousage': [],
-      'Sécurité': [],
-      'Villes': [],
-      'Autres': []
-    };
-
-    // Listes/regex pour classer
-    const servicePaths = new Set([
-      '/services/',
-      '/affichage-riverains/',
-      '/signalisation-barrierage/',
-      '/convoyage-vehicules-decors/',
-      '/regie-materiel/',
-      '/transport-materiel-audiovisuel-paris/',
-      '/gardiennage/'
-    ]);
-
-    const ventousagePaths = new Set([
-      '/ventousage/',
-      '/ventousage-cinema/',
-      '/definition-ventousage/',
-      '/autorisation-occupation-domaine-public-tournage-paris/'
-    ]);
-
-    const reVilleVentousage = /^\/ventousage-[^/]+\/$/;
-    const reLogistiqueDept = /^\/logistique-(seine-saint-denis|seine-et-marne|val-d-oise)\/$/;
-    const reSecurite = /^\/securite-(plateaux|tournage-[^/]+)\/$/;
-
-    // Classement
-    urls.forEach(url => {
-      try {
-        const u = new URL(url);
-        // Accepte apex et sous-domaine www comme équivalents
-        const hostA = (u.hostname || '').replace(/^www\./, '');
-        const hostB = (window.location.hostname || '').replace(/^www\./, '');
-        if (hostA && hostB && hostA !== hostB) return;
-        const path = normalizePath(u.pathname);
-        if (seen.has(path)) return;
-        seen.add(path);
-
-        const label = slugToTitle(url);
-        const item = { path, label };
-
-        // Ordre de priorité pour éviter doubles classements
-        if (reVilleVentousage.test(path) || reLogistiqueDept.test(path)) {
-          groups['Villes'].push(item);
-        } else if (reSecurite.test(path)) {
-          groups['Sécurité'].push(item);
-        } else if (ventousagePaths.has(path)) {
-          groups['Ventousage'].push(item);
-        } else if (servicePaths.has(path)) {
-          groups['Services'].push(item);
-        } else {
-          groups['Autres'].push(item);
+      // Utils
+      const seen = new Set();
+      const normalizePath = (p) => (p || '').replace(/\/+$/, '/') || '/';
+      const slugToTitle = (url) => {
+        try {
+          const u = new URL(url);
+          let path = u.pathname.replace(/\/$/, '');
+          if (path === '' || path === '/') return 'Accueil';
+          const parts = path.split('/').filter(Boolean);
+          const slug = parts.pop();
+          return slug
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase());
+        } catch {
+          return url;
         }
-      } catch (_) { /* noop */ }
-    });
+      };
 
-    // Tri alphabétique par label dans chaque groupe
-    Object.keys(groups).forEach(k => {
-      groups[k].sort((a, b) => a.label.localeCompare(b.label, 'fr', { sensitivity: 'base' }));
-    });
+      // Groupes
+      const groups = {
+        'Services': [],
+        'Ventousage': [],
+        'Sécurité': [],
+        'Villes': [],
+        'Autres': []
+      };
 
-    // Rendu des groupes (n'affiche pas un groupe vide)
-    const order = ['Services', 'Ventousage', 'Sécurité', 'Villes', 'Autres'];
-    order.forEach(groupName => {
-      const items = groups[groupName];
-      if (!items || items.length === 0) return;
+      // Listes/regex pour classer
+      const servicePaths = new Set([
+        '/services/',
+        '/affichage-riverains/',
+        '/signalisation-barrierage/',
+        '/convoyage-vehicules-decors/',
+        '/regie-materiel/',
+        '/transport-materiel-audiovisuel-paris/',
+        '/gardiennage/'
+      ]);
 
-      const groupLi = document.createElement('li');
-      groupLi.className = 'nav-submenu-group';
+      const ventousagePaths = new Set([
+        '/ventousage/',
+        '/ventousage-cinema/',
+        '/definition-ventousage/',
+        '/autorisation-occupation-domaine-public-tournage-paris/'
+      ]);
 
-      const title = document.createElement('span');
-      title.className = 'group-title';
-      title.textContent = groupName;
+      const reVilleVentousage = /^\/ventousage-[^/]+\/$/;
+      const reLogistiqueDept = /^\/logistique-(seine-saint-denis|seine-et-marne|val-d-oise)\/$/;
+      const reSecurite = /^\/securite-(plateaux|tournage-[^/]+)\/$/;
 
-      const groupUl = document.createElement('ul');
-      groupUl.className = 'group-list';
+      // Classement
+      urls.forEach(url => {
+        try {
+          const u = new URL(url);
+          const hostA = (u.hostname || '').replace(/^www\./, '');
+          const hostB = (window.location.hostname || '').replace(/^www\./, '');
+          if (hostA && hostB && hostA !== hostB) return;
+          const path = normalizePath(u.pathname);
+          if (seen.has(path)) return;
+          seen.add(path);
 
-      items.forEach(({ path, label }) => {
-        const liItem = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = path;
-        a.className = 'nav-submenu-link';
-        a.textContent = label;
-        liItem.appendChild(a);
-        groupUl.appendChild(liItem);
+          const label = slugToTitle(url);
+          const item = { path, label };
+
+          if (reVilleVentousage.test(path) || reLogistiqueDept.test(path)) {
+            groups['Villes'].push(item);
+          } else if (reSecurite.test(path)) {
+            groups['Sécurité'].push(item);
+          } else if (ventousagePaths.has(path)) {
+            groups['Ventousage'].push(item);
+          } else if (servicePaths.has(path)) {
+            groups['Services'].push(item);
+          } else {
+            groups['Autres'].push(item);
+          }
+        } catch (_) { /* noop */ }
       });
 
-      groupLi.appendChild(title);
-      groupLi.appendChild(groupUl);
-      submenu.appendChild(groupLi);
-    });
+      // Tri alphabétique
+      Object.keys(groups).forEach(k => {
+        groups[k].sort((a, b) => a.label.localeCompare(b.label, 'fr', { sensitivity: 'base' }));
+      });
 
-    // Gestion ouverture/fermeture
-    const toggle = (open) => {
+      // Rendu
+      const order = ['Services', 'Ventousage', 'Sécurité', 'Villes', 'Autres'];
+      order.forEach(groupName => {
+        const items = groups[groupName];
+        if (!items || items.length === 0) return;
+
+        const groupLi = document.createElement('li');
+        groupLi.className = 'nav-submenu-group';
+
+        const title = document.createElement('span');
+        title.className = 'group-title';
+        title.textContent = groupName;
+
+        const groupUl = document.createElement('ul');
+        groupUl.className = 'group-list';
+
+        items.forEach(({ path, label }) => {
+          const liItem = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = path;
+          a.className = 'nav-submenu-link';
+          a.textContent = label;
+          liItem.appendChild(a);
+          groupUl.appendChild(liItem);
+        });
+
+        groupLi.appendChild(title);
+        groupLi.appendChild(groupUl);
+        submenu.appendChild(groupLi);
+      });
+    };
+
+    const toggle = async (open) => {
+      if (open) await buildSubmenu();
       li.classList.toggle('open', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     };
-    btn.addEventListener('click', () => {
+
+    btn.addEventListener('click', async () => {
       const isOpen = li.classList.contains('open');
-      toggle(!isOpen);
+      await toggle(!isOpen);
     });
     document.addEventListener('click', (e) => {
       if (!li.contains(e.target)) toggle(false);
@@ -741,6 +752,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     await setupAllPagesSubmenu();
     setupScrollProgress();
     loadClarityIfConsented();
+    // Google Tag Manager (GTM) - chargement dynamique si un ID est fourni
+    setupGTM();
+    // Message de succès pour le formulaire Contact (?success=1)
+    setupContactSuccessNotice();
+    // Capture des leads du formulaire Contact vers Zoho (non bloquant)
+    setupContactLeadCapture();
+    // Harmonisation des emails (remplacement Gmail -> contact@bmsventouse.fr)
+    replaceLegacyEmail();
 
     // Debug/override consent via query string: ?consent=granted|denied
     try {
@@ -809,5 +828,146 @@ function setupHeroParallax() {
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Google Tag Manager (GTM) — chargement dynamique
+// --------------------------------------------------------------------------
+function setupGTM() {
+  try {
+    // Récupère l'ID GTM depuis une meta tag ou variable globale (window.GTM_ID)
+    const meta = document.querySelector('meta[name="gtm-id"]');
+    const id = (meta && meta.content || (window.GTM_ID || '')).trim();
+    if (!id) {
+      console.warn('GTM ID non défini. Ajoutez <meta name="gtm-id" content="GTM-XXXXXXX"> dans le <head> ou définissez window.GTM_ID.');
+      return;
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(id);
+    document.head.appendChild(s);
+    console.log('✅ GTM chargé avec l’ID', id);
+  } catch (e) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Message de succès sur /contact/ après soumission Netlify (?success=1)
+// --------------------------------------------------------------------------
+function setupContactSuccessNotice() {
+  try {
+    const qs = new URLSearchParams(window.location.search);
+    const isSuccess = qs.get('success') === '1';
+    if (!isSuccess) return;
+
+    // Trouve le formulaire contact OU devis et son conteneur
+    const form = document.querySelector('form[name="contact"], form[name="quote"]');
+    const container = form ? form.closest('.container') : document.querySelector('main .container');
+    if (!container) return;
+
+    const note = document.createElement('div');
+    note.className = 'coverage-note-card';
+    note.setAttribute('role', 'status');
+    note.setAttribute('aria-live', 'polite');
+    note.style.marginBottom = '1rem';
+    note.innerHTML = '<strong>Merci !</strong> Votre demande a été envoyée. Nous revenons vers vous sous 24–48&nbsp;h ouvrées. Vous pouvez aussi nous joindre directement au <a href="tel:+33646005642">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</a>.';
+
+    container.insertBefore(note, container.firstChild);
+  } catch (e) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Capture du formulaire Contact vers Zoho CRM (non bloquant)
+// --------------------------------------------------------------------------
+function setupContactLeadCapture() {
+  try {
+    const form = document.querySelector('form[name="contact"]');
+    if (!form) return;
+    form.addEventListener('submit', () => {
+      try {
+        const payload = {
+          fullname: (document.getElementById('name') || {}).value || '',
+          role: (document.getElementById('role') || {}).value || '',
+          company: (document.getElementById('company') || {}).value || '',
+          email: (document.getElementById('email') || {}).value || '',
+          phone: (document.getElementById('phone') || {}).value || '',
+          service: (document.getElementById('service') || {}).value || '',
+          package: (document.getElementById('package') || {}).value || '',
+          location: (document.getElementById('location') || {}).value || '',
+          address: (document.getElementById('address') || {}).value || '',
+          schedule: (document.getElementById('schedule') || {}).value || '',
+          urgent: !!((document.getElementById('urgent') || {}).checked),
+          date_start: (document.getElementById('date_start') || {}).value || '',
+          date_end: (document.getElementById('date_end') || {}).value || '',
+          payment_preference: (document.getElementById('payment') || {}).value || '',
+          budget: (document.getElementById('budget') || {}).value || '',
+          details: (document.getElementById('details') || {}).value || '',
+          consent: !!((document.getElementById('consent') || {}).checked),
+          source: 'contact_form'
+        };
+        // On stocke email/phone pour le check d’éligibilité -15% côté /devis/ si l’utilisateur y va ensuite
+        try {
+          localStorage.setItem('bms_lead_email', payload.email || '');
+          localStorage.setItem('bms_lead_phone', payload.phone || '');
+        } catch (_){}
+
+        fetch('/.netlify/functions/zoho_lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(()=>{});
+
+        try {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'contact_submitted', ...payload });
+        } catch(_){}
+      } catch (_){}
+    });
+  } catch (_) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// UTIL: Remplacer l'ancien email Gmail par le nouveau email pro
+// --------------------------------------------------------------------------
+function replaceLegacyEmail() {
+  try {
+    const OLD = 'bms.ventouse@gmail.com';
+    const NEW = 'contact@bmsventouse.fr';
+    // Remplace les liens mailto
+    document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+      try {
+        const href = a.getAttribute('href') || '';
+        if (href.toLowerCase().includes(OLD)) {
+          a.setAttribute('href', `mailto:${NEW}`);
+        }
+        // Met à jour le texte visible si l'ancien email est affiché
+        if ((a.textContent || '').includes(OLD)) {
+          a.textContent = (a.textContent || '').replaceAll(OLD, NEW);
+        }
+      } catch(_){}
+    });
+    // Remplace occurrences textuelles basiques dans des spans/p/li (non destructif)
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    const toChange = [];
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (node.nodeValue && node.nodeValue.includes(OLD)) {
+        toChange.push(node);
+      }
+    }
+    toChange.forEach(node => {
+      node.nodeValue = node.nodeValue.replaceAll(OLD, NEW);
+    });
+  } catch (_) {
+    // non-bloquant
+  }
 }
 

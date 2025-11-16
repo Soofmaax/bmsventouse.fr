@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>BMS Ventouse — Couverture LinkedIn (1128×191) safe area</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Police Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#FF8C42;
+      --primary-dark:#e67e22;
+      --primary-light:#FFAA70;
+      --ink:#2c3e50;
+      --muted:#566573;
+      --bg:#ffffff;
+    }
+    html,body{height:100%}
+    body{
+      margin:0; background:#f0f0f0; color:var(--ink);
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+      display:grid; place-items:center;
+    }
+    .canvas{
+      width:1128px; height:191px; position:relative; overflow:hidden; background:#fff; border:1px solid #eee;
+    }
+    .accent{
+      position:absolute; left:-60px; top:-60px; width:280px; height:280px;
+      background: radial-gradient(closest-side at 80px 80px, var(--primary-light) 0%, var(--primary) 60%, transparent 100%);
+      opacity:.22;
+    }
+    .safe{
+      position:absolute; inset:10px 120px; border:2px dashed rgba(44,62,80,.25); border-radius:14px; pointer-events:none;
+    }
+    .content{
+      position:relative; z-index:2; height:100%; padding:14px 40px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; margin-bottom:4px; font-weight:800; font-size:28px; color:var(--ink);}
+    .brand .bms{ color:var(--primary);}
+    .tagline{ font-size:16px; font-weight:700; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="canvas" aria-label="Couverture LinkedIn 1128×191 — safe area visible">
+    <div class="accent"></div>
+    <div class="safe" aria-hidden="true"></div>
+    <div class="content">
+      <div class="brand">
+        <span class="bms">BMS</span><span> Ventouse</span>
+      </div>
+      <div class="tagline">Logistique de tournage — Paris & France — 24/7 — Devis gratuit</div>
+    </div>
+  </div>
+
+  <!-- Export PNG auto -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    (async function(){
+      if (document.fonts && document.fonts.ready) { try{ await document.fonts.ready; }catch(e){} }
+      await new Promise(r=>setTimeout(r,150));
+      const node=document.querySelector('.canvas');
+      const canvas=await html2canvas(node,{backgroundColor:'#ffffff',scale:1,useCORS:false,allowTaint:true});
+      const name='bms-ventouse-linkedin-cover-1128x191.png';
+      function dl(url){const a=document.createElement('a');a.href=url;a.download=name;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>{document.body.removeChild(a);if(!document.hasFocus())window.open(url,'_blank')},120)}
+      if(canvas.toBlob){canvas.toBlob(b=>{if(!b){dl(canvas.toDataURL('image/png'));return;}const url=URL.createObjectURL(b);dl(url);setTimeout(()=>URL.revokeObjectURL(url),800);},'image/png');}
+      else{dl(canvas.toDataURL('image/png'))}
+    })();
+  </script>
+</body>
+</html>

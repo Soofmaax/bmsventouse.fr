@@ -62,7 +62,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- FontAwesome & Google Fonts en mode feuille de style simple : -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome retiré; SVG inline utilisés pour améliorer performances et visibilité des icônes -->
     <!-- JS principal préchargé si besoin -->
     <link rel="preload" href="/js/script.js" as="script">
     <!-- Favicon & manifeste -->
@@ -98,7 +98,7 @@
           "@type": "ContactPoint",
           "telephone": "+33646005642",
           "contactType": "customer service",
-          "email": "bms.ventouse@gmail.com"
+          "email": "contact@bmsventouse.fr"
         },
         "knowsAbout": ["Logistique audiovisuelle", "Ventousage", "Sécurité de plateau"],
         "sameAs": ["https://www.bmsventouse.fr"]
@@ -193,7 +193,7 @@
                 <p><strong>SIRET :</strong> 93198138500015</p>
                 <p><strong>RCS :</strong> Bobigny 931 981 385</p>
                 <p><strong>Responsable de la publication :</strong> CHELDA Béna, en sa qualité de Président</p>
-                <p><strong>Contact :</strong> <a href="mailto:bms.ventouse@gmail.com">bms.ventouse@gmail.com</a> ou par téléphone au <a href="tel:+33646005642">+33 6 46 00 56 42</a></p>
+                <p><strong>Contact :</strong> <a href="mailto:contact@bmsventouse.fr">contact@bmsventouse.fr</a> ou par téléphone au <a href="tel:+33646005642">+33 6 46 00 56 42</a></p>
             </article>
 
             <article id="hosting" class="legal-section" role="region" aria-labelledby="hosting-title">
@@ -236,7 +236,12 @@
             <h2 class="cta-title">Besoin d'un renseignement ?</h2>
             <p class="cta-subtitle">Notre équipe est à votre disposition pour toute question sur nos services ou nos conditions.</p>
             <div class="hero-buttons">
-                <a href="/contact/" class="btn btn-primary"><i class="fas fa-envelope" aria-hidden="true"></i> Nous Contacter</a>
+                <a href="/contact/" class="btn btn-primary">
+                    <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+                      <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
+                    </svg>
+                    Nous Contacter
+                </a>
             </div>
         </div>
     </section>
@@ -245,7 +250,9 @@
 
 <!-- Bouton Retour en haut -->
 <a href="#" class="back-to-top" aria-label="Retour en haut de la page">
-    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512">
+      <path d="M201.4 107.7L7 302.1c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0L224 220.1l160.5 160.5c9.4 9.4 24.6 9.4 33.9 0l22.6-22.6c9.4-9.4 9.4-24.6 0-33.9L246.6 107.7c-9.4-9.4-24.6-9.4-33.2 0z"/>
+    </svg>
 </a>
 
 <!-- PIED DE PAGE -->
@@ -276,10 +283,10 @@
                         <h4>Contact Direct</h4>
                         <ul>
                             <!-- Numéro unique de Béna mis en avant -->
-                            <li><a href="tel:+33646005642"><i class="fas fa-phone-alt" aria-hidden="true"></i> +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42 (Béna)</a></li>
+                            <li><a href="tel:+33646005642"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z"/></svg> +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42 (Béna)</a></li>
                             <!-- Contact WhatsApp direct -->
-                            <li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp Direct</a></li>
-                            <li><a href="mailto:bms.ventouse@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> bms.ventouse@gmail.com</a></li>
+                            <li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512" style="margin-right:8px"><path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/></svg> WhatsApp Direct</a></li>
+                            <li><a href="mailto:bms.ventouse@gmail.com"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/></svg> bms.ventouse@gmail.com</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
