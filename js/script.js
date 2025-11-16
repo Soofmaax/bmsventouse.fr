@@ -957,6 +957,9 @@ function replaceLegacyEmail() {
 function setupServiceWorker() {
   try {
     if ('serviceWorker' in navigator) {
+      // N'enregistre pas le SW en local/CI (http://localhost) pour éviter d'interférer avec les tests (Pa11y/Lighthouse)
+      const isLocal = (location.protocol !== 'https:') || /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+      if (isLocal) return;
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch(() => {});
       });
