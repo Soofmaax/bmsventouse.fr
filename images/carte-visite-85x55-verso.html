@@ -36,7 +36,7 @@
     .accent {
       position: absolute;
       left: -24mm;  /* harmonisation A5: accent à gauche */
-      bottom: -24mm;
+      top: -24mm;
       width: 90mm;
       height: 90mm;
       transform: rotate(35deg);
@@ -75,6 +75,47 @@
       line-height: 1.5;
     }
 
+    /* Harmonisation avec le recto */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 2.5mm;
+      font-weight: 800;
+      font-size: 6mm;
+      color: var(--ink);
+      margin-bottom: 2mm;
+    }
+    .logo {
+      width: 10mm; height: 10mm;
+      border-radius: 2mm;
+      background: #fff;
+      object-fit: cover;
+      box-shadow: none;
+    }
+    .bms { color: var(--primary); }
+    .tagline {
+      font-size: 3.4mm;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 3mm;
+    }
+    .contact-top {
+      display: flex;
+      gap: 2mm;
+      flex-wrap: wrap;
+      margin-top: 2mm;
+    }
+    .chip {
+      display: inline-block;
+      background: rgba(44,62,80,0.06);
+      color: var(--ink);
+      border: 0.4mm solid rgba(44,62,80,0.12);
+      border-radius: 50mm;
+      padding: 1mm 2.2mm;
+      font-size: 3.2mm;
+      font-weight: 700;
+    }
+
     /* Traits de coupe */
     :root { --crop: 4mm; --crop-w: 0.25mm; }
     .tl,.tr,.bl,.br { position:absolute; width:0; height:0; }
@@ -110,13 +151,16 @@
 
     <div class="trim">
       <div class="safe">
-        <div style="display:flex; justify-content: space-between; align-items: center; gap: 4mm;">
-          <div>
-            <div class="title">Devis • Contact direct</div>
-            <div class="list">
-              Tél. : +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42<br>
-              Site : bmsventouse.fr
-            </div>
+        <div class="brand">
+          <span class="logo"><img src="/android-chrome-512x512.png" alt="Logo BMS Ventouse" style="width:100%;height:100%;object-fit:contain;border-radius:2mm;"></span>
+          <span class="bms">BMS</span><span>&nbsp;Ventouse</span>
+        </div>
+        <div class="tagline">Ventousage • Sécurité • Convoyage • Régie</div>
+
+        <div style="display:flex; align-items:center; gap: 4mm;">
+          <div class="contact-top">
+            <span class="chip">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</span>
+            <span class="chip">bmsventouse.fr</span>
           </div>
           <div class="qr-placeholder" aria-label="Emplacement QR code">QR</div>
         </div>
