@@ -1828,12 +1828,14 @@ body.dark-theme .header {
 }
 
 .service-card-visual-content ul li::before {
-  content: "\f058";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  content: "";
   position: absolute;
   left: 0;
-  color: var(--color-primary);
+  top: 0.45rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
 /* Cartes de références améliorées */
@@ -1911,12 +1913,14 @@ body.dark-theme .header {
 }
 
 .reference-card-content ul.challenge-list li::before {
-  content: "\f00c";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  content: "";
   position: absolute;
   left: 0;
-  color: var(--color-primary);
+  top: 0.45rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
 /* Présentation des clauses légales sous forme de cartes (Mentions Légales) */
@@ -1972,12 +1976,14 @@ body.dark-theme .header {
 }
 
 .benefits-list li::before {
-  content: "\f058";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  content: "";
   position: absolute;
   left: 0;
-  color: var(--color-primary);
+  top: 0.45rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
 /* Bouton Retour en haut (Back to Top) */
@@ -2050,18 +2056,20 @@ body.dark-theme .header {
 }
 
 .faq-question::after {
-  content: "\f107";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  content: "";
   position: absolute;
   right: 1rem;
   top: 50%;
-  transform: translateY(-50%);
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
   transition: transform 0.3s;
 }
 
 .faq-item.is-open .faq-question::after {
-  transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(-135deg);
 }
 
 .faq-item.is-open .faq-question {
