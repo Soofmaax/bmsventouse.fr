@@ -42,7 +42,7 @@
       transform: rotate(35deg);
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       filter: drop-shadow(0 2mm 5mm rgba(0,0,0,0.2));
-      opacity: .95;
+      opacity: .25;
     }
 
     .trim { position:absolute; left:var(--bleed); top:var(--bleed); width:var(--width); height:var(--height); }
@@ -61,6 +61,13 @@
       align-items: center;
     }
     .sep { flex:1; height: 1mm; background: var(--primary); border-radius: 1mm; opacity: .95; }
+    .qr-placeholder {
+      width: 28mm; height: 28mm;
+      border: 0.7mm dashed rgba(44,62,80,0.35);
+      border-radius: 2mm;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: var(--muted);
+    }
 
     /* Traits de coupe */
     :root { --crop: 4mm; --crop-w: 0.25mm; }
@@ -97,18 +104,21 @@
 
     <div class="trim">
       <div class="safe">
-        <div class="title">Prestations clés</div>
-        <div class="list">
-          Ventousage & AOT • Panneaux B6/BK6A<br>
-          Affichage riverains • Jalonnage & barriérage<br>
-          Sécurité de plateaux • Gardiennage • SSIAP<br>
-          Convoyage véhicules & décors • Régie & matériel
+        <div style="display:flex; justify-content: space-between; align-items: center; gap: 4mm;">
+          <div>
+            <div class="title">Devis • Contact direct</div>
+            <div class="list">
+              Tél. : +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42<br>
+              Site : bmsventouse.fr
+            </div>
+          </div>
+          <div class="qr-placeholder" aria-label="Emplacement QR code">QR</div>
         </div>
 
         <div class="contact" style="margin-top: 6mm;">
-          <span>+33 6 46 00 56 42 • contact@bmsventouse.fr • bmsventouse.fr/contact</span>
-          <span class="sep"></span>
           <span>@bmsventouse</span>
+          <span class="sep"></span>
+          <span>Paris &amp; France • 24/7</span>
         </div>
       </div>
     </div>
