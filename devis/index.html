@@ -357,6 +357,9 @@
             consent: true,
             source: 'calculator_lead'
           };
+          // Stocke le service d’intérêt pour préremplir l’étape 2
+          try { localStorage.setItem('bms_calc_interest', payload.service_interest || ''); } catch(_){}
+
           fetch('/.netlify/functions/zoho_lead', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -535,9 +538,20 @@
     });
   }
 
+  // Préremplissage du service depuis le lead (localStorage)
+  try {
+    const pref = localStorage.getItem('bms_calc_interest') || '';
+    if (pref && fields.service && fields.service.querySelector('option[value="' + pref + '"]')) {
+      fields.service.value = pref;
+    }
+  } catch (_) {}
+
   showRelevant();
   computeEstimate();
   attachEvents();
+
+  // Nettoyage: on évite les préremplissages involontaires lors de visites ultérieures
+  try { localStorage.removeItem('bms_calc_interest'); } catch (_) {}
 
   // Envoi en parallèle vers la fonction Netlify (Zoho CRM) si consentement
   form.addEventListener('submit', () => {
@@ -571,7 +585,7 @@
       }).catch(()=>{});
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'estimate_submitted', ...payload });
-    } catch (_){}
+    } catch (_) {}
   });
 })();
 </script>
