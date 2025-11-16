@@ -164,9 +164,8 @@ input, button, textarea, select {
 }
 
 /* Désactivé à la demande: cacher le bouton Aller au contenu */
-.skip-link {
-  display: none !important;
-}
+/* Le bouton Aller au contenu est disponible au focus pour l'accessibilité (AA/AAA) */
+/* (Suppression du masquage forcé) */
 
 .visually-hidden {
   position: absolute !important;

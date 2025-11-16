@@ -859,8 +859,8 @@ function setupContactSuccessNotice() {
     const isSuccess = qs.get('success') === '1';
     if (!isSuccess) return;
 
-    // Trouve le formulaire et son conteneur
-    const form = document.querySelector('form[name="contact"]');
+    // Trouve le formulaire contact OU devis et son conteneur
+    const form = document.querySelector('form[name="contact"], form[name="quote"]');
     const container = form ? form.closest('.container') : document.querySelector('main .container');
     if (!container) return;
 
@@ -871,7 +871,6 @@ function setupContactSuccessNotice() {
     note.style.marginBottom = '1rem';
     note.innerHTML = '<strong>Merci !</strong> Votre demande a été envoyée. Nous revenons vers vous sous 24–48&nbsp;h ouvrées. Vous pouvez aussi nous joindre directement au <a href="tel:+33646005642">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</a>.';
 
-    // Insère la note en tête du conteneur de formulaire
     container.insertBefore(note, container.firstChild);
   } catch (e) {
     // non-bloquant
