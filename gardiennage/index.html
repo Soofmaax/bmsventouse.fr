@@ -55,7 +55,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome retiré; SVG inline utilisés pour performances et accessibilité -->
 
     <!-- FAVICONS & MANIFESTE -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -146,17 +146,37 @@
   <!-- HERO -->
   <section class="hero">
     <picture class="hero-bg">
-      <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <img src="/images/hero-background-custom.jpg" alt="Surveillance de matériel et régie sur un plateau de tournage" loading="eager" fetchpriority="high" width="1920" height="1080">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
+      <img src="/images/hero-background-custom.jpg" alt="Surveillance de matériel et régie sur un plateau de tournage" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
         <h1>Gardiennage & sécurité de matériel — 24/7</h1>
         <p>Surveillance de <strong>régie</strong>, <strong>décors</strong>, <strong>véhicules</strong> et <strong>équipements</strong>, contrôle des accès et confidentialité des tournages. <strong>Agents qualifiés</strong>, options <strong>SSIAP</strong>, présence <strong>jour/nuit</strong>.</p>
         <div class="hero-buttons">
-          <a href="/contact/" class="btn btn-primary"><i class="fas fa-envelope" aria-hidden="true"></i> Demander un devis</a>
-          <a href="/securite-plateaux/" class="btn btn-secondary-alt"><i class="fas fa-shield-alt" aria-hidden="true"></i> Sécurité de plateaux</a>
+          <a href="/contact/" class="btn btn-primary">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+              <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
+            </svg>
+            Demander un devis
+          </a>
+          <a href="/securite-plateaux/" class="btn btn-secondary-alt">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
+              <path d="M466.5 83.7l-192-80c-12.1-5-25.8-5-37.9 0l-192 80C24.6 89.1 16 102.3 16 116.6c0 198.8 114.6 336.2 221.9 380.4 11.7 4.9 24.6 4.9 36.3 0C381.4 452.8 496 315.5 496 116.6c0-14.3-8.6-27.5-21.5-32.9z"/>
+            </svg>
+            Sécurité de plateaux
+          </a>
         </div>
       </div>
     </div>
@@ -257,7 +277,9 @@
 </main>
 
 <a href="https://wa.me/33646005642?text=Bonjour,%20je%20souhaite%20un%20gardiennage%20de%20mat%C3%A9riel." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contacter BMS Ventouse sur WhatsApp">
-  <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  <svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512">
+    <path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/>
+  </svg>
 </a>
 
 <footer class="footer">
