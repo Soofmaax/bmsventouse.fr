@@ -290,10 +290,20 @@
     <!-- Section Héros -->
     <section id="hero-home" class="hero">
         <picture class="hero-bg">
-            <!-- Image Héros personnalisée : rue parisienne neutralisée avec cônes, de nuit -->
-            <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-            <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-            <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="(max-width: 768px) 100vw, 100vw" decoding="async">
+            <!-- Variantes responsive générées en build (WebP + JPG) -->
+            <source type="image/webp"
+                    srcset="/images/hero-background-custom-640.webp 640w,
+                            /images/hero-background-custom-960.webp 960w,
+                            /images/hero-background-custom-1280.webp 1280w,
+                            /images/hero-background-custom-1920.webp 1920w"
+                    sizes="100vw">
+            <source type="image/jpeg"
+                    srcset="/images/hero-background-custom-640.jpg 640w,
+                            /images/hero-background-custom-960.jpg 960w,
+                            /images/hero-background-custom-1280.jpg 1280w,
+                            /images/hero-background-custom-1920.jpg 1920w"
+                    sizes="100vw">
+            <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
         </picture>
         <div class="hero-overlay">
             <div class="container animated-item">
@@ -611,7 +621,12 @@
                                 </svg>
                                 10&nbsp;Rue de la République, 93700&nbsp;Drancy
                             </li>
-                            <li><i class="fas fa-clock" aria-hidden="true"></i> Disponible&nbsp;24/7</li>
+                            <li>
+                                <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px">
+                                  <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm36 120v120c0 6.6-5.4 12-12 12h-120c-6.6 0-12-5.4-12-12v-16c0-6.6 5.4-12 12-12h84V128c0-6.6 5.4-12 12-12h16c6.6 0 12 5.4 12 12z"/>
+                                </svg>
+                                Disponible&nbsp;24/7
+                            </li>
                         </ul>
                     </div>
                     <div class="footer-column">

@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "node scripts/generate-banners.js"
+    "build": "node scripts/generate-banners.js && node scripts/generate-responsive-images.js"
   },
   "dependencies": {
     "sharp": "^0.33.3"
