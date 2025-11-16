@@ -758,6 +758,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupContactSuccessNotice();
     // Capture des leads du formulaire Contact vers Zoho (non bloquant)
     setupContactLeadCapture();
+    // Harmonisation des emails (remplacement Gmail -> contact@bmsventouse.fr)
+    replaceLegacyEmail();
 
     // Debug/override consent via query string: ?consent=granted|denied
     try {
@@ -926,6 +928,43 @@ function setupContactLeadCapture() {
           window.dataLayer.push({ event: 'contact_submitted', ...payload });
         } catch(_){}
       } catch (_){}
+    });
+  } catch (_) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// UTIL: Remplacer l'ancien email Gmail par le nouveau email pro
+// --------------------------------------------------------------------------
+function replaceLegacyEmail() {
+  try {
+    const OLD = 'bms.ventouse@gmail.com';
+    const NEW = 'contact@bmsventouse.fr';
+    // Remplace les liens mailto
+    document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+      try {
+        const href = a.getAttribute('href') || '';
+        if (href.toLowerCase().includes(OLD)) {
+          a.setAttribute('href', `mailto:${NEW}`);
+        }
+        // Met à jour le texte visible si l'ancien email est affiché
+        if ((a.textContent || '').includes(OLD)) {
+          a.textContent = (a.textContent || '').replaceAll(OLD, NEW);
+        }
+      } catch(_){}
+    });
+    // Remplace occurrences textuelles basiques dans des spans/p/li (non destructif)
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    const toChange = [];
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (node.nodeValue && node.nodeValue.includes(OLD)) {
+        toChange.push(node);
+      }
+    }
+    toChange.forEach(node => {
+      node.nodeValue = node.nodeValue.replaceAll(OLD, NEW);
     });
   } catch (_) {
     // non-bloquant
