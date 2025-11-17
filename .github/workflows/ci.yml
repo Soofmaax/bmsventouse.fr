@@ -84,19 +84,19 @@ jobs:
         if: always()
         run: |
           set -o pipefail
-          npx stylelint "**/*.css" --formatter verbose 2>&1 | tee stylelint-report.txt || true
+          npx --no-install stylelint "**/*.css" --formatter verbose 2>&1 | tee stylelint-report.txt || true
 
       - name: HTMLHint report (non-blocking)
         if: always()
         run: |
           set -o pipefail
-          npx htmlhint --config .htmlhintrc --format unix "**/*.html" 2>&1 | tee htmlhint-report.txt || true
+          npx --no-install htmlhint --config .htmlhintrc --format unix "**/*.html" 2>&1 | tee htmlhint-report.txt || true
 
       - name: Markdownlint report (non-blocking)
         if: always()
         run: |
           set -o pipefail
-          npx markdownlint "**/*.md" --config .markdownlint.json 2>&1 | tee markdownlint-report.txt || true
+          npx --no-install markdownlint "**/*.md" --config .markdownlint.json 2>&1 | tee markdownlint-report.txt || true
 
       - name: Upload Stylelint report
         if: always()
