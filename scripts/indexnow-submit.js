@@ -11,8 +11,21 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const HOST = 'www.bmsventouse.fr';
-// IMPORTANT: keep in sync with the file: /indexnow-<KEY>.txt
-const KEY = '4f9c42a5b1e34cb08b65e0a9d3c7f864';
+// Resolve IndexNow key without hard-coding secrets:
+// 1) Prefer env var INDEXNOW_KEY
+// 2) Fallback: detect key from file name at repo root: indexnow-<KEY>.txt
+let KEY = (process.env.INDEXNOW_KEY || '').trim();
+if (!KEY) {
+  try {
+    const cand = fs.readdirSync(process.cwd()).find(f => /^indexnow-[a-f0-9]{32}\.txt$/.test(f));
+    const m = cand ? cand.match(/^indexnow-([a-f0-9]{32})\.txt$/) : null;
+    KEY = (m && m[1]) || '';
+  } catch { KEY = ''; }
+}
+if (!KEY) {
+  console.error('❌ INDEXNOW_KEY not set and no indexnow-<KEY>.txt file found at root.');
+  process.exit(1);
+}
 const KEY_LOCATION = `https://${HOST}/indexnow-${KEY}.txt`;
 const SITEMAP_PATH = path.resolve(process.cwd(), 'sitemap.xml');
 const ENDPOINT = 'https://api.indexnow.org/indexnow';

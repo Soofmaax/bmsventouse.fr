@@ -63,6 +63,17 @@ jobs:
           # Save outputs and markdown summary files
           SAVE_SUPER_LINTER_OUTPUT: true
           SAVE_SUPER_LINTER_SUMMARY: true
+
+          # Ensure linters use repository config files rather than action defaults
+          LINTER_RULES_PATH: /github/workspace
+          # Explicitly pass config files for each linter (super-linter will ignore unknown variables)
+          STYLELINT_CONFIG_FILE: ".stylelintrc.json"
+          HTML_HINT_CONFIG_FILE: ".htmlhintrc"
+          HTML_CONFIG_FILE: ".htmlhintrc"
+          MARKDOWN_CONFIG_FILE: ".markdownlint.json"
+          GITLEAKS_CONFIG_FILE: ".gitleaks.toml"
+          GITLEAKS_CONFIG: ".gitleaks.toml"
+
           # Include-only mode: enable selected linters; do not set any VALIDATE_* to false
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_GIT_MERGE_CONFLICT_MARKERS: true
@@ -73,7 +84,6 @@ jobs:
           VALIDATE_YAML: true
           VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_GITLEAKS: true
-          GITLEAKS_CONFIG: ".gitleaks.toml"
           FILTER_REGEX_EXCLUDE: 'images/.*\.html|social-assets/.*\.html|brand-assets/.*\.html'
 
       - name: Install linters CLIs (stylelint, htmlhint, markdownlint)
