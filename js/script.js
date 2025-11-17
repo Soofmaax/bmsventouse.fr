@@ -227,9 +227,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         question.setAttribute('aria-expanded', String(!isOpen));
         // Smooth expand/collapse
         if (!isOpen) {
-          answer.style.maxHeight = answer.scrollHeight + 'px';
+          requestAnimationFrame(() => {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          });
         } else {
-          answer.style.maxHeight = '0px';
+          requestAnimationFrame(() => {
+            answer.style.maxHeight = '0px';
+          });
         }
       };
 

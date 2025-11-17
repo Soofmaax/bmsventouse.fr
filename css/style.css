@@ -908,9 +908,21 @@ body.dark-theme .header {
 
 /* Form sections shown conditionally by JS (prevent FOUC) */
 .service-details { display: none; }
+/* Micro-spacing and readability for dynamic contact groups */
+.service-details label { display: block; margin-top: .5rem; }
+.service-details input,
+.service-details select,
+.service-details textarea { margin-top: .25rem; }
+.service-details .checkbox { display: inline-flex; align-items: center; gap: .5rem; margin-top: .6rem; }
 
 /* Calculator cards shown conditionally by JS (prevent FOUC) */
 .services-grid [data-show] { display: none; }
+/* Consistent spacing inside calculator groups shown dynamically */
+.services-grid [data-show] label { display: block; margin-top: .5rem; }
+.services-grid [data-show] input,
+.services-grid [data-show] select,
+.services-grid [data-show] textarea { margin-top: .25rem; }
+.services-grid [data-show] .checkbox { display: inline-flex; align-items: center; gap: .5rem; margin-top: .6rem; }
 
 /* Témoignages clients */
 .testimonial-card {
