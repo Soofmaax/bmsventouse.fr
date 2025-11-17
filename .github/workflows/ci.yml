@@ -6,6 +6,12 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: ['**']
 
+  # Déclenchement automatique sur PR en provenance de forks
+  # (exécuté dans le contexte du repo de base, nécessaire pour publier les alertes Code Scanning)
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: ['**']
+
   # Déclenchement sur push (toutes branches)
   push:
     branches: ['**']
@@ -206,8 +212,8 @@ jobs:
     name: CodeQL (SAST)
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    # Sur PR, le job est non bloquant ; sur push/schedule il est bloquant
-    continue-on-error: ${{ github.event_name == 'pull_request' }}
+    # Sur PR/PR target, le job est non bloquant ; sur push/schedule il est bloquant
+    continue-on-error: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
     permissions:
       security-events: write
       actions: read
@@ -221,6 +227,7 @@ jobs:
         uses: github/codeql-action/init@v4
         with:
           languages: javascript
+          queries: security-extended,security-and-quality
       - name: Autobuild
         uses: github/codeql-action/autobuild@v4
       - name: Perform CodeQL Analysis
