@@ -68,15 +68,23 @@ jobs:
           GITLEAKS_CONFIG: ".gitleaks.toml"
           FILTER_REGEX_EXCLUDE: 'images/.*\.html|social-assets/.*\.html|brand-assets/.*\.html'
 
-      - name: Upload Super-Linter summary and logs
+      - name: Upload Super-Linter summary
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: super-linter-report
-          path: |
-            super-linter-output/**
-            super-linter.log
+          name: super-linter-summary
+          path: super-linter-output/super-linter-summary.md
           if-no-files-found: warn
+        continue-on-error: true
+
+      - name: Upload Super-Linter log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: super-linter-log
+          path: super-linter.log
+          if-no-files-found: warn
+        continue-on-error: true
 
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
       # (OUTPUT_DETAILS=detailed). Pas besoin d'artefacts dédiés.
