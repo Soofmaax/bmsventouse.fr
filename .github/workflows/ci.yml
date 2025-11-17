@@ -126,6 +126,7 @@ jobs:
 
       - name: Append lint reports to Job Summary
         if: always()
+        continue-on-error: true
         shell: bash
         run: |
           {
@@ -141,10 +142,10 @@ jobs:
             echo ""
             echo "### Super-Linter log (errors excerpt)"
             echo ""
-            if [ -s super-linter.log ]; then
-              grep -E "ERROR|Fail|Lint|Validation" -n super-linter.log | sed -n '1,200p'
+            if [ -r super-linter.log ]; then
+              grep -E "ERROR|Fail|Lint|Validation" -n super-linter.log | sed -n '1,200p' || true
             else
-              echo "No super-linter.log available."
+              echo "super-linter.log not available or not readable."
             fi
             echo ""
             echo "### HTMLHint (top 200 lines)"
