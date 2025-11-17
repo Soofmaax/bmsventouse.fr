@@ -49,7 +49,10 @@ jobs:
         uses: super-linter/super-linter@v7.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          # Fix root commit detection issues on PRs by pinning default branch name
+          DEFAULT_BRANCH: main
+          # Avoid relying on git history to compute changed files
+          USE_FIND_ALGORITHM: true
           VALIDATE_ALL_CODEBASE: true
           LOG_LEVEL: DEBUG
           OUTPUT_DETAILS: detailed
