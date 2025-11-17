@@ -82,7 +82,7 @@ jobs:
         if: always()
         run: |
           set -o pipefail
-          npx htmlhint --config .htmlhintrc --format stylish "**/*.html" | tee htmlhint-report.txt || true
+          npx htmlhint --config .htmlhintrc --format markdown "**/*.html" | tee htmlhint-report.txt || true
 
       - name: Markdownlint report (non-blocking)
         if: always()
@@ -114,23 +114,7 @@ jobs:
           path: markdownlint-report.txt
           if-no-files-found: warn
 
-      - name: Upload Super-Linter summary
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: super-linter-summary
-          path: super-linter-output/super-linter-summary.md
-          if-no-files-found: warn
-        continue-on-error: true
-
-      - name: Upload Super-Linter log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: super-linter-log
-          path: super-linter.log
-          if-no-files-found: warn
-        continue-on-error: true
+      
 
       - name: Append lint reports to Job Summary
         if: always()
