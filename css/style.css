@@ -260,7 +260,7 @@ input, button, textarea, select {
   top: 0;
   left: 0; 
   right: 0;
-  z-index: 1001;
+  z-index: 1502;
   background: rgba(255,255,255,1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -604,7 +604,6 @@ body.dark-theme .header {
               box-shadow 0.2s ease;
   box-shadow: 0 2px 12px rgba(0,0,0,0.12);
   text-decoration: none;
-  justify-content: center;
   min-width: 210px;
   line-height: 1.2;
   position: relative;
@@ -633,14 +632,9 @@ body.dark-theme .header {
   transition: transform 0s, opacity 0.5s ease-out;
 }
 
-.btn:hover, .btn:focus {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
 
-.btn:active {
-  transform: translateY(0);
-}
+
+
 
 .btn-primary {
   background-color: var(--color-primary);
@@ -1266,9 +1260,9 @@ body.dark-theme .header {
     padding: 16px 12px 24px;
     min-height: 70vh;
   }
-  /* Légèrement plus haut sur mobile */
+  /* Aligner verticalement au centre sur mobile */
   .hero-overlay .container {
-    transform: translateY(-22%);
+    transform: none;
   }
   
   .hero h1 {
@@ -1327,19 +1321,25 @@ body.dark-theme .header {
   display: block;
 }
 
-/* nav-links mobile active state - CORRIGÉ */
+/* nav-links mobile active state - CORRIGÉ (unifié avec patch correctif) */
 .nav-links.active {
   display: flex !important;
   flex-direction: column;
   position: fixed;
-  top: var(--header-height);
-  right: 0;
-  left: 0;
+  /* Commence sous la bannière promo et le header */
+  top: calc(var(--promo-banner-height) + var(--header-height)) !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
   background-color: var(--color-light);
-  z-index: 999;
+  z-index: 1501 !important;
   padding: 1.5rem 0;
   box-shadow: var(--box-shadow-base);
   animation: slideInDown 0.3s forwards;
+  /* Hauteur restante de l'écran (iOS+fallback) */
+  height: calc(100dvh - var(--promo-banner-height) - var(--header-height)) !important;
+  height: calc(100vh - var(--promo-banner-height) - var(--header-height)) !important;
+  overflow-y: auto !important; 
 }
 
 @keyframes slideInDown {
@@ -1613,7 +1613,6 @@ body.dark-theme .header {
 
 .carousel-control:hover,
 .carousel-control:focus {
-  color: var(--color-primary-dark);
   outline: none;
   background-color: var(--color-primary);
   color: white;
@@ -2088,6 +2087,7 @@ body.dark-theme .header {
 
 .faq-item.is-open .faq-answer {
   padding: 1rem 1.5rem;
+  animation: faqFade 0.2s ease both;
 }
 
 @media (max-width: 600px) {
@@ -2396,39 +2396,9 @@ body:has(.nav-links.active) {
   overflow: hidden;
 }
 
-/* 
- * Correction n°2 : Positionner le menu déroulant correctement.
- * On s'assure qu'il est AU-DESSUS de l'overlay flou et qu'il remplit l'écran.
-*/
-.nav-links.active {
-  /* On le place au-dessus de l'overlay (qui est à z-index: 1500) */
-  z-index: 1501 !important; 
-  
-  /* On s'assure qu'il commence juste sous le header */
-  top: calc(var(--promo-banner-height) + var(--header-height)) !important;
-  
-  /* On lui donne la hauteur restante de l'écran pour éviter le "trou" en bas */
-  /* Utiliser 100dvh pour iOS modernes + fallback 100vh */
-  height: calc(100dvh - var(--promo-banner-height) - var(--header-height)) !important;
-  height: calc(100vh - var(--promo-banner-height) - var(--header-height)) !important;
-  
-  /* On ajoute une barre de scroll si le menu est plus grand que l'écran */
-  overflow-y: auto !important; 
-  
-  /* On s'assure qu'il prend toute la largeur */
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-}
 
-/* 
- * Correction n°3 : S'assurer que le header reste au-dessus de tout.
- * Le bouton hamburger doit rester cliquable pour fermer le menu.
-*/
-.header {
-  /* On le place au-dessus du menu et de l'overlay */
-  z-index: 1502 !important; 
-}
+
+
 
 /* === Animations globales et effets premium === */
 
@@ -2541,9 +2511,7 @@ body:has(.nav-links.active) {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-.faq-item.is-open .faq-answer {
-  animation: faqFade 0.2s ease both;
-}
+
 
 
 
