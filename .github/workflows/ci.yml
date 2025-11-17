@@ -88,6 +88,7 @@ jobs:
           FILTER_REGEX_EXCLUDE: 'images/.*\.html|social-assets/.*\.html|brand-assets/.*\.html'
 
       - name: Install linters CLIs (stylelint, htmlhint, markdownlint)
+        if: always()
         run: |
           npm i --no-save stylelint htmlhint markdownlint-cli
 
@@ -232,12 +233,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Install Pa11y dependencies
+        run: npm i --no-save http-server wait-on pa11y-ci
       - name: Start static server and run Pa11y CI (JSON report)
         run: |
-          npx http-server -p 8080 -c-1 . &
-          npx wait-on http://localhost:8080
+          npx --no-install http-server -p 8080 -c-1 . &
+          npx --no-install wait-on http://localhost:8080
           set -o pipefail
-          npx pa11y-ci --json | tee pa11y-report.json
+          npx --no-install pa11y-ci --json | tee pa11y-report.json
 
       - name: Summarize Pa11y failures to Job Summary
         if: always()
