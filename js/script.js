@@ -27,12 +27,40 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
+  // MODULE: SKIP LINK (Aller au contenu) pour accessibilité
+  // --------------------------------------------------------------------------
+  const setupSkipLink = () => {
+    try {
+      // Si déjà présent, ne rien faire
+      if (document.querySelector('.skip-link')) return;
+      const main = document.getElementById('main-content');
+      if (!main) return;
+
+      const link = document.createElement('a');
+      link.className = 'skip-link';
+      link.href = '#main-content';
+      link.textContent = 'Aller au contenu';
+      // Ajoute en tout début du body
+      document.body.insertBefore(link, document.body.firstChild);
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
   // MODULE: MENU HAMBURGER & ACCESSIBILITÉ
   // --------------------------------------------------------------------------
   const setupHamburgerMenu = () => {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
     const navOverlay = document.getElementById('navOverlay');
+
+    // Assurer que le bouton hamburger n'est pas traité comme submit dans des pages avec formulaire
+    try {
+      if (hamburger && !hamburger.hasAttribute('type')) {
+        hamburger.setAttribute('type', 'button');
+      }
+    } catch (_) {}
 
     if (!hamburger || !navLinks || !navOverlay) {
       console.warn("Éléments du menu mobile non trouvés. Le module ne sera pas initialisé.");
@@ -718,6 +746,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // ==========================================================================
   try {
     setupCookieBanner();
+    setupSkipLink();
     setupHamburgerMenu();
     setupScrollAnimations();
     setupHeroParallax();
