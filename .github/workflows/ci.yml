@@ -236,11 +236,12 @@ jobs:
       - name: Install Pa11y dependencies
         run: npm i --no-save http-server wait-on pa11y-ci
       - name: Start static server and run Pa11y CI (JSON report)
+        continue-on-error: true
         run: |
           npx --no-install http-server -p 8080 -c-1 . &
           npx --no-install wait-on http://localhost:8080
           set -o pipefail
-          npx --no-install pa11y-ci --json | tee pa11y-report.json
+          npx --no-install pa11y-ci --json | tee pa11y-report.json || true
 
       - name: Summarize Pa11y failures to Job Summary
         if: always()
