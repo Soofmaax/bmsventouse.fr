@@ -132,6 +132,38 @@ jobs:
           if-no-files-found: warn
         continue-on-error: true
 
+      - name: Append lint reports to Job Summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Lint summary"
+            if [ -s super-linter-output/super-linter-summary.md ]; then
+              echo ""
+              echo "### Super-Linter"
+              echo ""
+              sed -n '1,200p' super-linter-output/super-linter-summary.md
+            fi
+            if [ -s htmlhint-report.txt ]; then
+              echo ""
+              echo "### HTMLHint (top 200 lines)"
+              echo ""
+              sed -n '1,200p' htmlhint-report.txt
+            fi
+            if [ -s stylelint-report.txt ]; then
+              echo ""
+              echo "### Stylelint (top 200 lines)"
+              echo ""
+              sed -n '1,200p' stylelint-report.txt
+            fi
+            if [ -s markdownlint-report.txt ]; then
+              echo ""
+              echo "### Markdownlint (top 200 lines)"
+              echo ""
+              sed -n '1,200p' markdownlint-report.txt
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
       # (OUTPUT_DETAILS=detailed). Pas besoin d'artefacts dédiés.
 
@@ -170,6 +202,29 @@ jobs:
           npx wait-on http://localhost:8080
           set -o pipefail
           npx pa11y-ci --json | tee pa11y-report.json
+
+      - name: Summarize Pa11y failures to Job Summary
+        if: always()
+        run: |
+          node -e "
+          const fs=require('fs');
+          try {
+            const data=JSON.parse(fs.readFileSync('pa11y-report.json','utf8'));
+            const lines=[];
+            lines.push('## Accessibility (Pa11y) summary');
+            for (const page of data) {
+              const fails=(page.issues||[]).filter(i=>i.type==='error');
+              if (fails.length) {
+                lines.push('\\n### ' + page.pageUrl);
+                fails.slice(0,20).forEach(i=>{
+                  lines.push('- ['+i.code+'] ' + i.message + ' (selector: ' + (i.selector||'') + ')');
+                });
+              }
+            }
+            if (lines.length>1) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join('\\n'));
+          } catch(e) {}
+          "
+
       - name: Upload Pa11y report
         if: always()
         uses: actions/upload-artifact@v4
