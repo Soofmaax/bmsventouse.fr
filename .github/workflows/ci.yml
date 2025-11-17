@@ -73,57 +73,58 @@ jobs:
           npm i --no-save stylelint htmlhint markdownlint-cli
 
       - name: Stylelint report (non-blocking)
+        if: always()
         run: |
-          npx stylelint "**/*.css" --formatter verbose | tee stylelint-report.txt ; exit 0
+          set -o pipefail
+          npx stylelint "**/*.css" --formatter verbose | tee stylelint-report.txt || true
 
       - name: HTMLHint report (non-blocking)
+        if: always()
         run: |
-          npx htmlhint --config .htmlhintrc --format stylish "**/*.html" | tee htmlhint-report.txt ; exit 0
+          set -o pipefail
+          npx htmlhint --config .htmlhintrc --format stylish "**/*.html" | tee htmlhint-report.txt || true
 
       - name: Markdownlint report (non-blocking)
+        if: always()
         run: |
-          npx markdownlint "**/*.md" --config .markdownlint.json | tee markdownlint-report.txt ; exit 0
+          set -o pipefail
+          npx markdownlint "**/*.md" --config .markdownlint.json | tee markdownlint-report.txt || true
 
       - name: Upload Stylelint report
-        if: always()
+        if: always() && hashFiles('stylelint-report.txt') != ''
         uses: actions/upload-artifact@v4
         with:
           name: stylelint-report
           path: stylelint-report.txt
-          if-no-files-found: warn
 
       - name: Upload HTMLHint report
-        if: always()
+        if: always() && hashFiles('htmlhint-report.txt') != ''
         uses: actions/upload-artifact@v4
         with:
           name: htmlhint-report
           path: htmlhint-report.txt
-          if-no-files-found: warn
 
       - name: Upload Markdownlint report
-        if: always()
+        if: always() && hashFiles('markdownlint-report.txt') != ''
         uses: actions/upload-artifact@v4
         with:
           name: markdownlint-report
           path: markdownlint-report.txt
-          if-no-files-found: warn
 
       - name: Upload Super-Linter summary
-        if: always()
+        if: always() && hashFiles('super-linter-output/super-linter-summary.md') != ''
         uses: actions/upload-artifact@v4
         with:
           name: super-linter-summary
           path: super-linter-output/super-linter-summary.md
-          if-no-files-found: warn
         continue-on-error: true
 
       - name: Upload Super-Linter log
-        if: always()
+        if: always() && hashFiles('super-linter.log') != ''
         uses: actions/upload-artifact@v4
         with:
           name: super-linter-log
           path: super-linter.log
-          if-no-files-found: warn
         continue-on-error: true
 
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
