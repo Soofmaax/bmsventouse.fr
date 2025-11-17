@@ -82,7 +82,7 @@ jobs:
         if: always()
         run: |
           set -o pipefail
-          npx htmlhint --config .htmlhintrc --format markdown "**/*.html" | tee htmlhint-report.txt || true
+          npx htmlhint --config .htmlhintrc --format unix "**/*.html" | tee htmlhint-report.txt || true
 
       - name: Markdownlint report (non-blocking)
         if: always()
