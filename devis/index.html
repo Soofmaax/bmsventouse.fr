@@ -470,30 +470,6 @@
             localStorage.setItem('bms_lead_package', payload.package || '');
             localStorage.setItem('bms_lead_payment', payload.payment_preference || '');
             localStorage.setItem('bms_lead_consent', payload.consent ? '1' : '0');
-          } catch(_){}eadForm = document.getElementById('leadForm');
-    if (leadForm) {
-      leadForm.addEventListener('submit', () => {
-        try {
-          const lead_days = parseInt(((document.getElementById('lead_days') || {}).value || '1'), 10);
-          const lead_urgent = !!((document.getElementById('lead_urgent') || {}).checked);
-          const payload = {
-            fullname: (document.getElementById('lead_fullname') || {}).value || '',
-            company: (document.getElementById('lead_company') || {}).value || '',
-            email: (document.getElementById('lead_email') || {}).value || '',
-            phone: (document.getElementById('lead_phone') || {}).value || '',
-            service_interest: (document.getElementById('lead_interest') || {}).value || '',
-            days: lead_days,
-            urgent: lead_urgent,
-            consent: true,
-            source: 'calculator_lead'
-          };
-          // Stocke les préférences pour préremplir l’étape 2
-          try {
-            localStorage.setItem('bms_calc_interest', payload.service_interest || '');
-            localStorage.setItem('bms_calc_days', String(lead_days));
-            localStorage.setItem('bms_calc_urgent', lead_urgent ? '1' : '0');
-            localStorage.setItem('bms_last_email', payload.email || '');
-            localStorage.setItem('bms_last_phone', payload.phone || '');
           } catch(_){}
 
           fetch('/.netlify/functions/hubspot_lead', {
