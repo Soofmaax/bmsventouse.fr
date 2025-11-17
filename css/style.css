@@ -2191,7 +2191,7 @@ body.dark-theme .theme-toggle:hover {
   cursor: help;
 }
 
-[data-tooltip]:before {
+[data-tooltip]::before {
   content: attr(data-tooltip);
   position: absolute;
   bottom: 100%;
@@ -2209,7 +2209,7 @@ body.dark-theme .theme-toggle:hover {
   z-index: var(--z-toast);
 }
 
-[data-tooltip]:after {
+[data-tooltip]::after {
   content: '';
   position: absolute;
   bottom: 100%;
@@ -2223,8 +2223,8 @@ body.dark-theme .theme-toggle:hover {
   z-index: var(--z-toast);
 }
 
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
