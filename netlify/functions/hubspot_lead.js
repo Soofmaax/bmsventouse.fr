@@ -181,6 +181,19 @@ function buildNoteBody(info) {
     try { return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.max(0, Math.round(n || 0))); }
     catch { return String(n); }
   };
+  const svcCode = (() => {
+    const v = String(info.service || '').toLowerCase();
+    if (v.includes('cantine') || v.includes('catering')) return 'cantine';
+    if (v.includes('ventousage')) return 'ventousage';
+    if (v.includes('sécurité') || v.includes('gardiennage')) return 'securite';
+    if (v.includes('convoyage')) return 'convoyage';
+    if (v.includes('régie')) return 'regie';
+    if (v.includes('affichage')) return 'affichage';
+    if (v.includes('signalisation')) return 'signalisation';
+    if (v.includes('loges')) || v.includes('confort')) return 'loges';
+    return '';
+  })();
+
   lines.push(`Lead site — ${info.source || 'website'}`);
   lines.push(`Nom: ${info.fullname || '—'}`);
   if (info.company) lines.push(`Société: ${info.company}`);
@@ -193,6 +206,92 @@ function buildNoteBody(info) {
   if (info.estimateMin || info.estimateMax) {
     lines.push(`Estimation: ${euro(info.estimateMin)} – ${euro(info.estimateMax)} HT`);
   }
+
+  // Détails par service — mis en avant
+  const p = info.payload || {};
+  if (svcCode === 'cantine') {
+    const people = p.cantine_people || p.svc_cantine_people;
+    const meals = p.cantine_meals || p.svc_cantine_meals;
+    const dietary = p.cantine_dietary || p.svc_cantine_dietary;
+    const hours = p.cantine_hours || p.svc_cantine_hours;
+    lines.push('');
+    lines.push('Cantine & Catering:');
+    if (people) lines.push(` - Personnes: ${people}`);
+    if (meals) lines.push(` - Repas: ${meals}`);
+    if (dietary) lines.push(` - Régimes: ${dietary}`);
+    if (hours) lines.push(` - Horaires: ${hours}`);
+  } else if (svcCode === 'ventousage') {
+    const streets = p.ventousage_streets || p.svc_ventousage_streets;
+    const zones = p.zones || p.svc_ventousage_zones;
+    const hours = p.ventousage_hours || p.svc_ventousage_hours;
+    lines.push('');
+    lines.push('Ventousage:');
+    if (zones) lines.push(` - Zones/Panneaux: ${zones}`);
+    if (streets) lines.push(` - Rues: ${streets}`);
+    if (hours) lines.push(` - Horaires: ${hours}`);
+  } else if (svcCode === 'securite') {
+    const agents = p.agents || p.svc_securite_agents;
+    const hours = p.hours || p.svc_securite_hours;
+    const ssiap = (p.ssiap || p.svc_securite_ssiap) ? 'Oui' : 'Non';
+    lines.push('');
+    lines.push('Sécurité / Gardiennage:');
+    if (agents !== undefined) lines.push(` - Agents: ${agents}`);
+    if (hours !== undefined) lines.push(` - Heures/jour: ${hours}`);
+    lines.push(` - SSIAP: ${ssiap}`);
+  } else if (svcCode === 'convoyage') {
+    const pickup = p.convoyage_pickup || p.svc_convoyage_pickup;
+    const drop = p.convoyage_drop || p.svc_convoyage_drop;
+    const schedule = p.convoyage_schedule || p.svc_convoyage_schedule;
+    const stops = p.convoyage_stops || p.svc_convoyage_stops;
+    const volume = p.volume || p.svc_convoyage_volume;
+    const km = p.km;
+    lines.push('');
+    lines.push('Convoyage:');
+    if (km !== undefined) lines.push(` - Distance: ${km} km`);
+    if (volume) lines.push(` - Volume: ${volume}`);
+    if (pickup) lines.push(` - Départ: ${pickup}`);
+    if (drop) lines.push(` - Arrivée: ${drop}`);
+    if (stops) lines.push(` - Stops: ${stops}`);
+    if (schedule) lines.push(` - Créneaux: ${schedule}`);
+  } else if (svcCode === 'signalisation') {
+    const perim = p.signalisation_perimeter || p.svc_signalisation_perimeter;
+    const barriers = p.signalisation_barriers || p.svc_signalisation_barriers;
+    const hours = p.signalisation_hours || p.svc_signalisation_hours;
+    lines.push('');
+    lines.push('Signalisation & Barriérage:');
+    if (perim) lines.push(` - Périmètre: ${perim}`);
+    if (barriers !== undefined) lines.push(` - Barrières: ${barriers}`);
+    if (hours !== undefined) lines.push(` - Heures/jour: ${hours}`);
+  } else if (svcCode === 'affichage') {
+    const streets = p.affichage_streets || p.svc_affichage_streets;
+    const posters = p.affichage_posters || p.svc_affichage_posters;
+    lines.push('');
+    lines.push('Affichage Riverains:');
+    if (streets) lines.push(` - Rues: ${streets}`);
+    if (posters !== undefined) lines.push(` - Panneaux/Affiches: ${posters}`);
+  } else if (svcCode === 'regie') {
+    const eq = p.regie_equipment || p.svc_regie_equipment;
+    const agents = p.regie_agents || p.svc_regie_agents;
+    const hours = p.regie_hours || p.svc_regie_hours;
+    lines.push('');
+    lines.push('Régie & Matériel:');
+    if (agents !== undefined) lines.push(` - Agents: ${agents}`);
+    if (hours !== undefined) lines.push(` - Heures/jour: ${hours}`);
+    if (eq) {
+      lines.push(' - Matériel:');
+      lines.push(String(eq));
+    }
+  } else if (svcCode === 'loges') {
+    const number = p.loges_number || p.svc_loges_number;
+    const types = p.loges_types || p.svc_loges_types;
+    const location = p.loges_location || p.svc_loges_location;
+    lines.push('');
+    lines.push('Loges & Confort:');
+    if (number !== undefined) lines.push(` - Loges: ${number}`);
+    if (types) lines.push(` - Types: ${types}`);
+    if (location) lines.push(` - Localisation: ${location}`);
+  }
+
   if (info.details) {
     lines.push('');
     lines.push('Détails:');

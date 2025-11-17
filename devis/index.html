@@ -283,6 +283,62 @@
             <option value="moyen">Moyen</option>
             <option value="grand">Grand (jusqu’à 22 m³)</option>
           </select>
+          <label for="convoyage_pickup" style="margin-top:.6rem;">Adresse de départ (optionnel)</label>
+          <input id="convoyage_pickup" name="convoyage_pickup" type="text" placeholder="Adresse complète">
+          <label for="convoyage_drop" style="margin-top:.6rem;">Adresse d’arrivée (optionnel)</label>
+          <input id="convoyage_drop" name="convoyage_drop" type="text" placeholder="Adresse complète">
+          <label for="convoyage_schedule" style="margin-top:.6rem;">Créneaux / Horaire (optionnel)</label>
+          <input id="convoyage_schedule" name="convoyage_schedule" type="text" placeholder="Ex: 8h–12h">
+          <label for="convoyage_stops" style="margin-top:.6rem;">Stops intermédiaires (optionnel)</label>
+          <input id="convoyage_stops" name="convoyage_stops" type="text" placeholder="Ex: atelier, stockage">
+        </div>
+
+        <div class="service-card" data-show="ventousage">
+          <h3>Ventousage — Détails</h3>
+          <label for="ventousage_streets">Rues / adresses concernées</label>
+          <textarea id="ventousage_streets" name="ventousage_streets" rows="3" placeholder="Liste des rues, tronçons, intersections"></textarea>
+          <label for="ventousage_hours" style="margin-top:.6rem;">Créneaux / Horaires (optionnel)</label>
+          <input id="ventousage_hours" name="ventousage_hours" type="text" placeholder="Ex: Nuit 22h–6h">
+        </div>
+
+        <div class="service-card" data-show="cantine">
+          <h3>Cantine & Catering — Détails</h3>
+          <label for="cantine_people">Nombre de personnes</label>
+          <input id="cantine_people" name="cantine_people" type="number" min="1" step="1" value="0">
+          <label for="cantine_meals" style="margin-top:.6rem;">Repas servis</label>
+          <input id="cantine_meals" name="cantine_meals" type="text" placeholder="Ex: petit-déjeuner, déjeuner, dîner">
+          <label for="cantine_dietary" style="margin-top:.6rem;">Régimes alimentaires</label>
+          <input id="cantine_dietary" name="cantine_dietary" type="text" placeholder="Ex: végétarien, halal, allergies">
+          <label for="cantine_hours" style="margin-top:.6rem;">Horaires de service</label>
+          <input id="cantine_hours" name="cantine_hours" type="text" placeholder="Ex: 7h–10h, 12h–14h, 19h–21h">
+        </div>
+
+        <div class="service-card" data-show="affichage">
+          <h3>Affichage Riverains — Détails</h3>
+          <label for="affichage_streets">Rues / secteurs</label>
+          <textarea id="affichage_streets" name="affichage_streets" rows="3" placeholder="Ex: Rue X, Avenue Y, Place Z"></textarea>
+        </div>
+
+        <div class="service-card" data-show="signalisation">
+          <h3>Signalisation & Barriérage — Détails</h3>
+          <label for="signalisation_perimeter">Périmètre / zones</label>
+          <textarea id="signalisation_perimeter" name="signalisation_perimeter" rows="3" placeholder="Ex: périmètre de tournage, rue X entre Y et Z"></textarea>
+          <label for="signalisation_barriers" style="margin-top:.6rem;">Nombre approximatif de barrières</label>
+          <input id="signalisation_barriers" name="signalisation_barriers" type="number" min="0" step="1" value="0">
+        </div>
+
+        <div class="service-card" data-show="regie">
+          <h3>Régie & Matériel — Détails</h3>
+          <label for="regie_equipment">Liste du matériel / besoins</label>
+          <textarea id="regie_equipment" name="regie_equipment" rows="3" placeholder="Ex: barrières, cônes, rubalise, radios, gilets, etc. "></textarea>
+        </div>
+
+        <div class="service-card" data-show="loges">
+          <h3>Loges & Confort — Détails</h3>
+          <label for="loges_number">Nombre de loges</label>
+          <input id="loges_number" name="loges_number" type="number" min="0" step="1" value="0">
+          <label for="loges_types" style="margin-top:.6rem;">Types de loges</label>
+          <input id="loges_types" name="loges_types" type="text" placeholder="Ex: maquillage, habillage, green room">
         </div>
 
         <div class="service-card">
@@ -400,7 +456,7 @@
             service_interest: (document.getElementById('lead_interest') || {}).value || '',
             package: (document.getElementById('lead_pack') || {}).value || '',
             urgent: !!((document.getElementById('lead_urgent') || {}).checked),
-            consent: true,
+            consent: !!((document.getElementById('lead_consent') || {}).checked),
             source: 'calculator_lead'
           };
           // Stocke pour l’étape 2
@@ -408,9 +464,12 @@
             localStorage.setItem('bms_calc_interest', payload.service_interest || '');
             localStorage.setItem('bms_lead_email', payload.email || '');
             localStorage.setItem('bms_lead_phone', payload.phone || '');
+            localStorage.setItem('bms_lead_fullname', payload.fullname || '');
+            localStorage.setItem('bms_lead_company', payload.company || '');
             localStorage.setItem('bms_lead_urgent', payload.urgent ? '1' : '0');
             localStorage.setItem('bms_lead_package', payload.package || '');
             localStorage.setItem('bms_lead_payment', payload.payment_preference || '');
+            localStorage.setItem('bms_lead_consent', payload.consent ? '1' : '0');
           } catch(_){}eadForm = document.getElementById('leadForm');
     if (leadForm) {
       leadForm.addEventListener('submit', () => {
@@ -476,16 +535,33 @@
   const estimateMaxInput = el.querySelector('#estimate_max');
 
   const fields = {
-    service: el.querySelector('#service'),
-    days: el.querySelector('#days'),
-    zones: el.querySelector('#zones'),
-    agents: el.querySelector('#agents'),
-    hours: el.querySelector('#hours'),
-    ssiap: el.querySelector('#ssiappremium'),
-    km: el.querySelector('#km'),
-    volume: el.querySelector('#volume'),
-    urgent: el.querySelector('#urgent')
-  };
+      service: el.querySelector('#service'),
+      days: el.querySelector('#days'),
+      zones: el.querySelector('#zones'),
+      agents: el.querySelector('#agents'),
+      hours: el.querySelector('#hours'),
+      ssiap: el.querySelector('#ssiappremium'),
+      km: el.querySelector('#km'),
+      volume: el.querySelector('#volume'),
+      urgent: el.querySelector('#urgent'),
+      // Détails additionnels
+      convoyage_pickup: el.querySelector('#convoyage_pickup'),
+      convoyage_drop: el.querySelector('#convoyage_drop'),
+      convoyage_schedule: el.querySelector('#convoyage_schedule'),
+      convoyage_stops: el.querySelector('#convoyage_stops'),
+      ventousage_streets: el.querySelector('#ventousage_streets'),
+      ventousage_hours: el.querySelector('#ventousage_hours'),
+      cantine_people: el.querySelector('#cantine_people'),
+      cantine_meals: el.querySelector('#cantine_meals'),
+      cantine_dietary: el.querySelector('#cantine_dietary'),
+      cantine_hours: el.querySelector('#cantine_hours'),
+      affichage_streets: el.querySelector('#affichage_streets'),
+      signalisation_perimeter: el.querySelector('#signalisation_perimeter'),
+      signalisation_barriers: el.querySelector('#signalisation_barriers'),
+      regie_equipment: el.querySelector('#regie_equipment'),
+      loges_number: el.querySelector('#loges_number'),
+      loges_types: el.querySelector('#loges_types')
+    };
 
   // Config tarifs indicatifs (à ajuster)
   const PRICING = {
@@ -496,7 +572,7 @@
     signalisation: { basePerimeter: [250, 450], perZone: [30, 60], urgentFactor: 1.20 },
     affichage:     { basePerimeter: [180, 320], perZone: [20, 40], urgentFactor: 1.15 },
     loges:         { baseDay: [350, 600], urgentFactor: 1.15 },
-    cantine:       { baseDay: [300, 500], urgentFactor: 1.10 }
+    cantine:       { baseDay: [300, 500], perPersonDay: [10, 20], urgentFactor: 1.10 }
   };
 
   function showRelevant() {
@@ -590,7 +666,10 @@
       }
       case 'cantine': {
         const [bdMin, bdMax] = PRICING.cantine.baseDay;
-        min = days * bdMin; max = days * bdMax;
+        const people = Math.max(0, parseInt((fields.cantine_people && fields.cantine_people.value) || '0', 10));
+        const [ppMin, ppMax] = PRICING.cantine.perPersonDay;
+        min = days * bdMin + days * people * ppMin;
+        max = days * bdMax + days * people * ppMax;
         if (urgent) { min *= PRICING.cantine.urgentFactor; max *= PRICING.cantine.urgentFactor; }
         break;
       }
@@ -637,11 +716,11 @@
     localStorage.removeItem('bms_lead_package');
   } catch (_) {}
 
-  // Envoi en parallèle vers la fonction Netlify (Zoho CRM) si consentement
+  // Envoi en parallèle vers la fonction Netlify (HubSpot) si consentement (capturé à l'étape 1)
   form.addEventListener('submit', () => {
     try {
-      const consentEl = form.querySelector('#consent');
-      if (!consentEl || !consentEl.checked) return;
+      const hasConsent = (localStorage.getItem('bms_lead_consent') === '1');
+      if (!hasConsent) return;
       const payload = {
         service: fields.service.value,
         days: parseInt(fields.days.value || '1', 10),
@@ -652,16 +731,34 @@
         km: parseFloat((fields.km && fields.km.value) || '0'),
         volume: (fields.volume && fields.volume.value) || '',
         urgent: !!(fields.urgent && fields.urgent.checked),
-        fullname: (form.querySelector('#fullname') || {}).value || '',
-        company: (form.querySelector('#company') || {}).value || '',
-        email: (form.querySelector('#email') || {}).value || '',
-        phone: (form.querySelector('#phone') || {}).value || '',
+        // Détails additionnels
+        convoyage_pickup: (fields.convoyage_pickup && fields.convoyage_pickup.value) || '',
+        convoyage_drop: (fields.convoyage_drop && fields.convoyage_drop.value) || '',
+        convoyage_schedule: (fields.convoyage_schedule && fields.convoyage_schedule.value) || '',
+        convoyage_stops: (fields.convoyage_stops && fields.convoyage_stops.value) || '',
+        ventousage_streets: (fields.ventousage_streets && fields.ventousage_streets.value) || '',
+        ventousage_hours: (fields.ventousage_hours && fields.ventousage_hours.value) || '',
+        cantine_people: parseInt(((fields.cantine_people && fields.cantine_people.value) || '0'), 10),
+        cantine_meals: (fields.cantine_meals && fields.cantine_meals.value) || '',
+        cantine_dietary: (fields.cantine_dietary && fields.cantine_dietary.value) || '',
+        cantine_hours: (fields.cantine_hours && fields.cantine_hours.value) || '',
+        affichage_streets: (fields.affichage_streets && fields.affichage_streets.value) || '',
+        signalisation_perimeter: (fields.signalisation_perimeter && fields.signalisation_perimeter.value) || '',
+        signalisation_barriers: parseInt(((fields.signalisation_barriers && fields.signalisation_barriers.value) || '0'), 10),
+        regie_equipment: (fields.regie_equipment && fields.regie_equipment.value) || '',
+        loges_number: parseInt(((fields.loges_number && fields.loges_number.value) || '0'), 10),
+        loges_types: (fields.loges_types && fields.loges_types.value) || '',
+        // Coordonnées (fallback depuis l'étape 1)
+        fullname: (localStorage.getItem('bms_lead_fullname') || ''),
+        company: (localStorage.getItem('bms_lead_company') || ''),
+        email: (localStorage.getItem('bms_lead_email') || ''),
+        phone: (localStorage.getItem('bms_lead_phone') || ''),
         estimate_min: parseInt(estimateMinInput.value || '0', 10),
         estimate_max: parseInt(estimateMaxInput.value || '0', 10),
         consent: true,
         source: 'calculator'
       };
-      fetch('/.netlify/functions/zoho_lead', {
+      fetch('/.netlify/functions/hubspot_lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

@@ -306,9 +306,108 @@
                         <option value="Régie & matériel">Régie & matériel</option>
                         <option value="Affichage riverains">Affichage riverains</option>
                         <option value="Signalisation & barriérage">Signalisation & barriérage</option>
+                        <option value="Loges & Confort">Loges & Confort</option>
+                        <option value="Cantine & Catering">Cantine & Catering</option>
                         <option value="Logistique événementielle (mode, publicité)">Logistique événementielle (mode, publicité)</option>
                         <option value="Autre">Autre</option>
                       </select>
+                    </div>
+
+                    <!-- Détails selon service (affichage dynamique) -->
+                    <!-- Cantine & Catering -->
+                    <div class="contact-card service-details" data-service="cantine">
+                      <h3>Cantine & Catering — Détails</h3>
+                      <label for="svc_cantine_people">Nombre de personnes</label>
+                      <input id="svc_cantine_people" name="svc_cantine_people" type="number" min="1" step="1" placeholder="Ex: 25">
+                      <label for="svc_cantine_meals" style="margin-top:.6rem;">Repas servis</label>
+                      <input id="svc_cantine_meals" name="svc_cantine_meals" type="text" placeholder="Ex: petit-déjeuner, déjeuner, dîner">
+                      <label for="svc_cantine_dietary" style="margin-top:.6rem;">Régimes alimentaires</label>
+                      <input id="svc_cantine_dietary" name="svc_cantine_dietary" type="text" placeholder="Ex: végétarien, halal, allergies">
+                      <label for="svc_cantine_hours" style="margin-top:.6rem;">Horaires de service</label>
+                      <input id="svc_cantine_hours" name="svc_cantine_hours" type="text" placeholder="Ex: 7h–10h, 12h–14h, 19h–21h">
+                    </div>
+
+                    <!-- Ventousage & autorisations -->
+                    <div class="contact-card service-details" data-service="ventousage">
+                      <h3>Ventousage — Détails</h3>
+                      <label for="svc_ventousage_streets">Rues / adresses concernées</label>
+                      <textarea id="svc_ventousage_streets" name="svc_ventousage_streets" rows="4" placeholder="Liste des rues, tronçons, intersections"></textarea>
+                      <label for="svc_ventousage_zones" style="margin-top:.6rem;">Nombre de zones / panneaux</label>
+                      <input id="svc_ventousage_zones" name="svc_ventousage_zones" type="number" min="0" step="1" placeholder="Ex: 12">
+                      <label for="svc_ventousage_hours" style="margin-top:.6rem;">Créneaux / Horaires</label>
+                      <input id="svc_ventousage_hours" name="svc_ventousage_hours" type="text" placeholder="Ex: Nuit 22h–6h, Jour 8h–18h">
+                    </div>
+
+                    <!-- Sécurité / Gardiennage -->
+                    <div class="contact-card service-details" data-service="securite">
+                      <h3>Sécurité / Gardiennage — Détails</h3>
+                      <label for="svc_securite_agents">Nombre d’agents</label>
+                      <input id="svc_securite_agents" name="svc_securite_agents" type="number" min="0" step="1" placeholder="Ex: 3">
+                      <label for="svc_securite_hours" style="margin-top:.6rem;">Heures par jour</label>
+                      <input id="svc_securite_hours" name="svc_securite_hours" type="number" min="1" step="1" placeholder="Ex: 8">
+                      <label for="svc_securite_ssiap" class="checkbox" style="margin-top:.6rem;">
+                        <input id="svc_securite_ssiap" name="svc_securite_ssiap" type="checkbox" value="1"> SSIAP / niveau renforcé
+                      </label>
+                    </div>
+
+                    <!-- Convoyage -->
+                    <div class="contact-card service-details" data-service="convoyage">
+                      <h3>Convoyage — Détails</h3>
+                      <label for="svc_convoyage_pickup">Adresse de départ</label>
+                      <input id="svc_convoyage_pickup" name="svc_convoyage_pickup" type="text" placeholder="Point de collecte (adresse complète)">
+                      <label for="svc_convoyage_drop" style="margin-top:.6rem;">Adresse d’arrivée</label>
+                      <input id="svc_convoyage_drop" name="svc_convoyage_drop" type="text" placeholder="Point de livraison (adresse complète)">
+                      <label for="svc_convoyage_schedule" style="margin-top:.6rem;">Créneaux / Horaire</label>
+                      <input id="svc_convoyage_schedule" name="svc_convoyage_schedule" type="text" placeholder="Ex: 8h–12h, 14h–18h">
+                      <label for="svc_convoyage_stops" style="margin-top:.6rem;">Stops intermédiaires (optionnel)</label>
+                      <input id="svc_convoyage_stops" name="svc_convoyage_stops" type="text" placeholder="Ex: 2 stops (atelier, stockage)">
+                      <label for="svc_convoyage_volume" style="margin-top:.6rem;">Volume</label>
+                      <select id="svc_convoyage_volume" name="svc_convoyage_volume">
+                        <option value="moyen">Moyen</option>
+                        <option value="grand">Grand (jusqu’à 22 m³)</option>
+                      </select>
+                    </div>
+
+                    <!-- Régie & matériel -->
+                    <div class="contact-card service-details" data-service="regie">
+                      <h3>Régie & Matériel — Détails</h3>
+                      <label for="svc_regie_equipment">Liste du matériel / besoins</label>
+                      <textarea id="svc_regie_equipment" name="svc_regie_equipment" rows="4" placeholder="Ex: barrières, cônes, rubalise, radios, gilets, etc."></textarea>
+                      <label for="svc_regie_agents" style="margin-top:.6rem;">Nombre d’agents régie</label>
+                      <input id="svc_regie_agents" name="svc_regie_agents" type="number" min="0" step="1" placeholder="Ex: 2">
+                      <label for="svc_regie_hours" style="margin-top:.6rem;">Heures par jour</label>
+                      <input id="svc_regie_hours" name="svc_regie_hours" type="number" min="1" step="1" placeholder="Ex: 8">
+                    </div>
+
+                    <!-- Signalisation & barriérage -->
+                    <div class="contact-card service-details" data-service="signalisation">
+                      <h3>Signalisation & Barriérage — Détails</h3>
+                      <label for="svc_signalisation_perimeter">Périmètre / zones à sécuriser</label>
+                      <textarea id="svc_signalisation_perimeter" name="svc_signalisation_perimeter" rows="3" placeholder="Ex: périmètre de tournage, rue X entre Y et Z"></textarea>
+                      <label for="svc_signalisation_barriers" style="margin-top:.6rem;">Nombre approximatif de barrières</label>
+                      <input id="svc_signalisation_barriers" name="svc_signalisation_barriers" type="number" min="0" step="1" placeholder="Ex: 40">
+                      <label for="svc_signalisation_hours" style="margin-top:.6rem;">Heures par jour</label>
+                      <input id="svc_signalisation_hours" name="svc_signalisation_hours" type="number" min="1" step="1" placeholder="Ex: 8">
+                    </div>
+
+                    <!-- Affichage riverains -->
+                    <div class="contact-card service-details" data-service="affichage">
+                      <h3>Affichage Riverains — Détails</h3>
+                      <label for="svc_affichage_streets">Rues / secteurs pour affichage</label>
+                      <textarea id="svc_affichage_streets" name="svc_affichage_streets" rows="3" placeholder="Ex: Rue X, Avenue Y, Place Z"></textarea>
+                      <label for="svc_affichage_posters" style="margin-top:.6rem;">Nombre de panneaux / affiches</label>
+                      <input id="svc_affichage_posters" name="svc_affichage_posters" type="number" min="0" step="1" placeholder="Ex: 30">
+                    </div>
+
+                    <!-- Loges & Confort -->
+                    <div class="contact-card service-details" data-service="loges">
+                      <h3>Loges & Confort — Détails</h3>
+                      <label for="svc_loges_number">Nombre de loges</label>
+                      <input id="svc_loges_number" name="svc_loges_number" type="number" min="0" step="1" placeholder="Ex: 4">
+                      <label for="svc_loges_types" style="margin-top:.6rem;">Types de loges</label>
+                      <input id="svc_loges_types" name="svc_loges_types" type="text" placeholder="Ex: maquillage, habillage, green room">
+                      <label for="svc_loges_location" style="margin-top:.6rem;">Localisation / accès</label>
+                      <input id="svc_loges_location" name="svc_loges_location" type="text" placeholder="Ex: cour intérieure, parking, étage 1">
                     </div>
                     <div class="contact-card">
                       <label for="package"><strong>Pack souhaité (optionnel)</strong></label>

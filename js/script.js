@@ -762,7 +762,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupGTM();
     // Message de succès pour le formulaire Contact (?success=1)
     setupContactSuccessNotice();
-    // Capture des leads du formulaire Contact vers Zoho (non bloquant)
+    // Détails dynamiques selon service sur le formulaire Contact
+    setupContactServiceDetails();
+    // Capture des leads du formulaire Contact vers HubSpot (non bloquant)
     setupContactLeadCapture();
     // Harmonisation des emails (remplacement Gmail -> contact@bmsventouse.fr)
     replaceLegacyEmail();
@@ -893,6 +895,36 @@ function setupContactSuccessNotice() {
 // --------------------------------------------------------------------------
 // MODULE: Capture du formulaire Contact vers Zoho CRM (non bloquant)
 // --------------------------------------------------------------------------
+function setupContactServiceDetails() {
+  try {
+    const form = document.querySelector('form[name="contact"]');
+    const serviceSel = document.getElementById('service');
+    if (!form || !serviceSel) return;
+    const groups = Array.from(form.querySelectorAll('.service-details'));
+    const map = (val) => {
+      const v = String(val || '').toLowerCase();
+      if (v.includes('ventousage')) return 'ventousage';
+      if (v.includes('sécurité') || v.includes('gardiennage')) return 'securite';
+      if (v.includes('convoyage')) return 'convoyage';
+      if (v.includes('régie')) return 'regie';
+      if (v.includes('affichage')) return 'affichage';
+      if (v.includes('signalisation')) return 'signalisation';
+      if (v.includes('loges') || v.includes('confort')) return 'loges';
+      if (v.includes('cantine') || v.includes('catering')) return 'cantine';
+      return '';
+    };
+    const showRelevant = () => {
+      const code = map(serviceSel.value);
+      groups.forEach(g => {
+        const s = g.getAttribute('data-service') || '';
+        g.style.display = s === code ? '' : 'none';
+      });
+    };
+    serviceSel.addEventListener('change', showRelevant);
+    showRelevant();
+  } catch (_) {}
+}
+
 function setupContactLeadCapture() {
   try {
     const form = document.querySelector('form[name="contact"]');
@@ -917,12 +949,41 @@ function setupContactLeadCapture() {
           budget: (document.getElementById('budget') || {}).value || '',
           details: (document.getElementById('details') || {}).value || '',
           consent: !!((document.getElementById('consent') || {}).checked),
-          source: 'contact_form'
+          source: 'contact_form',
+          // Champs spécifiques selon service
+          svc_cantine_people: (document.getElementById('svc_cantine_people') || {}).value || '',
+          svc_cantine_meals: (document.getElementById('svc_cantine_meals') || {}).value || '',
+          svc_cantine_dietary: (document.getElementById('svc_cantine_dietary') || {}).value || '',
+          svc_cantine_hours: (document.getElementById('svc_cantine_hours') || {}).value || '',
+          svc_ventousage_streets: (document.getElementById('svc_ventousage_streets') || {}).value || '',
+          svc_ventousage_zones: (document.getElementById('svc_ventousage_zones') || {}).value || '',
+          svc_ventousage_hours: (document.getElementById('svc_ventousage_hours') || {}).value || '',
+          svc_securite_agents: (document.getElementById('svc_securite_agents') || {}).value || '',
+          svc_securite_hours: (document.getElementById('svc_securite_hours') || {}).value || '',
+          svc_securite_ssiap: !!((document.getElementById('svc_securite_ssiap') || {}).checked),
+          svc_convoyage_pickup: (document.getElementById('svc_convoyage_pickup') || {}).value || '',
+          svc_convoyage_drop: (document.getElementById('svc_convoyage_drop') || {}).value || '',
+          svc_convoyage_schedule: (document.getElementById('svc_convoyage_schedule') || {}).value || '',
+          svc_convoyage_stops: (document.getElementById('svc_convoyage_stops') || {}).value || '',
+          svc_convoyage_volume: (document.getElementById('svc_convoyage_volume') || {}).value || '',
+          svc_regie_equipment: (document.getElementById('svc_regie_equipment') || {}).value || '',
+          svc_regie_agents: (document.getElementById('svc_regie_agents') || {}).value || '',
+          svc_regie_hours: (document.getElementById('svc_regie_hours') || {}).value || '',
+          svc_signalisation_perimeter: (document.getElementById('svc_signalisation_perimeter') || {}).value || '',
+          svc_signalisation_barriers: (document.getElementById('svc_signalisation_barriers') || {}).value || '',
+          svc_signalisation_hours: (document.getElementById('svc_signalisation_hours') || {}).value || '',
+          svc_affichage_streets: (document.getElementById('svc_affichage_streets') || {}).value || '',
+          svc_affichage_posters: (document.getElementById('svc_affichage_posters') || {}).value || '',
+          svc_loges_number: (document.getElementById('svc_loges_number') || {}).value || '',
+          svc_loges_types: (document.getElementById('svc_loges_types') || {}).value || '',
+          svc_loges_location: (document.getElementById('svc_loges_location') || {}).value || ''
         };
         // On stocke email/phone pour le check d’éligibilité -15% côté /devis/ si l’utilisateur y va ensuite
         try {
           localStorage.setItem('bms_lead_email', payload.email || '');
           localStorage.setItem('bms_lead_phone', payload.phone || '');
+          localStorage.setItem('bms_lead_fullname', payload.fullname || '');
+          localStorage.setItem('bms_lead_company', payload.company || '');
         } catch (_){}
 
         fetch('/.netlify/functions/hubspot_lead', {
