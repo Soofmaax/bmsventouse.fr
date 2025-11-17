@@ -53,6 +53,8 @@ jobs:
           DEFAULT_BRANCH: main
           # Avoid relying on git history to compute changed files
           USE_FIND_ALGORITHM: true
+          # Run in local mode to avoid any dependency on Git history/root commit detection
+          RUN_LOCAL: true
           VALIDATE_ALL_CODEBASE: true
           LOG_LEVEL: DEBUG
           OUTPUT_DETAILS: detailed
