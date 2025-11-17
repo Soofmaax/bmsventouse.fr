@@ -289,6 +289,11 @@ jobs:
           path: artifacts/markdownlint
         continue-on-error: true
 
+      - name: Setup Node.js (for Pa11y JSON parsing)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - name: Append consolidated summary
         shell: bash
         run: |
@@ -296,11 +301,13 @@ jobs:
             echo "## Consolidated CI Summary"
             echo ""
             echo "### Accessibility (Pa11y)"
-            if [ -s artifacts/pa11y/pa11y-report.json ]; then
-              node -e '
+            PA11Y_JSON="$(find artifacts/pa11y -type f -name 'pa11y-report*.json' | head -n 1 || true)"
+            if [ -n "$PA11Y_JSON" ] && [ -s "$PA11Y_JSON" ]; then
+              PA11Y_JSON="$PA11Y_JSON" node -e '
                 const fs=require("fs");
+                const path=process.env.PA11Y_JSON;
                 try{
-                  const raw=fs.readFileSync("artifacts/pa11y/pa11y-report.json","utf8");
+                  const raw=fs.readFileSync(path,"utf8");
                   const data=JSON.parse(raw);
                   const pages = Array.isArray(data) ? data
                     : (data && Array.isArray(data.results)) ? data.results : [];
@@ -328,22 +335,40 @@ jobs:
             fi
             echo ""
             echo "### HTMLHint (top 200 lines)"
-            if [ -s artifacts/htmlhint/htmlhint-report.txt ]; then
-              sed -n '1,200p' artifacts/htmlhint/htmlhint-report.txt
+            if ls artifacts/htmlhint/* >/dev/null 2>&1; then
+              for f in artifacts/htmlhint/*; do
+                if [ -s "$f" ]; then
+                  echo ""
+                  echo "#### $(basename "$f")"
+                  sed -n '1,200p' "$f"
+                fi
+              done
             else
               echo "No HTMLHint output captured."
             fi
             echo ""
             echo "### Stylelint (top 200 lines)"
-            if [ -s artifacts/stylelint/stylelint-report.txt ]; then
-              sed -n '1,200p' artifacts/stylelint/stylelint-report.txt
+            if ls artifacts/stylelint/* >/dev/null 2>&1; then
+              for f in artifacts/stylelint/*; do
+                if [ -s "$f" ]; then
+                  echo ""
+                  echo "#### $(basename "$f")"
+                  sed -n '1,200p' "$f"
+                fi
+              done
             else
               echo "No Stylelint output captured."
             fi
             echo ""
             echo "### Markdownlint (top 200 lines)"
-            if [ -s artifacts/markdownlint/markdownlint-report.txt ]; then
-              sed -n '1,200p' artifacts/markdownlint/markdownlint-report.txt
+            if ls artifacts/markdownlint/* >/dev/null 2>&1; then
+              for f in artifacts/markdownlint/*; do
+                if [ -s "$f" ]; then
+                  echo ""
+                  echo "#### $(basename "$f")"
+                  sed -n '1,200p' "$f"
+                fi
+              done
             else
               echo "No Markdownlint output captured."
             fi
