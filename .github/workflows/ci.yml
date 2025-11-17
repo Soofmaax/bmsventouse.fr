@@ -122,29 +122,29 @@ jobs:
         run: |
           {
             echo "## Lint summary"
-            if [ -s super-linter-output/super-linter-summary.md ]; then
-              echo ""
-              echo "### Super-Linter"
-              echo ""
-              sed -n '1,200p' super-linter-output/super-linter-summary.md
-            fi
+            echo ""
+            echo "### HTMLHint (top 200 lines)"
+            echo ""
             if [ -s htmlhint-report.txt ]; then
-              echo ""
-              echo "### HTMLHint (top 200 lines)"
-              echo ""
               sed -n '1,200p' htmlhint-report.txt
+            else
+              echo "No HTMLHint output captured."
             fi
+            echo ""
+            echo "### Stylelint (top 200 lines)"
+            echo ""
             if [ -s stylelint-report.txt ]; then
-              echo ""
-              echo "### Stylelint (top 200 lines)"
-              echo ""
               sed -n '1,200p' stylelint-report.txt
+            else
+              echo "No Stylelint output captured."
             fi
+            echo ""
+            echo "### Markdownlint (top 200 lines)"
+            echo ""
             if [ -s markdownlint-report.txt ]; then
-              echo ""
-              echo "### Markdownlint (top 200 lines)"
-              echo ""
               sed -n '1,200p' markdownlint-report.txt
+            else
+              echo "No Markdownlint output captured."
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -192,21 +192,41 @@ jobs:
         run: |
           node -e "
           const fs=require('fs');
-          try {
-            const data=JSON.parse(fs.readFileSync('pa11y-report.json','utf8'));
+          function summarize(report) {
+            const pages = Array.isArray(report) ? report
+              : (report && Array.isArray(report.results)) ? report.results
+              : (report && Array.isArray(report)) ? report
+              : [];
             const lines=[];
             lines.push('## Accessibility (Pa11y) summary');
-            for (const page of data) {
-              const fails=(page.issues||[]).filter(i=>i.type==='error');
+            let totalErrors=0;
+            for (const page of pages) {
+              const url = page.pageUrl || page.url || '';
+              const issues = page.issues || page.results || [];
+              const fails = (issues||[]).filter(i=> (i.type||i.severity)==='error' || (i.severity==='error'));
               if (fails.length) {
-                lines.push('\\n### ' + page.pageUrl);
+                lines.push('\\n### ' + url);
                 fails.slice(0,20).forEach(i=>{
-                  lines.push('- ['+i.code+'] ' + i.message + ' (selector: ' + (i.selector||'') + ')');
+                  const code = i.code || i.type || i.rule || 'error';
+                  const sel = i.selector || (i.context && i.context.selector) || '';
+                  const msg = i.message || i.description || '';
+                  lines.push('- ['+code+'] ' + msg + (sel ? ' (selector: ' + sel + ')' : ''));
                 });
+                totalErrors += fails.length;
               }
             }
-            if (lines.length>1) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join('\\n'));
-          } catch(e) {}
+            if (totalErrors===0) {
+              lines.push('\\nNo Pa11y errors detected.');
+            }
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join('\\n'));
+          }
+          try {
+            summarize(JSON.parse(fs.readFileSync('pa11y-report.json','utf8')));
+          } catch(e) {
+            try {
+              summarize(JSON.parse(fs.readFileSync('pa11y-report','utf8')));
+            } catch(_) {}
+          }
           "
 
       - name: Upload Pa11y report
