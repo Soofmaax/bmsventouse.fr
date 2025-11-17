@@ -53,6 +53,8 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           LOG_LEVEL: DEBUG
           OUTPUT_DETAILS: detailed
+          OUTPUT_FOLDER: super-linter-output
+          CREATE_LOG_FILE: true
           # Include-only mode: enable selected linters; do not set any VALIDATE_* to false
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_GIT_MERGE_CONFLICT_MARKERS: true
@@ -72,10 +74,9 @@ jobs:
         with:
           name: super-linter-report
           path: |
+            super-linter-output/**
             super-linter.log
-            super-linter-output/super-linter-summary.md
-            super-linter-output/super-linter/**
-          if-no-files-found: ignore
+          if-no-files-found: warn
 
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
       # (OUTPUT_DETAILS=detailed). Pas besoin d'artefacts dédiés.
