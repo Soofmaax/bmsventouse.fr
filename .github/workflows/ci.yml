@@ -139,8 +139,29 @@ jobs:
             else
               echo "Super-Linter summary file not available."
             fi
-            # Super-Linter detailed log not appended to summary to avoid permission issues on some runners.
-            # Refer to the Super-Linter step logs above or the generated summary file for details.
+
+            echo ""
+            echo "### Super-Linter per-tool outputs (top 200 lines)"
+            echo ""
+            if [ -d super-linter-output/super-linter ]; then
+              for f in super-linter-output/super-linter/*; do
+                bn="$(basename "$f")"
+                # Focus only on failing tool families for readability
+                if echo "$bn" | grep -Eiq '(CSS|HTML|MARKDOWN|GITLEAKS)'; then
+                  echo ""
+                  echo "#### $bn"
+                  if [ -r "$f" ]; then
+                    sed -n '1,200p' "$f" || true
+                  else
+                    echo "File not readable."
+                  fi
+                fi
+              done
+            else
+              echo "No Super-Linter per-tool outputs available."
+            fi
+
+            echo ""
             echo "### HTMLHint (top 200 lines)"
             echo ""
             if [ -s htmlhint-report.txt ]; then

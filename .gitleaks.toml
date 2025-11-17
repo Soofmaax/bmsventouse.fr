@@ -35,7 +35,15 @@ regexes = [
   '''\bZoho-oauthtoken\b''',
 
   # OAuth token exchange URL patterns (env-based values; code may include these literals)
-  '''/oauth/v2/token\?refresh_token=.*&client_id=.*&client_secret=.*&grant_type=refresh_token'''
+  '''/oauth/v2/token\?refresh_token=.*&client_id=.*&client_secret=.*&grant_type=refresh_token''',
+
+  # Env-based credential references (safe): allow assignments that read from process.env (not hard-coded secrets)
+  '''\bCLIENT_SECRET\s*=\s*process\.env\.[A-Z0-9_]+\b''',
+  '''\bCLIENT_ID\s*=\s*process\.env\.[A-Z0-9_]+\b''',
+  '''\bREFRESH_TOKEN\s*=\s*process\.env\.[A-Z0-9_]+\b''',
+  '''process\.env\.ZOHO_CLIENT_SECRET\b''',
+  '''process\.env\.ZOHO_CLIENT_ID\b''',
+  '''process\.env\.ZOHO_REFRESH_TOKEN\b'''
 ]
 
 # Path-based allowlist for files that intentionally contain public verification keys or OAuth flows
@@ -43,5 +51,5 @@ paths = [
   # IndexNow key file present at repo root, required to be public
   '''^indexnow-[a-f0-9]{32}\.txt''',
   # Netlify serverless with OAuth flows (values come from environment; no hard-coded secrets)
-  '''^netlify/functions/zoho_.*\.js''
+  '''^netlify/functions/zoho_.*\.js'''
 ]
