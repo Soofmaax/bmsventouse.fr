@@ -906,6 +906,12 @@ body.dark-theme .header {
   gap: var(--grid-gap);
 }
 
+/* Form sections shown conditionally by JS (prevent FOUC) */
+.service-details { display: none; }
+
+/* Calculator cards shown conditionally by JS (prevent FOUC) */
+.services-grid [data-show] { display: none; }
+
 /* Témoignages clients */
 .testimonial-card {
   background: var(--color-light);
