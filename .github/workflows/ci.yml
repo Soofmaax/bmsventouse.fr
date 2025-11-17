@@ -60,7 +60,8 @@ jobs:
           OUTPUT_DETAILS: detailed
           OUTPUT_FOLDER: super-linter-output
           CREATE_LOG_FILE: true
-          # Save a markdown summary file we can display in the Job Summary
+          # Save outputs and markdown summary files
+          SAVE_SUPER_LINTER_OUTPUT: true
           SAVE_SUPER_LINTER_SUMMARY: true
           # Include-only mode: enable selected linters; do not set any VALIDATE_* to false
           VALIDATE_GITHUB_ACTIONS: true
@@ -83,19 +84,19 @@ jobs:
         if: always()
         run: |
           set -o pipefail
-          npx stylelint "**/*.css" --formatter verbose | tee stylelint-report.txt || true
+          npx stylelint "**/*.css" --formatter verbose 2>&1 | tee stylelint-report.txt || true
 
       - name: HTMLHint report (non-blocking)
         if: always()
         run: |
           set -o pipefail
-          npx htmlhint --config .htmlhintrc --format unix "**/*.html" | tee htmlhint-report.txt || true
+          npx htmlhint --config .htmlhintrc --format unix "**/*.html" 2>&1 | tee htmlhint-report.txt || true
 
       - name: Markdownlint report (non-blocking)
         if: always()
         run: |
           set -o pipefail
-          npx markdownlint "**/*.md" --config .markdownlint.json | tee markdownlint-report.txt || true
+          npx markdownlint "**/*.md" --config .markdownlint.json 2>&1 | tee markdownlint-report.txt || true
 
       - name: Upload Stylelint report
         if: always()
@@ -136,6 +137,14 @@ jobs:
               sed -n '1,200p' super-linter-output/super-linter-summary.md
             else
               echo "Super-Linter summary file not available."
+            fi
+            echo ""
+            echo "### Super-Linter log (errors excerpt)"
+            echo ""
+            if [ -s super-linter.log ]; then
+              grep -E "ERROR|Fail|Lint|Validation" -n super-linter.log | sed -n '1,200p'
+            else
+              echo "No super-linter.log available."
             fi
             echo ""
             echo "### HTMLHint (top 200 lines)"
