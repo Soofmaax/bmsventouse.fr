@@ -139,15 +139,8 @@ jobs:
             else
               echo "Super-Linter summary file not available."
             fi
-            echo ""
-            echo "### Super-Linter log (errors excerpt)"
-            echo ""
-            if [ -r super-linter.log ]; then
-              grep -E "ERROR|Fail|Lint|Validation" -n super-linter.log | sed -n '1,200p' || true
-            else
-              echo "super-linter.log not available or not readable."
-            fi
-            echo ""
+            # Super-Linter detailed log not appended to summary to avoid permission issues on some runners.
+            # Refer to the Super-Linter step logs above or the generated summary file for details.
             echo "### HTMLHint (top 200 lines)"
             echo ""
             if [ -s htmlhint-report.txt ]; then
