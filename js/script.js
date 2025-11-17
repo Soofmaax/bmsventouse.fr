@@ -925,7 +925,7 @@ function setupContactLeadCapture() {
           localStorage.setItem('bms_lead_phone', payload.phone || '');
         } catch (_){}
 
-        fetch('/.netlify/functions/zoho_lead', {
+        fetch('/.netlify/functions/hubspot_lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),

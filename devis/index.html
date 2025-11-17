@@ -361,12 +361,12 @@
       lead.style.display = isSuccess ? 'none' : '';
       calc.style.display = isSuccess ? '' : 'none';
     }
-    // Si succès, on vérifie l’éligibilité -15% en interrogeant Zoho
+    // Si succès, on vérifie l’éligibilité -15% en interrogeant HubSpot
     if (isSuccess && calc) {
       const email = localStorage.getItem('bms_lead_email') || '';
       const phone = localStorage.getItem('bms_lead_phone') || '';
       if (email || phone) {
-        fetch('/.netlify/functions/zoho_check', {
+        fetch('/.netlify/functions/hubspot_check', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, phone })
@@ -380,7 +380,7 @@
           try {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({ event: 'eligibility_checked', eligible_15: !!(res && res.eligible) });
-          } catch(_){}
+          } catch(_){} 
         }).catch(()=>{});
       }
     }
@@ -437,7 +437,7 @@
             localStorage.setItem('bms_last_phone', payload.phone || '');
           } catch(_){}
 
-          fetch('/.netlify/functions/zoho_lead', {
+          fetch('/.netlify/functions/hubspot_lead', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
