@@ -204,38 +204,19 @@ jobs:
 
   codeql:
     name: CodeQL (SAST)
-    if: ${{ github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # Sur PR, le job est non bloquant ; sur push/schedule il est bloquant
+    continue-on-error: ${{ github.event_name == 'pull_request' }}
     permissions:
       security-events: write
       actions: read
       contents: read
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (use PR head on pull_request)
         uses: actions/checkout@v4
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
         with:
-          languages: javascript
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v4
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
-
-  codeql_pr:
-    name: CodeQL (PR; non-blocking)
-    if: ${{ github.event_name == 'pull_request' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    continue-on-error: true
-    permissions:
-      security-events: write
-      actions: read
-      contents: read
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
