@@ -68,6 +68,46 @@ jobs:
           GITLEAKS_CONFIG: ".gitleaks.toml"
           FILTER_REGEX_EXCLUDE: 'images/.*\.html|social-assets/.*\.html|brand-assets/.*\.html'
 
+      - name: Install linters CLIs (stylelint, htmlhint, markdownlint)
+        run: |
+          npm i --no-save stylelint htmlhint markdownlint-cli
+
+      - name: Stylelint report (non-blocking)
+        run: |
+          npx stylelint "**/*.css" --formatter verbose | tee stylelint-report.txt ; exit 0
+
+      - name: HTMLHint report (non-blocking)
+        run: |
+          npx htmlhint --config .htmlhintrc --format stylish "**/*.html" | tee htmlhint-report.txt ; exit 0
+
+      - name: Markdownlint report (non-blocking)
+        run: |
+          npx markdownlint "**/*.md" --config .markdownlint.json | tee markdownlint-report.txt ; exit 0
+
+      - name: Upload Stylelint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stylelint-report
+          path: stylelint-report.txt
+          if-no-files-found: warn
+
+      - name: Upload HTMLHint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: htmlhint-report
+          path: htmlhint-report.txt
+          if-no-files-found: warn
+
+      - name: Upload Markdownlint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: markdownlint-report
+          path: markdownlint-report.txt
+          if-no-files-found: warn
+
       - name: Upload Super-Linter summary
         if: always()
         uses: actions/upload-artifact@v4
@@ -100,13 +140,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         with:
           languages: javascript
       - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
+        uses: github/codeql-action/autobuild@v4
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v4
 
   accessibility:
     name: Accessibility (Pa11y)
@@ -118,11 +158,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Start static server and run Pa11y CI
+      - name: Start static server and run Pa11y CI (JSON report)
         run: |
           npx http-server -p 8080 -c-1 . &
           npx wait-on http://localhost:8080
-          npx pa11y-ci
+          set -o pipefail
+          npx pa11y-ci --json | tee pa11y-report.json
+      - name: Upload Pa11y report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pa11y-report
+          path: pa11y-report.json
+          if-no-files-found: warn
 
   npm_audit:
     name: Dependencies Audit (npm audit)
