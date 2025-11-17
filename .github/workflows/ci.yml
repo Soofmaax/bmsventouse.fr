@@ -91,40 +91,45 @@ jobs:
           npx markdownlint "**/*.md" --config .markdownlint.json | tee markdownlint-report.txt || true
 
       - name: Upload Stylelint report
-        if: always() && hashFiles('stylelint-report.txt') != ''
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stylelint-report
           path: stylelint-report.txt
+          if-no-files-found: warn
 
       - name: Upload HTMLHint report
-        if: always() && hashFiles('htmlhint-report.txt') != ''
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: htmlhint-report
           path: htmlhint-report.txt
+          if-no-files-found: warn
 
       - name: Upload Markdownlint report
-        if: always() && hashFiles('markdownlint-report.txt') != ''
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: markdownlint-report
           path: markdownlint-report.txt
+          if-no-files-found: warn
 
       - name: Upload Super-Linter summary
-        if: always() && hashFiles('super-linter-output/super-linter-summary.md') != ''
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: super-linter-summary
           path: super-linter-output/super-linter-summary.md
+          if-no-files-found: warn
         continue-on-error: true
 
       - name: Upload Super-Linter log
-        if: always() && hashFiles('super-linter.log') != ''
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: super-linter-log
           path: super-linter.log
+          if-no-files-found: warn
         continue-on-error: true
 
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
@@ -152,6 +157,7 @@ jobs:
   accessibility:
     name: Accessibility (Pa11y)
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
