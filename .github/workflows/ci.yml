@@ -58,6 +58,8 @@ jobs:
           OUTPUT_DETAILS: detailed
           OUTPUT_FOLDER: super-linter-output
           CREATE_LOG_FILE: true
+          # Save a markdown summary file we can display in the Job Summary
+          SAVE_SUPER_LINTER_SUMMARY: true
           # Include-only mode: enable selected linters; do not set any VALIDATE_* to false
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_GIT_MERGE_CONFLICT_MARKERS: true
@@ -125,6 +127,14 @@ jobs:
         run: |
           {
             echo "## Lint summary"
+            echo ""
+            echo "### Super-Linter summary"
+            echo ""
+            if [ -s super-linter-output/super-linter-summary.md ]; then
+              sed -n '1,200p' super-linter-output/super-linter-summary.md
+            else
+              echo "Super-Linter summary file not available."
+            fi
             echo ""
             echo "### HTMLHint (top 200 lines)"
             echo ""
