@@ -244,8 +244,8 @@ input, button, textarea, select {
   z-index: 1000;
   height: var(--promo-banner-height);
   background-color: var(--color-primary);
-  /* Contraste AAA: texte sombre sur fond orange */
-  color: var(--color-dark);
+  /* Contraste renforcé: noir quasi pur sur fond orange */
+  color: #111;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -554,10 +554,16 @@ body.dark-theme .header {
 }
 
 .footer-column a { 
-  color: #a0aec0; 
+  color: #d7dee9; 
   transition: color 0.2s, transform 0.2s;
   display: inline-flex;
   align-items: center;
+}
+
+.footer-column a:hover { 
+  color: var(--color-light);
+  transform: translateX(3px);
+  text-decoration: underline;
 }
 
 .footer-column a:hover { 
@@ -1382,13 +1388,14 @@ body.dark-theme .header {
 /* SUPPRIMÉ : Duplication de .promo-banner - la définition principale est en ligne 224 */
 
 .promo-banner a {
-  color: var(--color-dark);
+  color: inherit;
   text-decoration: underline;
   margin-left: 0.5rem;
 }
 
 .promo-banner a:hover {
-  color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  text-decoration: underline;
 }
 
 /* Statistiques sous forme de cartes */
