@@ -572,6 +572,80 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
+  // MODULE: UNIFIER LE CHARGEMENT DU CSS (style.css)
+  // --------------------------------------------------------------------------
+  const unifyStylesheetLoading = () => {
+    try {
+      const head = document.head || document.getElementsByTagName('head')[0];
+      if (!head) return;
+      // Supprimer les preload redondants pour style.css
+      head.querySelectorAll('link[rel="preload"][as="style"][href$="/css/style.css"]').forEach(link => {
+        try { link.remove(); } catch (_) {}
+      });
+      // S'assurer qu'un seul link rel="stylesheet" vers style.css reste
+      const sheets = head.querySelectorAll('link[rel="stylesheet"][href$="/css/style.css"]');
+      if (sheets.length > 1) {
+        for (let i = 1; i < sheets.length; i++) {
+          try { sheets[i].remove(); } catch (_) {}
+        }
+      }
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: MIGRATION DES ICÔNES FONT AWESOME -> SVG inline
+  // --------------------------------------------------------------------------
+  const removeFontAwesomeLink = () => {
+    try {
+      document.querySelectorAll('link[rel="stylesheet"][href*="font-awesome"]').forEach(link => {
+        try { link.remove(); } catch (_) {}
+      });
+    } catch (_) { /* non-bloquant */ }
+  };
+
+  const migrateFAIconsToInlineSVG = () => {
+    try {
+      const map = {
+        'fa-envelope': { vb: '0 0 512 512', d: 'M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z' },
+        'fa-whatsapp': { vb: '0 0 448 512', d: 'M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z' },
+        'fa-phone-alt': { vb: '0 0 512 512', d: 'M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z' },
+        'fa-phone': { vb: '0 0 512 512', d: 'M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z' },
+        'fa-city': { vb: '0 0 448 512', d: 'M128 148v-40c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v40h24c13.3 0 24 10.7 24 24v296H80V172c0-13.3 10.7-24 24-24h24zm64-28v36h64v-36h-64zM96 480h256v16c0 8.8-7.2 16-16 16H112c-8.8 0-16-7.2-16-16v-16z' },
+        'fa-road': { vb: '0 0 640 512', d: 'M640 480H0l240-320 96 128 64-64 240 256z' },
+        'fa-map': { vb: '0 0 512 512', d: 'M256 24C180 86 64 232 64 312c0 79.5 64.5 144 144 144s144-64.5 144-144C352 232 236 86 256 24z' },
+        'fa-list': { vb: '0 0 512 512', d: 'M96 64h320c17.7 0 32 14.3 32 32v320c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32zm48 64v64h64v-64h-64zm160 0v64h64v-64h-64zM144 256v64h64v-64h-64zm160 0v64h64v-64h-64z' }
+      };
+      const isFA = (cls) => cls.startsWith('fa-') && cls !== 'fas' && cls !== 'far' && cls !== 'fab';
+      let replaced = 0;
+      document.querySelectorAll('i[class*="fa-"]').forEach(i => {
+        try {
+          const c = Array.from(i.classList).find(isFA);
+          if (!c || !map[c]) return;
+          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          svg.setAttribute('viewBox', map[c].vb);
+          svg.setAttribute('width', '1em');
+          svg.setAttribute('height', '1em');
+          svg.setAttribute('fill', 'currentColor');
+          svg.setAttribute('aria-hidden', 'true');
+          svg.setAttribute('focusable', 'false');
+          svg.style.verticalAlign = 'middle';
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', map[c].d);
+          svg.appendChild(path);
+          i.replaceWith(svg);
+          replaced++;
+        } catch (_) { /* noop */ }
+      });
+      if (replaced > 0) {
+        // Retirer la feuille FA pour éviter chargement inutile
+        removeFontAwesomeLink();
+      }
+    } catch (_) { /* non-bloquant */ }
+  };
+
+  // --------------------------------------------------------------------------
   // MODULE: SOUS-MENU NAV — toutes les pages regroupées par sections
   // --------------------------------------------------------------------------
   const setupAllPagesSubmenu = async () => {
@@ -819,6 +893,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Global canonical (fallback si manquante) et passe orthographique typographique FR
     setupCanonicalFallback();
     setupFrenchTypoCleaning();
+    // Unifier le chargement du CSS et migrer FA -> SVG inline
+    unifyStylesheetLoading();
+    migrateFAIconsToInlineSVG();
     // Google Tag Manager (GTM) - chargement dynamique si un ID est fourni
     setupGTM();
     // Message de succès pour le formulaire Contact (?success=1)
@@ -827,8 +904,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupContactServiceDetails();
     // Capture des leads du formulaire Contact vers HubSpot (non bloquant)
     setupContactLeadCapture();
-    // Harmonisation des emails (remplacement Gmail -> contact@bmsventouse.fr)
-    replaceLegacyEmail();
+    // Harmonisation des emails: désactivée par défaut (respect de l'email courant)
+    // Pour activer, ajouter &lt;meta name="replace-email" content="true"&gt; dans le &lt;head&gt;.
+    try {
+      const metaReplace = document.querySelector('meta[name="replace-email"][content="true"]');
+      if (metaReplace) replaceLegacyEmail();
+    } catch (_) {}
+    }
     // PWA: enregistrement du Service Worker (pour PWA=100)
     setupServiceWorker();
     // Perf: améliorer le lazy/decoding des images (hors héros)
