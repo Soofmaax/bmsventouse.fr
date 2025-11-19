@@ -990,7 +990,7 @@ function setupContactLeadCapture() {
           localStorage.setItem('bms_lead_company', payload.company || '');
         } catch (_){}
 
-        fetch('/.netlify/functions/hubspot_lead', {
+        fetch('/.netlify/functions/email_forward', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
