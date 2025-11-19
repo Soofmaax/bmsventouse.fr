@@ -573,6 +573,14 @@ body.dark-theme .header {
   color: var(--color-primary);
   font-size: 0.9em;
 }
+.footer-column svg {
+  margin-right: 0.5rem;
+  color: var(--color-primary);
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  fill: currentColor;
+}
 
 .footer-bottom {
   border-top: 1px solid var(--color-dark-lighten);
@@ -1167,6 +1175,12 @@ body.dark-theme .header {
 .whatsapp-float i {
   pointer-events: none;
 }
+.whatsapp-float svg {
+  pointer-events: none;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
 
 /* Animation de pulse pour attirer l'attention */
 .whatsapp-float::after {
@@ -1681,6 +1695,13 @@ body.dark-theme .header {
   color: var(--color-primary);
   margin-bottom: 0.5rem;
 }
+.zone-card svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  fill: currentColor;
+}
 
 .zone-card h3 {
   margin-bottom: 0.5rem;
@@ -1756,6 +1777,12 @@ body.dark-theme .header {
 .contact-card .contact-icon i {
   font-size: 1.75rem;
   line-height: 1;
+}
+.contact-card .contact-icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  fill: currentColor;
 }
 /* L’icône gagne en relief quand on survole la carte (sans toucher aux boutons) */
 .contact-card:hover .contact-icon {
