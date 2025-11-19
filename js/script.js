@@ -518,6 +518,60 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
+  // MODULE: CANONICAL FALLBACK (global, zéro maintenance)
+  // --------------------------------------------------------------------------
+  const setupCanonicalFallback = () => {
+    try {
+      // Ne rien faire si une canonical est déjà définie dans le <head>
+      if (document.querySelector('link[rel="canonical"]')) return;
+      const { protocol, hostname, pathname } = location;
+      const proto = protocol === 'http:' ? 'https:' : protocol;
+      let path = pathname || '/';
+      // Ajoute un slash final pour les pages dossier (pas pour les fichiers .html, .txt, etc.)
+      if (!path.endsWith('/') && !/\.[a-z0-9]+$/i.test(path)) {
+        path += '/';
+      }
+      const url = proto + '//' + hostname.replace(/\/+$/, '') + path;
+      const link = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = url;
+      document.head.appendChild(link);
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: PASSE ORTHOGRAPHIQUE (typographie FR) — global, non destructif
+  // --------------------------------------------------------------------------
+  const setupFrenchTypoCleaning = () => {
+    try {
+      const skipTags = new Set(['SCRIPT','STYLE','NOSCRIPT','CODE','PRE','KBD','SAMP','VAR']);
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        const parent = node.parentNode;
+        if (!parent || skipTags.has(parent.nodeName)) continue;
+        let t = node.nodeValue;
+        if (!t || !t.trim()) continue;
+        // Espaces insécables avant ; : ? !
+        t = t.replace(/(\S)\s([;:?!])/g, '$1\u00A0$2');
+        // Nombre + heure -> NBSP
+        t = t.replace(/(\d+)\s?h(?![a-zA-Z])/g, '$1\u00A0h');
+        // Nombre + €
+        t = t.replace(/(\d+)\s?€\b/g, '$1\u00A0€');
+        // Ellipses
+        t = t.replace(/\.{3}/g, '…');
+        // Nettoyage espaces multiples
+        t = t.replace(/\s{2,}/g, ' ');
+        if (t !== node.nodeValue) node.nodeValue = t;
+      }
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
   // MODULE: SOUS-MENU NAV — toutes les pages regroupées par sections
   // --------------------------------------------------------------------------
   const setupAllPagesSubmenu = async () => {
@@ -762,6 +816,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     await setupAllPagesSubmenu();
     setupScrollProgress();
     loadClarityIfConsented();
+    // Global canonical (fallback si manquante) et passe orthographique typographique FR
+    setupCanonicalFallback();
+    setupFrenchTypoCleaning();
     // Google Tag Manager (GTM) - chargement dynamique si un ID est fourni
     setupGTM();
     // Message de succès pour le formulaire Contact (?success=1)
