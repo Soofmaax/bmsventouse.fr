@@ -259,9 +259,14 @@
               <div class="container">
                 <h2 id="form-title" class="section-title">Formulaire de Devis</h2>
                 <p class="section-subtitle">Renseignez les informations demandées pour un devis précis. Réponse sous 24–48h ouvrées.</p>
-                <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact/?success=1" enctype="multipart/form-data">
-                  <!-- Champ honeypot anti-spam -->
-                  <input type="hidden" name="form-name" value="contact">
+                <form name="contact" method="POST" action="https://formsubmit.co/contact@bmsventouse.fr" enctype="multipart/form-data">
+                  <!-- FormSubmit configuration (gratuit, zéro maintenance) -->
+                  <input type="hidden" name="_subject" value="Nouveau formulaire BMS Ventouse">
+                  <input type="hidden" name="_next" value="https://www.bmsventouse.fr/contact/?success=1">
+                  <input type="hidden" name="_captcha" value="false">
+                  <input type="hidden" name="_template" value="table">
+                  <!-- Honeypots anti-spam -->
+                  <p class="visually-hidden"><label>Ne pas remplir: <input name="honeypot"></label></p>
                   <p class="visually-hidden"><label>Ne pas remplir: <input name="bot-field"></label></p>
 
                   <div class="services-grid">
