@@ -259,7 +259,7 @@
               <div class="container">
                 <h2 id="form-title" class="section-title">Formulaire de Devis</h2>
                 <p class="section-subtitle">Renseignez les informations demandées pour un devis précis. Réponse sous 24–48h ouvrées.</p>
-                <form name="contact" method="POST" action="https://formsubmit.co/contact@bmsventouse.fr" enctype="multipart/form-data">
+                <form name="contact" method="POST" action="https://formsubmit.co/contact@bmsventouse.fr">
                   <!-- FormSubmit configuration (gratuit, zéro maintenance) -->
                   <input type="hidden" name="_subject" value="Nouveau formulaire BMS Ventouse">
                   <input type="hidden" name="_next" value="https://www.bmsventouse.fr/contact/?success=1">
@@ -465,10 +465,7 @@
                       <label for="details"><strong>Informations complémentaires</strong></label>
                       <textarea id="details" name="details" rows="8" placeholder="Détaillez le projet (périmètre, zones/panneaux, contraintes, accès régie, documents utiles, etc.)."></textarea>
                     </div>
-                    <div class="contact-card" style="grid-column: 1 / -1;">
-                      <label for="attachment"><strong>Pièce jointe (optionnel)</strong></label>
-                      <input id="attachment" name="attachment" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp">
-                    </div>
+                    
                     <div class="contact-card" style="grid-column: 1 / -1;">
                       <label for="consent" class="checkbox">
                         <input id="consent" name="consent" type="checkbox" required aria-required="true">
