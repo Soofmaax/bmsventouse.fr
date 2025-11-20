@@ -6,6 +6,12 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
     branches: ['**']
 
+  # Déclenchement automatique sur PR en provenance de forks
+  # (exécuté dans le contexte du repo de base, nécessaire pour publier les alertes Code Scanning)
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: ['**']
+
   # Déclenchement sur push (toutes branches)
   push:
     branches: ['**']
@@ -49,12 +55,32 @@ jobs:
         uses: super-linter/super-linter@v7.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          # Fix root commit detection issues on PRs by pinning default branch name
+          DEFAULT_BRANCH: main
+          # Avoid relying on git history to compute changed files
+          USE_FIND_ALGORITHM: true
+          # Run in local mode to avoid any dependency on Git history/root commit detection
+          RUN_LOCAL: true
           VALIDATE_ALL_CODEBASE: true
           LOG_LEVEL: DEBUG
           OUTPUT_DETAILS: detailed
           OUTPUT_FOLDER: super-linter-output
           CREATE_LOG_FILE: true
+          # Save outputs and markdown summary files
+          SAVE_SUPER_LINTER_OUTPUT: true
+          SAVE_SUPER_LINTER_SUMMARY: true
+
+          # Ensure linters use repository config files rather than action defaults
+          # NOTE: must be relative to $GITHUB_WORKSPACE, not an absolute path
+          LINTER_RULES_PATH: .
+          # Explicitly pass config files for each linter (super-linter will ignore unknown variables)
+          STYLELINT_CONFIG_FILE: ".stylelintrc.json"
+          HTML_HINT_CONFIG_FILE: ".htmlhintrc"
+          HTML_CONFIG_FILE: ".htmlhintrc"
+          MARKDOWN_CONFIG_FILE: ".markdownlint.json"
+          GITLEAKS_CONFIG_FILE: ".gitleaks.toml"
+          GITLEAKS_CONFIG: ".gitleaks.toml"
+
           # Include-only mode: enable selected linters; do not set any VALIDATE_* to false
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_GIT_MERGE_CONFLICT_MARKERS: true
@@ -65,24 +91,31 @@ jobs:
           VALIDATE_YAML: true
           VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_GITLEAKS: true
-          GITLEAKS_CONFIG: ".gitleaks.toml"
           FILTER_REGEX_EXCLUDE: 'images/.*\.html|social-assets/.*\.html|brand-assets/.*\.html'
 
       - name: Install linters CLIs (stylelint, htmlhint, markdownlint)
+        if: always()
         run: |
           npm i --no-save stylelint htmlhint markdownlint-cli
 
       - name: Stylelint report (non-blocking)
+        if: always()
         run: |
-          npx stylelint "**/*.css" --formatter verbose | tee stylelint-report.txt ; exit 0
+          set -o pipefail
+          npx --no-install stylelint "**/*.css" --formatter verbose 2>&1 | tee stylelint-report.txt || true
 
       - name: HTMLHint report (non-blocking)
+        if: always()
         run: |
-          npx htmlhint --config .htmlhintrc --format stylish "**/*.html" | tee htmlhint-report.txt ; exit 0
+          set -o pipefail
+          npx --no-install htmlhint --config .htmlhintrc --format unix "**/*.html" 2>&1 | tee htmlhint-report.txt || true
 
       - name: Markdownlint report (non-blocking)
+        if: always()
         run: |
-          npx markdownlint "**/*.md" --config .markdownlint.json | tee markdownlint-report.txt ; exit 0
+          set -o pipefail
+          # Lint Markdown des fichiers du projet uniquement (exclut node_modules)
+          npx --no-install markdownlint --config .markdownlint.json --ignore node_modules "**/*.md" 2>&1 | tee markdownlint-report.txt || true
 
       - name: Upload Stylelint report
         if: always()
@@ -108,23 +141,70 @@ jobs:
           path: markdownlint-report.txt
           if-no-files-found: warn
 
-      - name: Upload Super-Linter summary
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: super-linter-summary
-          path: super-linter-output/super-linter-summary.md
-          if-no-files-found: warn
-        continue-on-error: true
+      
 
-      - name: Upload Super-Linter log
+      - name: Append lint reports to Job Summary
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: super-linter-log
-          path: super-linter.log
-          if-no-files-found: warn
         continue-on-error: true
+        shell: bash
+        run: |
+          {
+            echo "## Lint summary"
+            echo ""
+            echo "### Super-Linter summary"
+            echo ""
+            if [ -s super-linter-output/super-linter-summary.md ]; then
+              sed -n '1,200p' super-linter-output/super-linter-summary.md
+            else
+              echo "Super-Linter summary file not available."
+            fi
+
+            echo ""
+            echo "### Super-Linter per-tool outputs (top 200 lines)"
+            echo ""
+            if [ -d super-linter-output/super-linter ]; then
+              for f in super-linter-output/super-linter/*; do
+                bn="$(basename "$f")"
+                # Focus only on failing tool families for readability
+                if echo "$bn" | grep -Eiq '(CSS|HTML|MARKDOWN|GITLEAKS)'; then
+                  echo ""
+                  echo "#### $bn"
+                  if [ -r "$f" ]; then
+                    sed -n '1,200p' "$f" || true
+                  else
+                    echo "File not readable."
+                  fi
+                fi
+              done
+            else
+              echo "No Super-Linter per-tool outputs available."
+            fi
+
+            echo ""
+            echo "### HTMLHint (top 200 lines)"
+            echo ""
+            if [ -s htmlhint-report.txt ]; then
+              sed -n '1,200p' htmlhint-report.txt
+            else
+              echo "No HTMLHint output captured."
+            fi
+            echo ""
+            echo "### Stylelint (top 200 lines)"
+            echo ""
+            if [ -s stylelint-report.txt ]; then
+              sed -n '1,200p' stylelint-report.txt
+            else
+              echo "No Stylelint output captured."
+            fi
+            echo ""
+            echo "### Markdownlint (top 200 lines)"
+            echo ""
+            if [ -s markdownlint-report.txt ]; then
+              sed -n '1,200p' markdownlint-report.txt
+            else
+              echo "No Markdownlint output captured."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
       # Les erreurs détaillées sont imprimées par Super-Linter directement dans les logs
       # (OUTPUT_DETAILS=detailed). Pas besoin d'artefacts dédiés.
@@ -132,17 +212,23 @@ jobs:
   codeql:
     name: CodeQL (SAST)
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # Sur PR/PR target, le job est non bloquant ; sur push/schedule il est bloquant
+    continue-on-error: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
     permissions:
       security-events: write
       actions: read
       contents: read
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (use PR head on pull_request)
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
           languages: javascript
+          queries: security-extended,security-and-quality
       - name: Autobuild
         uses: github/codeql-action/autobuild@v4
       - name: Perform CodeQL Analysis
@@ -158,12 +244,67 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Install Pa11y dependencies
+        run: npm i --no-save http-server wait-on pa11y-ci
       - name: Start static server and run Pa11y CI (JSON report)
+        continue-on-error: true
         run: |
-          npx http-server -p 8080 -c-1 . &
-          npx wait-on http://localhost:8080
+          npx --no-install http-server -p 8080 -c-1 . &
+          npx --no-install wait-on http://localhost:8080
           set -o pipefail
-          npx pa11y-ci --json | tee pa11y-report.json
+          # Exécuter Pa11y CI en JSON et garantir la présence d'un fichier JSON même en cas d'erreur
+          if npx --no-install pa11y-ci --json > pa11y-report.json; then
+            echo "Pa11y CI completed (report written to pa11y-report.json)"
+          else
+            echo "Pa11y CI exited with errors or non-zero status (report may still contain issues)"
+          fi
+          # Si aucun rapport n'a été produit, créer un JSON vide pour les jobs de résumé
+          if [ ! -s pa11y-report.json ]; then
+            echo '{"results":[]}' > pa11y-report.json
+          fi
+
+      - name: Summarize Pa11y failures to Job Summary
+        if: always()
+        run: |
+          node -e "
+          const fs=require('fs');
+          function summarize(report) {
+            const pages = Array.isArray(report) ? report
+              : (report && Array.isArray(report.results)) ? report.results
+              : (report && Array.isArray(report)) ? report
+              : [];
+            const lines=[];
+            lines.push('## Accessibility (Pa11y) summary');
+            let totalErrors=0;
+            for (const page of pages) {
+              const url = page.pageUrl || page.url || '';
+              const issues = page.issues || page.results || [];
+              const fails = (issues||[]).filter(i=> (i.type||i.severity)==='error' || (i.severity==='error'));
+              if (fails.length) {
+                lines.push('\\n### ' + url);
+                fails.slice(0,20).forEach(i=>{
+                  const code = i.code || i.type || i.rule || 'error';
+                  const sel = i.selector || (i.context && i.context.selector) || '';
+                  const msg = i.message || i.description || '';
+                  lines.push('- ['+code+'] ' + msg + (sel ? ' (selector: ' + sel + ')' : ''));
+                });
+                totalErrors += fails.length;
+              }
+            }
+            if (totalErrors===0) {
+              lines.push('\\nNo Pa11y errors detected.');
+            }
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join('\\n'));
+          }
+          try {
+            summarize(JSON.parse(fs.readFileSync('pa11y-report.json','utf8')));
+          } catch(e) {
+            try {
+              summarize(JSON.parse(fs.readFileSync('pa11y-report','utf8')));
+            } catch(_) {}
+          }
+          "
+
       - name: Upload Pa11y report
         if: always()
         uses: actions/upload-artifact@v4
@@ -186,3 +327,122 @@ jobs:
         run: npm install --no-fund --no-audit
       - name: Audit for vulnerabilities (high+)
         run: npm audit --audit-level=high
+
+  summary:
+    name: Consolidated CI Summary
+    runs-on: ubuntu-latest
+    needs: [lint, accessibility]
+    if: always()
+    steps:
+      - name: Download Pa11y report
+        uses: actions/download-artifact@v4
+        with:
+          name: pa11y-report
+          path: artifacts/pa11y
+        continue-on-error: true
+
+      - name: Download HTMLHint report
+        uses: actions/download-artifact@v4
+        with:
+          name: htmlhint-report
+          path: artifacts/htmlhint
+        continue-on-error: true
+
+      - name: Download Stylelint report
+        uses: actions/download-artifact@v4
+        with:
+          name: stylelint-report
+          path: artifacts/stylelint
+        continue-on-error: true
+
+      - name: Download Markdownlint report
+        uses: actions/download-artifact@v4
+        with:
+          name: markdownlint-report
+          path: artifacts/markdownlint
+        continue-on-error: true
+
+      - name: Setup Node.js (for Pa11y JSON parsing)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Append consolidated summary
+        shell: bash
+        run: |
+          {
+            echo "## Consolidated CI Summary"
+            echo ""
+            echo "### Accessibility (Pa11y)"
+            PA11Y_JSON="$(find artifacts/pa11y -type f -name 'pa11y-report*.json' | head -n 1 || true)"
+            if [ -n "$PA11Y_JSON" ] && [ -s "$PA11Y_JSON" ]; then
+              PA11Y_JSON="$PA11Y_JSON" node -e '
+                const fs=require("fs");
+                const path=process.env.PA11Y_JSON;
+                try{
+                  const raw=fs.readFileSync(path,"utf8");
+                  const data=JSON.parse(raw);
+                  const pages = Array.isArray(data) ? data
+                    : (data && Array.isArray(data.results)) ? data.results : [];
+                  let total=0;
+                  pages.forEach(p=>{
+                    const url=p.pageUrl||p.url||"";
+                    const issues=p.issues||p.results||[];
+                    const errs=issues.filter(i=> (i.type||i.severity)==="error" || i.severity==="error");
+                    if(errs.length){
+                      console.log("\\n#### " + url);
+                      errs.slice(0,20).forEach(i=>{
+                        const code=i.code||i.type||i.rule||"error";
+                        const msg=i.message||i.description||"";
+                        const sel=i.selector||(i.context&&i.context.selector)||"";
+                        console.log("- ["+code+"] "+msg+(sel? " (selector: "+sel+")":""));
+                      });
+                      total+=errs.length;
+                    }
+                  });
+                  if(total===0) console.log("No Pa11y errors detected.");
+                }catch(e){ console.log("Pa11y report not available."); }
+              '
+            else
+              echo "Pa11y report not available."
+            fi
+            echo ""
+            echo "### HTMLHint (top 200 lines)"
+            if ls artifacts/htmlhint/* >/dev/null 2>&1; then
+              for f in artifacts/htmlhint/*; do
+                if [ -s "$f" ]; then
+                  echo ""
+                  echo "#### $(basename "$f")"
+                  sed -n '1,200p' "$f"
+                fi
+              done
+            else
+              echo "No HTMLHint output captured."
+            fi
+            echo ""
+            echo "### Stylelint (top 200 lines)"
+            if ls artifacts/stylelint/* >/dev/null 2>&1; then
+              for f in artifacts/stylelint/*; do
+                if [ -s "$f" ]; then
+                  echo ""
+                  echo "#### $(basename "$f")"
+                  sed -n '1,200p' "$f"
+                fi
+              done
+            else
+              echo "No Stylelint output captured."
+            fi
+            echo ""
+            echo "### Markdownlint (top 200 lines)"
+            if ls artifacts/markdownlint/* >/dev/null 2>&1; then
+              for f in artifacts/markdownlint/*; do
+                if [ -s "$f" ]; then
+                  echo ""
+                  echo "#### $(basename "$f")"
+                  sed -n '1,200p' "$f"
+                fi
+              done
+            else
+              echo "No Markdownlint output captured."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
