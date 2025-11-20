@@ -114,7 +114,8 @@ jobs:
         if: always()
         run: |
           set -o pipefail
-          npx --no-install markdownlint "**/*.md" --config .markdownlint.json 2>&1 | tee markdownlint-report.txt || true
+          # Lint Markdown des fichiers du projet uniquement (exclut node_modules)
+          npx --no-install markdownlint --config .markdownlint.json --ignore node_modules "**/*.md" 2>&1 | tee markdownlint-report.txt || true
 
       - name: Upload Stylelint report
         if: always()
@@ -251,7 +252,16 @@ jobs:
           npx --no-install http-server -p 8080 -c-1 . &
           npx --no-install wait-on http://localhost:8080
           set -o pipefail
-          npx --no-install pa11y-ci --json | tee pa11y-report.json || true
+          # Exécuter Pa11y CI en JSON et garantir la présence d'un fichier JSON même en cas d'erreur
+          if npx --no-install pa11y-ci --json > pa11y-report.json; then
+            echo "Pa11y CI completed (report written to pa11y-report.json)"
+          else
+            echo "Pa11y CI exited with errors or non-zero status (report may still contain issues)"
+          fi
+          # Si aucun rapport n'a été produit, créer un JSON vide pour les jobs de résumé
+          if [ ! -s pa11y-report.json ]; then
+            echo '{"results":[]}' > pa11y-report.json
+          fi
 
       - name: Summarize Pa11y failures to Job Summary
         if: always()
