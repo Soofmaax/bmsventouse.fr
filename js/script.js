@@ -910,7 +910,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const metaReplace = document.querySelector('meta[name="replace-email"][content="true"]');
       if (metaReplace) replaceLegacyEmail();
     } catch (_) {}
-    }
+
     // PWA: enregistrement du Service Worker (pour PWA=100)
     setupServiceWorker();
     // Perf: améliorer le lazy/decoding des images (hors héros)
