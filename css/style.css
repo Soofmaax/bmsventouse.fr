@@ -180,6 +180,16 @@ input, button, textarea, select {
   white-space: nowrap;
 }
 
+/* Utilitaires d'affichage */
+.hidden {
+  display: none !important;
+}
+
+/* Texte d'erreur accessible */
+.text-error {
+  color: #dc2626;
+}
+
 :focus-visible {
   outline: var(--focus-outline-width) solid var(--color-primary);
   outline-offset: 2px;
@@ -532,14 +542,15 @@ body.dark-theme .header {
   gap: 2rem;
 }
 
-.footer-column h4 {
-  color: var(--color-primary);
+.footer-title {
+  font-weight: 600;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
-  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
   position: relative;
 }
 
-.footer-column h4::after {
+.footer-title::after {
   content: '';
   position: absolute;
   bottom: -0.5rem;
@@ -1548,6 +1559,41 @@ body.dark-theme .header {
   transform: translateX(3px);
 }
 
+/* Fil d’Ariane (breadcrumb) sans styles inline JS */
+.breadcrumb {
+  background: var(--color-light-alt);
+  border-bottom: 1px solid var(--color-border);
+  font-size: .95rem;
+  padding: .6rem 0;
+}
+
+.breadcrumb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.breadcrumb-home {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.breadcrumb-home:hover {
+  color: var(--color-primary-dark);
+}
+
+.breadcrumb-separator {
+  opacity: .6;
+  margin: 0 .2rem;
+}
+
+.breadcrumb-current {
+  color: var(--color-text-muted);
+}
+
 /* CARROUSEL DES RÉFÉRENCES */
 .references-carousel {
   position: relative;
@@ -1694,6 +1740,79 @@ body.dark-theme .header {
 .coverage-note-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--box-shadow-hover);
+}
+
+/* Note de succès du formulaire contact (injectée par JS) */
+.contact-success-note {
+  margin-bottom: 1rem;
+}
+
+/* Bannière cookies (Consent banner) sans styles inline JS */
+.cookie-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: var(--z-toast);
+  background: var(--color-light);
+  color: var(--color-dark);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cookie-banner-inner {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.cookie-banner-text {
+  margin: 0;
+  flex: 1;
+  min-width: 260px;
+}
+
+.cookie-banner-link {
+  text-decoration: underline;
+  color: var(--color-primary);
+}
+
+.cookie-banner-link:hover {
+  color: var(--color-primary-dark);
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cookie-banner-decline {
+  background: #f3f4f6;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  padding: .6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cookie-banner-accept {
+  padding: .6rem 1rem;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .cookie-banner {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
 }
 
 /* Légal sections sous forme de cartes */
@@ -2085,6 +2204,7 @@ body.dark-theme .header {
 
 .faq-item.is-open .faq-answer {
   padding: 1rem 1.5rem;
+  max-height: 999px;
 }
 
 @media (max-width: 600px) {
@@ -2136,6 +2256,29 @@ body.dark-theme .header {
   pointer-events: none;
   transition: transform 0.1s;
 }
+
+/* Paliers discrets pour la barre de progression (évite les styles inline JS) */
+.scroll-progress-p0  { transform: scaleX(0); }
+.scroll-progress-p1  { transform: scaleX(0.05); }
+.scroll-progress-p2  { transform: scaleX(0.10); }
+.scroll-progress-p3  { transform: scaleX(0.15); }
+.scroll-progress-p4  { transform: scaleX(0.20); }
+.scroll-progress-p5  { transform: scaleX(0.25); }
+.scroll-progress-p6  { transform: scaleX(0.30); }
+.scroll-progress-p7  { transform: scaleX(0.35); }
+.scroll-progress-p8  { transform: scaleX(0.40); }
+.scroll-progress-p9  { transform: scaleX(0.45); }
+.scroll-progress-p10 { transform: scaleX(0.50); }
+.scroll-progress-p11 { transform: scaleX(0.55); }
+.scroll-progress-p12 { transform: scaleX(0.60); }
+.scroll-progress-p13 { transform: scaleX(0.65); }
+.scroll-progress-p14 { transform: scaleX(0.70); }
+.scroll-progress-p15 { transform: scaleX(0.75); }
+.scroll-progress-p16 { transform: scaleX(0.80); }
+.scroll-progress-p17 { transform: scaleX(0.85); }
+.scroll-progress-p18 { transform: scaleX(0.90); }
+.scroll-progress-p19 { transform: scaleX(0.95); }
+.scroll-progress-p20 { transform: scaleX(1); }
 
 /* 2. Mode sombre toggle */
 .theme-toggle {

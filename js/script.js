@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       navLinks.classList.toggle('active', isActive);
       navOverlay.classList.toggle('active', isActive);
       hamburger.setAttribute('aria-expanded', isActive);
-      document.body.style.overflow = isActive ? 'hidden' : '';
       if (isActive) {
         firstFocusableElement.focus();
       }
@@ -124,10 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          const idx = parseInt(el.dataset.staggerIndex || '0', 10);
-          if (!prefersReducedMotion) {
-            el.style.transitionDelay = (idx * 0.15) + 's'; // 150 ms entre éléments
-          }
+          // La temporisation de transition est gérée uniquement par le CSS pour rester compatible avec une CSP stricte.
           el.classList.add('is-visible');
           obs.unobserve(el);
         }
@@ -170,7 +166,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       answer.setAttribute('id', answerId);
       answer.setAttribute('aria-labelledby', questionId);
       answer.setAttribute('role', 'region');
-      answer.style.maxHeight = '0px';
 
       // Toggle avec transition fluide de la hauteur
       const toggleFAQ = () => {
@@ -181,12 +176,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           if (otherItem !== item) {
             otherItem.classList.remove('is-open');
             const otherQuestion = otherItem.querySelector('.faq-question');
-            const otherAnswer = otherItem.querySelector('.faq-answer');
             if (otherQuestion) {
               otherQuestion.setAttribute('aria-expanded', 'false');
-            }
-            if (otherAnswer) {
-              otherAnswer.style.maxHeight = '0px';
             }
           }
         });
@@ -194,12 +185,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Basculer l'élément actuel
         item.classList.toggle('is-open', !isOpen);
         question.setAttribute('aria-expanded', String(!isOpen));
-        // Smooth expand/collapse
-        if (!isOpen) {
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        } else {
-          answer.style.maxHeight = '0px';
-        }
+        // L'ouverture/fermeture visuelle est désormais gérée uniquement
+        // par la classe .is-open et le CSS associé (max-height, padding, etc.).
       };
 
       // Événements
@@ -309,33 +296,21 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Création de la bannière
       const banner = document.createElement('div');
       banner.id = 'cookie-banner';
+      banner.className = 'cookie-banner';
       banner.setAttribute('role', 'dialog');
       banner.setAttribute('aria-live', 'polite');
       banner.setAttribute('aria-label', 'Bannière de consentement aux cookies');
-      banner.style.position = 'fixed';
-      banner.style.left = '1rem';
-      banner.style.right = '1rem';
-      banner.style.bottom = '1rem';
-      banner.style.zIndex = '3000';
-      banner.style.background = 'var(--color-light)';
-      banner.style.color = 'var(--color-dark)';
-      banner.style.border = '1px solid var(--color-border)';
-      banner.style.borderRadius = '12px';
-      banner.style.boxShadow = '0 8px 30px rgba(0,0,0,0.12)';
-      banner.style.padding = '1rem';
-      banner.style.maxWidth = '900px';
-      banner.style.margin = '0 auto';
 
       banner.innerHTML = `
-        <div style="display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap;">
-          <p style="margin:0; flex:1; min-width:260px;">
+        <div class="cookie-banner-inner">
+          <p class="cookie-banner-text">
             Nous utilisons un cookie de mesure d’audience (Google Analytics) pour améliorer le site. 
             Aucune publicité, et IP anonymisée. Vous pouvez refuser.
-            <a href="/mentions/" style="text-decoration:underline; color:var(--color-primary);">En savoir plus</a>.
+            <a href="/mentions/" class="cookie-banner-link">En savoir plus</a>.
           </p>
-          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-            <button id="cookie-decline" class="btn" style="background:#f3f4f6; color:#111827; border:1px solid #e5e7eb; padding:.6rem 1rem; border-radius:8px;">Refuser</button>
-            <button id="cookie-accept" class="btn btn-primary" style="padding:.6rem 1rem; border-radius:8px;">Accepter</button>
+          <div class="cookie-banner-actions">
+            <button id="cookie-decline" class="cookie-banner-decline">Refuser</button>
+            <button id="cookie-accept" class="cookie-banner-accept btn btn-primary">Accepter</button>
           </div>
         </div>
       `;
@@ -439,38 +414,27 @@ document.addEventListener('DOMContentLoaded', async () => {
       const nav = document.createElement('nav');
       nav.className = 'breadcrumb';
       nav.setAttribute('aria-label', "Fil d’Ariane");
-      nav.style.background = 'var(--color-light-alt)';
-      nav.style.borderBottom = '1px solid var(--color-border)';
-      nav.style.fontSize = '.95rem';
-      nav.style.padding = '.6rem 0';
 
       const container = document.createElement('div');
       container.className = 'container';
 
       const ol = document.createElement('ol');
-      ol.style.listStyle = 'none';
-      ol.style.margin = '0';
-      ol.style.padding = '0';
-      ol.style.display = 'flex';
-      ol.style.flexWrap = 'wrap';
-      ol.style.gap = '.5rem';
+      ol.className = 'breadcrumb-list';
 
       const homeLi = document.createElement('li');
       const homeA = document.createElement('a');
       homeA.href = '/';
       homeA.textContent = 'Accueil';
-      homeA.style.textDecoration = 'none';
-      homeA.style.color = 'var(--color-primary)';
+      homeA.className = 'breadcrumb-home';
       homeLi.appendChild(homeA);
 
       const sep = document.createElement('span');
       sep.textContent = '›';
-      sep.style.opacity = '.6';
-      sep.style.margin = '0 .2rem';
+      sep.className = 'breadcrumb-separator';
 
       const currentLi = document.createElement('li');
       currentLi.textContent = pageName;
-      currentLi.style.color = 'var(--color-text-muted)';
+      currentLi.className = 'breadcrumb-current';
 
       ol.appendChild(homeLi);
       ol.appendChild(sep);
@@ -690,11 +654,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     const bar = document.createElement('div');
     bar.className = 'scroll-progress';
     document.body.appendChild(bar);
+
+    let lastClass = '';
+    const steps = 20;
+
     const update = () => {
       const h = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = h > 0 ? (window.scrollY / h) : 0;
-      bar.style.transform = 'scaleX(' + ratio + ')';
+      const index = Math.max(0, Math.min(steps, Math.round(ratio * steps)));
+      const newClass = 'scroll-progress-p' + index;
+
+      if (lastClass !== newClass) {
+        if (lastClass) {
+          bar.classList.remove(lastClass);
+        }
+        bar.classList.add(newClass);
+        lastClass = newClass;
+      }
     };
+
     update();
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
@@ -808,26 +786,8 @@ function setupHeroParallax() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) return;
 
-  img.style.willChange = 'transform';
-  let ticking = false;
-
-  const update = () => {
-    const rect = hero.getBoundingClientRect();
-    if (rect.bottom > 0 && rect.top < window.innerHeight) {
-      const offset = -rect.top * 0.5; // vitesse 0.5x pour effet parallax léger
-      img.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
-    }
-    ticking = false;
-  };
-
-  const onScroll = () => {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
+  // Effet parallax désactivé pour compatibilité avec une CSP stricte (pas de styles inline via JS).
+  // Le visuel du hero est intégralement géré par le CSS.
 }
 
 // --------------------------------------------------------------------------
@@ -869,10 +829,9 @@ function setupContactSuccessNotice() {
     if (!container) return;
 
     const note = document.createElement('div');
-    note.className = 'coverage-note-card';
+    note.className = 'coverage-note-card contact-success-note';
     note.setAttribute('role', 'status');
     note.setAttribute('aria-live', 'polite');
-    note.style.marginBottom = '1rem';
     note.innerHTML = '<strong>Merci !</strong> Votre demande a été envoyée. Nous revenons vers vous sous 24–48&nbsp;h ouvrées. Vous pouvez aussi nous joindre directement au <a href="tel:+33646005642">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</a>.';
 
     container.insertBefore(note, container.firstChild);
