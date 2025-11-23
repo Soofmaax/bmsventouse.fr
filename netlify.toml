@@ -16,7 +16,7 @@
     X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), usb=(), payment=()"
     # HSTS pour HTTPS strict (1 an, inclut sous-domaines)
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     # Isolation d'origine recommandée par Lighthouse
