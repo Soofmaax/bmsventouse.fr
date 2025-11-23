@@ -67,75 +67,66 @@
     .btn.secondary{background:var(--title);}
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Carte de visite — BMS Ventouse (Recto/Verso)</h1>
-    <p class="note">
-      Gabarit imprimable: 85×55 mm + 3 mm de fond perdu (total 91×61 mm). <br>
-      Export: dans votre navigateur, utilisez “Imprimer” → “Enregistrer en PDF” → format personnalisé 91×61 mm, marges 0, haute qualité. <br>
-      Conseils: résolution 300 DPI, couleurs CMJN chez l’imprimeur (conversion PDF si possible). Placez les éléments critiques dans la zone de sécurité.
-    </p>
+<body style="margin: 0; padding: 0; background: #f5f5f5;">
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 3rem; padding: 3rem; min-height: 100vh; justify-content: center;">
 
-    <div class="grid">
-      <div class="panel">
-        <h2>Recto (identité & contact)</h2>
-        <div class="preview-scroll">
-          <div class="card front">
-            <div class="hint" aria-hidden="true"></div>
-            <div class="safe">
-              <div class="row">
-                <div class="logo"><img src="/android-chrome-512x512.png" alt="Logo BMS Ventouse"></div>
-                <div>
-                  <div class="brandline">BMS Ventouse</div>
-                  <div class="tagline">Ventousage • Sécurité • Convoyage • Régie</div>
-                </div>
-              </div>
-              <div>
-                <span class="pill">Paris & France</span>
-                <span class="pill">24/7</span>
-                <div class="contact">
-                  <span class="chip">+33 6 46 00 56 42</span>
-                  <span class="chip">contact@bmsventouse.fr</span>
-                  <span class="chip">bmsventouse.fr/contact</span>
-                  <span class="chip">@bmsventouse</span>
-                </div>
-              </div>
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h1 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #333; font-size: 1.5rem; margin: 0 0 .5rem;">
+        Carte de visite BMS Ventouse
+      </h1>
+      <p style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #666; margin: 0;">
+        85×55mm • Prêt pour impression
+      </p>
+    </div>
+
+    <!-- RECTO -->
+    <div style="box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+      <div class="card front">
+        <div class="hint" aria-hidden="true"></div>
+        <div class="safe">
+          <div class="row">
+            <div class="logo"><img src="/android-chrome-512x512.png" alt="Logo BMS Ventouse"></div>
+            <div>
+              <div class="brandline">BMS Ventouse</div>
+              <div class="tagline">Ventousage • Sécurité • Convoyage • Régie</div>
+            </div>
+          </div>
+          <div>
+            <span class="pill">Paris & France</span>
+            <span class="pill">24/7</span>
+            <div class="contact">
+              <span class="chip">+33 6 46 00 56 42</span>
+              <span class="chip">contact@bmsventouse.fr</span>
+              <span class="chip">bmsventouse.fr/contact</span>
+              <span class="chip">@bmsventouse</span>
             </div>
           </div>
         </div>
-        <p class="note">Identité forte, lisible, avec informations essentielles. Le logo est vectorisé (PNG haute résolution). Ajustable si besoin.</p>
       </div>
+    </div>
 
-      <div class="panel">
-        <h2>Verso (prestations & QR)</h2>
-        <div class="preview-scroll">
-          <div class="card back">
-            <div class="hint" aria-hidden="true"></div>
-            <div class="safe">
-              <div>
-                <div class="title">Prestations clés</div>
-                <div class="list">
-                  <div class="item">Ventousage & AOT • Panneaux B6/BK6A</div>
-                  <div class="item">Affichage riverains • Jalonnage & barriérage</div>
-                  <div class="item">Sécurité de plateaux • Gardiennage • SSIAP</div>
-                  <div class="item">Convoyage véhicules & décors • Régie & matériel</div>
-                </div>
-              </div>
-              <div class="footer">
-                <div class="qr">QR</div>
-                <div class="muted">Scannez le QR pour un devis gratuit<br>WhatsApp • Email • Formulaire</div>
-              </div>
+    <!-- VERSO -->
+    <div style="box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+      <div class="card back">
+        <div class="hint" aria-hidden="true"></div>
+        <div class="safe">
+          <div>
+            <div class="title">Prestations clés</div>
+            <div class="list">
+              <div class="item">Ventousage & AOT • Panneaux B6/BK6A</div>
+              <div class="item">Affichage riverains • Jalonnage & barriérage</div>
+              <div class="item">Sécurité de plateaux • Gardiennage • SSIAP</div>
+              <div class="item">Convoyage véhicules & décors • Régie & matériel</div>
             </div>
           </div>
+          <div class="footer">
+            <div class="qr">QR</div>
+            <div class="muted">Scannez le QR pour un devis gratuit<br>WhatsApp • Email • Formulaire</div>
+          </div>
         </div>
-        <p class="note">Le carré “QR” est un emplacement. Remplacez-le par un QR “bmsventouse.fr/contact”. Vous pouvez me l’envoyer pour intégration.</p>
       </div>
     </div>
 
-    <div class="actions">
-      <a class="btn" href="/social-assets/">Voir le kit réseaux sociaux</a>
-      <a class="btn secondary" href="/contact/" target="_blank" rel="noopener">Demander des ajustements</a>
-    </div>
   </div>
 
   <!-- Feuilles d’impression (recto / verso), imprimables en PDF avec @page -->
