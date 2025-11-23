@@ -54,8 +54,10 @@
     iframe {
       display: block;
       border: 0;
-      width: 640px;
-      height: 420px;
+      /* Largeur qui s’adapte à l’écran, avec une limite pour rester lisible */
+      width: min(720px, 100vw - 72px);
+      /* Hauteur un peu plus généreuse pour limiter les barres de défilement internes */
+      height: 520px;
       background: #fff;
     }
     .hint {
