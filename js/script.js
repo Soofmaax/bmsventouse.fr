@@ -1144,12 +1144,12 @@ function setupContactLeadCapture() {
 }
 
 // --------------------------------------------------------------------------
-// UTIL: Remplacer l'ancien email Gmail par le nouveau email pro
+// UTIL: Remplacer l'ancien email pro par l'email Gmail (si jamais réutilisé)
 // --------------------------------------------------------------------------
 function replaceLegacyEmail() {
   try {
-    const OLD = 'bms.ventouse@gmail.com';
-    const NEW = 'contact@bmsventouse.fr';
+    const OLD = 'contact@bmsventouse.fr';
+    const NEW = 'bms.ventouse@gmail.com';
     // Remplace les liens mailto
     document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
       try {
