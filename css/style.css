@@ -123,15 +123,16 @@ body {
   text-rendering: optimizeSpeed;
 }
 
+/* Liens principaux : contraste minimum 4.5:1 */
 a {
-  color: var(--color-primary);
+  color: #1a56db; /* Bleu foncé accessible */
   text-decoration: none;
   transition: color 0.3s;
   display: inline-block;
 }
 
 a:hover { 
-  color: var(--color-primary-dark); 
+  color: #0d3d8f;
 }
 
 img, svg, video, canvas, audio, iframe, embed, object {
@@ -227,7 +228,8 @@ input, button, textarea, select {
   font-size: 1.1rem;
   text-align: center;
   margin-bottom: 4rem;
-  color: var(--color-text-muted);
+  /* Texte secondaire plus contrasté */
+  color: #4b5563;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -243,9 +245,8 @@ input, button, textarea, select {
   width: 100%;
   z-index: 1000;
   height: var(--promo-banner-height);
-  background-color: var(--color-primary);
-  /* Contraste AAA: texte sombre sur fond orange */
-  color: var(--color-dark);
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  color: #000000 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -500,8 +501,8 @@ body.dark-theme .header {
 }
 
 .footer {
-  background-color: var(--color-dark);
-  color: var(--color-light);
+  background: #1e293b;
+  color: #f1f5f9;
   padding-top: 4rem;
 }
 
@@ -521,8 +522,8 @@ body.dark-theme .header {
   align-items: center;
 }
 
-.footer-brand .footer-description { 
-  color: #a0aec0; 
+.footer-brand .footer-description {
+  color: #cbd5e1;
 }
 
 .footer-links {
@@ -557,14 +558,14 @@ body.dark-theme .header {
 }
 
 .footer-column a { 
-  color: #a0aec0; 
+  color: #f1f5f9;
   transition: color 0.2s, transform 0.2s;
   display: inline-flex;
   align-items: center;
 }
 
 .footer-column a:hover { 
-  color: var(--color-light);
+  color: #ffffff;
   transform: translateX(3px);
 }
 
@@ -717,15 +718,15 @@ body.dark-theme .header {
 
 /* Boutons secondaires */
 .btn-secondary {
-  background-color: transparent;
-  color: var(--color-light);
-  border: 2px solid var(--color-light);
+  background: transparent;
+  border: 2px solid #1a56db;
+  color: #1a56db;
   box-shadow: none;
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-light);
-  color: var(--color-dark);
+  background: #1a56db;
+  color: #ffffff;
 }
 
 /* Cartes de service et contact */
@@ -739,7 +740,8 @@ body.dark-theme .header {
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid transparent;
+  /* Bordure plus visible pour le contraste des cartes */
+  border: 1px solid #d1d5db;
 }
 
 .service-card:hover, .contact-card:hover {
@@ -2041,7 +2043,7 @@ body.dark-theme .header {
 
 .faq-question {
   background-color: var(--color-light);
-  color: var(--color-dark);
+  color: #111827;
   padding: 1rem 1.5rem;
   width: 100%;
   text-align: left;
@@ -2078,7 +2080,7 @@ body.dark-theme .header {
   background-color: var(--color-light-alt);
   padding: 0 1.5rem;
   transition: max-height 0.3s cubic-bezier(.4,0,.2,1), padding 0.3s;
-  color: var(--color-text-muted);
+  color: #374151;
 }
 
 .faq-item.is-open .faq-answer {
@@ -2469,6 +2471,56 @@ body:has(.nav-links.active) {
 }
 .faq-item.is-open .faq-answer {
   animation: faqFade 0.2s ease both;
+}
+
+/* Contraste amélioré dark mode (surcharge complète) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f172a;
+    color: #f1f5f9;
+  }
+  
+  a {
+    color: #60a5fa;
+  }
+  
+  a:hover {
+    color: #93c5fd;
+  }
+  
+  .section {
+    background: #1e293b;
+  }
+  
+  .section-subtitle {
+    color: #cbd5e1;
+  }
+  
+  .service-card,
+  .coverage-note-card,
+  .faq-item {
+    background: #1e293b;
+    border-color: #475569;
+    color: #f1f5f9;
+  }
+  
+  .faq-question {
+    color: #f1f5f9;
+  }
+  
+  .faq-answer {
+    color: #e2e8f0;
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    border-color: #60a5fa;
+    color: #60a5fa;
+  }
+  
+  .promo-banner {
+    color: #000000 !important;
+  }
 }
 
 
