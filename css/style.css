@@ -243,9 +243,9 @@ input, button, textarea, select {
   width: 100%;
   z-index: 1000;
   height: var(--promo-banner-height);
-  background-color: var(--color-primary);
-  /* Contraste AAA: texte très sombre sur fond orange, indépendant du thème */
-  color: #111111;
+  /* Dégradé orange vif pour une meilleure lisibilité et un rendu premium */
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  color: #111111 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -522,7 +522,6 @@ body.dark-theme .header {
 }
 
 .footer-brand .footer-description { 
-  /* Texte plus clair pour un meilleur contraste sur fond sombre */
   color: #e2e8f0; 
 }
 
@@ -558,7 +557,6 @@ body.dark-theme .header {
 }
 
 .footer-column a { 
-  /* Liens plus clairs pour respecter le contraste AA sur fond sombre */
   color: #e2e8f0; 
   transition: color 0.2s, transform 0.2s;
   display: inline-flex;
@@ -566,7 +564,7 @@ body.dark-theme .header {
 }
 
 .footer-column a:hover { 
-  color: var(--color-light);
+  color: #ffffff;
   transform: translateX(3px);
 }
 
@@ -2471,6 +2469,40 @@ body:has(.nav-links.active) {
 }
 .faq-item.is-open .faq-answer {
   animation: faqFade 0.2s ease both;
+}
+
+/* Contraste amélioré dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+  }
+  
+  .section {
+    background: #1e293b;
+  }
+  
+  .service-card,
+  .coverage-note-card,
+  .faq-item {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+    color: #111111 !important;
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    border-color: #e2e8f0;
+    color: #e2e8f0;
+  }
+  
+  .promo-banner {
+    color: #111111 !important;
+  }
 }
 
 
