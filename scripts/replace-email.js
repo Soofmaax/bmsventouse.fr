@@ -2,7 +2,9 @@
  * Replace legacy email addresses across the repository before deployment.
  * This is a build-time script and does not run in the browser.
  *
- * Replaces: bms.ventouse@gmail.com -> contact@bmsventouse.fr
+ * NOTE 2025-11: politique mise à jour.
+ * L’email principal est désormais bms.ventouse@gmail.com.
+ * Ce script est conservé pour compatibilité mais ne fait plus de remplacement.
  */
 const fs = require('fs');
 const path = require('path');
@@ -46,9 +48,8 @@ function replaceAll(content, map) {
 
 function main() {
   const files = walk(ROOT, []);
-  const map = new Map([
-    ['bms.ventouse@gmail.com', 'contact@bmsventouse.fr'],
-  ]);
+  // Plus aucun remplacement automatique: les emails sont maintenus directement dans le code.
+  const map = new Map([]);
 
   let changed = 0;
   for (const file of files) {

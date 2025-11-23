@@ -27,12 +27,40 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
+  // MODULE: SKIP LINK (Aller au contenu) pour accessibilité
+  // --------------------------------------------------------------------------
+  const setupSkipLink = () => {
+    try {
+      // Si déjà présent, ne rien faire
+      if (document.querySelector('.skip-link')) return;
+      const main = document.getElementById('main-content');
+      if (!main) return;
+
+      const link = document.createElement('a');
+      link.className = 'skip-link';
+      link.href = '#main-content';
+      link.textContent = 'Aller au contenu';
+      // Ajoute en tout début du body
+      document.body.insertBefore(link, document.body.firstChild);
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
   // MODULE: MENU HAMBURGER & ACCESSIBILITÉ
   // --------------------------------------------------------------------------
   const setupHamburgerMenu = () => {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
     const navOverlay = document.getElementById('navOverlay');
+
+    // Assurer que le bouton hamburger n'est pas traité comme submit dans des pages avec formulaire
+    try {
+      if (hamburger && !hamburger.hasAttribute('type')) {
+        hamburger.setAttribute('type', 'button');
+      }
+    } catch (_) {}
 
     if (!hamburger || !navLinks || !navOverlay) {
       console.warn("Éléments du menu mobile non trouvés. Le module ne sera pas initialisé.");
@@ -199,9 +227,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         question.setAttribute('aria-expanded', String(!isOpen));
         // Smooth expand/collapse
         if (!isOpen) {
-          answer.style.maxHeight = answer.scrollHeight + 'px';
+          requestAnimationFrame(() => {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          });
         } else {
-          answer.style.maxHeight = '0px';
+          requestAnimationFrame(() => {
+            answer.style.maxHeight = '0px';
+          });
         }
       };
 
@@ -486,6 +518,134 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
+  // MODULE: CANONICAL FALLBACK (global, zéro maintenance)
+  // --------------------------------------------------------------------------
+  const setupCanonicalFallback = () => {
+    try {
+      // Ne rien faire si une canonical est déjà définie dans le <head>
+      if (document.querySelector('link[rel="canonical"]')) return;
+      const { protocol, hostname, pathname } = location;
+      const proto = protocol === 'http:' ? 'https:' : protocol;
+      let path = pathname || '/';
+      // Ajoute un slash final pour les pages dossier (pas pour les fichiers .html, .txt, etc.)
+      if (!path.endsWith('/') && !/\.[a-z0-9]+$/i.test(path)) {
+        path += '/';
+      }
+      const url = proto + '//' + hostname.replace(/\/+$/, '') + path;
+      const link = document.createElement('link');
+      link.rel = 'canonical';
+      link.href = url;
+      document.head.appendChild(link);
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: PASSE ORTHOGRAPHIQUE (typographie FR) — global, non destructif
+  // --------------------------------------------------------------------------
+  const setupFrenchTypoCleaning = () => {
+    try {
+      const skipTags = new Set(['SCRIPT','STYLE','NOSCRIPT','CODE','PRE','KBD','SAMP','VAR']);
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        const parent = node.parentNode;
+        if (!parent || skipTags.has(parent.nodeName)) continue;
+        let t = node.nodeValue;
+        if (!t || !t.trim()) continue;
+        // Espaces insécables avant ; : ? !
+        t = t.replace(/(\S)\s([;:?!])/g, '$1\u00A0$2');
+        // Nombre + heure -> NBSP
+        t = t.replace(/(\d+)\s?h(?![a-zA-Z])/g, '$1\u00A0h');
+        // Nombre + €
+        t = t.replace(/(\d+)\s?€\b/g, '$1\u00A0€');
+        // Ellipses
+        t = t.replace(/\.{3}/g, '…');
+        // Nettoyage espaces multiples
+        t = t.replace(/\s{2,}/g, ' ');
+        if (t !== node.nodeValue) node.nodeValue = t;
+      }
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: UNIFIER LE CHARGEMENT DU CSS (style.css)
+  // --------------------------------------------------------------------------
+  const unifyStylesheetLoading = () => {
+    try {
+      const head = document.head || document.getElementsByTagName('head')[0];
+      if (!head) return;
+      // Supprimer les preload redondants pour style.css
+      head.querySelectorAll('link[rel="preload"][as="style"][href$="/css/style.css"]').forEach(link => {
+        try { link.remove(); } catch (_) {}
+      });
+      // S'assurer qu'un seul link rel="stylesheet" vers style.css reste
+      const sheets = head.querySelectorAll('link[rel="stylesheet"][href$="/css/style.css"]');
+      if (sheets.length > 1) {
+        for (let i = 1; i < sheets.length; i++) {
+          try { sheets[i].remove(); } catch (_) {}
+        }
+      }
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: MIGRATION DES ICÔNES FONT AWESOME -> SVG inline
+  // --------------------------------------------------------------------------
+  const removeFontAwesomeLink = () => {
+    try {
+      document.querySelectorAll('link[rel="stylesheet"][href*="font-awesome"]').forEach(link => {
+        try { link.remove(); } catch (_) {}
+      });
+    } catch (_) { /* non-bloquant */ }
+  };
+
+  const migrateFAIconsToInlineSVG = () => {
+    try {
+      const map = {
+        'fa-envelope': { vb: '0 0 512 512', d: 'M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z' },
+        'fa-whatsapp': { vb: '0 0 448 512', d: 'M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z' },
+        'fa-phone-alt': { vb: '0 0 512 512', d: 'M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z' },
+        'fa-phone': { vb: '0 0 512 512', d: 'M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z' },
+        'fa-city': { vb: '0 0 448 512', d: 'M128 148v-40c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v40h24c13.3 0 24 10.7 24 24v296H80V172c0-13.3 10.7-24 24-24h24zm64-28v36h64v-36h-64zM96 480h256v16c0 8.8-7.2 16-16 16H112c-8.8 0-16-7.2-16-16v-16z' },
+        'fa-road': { vb: '0 0 640 512', d: 'M640 480H0l240-320 96 128 64-64 240 256z' },
+        'fa-map': { vb: '0 0 512 512', d: 'M256 24C180 86 64 232 64 312c0 79.5 64.5 144 144 144s144-64.5 144-144C352 232 236 86 256 24z' },
+        'fa-list': { vb: '0 0 512 512', d: 'M96 64h320c17.7 0 32 14.3 32 32v320c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32zm48 64v64h64v-64h-64zm160 0v64h64v-64h-64zM144 256v64h64v-64h-64zm160 0v64h64v-64h-64z' }
+      };
+      const isFA = (cls) => cls.startsWith('fa-') && cls !== 'fas' && cls !== 'far' && cls !== 'fab';
+      let replaced = 0;
+      document.querySelectorAll('i[class*="fa-"]').forEach(i => {
+        try {
+          const c = Array.from(i.classList).find(isFA);
+          if (!c || !map[c]) return;
+          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          svg.setAttribute('viewBox', map[c].vb);
+          svg.setAttribute('width', '1em');
+          svg.setAttribute('height', '1em');
+          svg.setAttribute('fill', 'currentColor');
+          svg.setAttribute('aria-hidden', 'true');
+          svg.setAttribute('focusable', 'false');
+          svg.style.verticalAlign = 'middle';
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', map[c].d);
+          svg.appendChild(path);
+          i.replaceWith(svg);
+          replaced++;
+        } catch (_) { /* noop */ }
+      });
+      if (replaced > 0) {
+        // Retirer la feuille FA pour éviter chargement inutile
+        removeFontAwesomeLink();
+      }
+    } catch (_) { /* non-bloquant */ }
+  };
+
+  // --------------------------------------------------------------------------
   // MODULE: SOUS-MENU NAV — toutes les pages regroupées par sections
   // --------------------------------------------------------------------------
   const setupAllPagesSubmenu = async () => {
@@ -718,6 +878,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // ==========================================================================
   try {
     setupCookieBanner();
+    setupSkipLink();
     setupHamburgerMenu();
     setupScrollAnimations();
     setupHeroParallax();
@@ -729,14 +890,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     await setupAllPagesSubmenu();
     setupScrollProgress();
     loadClarityIfConsented();
+    // Global canonical (fallback si manquante) et passe orthographique typographique FR
+    setupCanonicalFallback();
+    setupFrenchTypoCleaning();
+    // Unifier le chargement du CSS et migrer FA -> SVG inline
+    unifyStylesheetLoading();
+    migrateFAIconsToInlineSVG();
     // Google Tag Manager (GTM) - chargement dynamique si un ID est fourni
     setupGTM();
     // Message de succès pour le formulaire Contact (?success=1)
     setupContactSuccessNotice();
-    // Capture des leads du formulaire Contact vers Zoho (non bloquant)
+    // Détails dynamiques selon service sur le formulaire Contact
+    setupContactServiceDetails();
+    // Capture des leads du formulaire Contact vers HubSpot (non bloquant)
     setupContactLeadCapture();
-    // Harmonisation des emails (remplacement Gmail -> contact@bmsventouse.fr)
-    replaceLegacyEmail();
+    // Harmonisation des emails: désactivée par défaut (respect de l'email courant)
+    // Pour activer, ajouter &lt;meta name="replace-email" content="true"&gt; dans le &lt;head&gt;.
+    try {
+      const metaReplace = document.querySelector('meta[name="replace-email"][content="true"]');
+      if (metaReplace) replaceLegacyEmail();
+    } catch (_) {}
+
     // PWA: enregistrement du Service Worker (pour PWA=100)
     setupServiceWorker();
     // Perf: améliorer le lazy/decoding des images (hors héros)
@@ -864,6 +1038,36 @@ function setupContactSuccessNotice() {
 // --------------------------------------------------------------------------
 // MODULE: Capture du formulaire Contact vers Zoho CRM (non bloquant)
 // --------------------------------------------------------------------------
+function setupContactServiceDetails() {
+  try {
+    const form = document.querySelector('form[name="contact"]');
+    const serviceSel = document.getElementById('service');
+    if (!form || !serviceSel) return;
+    const groups = Array.from(form.querySelectorAll('.service-details'));
+    const map = (val) => {
+      const v = String(val || '').toLowerCase();
+      if (v.includes('ventousage')) return 'ventousage';
+      if (v.includes('sécurité') || v.includes('gardiennage')) return 'securite';
+      if (v.includes('convoyage')) return 'convoyage';
+      if (v.includes('régie')) return 'regie';
+      if (v.includes('affichage')) return 'affichage';
+      if (v.includes('signalisation')) return 'signalisation';
+      if (v.includes('loges') || v.includes('confort')) return 'loges';
+      if (v.includes('cantine') || v.includes('catering')) return 'cantine';
+      return '';
+    };
+    const showRelevant = () => {
+      const code = map(serviceSel.value);
+      groups.forEach(g => {
+        const s = g.getAttribute('data-service') || '';
+        g.style.display = s === code ? '' : 'none';
+      });
+    };
+    serviceSel.addEventListener('change', showRelevant);
+    showRelevant();
+  } catch (_) {}
+}
+
 function setupContactLeadCapture() {
   try {
     const form = document.querySelector('form[name="contact"]');
@@ -888,20 +1092,45 @@ function setupContactLeadCapture() {
           budget: (document.getElementById('budget') || {}).value || '',
           details: (document.getElementById('details') || {}).value || '',
           consent: !!((document.getElementById('consent') || {}).checked),
-          source: 'contact_form'
+          source: 'contact_form',
+          // Champs spécifiques selon service
+          svc_cantine_people: (document.getElementById('svc_cantine_people') || {}).value || '',
+          svc_cantine_meals: (document.getElementById('svc_cantine_meals') || {}).value || '',
+          svc_cantine_dietary: (document.getElementById('svc_cantine_dietary') || {}).value || '',
+          svc_cantine_hours: (document.getElementById('svc_cantine_hours') || {}).value || '',
+          svc_ventousage_streets: (document.getElementById('svc_ventousage_streets') || {}).value || '',
+          svc_ventousage_zones: (document.getElementById('svc_ventousage_zones') || {}).value || '',
+          svc_ventousage_hours: (document.getElementById('svc_ventousage_hours') || {}).value || '',
+          svc_securite_agents: (document.getElementById('svc_securite_agents') || {}).value || '',
+          svc_securite_hours: (document.getElementById('svc_securite_hours') || {}).value || '',
+          svc_securite_ssiap: !!((document.getElementById('svc_securite_ssiap') || {}).checked),
+          svc_convoyage_pickup: (document.getElementById('svc_convoyage_pickup') || {}).value || '',
+          svc_convoyage_drop: (document.getElementById('svc_convoyage_drop') || {}).value || '',
+          svc_convoyage_schedule: (document.getElementById('svc_convoyage_schedule') || {}).value || '',
+          svc_convoyage_stops: (document.getElementById('svc_convoyage_stops') || {}).value || '',
+          svc_convoyage_volume: (document.getElementById('svc_convoyage_volume') || {}).value || '',
+          svc_regie_equipment: (document.getElementById('svc_regie_equipment') || {}).value || '',
+          svc_regie_agents: (document.getElementById('svc_regie_agents') || {}).value || '',
+          svc_regie_hours: (document.getElementById('svc_regie_hours') || {}).value || '',
+          svc_signalisation_perimeter: (document.getElementById('svc_signalisation_perimeter') || {}).value || '',
+          svc_signalisation_barriers: (document.getElementById('svc_signalisation_barriers') || {}).value || '',
+          svc_signalisation_hours: (document.getElementById('svc_signalisation_hours') || {}).value || '',
+          svc_affichage_streets: (document.getElementById('svc_affichage_streets') || {}).value || '',
+          svc_affichage_posters: (document.getElementById('svc_affichage_posters') || {}).value || '',
+          svc_loges_number: (document.getElementById('svc_loges_number') || {}).value || '',
+          svc_loges_types: (document.getElementById('svc_loges_types') || {}).value || '',
+          svc_loges_location: (document.getElementById('svc_loges_location') || {}).value || ''
         };
         // On stocke email/phone pour le check d’éligibilité -15% côté /devis/ si l’utilisateur y va ensuite
         try {
           localStorage.setItem('bms_lead_email', payload.email || '');
           localStorage.setItem('bms_lead_phone', payload.phone || '');
+          localStorage.setItem('bms_lead_fullname', payload.fullname || '');
+          localStorage.setItem('bms_lead_company', payload.company || '');
         } catch (_){}
 
-        fetch('/.netlify/functions/zoho_lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true
-        }).catch(()=>{});
+        // Envoi email géré par Netlify Forms côté serveur (notifications configurées dans Netlify)
+        // Aucun appel API nécessaire côté front pour rester gratuit et sans maintenance.
 
         try {
           window.dataLayer = window.dataLayer || [];
@@ -915,12 +1144,12 @@ function setupContactLeadCapture() {
 }
 
 // --------------------------------------------------------------------------
-// UTIL: Remplacer l'ancien email Gmail par le nouveau email pro
+// UTIL: Remplacer l'ancien email pro par l'email Gmail (si jamais réutilisé)
 // --------------------------------------------------------------------------
 function replaceLegacyEmail() {
   try {
-    const OLD = 'bms.ventouse@gmail.com';
-    const NEW = 'contact@bmsventouse.fr';
+    const OLD = 'contact@bmsventouse.fr';
+    const NEW = 'bms.ventouse@gmail.com';
     // Remplace les liens mailto
     document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
       try {
