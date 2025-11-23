@@ -279,7 +279,9 @@ input, button, textarea, select {
 }
 
 .header.header-transparent .nav-link {
-  color: var(--color-light);
+  /* On force le texte en blanc pour garder un bon contraste,
+     même lorsque le thème sombre modifie les variables de couleur */
+  color: #ffffff;
 }
 
 body.dark-theme .header { 
@@ -374,7 +376,8 @@ body.dark-theme .header {
 .nav-link.btn {
   font-weight: var(--font-weight-bold);
   background: var(--color-primary);
-  color: var(--color-light);
+  /* Texte en blanc pour que le bouton reste lisible en mode clair comme en mode sombre */
+  color: #ffffff;
   padding: 0.6rem 1.4rem;
   border: none;
   transition: var(--transition-base);
