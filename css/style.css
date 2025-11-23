@@ -185,9 +185,91 @@ input, button, textarea, select {
   display: none !important;
 }
 
+.is-hidden {
+  display: none !important;
+}
+
+.has-bottom-margin {
+  margin-bottom: 1rem;
+}
+
+/* Blocs de texte réutilisables */
+.text-block {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  line-height: 1.7;
+}
+
+/* Petits textes d'information / notes */
+.text-small-muted {
+  font-size: 0.9rem;
+  color: #666666;
+  margin-top: 0.5rem;
+}
+
+/* Icônes en ligne et en bloc */
+.icon-inline {
+  margin-right: 8px;
+}
+
+.icon-block {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
 /* Texte d'erreur accessible */
 .text-error {
   color: #dc2626;
+}
+
+/* Blocs de texte récurrents (remplace les styles inline) */
+.text-block {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  line-height: 1.7;
+}
+
+.text-small-muted {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Icônes en ligne / en bloc (remplace margin-right / margin-bottom inline) */
+.icon-inline {
+  margin-right: 8px;
+}
+
+.icon-block {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+/* Texte d'erreur accessible */
+.text-error {
+  color: #dc2626;
+}
+
+/* Blocs de texte réutilisables (remplacement des styles inline) */
+.text-block {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  line-height: 1.7;
+}
+
+.text-small-muted {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Icônes inline dans les liens (footer, contact, etc.) */
+.icon-inline {
+  margin-right: 8px;
+}
+
+.icon-block {
+  margin-bottom: 6px;
 }
 
 :focus-visible {

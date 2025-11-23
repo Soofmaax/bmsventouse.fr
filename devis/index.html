@@ -10,15 +10,14 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied',
-      'analytics_storage': 'denied',
-      'functionality_storage': 'denied',
-      'security_storage': 'granted'
+    function showRelevant() {
+    const service = (fields.service.value || '').trim();
+    el.querySelectorAll('[data-show]').forEach(card => {
+      const list = card.getAttribute('data-show') || '';
+      const should = list.split(',').map(s=>s.trim()).includes(service);
+      card.classList.toggle('is-hidden', !should);
     });
+  });
     gtag('js', new Date());
     gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
   </script>
@@ -358,8 +357,8 @@
     const lead = document.getElementById('lead-capture');
     const calc = document.getElementById('quote-calculator');
     if (lead && calc) {
-      lead.style.display = isSuccess ? 'none' : '';
-      calc.style.display = isSuccess ? '' : 'none';
+      lead.classList.toggle('is-hidden', isSuccess);
+      calc.classList.toggle('is-hidden', !isSuccess);
     }
     // Si succès, on vérifie l’éligibilité -15% en interrogeant Zoho
     if (isSuccess && calc) {
@@ -438,17 +437,14 @@
           } catch(_){}
 
           fetch('/.netlify/functions/zoho_lead', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            keepalive: true
-          }).catch(()=>{});
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ event: 'lead_submitted', ...payload });
-        } catch(_){}
-      });
-    }
-  } catch(_){}
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(()=>{});
+      } catch (_) {}
+    });
+  } catch (_) {}
 
   // Affiche un message de succès si ?success=1
   try {
@@ -460,170 +456,11 @@
         note.className = 'coverage-note-card';
         note.setAttribute('role', 'status');
         note.setAttribute('aria-live', 'polite');
-        note.style.marginBottom = '1rem';
+        note.classList.add('has-bottom-margin');
         note.innerHTML = '<strong>Merci !</strong> Votre demande a été envoyée. Nous vous contactons sous 24–48&nbsp;h.';
         container.insertBefore(note, container.firstChild);
       }
     }
-  } catch (_){}
-
-  const el = document.getElementById('quote-calculator');
-  if (!el) return;
-
-  const form = el.querySelector('form[name="quote"]');
-  const estimateEl = el.querySelector('#estimateValue');
-  const estimateMinInput = el.querySelector('#estimate_min');
-  const estimateMaxInput = el.querySelector('#estimate_max');
-
-  const fields = {
-    service: el.querySelector('#service'),
-    days: el.querySelector('#days'),
-    zones: el.querySelector('#zones'),
-    agents: el.querySelector('#agents'),
-    hours: el.querySelector('#hours'),
-    ssiap: el.querySelector('#ssiappremium'),
-    km: el.querySelector('#km'),
-    volume: el.querySelector('#volume'),
-    urgent: el.querySelector('#urgent')
-  };
-
-  // Config tarifs indicatifs (à ajuster)
-  const PRICING = {
-    ventousage: { baseDay: [300, 500], perZone: [40, 80], urgentFactor: 1.25 },
-    securite:   { perAgentHour: [23, 38], minHoursPerDay: 8, urgentFactor: 1.2, ssiapPremiumPerHour: [3, 6] },
-    convoyage:  { perKm: [1.2, 1.9], perHour: [45, 75], volumePremiumDay: { grand: [50, 120], moyen: [0, 0] } },
-    regie:      { perAgentHour: [28, 45], minHoursPerDay: 8, urgentFactor: 1.15 },
-    signalisation: { basePerimeter: [250, 450], perZone: [30, 60], urgentFactor: 1.20 },
-    affichage:     { basePerimeter: [180, 320], perZone: [20, 40], urgentFactor: 1.15 },
-    loges:         { baseDay: [350, 600], urgentFactor: 1.15 },
-    cantine:       { baseDay: [300, 500], urgentFactor: 1.10 }
-  };
-
-  function showRelevant() {
-    const service = (fields.service.value || '').trim();
-    el.querySelectorAll('[data-show]').forEach(card => {
-      const list = card.getAttribute('data-show') || '';
-      const should = list.split(',').map(s=>s.trim()).includes(service);
-      card.style.display = should ? '' : 'none';
-    });
-  }
-
-  function computeEstimate() {
-    const s = (fields.service.value || '').trim();
-    if (!s || !PRICING[s]) {
-      estimateEl.textContent = '—';
-      estimateMinInput.value = '';
-      estimateMaxInput.value = '';
-      return;
-    }
-
-    const days = Math.max(1, parseInt(fields.days.value || '1', 10));
-    const urgent = !!fields.urgent.checked;
-
-    let min = 0, max = 0;
-
-    switch (s) {
-      case 'ventousage': {
-        const zones = Math.max(0, parseInt(fields.zones.value || '0', 10));
-        const [bdMin, bdMax] = PRICING.ventousage.baseDay;
-        const [pzMin, pzMax] = PRICING.ventousage.perZone;
-        min = days * bdMin + zones * pzMin;
-        max = days * bdMax + zones * pzMax;
-        if (urgent) { min *= PRICING.ventousage.urgentFactor; max *= PRICING.ventousage.urgentFactor; }
-        break;
-      }
-      case 'securite': {
-        const agents = Math.max(0, parseInt(fields.agents.value || '0', 10));
-        const hours = Math.max(PRICING.securite.minHoursPerDay, parseInt(fields.hours.value || String(PRICING.securite.minHoursPerDay), 10));
-        const ssiap = !!fields.ssiap.checked;
-        const [phMin, phMax] = PRICING.securite.perAgentHour;
-        const [ppMin, ppMax] = PRICING.securite.ssiapPremiumPerHour;
-        const baseMin = phMin + (ssiap ? ppMin : 0);
-        const baseMax = phMax + (ssiap ? ppMax : 0);
-        min = days * agents * hours * baseMin;
-        max = days * agents * hours * baseMax;
-        if (urgent) { min *= PRICING.securite.urgentFactor; max *= PRICING.securite.urgentFactor; }
-        break;
-      }
-      case 'convoyage': {
-        const km = Math.max(0, parseFloat(fields.km.value || '0'));
-        const vol = (fields.volume.value || 'moyen').trim();
-        const [pkmMin, pkmMax] = PRICING.convoyage.perKm;
-        const [phMin, phMax] = PRICING.convoyage.perHour;
-        const premium = PRICING.convoyage.volumePremiumDay[vol] || [0,0];
-        min = days * premium[0] + km * pkmMin + days * phMin; // base + km + heures (indicatif)
-        max = days * premium[1] + km * pkmMax + days * phMax;
-        break;
-      }
-      case 'regie': {
-        const agents = Math.max(0, parseInt(fields.agents.value || '0', 10));
-        const hours = Math.max(PRICING.regie.minHoursPerDay, parseInt(fields.hours.value || String(PRICING.regie.minHoursPerDay), 10));
-        const [phMin, phMax] = PRICING.regie.perAgentHour;
-        min = days * agents * hours * phMin;
-        max = days * agents * hours * phMax;
-        if (urgent) { min *= PRICING.regie.urgentFactor; max *= PRICING.regie.urgentFactor; }
-        break;
-      }
-      case 'signalisation': {
-        const zones = Math.max(0, parseInt(fields.zones.value || '0', 10));
-        const [bpMin, bpMax] = PRICING.signalisation.basePerimeter;
-        const [pzMin, pzMax] = PRICING.signalisation.perZone;
-        min = days * bpMin + zones * pzMin;
-        max = days * bpMax + zones * pzMax;
-        if (urgent) { min *= PRICING.signalisation.urgentFactor; max *= PRICING.signalisation.urgentFactor; }
-        break;
-      }
-      case 'affichage': {
-        const zones = Math.max(0, parseInt(fields.zones.value || '0', 10));
-        const [bpMin, bpMax] = PRICING.affichage.basePerimeter;
-        const [pzMin, pzMax] = PRICING.affichage.perZone;
-        min = days * bpMin + zones * pzMin;
-        max = days * bpMax + zones * pzMax;
-        if (urgent) { min *= PRICING.affichage.urgentFactor; max *= PRICING.affichage.urgentFactor; }
-        break;
-      }
-      case 'loges': {
-        const [bdMin, bdMax] = PRICING.loges.baseDay;
-        min = days * bdMin; max = days * bdMax;
-        if (urgent) { min *= PRICING.loges.urgentFactor; max *= PRICING.loges.urgentFactor; }
-        break;
-      }
-      case 'cantine': {
-        const [bdMin, bdMax] = PRICING.cantine.baseDay;
-        min = days * bdMin; max = days * bdMax;
-        if (urgent) { min *= PRICING.cantine.urgentFactor; max *= PRICING.cantine.urgentFactor; }
-        break;
-      }
-    }
-
-    const fmt = (v) => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.max(0, Math.round(v)));
-    estimateEl.textContent = fmt(min) + ' – ' + fmt(max);
-    estimateMinInput.value = String(Math.round(min));
-    estimateMaxInput.value = String(Math.round(max));
-
-    try {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'estimate_updated', service: s, estimate_min: Math.round(min), estimate_max: Math.round(max) });
-    } catch(_){}
-  }
-
-  function attachEvents() {
-    ['change', 'input'].forEach(evt => {
-      Object.values(fields).forEach(input => {
-        if (input) input.addEventListener(evt, () => { showRelevant(); computeEstimate(); });
-      });
-    });
-  }
-
-  // Préremplissage du service depuis le lead (localStorage)
-  try {
-    const pref = localStorage.getItem('bms_calc_interest') || '';
-    if (pref && fields.service && fields.service.querySelector('option[value="' + pref + '"]')) {
-      fields.service.value = pref;
-    }
-    // Urgent prérempli depuis l’étape 1
-    const leadUrgent = localStorage.getItem('bms_lead_urgent') === '1';
-    if (fields.urgent) fields.urgent.checked = leadUrgent;
   } catch (_) {}
 
   showRelevant();
