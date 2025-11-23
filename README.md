@@ -51,13 +51,19 @@ Built and maintained to professional standards by SmarterLogicWeb — Solutions 
 
 ## 📚 Documentation
 
-- docs/ — full documentation index
-  - Getting Started: installation, configuration, quick start
-  - Architecture: static site + CI overview
-  - Deployment: local, staging, production
-  - Troubleshooting: common issues
+- docs/ — documentation principale
+  - `docs/README.md` — index de la doc
+  - `docs/ARCHITECTURE.md` — architecture technique complète
+  - `docs/OPTIMISATIONS.md` — liste des optimisations (perf / a11y / sécurité / SEO)
+  - `docs/DEPLOYMENT.md` — processus de déploiement (local, staging, production)
+  - `docs/SCORES.md` — récap scores (Lighthouse, WAVE, Observatory) + objectifs
+  - `docs/TODO.md` — roadmap détaillée vers 100/100
+  - `docs/architecture/overview.md` — vue d’ensemble architecture
+  - `docs/deployment/*.md` — guides détaillés (local / staging / production)
+  - `docs/getting-started/*.md` — installation, configuration, quick start
+  - `docs/troubleshooting/common-issues.md` — problèmes fréquents
 
-Start here: docs/README.md
+Start here: docs/README.md puis docs/ARCHITECTURE.md et docs/OPTIMISATIONS.md pour comprendre l’état actuel du projet.
 
 ## 🛠️ Tech Stack
 
