@@ -823,8 +823,8 @@ function setupContactSuccessNotice() {
     const isSuccess = qs.get('success') === '1';
     if (!isSuccess) return;
 
-    // Trouve le formulaire contact OU devis et son conteneur
-    const form = document.querySelector('form[name="contact"], form[name="quote"]');
+    // Trouve le formulaire contact OU devis (y compris /devis/) et son conteneur
+    const form = document.querySelector('form[name="contact"], form[name="quote"], form[name="quote_lead"]');
     const container = form ? form.closest('.container') : document.querySelector('main .container');
     if (!container) return;
 
