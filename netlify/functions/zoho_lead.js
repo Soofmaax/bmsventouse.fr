@@ -54,7 +54,6 @@ exports.handler = async (event) => {
       `Service: ${service || service_interest || 'N/A'}`,
       `Pack: ${wanted_package || 'N/A'}`,
       `Urgent: ${urgent ? 'Oui' : 'Non'}`,
-      `Estimation: ${estimate_min || 0} – ${estimate_max || 0} EUR`,
       `Payload: ${safeStringify(payload)}`
     ].join(' | ');
 
