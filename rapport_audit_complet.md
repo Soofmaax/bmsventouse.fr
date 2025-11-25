@@ -249,9 +249,9 @@ Liens
 
 ## PARTIE 7 — Tableau de Bord Récapitulatif
 
-┌─────────────────────────────────────────────────┐
-│ AUDIT SITE COSINECH                              │
-├─────────────────────────────────────────────────┤
+┌──────────────────────────────────────────────────────────────────────┐
+│ AUDIT SITE BMS VENTOUSE — RÉALISATION SMARTERLOGICWEB (smarterlogicweb.com) │
+├──────────────────────────────────────────────────────────────────────┤
 │ Contenu                                          │
 │ ✅ Informations présentes : 43/50                │
 │ ⚠️  Informations incomplètes : 4                 │
