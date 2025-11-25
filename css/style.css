@@ -69,7 +69,7 @@
   --z-whatsapp: 1400;
 }
 
-/* Thème sombre - avec détection automatique et toggle */
+/* Thème sombre - avec toggle via classe .dark-theme */
 /* Définition explicite pour le mode sombre forcé via classe */
 body.dark-theme {
   --color-light: #1a202c;
@@ -80,19 +80,6 @@ body.dark-theme {
   --color-dark: #ffffff;
   --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
   --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
-}
-/* Détection auto du thème sombre par préférence utilisateur */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-light: #1a202c;
-    --color-light-alt: #2d3748;
-    --color-text: #e2e8f0;
-    --color-text-muted: #b0c0d0;
-    --color-border: #4a5568;
-    --color-dark: #ffffff;
-    --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
-    --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
-  }
 }
 
 /* 2. RESET & ACCESSIBILITÉ */
@@ -2568,54 +2555,52 @@ body:has(.nav-links.active) {
 }
 
 
-/* Contraste amélioré dark mode (surcharge complète) */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #0f172a;
-    color: #f1f5f9;
-  }
-  
-  a {
-    color: #60a5fa;
-  }
-  
-  a:hover {
-    color: #93c5fd;
-  }
-  
-  .section {
-    background: #1e293b;
-  }
-  
-  .section-subtitle {
-    color: #cbd5e1;
-  }
-  
-  .service-card,
-  .coverage-note-card,
-  .faq-item {
-    background: #1e293b;
-    border-color: #475569;
-    color: #f1f5f9;
-  }
-  
-  .faq-question {
-    color: #f1f5f9;
-  }
-  
-  .faq-answer {
-    color: #e2e8f0;
-  }
-  
-  .btn-secondary {
-    background: transparent;
-    border-color: #60a5fa;
-    color: #60a5fa;
-  }
-  
-  .promo-banner {
-    color: #000000 !important;
-  }
+/* Contraste amélioré dark mode (surcharge complète via .dark-theme) */
+body.dark-theme {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+body.dark-theme a {
+  color: #60a5fa;
+}
+
+body.dark-theme a:hover {
+  color: #93c5fd;
+}
+
+body.dark-theme .section {
+  background: #1e293b;
+}
+
+body.dark-theme .section-subtitle {
+  color: #cbd5e1;
+}
+
+body.dark-theme .service-card,
+body.dark-theme .coverage-note-card,
+body.dark-theme .faq-item {
+  background: #1e293b;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+body.dark-theme .faq-question {
+  color: #f1f5f9;
+}
+
+body.dark-theme .faq-answer {
+  color: #e2e8f0;
+}
+
+body.dark-theme .btn-secondary {
+  background: transparent;
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+
+body.dark-theme .promo-banner {
+  color: #000000 !important;
 }
 
 

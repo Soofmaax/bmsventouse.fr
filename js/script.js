@@ -27,6 +27,90 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
+  // MODULE: THÈME (mode sombre + préférences)
+  // --------------------------------------------------------------------------
+  const setupThemeMode = () => {
+    try {
+      const storageKey = (CONFIG.theme && CONFIG.theme.storageKey) || 'bms-theme-preference';
+
+      const getStoredTheme = () => {
+        try {
+          const value = localStorage.getItem(storageKey);
+          return value === 'dark' || value === 'light' ? value : null;
+        } catch (_) {
+          return null;
+        }
+      };
+
+      const applyTheme = (theme) => {
+        const isDark = theme === 'dark';
+        document.body.classList.toggle('dark-theme', isDark);
+        try {
+          document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+        } catch (_) {
+          // non-bloquant
+        }
+      };
+
+      const updateToggleState = (theme) => {
+        const isDark = theme === 'dark';
+        document.querySelectorAll('.theme-toggle').forEach((btn) => {
+          btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        });
+      };
+
+      const stored = getStoredTheme();
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = stored || (prefersDark ? 'dark' : 'light');
+
+      applyTheme(initialTheme);
+      updateToggleState(initialTheme);
+
+      const toggleTheme = () => {
+        const nextTheme = document.body.classList.contains('dark-theme') ? 'light' : 'dark';
+        applyTheme(nextTheme);
+        updateToggleState(nextTheme);
+        try {
+          localStorage.setItem(storageKey, nextTheme);
+        } catch (_) {
+          // non-bloquant
+        }
+      };
+
+      const toggles = document.querySelectorAll('.theme-toggle');
+      toggles.forEach((btn) => {
+        if (!btn.hasAttribute('type')) {
+          btn.setAttribute('type', 'button');
+        }
+        btn.addEventListener('click', toggleTheme);
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleTheme();
+          }
+        });
+      });
+
+      // Suivre les changements système seulement si aucune préférence explicite n'est stockée
+      if (!stored && window.matchMedia) {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        const syncWithSystem = (e) => {
+          const theme = e.matches ? 'dark' : 'light';
+          applyTheme(theme);
+          updateToggleState(theme);
+        };
+        if (typeof mq.addEventListener === 'function') {
+          mq.addEventListener('change', syncWithSystem);
+        } else if (typeof mq.addListener === 'function') {
+          mq.addListener(syncWithSystem);
+        }
+      }
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
   // MODULE: SKIP LINK (Aller au contenu) pour accessibilité
   // --------------------------------------------------------------------------
   const setupSkipLink = () => {
@@ -877,6 +961,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // INITIALISATION DE TOUS LES MODULES
   // ==========================================================================
   try {
+    setupThemeMode();
     setupCookieBanner();
     setupSkipLink();
     setupHamburgerMenu();
