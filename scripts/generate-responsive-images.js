@@ -12,8 +12,6 @@ async function ensureDir(dir) {
 }
 
 async function generateVariants(inputPath, baseOutName, widths, formats = ['webp', 'jpg']) {
-  const input = sharp(inputPath);
-  const metadata = await input.metadata();
   const extless = baseOutName;
 
   const outDir = path.dirname(inputPath);

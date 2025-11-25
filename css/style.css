@@ -120,7 +120,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   transition: background-color 0.4s, color 0.4s;
-  text-rendering: optimizeSpeed;
+  
 }
 
 /* Liens principaux : contraste minimum 4.5:1 */
@@ -245,8 +245,9 @@ input, button, textarea, select {
   width: 100%;
   z-index: 1000;
   height: var(--promo-banner-height);
-  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
-  color: #000000 !important;
+  background-color: var(--color-primary);
+  /* Contraste renforcé: noir quasi pur sur fond orange */
+  color: #111;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,7 +262,7 @@ input, button, textarea, select {
   top: 0;
   left: 0; 
   right: 0;
-  z-index: 1001;
+  z-index: 1502;
   background: rgba(255,255,255,1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -558,7 +559,7 @@ body.dark-theme .header {
 }
 
 .footer-column a { 
-  color: #f1f5f9;
+  color: #d7dee9; 
   transition: color 0.2s, transform 0.2s;
   display: inline-flex;
   align-items: center;
@@ -567,12 +568,23 @@ body.dark-theme .header {
 .footer-column a:hover { 
   color: #ffffff;
   transform: translateX(3px);
+  text-decoration: underline;
 }
+
+
 
 .footer-column i { 
   margin-right: 0.5rem; 
   color: var(--color-primary);
   font-size: 0.9em;
+}
+.footer-column svg {
+  margin-right: 0.5rem;
+  color: var(--color-primary);
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  fill: currentColor;
 }
 
 .footer-bottom {
@@ -608,7 +620,6 @@ body.dark-theme .header {
               box-shadow 0.2s ease;
   box-shadow: 0 2px 12px rgba(0,0,0,0.12);
   text-decoration: none;
-  justify-content: center;
   min-width: 210px;
   line-height: 1.2;
   position: relative;
@@ -637,14 +648,9 @@ body.dark-theme .header {
   transition: transform 0s, opacity 0.5s ease-out;
 }
 
-.btn:hover, .btn:focus {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
 
-.btn:active {
-  transform: translateY(0);
-}
+
+
 
 .btn-primary {
   background-color: var(--color-primary);
@@ -917,6 +923,24 @@ body.dark-theme .header {
   gap: var(--grid-gap);
 }
 
+/* Form sections shown conditionally by JS (prevent FOUC) */
+.service-details { display: none; }
+/* Micro-spacing and readability for dynamic contact groups */
+.service-details label { display: block; margin-top: .5rem; }
+.service-details input,
+.service-details select,
+.service-details textarea { margin-top: .25rem; }
+.service-details .checkbox { display: inline-flex; align-items: center; gap: .5rem; margin-top: .6rem; }
+
+/* Calculator cards shown conditionally by JS (prevent FOUC) */
+.services-grid [data-show] { display: none; }
+/* Consistent spacing inside calculator groups shown dynamically */
+.services-grid [data-show] label { display: block; margin-top: .5rem; }
+.services-grid [data-show] input,
+.services-grid [data-show] select,
+.services-grid [data-show] textarea { margin-top: .25rem; }
+.services-grid [data-show] .checkbox { display: inline-flex; align-items: center; gap: .5rem; margin-top: .6rem; }
+
 /* Témoignages clients */
 .testimonial-card {
   background: var(--color-light);
@@ -1157,6 +1181,12 @@ body.dark-theme .header {
 .whatsapp-float i {
   pointer-events: none;
 }
+.whatsapp-float svg {
+  pointer-events: none;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
 
 /* Animation de pulse pour attirer l'attention */
 .whatsapp-float::after {
@@ -1271,9 +1301,9 @@ body.dark-theme .header {
     padding: 16px 12px 24px;
     min-height: 70vh;
   }
-  /* Légèrement plus haut sur mobile */
+  /* Aligner verticalement au centre sur mobile */
   .hero-overlay .container {
-    transform: translateY(-22%);
+    transform: none;
   }
   
   .hero h1 {
@@ -1332,19 +1362,25 @@ body.dark-theme .header {
   display: block;
 }
 
-/* nav-links mobile active state - CORRIGÉ */
+/* nav-links mobile active state - CORRIGÉ (unifié avec patch correctif) */
 .nav-links.active {
   display: flex !important;
   flex-direction: column;
   position: fixed;
-  top: var(--header-height);
-  right: 0;
-  left: 0;
+  /* Commence sous la bannière promo et le header */
+  top: calc(var(--promo-banner-height) + var(--header-height)) !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
   background-color: var(--color-light);
-  z-index: 999;
+  z-index: 1501 !important;
   padding: 1.5rem 0;
   box-shadow: var(--box-shadow-base);
   animation: slideInDown 0.3s forwards;
+  /* Hauteur restante de l'écran (iOS+fallback) */
+  height: calc(100dvh - var(--promo-banner-height) - var(--header-height)) !important;
+  height: calc(100vh - var(--promo-banner-height) - var(--header-height)) !important;
+  overflow-y: auto !important; 
 }
 
 @keyframes slideInDown {
@@ -1369,13 +1405,14 @@ body.dark-theme .header {
 /* SUPPRIMÉ : Duplication de .promo-banner - la définition principale est en ligne 224 */
 
 .promo-banner a {
-  color: var(--color-dark);
+  color: inherit;
   text-decoration: underline;
   margin-left: 0.5rem;
 }
 
 .promo-banner a:hover {
-  color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  text-decoration: underline;
 }
 
 /* Statistiques sous forme de cartes */
@@ -1618,7 +1655,6 @@ body.dark-theme .header {
 
 .carousel-control:hover,
 .carousel-control:focus {
-  color: var(--color-primary-dark);
   outline: none;
   background-color: var(--color-primary);
   color: white;
@@ -1664,6 +1700,13 @@ body.dark-theme .header {
   font-size: 2rem;
   color: var(--color-primary);
   margin-bottom: 0.5rem;
+}
+.zone-card svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  fill: currentColor;
 }
 
 .zone-card h3 {
@@ -1740,6 +1783,12 @@ body.dark-theme .header {
 .contact-card .contact-icon i {
   font-size: 1.75rem;
   line-height: 1;
+}
+.contact-card .contact-icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  fill: currentColor;
 }
 /* L’icône gagne en relief quand on survole la carte (sans toucher aux boutons) */
 .contact-card:hover .contact-icon {
@@ -1833,12 +1882,14 @@ body.dark-theme .header {
 }
 
 .service-card-visual-content ul li::before {
-  content: "\f058";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  content: "";
   position: absolute;
   left: 0;
-  color: var(--color-primary);
+  top: 0.45rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
 /* Cartes de références améliorées */
@@ -1916,12 +1967,14 @@ body.dark-theme .header {
 }
 
 .reference-card-content ul.challenge-list li::before {
-  content: "\f00c";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  content: "";
   position: absolute;
   left: 0;
-  color: var(--color-primary);
+  top: 0.45rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
 /* Présentation des clauses légales sous forme de cartes (Mentions Légales) */
@@ -1977,12 +2030,14 @@ body.dark-theme .header {
 }
 
 .benefits-list li::before {
-  content: "\f058";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  content: "";
   position: absolute;
   left: 0;
-  color: var(--color-primary);
+  top: 0.45rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
 /* Bouton Retour en haut (Back to Top) */
@@ -2055,18 +2110,20 @@ body.dark-theme .header {
 }
 
 .faq-question::after {
-  content: "\f107";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  content: "";
   position: absolute;
   right: 1rem;
   top: 50%;
-  transform: translateY(-50%);
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
   transition: transform 0.3s;
 }
 
 .faq-item.is-open .faq-question::after {
-  transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(-135deg);
 }
 
 .faq-item.is-open .faq-question {
@@ -2085,6 +2142,7 @@ body.dark-theme .header {
 
 .faq-item.is-open .faq-answer {
   padding: 1rem 1.5rem;
+  animation: faqFade 0.2s ease both;
 }
 
 @media (max-width: 600px) {
@@ -2188,7 +2246,7 @@ body.dark-theme .theme-toggle:hover {
   cursor: help;
 }
 
-[data-tooltip]:before {
+[data-tooltip]::before {
   content: attr(data-tooltip);
   position: absolute;
   bottom: 100%;
@@ -2206,7 +2264,7 @@ body.dark-theme .theme-toggle:hover {
   z-index: var(--z-toast);
 }
 
-[data-tooltip]:after {
+[data-tooltip]::after {
   content: '';
   position: absolute;
   bottom: 100%;
@@ -2220,8 +2278,8 @@ body.dark-theme .theme-toggle:hover {
   z-index: var(--z-toast);
 }
 
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
@@ -2251,6 +2309,75 @@ mark, .highlight {
 .page-link {
   display: flex;
   align-items: center;
+}
+
+/* ==========================================================================
+   Breadcrumb (CSS, sans styles inline)
+   ========================================================================== */
+.breadcrumb {
+  background: var(--color-light-alt);
+  border-bottom: 1px solid var(--color-border);
+  font-size: .95rem;
+  padding: .6rem 0;
+}
+.breadcrumb .breadcrumb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.breadcrumb .breadcrumb-link {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+.breadcrumb .breadcrumb-sep {
+  opacity: .6;
+  margin: 0 .2rem;
+}
+.breadcrumb .breadcrumb-current {
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Cookie banner (CSS, sans styles inline)
+   ========================================================================== */
+.cookie-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 3000;
+  background: var(--color-light);
+  color: var(--color-dark);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.cookie-banner__content {
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+.cookie-banner__text {
+  margin:0;
+  flex:1;
+  min-width:260px;
+}
+.cookie-banner__link {
+  text-decoration: underline;
+  color: var(--color-primary);
+}
+.cookie-banner__actions {
+  display:flex;
+  gap:0.5rem;
+  flex-wrap:wrap;
 }
 
 /* ==========================================================================
@@ -2324,39 +2451,9 @@ body:has(.nav-links.active) {
   overflow: hidden;
 }
 
-/* 
- * Correction n°2 : Positionner le menu déroulant correctement.
- * On s'assure qu'il est AU-DESSUS de l'overlay flou et qu'il remplit l'écran.
-*/
-.nav-links.active {
-  /* On le place au-dessus de l'overlay (qui est à z-index: 1500) */
-  z-index: 1501 !important; 
-  
-  /* On s'assure qu'il commence juste sous le header */
-  top: calc(var(--promo-banner-height) + var(--header-height)) !important;
-  
-  /* On lui donne la hauteur restante de l'écran pour éviter le "trou" en bas */
-  /* Utiliser 100dvh pour iOS modernes + fallback 100vh */
-  height: calc(100dvh - var(--promo-banner-height) - var(--header-height)) !important;
-  height: calc(100vh - var(--promo-banner-height) - var(--header-height)) !important;
-  
-  /* On ajoute une barre de scroll si le menu est plus grand que l'écran */
-  overflow-y: auto !important; 
-  
-  /* On s'assure qu'il prend toute la largeur */
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-}
 
-/* 
- * Correction n°3 : S'assurer que le header reste au-dessus de tout.
- * Le bouton hamburger doit rester cliquable pour fermer le menu.
-*/
-.header {
-  /* On le place au-dessus du menu et de l'overlay */
-  z-index: 1502 !important; 
-}
+
+
 
 /* === Animations globales et effets premium === */
 
@@ -2469,9 +2566,7 @@ body:has(.nav-links.active) {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-.faq-item.is-open .faq-answer {
-  animation: faqFade 0.2s ease both;
-}
+
 
 /* Contraste amélioré dark mode (surcharge complète) */
 @media (prefers-color-scheme: dark) {

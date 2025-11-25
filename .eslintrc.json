@@ -12,7 +12,8 @@
   },
   "rules": {
     "no-unused-vars": ["warn", { "args": "none", "ignoreRestSiblings": true }],
-    "no-console": "off"
+    "no-console": "off",
+    "no-empty": ["error", { "allowEmptyCatch": true }]
   },
   "globals": {
     "gtag": "readonly"
@@ -32,7 +33,8 @@
         "__dirname": "readonly"
       },
       "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "no-empty": ["error", { "allowEmptyCatch": true }]
       }
     }
   ]

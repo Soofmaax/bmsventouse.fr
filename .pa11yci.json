@@ -4,7 +4,15 @@
     "includeNotices": false,
     "includeWarnings": true,
     "timeout": 30000,
-    "hideElements": "#cookie-banner"
+    "hideElements": "#cookie-banner",
+    "chromeLaunchConfig": {
+      "args": [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-gpu"
+      ]
+    }
   },
   "urls": [
     "http://localhost:8080/",

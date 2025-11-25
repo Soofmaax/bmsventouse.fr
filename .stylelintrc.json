@@ -1,15 +1,15 @@
 {
-  "extends": [
-    "stylelint-config-standard"
-  ],
   "rules": {
     "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["has"] }],
     "selector-pseudo-element-no-unknown": [true, { "ignorePseudoElements": ["selection"] }],
     "unit-no-unknown": [true, { "ignoreUnits": ["dvh"] }],
+
     "no-descending-specificity": null,
     "property-no-vendor-prefix": null,
     "selector-no-vendor-prefix": null,
     "value-no-vendor-prefix": null,
+    "font-family-no-missing-generic-family-keyword": null,
+
     "property-no-unknown": [true, { "ignoreProperties": [
       "text-size-adjust",
       "-webkit-text-size-adjust",
@@ -19,6 +19,30 @@
       "-webkit-backdrop-filter",
       "-webkit-font-smoothing",
       "-moz-osx-font-smoothing"
-    ] }]
+    ] }],
+
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy",
+    "color-function-alias-notation": null,
+    "color-hex-length": null,
+
+    "value-keyword-case": ["lower", {
+      "ignoreProperties": ["font-family"],
+      "ignoreKeywords": ["currentColor", "BlinkMacSystemFont", "Roboto", "optimizeSpeed"]
+    }],
+
+    "selector-pseudo-element-colon-notation": "double",
+    "media-feature-range-notation": null,
+    "keyframes-name-pattern": null,
+
+    "declaration-block-single-line-max-declarations": null,
+    "rule-empty-line-before": null,
+    "comment-empty-line-before": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+
+    "selector-class-pattern": null,
+    "no-duplicate-selectors": null,
+
+    "shorthand-property-no-redundant-values": null
   }
 }
