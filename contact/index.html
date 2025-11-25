@@ -269,7 +269,7 @@
                 <form name="contact" method="POST" action="https://formsubmit.co/contact@bmsventouse.fr">
                   <!-- FormSubmit configuration (gratuit, zéro maintenance) -->
                   <input type="hidden" name="_subject" value="Nouveau formulaire BMS Ventouse">
-                  <input type="hidden" name="_next" value="https://www.bmsventouse.fr/merci/">
+                  <input type="hidden" name="_next" value="https://www.bmsventouse.fr/contact/?success=1">
                   <input type="hidden" name="_captcha" value="false">
                   <input type="hidden" name="_template" value="table">
                   <!-- Honeypots anti-spam -->
@@ -421,15 +421,7 @@
                       <label for="svc_loges_location" style="margin-top:.6rem;">Localisation / accès</label>
                       <input id="svc_loges_location" name="svc_loges_location" type="text" placeholder="Ex: cour intérieure, parking, étage 1">
                     </div>
-                    <div class="contact-card">
-                      <label for="package"><strong>Pack souhaité (optionnel)</strong></label>
-                      <select id="package" name="package">
-                        <option value="">Sans pack / Au choix</option>
-                        <option value="pack_stationnement">Pack Stationnement (Ventousage + Affichage + Signalisation)</option>
-                        <option value="pack_securisation">Pack Sécurisation Plateau (Sécurité/Gardiennage + Signalisation)</option>
-                        <option value="pack_confort">Pack Confort Tournage (Régie + Loges & Confort + Cantine)</option>
-                      </select>
-                    </div>
+                    
                     <div class="contact-card">
                       <label for="location"><strong>Ville / Lieu principal</strong></label>
                       <input id="location" name="location" type="text" placeholder="Ex: Paris 11e, Lyon Part-Dieu">
@@ -449,10 +441,7 @@
                       </label>
                     </div>
                     
-                    <div class="contact-card">
-                      <label for="budget"><strong>Budget indicatif (optionnel)</strong></label>
-                      <input id="budget" name="budget" type="text" placeholder="Ex: 2 000–3 000 € HT">
-                    </div>
+                    
                     <div class="contact-card">
                       <label for="date_start"><strong>Date de début (souhaitée)</strong></label>
                       <input id="date_start" name="date_start" type="date">
