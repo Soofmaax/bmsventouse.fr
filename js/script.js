@@ -978,9 +978,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Global canonical (fallback si manquante) et passe orthographique typographique FR
     setupCanonicalFallback();
     setupFrenchTypoCleaning();
-    // Unifier le chargement du CSS et migrer FA -> SVG inline
-    unifyStylesheetLoading();
-    migrateFAIconsToInlineSVG();
     // Google Tag Manager (GTM) - chargement dynamique si un ID est fourni
     setupGTM();
     // Message de succès pour le formulaire Contact (?success=1)
@@ -1034,6 +1031,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('🚀 BMS Ventouse - Tous les modules initialisés avec succès');
   } catch (error) {
     console.error("Erreur lors de l'initialisation des scripts du site :", error);
+  } finally {
+    try {
+      unifyStylesheetLoading();
+    } catch (_) {
+      // non-bloquant
+    }
+    try {
+      migrateFAIconsToInlineSVG();
+    } catch (_) {
+      // non-bloquant
+    }
   }
 });
 

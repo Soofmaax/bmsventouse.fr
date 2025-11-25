@@ -1325,6 +1325,13 @@ body.dark-theme .header {
     bottom: 12px;
     right: 12px;
   }
+
+  /* Sur mobile, on décale le bouton Retour en haut pour éviter qu'il soit sous le bouton WhatsApp */
+  .back-to-top {
+    left: 12px;
+    right: auto;
+    bottom: 12px;
+  }
 }
 
 /* Styles pour le menu mobile: overlay et menu déroulant - CORRIGÉ */
