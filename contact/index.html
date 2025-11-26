@@ -103,8 +103,7 @@
             "name": "Béna",
             "availableLanguage": "French",
             "hoursAvailable": "Mo-Su 00:00-23:59"
-          },
-          
+          }
         ],
         "email": "bms.ventouse@gmail.com",
         "areaServed": {
@@ -156,6 +155,13 @@
                     <li><a href="/services/" class="nav-link">Services</a></li>
                     <li><a href="/realisations/" class="nav-link">Références</a></li>
                     <li><a href="/contact/" class="nav-link active">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" type="button" aria-label="Activer ou désactiver le mode sombre">
+                            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor">
+                                <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79z"></path>
+                            </svg>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -260,7 +266,7 @@
               <div class="container">
                 <h2 id="form-title" class="section-title">Formulaire de Devis</h2>
                 <p class="section-subtitle">Renseignez les informations demandées pour un devis précis. Réponse sous 24–48h ouvrées.</p>
-                <form name="contact" method="POST" action="https://formsubmit.co/contact@bmsventouse.fr">
+                <form name="contact" method="POST" action="https://formsubmit.co/bms.ventouse@gmail.com">
                   <!-- FormSubmit configuration (gratuit, zéro maintenance) -->
                   <input type="hidden" name="_subject" value="Nouveau formulaire BMS Ventouse">
                   <input type="hidden" name="_next" value="https://www.bmsventouse.fr/contact/?success=1">
@@ -415,15 +421,7 @@
                       <label for="svc_loges_location" style="margin-top:.6rem;">Localisation / accès</label>
                       <input id="svc_loges_location" name="svc_loges_location" type="text" placeholder="Ex: cour intérieure, parking, étage 1">
                     </div>
-                    <div class="contact-card">
-                      <label for="package"><strong>Pack souhaité (optionnel)</strong></label>
-                      <select id="package" name="package">
-                        <option value="">Sans pack / Au choix</option>
-                        <option value="pack_stationnement">Pack Stationnement (Ventousage + Affichage + Signalisation)</option>
-                        <option value="pack_securisation">Pack Sécurisation Plateau (Sécurité/Gardiennage + Signalisation)</option>
-                        <option value="pack_confort">Pack Confort Tournage (Régie + Loges & Confort + Cantine)</option>
-                      </select>
-                    </div>
+                    
                     <div class="contact-card">
                       <label for="location"><strong>Ville / Lieu principal</strong></label>
                       <input id="location" name="location" type="text" placeholder="Ex: Paris 11e, Lyon Part-Dieu">
@@ -442,18 +440,8 @@
                         Demande urgente (rappel prioritaire sans engagement de délai précis)
                       </label>
                     </div>
-                    <div class="contact-card">
-                      <label for="payment"><strong>Préférence de paiement</strong></label>
-                      <select id="payment" name="payment_preference">
-                        <option value="">À définir avec le devis</option>
-                        <option value="rib">Virement (RIB)</option>
-                        <option value="link">Lien de paiement sécurisé</option>
-                      </select>
-                    </div>
-                    <div class="contact-card">
-                      <label for="budget"><strong>Budget indicatif (optionnel)</strong></label>
-                      <input id="budget" name="budget" type="text" placeholder="Ex: 2 000–3 000 € HT">
-                    </div>
+                    
+                    
                     <div class="contact-card">
                       <label for="date_start"><strong>Date de début (souhaitée)</strong></label>
                       <input id="date_start" name="date_start" type="date">
@@ -635,7 +623,7 @@
   <div class="footer-bottom">
       <div class="container">
           <div class="footer-bottom-content">
-              <p>&copy; 2025 BMS Ventouse. Tous droits réservés.</p>
+              <p>&copy; 2025 BMS Ventouse. Tous droits réservés. Site réalisé par <a href="https://smarterlogicweb.com" target="_blank" rel="noopener noreferrer">SmarterLogicWeb</a>.</p>
           </div>
       </div>
   </div>
