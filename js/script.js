@@ -973,11 +973,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupAnalyticsEvents();
     setupBreadcrumbs();
     await setupAllPagesSubmenu();
-    setupScrollProgress();
+    // Barre de progression de scroll uniquement sur desktop pour limiter le travail JS sur mobile
+    try {
+      if (window.innerWidth >= 1024) {
+        setupScrollProgress();
+      }
+    } catch (_) {
+      // non-bloquant
+    }
     loadClarityIfConsented();
-    // Global canonical (fallback si manquante) et passe orthographique typographique FR
+    // Global canonical (fallback si manquante)
     setupCanonicalFallback();
-    setupFrenchTypoCleaning();
+    // Passe orthographique typographique FR reportée après le chargement initial
+    try {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(setupFrenchTypoCleaning);
+      } else {
+        setTimeout(setupFrenchTypoCleaning, 1500);
+      }
+    } catch (_) {
+      // non-bloquant
+    }
     // Google Tag Manager (GTM) - chargement dynamique si un ID est fourni
     setupGTM();
     // Message de succès pour le formulaire Contact (?success=1)
@@ -1033,12 +1049,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error("Erreur lors de l'initialisation des scripts du site :", error);
   } finally {
     try {
-      unifyStylesheetLoading();
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(unifyStylesheetLoading);
+      } else {
+        setTimeout(unifyStylesheetLoading, 1500);
+      }
     } catch (_) {
       // non-bloquant
     }
     try {
-      migrateFAIconsToInlineSVG();
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(migrateFAIconsToInlineSVG);
+      } else {
+        setTimeout(migrateFAIconsToInlineSVG, 1500);
+      }
     } catch (_) {
       // non-bloquant
     }
@@ -1053,8 +1077,10 @@ function setupHeroParallax() {
   const img = hero ? hero.querySelector('.hero-bg img') : null;
   if (!hero || !img) return;
 
+  // Désactive le parallax sur mobile pour limiter le travail JS au scroll
+  const isMobile = window.innerWidth < 768;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
+  if (prefersReducedMotion || isMobile) return;
 
   img.style.willChange = 'transform';
   let ticking = false;
