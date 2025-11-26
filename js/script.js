@@ -975,9 +975,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     await setupAllPagesSubmenu();
     setupScrollProgress();
     loadClarityIfConsented();
-    // Global canonical (fallback si manquante) et passe orthographique typographique FR
+    // Global canonical (fallback si manquante)
     setupCanonicalFallback();
-    setupFrenchTypoCleaning();
+    // Passe orthographique typographique FR reportée après le chargement initial
+    try {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(setupFrenchTypoCleaning);
+      } else {
+        setTimeout(setupFrenchTypoCleaning, 1500);
+      }
+    } catch (_) {
+      // non-bloquant
+    }
     // Google Tag Manager (GTM) - chargement dynamique si un ID est fourni
     setupGTM();
     // Message de succès pour le formulaire Contact (?success=1)
@@ -1033,12 +1042,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error("Erreur lors de l'initialisation des scripts du site :", error);
   } finally {
     try {
-      unifyStylesheetLoading();
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(unifyStylesheetLoading);
+      } else {
+        setTimeout(unifyStylesheetLoading, 1500);
+      }
     } catch (_) {
       // non-bloquant
     }
     try {
-      migrateFAIconsToInlineSVG();
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(migrateFAIconsToInlineSVG);
+      } else {
+        setTimeout(migrateFAIconsToInlineSVG, 1500);
+      }
     } catch (_) {
       // non-bloquant
     }
