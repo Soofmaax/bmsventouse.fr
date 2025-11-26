@@ -973,7 +973,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupAnalyticsEvents();
     setupBreadcrumbs();
     await setupAllPagesSubmenu();
-    setupScrollProgress();
+    // Barre de progression de scroll uniquement sur desktop pour limiter le travail JS sur mobile
+    try {
+      if (window.innerWidth >= 1024) {
+        setupScrollProgress();
+      }
+    } catch (_) {
+      // non-bloquant
+    }
     loadClarityIfConsented();
     // Global canonical (fallback si manquante)
     setupCanonicalFallback();
@@ -1070,8 +1077,10 @@ function setupHeroParallax() {
   const img = hero ? hero.querySelector('.hero-bg img') : null;
   if (!hero || !img) return;
 
+  // Désactive le parallax sur mobile pour limiter le travail JS au scroll
+  const isMobile = window.innerWidth < 768;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
+  if (prefersReducedMotion || isMobile) return;
 
   img.style.willChange = 'transform';
   let ticking = false;
