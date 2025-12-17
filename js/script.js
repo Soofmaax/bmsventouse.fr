@@ -1002,12 +1002,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupContactServiceDetails();
     // Capture des leads du formulaire Contact vers HubSpot (non bloquant)
     setupContactLeadCapture();
-    // Harmonisation des emails: désactivée par défaut (respect de l'email courant)
-    // Pour activer, ajouter &lt;meta name="replace-email" content="true"&gt; dans le &lt;head&gt;.
-    try {
-      const metaReplace = document.querySelector('meta[name="replace-email"][content="true"]');
-      if (metaReplace) replaceLegacyEmail();
-    } catch (_) {}
+    // Harmonisation des emails: mécanisme legacy désormais désactivé (migration terminée)
 
     // PWA: enregistrement du Service Worker (pour PWA=100)
     setupServiceWorker();
@@ -1263,41 +1258,11 @@ function setupContactLeadCapture() {
 }
 
 // --------------------------------------------------------------------------
-// UTIL: Remplacer l'ancien email pro par l'email Gmail (si jamais réutilisé)
+// UTIL LEGACY (remplacement d'anciens emails) — supprimé car migration terminée
 // --------------------------------------------------------------------------
-function replaceLegacyEmail() {
-  try {
-    const OLD = 'contact@bmsventouse.fr';
-    const NEW = 'bms.ventouse@gmail.com';
-    // Remplace les liens mailto
-    document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
-      try {
-        const href = a.getAttribute('href') || '';
-        if (href.toLowerCase().includes(OLD)) {
-          a.setAttribute('href', `mailto:${NEW}`);
-        }
-        // Met à jour le texte visible si l'ancien email est affiché
-        if ((a.textContent || '').includes(OLD)) {
-          a.textContent = (a.textContent || '').replaceAll(OLD, NEW);
-        }
-      } catch(_){}
-    });
-    // Remplace occurrences textuelles basiques dans des spans/p/li (non destructif)
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    const toChange = [];
-    while (walker.nextNode()) {
-      const node = walker.currentNode;
-      if (node.nodeValue && node.nodeValue.includes(OLD)) {
-        toChange.push(node);
-      }
-    }
-    toChange.forEach(node => {
-      node.nodeValue = node.nodeValue.replaceAll(OLD, NEW);
-    });
-  } catch (_) {
-    // non-bloquant
-  }
-}
+// La logique de migration d'anciens emails vers contact@bmsventouse.fr
+// a été appliquée en dur dans le code HTML. Ce bloc est laissé vide
+// pour éviter tout traitement inattendu côté front.
 
 // --------------------------------------------------------------------------
 // PWA: Service Worker registration

@@ -20,7 +20,7 @@
 ### Contacts directs
 - Téléphone : +33 6 46 00 56 42 (Béna)
 - WhatsApp : wa.me/33646005642 (lien direct)
-- Email : bms.ventouse@gmail.com (prérempli “Demande de Devis Gratuit”)
+- Email : contact@bmsventouse.fr (prérempli “Demande de Devis Gratuit”)
 
 ### Zones d’intervention
 - Paris & Île‑de‑France (Paris, Boulogne‑Billancourt, Montreuil, Saint‑Denis…)
@@ -29,7 +29,7 @@
 - Partout ailleurs en France (équipes mobiles)
 
 ### CTA
-- Email → mailto:bms.ventouse@gmail.com
+- Email → mailto:contact@bmsventouse.fr
 - WhatsApp → wa.me/33646005642
 
 ## Éléments notables
