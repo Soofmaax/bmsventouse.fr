@@ -105,7 +105,7 @@
             "hoursAvailable": "Mo-Su 00:00-23:59"
           }
         ],
-        "email": "bms.ventouse@gmail.com",
+        "email": "contact@bmsventouse.fr",
         "areaServed": {
           "@type": "Country",
           "name": "France"
@@ -257,16 +257,16 @@
                     <div class="contact-details">
                         <p>Idéal pour les demandes détaillées et les cahiers des charges.</p>
                     </div>
-                    <a href="mailto:bms.ventouse@gmail.com?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
+                    <a href="mailto:contact@bmsventouse.fr?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
                 </div>
             </div>
 
-            <!-- Formulaire de contact (Netlify Forms) -->
+            <!-- Formulaire de contact -->
             <section class="section" aria-labelledby="form-title">
               <div class="container">
                 <h2 id="form-title" class="section-title">Formulaire de Devis</h2>
-                <p class="section-subtitle">Renseignez les informations demandées pour un devis précis. Réponse sous 24–48h ouvrées.</p>
-                <form name="contact" method="POST" action="https://formsubmit.co/bms.ventouse@gmail.com">
+                <p class="section-subtitle">Remplissez les champs ci-dessous, nous revenons vers vous sous 24–48h ouvrées.</p>
+                <form name="contact" method="POST" action="https://formsubmit.co/contact@bmsventouse.fr">
                   <!-- FormSubmit configuration (gratuit, zéro maintenance) -->
                   <input type="hidden" name="_subject" value="Nouveau formulaire BMS Ventouse">
                   <input type="hidden" name="_next" value="https://www.bmsventouse.fr/contact/?success=1">
@@ -277,184 +277,68 @@
                   <p class="visually-hidden"><label>Ne pas remplir: <input name="bot-field"></label></p>
 
                   <div class="services-grid">
+                    <!-- Coordonnées -->
                     <div class="contact-card">
-                      <label for="name"><strong>Nom et Prénom</strong></label>
-                      <input id="name" name="name" type="text" required aria-required="true" placeholder="Jean Dupont" autocomplete="name">
+                      <label for="name"><strong>Nom et prénom *</strong></label>
+                      <input id="name" name="name" type="text" required aria-required="true" placeholder="Ex&nbsp;: Jean Dupont" autocomplete="name">
                     </div>
                     <div class="contact-card">
-                      <label for="role"><strong>Poste / Fonction</strong></label>
-                      <input id="role" name="role" type="text" required aria-required="true" placeholder="Régisseur général, Producteur, etc." list="role-suggestions" autocomplete="organization-title">
-                      <datalist id="role-suggestions">
-                        <option value="Producteur / Productrice"></option>
-                        <option value="Directeur·trice de production"></option>
-                        <option value="Régisseur·se général·e"></option>
-                        <option value="Régisseur·se adjoint·e"></option>
-                        <option value="Chargé·e de production"></option>
-                        <option value="Coordinateur·trice logistique"></option>
-                        <option value="Réalisateur / Réalisatrice"></option>
-                        <option value="Chef·fe de projet"></option>
-                        <option value="Autre"></option>
-                      </datalist>
+                      <label for="company"><strong>Boîte de production / Société *</strong></label>
+                      <input id="company" name="company" type="text" required aria-required="true" placeholder="Ex&nbsp;: société de production, agence, structure" autocomplete="organization">
                     </div>
                     <div class="contact-card">
-                      <label for="company"><strong>Boîte de production (optionnel)</strong></label>
-                      <input id="company" name="company" type="text" placeholder="Nom de la société / structure" autocomplete="organization">
+                      <label for="phone"><strong>Téléphone *</strong></label>
+                      <input id="phone" name="phone" type="tel" required aria-required="true" placeholder="Ex&nbsp;: +33 6 12 34 56 78" autocomplete="tel" inputmode="tel">
                     </div>
                     <div class="contact-card">
-                      <label for="email"><strong>Email</strong></label>
-                      <input id="email" name="email" type="email" required aria-required="true" placeholder="nom@domaine.fr" autocomplete="email">
+                      <label for="email"><strong>Email (optionnel)</strong></label>
+                      <input id="email" name="email" type="email" placeholder="Ex&nbsp;: nom@boiteprod.fr" autocomplete="email">
                     </div>
+
+                    <!-- Projet -->
                     <div class="contact-card">
-                      <label for="phone"><strong>Téléphone</strong></label>
-                      <input id="phone" name="phone" type="tel" placeholder="+33 6 12 34 56 78" autocomplete="tel">
-                    </div>
-                    <div class="contact-card">
-                      <label for="service"><strong>Service demandé</strong></label>
+                      <label for="service"><strong>Type de besoin *</strong></label>
                       <select id="service" name="service" required aria-required="true">
-                        <option value="" disabled selected>Choisir un service…</option>
-                        <option value="Ventousage & autorisations">Ventousage & autorisations</option>
-                        <option value="Sécurité de plateaux / Gardiennage">Sécurité de plateaux / Gardiennage</option>
-                        <option value="Convoyage véhicules & décors">Convoyage véhicules & décors</option>
-                        <option value="Régie & matériel">Régie & matériel</option>
-                        <option value="Affichage riverains">Affichage riverains</option>
-                        <option value="Signalisation & barriérage">Signalisation & barriérage</option>
-                        <option value="Loges & Confort">Loges & Confort</option>
-                        <option value="Cantine & Catering">Cantine & Catering</option>
-                        <option value="Logistique événementielle (mode, publicité)">Logistique événementielle (mode, publicité)</option>
-                        <option value="Autre">Autre</option>
+                        <option value="" disabled selected>Choisissez une option…</option>
+                        <option value="Ventousage / AOT / Affichage riverains">Ventousage / AOT / Affichage riverains</option>
+                        <option value="Sécurité de tournage / Gardiennage">Sécurité de tournage / Gardiennage</option>
+                        <option value="Convoyage véhicules / décors">Convoyage véhicules / décors</option>
+                        <option value="Régie / loges / cantine">Régie / loges / cantine</option>
+                        <option value="Autre besoin logistique">Autre besoin logistique</option>
+                      </select>
+                    </div>
+                    <div class="contact-card">
+                      <label for="location"><strong>Ville / lieu principal *</strong></label>
+                      <select id="location" name="location" required aria-required="true">
+                        <option value="" disabled selected>Choisissez une zone…</option>
+                        <option value="Paris / Île-de-France">Paris / Île‑de‑France</option>
+                        <option value="Lyon">Lyon</option>
+                        <option value="Marseille">Marseille</option>
+                        <option value="Bordeaux">Bordeaux</option>
+                        <option value="Strasbourg">Strasbourg</option>
+                        <option value="Nice">Nice</option>
+                        <option value="Toulouse">Toulouse</option>
+                        <option value="Lille">Lille</option>
+                        <option value="Autre (France)">Autre (France)</option>
+                      </select>
+                    </div>
+                    <div class="contact-card">
+                      <label for="urgency"><strong>Niveau d’urgence *</strong></label>
+                      <select id="urgency" name="urgency" required aria-required="true">
+                        <option value="" disabled selected>Choisissez une option…</option>
+                        <option value="urgent_24h">Très urgent (dans les 24&nbsp;h)</option>
+                        <option value="urgent_72h">Urgent (sous 2–3 jours)</option>
+                        <option value="date_fixee">Date déjà fixée / à planifier</option>
                       </select>
                     </div>
 
-                    <!-- Détails selon service (affichage dynamique) -->
-                    <!-- Cantine & Catering -->
-                    <div class="contact-card service-details" data-service="cantine">
-                      <h3>Cantine & Catering — Détails</h3>
-                      <label for="svc_cantine_people">Nombre de personnes</label>
-                      <input id="svc_cantine_people" name="svc_cantine_people" type="number" min="1" step="1" placeholder="Ex: 25">
-                      <label for="svc_cantine_meals" style="margin-top:.6rem;">Repas servis</label>
-                      <input id="svc_cantine_meals" name="svc_cantine_meals" type="text" placeholder="Ex: petit-déjeuner, déjeuner, dîner">
-                      <label for="svc_cantine_dietary" style="margin-top:.6rem;">Régimes alimentaires</label>
-                      <input id="svc_cantine_dietary" name="svc_cantine_dietary" type="text" placeholder="Ex: végétarien, halal, allergies">
-                      <label for="svc_cantine_hours" style="margin-top:.6rem;">Horaires de service</label>
-                      <input id="svc_cantine_hours" name="svc_cantine_hours" type="text" placeholder="Ex: 7h–10h, 12h–14h, 19h–21h">
-                    </div>
-
-                    <!-- Ventousage & autorisations -->
-                    <div class="contact-card service-details" data-service="ventousage">
-                      <h3>Ventousage — Détails</h3>
-                      <label for="svc_ventousage_streets">Rues / adresses concernées</label>
-                      <textarea id="svc_ventousage_streets" name="svc_ventousage_streets" rows="4" placeholder="Liste des rues, tronçons, intersections"></textarea>
-                      <label for="svc_ventousage_zones" style="margin-top:.6rem;">Nombre de zones / panneaux</label>
-                      <input id="svc_ventousage_zones" name="svc_ventousage_zones" type="number" min="0" step="1" placeholder="Ex: 12">
-                      <label for="svc_ventousage_hours" style="margin-top:.6rem;">Créneaux / Horaires</label>
-                      <input id="svc_ventousage_hours" name="svc_ventousage_hours" type="text" placeholder="Ex: Nuit 22h–6h, Jour 8h–18h">
-                    </div>
-
-                    <!-- Sécurité / Gardiennage -->
-                    <div class="contact-card service-details" data-service="securite">
-                      <h3>Sécurité / Gardiennage — Détails</h3>
-                      <label for="svc_securite_agents">Nombre d’agents</label>
-                      <input id="svc_securite_agents" name="svc_securite_agents" type="number" min="0" step="1" placeholder="Ex: 3">
-                      <label for="svc_securite_hours" style="margin-top:.6rem;">Heures par jour</label>
-                      <input id="svc_securite_hours" name="svc_securite_hours" type="number" min="1" step="1" placeholder="Ex: 8">
-                      <label for="svc_securite_ssiap" class="checkbox" style="margin-top:.6rem;">
-                        <input id="svc_securite_ssiap" name="svc_securite_ssiap" type="checkbox" value="1"> SSIAP / niveau renforcé
-                      </label>
-                    </div>
-
-                    <!-- Convoyage -->
-                    <div class="contact-card service-details" data-service="convoyage">
-                      <h3>Convoyage — Détails</h3>
-                      <label for="svc_convoyage_pickup">Adresse de départ</label>
-                      <input id="svc_convoyage_pickup" name="svc_convoyage_pickup" type="text" placeholder="Point de collecte (adresse complète)">
-                      <label for="svc_convoyage_drop" style="margin-top:.6rem;">Adresse d’arrivée</label>
-                      <input id="svc_convoyage_drop" name="svc_convoyage_drop" type="text" placeholder="Point de livraison (adresse complète)">
-                      <label for="svc_convoyage_schedule" style="margin-top:.6rem;">Créneaux / Horaire</label>
-                      <input id="svc_convoyage_schedule" name="svc_convoyage_schedule" type="text" placeholder="Ex: 8h–12h, 14h–18h">
-                      <label for="svc_convoyage_stops" style="margin-top:.6rem;">Stops intermédiaires (optionnel)</label>
-                      <input id="svc_convoyage_stops" name="svc_convoyage_stops" type="text" placeholder="Ex: 2 stops (atelier, stockage)">
-                      <label for="svc_convoyage_volume" style="margin-top:.6rem;">Volume</label>
-                      <select id="svc_convoyage_volume" name="svc_convoyage_volume">
-                        <option value="moyen">Moyen</option>
-                        <option value="grand">Grand (jusqu’à 22 m³)</option>
-                      </select>
-                    </div>
-
-                    <!-- Régie & matériel -->
-                    <div class="contact-card service-details" data-service="regie">
-                      <h3>Régie & Matériel — Détails</h3>
-                      <label for="svc_regie_equipment">Liste du matériel / besoins</label>
-                      <textarea id="svc_regie_equipment" name="svc_regie_equipment" rows="4" placeholder="Ex: barrières, cônes, rubalise, radios, gilets, etc."></textarea>
-                      <label for="svc_regie_agents" style="margin-top:.6rem;">Nombre d’agents régie</label>
-                      <input id="svc_regie_agents" name="svc_regie_agents" type="number" min="0" step="1" placeholder="Ex: 2">
-                      <label for="svc_regie_hours" style="margin-top:.6rem;">Heures par jour</label>
-                      <input id="svc_regie_hours" name="svc_regie_hours" type="number" min="1" step="1" placeholder="Ex: 8">
-                    </div>
-
-                    <!-- Signalisation & barriérage -->
-                    <div class="contact-card service-details" data-service="signalisation">
-                      <h3>Signalisation & Barriérage — Détails</h3>
-                      <label for="svc_signalisation_perimeter">Périmètre / zones à sécuriser</label>
-                      <textarea id="svc_signalisation_perimeter" name="svc_signalisation_perimeter" rows="3" placeholder="Ex: périmètre de tournage, rue X entre Y et Z"></textarea>
-                      <label for="svc_signalisation_barriers" style="margin-top:.6rem;">Nombre approximatif de barrières</label>
-                      <input id="svc_signalisation_barriers" name="svc_signalisation_barriers" type="number" min="0" step="1" placeholder="Ex: 40">
-                      <label for="svc_signalisation_hours" style="margin-top:.6rem;">Heures par jour</label>
-                      <input id="svc_signalisation_hours" name="svc_signalisation_hours" type="number" min="1" step="1" placeholder="Ex: 8">
-                    </div>
-
-                    <!-- Affichage riverains -->
-                    <div class="contact-card service-details" data-service="affichage">
-                      <h3>Affichage Riverains — Détails</h3>
-                      <label for="svc_affichage_streets">Rues / secteurs pour affichage</label>
-                      <textarea id="svc_affichage_streets" name="svc_affichage_streets" rows="3" placeholder="Ex: Rue X, Avenue Y, Place Z"></textarea>
-                      <label for="svc_affichage_posters" style="margin-top:.6rem;">Nombre de panneaux / affiches</label>
-                      <input id="svc_affichage_posters" name="svc_affichage_posters" type="number" min="0" step="1" placeholder="Ex: 30">
-                    </div>
-
-                    <!-- Loges & Confort -->
-                    <div class="contact-card service-details" data-service="loges">
-                      <h3>Loges & Confort — Détails</h3>
-                      <label for="svc_loges_number">Nombre de loges</label>
-                      <input id="svc_loges_number" name="svc_loges_number" type="number" min="0" step="1" placeholder="Ex: 4">
-                      <label for="svc_loges_types" style="margin-top:.6rem;">Types de loges</label>
-                      <input id="svc_loges_types" name="svc_loges_types" type="text" placeholder="Ex: maquillage, habillage, green room">
-                      <label for="svc_loges_location" style="margin-top:.6rem;">Localisation / accès</label>
-                      <input id="svc_loges_location" name="svc_loges_location" type="text" placeholder="Ex: cour intérieure, parking, étage 1">
-                    </div>
-                    
-                    <div class="contact-card">
-                      <label for="location"><strong>Ville / Lieu principal</strong></label>
-                      <input id="location" name="location" type="text" placeholder="Ex: Paris 11e, Lyon Part-Dieu">
-                    </div>
-                    <div class="contact-card">
-                      <label for="address"><strong>Adresse du site (si connue)</strong></label>
-                      <input id="address" name="address" type="text" placeholder="Rue, code postal, accès, etc.">
-                    </div>
-                    <div class="contact-card">
-                      <label for="schedule"><strong>Créneaux / Horaires (si connus)</strong></label>
-                      <input id="schedule" name="schedule" type="text" placeholder="Ex: Nuit 22h–6h, Jour 8h–18h">
-                    </div>
-                    <div class="contact-card">
-                      <label for="urgent" class="checkbox">
-                        <input id="urgent" name="urgent" type="checkbox" value="1">
-                        Demande urgente (rappel prioritaire sans engagement de délai précis)
-                      </label>
-                    </div>
-                    
-                    
-                    <div class="contact-card">
-                      <label for="date_start"><strong>Date de début (souhaitée)</strong></label>
-                      <input id="date_start" name="date_start" type="date">
-                    </div>
-                    <div class="contact-card">
-                      <label for="date_end"><strong>Date de fin (souhaitée)</strong></label>
-                      <input id="date_end" name="date_end" type="date">
-                    </div>
+                    <!-- Message -->
                     <div class="contact-card" style="grid-column: 1 / -1;">
-                      <label for="details"><strong>Informations complémentaires</strong></label>
-                      <textarea id="details" name="details" rows="8" placeholder="Détaillez le projet (périmètre, zones/panneaux, contraintes, accès régie, documents utiles, etc.)."></textarea>
+                      <label for="details"><strong>Votre message *</strong></label>
+                      <textarea id="details" name="details" rows="6" required aria-required="true" placeholder="Parlez-nous du projet : dates, lieu précis, type de tournage (pub, série, événement…), besoins en ventousage, sécurité, convoyage, régie…"></textarea>
                     </div>
-                    
+
+                    <!-- Consentement -->
                     <div class="contact-card" style="grid-column: 1 / -1;">
                       <label for="consent" class="checkbox">
                         <input id="consent" name="consent" type="checkbox" required aria-required="true">
@@ -596,7 +480,7 @@
                           
                           <!-- Contact WhatsApp direct -->
                           <li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512" style="margin-right:8px"><path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/></svg> WhatsApp Direct</a></li>
-                          <li><a href="mailto:bms.ventouse@gmail.com"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/></svg> bms.ventouse@gmail.com</a></li>
+                          <li><a href="mailto:contact@bmsventouse.fr"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/></svg> contact@bmsventouse.fr</a></li>
                       </ul>
                   </div>
                     <div class="footer-column">
