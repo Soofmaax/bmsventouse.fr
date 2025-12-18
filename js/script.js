@@ -1123,7 +1123,7 @@ function setupGTM() {
 }
 
 // --------------------------------------------------------------------------
-// MODULE: Message de succès sur /contact/ après soumission Netlify (?success=1)
+// MODULE: Message de succès sur /contact/ après soumission du formulaire (?success=1)
 // --------------------------------------------------------------------------
 function setupContactSuccessNotice() {
   try {
@@ -1150,7 +1150,7 @@ function setupContactSuccessNotice() {
 }
 
 // --------------------------------------------------------------------------
-// MODULE: Capture du formulaire Contact vers Zoho CRM (non bloquant)
+// MODULE: Affichage conditionnel des blocs de détails du formulaire Contact
 // --------------------------------------------------------------------------
 function setupContactServiceDetails() {
   try {
