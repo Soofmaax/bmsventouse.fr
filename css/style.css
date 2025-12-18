@@ -243,12 +243,6 @@ input, button, textarea, select {
   font-weight: var(--font-weight-medium);
 }
 
-/* Offre de bienvenue (remise) désactivée : bannière promo masquée,
-   conservée dans le HTML pour une éventuelle réactivation ultérieure */
-.promo-banner {
-  display: none;
-}
-
 /* Header repositionné en relative */
 .header {
   position: sticky; /* Fixe le header en haut pour éviter les chevauchements */
