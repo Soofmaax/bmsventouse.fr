@@ -1,34 +1,35 @@
-# Analytics & Tracking Setup
+# Suivi & Analytics — Guide de mise en place
 
-This guide explains how to configure analytics and tracking for **bmsventouse.fr** across the main platforms:
+Ce guide t’explique comment configurer le **suivi complet** pour **bmsventouse.fr** sur les principales plateformes :
 
 - Google Analytics 4 (GA4)
 - Google Tag Manager (GTM)
 - Google Search Console (GSC)
 - Microsoft Clarity
-- Optional: using GTM to add other tags (Google Ads, Meta Pixel, LinkedIn, etc.)
+- Et, via GTM : Google Ads, Meta Pixel (Facebook/Instagram), LinkedIn, etc.
 
-> The front‑end code is already wired. Your work is mainly in the Google / Clarity interfaces and in filling a few IDs.
+> Le site est déjà câblé côté front.  
+> Ton travail se fait surtout dans les interfaces Google / Clarity (création des comptes, des tags, et remplissage des IDs).
 
 ---
 
 ## 1. Google Analytics 4 (GA4)
 
-### 1.1. Property & data stream
+### 1.1. Créer la propriété et le flux
 
-1. Go to https://analytics.google.com  
-2. Create (or reuse) a **GA4 property** for `bmsventouse.fr`.
-3. In **Data streams** → create a **Web** stream with:
-   - URL: `https://www.bmsventouse.fr`
-   - Name: `BMS Ventouse`
-4. Note the **Measurement ID** (format `G-XXXXXXX`).
+1. Va sur https://analytics.google.com  
+2. Crée (ou réutilise) une **propriété GA4** pour `bmsventouse.fr`.
+3. Dans **Flux de données → Web**, crée un flux :
+   - URL : `https://www.bmsventouse.fr`
+   - Nom : `BMS Ventouse`
+4. Note l’**ID de mesure** (format `G-XXXXXXX`).
 
-The repo currently uses: `G-VCB3QB5P4L`.  
-If you create a new property, replace that ID in the HTML.
+Le dépôt utilise actuellement : `G-VCB3QB5P4L`.  
+Si tu crées une nouvelle propriété, remplace cet ID dans les pages HTML où il apparaît.
 
-### 1.2. Where GA4 is initialized in the code
+### 1.2. Où GA4 est initialisé dans le code
 
-On the main pages (home, services, contact, ventousage, sécurité, etc.) you already have:
+Sur les pages principales (Accueil, Services, Contact, Ventousage, Sécurité, etc.) tu as déjà :
 
 ```html
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
@@ -48,90 +49,87 @@ On the main pages (home, services, contact, ventousage, sécurité, etc.) you al
 </script>
 ```
 
-To use your own GA4 property:
+Pour utiliser TON ID GA4 :
 
-- Replace `G-VCB3QB5P4L` with your Measurement ID on all templates that include this snippet.
+- Remplace `G-VCB3QB5P4L` par ton ID de mesure sur les templates où ce snippet apparaît.
 
-> Note: Consent Mode v2 is already configured. Analytics is “denied” by default and toggled via the cookie banner.
+> Consent Mode v2 est déjà en place : analytics est *denied* par défaut, puis mis à jour par la bannière cookies.
 
-### 1.3. Events already tracked
+### 1.3. Événements déjà envoyés
 
-`js/script.js` defines a helper `setupAnalyticsEvents()` and a lead capture for the contact form. Out of the box, the site sends:
+Dans `js/script.js`, le module `setupAnalyticsEvents()` et la capture du formulaire contact envoient :
 
-- `phone_click`
-  - Triggered on any `a[href^="tel:"]`
-  - Parameters:
+- `phone_click`  
+  - Sur tous les liens `tel:`
+  - Paramètres :
     - `event_category: "Contact"`
     - `event_label: href (tel:+33...)`
 
-- `whatsapp_click`
-  - Triggered on any `a[href*="wa.me"]`
-  - Parameters:
+- `whatsapp_click`  
+  - Sur tous les liens `https://wa.me/...`
+  - Paramètres :
     - `event_category: "Contact"`
     - `event_label: href (https://wa.me/...)`
 
-- `email_click`
-  - Triggered on any `a[href^="mailto:"]`
-  - Parameters:
+- `email_click`  
+  - Sur tous les liens `mailto:...`
+  - Paramètres :
     - `event_category: "Contact"`
     - `event_label: href (mailto:contact@...)`
 
-- `cta_contact_click`
-  - Triggered on `a[href="/contact/"]`
-  - Parameters:
+- `cta_contact_click`  
+  - Sur tous les liens `href="/contact/"`
+  - Paramètres :
     - `event_category: "CTA"`
-    - `event_label: link text (button label)`
+    - `event_label: texte du lien (bouton)`
 
-- `contact_submitted`
-  - Triggered when the `/contact/` form is submitted.
-  - Parameters (sent as a single object spread into the event):
-    - `fullname`
-    - `company`
-    - `email`
-    - `phone`
-    - `service`
-    - `location`
-    - `urgency`
-    - `details`
-    - plus several service‑specific fields (e.g. `svc_ventousage_streets`, `svc_securite_agents`, etc.).
-  - This event is also pushed to `dataLayer` for GTM:
+- `contact_submitted`  
+  - Lors de la soumission du formulaire `/contact/`.
+  - Paramètres (payload complet) :
+    - `fullname`, `company`, `email`, `phone`,
+    - `service`, `location`, `urgency`, `details`,
+    - et des champs détaillés selon le service (ventousage, sécurité, convoyage, etc.).
+  - L’événement est aussi poussé dans le `dataLayer` :
+
     ```js
     window.dataLayer.push({ event: 'contact_submitted', ...payload });
     ```
 
-### 1.4. Marking conversions in GA4
+### 1.4. Déclarer les conversions dans GA4
 
-In GA4:
+Dans GA4 :
 
-1. Go to **Admin → Events**.
-2. Ensure that the events above appear (after some traffic).
-3. In **Configure → Events**, mark as **conversion**:
-   - `contact_submitted` (recommended main conversion).
-   - Optionally: `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`.
+1. Va dans **Configurer → Événements** (ou *Admin → Events* selon l’UI).
+2. Attends d’avoir un peu de trafic pour voir remonter :
+   - `contact_submitted`
+   - `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`
+3. Marque comme **Conversions** :
+   - `contact_submitted` (conversion principale : demande de devis),
+   - éventuellement `phone_click` et `whatsapp_click` (micro‑conversions).
 
 ---
 
 ## 2. Google Tag Manager (GTM)
 
-The codebase supports **GTM as an option**, without requiring it.
+Le code du site supporte **GTM en option** (tu n’es pas obligé de l’utiliser).
 
-### 2.1. Create your GTM container
+### 2.1. Créer ton container GTM
 
-1. Go to https://tagmanager.google.com
-2. Create a new **container**:
-   - Name: `BMS Ventouse`
-   - Target platform: Web
-3. Note the **Container ID** (format `GTM-XXXXXXX`).
+1. Va sur https://tagmanager.google.com  
+2. Crée un **container Web** :
+   - Nom : `BMS Ventouse`
+   - Plateforme : Web
+3. Note l’**ID GTM** (format `GTM-XXXXXXX`).
 
-### 2.2. Connect the site to your GTM container
+### 2.2. Connecter le site à ton container
 
-In the HTML templates (home, services, contact, ventousage, etc.), you already have:
+Dans les templates HTML principaux (Accueil, Services, Contact, Ventousage, etc.) tu as :
 
 ```html
 <meta name="gtm-id" content="">
 ```
 
-And in `js/script.js`:
+Et dans `js/script.js` :
 
 ```js
 function setupGTM() {
@@ -149,77 +147,86 @@ function setupGTM() {
 }
 ```
 
-To enable GTM:
+Pour activer GTM :
 
-1. Edit the main templates (e.g. `index.html`, `services/index.html`, `contact/index.html`, etc.).
-2. Set the GTM ID:
+1. Édite les templates clés (ex. `index.html`, `services/index.html`, `contact/index.html`, etc.).
+2. Renseigne ton ID GTM :
 
    ```html
    <meta name="gtm-id" content="GTM-ABCD123">
    ```
 
-3. Deploy. The JS will automatically load the GTM container on all these pages.
+3. Déploie. GTM se chargera automatiquement sur ces pages.
 
-> Because GA4 is already initialized directly in HTML, you can:
-> - Either keep GA4 “as is” and use GTM only for extra tags (Google Ads, Meta, LinkedIn…).
-> - Or move GA4 entirely into GTM (advanced). In that case, remove/adjust the direct `gtag` config to avoid double‑counting.
+> Comme GA4 est déjà injecté en dur dans le HTML :
+> - Option simple : **tu gardes GA4 tel quel** et tu utilises GTM uniquement pour les autres tags (Google Ads, Meta, LinkedIn…).
+> - Option avancée : tu bascules GA4 dans GTM et tu retires l’init direct dans le HTML (pour ne pas compter en double).
 
-### 2.3. Using GTM to forward existing events
+### 2.3. Utiliser les événements existants dans GTM
 
-If you want GTM to send events (to Google Ads, Meta, etc.):
+Tu peux utiliser les événements déjà présents dans `dataLayer` comme déclencheurs :
 
-1. In GTM, create a **Custom Event** trigger for each event you care about:
-   - Trigger type: `Custom Event`
-   - Event name: `contact_submitted` (or `phone_click`, `whatsapp_click`, etc.)
-2. Attach those triggers to the tags you configure:
-   - GA4 event tags (if you move events to GTM).
-   - Google Ads conversion tags.
-   - Meta Pixel events, LinkedIn Insight, etc.
+- `contact_submitted`
+- `phone_click`
+- `whatsapp_click`
+- `email_click`
+- `cta_contact_click`
 
-All the necessary data is already in `dataLayer` (the event name and payload for `contact_submitted`).
+Dans GTM :
+
+1. Crée un **Déclencheur → Événement personnalisé** :
+   - Nom de l’événement : par ex. `contact_submitted`.
+2. Attache ce déclencheur aux tags de ton choix :
+   - Tag de conversion Google Ads,
+   - Tag Meta (événement `Lead`),
+   - Tag LinkedIn, etc.
+
+Le payload (`fullname`, `company`, `service`, `location`…) est déjà dans `dataLayer` pour `contact_submitted`.
 
 ---
 
 ## 3. Google Search Console (GSC)
 
-Even though this is not a “tag”, it is crucial for SEO monitoring.
+Pas un “tag”, mais indispensable pour suivre l’indexation et les erreurs SEO.
 
-### 3.1. Create and verify property
+### 3.1. Créer et vérifier la propriété
 
-1. Go to https://search.google.com/search-console
-2. Create a **Domain Property** or **URL prefix**:
-   - Recommended: **Domain** → `bmsventouse.fr`
-3. Verify ownership using DNS:
-   - Add the TXT record provided by Google in your DNS (at your registrar).
-   - Wait for validation.
+1. Va sur https://search.google.com/search-console  
+2. Ajoute une propriété :
+   - De préférence **Domaine** : `bmsventouse.fr`
+3. Vérifie la propriété :
+   - Google te donne un enregistrement **TXT DNS** à ajouter chez ton hébergeur de domaine.
+   - Une fois propagé, GSC valide ton site.
 
-### 3.2. Submit the sitemap
+### 3.2. Ajouter le sitemap
 
-Once verified:
+Une fois la propriété validée :
 
-1. In GSC, go to your property.
-2. In **Indexing → Sitemaps**, submit:
+1. Dans GSC, va dans **Indexation → Sitemaps**.
+2. Ajoute l’URL :
+
    - `https://www.bmsventouse.fr/sitemap.xml`
 
-This ensures all your service / city / security pages are discovered and monitored.
+Google suit automatiquement les nouvelles pages et les pages locales (ventousage, sécurité, logistique…).
 
 ---
 
 ## 4. Microsoft Clarity
 
-Microsoft Clarity is already integrated, but privacy‑aware:
+Clarity est déjà intégré, mais **respecte le consentement** :
 
-- The script is defined in `js/script.js` via `setupClarity()` and `loadClarityIfConsented()`.
-- Clarity is loaded **only if** the user accepts analytics in the cookie banner or has previously consented.
+- Le code est dans `js/script.js` (`setupClarity()` + `loadClarityIfConsented()`).
+- Clarity n’est chargé que si l’utilisateur :
+  - a déjà accepté le cookie analytics, ou
+  - clique sur “Accepter” dans la bannière.
 
-If you want to change the Clarity project:
+Pour utiliser ton propre projet Clarity :
 
-1. Go to https://clarity.microsoft.com and create a project for `bmsventouse.fr`.
-2. Get the Clarity **project ID**.
-3. In `js/script.js`, update the line inside `setupClarity()`:
+1. Va sur https://clarity.microsoft.com et crée un projet pour `bmsventouse.fr`.
+2. Récupère l’**ID Clarity**.
+3. Dans `js/script.js`, la fonction `setupClarity()` contient :
 
    ```js
-   // Example in script.js:
    (function(c,l,a,r,i,t,y){
      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -227,70 +234,97 @@ If you want to change the Clarity project:
    })(window, document, "clarity", "script", "tm9ex1xsa4");
    ```
 
-   Replace `"tm9ex1xsa4"` with your new Clarity ID.
+   Remplace `"tm9ex1xsa4"` par ton ID Clarity.
 
-4. Deploy. Clarity will continue to respect the analytics consent.
+4. Déploie. Clarity continuera à ne se charger que si l’analytics est accepté.
 
 ---
 
-## 5. Other tags (Google Ads, Meta Pixel, LinkedIn, etc.)
+## 5. Autres tags (Google Ads, Meta, LinkedIn, etc.)
 
-The recommended approach is to add those **via GTM**, not by editing HTML.
+La bonne pratique : **tout ajouter via GTM**, sans toucher au HTML.
 
-### 5.1. Google Ads conversion tags
+### 5.1. Google Ads (conversions)
 
-In GTM:
+Dans Google Ads :
 
-1. Create a new tag:
-   - Tag type: **Google Ads Conversion Tracking**.
-   - Enter your Conversion ID and Conversion Label.
-2. Trigger on relevant events, for example:
-   - `contact_submitted` (Custom Event trigger) = lead form conversion.
-3. Publish the container.
+1. Crée une action de conversion (type “Formulaire de contact” par exemple).
+2. Récupère l’ID de conversion et le label.
 
-### 5.2. Meta Pixel (Facebook/Instagram)
+Dans GTM :
 
-1. In Meta Business Manager, create a Pixel and note the **Pixel ID**.
-2. In GTM:
-   - Add a custom HTML tag with the Meta Pixel snippet or use a community template.
-   - Trigger on **All Pages** for base code, and on specific events (e.g. `contact_submitted`) if you want standard events (`Lead`, etc.).
-3. Test with Meta’s Pixel Helper.
+1. Crée un tag :
+   - Type : **Suivi de conversion Google Ads**.
+   - Renseigne l’ID de conversion et le label.
+2. Déclencheur :
+   - `Événement personnalisé` → `contact_submitted`.
+3. Publie le container.
+
+### 5.2. Meta Pixel (Facebook / Instagram)
+
+Dans Meta Business Manager :
+
+1. Crée un **Pixel** pour ton site et note l’ID.
+
+Dans GTM :
+
+1. Crée un tag (modèle communautaire ou **HTML personnalisé**) avec le code Pixel.
+2. Déclencheur :
+   - Base Pixel sur **All Pages**.
+   - Événement `Lead` sur l’événement personnalisé `contact_submitted` si tu veux suivre les demandes de devis.
+3. Teste avec le **Meta Pixel Helper**.
 
 ### 5.3. LinkedIn Insight Tag
 
-1. In LinkedIn Campaign Manager, create an Insight Tag and get the JS snippet.
-2. In GTM:
-   - Create a new **Custom HTML** tag with the snippet.
-   - Trigger on **All Pages**.
-   - Optionally, create conversion rules in LinkedIn using URLs (e.g. `/contact/?success=1`) or use GTM custom events.
+Dans LinkedIn Campaign Manager :
+
+1. Récupère le snippet de l’Insight Tag.
+
+Dans GTM :
+
+1. Crée un tag **HTML personnalisé** avec le snippet.
+2. Déclencheur :
+   - **All Pages** (tag de base).
+3. Pour suivre les conversions :
+   - soit via des règles dans LinkedIn sur l’URL (ex: `/contact/?success=1`),
+   - soit via des événements déduits de GA4 (stratégie d’import).
 
 ---
 
-## 6. Summary Checklist
+## 6. Checklist récap
 
-To fully activate tracking across platforms:
+Pour être opérationnel sur toutes les plateformes :
 
-1. **GA4**
-   - [ ] Property & web data stream created.
-   - [ ] Measurement ID set in HTML (`gtag` snippet).
-   - [ ] Events visible (`phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`, `contact_submitted`).
-   - [ ] `contact_submitted` marked as conversion.
+### GA4
 
-2. **GTM**
-   - [ ] Container created (`GTM-XXXXXXX`).
-   - [ ] `<meta name="gtm-id" content="GTM-XXXXXXX">` filled in main templates.
-   - [ ] Optional: tags added (Google Ads, Meta, LinkedIn) with Custom Event triggers.
+- [ ] Propriété et flux Web créés.
+- [ ] ID de mesure (format `G-XXXXXXX`) renseigné dans le snippet `gtag`.
+- [ ] Événements visibles :  
+  `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`, `contact_submitted`.
+- [ ] `contact_submitted` marqué en **Conversion** (lead principal).
 
-3. **Search Console**
-   - [ ] Property created and verified (domain).
-   - [ ] Sitemap submitted: `https://www.bmsventouse.fr/sitemap.xml`.
+### GTM
 
-4. **Clarity**
-   - [ ] Project created, ID swapped in `setupClarity()` if necessary.
-   - [ ] Tested that Clarity only fires after cookie consent is accepted.
+- [ ] Container Web créé : `GTM-XXXXXXX`.
+- [ ] Meta `<meta name="gtm-id" content="GTM-XXXXXXX">` renseignée sur les templates principaux.
+- [ ] (Optionnel) Tags ajoutés :
+  - Google Ads (déclenché sur `contact_submitted`),
+  - Meta Pixel (`Lead` sur `contact_submitted`),
+  - LinkedIn Insight Tag, etc.
 
-With this setup, you can follow:
+### Search Console
 
-- All key contact actions (phone, WhatsApp, email, contact form),
-- Page performance (SEO + analytics),
-- And add additional marketing pixels safely through GTM without touching the site code again.
+- [ ] Propriété `bmsventouse.fr` créée (type Domaine).
+- [ ] Vérification DNS OK.
+- [ ] Sitemap soumis : `https://www.bmsventouse.fr/sitemap.xml`.
+
+### Clarity
+
+- [ ] Projet Clarity créé, ID ajusté dans `setupClarity()` si nécessaire.
+- [ ] Vérifié que Clarity ne se déclenche qu’après acceptation des cookies analytics.
+
+Avec tout ça en place, tu peux :
+
+- Suivre toutes les actions de contact (téléphone, WhatsApp, email, formulaire),
+- Mesurer la perf SEO et les pages qui génèrent des leads,
+- Ajouter facilement de nouveaux tags via GTM sans retoucher ton code HTML.
