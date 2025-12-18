@@ -11,7 +11,7 @@
 - Titre : Ventouseur à Paris : Ventousage, Sécurité et Logistique de Tournage
 - Texte : Ventousage, sécurité de plateau et convoyage 24/7, partout en France.
 - CTA :
-  - Obtenir un Devis Gratuit → /contact/
+  - Demander un devis → /contact/
   - WhatsApp Direct → https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit.
 - Image : /images/hero-background-custom.jpg  
   - Alt : Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain.
@@ -41,7 +41,7 @@
 
 ### CTA final
 - Prêt à sécuriser votre prochaine production ?
-  - Envoyer un message → /contact/
+  - Nous contacter → /contact/
   - WhatsApp Direct → https://wa.me/33646005642
 
 ## Éléments notables

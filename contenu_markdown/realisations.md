@@ -33,7 +33,7 @@
   - Coordination sécurité parcours multi‑km, gestion foule, institutions
 
 ### CTA
-- Envoyer un message → /contact/
+- Nous contacter → /contact/
 - WhatsApp direct → wa.me/33646005642
 
 ## Éléments notables
