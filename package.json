@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "node scripts/generate-banners.js && node scripts/generate-responsive-images.js && node scripts/replace-email.js",
+    "build": "node scripts/generate-responsive-images.js && node scripts/replace-email.js",
     "replace-email": "node scripts/replace-email.js"
   },
   "dependencies": {
