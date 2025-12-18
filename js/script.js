@@ -745,7 +745,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     btn.type = 'button';
     btn.setAttribute('aria-haspopup', 'true');
     btn.setAttribute('aria-expanded', 'false');
-    btn.textContent = 'Pages';
+    btn.textContent = 'Toutes les pages';
 
     const submenu = document.createElement('ul');
     submenu.className = 'nav-submenu';
@@ -1199,8 +1199,9 @@ function setupContactLeadCapture() {
           location: (document.getElementById('location') || {}).value || '',
           address: (document.getElementById('address') || {}).value || '',
           schedule: (document.getElementById('schedule') || {}).value || '',
-          urgent: !!((document.getElementById('urgent') || {}).checked),
-          date_start: (document.getElementById('date_start') || {}).value || '',
+          urgent: ((document.getElementById('urgency') || {}).value || '') === 'urgent_24h' || ((document.getElementById('urgency') || {}).value || '') === 'urgent_72h',
+          urgency: (document.getElementById('urgency') || {}).value || '',
+          date_start: (document.get',
           date_end: (document.getElementById('date_end') || {}).value || '',
           payment_preference: (document.getElementById('payment') || {}).value || '',
           budget: (document.getElementById('budget') || {}).value || '',
