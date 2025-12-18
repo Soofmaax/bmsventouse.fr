@@ -1,4 +1,4 @@
-# Autorisation d’Occupation du Domaine Public (AOT) — Paris
+# Autorisation d’Occupation du Domaine Public (AOT) à Paris
 
 ## Meta informations
 - URL : https://www.bmsventouse.fr/autorisation-occupation-domaine-public-tournage-paris/
@@ -25,7 +25,7 @@
   - dépose immédiate de la signalisation,
   - interruption possible du tournage.
 
-### Démarches AOT — étapes clés
+### Démarches AOT : étapes clés
 1. Définir le périmètre (mètres linéaires / nombre de places) et les dates/horaires.
 2. Préparer le plan de situation et la lettre motivée (modèle fourni par BMS).
 3. Déposer la demande auprès de la mairie d’arrondissement (et préfecture si nécessaire).

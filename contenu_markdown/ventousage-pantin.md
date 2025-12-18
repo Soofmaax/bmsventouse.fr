@@ -2,8 +2,8 @@
 
 ## Meta informations
 - URL : https://www.bmsventouse.fr/ventousage-pantin/
-- Title tag : Ventousage à Pantin — Neutralisation & AOT | BMS Ventouse
-- Meta description : Ventousage à Pantin — neutralisation du stationnement, affichage riverains, AOT. Secteurs 93 proches Paris (Canal, 19e) et ZFE. Intervention 24/7.
+- Title tag : Ventousage à Pantin : neutralisation & AOT | BMS Ventouse
+- Meta description : Ventousage à Pantin : neutralisation du stationnement, affichage riverains, AOT. Secteurs 93 proches Paris (Canal, 19e) et ZFE. Intervention 24/7.
 
 ## Contenu principal
 
@@ -30,7 +30,7 @@
   - interventions jour/nuit,
   - adaptation au planning de la production.
 
-### Ventousage événementiel — clé en main
+### Ventousage événementiel : clé en main
 - Repérage & préparation :
   - identification des emplacements stratégiques (camions, régie, loges),
   - analyse des contraintes locales (piétons, livraisons, voies sensibles),
@@ -90,6 +90,6 @@
   - coordination avec les autorités pour libérer le périmètre.
 
 ### CTA
-- Ventousage à Pantin — Devis rapide :
+- Ventousage à Pantin : devis rapide :
   - Contact → /contact/
   - Services → /services/

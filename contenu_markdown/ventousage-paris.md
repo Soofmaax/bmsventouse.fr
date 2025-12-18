@@ -2,13 +2,13 @@
 
 ## Meta informations
 - URL : https://www.bmsventouse.fr/ventousage-paris/
-- Title tag : Ventousage à Paris — Ventouseur cinéma & événementiel | BMS Ventouse
-- Meta description : Ventousage à Paris — neutralisation du stationnement, panneaux B6 (AGATE), affichage riverains, AOT. 24/7 dans les 1er–20e. Devis gratuit.
+- Title tag : Ventousage à Paris : ventouseur cinéma & événementiel | BMS Ventouse
+- Meta description : Ventousage à Paris : neutralisation du stationnement, panneaux B6 (AGATE), affichage riverains, AOT. 24/7 dans les 1er–20e. Devis gratuit.
 
 ## Contenu principal
 
 ### Héros
-- Titre : Ventousage à Paris — devis rapide, tarifs directs, sans surcoût d'agence et intervention 24/7
+- Titre : Ventousage à Paris : devis rapide, tarifs directs, sans surcoût d'agence et intervention 24/7
 - Texte : Neutralisation de stationnement, pose de panneaux et autorisations de tournage. Intervention 24/7 dans tous les arrondissements. Basés en Seine‑Saint‑Denis (93), nos ventouseurs professionnels à Paris interviennent aussi en petite couronne.
 - CTA :
   - Devis gratuit → /contact/

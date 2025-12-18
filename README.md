@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>🚀 BMS Ventouse — Production Static Website</h1>
-  <p><strong>Static, accessible and SEO‑focused corporate website — production‑ready and enterprise‑grade.</strong></p>
+  <h1>🚀 BMS Ventouse - Production Static Website</h1>
+  <p><strong>Static, accessible and SEO‑focused corporate website, production‑ready and enterprise‑grade.</strong></p>
 
   <a href="https://github.com/Soofmaax/bmsventouse.fr/actions/workflows/ci.yml"><img alt="CI - Full Quality Gate" src="https://github.com/Soofmaax/bmsventouse.fr/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://www.bmsventouse.fr/"><img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fwww.bmsventouse.fr&label=website&logo=netlify&logoColor=white"></a>
@@ -25,7 +25,7 @@
 BMS Ventouse is a static, high‑performance showcase website for film/event urban logistics and safety services.  
 This repository demonstrates enterprise‑grade quality for a static site: accessibility (WCAG), SEO, CI quality gate, analytics (GA4 Consent Mode), and secure delivery on Netlify.
 
-Built and maintained to professional standards by SmarterLogicWeb — Solutions web intelligentes, sécurisées et sur‑mesure.
+Built and maintained to professional standards by SmarterLogicWeb : solutions web intelligentes, sécurisées et sur‑mesure.
 
 ## ✨ Features
 
@@ -51,7 +51,7 @@ Built and maintained to professional standards by SmarterLogicWeb — Solutions 
 
 ## 📚 Documentation
 
-- docs/ — full documentation index
+- docs/ : full documentation index
   - Getting Started: installation, configuration, quick start
   - Architecture: static site + CI overview
   - Deployment: local, staging, production
@@ -65,7 +65,7 @@ Start here: docs/README.md
 - Hosting: Netlify
 - Quality: HTMLHint, Stylelint, ESLint, Markdownlint, Pa11y
 - Security: CodeQL (SAST), Gitleaks, Security headers
-- CI: GitHub Actions — monthly quality gate + manual runs
+- CI: GitHub Actions - monthly quality gate + manual runs
 
 ## 🤝 Contributing
 
@@ -77,7 +77,7 @@ All PRs must pass the “CI - Full Quality Gate”.
 
 ## 📝 License
 
-MIT — see LICENSE.  
+MIT - see LICENSE.  
 Note: textual content, logos and images may have specific copyrights.
 
 ## 📧 Support & Contact

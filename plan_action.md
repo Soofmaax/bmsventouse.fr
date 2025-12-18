@@ -1,4 +1,4 @@
-# Plan d’action SEO/Accessibilité/Qualité — BMS Ventouse
+# Plan d’action SEO/Accessibilité/Qualité - BMS Ventouse
 
 Dernière mise à jour : 2025-09-30
 
@@ -10,7 +10,7 @@ Dernière mise à jour : 2025-09-30
 
 ## Priorités
 
-### P0 — Déjà fait
+### P0 : Déjà fait
 
 - Harmonisation Open Graph (og:site_name) et Twitter Cards sur pages clés.
 - Suppression des meta keywords résiduels (index, contact).
@@ -20,7 +20,7 @@ Dernière mise à jour : 2025-09-30
 - Ajout contenus de référence (contenu_markdown/*.md).
 - GA4 + Consent Mode v2 en place (ID : G-VCB3QB5P4L).
 
-### P1 — À faire ensuite (1–2 jours homme)
+### P1 : À faire ensuite (1–2 jours homme)
 
 - Créer une page « Confidentialité / Politique de confidentialité » et l’ajouter au footer.
 - Ajouter un lien persistant « Gérer les cookies » pour rouvrir le choix de consentement.
@@ -28,7 +28,7 @@ Dernière mise à jour : 2025-09-30
 - Soumettre sitemap.xml dans Google Search Console (propriété domaine + URL-prefix).
 - Activer les règles de protection de branche GitHub : PR obligatoire + check CI requis.
 
-### P2 — À planifier (semaine à venir)
+### P2 : À planifier (semaine à venir)
 
 - Mettre en place Lighthouse CI (perf/SEO/A11Y) sur PR non bloquant au début.
 - Étendre Pa11y (AAA) à davantage d’URLs internes (pages locales).
@@ -36,7 +36,7 @@ Dernière mise à jour : 2025-09-30
 - Renforcer CSP via netlify.toml (et retirer les meta CSP redondantes).
 - Ajouter une page 404 plus riche (liens vers pages locales supplémentaires).
 
-### P3 — Opportunités
+### P3 : Opportunités
 
 - Créer nouvelles pages locales (Lyon, Marseille, Bordeaux…) et maillage interne.
 - Ajouter témoignages clients visibles si vous souhaitez activer des Ratings plus tard.
