@@ -27,13 +27,24 @@ user-agent-identification: obligatoire (pas de user-agent générique ou masqué
 
 [agents-ia-connus]
 # Ces directives sont déclaratives et ne remplacent pas robots.txt.
+# Les agents listés ci-dessous sont typiquement utilisés par les principaux modèles d’IA
+# (LLM, moteurs de réponses IA, outils d’indexation avancés).
 GPTBot: accès=autorisé; entraînement=autorisé
 ChatGPT-User: accès=autorisé; entraînement=autorisé
 Google-Extended: accès=autorisé; entraînement=autorisé
+Googlebot: accès=autorisé; entraînement=autorisé
 anthropic-ai: accès=autorisé; entraînement=autorisé
+Claude-Web: accès=autorisé; entraînement=autorisé
 PerplexityBot: accès=autorisé; entraînement=autorisé
 YouBot: accès=autorisé; entraînement=autorisé
-Claude-Web: accès=autorisé; entraînement=autorisé
+Bingbot: accès=autorisé; entraînement=autorisé
+Applebot: accès=autorisé; entraînement=autorisé
+Applebot-Extended: accès=autorisé; entraînement=autorisé
+MetaAI: accès=autorisé; entraînement=autorisé
+xAI-Grok: accès=autorisé; entraînement=autorisé
+MistralAI-User: accès=autorisé; entraînement=autorisé
+DeepSeekBot: accès=autorisé; entraînement=autorisé
+DuckAssistBot: accès=autorisé; entraînement=autorisé
 
 [utilisation-permise]
 - citation de courts extraits avec lien source
