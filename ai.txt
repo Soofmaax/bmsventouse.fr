@@ -1,4 +1,4 @@
-# ai.txt — Politique d’accès et d’usage des contenus par les IA/LLM
+# ai.txt – Politique d’accès et d’usage des contenus par les IA/LLM
 # Domaine: https://www.bmsventouse.fr/
 # Propriétaire: BMS Ventouse
 # Contact: contact@bmsventouse.fr
