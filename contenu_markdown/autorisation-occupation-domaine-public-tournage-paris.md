@@ -9,7 +9,7 @@
 
 ### Héros
 - Titre : AOT pour tournage à Paris
-- Texte : Gestion complète de votre autorisation d’occupation du domaine public : dossier, délais, signalisation et affichage riverains. BMS sécurise vos périmètres et vos démarches auprès de la Ville de Paris.
+- Texte : Nous gérons votre autorisation d’occupation du domaine public (AOT) : dossier, délais, signalisation et affichage riverains pour vos tournages à Paris.
 - Image : /images/hero-background-custom.jpg  
   - Alt : Signalisation d’interdiction temporaire sur voie publique pour tournage à Paris.
 - CTA :
@@ -53,6 +53,17 @@
 - Affichage riverains dans les délais (souvent 48–72 h avant, selon arrêtés).
 - Sécurité et circulation piétons maintenues (PMR, voies pompiers, sorties de garage).
 - Respect strict des créneaux horaires autorisés.
+
+### Ce qui est inclus dans la prestation AOT
+- Modèle de lettre et plan de situation.
+- Constitution et dépôt du dossier, puis suivi jusqu’à l’arrêté.
+- Fourniture et pose de la signalisation réglementaire (panneaux B6, jalonnage) et de l’affichage riverains.
+- Coordination jour J avec les autorités si nécessaire.
+
+### Livrables
+- Copie de l’arrêté et références utiles.
+- Photos horodatées de pose / retrait des panneaux et affichages.
+- Récapitulatif du périmètre et compte‑rendu d’intervention.
 
 ### AOT à titre gratuit
 - Cas possibles :

@@ -9,7 +9,7 @@
 
 ### Héros
 - Titre : Un Projet ? Une Urgence ?
-- Texte principal : Devis gratuit sous 24h, réponse rapide aux demandes urgentes. Contact direct 24h/24, 7j/7.
+- Texte principal : Devis gratuit sous 24h. Réponse rapide aux demandes urgentes. Contactez‑nous directement. Notre équipe est disponible 24h/24 pour répondre à vos besoins.
 - Image :
   - /images/contact-hero-background-desktop.webp
   - /images/contact-hero-background-mobile.webp
@@ -18,7 +18,8 @@
 
 ### Urgence
 - Bandeau urgence : icône alerte + message.
-- Texte : « Un tournage de dernière minute ? Appelez maintenant ! Nous vous recontactons au plus vite en fonction de l’urgence. »
+- Titre : Un tournage de dernière minute ?
+- Texte : Appelez maintenant ! Nous vous recontactons au plus vite en fonction de l’urgence.
 - Téléphone urgence : +33 6 46 00 56 42 (Béna)
 - CTA : bouton “Appel d’Urgence” → tel:+33646005642
 
