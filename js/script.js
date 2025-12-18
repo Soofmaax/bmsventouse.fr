@@ -1201,7 +1201,7 @@ function setupContactLeadCapture() {
           schedule: (document.getElementById('schedule') || {}).value || '',
           urgent: ((document.getElementById('urgency') || {}).value || '') === 'urgent_24h' || ((document.getElementById('urgency') || {}).value || '') === 'urgent_72h',
           urgency: (document.getElementById('urgency') || {}).value || '',
-          date_start: (document.get',
+          date_start: (document.getElementById('date_start') || {}).value || '',
           date_end: (document.getElementById('date_end') || {}).value || '',
           payment_preference: (document.getElementById('payment') || {}).value || '',
           budget: (document.getElementById('budget') || {}).value || '',
@@ -1236,7 +1236,7 @@ function setupContactLeadCapture() {
           svc_loges_types: (document.getElementById('svc_loges_types') || {}).value || '',
           svc_loges_location: (document.getElementById('svc_loges_location') || {}).value || ''
         };
-        // On stocke email/phone pour le check d’éligibilité -15% côté /devis/ si l’utilisateur y va ensuite
+        // On stocke email/phone pour le suivi du lead côté /devis/ si l’utilisateur y va ensuite
         try {
           localStorage.setItem('bms_lead_email', payload.email || '');
           localStorage.setItem('bms_lead_phone', payload.phone || '');

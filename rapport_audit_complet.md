@@ -60,7 +60,7 @@ Services Spécialisés
 
 Événements et Projets Spécifiques
 - Saison 2 « En Place »: ✅ (réalisations)
-- Offres cadeaux ou promotions: ✅ (bannière -15%)
+- Offres cadeaux ou promotions: ✅ (bannière d’offre de bienvenue, actuellement masquée)
 - Référence Rocksana: ❌ (non trouvée)
 - Flamme olympique secteur Aubervilliers: ✅
 - Parades du conseil régional Pantin/Aubervilliers: ✅
