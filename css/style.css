@@ -1715,14 +1715,6 @@ body.dark-theme .header {
   margin: 0.75rem auto 1.25rem;
   font-size: 0.95rem;
   color: #e5e7eb;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.cta-gallery-message.is-visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Boutons génériques de carrousel (références + galerie) */
