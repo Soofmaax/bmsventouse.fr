@@ -8,9 +8,11 @@ Welcome to the documentation for the BMS Ventouse static website. This documenta
   - Installation
   - Configuration
   - Quick Start
+  - Analytics & Tracking Setup
 - Architecture
   - Overview
   - Diagrams
+  - Frontend UX (dark mode, left/right hand toggle, galleries)
 - Deployment
   - Local
   - Staging

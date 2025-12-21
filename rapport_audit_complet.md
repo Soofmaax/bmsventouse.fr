@@ -1,4 +1,4 @@
-# Audit Complet — Site Statique BMS Ventouse (bmsventouse.fr)
+# Audit Complet - Site Statique BMS Ventouse (bmsventouse.fr)
 
 Date: 2025-09-30
 Portée: Pages publiques HTML, CSS, JS, Netlify config, SEO, A11y, Responsive, Préparation LLM
@@ -18,7 +18,7 @@ Recommandations prioritaires (synthèse)
 
 ---
 
-## PARTIE 1 — Audit de Contenu et Informations Métier
+## PARTIE 1 - Audit de Contenu et Informations Métier
 
 ### 1.1 Vérification des Services et Informations Clés
 Notation: PRÉSENT ✅ / ABSENT ❌ / INCOMPLET ⚠️
@@ -60,7 +60,7 @@ Services Spécialisés
 
 Événements et Projets Spécifiques
 - Saison 2 « En Place »: ✅ (réalisations)
-- Offres cadeaux ou promotions: ✅ (bannière -15%)
+- Offres cadeaux ou promotions: ✅ (bannière d’offre de bienvenue, actuellement masquée)
 - Référence Rocksana: ❌ (non trouvée)
 - Flamme olympique secteur Aubervilliers: ✅
 - Parades du conseil régional Pantin/Aubervilliers: ✅
@@ -145,7 +145,7 @@ Hiérarchie titres
 
 ---
 
-## PARTIE 2 — Audit Technique et Qualité du Code
+## PARTIE 2 - Audit Technique et Qualité du Code
 
 ### 2.1 TypeScript/JavaScript
 
@@ -186,7 +186,7 @@ Performance & Optimisation
 
 ---
 
-## PARTIE 3 — Responsive et Compatibilité
+## PARTIE 3 - Responsive et Compatibilité
 
 Breakpoints évalués (revue statique des CSS)
 - Mobile 320/375/414: grilles en 1 col, boutons >=44px, nav hamburger, pas de scroll horizontal attendu
@@ -204,7 +204,7 @@ Navigateurs
 
 ---
 
-## PARTIE 4 — Accessibilité (A11y)
+## PARTIE 4 - Accessibilité (A11y)
 
 - Perceptible: alt images, contraste probable suffisant (à valider Lighthouse); pas de texte en image
 - Utilisable: navigation clavier; focus visible; skip link; burger accessible; FAQ clavier OK
@@ -219,7 +219,7 @@ Score (estimation): 90+/100 (confirmer via Lighthouse/PA11Y en CI)
 
 ---
 
-## PARTIE 5 — SEO et Liens
+## PARTIE 5 - SEO et Liens
 
 On‑Page
 - Title uniques: ✅
@@ -238,7 +238,7 @@ Liens
 
 ---
 
-## PARTIE 6 — Préparation LLM
+## PARTIE 6 - Préparation LLM
 
 - llms.txt et ai.txt: présents, entraînement autorisé, “réponses suggérées” FR
 - Page /infos‑ia/: créée, SEO complet + JSON‑LD + CTA
@@ -247,10 +247,10 @@ Liens
 
 ---
 
-## PARTIE 7 — Tableau de Bord Récapitulatif
+## PARTIE 7 - Tableau de Bord Récapitulatif
 
 ┌──────────────────────────────────────────────────────────────────────┐
-│ AUDIT SITE BMS VENTOUSE — RÉALISATION SMARTERLOGICWEB (smarterlogicweb.com) │
+│ AUDIT SITE BMS VENTOUSE - RÉALISATION SMARTERLOGICWEB (smarterlogicweb.com) │
 ├──────────────────────────────────────────────────────────────────────┤
 │ Contenu                                          │
 │ ✅ Informations présentes : 43/50                │
@@ -281,7 +281,7 @@ Liens
 ## Priorités d’Action (Automatique)
 
 🔴 CRITIQUE
-- (aucune) — continuer la surveillance CI (liens/HTML/TOML)
+- (aucune) - continuer la surveillance CI (liens/HTML/TOML)
 
 🟠 ÉLEVÉ (1 semaine)
 - Créer une page Politique de confidentialité dédiée (RGPD) et lier depuis footer

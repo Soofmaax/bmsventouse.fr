@@ -3,7 +3,7 @@
  * This is a build-time script and does not run in the browser.
  *
  * NOTE 2025-11: politique mise à jour.
- * L’email principal est désormais bms.ventouse@gmail.com.
+ * L’email principal est désormais contact@bmsventouse.fr.
  * Ce script est conservé pour compatibilité mais ne fait plus de remplacement.
  */
 const fs = require('fs');

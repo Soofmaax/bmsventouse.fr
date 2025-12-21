@@ -105,7 +105,7 @@
             "hoursAvailable": "Mo-Su 00:00-23:59"
           }
         ],
-        "email": "bms.ventouse@gmail.com",
+        "email": "contact@bmsventouse.fr",
         "areaServed": {
           "@type": "Country",
           "name": "France"
@@ -166,9 +166,9 @@
             </nav>
         </div>
     </div>
-    <!-- Bannière promo déplacée ici, à l'intérieur du header -->
+    <!-- Bannière promo -->
     <div class="promo-banner" id="promoBanner">
-        <p><strong>Offre de bienvenue :</strong> -15% à tous les nouveaux clients&nbsp;!</p>
+        <p><strong>Devis gratuit sous 24h</strong></p>
     </div>
 </header>
 
@@ -249,7 +249,7 @@
                     <div class="contact-details">
                         <p>Rapide et direct, parfait pour échanger des documents et des plans.</p>
                     </div>
-                    <a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Discuter sur WhatsApp</a>
+                    <a href="https://wa.me/33646005642?text=Bonjour,%20je%20souhaite%20demander%20un%20devis." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Discuter sur WhatsApp</a>
                 </div>
                 <div class="contact-card animated-item">
                     <div class="contact-icon"><svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512"><path d="M64 112c0-26.5 21.5-48 48-48h288c26.5 0 48 21.5 48 48v16l-192 96-192-96v-16zm0 64v224c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V176l-176 88c-9.5 4.8-20.5 4.8-30 0L64 176z"/></svg></div>
@@ -257,223 +257,43 @@
                     <div class="contact-details">
                         <p>Idéal pour les demandes détaillées et les cahiers des charges.</p>
                     </div>
-                    <a href="mailto:bms.ventouse@gmail.com?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
+                    <a href="mailto:contact@bmsventouse.fr?subject=Demande%20de%20Devis%20Gratuit" class="btn btn-secondary-alt">Envoyer un Email</a>
                 </div>
             </div>
 
-            <!-- Formulaire de contact (Netlify Forms) -->
+            <!-- Bloc d'explication à la place du formulaire -->
             <section class="section" aria-labelledby="form-title">
               <div class="container">
-                <h2 id="form-title" class="section-title">Formulaire de Devis</h2>
-                <p class="section-subtitle">Renseignez les informations demandées pour un devis précis. Réponse sous 24–48h ouvrées.</p>
-                <form name="contact" method="POST" action="https://formsubmit.co/bms.ventouse@gmail.com">
-                  <!-- FormSubmit configuration (gratuit, zéro maintenance) -->
-                  <input type="hidden" name="_subject" value="Nouveau formulaire BMS Ventouse">
-                  <input type="hidden" name="_next" value="https://www.bmsventouse.fr/contact/?success=1">
-                  <input type="hidden" name="_captcha" value="false">
-                  <input type="hidden" name="_template" value="table">
-                  <!-- Honeypots anti-spam -->
-                  <p class="visually-hidden"><label>Ne pas remplir: <input name="honeypot"></label></p>
-                  <p class="visually-hidden"><label>Ne pas remplir: <input name="bot-field"></label></p>
-
-                  <div class="services-grid">
-                    <div class="contact-card">
-                      <label for="name"><strong>Nom et Prénom</strong></label>
-                      <input id="name" name="name" type="text" required aria-required="true" placeholder="Jean Dupont" autocomplete="name">
-                    </div>
-                    <div class="contact-card">
-                      <label for="role"><strong>Poste / Fonction</strong></label>
-                      <input id="role" name="role" type="text" required aria-required="true" placeholder="Régisseur général, Producteur, etc." list="role-suggestions" autocomplete="organization-title">
-                      <datalist id="role-suggestions">
-                        <option value="Producteur / Productrice"></option>
-                        <option value="Directeur·trice de production"></option>
-                        <option value="Régisseur·se général·e"></option>
-                        <option value="Régisseur·se adjoint·e"></option>
-                        <option value="Chargé·e de production"></option>
-                        <option value="Coordinateur·trice logistique"></option>
-                        <option value="Réalisateur / Réalisatrice"></option>
-                        <option value="Chef·fe de projet"></option>
-                        <option value="Autre"></option>
-                      </datalist>
-                    </div>
-                    <div class="contact-card">
-                      <label for="company"><strong>Boîte de production (optionnel)</strong></label>
-                      <input id="company" name="company" type="text" placeholder="Nom de la société / structure" autocomplete="organization">
-                    </div>
-                    <div class="contact-card">
-                      <label for="email"><strong>Email</strong></label>
-                      <input id="email" name="email" type="email" required aria-required="true" placeholder="nom@domaine.fr" autocomplete="email">
-                    </div>
-                    <div class="contact-card">
-                      <label for="phone"><strong>Téléphone</strong></label>
-                      <input id="phone" name="phone" type="tel" placeholder="+33 6 12 34 56 78" autocomplete="tel">
-                    </div>
-                    <div class="contact-card">
-                      <label for="service"><strong>Service demandé</strong></label>
-                      <select id="service" name="service" required aria-required="true">
-                        <option value="" disabled selected>Choisir un service…</option>
-                        <option value="Ventousage & autorisations">Ventousage & autorisations</option>
-                        <option value="Sécurité de plateaux / Gardiennage">Sécurité de plateaux / Gardiennage</option>
-                        <option value="Convoyage véhicules & décors">Convoyage véhicules & décors</option>
-                        <option value="Régie & matériel">Régie & matériel</option>
-                        <option value="Affichage riverains">Affichage riverains</option>
-                        <option value="Signalisation & barriérage">Signalisation & barriérage</option>
-                        <option value="Loges & Confort">Loges & Confort</option>
-                        <option value="Cantine & Catering">Cantine & Catering</option>
-                        <option value="Logistique événementielle (mode, publicité)">Logistique événementielle (mode, publicité)</option>
-                        <option value="Autre">Autre</option>
-                      </select>
-                    </div>
-
-                    <!-- Détails selon service (affichage dynamique) -->
-                    <!-- Cantine & Catering -->
-                    <div class="contact-card service-details" data-service="cantine">
-                      <h3>Cantine & Catering — Détails</h3>
-                      <label for="svc_cantine_people">Nombre de personnes</label>
-                      <input id="svc_cantine_people" name="svc_cantine_people" type="number" min="1" step="1" placeholder="Ex: 25">
-                      <label for="svc_cantine_meals" style="margin-top:.6rem;">Repas servis</label>
-                      <input id="svc_cantine_meals" name="svc_cantine_meals" type="text" placeholder="Ex: petit-déjeuner, déjeuner, dîner">
-                      <label for="svc_cantine_dietary" style="margin-top:.6rem;">Régimes alimentaires</label>
-                      <input id="svc_cantine_dietary" name="svc_cantine_dietary" type="text" placeholder="Ex: végétarien, halal, allergies">
-                      <label for="svc_cantine_hours" style="margin-top:.6rem;">Horaires de service</label>
-                      <input id="svc_cantine_hours" name="svc_cantine_hours" type="text" placeholder="Ex: 7h–10h, 12h–14h, 19h–21h">
-                    </div>
-
-                    <!-- Ventousage & autorisations -->
-                    <div class="contact-card service-details" data-service="ventousage">
-                      <h3>Ventousage — Détails</h3>
-                      <label for="svc_ventousage_streets">Rues / adresses concernées</label>
-                      <textarea id="svc_ventousage_streets" name="svc_ventousage_streets" rows="4" placeholder="Liste des rues, tronçons, intersections"></textarea>
-                      <label for="svc_ventousage_zones" style="margin-top:.6rem;">Nombre de zones / panneaux</label>
-                      <input id="svc_ventousage_zones" name="svc_ventousage_zones" type="number" min="0" step="1" placeholder="Ex: 12">
-                      <label for="svc_ventousage_hours" style="margin-top:.6rem;">Créneaux / Horaires</label>
-                      <input id="svc_ventousage_hours" name="svc_ventousage_hours" type="text" placeholder="Ex: Nuit 22h–6h, Jour 8h–18h">
-                    </div>
-
-                    <!-- Sécurité / Gardiennage -->
-                    <div class="contact-card service-details" data-service="securite">
-                      <h3>Sécurité / Gardiennage — Détails</h3>
-                      <label for="svc_securite_agents">Nombre d’agents</label>
-                      <input id="svc_securite_agents" name="svc_securite_agents" type="number" min="0" step="1" placeholder="Ex: 3">
-                      <label for="svc_securite_hours" style="margin-top:.6rem;">Heures par jour</label>
-                      <input id="svc_securite_hours" name="svc_securite_hours" type="number" min="1" step="1" placeholder="Ex: 8">
-                      <label for="svc_securite_ssiap" class="checkbox" style="margin-top:.6rem;">
-                        <input id="svc_securite_ssiap" name="svc_securite_ssiap" type="checkbox" value="1"> SSIAP / niveau renforcé
-                      </label>
-                    </div>
-
-                    <!-- Convoyage -->
-                    <div class="contact-card service-details" data-service="convoyage">
-                      <h3>Convoyage — Détails</h3>
-                      <label for="svc_convoyage_pickup">Adresse de départ</label>
-                      <input id="svc_convoyage_pickup" name="svc_convoyage_pickup" type="text" placeholder="Point de collecte (adresse complète)">
-                      <label for="svc_convoyage_drop" style="margin-top:.6rem;">Adresse d’arrivée</label>
-                      <input id="svc_convoyage_drop" name="svc_convoyage_drop" type="text" placeholder="Point de livraison (adresse complète)">
-                      <label for="svc_convoyage_schedule" style="margin-top:.6rem;">Créneaux / Horaire</label>
-                      <input id="svc_convoyage_schedule" name="svc_convoyage_schedule" type="text" placeholder="Ex: 8h–12h, 14h–18h">
-                      <label for="svc_convoyage_stops" style="margin-top:.6rem;">Stops intermédiaires (optionnel)</label>
-                      <input id="svc_convoyage_stops" name="svc_convoyage_stops" type="text" placeholder="Ex: 2 stops (atelier, stockage)">
-                      <label for="svc_convoyage_volume" style="margin-top:.6rem;">Volume</label>
-                      <select id="svc_convoyage_volume" name="svc_convoyage_volume">
-                        <option value="moyen">Moyen</option>
-                        <option value="grand">Grand (jusqu’à 22 m³)</option>
-                      </select>
-                    </div>
-
-                    <!-- Régie & matériel -->
-                    <div class="contact-card service-details" data-service="regie">
-                      <h3>Régie & Matériel — Détails</h3>
-                      <label for="svc_regie_equipment">Liste du matériel / besoins</label>
-                      <textarea id="svc_regie_equipment" name="svc_regie_equipment" rows="4" placeholder="Ex: barrières, cônes, rubalise, radios, gilets, etc."></textarea>
-                      <label for="svc_regie_agents" style="margin-top:.6rem;">Nombre d’agents régie</label>
-                      <input id="svc_regie_agents" name="svc_regie_agents" type="number" min="0" step="1" placeholder="Ex: 2">
-                      <label for="svc_regie_hours" style="margin-top:.6rem;">Heures par jour</label>
-                      <input id="svc_regie_hours" name="svc_regie_hours" type="number" min="1" step="1" placeholder="Ex: 8">
-                    </div>
-
-                    <!-- Signalisation & barriérage -->
-                    <div class="contact-card service-details" data-service="signalisation">
-                      <h3>Signalisation & Barriérage — Détails</h3>
-                      <label for="svc_signalisation_perimeter">Périmètre / zones à sécuriser</label>
-                      <textarea id="svc_signalisation_perimeter" name="svc_signalisation_perimeter" rows="3" placeholder="Ex: périmètre de tournage, rue X entre Y et Z"></textarea>
-                      <label for="svc_signalisation_barriers" style="margin-top:.6rem;">Nombre approximatif de barrières</label>
-                      <input id="svc_signalisation_barriers" name="svc_signalisation_barriers" type="number" min="0" step="1" placeholder="Ex: 40">
-                      <label for="svc_signalisation_hours" style="margin-top:.6rem;">Heures par jour</label>
-                      <input id="svc_signalisation_hours" name="svc_signalisation_hours" type="number" min="1" step="1" placeholder="Ex: 8">
-                    </div>
-
-                    <!-- Affichage riverains -->
-                    <div class="contact-card service-details" data-service="affichage">
-                      <h3>Affichage Riverains — Détails</h3>
-                      <label for="svc_affichage_streets">Rues / secteurs pour affichage</label>
-                      <textarea id="svc_affichage_streets" name="svc_affichage_streets" rows="3" placeholder="Ex: Rue X, Avenue Y, Place Z"></textarea>
-                      <label for="svc_affichage_posters" style="margin-top:.6rem;">Nombre de panneaux / affiches</label>
-                      <input id="svc_affichage_posters" name="svc_affichage_posters" type="number" min="0" step="1" placeholder="Ex: 30">
-                    </div>
-
-                    <!-- Loges & Confort -->
-                    <div class="contact-card service-details" data-service="loges">
-                      <h3>Loges & Confort — Détails</h3>
-                      <label for="svc_loges_number">Nombre de loges</label>
-                      <input id="svc_loges_number" name="svc_loges_number" type="number" min="0" step="1" placeholder="Ex: 4">
-                      <label for="svc_loges_types" style="margin-top:.6rem;">Types de loges</label>
-                      <input id="svc_loges_types" name="svc_loges_types" type="text" placeholder="Ex: maquillage, habillage, green room">
-                      <label for="svc_loges_location" style="margin-top:.6rem;">Localisation / accès</label>
-                      <input id="svc_loges_location" name="svc_loges_location" type="text" placeholder="Ex: cour intérieure, parking, étage 1">
-                    </div>
-                    
-                    <div class="contact-card">
-                      <label for="location"><strong>Ville / Lieu principal</strong></label>
-                      <input id="location" name="location" type="text" placeholder="Ex: Paris 11e, Lyon Part-Dieu">
-                    </div>
-                    <div class="contact-card">
-                      <label for="address"><strong>Adresse du site (si connue)</strong></label>
-                      <input id="address" name="address" type="text" placeholder="Rue, code postal, accès, etc.">
-                    </div>
-                    <div class="contact-card">
-                      <label for="schedule"><strong>Créneaux / Horaires (si connus)</strong></label>
-                      <input id="schedule" name="schedule" type="text" placeholder="Ex: Nuit 22h–6h, Jour 8h–18h">
-                    </div>
-                    <div class="contact-card">
-                      <label for="urgent" class="checkbox">
-                        <input id="urgent" name="urgent" type="checkbox" value="1">
-                        Demande urgente (rappel prioritaire sans engagement de délai précis)
-                      </label>
-                    </div>
-                    
-                    
-                    <div class="contact-card">
-                      <label for="date_start"><strong>Date de début (souhaitée)</strong></label>
-                      <input id="date_start" name="date_start" type="date">
-                    </div>
-                    <div class="contact-card">
-                      <label for="date_end"><strong>Date de fin (souhaitée)</strong></label>
-                      <input id="date_end" name="date_end" type="date">
-                    </div>
-                    <div class="contact-card" style="grid-column: 1 / -1;">
-                      <label for="details"><strong>Informations complémentaires</strong></label>
-                      <textarea id="details" name="details" rows="8" placeholder="Détaillez le projet (périmètre, zones/panneaux, contraintes, accès régie, documents utiles, etc.)."></textarea>
-                    </div>
-                    
-                    <div class="contact-card" style="grid-column: 1 / -1;">
-                      <label for="consent" class="checkbox">
-                        <input id="consent" name="consent" type="checkbox" required aria-required="true">
-                        J’accepte que mes informations soient utilisées pour me recontacter (RGPD).
-                      </label>
-                    </div>
+                <h2 id="form-title" class="section-title">Comment nous envoyer votre demande</h2>
+                <p class="section-subtitle">
+                  La plupart des régies et productions préfèrent nous joindre directement par téléphone, WhatsApp ou email.
+                  Pour aller vite, envoyez-nous un message en reprenant ces quelques points.
+                </p>
+                <div class="services-grid">
+                  <div class="contact-card">
+                    <h3>Par téléphone ou WhatsApp</h3>
+                    <p>Donnez-nous simplement :</p>
+                    <ul class="benefits-list">
+                      <li>le type de besoin (ventousage, sécurité, convoyage, régie…)</li>
+                      <li>la ville et le lieu principal</li>
+                      <li>les dates et horaires</li>
+                      <li>le niveau d’urgence</li>
+                    </ul>
+                    <p class="contact-note">Nous vous posons ensuite les bonnes questions pour affiner le devis.</p>
                   </div>
-
-                  <div class="hero-buttons" style="margin-top: 1rem;">
-                    <button type="submit" class="btn btn-primary">
-                      <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
-                        <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
-                      </svg>
-                      Envoyer ma demande
-                    </button>
+                  <div class="contact-card">
+                    <h3>Par email</h3>
+                    <p>Vous pouvez copier/coller ce modèle dans votre email :</p>
+                    <pre class="contact-template">
+Ville / Lieu :
+Dates / Horaires :
+Type de projet (tournage, shooting, événement…) :
+Besoins (ventousage, sécurité, convoyage, régie…) :
+Contraintes particulières :
+                    </pre>
+                    <p class="contact-note">Envoyez-le à <a href="mailto:contact@bmsventouse.fr">contact@bmsventouse.fr</a>. Nous revenons vers vous sous 24–48 h ouvrées avec un devis détaillé.</p>
                   </div>
-
-                  <p class="section-subtitle" style="margin-top:.75rem">Vous pouvez aussi nous joindre via <a href="https://wa.me/33646005642" target="_blank" rel="noopener">WhatsApp</a>.</p>
-                </form>
+                </div>
               </div>
             </section>
 
@@ -522,9 +342,9 @@
             <h2 class="cta-title">Une Question ? Un Projet Urgent ?</h2>
             <p class="cta-subtitle">Contactez‑nous pour une analyse gratuite de vos besoins et un devis personnalisé sous&nbsp;24–48&nbsp;h.</p>
             <div class="hero-buttons">
-                <a href="mailto:bms.ventouse@gmail.com" class="btn btn-primary">
+                <a href="mailto:contact@bmsventouse.fr" class="btn btn-primary">
                   <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
-                    <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
+                    <path d="M502.3 190.8L327.4 338.6c-43.2 35.8-99.6 35.8-142.8 0L9.7 190.8C3.5 196.8 0 205 0 213.6V400c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V213.6c0-8.6-3.5-16.8-9.7-22.8z"/>
                   </svg>
                   Envoyer un Email
                 </a>
@@ -541,9 +361,9 @@
 </main>
 
 <!-- Bouton Flottant WhatsApp -->
-<a href="https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20obtenir%20un%20devis%20gratuit." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contacter BMS Ventouse sur WhatsApp">
-    <svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512">
-      <path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/>
+<a href="https://wa.me/33646005642?text=Bonjour,%20je%20souhaite%20demander%20un%20devis." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contacter BMS Ventouse sur WhatsApp">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20.52 3.48C18.45 1.41 15.75.25 12.93.25 6.97.25 2.12 5.1 2.12 11.06c0 1.95.51 3.85 1.48 5.53L2 22l5.57-1.54c1.62.89 3.45 1.37 5.36 1.37h.01c5.97 0 10.82-4.85 10.82-10.81 0-2.89-1.15-5.6-3.23-7.66zM12.94 19.5h-.01c-1.67 0-3.3-.45-4.72-1.3l-.34-.2-3.31.92.9-3.23-.22-.33A7.56 7.56 0 0 1 4.62 11c0-4.58 3.73-8.31 8.31-8.31 2.22 0 4.31.86 5.88 2.43a8.22 8.22 0 0 1 2.43 5.86c0 4.58-3.73 8.31-8.3 8.31zm4.53-5.94c-.25-.13-1.47-.73-1.7-.81-.23-.08-.4-.12-.57.13-.17.25-.66.81-.81.97-.15.17-.3.19-.55.06-.25-.13-1.05-.4-2-1.27-.74-.66-1.24-1.48-1.39-1.73-.15-.25-.02-.38.11-.51.11-.11.25-.28.38-.42.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.87-.21-.5-.42-.43-.57-.44l-.49-.01c-.17 0-.45.06-.69.32-.24.25-.9.88-.9 2.12 0 1.24.92 2.45 1.05 2.62.13.17 1.82 2.78 4.4 3.89.62.27 1.1.43 1.48.55.62.2 1.18.17 1.62.1.5-.07 1.54-.63 1.76-1.24.22-.61.22-1.13.15-1.24-.06-.11-.23-.17-.48-.3z"/>
     </svg>
 </a>
 
@@ -596,7 +416,7 @@
                           
                           <!-- Contact WhatsApp direct -->
                           <li><a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 448 512" style="margin-right:8px"><path d="M380.9 97.1C339-14.7 197.5-33.1 97.1 60.7c-84 78.2-88.3 212.3-10.1 296.3l-45.5 110.9c-3 7.2 4 14.2 11.2 11.2l110.9-45.5c84 35.3 181.4-7.4 216.7-91.4 33.2-78.8-8.8-166.2-87.6-199.4z"/></svg> WhatsApp Direct</a></li>
-                          <li><a href="mailto:bms.ventouse@gmail.com"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/></svg> bms.ventouse@gmail.com</a></li>
+                          <li><a href="mailto:contact@bmsventouse.fr"><svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512" style="margin-right:8px"><path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/></svg> contact@bmsventouse.fr</a></li>
                       </ul>
                   </div>
                     <div class="footer-column">

@@ -1,4 +1,4 @@
-# Audit SEO — BMS Ventouse (état au 2025-09-30)
+# Audit SEO - BMS Ventouse (état au 2025-09-30)
 
 Vue d’ensemble
 - Base SEO solide, site statique rapide (Netlify).

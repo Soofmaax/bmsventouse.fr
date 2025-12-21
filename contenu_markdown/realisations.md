@@ -33,17 +33,17 @@
   - Coordination sécurité parcours multi‑km, gestion foule, institutions
 
 ### CTA
-- Envoyer un message → /contact/
+- Nous contacter → /contact/
 - WhatsApp direct → wa.me/33646005642
 
 ## Éléments notables
 - Call-to-actions : Contact, WhatsApp
 - Formulaires : non
 - Images importantes :
-  - realisation-en-place.webp (alt détaillé)
-  - realisation-flamme-olympique.webp
-  - realisation-les-cadeaux.webp
-  - realisation-parade-regionale.webp
+  - realisation-en-place.jpg (alt détaillé)
+  - realisation-flamme-olympique.jpg
+  - realisation-les-cadeaux.jpg
+  - realisation-parade-regionale.jpg
 - Liens externes : aucun
 
 ## Problèmes détectés

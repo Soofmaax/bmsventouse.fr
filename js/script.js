@@ -679,6 +679,50 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
+  // MODULE: PRÉFÉRENCE GAUCHER / DROITIER (placement des actions à une main)
+  // --------------------------------------------------------------------------
+  const setupHandPreference = () => {
+    try {
+      const STORAGE_KEY = 'bms_hand_pref';
+      const btn = document.querySelector('.hand-toggle');
+      const body = document.body;
+      if (!btn || !body) return;
+
+      const applyPref = (value) => {
+        if (value === 'left') {
+          body.classList.add('left-handed');
+          btn.setAttribute('aria-pressed', 'true');
+          btn.setAttribute('aria-label', 'Mode gaucher activé (actions principales accessibles à la main gauche)');
+        } else {
+          body.classList.remove('left-handed');
+          btn.setAttribute('aria-pressed', 'false');
+          btn.setAttribute('aria-label', 'Mode droitier activé (actions principales accessibles à la main droite)');
+        }
+      };
+
+      let pref = 'right';
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === 'left' || stored === 'right') {
+          pref = stored;
+        }
+      } catch (_) {}
+
+      applyPref(pref);
+
+      btn.addEventListener('click', () => {
+        pref = (pref === 'right') ? 'left' : 'right';
+        applyPref(pref);
+        try {
+          localStorage.setItem(STORAGE_KEY, pref);
+        } catch (_) {}
+      });
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
   // MODULE: MIGRATION DES ICÔNES FONT AWESOME -> SVG inline
   // --------------------------------------------------------------------------
   const removeFontAwesomeLink = () => {
@@ -745,7 +789,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     btn.type = 'button';
     btn.setAttribute('aria-haspopup', 'true');
     btn.setAttribute('aria-expanded', 'false');
-    btn.textContent = 'Pages';
+    btn.textContent = 'Toutes les pages';
 
     const submenu = document.createElement('ul');
     submenu.className = 'nav-submenu';
@@ -971,6 +1015,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupReferencesCarousel();
     setupBackToTop();
     setupAnalyticsEvents();
+    setupHandPreference();
     setupBreadcrumbs();
     await setupAllPagesSubmenu();
     // Barre de progression de scroll uniquement sur desktop pour limiter le travail JS sur mobile
@@ -1002,15 +1047,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupContactServiceDetails();
     // Capture des leads du formulaire Contact vers HubSpot (non bloquant)
     setupContactLeadCapture();
-    // Harmonisation des emails: désactivée par défaut (respect de l'email courant)
-    // Pour activer, ajouter &lt;meta name="replace-email" content="true"&gt; dans le &lt;head&gt;.
-    try {
-      const metaReplace = document.querySelector('meta[name="replace-email"][content="true"]');
-      if (metaReplace) replaceLegacyEmail();
-    } catch (_) {}
+    // Harmonisation des emails: mécanisme legacy désormais désactivé (migration terminée)
 
     // PWA: enregistrement du Service Worker (pour PWA=100)
     setupServiceWorker();
+    // Galerie Ventousage Paris (si la section est présente sur la page)
+    setupVentousageParisGallery();
     // Perf: améliorer le lazy/decoding des images (hors héros)
     enhanceImages();
 
@@ -1128,7 +1170,7 @@ function setupGTM() {
 }
 
 // --------------------------------------------------------------------------
-// MODULE: Message de succès sur /contact/ après soumission Netlify (?success=1)
+// MODULE: Message de succès sur /contact/ après soumission du formulaire (?success=1)
 // --------------------------------------------------------------------------
 function setupContactSuccessNotice() {
   try {
@@ -1155,7 +1197,7 @@ function setupContactSuccessNotice() {
 }
 
 // --------------------------------------------------------------------------
-// MODULE: Capture du formulaire Contact vers Zoho CRM (non bloquant)
+// MODULE: Affichage conditionnel des blocs de détails du formulaire Contact
 // --------------------------------------------------------------------------
 function setupContactServiceDetails() {
   try {
@@ -1204,7 +1246,8 @@ function setupContactLeadCapture() {
           location: (document.getElementById('location') || {}).value || '',
           address: (document.getElementById('address') || {}).value || '',
           schedule: (document.getElementById('schedule') || {}).value || '',
-          urgent: !!((document.getElementById('urgent') || {}).checked),
+          urgent: ((document.getElementById('urgency') || {}).value || '') === 'urgent_24h' || ((document.getElementById('urgency') || {}).value || '') === 'urgent_72h',
+          urgency: (document.getElementById('urgency') || {}).value || '',
           date_start: (document.getElementById('date_start') || {}).value || '',
           date_end: (document.getElementById('date_end') || {}).value || '',
           payment_preference: (document.getElementById('payment') || {}).value || '',
@@ -1240,7 +1283,7 @@ function setupContactLeadCapture() {
           svc_loges_types: (document.getElementById('svc_loges_types') || {}).value || '',
           svc_loges_location: (document.getElementById('svc_loges_location') || {}).value || ''
         };
-        // On stocke email/phone pour le check d’éligibilité -15% côté /devis/ si l’utilisateur y va ensuite
+        // On stocke email/phone pour le suivi du lead côté /devis/ si l’utilisateur y va ensuite
         try {
           localStorage.setItem('bms_lead_email', payload.email || '');
           localStorage.setItem('bms_lead_phone', payload.phone || '');
@@ -1263,41 +1306,11 @@ function setupContactLeadCapture() {
 }
 
 // --------------------------------------------------------------------------
-// UTIL: Remplacer l'ancien email pro par l'email Gmail (si jamais réutilisé)
+// UTIL LEGACY (remplacement d'anciens emails) — supprimé car migration terminée
 // --------------------------------------------------------------------------
-function replaceLegacyEmail() {
-  try {
-    const OLD = 'contact@bmsventouse.fr';
-    const NEW = 'bms.ventouse@gmail.com';
-    // Remplace les liens mailto
-    document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
-      try {
-        const href = a.getAttribute('href') || '';
-        if (href.toLowerCase().includes(OLD)) {
-          a.setAttribute('href', `mailto:${NEW}`);
-        }
-        // Met à jour le texte visible si l'ancien email est affiché
-        if ((a.textContent || '').includes(OLD)) {
-          a.textContent = (a.textContent || '').replaceAll(OLD, NEW);
-        }
-      } catch(_){}
-    });
-    // Remplace occurrences textuelles basiques dans des spans/p/li (non destructif)
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    const toChange = [];
-    while (walker.nextNode()) {
-      const node = walker.currentNode;
-      if (node.nodeValue && node.nodeValue.includes(OLD)) {
-        toChange.push(node);
-      }
-    }
-    toChange.forEach(node => {
-      node.nodeValue = node.nodeValue.replaceAll(OLD, NEW);
-    });
-  } catch (_) {
-    // non-bloquant
-  }
-}
+// La logique de migration d'anciens emails vers contact@bmsventouse.fr
+// a été appliquée en dur dans le code HTML. Ce bloc est laissé vide
+// pour éviter tout traitement inattendu côté front.
 
 // --------------------------------------------------------------------------
 // PWA: Service Worker registration
@@ -1330,5 +1343,139 @@ function enhanceImages() {
       }
     });
   } catch (_) { /* non-bloquant */ }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Galerie Ventousage (carrousel, affiché uniquement si des images sont déclarées)
+// --------------------------------------------------------------------------
+function setupVentousageParisGallery() {
+  try {
+    const track = document.getElementById('ventousageGallery');
+    if (!track) return;
+
+    const section = track.closest('.section');
+    const wrapper = track.closest('.gallery-carousel');
+
+    // Photos de ventousage (logo déjà intégré, plaques floutées, clients non identifiables)
+    // Pour en ajouter ou en retirer :
+    //  - déposer / supprimer les fichiers dans /images/ventousage-galerie/
+    //  - ajuster la liste ci-dessous
+    const IMAGES = [
+      { src: '/images/ventousage-galerie/1.jpg', alt: 'Exemple de ventousage avec stationnement neutralisé et panneaux B6' },
+      { src: '/images/ventousage-galerie/2.jpg', alt: 'Exemple de ventousage avec périmètre jalonné pour tournage' },
+      { src: '/images/ventousage-galerie/3.jpg', alt: 'Exemple de ventousage avec signalisation réglementaire en place' },
+      { src: '/images/ventousage-galerie/4.jpg', alt: 'Exemple de ventousage pour emplacement de véhicules techniques' },
+      { src: '/images/ventousage-galerie/5.jpg', alt: 'Exemple de ventousage avec cônes et rubalise en voirie' },
+      { src: '/images/ventousage-galerie/6.jpg', alt: 'Exemple de ventousage en amont d’un tournage' },
+      { src: '/images/ventousage-galerie/7.jpg', alt: 'Exemple de ventousage en zone urbaine avec panneaux temporaires' },
+      { src: '/images/ventousage-galerie/8.jpg', alt: 'Exemple de ventousage avec signalisation pour production audiovisuelle' },
+      { src: '/images/ventousage-galerie/9.jpg', alt: 'Exemple de ventousage avec emplacement réservé pour l’équipe de tournage' },
+      { src: '/images/ventousage-galerie/10.jpg', alt: 'Exemple de ventousage avec neutralisation de plusieurs places de stationnement' },
+      { src: '/images/ventousage-galerie/11.jpg', alt: 'Exemple de ventousage montrant un dispositif complet de stationnement réservé' },
+      { src: '/images/ventousage-galerie/12.jpg', alt: 'Exemple de ventousage avec panneaux et jalonnage sur trottoir et chaussée' },
+      { src: '/images/ventousage-galerie/13.jpg', alt: 'Exemple de ventousage pour un tournage, avec périmètre matérialisé' }
+    ];
+
+    // Si aucune image n'est déclarée, on masque complètement la section
+    if (!IMAGES.length) {
+      if (section) {
+        section.style.display = 'none';
+      }
+      return;
+    }
+
+    // Construire les slides du carrousel
+    IMAGES.forEach((item) => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide gallery-slide';
+
+      const figure = document.createElement('figure');
+      figure.className = 'service-card';
+
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.alt || '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.width = 800;
+      img.height = 450;
+
+      figure.appendChild(img);
+      slide.appendChild(figure);
+      track.appendChild(slide);
+    });
+
+    // Mise en place de la navigation carrousel (précédent / suivant)
+    if (!wrapper) return;
+    const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+    if (!slides.length) return;
+
+    const prevBtn = wrapper.querySelector('.carousel-control.prev');
+    const nextBtn = wrapper.querySelector('.carousel-control.next');
+    const counter = wrapper.querySelector('.gallery-counter');
+    if (!prevBtn || !nextBtn) return;
+
+    const total = slides.length;
+    let currentIndex = 0;
+
+    const getSlideWidth = () => {
+      const slide = slides[0];
+      if (!slide) return 0;
+      const style = window.getComputedStyle(slide);
+      const marginRight = parseFloat(style.marginRight) || 0;
+      return slide.getBoundingClientRect().width + marginRight;
+    };
+
+    const endMsg = document.getElementById('galleryEndMessage');
+
+    const updateCounter = () => {
+      if (counter) {
+        counter.textContent = 'Photo ' + (currentIndex + 1) + ' / ' + total;
+      }
+      if (endMsg) {
+        const atEnd = currentIndex === total - 1;
+        endMsg.hidden = !atEnd;
+        if (atEnd) {
+          endMsg.classList.add('is-visible');
+        } else {
+          endMsg.classList.remove('is-visible');
+        }
+      }
+    };
+
+    const updateControls = () => {
+      if (!prevBtn || !nextBtn) return;
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === total - 1;
+    };
+
+    const scrollToIndex = (index) => {
+      const width = getSlideWidth();
+      if (!width) return;
+      const maxIndex = slides.length - 1;
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+      track.scrollTo({
+        left: width * currentIndex,
+        behavior: 'smooth'
+      });
+      updateCounter();
+      updateControls();
+    };
+
+    // Clic sur une photo : scroll vers le CTA avec message
+    // Initialiser compteur et états des boutons
+    updateCounter();
+    updateControls();
+
+    nextBtn.addEventListener('click', () => {
+      scrollToIndex(currentIndex + 1);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      scrollToIndex(currentIndex - 1);
+    });
+  } catch (_) {
+    // non-bloquant
+  }
 }
 

@@ -1,6 +1,6 @@
-# Plan d’action SEO/Accessibilité/Qualité — BMS Ventouse
+# Plan d’action SEO/Accessibilité/Qualité - BMS Ventouse
 
-Dernière mise à jour : 2025-09-30
+Dernière mise à jour : 2025-12-21
 
 ## Objectifs
 
@@ -10,7 +10,7 @@ Dernière mise à jour : 2025-09-30
 
 ## Priorités
 
-### P0 — Déjà fait
+### P0 : Déjà fait
 
 - Harmonisation Open Graph (og:site_name) et Twitter Cards sur pages clés.
 - Suppression des meta keywords résiduels (index, contact).
@@ -19,8 +19,9 @@ Dernière mise à jour : 2025-09-30
 - Corrections accessibilité/perf (width/height/fetchpriority sur images héros).
 - Ajout contenus de référence (contenu_markdown/*.md).
 - GA4 + Consent Mode v2 en place (ID : G-VCB3QB5P4L).
+- Pages locales principales et pages spécialisées créées (ventousage grandes villes, logistique 93/77/95, shootings & défilés, convoyage, sécurité/gardiennage).
 
-### P1 — À faire ensuite (1–2 jours homme)
+### P1 : À faire ensuite (1–2 jours homme)
 
 - Créer une page « Confidentialité / Politique de confidentialité » et l’ajouter au footer.
 - Ajouter un lien persistant « Gérer les cookies » pour rouvrir le choix de consentement.
@@ -28,15 +29,21 @@ Dernière mise à jour : 2025-09-30
 - Soumettre sitemap.xml dans Google Search Console (propriété domaine + URL-prefix).
 - Activer les règles de protection de branche GitHub : PR obligatoire + check CI requis.
 
-### P2 — À planifier (semaine à venir)
+### P2 : À planifier (semaine à venir)
 
 - Mettre en place Lighthouse CI (perf/SEO/A11Y) sur PR non bloquant au début.
 - Étendre Pa11y (AAA) à davantage d’URLs internes (pages locales).
 - Uniformiser « Twitter Cards » sur toutes les futures pages (gabarit commun).
 - Renforcer CSP via netlify.toml (et retirer les meta CSP redondantes).
 - Ajouter une page 404 plus riche (liens vers pages locales supplémentaires).
+- Remplacer globalement les anciennes icônes Font Awesome `<i class="fas …">` par les SVG inline déjà utilisés (CTA, cartes, zones), pour un rendu cohérent et sans dépendance externe.
+- Créer/configurer proprement les comptes externes :
+  - GA4 : vérifier la propriété dédiée BMS Ventouse, déclarer `contact_submitted` comme conversion principale + micro‑conversions `phone_click` / `whatsapp_click`, et créer 1–2 audiences utiles (ventousage Paris, shootings & défilés).
+  - Google Search Console : propriété domaine déjà prévue en P1, compléter avec quelques rapports réguliers (performances, couvertures, sitemaps).
+  - Bing Webmaster Tools : ajouter le site, déclarer le sitemap (couvre Bing / Yahoo / DuckDuckGo / Brave Search) et vérifier que le flux IndexNow du dépôt fonctionne bien.
+  - Microsoft Clarity : confirmer l’ID de projet, filtrer les IP internes si besoin, vérifier au moins une session de navigation réelle.
 
-### P3 — Opportunités
+### P3 : Opportunités
 
 - Créer nouvelles pages locales (Lyon, Marseille, Bordeaux…) et maillage interne.
 - Ajouter témoignages clients visibles si vous souhaitez activer des Ratings plus tard.

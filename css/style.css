@@ -990,7 +990,8 @@ body.dark-theme .header {
 
 .cta-section .btn.btn-primary,
 .cta-section .btn.btn-secondary,
-.cta-section .btn.btn-urgent {
+.cta-section .btn.btn-urgent,
+.cta-section .btn.btn-secondary-alt {
   background-color: #fff;
   color: var(--color-primary);
   border-color: transparent;
@@ -1003,7 +1004,8 @@ body.dark-theme .header {
 
 .cta-section .btn.btn-primary:hover,
 .cta-section .btn.btn-secondary:hover,
-.cta-section .btn.btn-urgent:hover {
+.cta-section .btn.btn-urgent:hover,
+.cta-section .btn.btn-secondary-alt:hover {
   background-color: var(--color-light-alt);
   color: var(--color-primary-dark);
   transform: translateY(-3px);
@@ -1143,6 +1145,7 @@ body.dark-theme .header {
   position: fixed;
   bottom: var(--whatsapp-margin);
   right: var(--whatsapp-margin);
+  left: auto;
   width: var(--whatsapp-size);
   height: var(--whatsapp-size);
   background: #25d366;
@@ -1157,6 +1160,12 @@ body.dark-theme .header {
   transition: transform 0.2s, box-shadow 0.2s, bottom 0.2s;
   cursor: pointer;
   text-decoration: none;
+}
+
+/* Variante gaucher : bouton flottant côté gauche */
+body.left-handed .whatsapp-float {
+  left: var(--whatsapp-margin);
+  right: auto;
 }
 
 .whatsapp-float:hover {
@@ -1628,6 +1637,103 @@ body.dark-theme .header {
   transform: scale(1.1);
 }
 
+/* Carrousel pour la galerie photo de ventousage */
+.gallery-carousel {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.gallery-carousel .carousel-track {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.gallery-carousel .carousel-slide {
+  flex: 0 0 100%;
+  max-width: 100%;
+  scroll-snap-align: center;
+}
+
+@media (min-width: 768px) {
+  .gallery-carousel .carousel-slide {
+    flex: 0 0 65%;
+    max-width: 65%;
+  }
+}
+
+.gallery-carousel .service-card {
+  padding: 0;
+  border-radius: var(--border-radius-large);
+  overflow: hidden;
+}
+
+.gallery-carousel .service-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.gallery-counter {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+.gallery-cta-card {
+  margin: 1.5rem auto 0;
+  max-width: 720px;
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  padding: 1.5rem 1.75rem;
+  text-align: center;
+}
+
+.gallery-cta-text {
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.gallery-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.gallery-cta-card .btn {
+  min-width: 0;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
+}
+
+/* Message de fin de galerie (affiché à la dernière photo) */
+.gallery-end-message {
+  max-width: 900px;
+  margin: 1rem auto 0;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.gallery-end-message.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Boutons génériques de carrousel (références + galerie) */
 .carousel-control {
   position: absolute;
   top: 50%;
@@ -1645,6 +1751,12 @@ body.dark-theme .header {
   justify-content: center;
   transition: all 0.3s;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-control[disabled] {
+  opacity: 0.4;
+  cursor: default;
+  box-shadow: none;
 }
 
 .carousel-control:hover,
@@ -2039,6 +2151,7 @@ body.dark-theme .header {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
+  left: auto;
   width: 44px;
   height: 44px;
   display: flex;
@@ -2053,6 +2166,12 @@ body.dark-theme .header {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+}
+
+/* Variante gaucher : bouton retour en haut côté gauche */
+body.left-handed .back-to-top {
+  left: 2rem;
+  right: auto;
 }
 
 .back-to-top.visible {
@@ -2190,7 +2309,8 @@ body.dark-theme .header {
 }
 
 /* 2. Mode sombre toggle */
-.theme-toggle {
+.theme-toggle,
+.hand-toggle {
   background: transparent;
   border: none;
   width: 40px;
@@ -2205,16 +2325,19 @@ body.dark-theme .header {
   transition: transform 0.3s, background-color 0.3s;
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover,
+.hand-toggle:hover {
   background-color: rgba(0,0,0,0.05);
   transform: rotate(15deg);
 }
 
-body.dark-theme .theme-toggle {
+body.dark-theme .theme-toggle,
+body.dark-theme .hand-toggle {
   color: var(--color-light);
 }
 
-body.dark-theme .theme-toggle:hover {
+body.dark-theme .theme-toggle:hover,
+body.dark-theme .hand-toggle:hover {
   background-color: rgba(255,255,255,0.1);
 }
 
