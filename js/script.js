@@ -685,7 +685,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       const STORAGE_KEY = 'bms_hand_pref';
       const btn = document.querySelector('.hand-toggle');
-      const root = document.documentElement;
       const body = document.body;
       if (!btn || !body) return;
 
