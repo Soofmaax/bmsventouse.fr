@@ -36,6 +36,12 @@ Dernière mise à jour : 2025-12-21
 - Uniformiser « Twitter Cards » sur toutes les futures pages (gabarit commun).
 - Renforcer CSP via netlify.toml (et retirer les meta CSP redondantes).
 - Ajouter une page 404 plus riche (liens vers pages locales supplémentaires).
+- Remplacer globalement les anciennes icônes Font Awesome `<i class="fas …">` par les SVG inline déjà utilisés (CTA, cartes, zones), pour un rendu cohérent et sans dépendance externe.
+- Créer/configurer proprement les comptes externes :
+  - GA4 : vérifier la propriété dédiée BMS Ventouse, déclarer `contact_submitted` comme conversion principale + micro‑conversions `phone_click` / `whatsapp_click`, et créer 1–2 audiences utiles (ventousage Paris, shootings & défilés).
+  - Google Search Console : propriété domaine déjà prévue en P1, compléter avec quelques rapports réguliers (performances, couvertures, sitemaps).
+  - Bing Webmaster Tools : ajouter le site, déclarer le sitemap (couvre Bing / Yahoo / DuckDuckGo / Brave Search) et vérifier que le flux IndexNow du dépôt fonctionne bien.
+  - Microsoft Clarity : confirmer l’ID de projet, filtrer les IP internes si besoin, vérifier au moins une session de navigation réelle.
 
 ### P3 : Opportunités
 
