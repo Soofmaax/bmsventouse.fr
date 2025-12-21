@@ -114,21 +114,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   // MODULE: SKIP LINK (Aller au contenu) pour accessibilité
   // --------------------------------------------------------------------------
   const setupSkipLink = () => {
-    try {
-      // Si déjà présent, ne rien faire
-      if (document.querySelector('.skip-link')) return;
-      const main = document.getElementById('main-content');
-      if (!main) return;
-
-      const link = document.createElement('a');
-      link.className = 'skip-link';
-      link.href = '#main-content';
-      link.textContent = 'Aller au contenu';
-      // Ajoute en tout début du body
-      document.body.insertBefore(link, document.body.firstChild);
-    } catch (_) {
-      // non-bloquant
-    }
+    // Désactivé à la demande : plus de création automatique du bouton "Aller au contenu"
+    return;
   };
 
   // --------------------------------------------------------------------------
