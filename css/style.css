@@ -2729,8 +2729,30 @@ body.dark-theme .btn-secondary {
   color: #60a5fa;
 }
 
+/* Texte lisible sur les blocs d'appel à l'action en mode sombre */
+body.dark-theme .cta-section {
+  background: linear-gradient(135deg, #0b1220 0%, #1e293b 100%);
+  color: #e5edf5;
+}
+
+body.dark-theme .cta-section .cta-title,
+body.dark-theme .cta-section .cta-subtitle,
+body.dark-theme .cta-section p {
+  color: #e5edf5;
+}
+
+/* Lien en bas de page (copyright) plus clair en mode sombre */
+body.dark-theme .footer-bottom-content {
+  color: #cbd5e1;
+}
+
+body.dark-theme .footer-bottom-content a {
+  color: #e5edf5;
+}
+
+/* Bannière promo : texte sombre mais non noir pur en mode sombre */
 body.dark-theme .promo-banner {
-  color: #000000 !important;
+  color: #111827 !important;
 }
 
 
