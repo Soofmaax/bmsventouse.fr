@@ -37,6 +37,19 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const req = event.request;
+
+  // Ne mettre en cache que les requêtes GET du même origin
+  if (req.method !== 'GET') {
+    return;
+  }
+
+  const url = new URL(req.url);
+  const sameOrigin = url.origin === self.location.origin;
+  if (!sameOrigin) {
+    // Laisser le navigateur gérer les ressources externes (fonts, analytics, etc.)
+    return;
+  }
+
   const accept = req.headers.get('accept') || '';
   const isHTML = accept.includes('text/html');
 
