@@ -261,103 +261,39 @@
                 </div>
             </div>
 
-            <!-- Formulaire de contact -->
+            <!-- Bloc d'explication à la place du formulaire -->
             <section class="section" aria-labelledby="form-title">
               <div class="container">
-                <h2 id="form-title" class="section-title">Formulaire de Devis</h2>
-                <p class="section-subtitle">Remplissez les champs ci-dessous, nous revenons vers vous sous 24–48h ouvrées.</p>
-                <form name="contact" method="POST" action="https://formsubmit.co/contact@bmsventouse.fr">
-                  <!-- FormSubmit configuration (gratuit, zéro maintenance) -->
-                  <input type="hidden" name="_subject" value="Nouveau formulaire BMS Ventouse">
-                  <input type="hidden" name="_next" value="https://www.bmsventouse.fr/contact/?success=1">
-                  <input type="hidden" name="_captcha" value="false">
-                  <input type="hidden" name="_template" value="table">
-                  <!-- Honeypots anti-spam -->
-                  <p class="visually-hidden"><label>Ne pas remplir: <input name="honeypot"></label></p>
-                  <p class="visually-hidden"><label>Ne pas remplir: <input name="bot-field"></label></p>
-
-                  <div class="services-grid">
-                    <!-- Coordonnées -->
-                    <div class="contact-card">
-                      <label for="name"><strong>Nom et prénom *</strong></label>
-                      <input id="name" name="name" type="text" required aria-required="true" placeholder="Ex&nbsp;: Jean Dupont" autocomplete="name">
-                    </div>
-                    <div class="contact-card">
-                      <label for="company"><strong>Boîte de production / Société *</strong></label>
-                      <input id="company" name="company" type="text" required aria-required="true" placeholder="Ex&nbsp;: société de production, agence, structure" autocomplete="organization">
-                    </div>
-                    <div class="contact-card">
-                      <label for="phone"><strong>Téléphone *</strong></label>
-                      <input id="phone" name="phone" type="tel" required aria-required="true" placeholder="Ex&nbsp;: +33 6 12 34 56 78" autocomplete="tel" inputmode="tel">
-                    </div>
-                    <div class="contact-card">
-                      <label for="email"><strong>Email (optionnel)</strong></label>
-                      <input id="email" name="email" type="email" placeholder="Ex&nbsp;: nom@boiteprod.fr" autocomplete="email">
-                    </div>
-
-                    <!-- Projet -->
-                    <div class="contact-card">
-                      <label for="service"><strong>Type de besoin *</strong></label>
-                      <select id="service" name="service" required aria-required="true">
-                        <option value="" disabled selected>Choisissez une option…</option>
-                        <option value="Ventousage / AOT / Affichage riverains">Ventousage / AOT / Affichage riverains</option>
-                        <option value="Sécurité de tournage / Gardiennage">Sécurité de tournage / Gardiennage</option>
-                        <option value="Convoyage véhicules / décors">Convoyage véhicules / décors</option>
-                        <option value="Régie / loges / cantine">Régie / loges / cantine</option>
-                        <option value="Autre besoin logistique">Autre besoin logistique</option>
-                      </select>
-                    </div>
-                    <div class="contact-card">
-                      <label for="location"><strong>Ville / lieu principal *</strong></label>
-                      <select id="location" name="location" required aria-required="true">
-                        <option value="" disabled selected>Choisissez une zone…</option>
-                        <option value="Paris / Île-de-France">Paris / Île‑de‑France</option>
-                        <option value="Lyon">Lyon</option>
-                        <option value="Marseille">Marseille</option>
-                        <option value="Bordeaux">Bordeaux</option>
-                        <option value="Strasbourg">Strasbourg</option>
-                        <option value="Nice">Nice</option>
-                        <option value="Toulouse">Toulouse</option>
-                        <option value="Lille">Lille</option>
-                        <option value="Autre (France)">Autre (France)</option>
-                      </select>
-                    </div>
-                    <div class="contact-card">
-                      <label for="urgency"><strong>Niveau d’urgence *</strong></label>
-                      <select id="urgency" name="urgency" required aria-required="true">
-                        <option value="" disabled selected>Choisissez une option…</option>
-                        <option value="urgent_24h">Très urgent (dans les 24&nbsp;h)</option>
-                        <option value="urgent_72h">Urgent (sous 2–3 jours)</option>
-                        <option value="date_fixee">Date déjà fixée / à planifier</option>
-                      </select>
-                    </div>
-
-                    <!-- Message -->
-                    <div class="contact-card" style="grid-column: 1 / -1;">
-                      <label for="details"><strong>Votre message *</strong></label>
-                      <textarea id="details" name="details" rows="6" required aria-required="true" placeholder="Parlez-nous du projet : dates, lieu précis, type de tournage (pub, série, événement…), besoins en ventousage, sécurité, convoyage, régie…"></textarea>
-                    </div>
-
-                    <!-- Consentement -->
-                    <div class="contact-card" style="grid-column: 1 / -1;">
-                      <label for="consent" class="checkbox">
-                        <input id="consent" name="consent" type="checkbox" required aria-required="true">
-                        J’accepte que mes informations soient utilisées pour me recontacter (RGPD).
-                      </label>
-                    </div>
+                <h2 id="form-title" class="section-title">Comment nous envoyer votre demande</h2>
+                <p class="section-subtitle">
+                  La plupart des régies et productions préfèrent nous joindre directement par téléphone, WhatsApp ou email.
+                  Pour aller vite, envoyez-nous un message en reprenant ces quelques points.
+                </p>
+                <div class="services-grid">
+                  <div class="contact-card">
+                    <h3>Par téléphone ou WhatsApp</h3>
+                    <p>Donnez-nous simplement :</p>
+                    <ul class="benefits-list">
+                      <li>le type de besoin (ventousage, sécurité, convoyage, régie…)</li>
+                      <li>la ville et le lieu principal</li>
+                      <li>les dates et horaires</li>
+                      <li>le niveau d’urgence</li>
+                    </ul>
+                    <p class="contact-note">Nous vous posons ensuite les bonnes questions pour affiner le devis.</p>
                   </div>
-
-                  <div class="hero-buttons" style="margin-top: 1rem;">
-                    <button type="submit" class="btn btn-primary">
-                      <svg width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 512 512">
-                        <path d="M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z"/>
-                      </svg>
-                      Envoyer ma demande
-                    </button>
+                  <div class="contact-card">
+                    <h3>Par email</h3>
+                    <p>Vous pouvez copier/coller ce modèle dans votre email :</p>
+                    <pre class="contact-template">
+Ville / Lieu :
+Dates / Horaires :
+Type de projet (tournage, shooting, événement…) :
+Besoins (ventousage, sécurité, convoyage, régie…) :
+Contraintes particulières :
+                    </pre>
+                    <p class="contact-note">Envoyez-le à <a href="mailto:contact@bmsventouse.fr">contact@bmsventouse.fr</a>. Nous revenons vers vous sous 24–48 h ouvrées avec un devis détaillé.</p>
                   </div>
-
-                  <p class="section-subtitle" style="margin-top:.75rem">Vous pouvez aussi nous joindre via <a href="https://wa.me/33646005642" target="_blank" rel="noopener">WhatsApp</a>.</p>
-                </form>
+                </div>
               </div>
             </section>
 
