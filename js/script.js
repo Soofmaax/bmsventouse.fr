@@ -1006,6 +1006,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // PWA: enregistrement du Service Worker (pour PWA=100)
     setupServiceWorker();
+    // Galerie Ventousage Paris (si la section est présente sur la page)
+    setupVentousageParisGallery();
     // Perf: améliorer le lazy/decoding des images (hors héros)
     enhanceImages();
 
@@ -1296,5 +1298,51 @@ function enhanceImages() {
       }
     });
   } catch (_) { /* non-bloquant */ }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Galerie Ventousage Paris
+// --------------------------------------------------------------------------
+function setupVentousageParisGallery() {
+  try {
+    const container = document.getElementById('ventousageGallery');
+    if (!container) return;
+
+    // Pour ajouter des photos :
+    // 1) déposer les fichiers dans /images/ventousage-galerie/
+    // 2) ajouter ci-dessous une entrée { src: '...', alt: '...' }
+    const IMAGES = [
+      {
+        src: '/images/ventousage-galerie/ventousage-1.jpg',
+        alt: 'Ventousage à Paris avec panneaux B6 et jalonnage complet'
+      },
+      {
+        src: '/images/ventousage-galerie/ventousage-2.jpg',
+        alt: 'Neutralisation de stationnement pour tournage dans une rue parisienne'
+      },
+      {
+        src: '/images/ventousage-galerie/ventousage-3.jpg',
+        alt: 'Emplacements réservés pour véhicules techniques et régie à Paris'
+      }
+    ];
+
+    IMAGES.forEach((item) => {
+      const figure = document.createElement('figure');
+      figure.className = 'service-card';
+
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.alt || '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.width = 800;
+      img.height = 450;
+
+      figure.appendChild(img);
+      container.appendChild(figure);
+    });
+  } catch (_) {
+    // non-bloquant
+  }
 }
 
