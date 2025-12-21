@@ -1381,9 +1381,21 @@ function setupVentousageParisGallery() {
       return slide.getBoundingClientRect().width + marginRight;
     };
 
+    const endMsg = document.getElementById('galleryEndMessage');
+
     const updateCounter = () => {
-      if (!counter) return;
-      counter.textContent = 'Photo ' + (currentIndex + 1) + ' / ' + total;
+      if (counter) {
+        counter.textContent = 'Photo ' + (currentIndex + 1) + ' / ' + total;
+      }
+      if (endMsg) {
+        const atEnd = currentIndex === total - 1;
+        endMsg.hidden = !atEnd;
+        if (atEnd) {
+          endMsg.classList.add('is-visible');
+        } else {
+          endMsg.classList.remove('is-visible');
+        }
+      }
     };
 
     const updateControls = () => {

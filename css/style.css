@@ -1709,12 +1709,21 @@ body.dark-theme .header {
   font-size: 0.95rem;
 }
 
-/* Message CTA déclenché depuis la galerie */
-.cta-gallery-message {
+/* Message de fin de galerie (affiché à la dernière photo) */
+.gallery-end-message {
   max-width: 900px;
-  margin: 0.75rem auto 1.25rem;
+  margin: 1rem auto 0;
   font-size: 0.95rem;
-  color: #e5e7eb;
+  color: var(--color-text);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.gallery-end-message.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Boutons génériques de carrousel (références + galerie) */
