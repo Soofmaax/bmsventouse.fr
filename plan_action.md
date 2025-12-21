@@ -1,6 +1,6 @@
 # Plan d’action SEO/Accessibilité/Qualité - BMS Ventouse
 
-Dernière mise à jour : 2025-09-30
+Dernière mise à jour : 2025-12-21
 
 ## Objectifs
 
@@ -19,6 +19,7 @@ Dernière mise à jour : 2025-09-30
 - Corrections accessibilité/perf (width/height/fetchpriority sur images héros).
 - Ajout contenus de référence (contenu_markdown/*.md).
 - GA4 + Consent Mode v2 en place (ID : G-VCB3QB5P4L).
+- Pages locales principales et pages spécialisées créées (ventousage grandes villes, logistique 93/77/95, shootings & défilés, convoyage, sécurité/gardiennage).
 
 ### P1 : À faire ensuite (1–2 jours homme)
 
