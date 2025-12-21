@@ -31,6 +31,7 @@ Built and maintained to professional standards by SmarterLogicWeb : solutions we
 
 - ⚡ Performance: optimized hero, responsive images, caching, minimal JS
 - ♿ Accessibility: keyboard navigation, focus management, skip link, Pa11y CI (WCAG2AAA)
+- 🖐 UX avancée: mode sombre avec détection de la préférence système, mode gaucher/droitier pour les actions à une main (WhatsApp flottant, retour en haut), carrousel de galerie ventousage Paris avec compteur et message de fin de galerie
 - 🔍 SEO: canonical, OpenGraph/Twitter, JSON‑LD (LocalBusiness/Service/FAQ/Breadcrumb)
 - 🛡️ Security: Netlify security headers, CSP, CodeQL SAST, Gitleaks
 - ✅ Quality Gate: Super‑Linter across HTML/CSS/JS/Markdown/Actions; monthly scheduled run
