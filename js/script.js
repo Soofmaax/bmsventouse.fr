@@ -1301,14 +1301,15 @@ function enhanceImages() {
 }
 
 // --------------------------------------------------------------------------
-// MODULE: Galerie Ventousage (affichée uniquement si des images sont déclarées)
+// MODULE: Galerie Ventousage (carrousel, affiché uniquement si des images sont déclarées)
 // --------------------------------------------------------------------------
 function setupVentousageParisGallery() {
   try {
-    const container = document.getElementById('ventousageGallery');
-    if (!container) return;
+    const track = document.getElementById('ventousageGallery');
+    if (!track) return;
 
-    const section = container.closest('.section');
+    const section = track.closest('.section');
+    const wrapper = track.closest('.gallery-carousel');
 
     // Photos de ventousage (logo déjà intégré, plaques floutées, clients non identifiables)
     // Pour en ajouter ou en retirer :
@@ -1338,7 +1339,11 @@ function setupVentousageParisGallery() {
       return;
     }
 
+    // Construire les slides du carrousel
     IMAGES.forEach((item) => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide gallery-slide';
+
       const figure = document.createElement('figure');
       figure.className = 'service-card';
 
@@ -1351,7 +1356,46 @@ function setupVentousageParisGallery() {
       img.height = 450;
 
       figure.appendChild(img);
-      container.appendChild(figure);
+      slide.appendChild(figure);
+      track.appendChild(slide);
+    });
+
+    // Mise en place de la navigation carrousel (précédent / suivant)
+    if (!wrapper) return;
+    const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+    if (!slides.length) return;
+
+    const prevBtn = wrapper.querySelector('.carousel-control.prev');
+    const nextBtn = wrapper.querySelector('.carousel-control.next');
+    if (!prevBtn || !nextBtn) return;
+
+    let currentIndex = 0;
+
+    const getSlideWidth = () => {
+      const slide = slides[0];
+      if (!slide) return 0;
+      const style = window.getComputedStyle(slide);
+      const marginRight = parseFloat(style.marginRight) || 0;
+      return slide.getBoundingClientRect().width + marginRight;
+    };
+
+    const scrollToIndex = (index) => {
+      const width = getSlideWidth();
+      if (!width) return;
+      const maxIndex = slides.length - 1;
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+      track.scrollTo({
+        left: width * currentIndex,
+        behavior: 'smooth'
+      });
+    };
+
+    nextBtn.addEventListener('click', () => {
+      scrollToIndex(currentIndex + 1);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      scrollToIndex(currentIndex - 1);
     });
   } catch (_) {
     // non-bloquant
