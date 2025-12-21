@@ -1405,6 +1405,27 @@ function setupVentousageParisGallery() {
       updateControls();
     };
 
+    // Clic sur une photo : scroll vers le CTA avec message
+    const ctaSection = document.getElementById('cta-ventousage');
+    const ctaMsg = document.getElementById('ctaFromGallery');
+
+    const highlightCTA = () => {
+      if (ctaSection) {
+        ctaSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (ctaMsg && ctaMsg.hidden) {
+        ctaMsg.hidden = false;
+        ctaMsg.classList.add('is-visible');
+      }
+    };
+
+    slides.forEach((slide) => {
+      slide.style.cursor = 'pointer';
+      slide.addEventListener('click', () => {
+        highlightCTA();
+      });
+    });
+
     // Initialiser compteur et états des boutons
     updateCounter();
     updateControls();

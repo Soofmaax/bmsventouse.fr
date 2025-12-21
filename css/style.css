@@ -990,7 +990,8 @@ body.dark-theme .header {
 
 .cta-section .btn.btn-primary,
 .cta-section .btn.btn-secondary,
-.cta-section .btn.btn-urgent {
+.cta-section .btn.btn-urgent,
+.cta-section .btn.btn-secondary-alt {
   background-color: #fff;
   color: var(--color-primary);
   border-color: transparent;
@@ -1003,7 +1004,8 @@ body.dark-theme .header {
 
 .cta-section .btn.btn-primary:hover,
 .cta-section .btn.btn-secondary:hover,
-.cta-section .btn.btn-urgent:hover {
+.cta-section .btn.btn-urgent:hover,
+.cta-section .btn.btn-secondary-alt:hover {
   background-color: var(--color-light-alt);
   color: var(--color-primary-dark);
   transform: translateY(-3px);
@@ -1705,6 +1707,22 @@ body.dark-theme .header {
   min-width: 0;
   padding: 0.7rem 1.4rem;
   font-size: 0.95rem;
+}
+
+/* Message CTA déclenché depuis la galerie */
+.cta-gallery-message {
+  max-width: 900px;
+  margin: 0.75rem auto 1.25rem;
+  font-size: 0.95rem;
+  color: #e5e7eb;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cta-gallery-message.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Boutons génériques de carrousel (références + galerie) */
