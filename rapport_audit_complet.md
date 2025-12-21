@@ -18,7 +18,7 @@ Recommandations prioritaires (synthèse)
 
 ---
 
-## PARTIE 1 - Audit de Contenu et Informations Métier - Audit de Contenu et Informations Métier
+## PARTIE 1 - Audit de Contenu et Informations Métier
 
 ### 1.1 Vérification des Services et Informations Clés
 Notation: PRÉSENT ✅ / ABSENT ❌ / INCOMPLET ⚠️
