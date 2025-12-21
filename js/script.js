@@ -1301,30 +1301,33 @@ function enhanceImages() {
 }
 
 // --------------------------------------------------------------------------
-// MODULE: Galerie Ventousage Paris
+// MODULE: Galerie Ventousage (affichée uniquement si des images sont déclarées)
 // --------------------------------------------------------------------------
 function setupVentousageParisGallery() {
   try {
     const container = document.getElementById('ventousageGallery');
     if (!container) return;
 
-    // Pour ajouter des photos :
-    // 1) déposer les fichiers dans /images/ventousage-galerie/
-    // 2) ajouter ci-dessous une entrée { src: '...', alt: '...' }
+    const section = container.closest('.section');
+
+    // Par défaut, aucune image n'est affichée.
+    // Quand tu auras les autorisations client et tes photos prêtes :
+    // 1) dépose les fichiers dans /images/ventousage-galerie/
+    // 2) ajoute ici des entrées { src: '...', alt: '...' }
     const IMAGES = [
-      {
-        src: '/images/ventousage-galerie/ventousage-1.jpg',
-        alt: 'Ventousage à Paris avec panneaux B6 et jalonnage complet'
-      },
-      {
-        src: '/images/ventousage-galerie/ventousage-2.jpg',
-        alt: 'Neutralisation de stationnement pour tournage dans une rue parisienne'
-      },
-      {
-        src: '/images/ventousage-galerie/ventousage-3.jpg',
-        alt: 'Emplacements réservés pour véhicules techniques et régie à Paris'
-      }
+      // {
+      //   src: '/images/ventousage-galerie/ventousage-1.jpg',
+      //   alt: 'Ventousage avec panneaux B6 et jalonnage complet'
+      // }
     ];
+
+    // Si aucune image n'est déclarée, on masque complètement la section
+    if (!IMAGES.length) {
+      if (section) {
+        section.style.display = 'none';
+      }
+      return;
+    }
 
     IMAGES.forEach((item) => {
       const figure = document.createElement('figure');
