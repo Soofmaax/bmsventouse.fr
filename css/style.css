@@ -1145,6 +1145,7 @@ body.dark-theme .header {
   position: fixed;
   bottom: var(--whatsapp-margin);
   right: var(--whatsapp-margin);
+  left: auto;
   width: var(--whatsapp-size);
   height: var(--whatsapp-size);
   background: #25d366;
@@ -1159,6 +1160,12 @@ body.dark-theme .header {
   transition: transform 0.2s, box-shadow 0.2s, bottom 0.2s;
   cursor: pointer;
   text-decoration: none;
+}
+
+/* Variante gaucher : bouton flottant côté gauche */
+body.left-handed .whatsapp-float {
+  left: var(--whatsapp-margin);
+  right: auto;
 }
 
 .whatsapp-float:hover {
@@ -2144,6 +2151,7 @@ body.dark-theme .header {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
+  left: auto;
   width: 44px;
   height: 44px;
   display: flex;
@@ -2158,6 +2166,12 @@ body.dark-theme .header {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+}
+
+/* Variante gaucher : bouton retour en haut côté gauche */
+body.left-handed .back-to-top {
+  left: 2rem;
+  right: auto;
 }
 
 .back-to-top.visible {
@@ -2295,7 +2309,8 @@ body.dark-theme .header {
 }
 
 /* 2. Mode sombre toggle */
-.theme-toggle {
+.theme-toggle,
+.hand-toggle {
   background: transparent;
   border: none;
   width: 40px;
@@ -2310,16 +2325,19 @@ body.dark-theme .header {
   transition: transform 0.3s, background-color 0.3s;
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover,
+.hand-toggle:hover {
   background-color: rgba(0,0,0,0.05);
   transform: rotate(15deg);
 }
 
-body.dark-theme .theme-toggle {
+body.dark-theme .theme-toggle,
+body.dark-theme .hand-toggle {
   color: var(--color-light);
 }
 
-body.dark-theme .theme-toggle:hover {
+body.dark-theme .theme-toggle:hover,
+body.dark-theme .hand-toggle:hover {
   background-color: rgba(255,255,255,0.1);
 }
 

@@ -679,6 +679,51 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
+  // MODULE: PRÉFÉRENCE GAUCHER / DROITIER (placement des actions à une main)
+  // --------------------------------------------------------------------------
+  const setupHandPreference = () => {
+    try {
+      const STORAGE_KEY = 'bms_hand_pref';
+      const btn = document.querySelector('.hand-toggle');
+      const root = document.documentElement;
+      const body = document.body;
+      if (!btn || !body) return;
+
+      const applyPref = (value) => {
+        if (value === 'left') {
+          body.classList.add('left-handed');
+          btn.setAttribute('aria-pressed', 'true');
+          btn.setAttribute('aria-label', 'Mode gaucher activé (actions principales accessibles à la main gauche)');
+        } else {
+          body.classList.remove('left-handed');
+          btn.setAttribute('aria-pressed', 'false');
+          btn.setAttribute('aria-label', 'Mode droitier activé (actions principales accessibles à la main droite)');
+        }
+      };
+
+      let pref = 'right';
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === 'left' || stored === 'right') {
+          pref = stored;
+        }
+      } catch (_) {}
+
+      applyPref(pref);
+
+      btn.addEventListener('click', () => {
+        pref = (pref === 'right') ? 'left' : 'right';
+        applyPref(pref);
+        try {
+          localStorage.setItem(STORAGE_KEY, pref);
+        } catch (_) {}
+      });
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
   // MODULE: MIGRATION DES ICÔNES FONT AWESOME -> SVG inline
   // --------------------------------------------------------------------------
   const removeFontAwesomeLink = () => {
@@ -971,6 +1016,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupReferencesCarousel();
     setupBackToTop();
     setupAnalyticsEvents();
+    setupHandPreference();
     setupBreadcrumbs();
     await setupAllPagesSubmenu();
     // Barre de progression de scroll uniquement sur desktop pour limiter le travail JS sur mobile
