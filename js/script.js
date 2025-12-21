@@ -1310,15 +1310,24 @@ function setupVentousageParisGallery() {
 
     const section = container.closest('.section');
 
-    // Par défaut, aucune image n'est affichée.
-    // Quand tu auras les autorisations client et tes photos prêtes :
-    // 1) dépose les fichiers dans /images/ventousage-galerie/
-    // 2) ajoute ici des entrées { src: '...', alt: '...' }
+    // Photos de ventousage (logo déjà intégré, plaques floutées, clients non identifiables)
+    // Pour en ajouter ou en retirer :
+    //  - déposer / supprimer les fichiers dans /images/ventousage-galerie/
+    //  - ajuster la liste ci-dessous
     const IMAGES = [
-      // {
-      //   src: '/images/ventousage-galerie/ventousage-1.jpg',
-      //   alt: 'Ventousage avec panneaux B6 et jalonnage complet'
-      // }
+      { src: '/images/ventousage-galerie/1.jpg', alt: 'Exemple de ventousage avec stationnement neutralisé et panneaux B6' },
+      { src: '/images/ventousage-galerie/2.jpg', alt: 'Exemple de ventousage avec périmètre jalonné pour tournage' },
+      { src: '/images/ventousage-galerie/3.jpg', alt: 'Exemple de ventousage avec signalisation réglementaire en place' },
+      { src: '/images/ventousage-galerie/4.jpg', alt: 'Exemple de ventousage pour emplacement de véhicules techniques' },
+      { src: '/images/ventousage-galerie/5.jpg', alt: 'Exemple de ventousage avec cônes et rubalise en voirie' },
+      { src: '/images/ventousage-galerie/6.jpg', alt: 'Exemple de ventousage en amont d’un tournage' },
+      { src: '/images/ventousage-galerie/7.jpg', alt: 'Exemple de ventousage en zone urbaine avec panneaux temporaires' },
+      { src: '/images/ventousage-galerie/8.jpg', alt: 'Exemple de ventousage avec signalisation pour production audiovisuelle' },
+      { src: '/images/ventousage-galerie/9.jpg', alt: 'Exemple de ventousage avec emplacement réservé pour l’équipe de tournage' },
+      { src: '/images/ventousage-galerie/10.jpg', alt: 'Exemple de ventousage avec neutralisation de plusieurs places de stationnement' },
+      { src: '/images/ventousage-galerie/11.jpg', alt: 'Exemple de ventousage montrant un dispositif complet de stationnement réservé' },
+      { src: '/images/ventousage-galerie/12.jpg', alt: 'Exemple de ventousage avec panneaux et jalonnage sur trottoir et chaussée' },
+      { src: '/images/ventousage-galerie/13.jpg', alt: 'Exemple de ventousage pour un tournage, avec périmètre matérialisé' }
     ];
 
     // Si aucune image n'est déclarée, on masque complètement la section
