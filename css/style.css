@@ -1636,9 +1636,11 @@ body.dark-theme .header {
 
 .gallery-carousel .carousel-track {
   display: flex;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
   gap: 1.5rem;
   width: 100%;
 }
@@ -1646,6 +1648,7 @@ body.dark-theme .header {
 .gallery-carousel .carousel-slide {
   flex: 0 0 100%;
   max-width: 100%;
+  scroll-snap-align: center;
 }
 
 @media (min-width: 768px) {
@@ -1668,6 +1671,13 @@ body.dark-theme .header {
   object-fit: cover;
 }
 
+.gallery-counter {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
 /* Boutons génériques de carrousel (références + galerie) */
 .carousel-control {
   position: absolute;
@@ -1686,6 +1696,12 @@ body.dark-theme .header {
   justify-content: center;
   transition: all 0.3s;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-control[disabled] {
+  opacity: 0.4;
+  cursor: default;
+  box-shadow: none;
 }
 
 .carousel-control:hover,

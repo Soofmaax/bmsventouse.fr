@@ -1367,8 +1367,10 @@ function setupVentousageParisGallery() {
 
     const prevBtn = wrapper.querySelector('.carousel-control.prev');
     const nextBtn = wrapper.querySelector('.carousel-control.next');
+    const counter = wrapper.querySelector('.gallery-counter');
     if (!prevBtn || !nextBtn) return;
 
+    const total = slides.length;
     let currentIndex = 0;
 
     const getSlideWidth = () => {
@@ -1377,6 +1379,17 @@ function setupVentousageParisGallery() {
       const style = window.getComputedStyle(slide);
       const marginRight = parseFloat(style.marginRight) || 0;
       return slide.getBoundingClientRect().width + marginRight;
+    };
+
+    const updateCounter = () => {
+      if (!counter) return;
+      counter.textContent = 'Photo ' + (currentIndex + 1) + ' / ' + total;
+    };
+
+    const updateControls = () => {
+      if (!prevBtn || !nextBtn) return;
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === total - 1;
     };
 
     const scrollToIndex = (index) => {
@@ -1388,7 +1401,13 @@ function setupVentousageParisGallery() {
         left: width * currentIndex,
         behavior: 'smooth'
       });
+      updateCounter();
+      updateControls();
     };
+
+    // Initialiser compteur et états des boutons
+    updateCounter();
+    updateControls();
 
     nextBtn.addEventListener('click', () => {
       scrollToIndex(currentIndex + 1);
