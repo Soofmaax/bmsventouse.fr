@@ -3,11 +3,17 @@
 Date: 2025-09-30
 Portée: Pages publiques HTML, CSS, JS, Netlify config, SEO, A11y, Responsive, Préparation LLM
 
+Mise à jour rapide (2025-12-22)
+- Page « Politique de confidentialité » dédiée créée (/politique-confidentialite/) et ajoutée au footer (colonne « Légal »).
+- GA4 unifié sur l’ID de mesure G‑V7QXQC5260 avec Consent Mode v2 sur l’ensemble des pages.
+- Lien persistant « Gérer les cookies » ajouté au footer, permettant de réouvrir la bannière de consentement.
+- Styles du breadcrumb et de la bannière cookies désormais gérés en CSS (plus de styles inline injectés).
+
 Résumé exécutif
 - Base SEO et technique solide (Open Graph, Twitter Cards, JSON‑LD, sitemap, robots).
 - Accessibilité soignée (skip link, focus visible, sémantique), mais quelques textos et labels peuvent être enrichis.
 - Performance correcte pour un site statique; images critiques dimensionnées, fetchpriority appliqué; quelques opportunités de minification et déplacement de styles inline.
-- Contenus métier riches et bien ciblés; encore des manques mineurs (CGV/CGU, politique confidentialité dédiée, adresse/horaires visibles partout).
+- Contenus métier riches et bien ciblés; encore des manques mineurs (CGV/CGU, adresse/horaires visibles partout).
 - Préparation IA avancée: llms.txt (fichier principal), ai.txt (alias vers llms.txt), page /infos‑ia/ et métadonnées uniformisées.
 
 Recommandations prioritaires (synthèse)
