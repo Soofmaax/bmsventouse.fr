@@ -786,48 +786,49 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Construction paresseuse du contenu au premier clic pour réduire la taille du DOM initial
     let built = false;
-    const buildSubmenu = async () => {
-      if (built) return;
-      built = true;
+    const buildBreadcrumbJsonLd = () => {
+    const breadcrumbScript = document.querySelector('script[type="application/ld+json"][data-breadcrumb-auto]');
+    if (breadcrumbScript) return;
 
-      // Récupère et parse le sitemap
-      let urls = [];
-      try {
-        const res = await fetch('/sitemap.xml', { cache: 'no-store' });
-        const xml = await res.text();
-        const matches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)];
-        urls = matches.map(m => m[1].trim()).filter(Boolean);
-      } catch (e) {
-        console.warn('Sitemap non récupéré, sous-menu non généré:', e);
-        return;
+    const path = window.location.pathname.replace(/\/$/, "");
+    if (path === "") return; // page d'accueil -> on garde le JSON-LD statique
+
+    const baseUrl = "https://bmsventouse.fr";
+
+    const items = [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": `${baseUrl}/`
       }
+    ];
 
-      // Utils
-      const seen = new Set();
-      const normalizePath = (p) => (p || '').replace(/\/+$/, '/') || '/';
-      const slugToTitle = (url) => {
-        try {
-          const u = new URL(url);
-          let path = u.pathname.replace(/\/$/, '');
-          if (path === '' || path === '/') return 'Accueil';
-          const parts = path.split('/').filter(Boolean);
-          const slug = parts.pop();
-          return slug
-            .replace(/-/g, ' ')
-            .replace(/\b\w/g, c => c.toUpperCase());
-        } catch {
-          return url;
-        }
-      };
+    // On découpe le chemin /ventousage/paris/ en segments
+    const segments = path.split("/").filter(Boolean);
+    let cumulativePath = "";
+    segments.forEach((segment, index) => {
+      cumulativePath += `/${segment}`;
+      items.push({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": segment.replace(/-/g, " "),
+        "item": `${baseUrl}${cumulativePath}/`
+      });
+    });
 
-      // Groupes
-      const groups = {
-        'Services': [],
-        'Ventousage': [],
-        'Sécurité': [],
-        'Villes': [],
-        'Autres': []
-      };
+    const breadcrumbData = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items
+    };
+
+    const scriptEl = document.createElement("script");
+    scriptEl.type = "application/ld+json";
+    scriptEl.setAttribute("data-breadcrumb-auto", "true");
+    scriptEl.textContent = JSON.stringify(breadcrumbData);
+    document.head.appendChild(scriptEl);
+  };
 
       // Listes/regex pour classer
       const servicePaths = new Set([
