@@ -3,14 +3,10 @@
    Styles spécifiques à certaines pages (page-accueil, page-contact, etc.)
    ========================================================================== */
 
-/* Exemple (à compléter si besoin) :
+/* Exemple d'utilisation (à compléter si besoin) :
 
-body.page-accueil {
-  /* Styles propres à la home */
-}
+   body.page-accueil { ... }
+   body.page-contact { ... }
 
-body.page-contact {
-  /* Styles propres à la page contact */
-}
-
+   Ajoutez vos règles de page spécifiques sous ce bloc si nécessaire.
 */

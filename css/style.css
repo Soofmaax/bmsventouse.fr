@@ -46,7 +46,6 @@
     right: auto;
     bottom: 12px;
   }
-}
 
 /* Styles pour le menu mobile: overlay et menu déroulant - CORRIGÉ */
 .nav-overlay {
@@ -1278,10 +1277,11 @@ mark, .highlight {
  * Correction n°1 : Bloquer le scroll de la page quand le menu est ouvert.
  * On cible le `body` quand le menu `.nav-links` a la classe `.active`.
  * Cela nécessite que votre JavaScript ajoute bien la classe `.active` au menu.
+ *
+ * Remarque : le blocage de scroll est désormais géré côté JavaScript
+ * dans setupHamburgerMenu() via document.body.style.overflow, afin
+ * d'éviter toute incompatibilité CSS avec certains parseurs/outils.
 */
-body:has(.nav-links.active) {
-  overflow: hidden;
-}
 
 
 
