@@ -47,6 +47,42 @@ async function generateVariants(inputPath, baseOutName, widths, formats = ['webp
   console.log(`Generated ${originalWebp}`);
 }
 
+async function generateIcons() {
+  // Base logo used for all favicons / PWA icons / apple-touch
+  const projectRoot = path.join(__dirname, '..');
+  const baseIcon = path.join(projectRoot, 'android-chrome-192x192.png');
+
+  try {
+    await fs.access(baseIcon);
+  } catch {
+    console.warn(`[icons] Base icon not found at ${baseIcon}, skipping favicon generation.`);
+    return;
+  }
+
+  const iconDefs = [
+    { out: 'favicon-16x16.png', size: 16 },
+    { out: 'favicon-32x32.png', size: 32 },
+    { out: 'apple-touch-icon.png', size: 180 },
+    { out: 'android-chrome-192x192.png', size: 192 },
+    { out: 'android-chrome-512x512.png', size: 512 },
+    { out: 'android-chrome-192x192.webp', size: 192 },
+  ];
+
+  await Promise.all(
+    iconDefs.map(async ({ out, size }) => {
+      const outPath = path.join(projectRoot, out);
+      await sharp(baseIcon)
+        .resize(size, size, {
+          fit: 'contain',
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+        })
+        .toFormat(out.endsWith('.webp') ? 'webp' : 'png', { quality: 90 })
+        .toFile(outPath);
+      console.log(`[icons] Generated ${out} (${size}x${size})`);
+    })
+  );
+}
+
 async function main() {
   const imagesDir = path.join(__dirname, '..', 'images');
   const heroJpg = path.join(imagesDir, 'hero-background-custom.jpg');
@@ -55,6 +91,7 @@ async function main() {
   const widths = [640, 960, 1280, 1920];
 
   await generateVariants(heroJpg, 'hero-background-custom', widths, ['webp', 'jpg']);
+  await generateIcons();
 }
 
 main().catch(err => {

@@ -1,0 +1,465 @@
+/* ==========================================================================
+   BMS VENTOUSE – COMPONENTS CSS (boutons, FAQ, animations, etc.)
+   ========================================================================== */
+
+/* 4. COMPOSANTS PRINCIPAUX (Boutons, Cartes, etc.) */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  font-weight: var(--font-weight-bold);
+  font-size: 1.05rem;
+  border: none;
+  border-radius: var(--border-radius-pill);
+  padding: 0.9rem 1.7rem;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, 
+              transform 0.2s ease-out,
+              box-shadow 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  text-decoration: none;
+  min-width: 210px;
+  line-height: 1.2;
+  position: relative;
+  overflow: hidden;
+  z-index: var(--z-normal);
+}
+
+/* Effet ripple sur boutons */
+.btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  transition: transform 0.5s ease-out;
+  border-radius: var(--border-radius-pill);
+  z-index: -1;
+}
+
+.btn:active::after {
+  transform: scale(2);
+  opacity: 0;
+  transition: transform 0s, opacity 0.5s ease-out;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-primary-dark);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.btn-whatsapp {
+  background-color: #25d366;
+  color: #fff;
+  border-color: #25d366;
+}
+
+.btn-whatsapp:hover,
+.btn-whatsapp:focus {
+  background-color: #1ebd5a;
+  color: #fff;
+}
+
+.btn svg {
+  display: inline-block;
+  width: 1.35em;
+  height: 1.35em;
+  margin-right: 0.6em;
+  vertical-align: middle;
+  flex-shrink: 0;
+  fill: currentColor; /* forcer l'héritage de la couleur du texte */
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+/* État de chargement du bouton */
+.btn.loading {
+  pointer-events: none;
+  color: transparent !important;
+  position: relative;
+}
+
+.btn.loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Cartes de service et contact */
+.service-card,
+.contact-card {
+  background: var(--color-light);
+  border-radius: var(--border-radius-large);
+  text-align: center;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--box-shadow-base);
+  transition: var(--transition-smooth);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Bordure plus visible pour le contraste des cartes */
+  border: 1px solid #d1d5db;
+}
+
+.service-card:hover,
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: var(--color-border);
+}
+
+/* Icône générique dans les cartes */
+.service-icon,
+.contact-icon {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* Centrage fort des icônes de services */
+.service-card .service-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  color: var(--color-primary);
+}
+
+/* Icône interne des cartes de services */
+.service-card .service-icon svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+}
+
+/* Titres et textes dans les cartes */
+.service-card h3,
+.contact-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.service-card p,
+.contact-card p { 
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+/* Petites notes explicatives (tarifs, conditions, etc.) */
+.note-text {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+/* Badges */
+.badge {
+  background: rgba(255, 140, 66, 0.1);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  border: 1px solid rgba(255, 140, 66, 0.2);
+  display: inline-block;
+}
+
+.badge-netflix { 
+  background: rgba(229, 9, 20, 0.1); 
+  color: #e50914; 
+  border-color: rgba(229, 9, 20, 0.2); 
+}
+
+.badge-jo { 
+  background: rgba(255, 215, 0, 0.1); 
+  color: #b7950b; 
+  border-color: rgba(255, 215, 0, 0.2); 
+}
+
+/* ================== BLOC FAQ (composant réutilisable) ================== */
+
+.faq-container {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.faq-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  overflow: hidden;
+  transition: var(--transition-base);
+}
+
+.faq-item:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.faq-question {
+  background-color: var(--color-light);
+  color: #111827;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  text-align: left;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  border: none;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.faq-question::after {
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform 0.3s;
+}
+
+.faq-item.is-open .faq-question::after {
+  transform: translateY(-50%) rotate(-135deg);
+}
+
+.faq-item.is-open .faq-question {
+  color: var(--color-primary);
+  background-color: rgba(255, 140, 66, 0.05);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  background-color: var(--color-light-alt);
+  padding: 0 1.5rem;
+  transition: max-height 0.3s cubic-bezier(.4,0,.2,1), padding 0.3s;
+  color: #374151;
+}
+
+.faq-answer p {
+  margin: 0 0 0.75rem;
+}
+
+.faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-item.is-open .faq-answer {
+  padding: 1rem 1.5rem;
+  animation: faqFade 0.2s ease both;
+}
+
+@media (max-width: 600px) {
+  .faq-answer, 
+  .faq-item.is-open .faq-answer {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+}
+
+/* FAQ: fade-in du contenu lors de l'ouverture */
+@keyframes faqFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ================== ANIMATIONS GLOBALES ================== */
+
+.animated-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+.animated-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Soulignement animé des liens de navigation (depuis le centre) */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 60%;
+  height: 2px;
+  background: currentColor;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Accent de bordure en haut des cartes (apparition au hover) */
+.service-card,
+.contact-card,
+.service-card-visual,
+.reference-card,
+.zone-card,
+.stat-item,
+.coverage-note-card {
+  position: relative;
+}
+
+.service-card::before,
+.service-card-visual::before,
+.reference-card::before,
+.zone-card::before,
+.stat-item::before,
+.coverage-note-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-out;
+}
+
+.service-card:hover::before,
+.service-card-visual:hover::before,
+.reference-card:hover::before,
+.zone-card:hover::before,
+.stat-item:hover::before,
+.coverage-note-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Hover intensifié sur les boutons CTA */
+.btn:hover,
+.btn:focus {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  filter: brightness(1.08);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ================== DARK THEME – COMPOSANTS ================== */
+
+body.dark-theme {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+body.dark-theme a {
+  color: var(--color-primary);
+}
+
+body.dark-theme a:hover {
+  color: var(--color-primary-dark);
+}
+
+body.dark-theme .section {
+  background: #1e293b;
+}
+
+body.dark-theme .section-subtitle {
+  color: #cbd5e1;
+}
+
+body.dark-theme .service-card,
+body.dark-theme .coverage-note-card,
+body.dark-theme .faq-item {
+  background: #1e293b;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+body.dark-theme .faq-question {
+  color: #f1f5f9;
+}
+
+body.dark-theme .faq-answer {
+  color: #e2e8f0;
+}
+
+body.dark-theme .btn-secondary {
+  background: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Texte lisible sur les blocs d'appel à l'action en mode sombre */
+body.dark-theme .cta-section {
+  background: linear-gradient(135deg, #0b1220 0%, #1e293b 100%);
+  color: #e5edf5;
+}
+
+body.dark-theme .cta-section .cta-title,
+body.dark-theme .cta-section .cta-subtitle,
+body.dark-theme .cta-section p {
+  color: #e5edf5;
+}
+
+/* Lien en bas de page (copyright) plus clair en mode sombre */
+body.dark-theme .footer-bottom-content {
+  color: #cbd5e1;
+}
+
+body.dark-theme .footer-bottom-content a {
+  color: #e5edf5;
+}
+
+/* Bannière promo : texte clair en mode sombre */
+body.dark-theme .promo-banner {
+  color: #f9fafb !important;
+}

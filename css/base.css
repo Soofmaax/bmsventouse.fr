@@ -1,0 +1,195 @@
+/* ==========================================================================
+   BMS VENTOUSE – BASE CSS (variables, reset, accessibilité)
+   ========================================================================== */
+
+/* 1. VARIABLES GLOBALES & FONDATIONS */
+:root {
+  /* Couleurs principales */
+  --color-primary: #FF8C42;
+  --color-primary-dark: #e67e22;
+  --color-primary-light: #ffaa70;
+  --color-dark: #2c3e50;
+  --color-dark-lighten: #34495e;
+  --color-light: #ffffff;
+  --color-light-alt: #f8f9fa;
+  --color-text: #333;
+  --color-text-muted: #666;
+  --color-border: #e0e0e0;
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
+
+  /* Typographie */
+  --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-base: clamp(0.95rem, 1vw, 1rem);
+  --font-size-sm: clamp(0.8rem, 0.9vw, 0.875rem);
+  --font-size-h1: clamp(2.2rem, 6vw, 3.5rem);
+  --font-size-h2: clamp(1.8rem, 4vw, 2.5rem);  
+  --font-size-h3: clamp(1.3rem, 3vw, 1.4rem);
+  --line-height-base: 1.7;
+  --line-height-heading: 1.3;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+
+  /* Layout */
+  --container-width: min(1200px, 95vw);
+  --spacing-section: clamp(60px, 8vh, 80px);
+  --header-height: 70px;
+  --promo-banner-height: 50px;
+  --footer-gap: 2rem;
+  --grid-gap: clamp(1.5rem, 3vw, 2rem);
+  --content-padding: clamp(1rem, 5vw, 2rem);
+
+  /* Composants */
+  --border-radius-base: 8px;
+  --border-radius-large: 12px;
+  --border-radius-pill: 32px;
+  --transition-base: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.08);
+  --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.11);
+  --focus-outline-width: 3px;
+  --btn-hover-scale: 1.02;
+  --whatsapp-size: 60px;
+  --whatsapp-mobile-size: 48px;
+  --whatsapp-margin: 24px;
+  
+  /* z-index layers */
+  --z-below: -1;
+  --z-normal: 1;
+  --z-above: 10;
+  --z-fixed: 100;
+  --z-header: 1000;
+  --z-overlay: 1500;
+  --z-promo: 2000;
+  --z-toast: 3000;
+  --z-whatsapp: 1400;
+}
+
+/* Thème sombre - avec toggle via classe .dark-theme */
+/* Définition explicite pour le mode sombre forcé via classe */
+body.dark-theme {
+  --color-light: #1a202c;
+  --color-light-alt: #2d3748;
+  --color-text: #e2e8f0;
+  --color-text-muted: #b0c0d0;
+  --color-border: #4a5568;
+  --color-dark: #ffffff;
+  --box-shadow-base: 0 5px 20px rgba(0, 0, 0, 0.2);
+  --box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* 2. RESET & ACCESSIBILITÉ */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + var(--promo-banner-height) + 10px);
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+/* Liens principaux : texte orange cohérent avec la charte */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: inline-block;
+}
+
+a:hover { 
+  color: var(--color-primary-dark);
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Accessibilité améliorée */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: var(--border-radius-base);
+  z-index: 10000;
+  transition: top 0.3s;
+  text-decoration: none;
+}
+
+.skip-link:focus { 
+  top: 8px; 
+}
+
+/* Le bouton Aller au contenu est disponible au focus pour l'accessibilité (AA/AAA) */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; 
+  height: 1px;
+  padding: 0; 
+  margin: -1px;
+  overflow: hidden; 
+  clip: rect(0, 0, 0, 0); 
+  border: 0;
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: var(--focus-outline-width) solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-base);
+}
+
+:focus:not(:focus-visible) { 
+  outline: none; 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Conteneur principal */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 clamp(15px, 3vw, 20px);
+}

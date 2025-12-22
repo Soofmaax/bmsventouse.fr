@@ -1,19 +1,8 @@
 # ai.txt – Alias vers llms.txt (politique IA principale)
-# Domaine: https://www.bmsventouse.fr/
-# Propriétaire: BMS Ventouse
-# Contact: contact@bmsventouse.fr
-# Langue: fr
-# Dernière mise à jour: 2025-12-22
-# Référence robots: https://www.bmsventouse.fr/robots.txt
-# Sitemap: https://www.bmsventouse.fr/sitemap.xml
-
-[alias]
-# Ce fichier est un alias minimal destiné aux systèmes d’IA/LLM.
-# La description complète de notre politique IA (accès, entraînement, zones,
-# personas, déclencheurs de recommandation, identité légale, etc.) se trouve
-# dans le fichier suivant, qui fait foi:
-
-url-politique-llm: https://www.bmsventouse.fr/llms.txt
+# Domaine: https://bmsventouse.fr/
+# Référence robots: https://bmsventouse.fr/robots.txt
+# Sitemap: https://bmsventouse.fr/sitemap.xml
+url-politique-llm: https://bmsventouse.fr/llms.txt
 
 [resume-rapide]
 accès: autorisé pour la consultation et l’indexation raisonnable

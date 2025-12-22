@@ -18,7 +18,7 @@ Dernière mise à jour : 2025-12-22
 - Page « Infos IA » lisible humain (/infos-ia/) + ajout au sitemap.
 - Corrections accessibilité/perf (width/height/fetchpriority sur images héros).
 - Ajout contenus de référence (contenu_markdown/*.md).
-- GA4 + Consent Mode v2 en place (ID : G-VCB3QB5P4L).
+- GA4 + Consent Mode v2 en place (ID : G-V7QXQC5260).
 - Pages locales principales et pages spécialisées créées (ventousage grandes villes, logistique 93/77/95, shootings & défilés, convoyage, sécurité/gardiennage).
 - Politique IA enrichie dans llms.txt (cibles, personas, zones France+Belgique, déclencheurs) et simplification de ai.txt en alias vers llms.txt.
 

@@ -1,0 +1,458 @@
+/* ==========================================================================
+   BMS VENTOUSE – LAYOUT CSS (header, nav, sections, footer)
+   ========================================================================== */
+
+/* Sections génériques */
+.section { 
+  padding: var(--spacing-section) 0; 
+  position: relative;
+}
+
+.section-title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-black);
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--color-dark);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  /* Texte secondaire plus contrasté */
+  color: #4b5563;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* === BLOC CORRIGÉ POUR LA BANNIÈRE ET LE HEADER === */
+
+/* Bannière promo repositionnée en relative */
+.promo-banner {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: var(--promo-banner-height);
+  background-color: var(--color-primary);
+  /* Contraste renforcé: noir quasi pur sur fond orange */
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Header repositionné en sticky */
+.header {
+  position: sticky; /* Fixe le header en haut pour éviter les chevauchements */
+  top: 0;
+  left: 0; 
+  right: 0;
+  z-index: 1502;
+  background: rgba(255,255,255,1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  transition: transform 0.3s ease, background 0.4s;
+}
+
+/* Header comportement scroll (réactivable via JS) */
+.header.header-hidden {
+  transform: translateY(-100%);
+}
+
+.header.header-transparent {
+  background: transparent;
+  border-bottom: none;
+}
+
+.header.header-transparent .nav-link {
+  /* Texte en blanc pour bon contraste sur hero */
+  color: #ffffff;
+}
+
+body.dark-theme .header { 
+  background: rgba(26,32,44,0.92); 
+}
+
+/* Barre de navigation principale */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  gap: 1rem;
+}
+
+/* Logo */
+.logo, .logo .bms {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-black);
+  text-decoration: none;
+  color: var(--color-dark);
+}
+
+.logo img { 
+  width: 40px; 
+  height: 40px; 
+  margin-right: 12px; 
+  transition: transform 0.3s;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+.logo .bms { 
+  color: var(--color-primary); 
+}
+
+/* Texte de marque dans le header */
+.logo-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  line-height: 1;
+}
+
+/* Assure la visibilité de "Ventouse" dans le header */
+.logo .ventouse {
+  color: var(--color-dark);
+  font-weight: var(--font-weight-black);
+}
+
+/* Harmonise l'affichage du texte de marque en footer */
+.footer-brand-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.footer-bms { 
+  color: var(--color-primary); 
+}
+
+/* Liens de navigation */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--color-dark);
+  font-weight: var(--font-weight-medium);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--border-radius-base);
+  transition: var(--transition-base);
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--color-primary);
+  /* Contraste AA/AAA: texte sombre */
+  color: var(--color-dark);
+  transform: translateY(-2px);
+}
+
+/* Bouton de type nav-link (CTA dans le menu) */
+.nav-link.btn {
+  font-weight: var(--font-weight-bold);
+  background: var(--color-primary);
+  /* Texte blanc lisible en mode clair comme sombre */
+  color: #ffffff;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  transition: var(--transition-base);
+}
+
+.nav-link.btn:hover {
+  background: var(--color-primary-dark);
+  color: var(--color-light);
+  transform: scale(1.04);
+}
+
+/* Sous-menu de navigation (toutes les pages) */
+.nav-links li.has-submenu { position: relative; }
+.submenu-trigger.nav-link { display: inline-flex; align-items: center; gap: .4rem; }
+
+.nav-submenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--box-shadow-base);
+  min-width: 320px;
+  max-height: 65vh;
+  overflow-y: auto;
+  padding: .5rem;
+  display: none;
+  z-index: var(--z-header);
+}
+
+.has-submenu.open .nav-submenu { 
+  display: block; 
+}
+
+.nav-submenu li { 
+  list-style: none; 
+}
+
+.nav-submenu a {
+  display: block;
+  padding: .4rem .6rem;
+  color: var(--color-dark);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.nav-submenu a:hover {
+  background: var(--color-light-alt);
+  color: var(--color-primary);
+}
+
+/* Groupes dans le sous-menu */
+.nav-submenu .nav-submenu-group { 
+  margin: .25rem 0 .5rem; 
+}
+
+.nav-submenu .group-title {
+  display: block;
+  font-size: .72rem;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: .25rem .6rem;
+  margin-top: .25rem;
+}
+
+.nav-submenu .group-list {
+  list-style: none;
+  margin: .15rem 0 .4rem 0;
+  padding: 0;
+}
+
+.nav-submenu .group-list li { 
+  margin: 0; 
+}
+
+/* Sous-menu en mode mobile */
+@media (max-width: 768px) {
+  .nav-links li.has-submenu { width: 100%; }
+
+  .nav-submenu {
+    position: static;
+    border: none;
+    box-shadow: none;
+    max-height: none;
+    padding: 0;
+    margin-top: .4rem;
+    display: block;
+  }
+
+  .nav-submenu .group-title { 
+    padding: .35rem 1rem; 
+  }
+
+  .nav-submenu a { 
+    padding: .6rem 1rem; 
+  }
+}
+
+/* Bouton hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 24px;
+  width: 30px;
+  background: none;
+  border: none;
+  padding: 0;
+  z-index: 1003;
+  position: relative;
+}
+
+/* Forcer l'affichage du hamburger sur mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex !important;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+}
+
+.hamburger span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: var(--color-dark);
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  border-radius: 2px;
+}
+
+/* Animation hamburger améliorée */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Footer principal */
+.footer {
+  background: #1e293b;
+  color: #f1f5f9;
+  padding-top: 3rem;
+}
+
+.footer-main { 
+  padding-bottom: 3rem; 
+}
+
+.footer-content {
+  display: grid;
+  /* Colonne marque encore un peu plus étroite pour libérer un maximum d'espace aux 4 colonnes de liens */
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2.6fr);
+  gap: 3rem;
+}
+
+.footer-brand .footer-logo { 
+  margin-bottom: 0.75rem; 
+  display: flex;
+  align-items: center;
+}
+
+.footer-brand .footer-description {
+  color: #cbd5e1;
+  /* Réduite pour compacter davantage la première colonne */
+  max-width: 20rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.footer-social {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.footer-social a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-social a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: grid;
+  /* Donne un peu plus de largeur à la colonne "Contact Direct" (3e) et réduit légèrement la colonne "Légal" (4e) */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.footer-column h4 {
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  position: relative;
+}
+
+.footer-column h4::after {
+  content: '';
+  position: absolute;
+  bottom: -0.3rem;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-primary);
+}
+
+.footer-column ul { 
+  list-style: none; 
+}
+
+.footer-column li { 
+  margin-bottom: 0.35rem; 
+}
+
+.footer-column a { 
+  color: var(--color-primary); 
+  transition: color 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-column a:hover { 
+  color: #ffffff;
+  transform: translateX(3px);
+  text-decoration: underline;
+}
+
+.footer-column i { 
+  margin-right: 0.5rem; 
+  color: var(--color-primary);
+  font-size: 0.9em;
+}
+
+.footer-column svg {
+  margin-right: 0.5rem;
+  color: var(--color-primary);
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--color-dark-lighten);
+  padding: 1.5rem 0;
+}
+
+.footer-bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  font-size: 0.9rem;
+  color: #a0aec0;
+  gap: 1rem;
+}
