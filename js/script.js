@@ -980,7 +980,7 @@ function setupUnifiedFooter() {
               <li><a href="/prix-ventousage-paris/">Tarifs &amp; devis</a></li>
               <li><a href="/affichage-riverains/">Affichage riverains</a></li>
               <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
-              <li><a href="/realisations/">Références</a></li>
+              <li><a href="/realisations/">Réalisations</a></li>
               <li><a href="/contact/">Contact</a></li>
             </ul>
           </div>
