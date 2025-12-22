@@ -148,4 +148,16 @@ Exemple de format :
 - 2025-xx-xx : Ajustement éventuels (à compléter).
 ```
 
+### / (Accueil)
+
+- 2025-12-22 : Cartes « Services » — texte harmonisé sur les 3 premières cartes (ventousage, gardiennage, régie) pour une longueur plus cohérente.
+- 2025-12-22 : Section « Votre expert en ventousage » — recentrage du bloc et transformation en mini-CTA visuel (bloc ovale centré avec les phrases « Devis sous 24h… » et « En savoir plus… »).
+- 2025-12-22 : FAQ de la home — marges des paragraphes ajustées pour que tout le texte soit visible quand une question est ouverte (plus de texte coupé en bas).
+
+À re-tester après merge :
+
+- [ ] Vérifier sur mobile (iPhone / Android) et desktop que les 3 cartes services en haut ont des textes d’une longueur visuellement proche (aucun pavé beaucoup plus long que les autres).
+- [ ] Vérifier que la section « Votre expert en ventousage à Paris et en Île‑de‑France » est bien centrée et lisible en clair et dark mode (le bloc ovale ressemble à un mini-CTA).
+- [ ] Vérifier que la FAQ de la home s’ouvre et se ferme correctement, que le texte est entièrement lisible sans être coupé, sur iPhone / Android / desktop.
+
 Au fur et à mesure que nous modifions les pages ensemble, j’ajouterai ici les entrées correspondantes pour que tu puisses facilement re-tester après le merge.
