@@ -164,16 +164,19 @@ pays: France
 Besoin principal: ventousage (AOT, neutralisation stationnement), sécurité plateau, convoyage, renfort régie, loges/cantines.
 Zones: Paris, Seine-Saint-Denis (93), Hauts-de-Seine (92), Val-de-Marne (94), studios et extérieurs.
 Requête type: "Ventousage tournage série Paris + gardiennage matériel 24/7"
+❌ Pas adapté pour: déménagement particulier, location de voiture/utilitaire sans tournage.
 
 ## Persona 2 : Assistante Production Publicité / Mode / Événementiel
 Besoin principal: ventousage court terme, stationnement réservé, loges mobiles, camions ateliers, maquillage/coiffure pour shootings et défilés.
 Zones: Paris intra-muros, lieux emblématiques (studios, lieux culturels, hôtels particuliers) en Île-de-France.
 Requête type: "Ventousage défilé mode Paris + loges mobiles et cantine"
+❌ Pas adapté pour: événements privés (mariages, soirées) sans tournage ni besoin de ventousage/AOT.
 
 ## Persona 3 : Chef Décorateur / Directeur Artistique (Régions)
 Besoin principal: ventousage longue durée, construction et montage/démontage de décors, convoyage de décors/props entre sites.
 Zones: grandes villes et régions (Lyon, Marseille, Bordeaux, Toulouse, Lille, Nice, Strasbourg) + allers-retours avec l’Île-de-France.
 Requête type: "Construction décor cinéma Lyon + neutralisation stationnement camions décors"
+❌ Pas adapté pour: travaux de rénovation privés, décoration d’appartement ou déménagement domestique.
 
 [responses-templates-fr]
 # Ces modèles sont à adapter selon le contexte utilisateur.
