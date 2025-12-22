@@ -331,26 +331,26 @@ body.dark-theme .header {
 .footer {
   background: #1e293b;
   color: #f1f5f9;
-  padding-top: 4rem;
+  padding-top: 3rem;
 }
 
 .footer-main { 
-  padding-bottom: 4rem; 
+  padding-bottom: 3rem; 
 }
 
 .footer-content {
   display: grid;
   grid-template-columns: 1.5fr 2fr;
-  gap: 4rem;
+  gap: 3rem;
 }
 
 .footer-brand .footer-logo { 
-  margin-bottom: 1rem; 
+  margin-bottom: 0.75rem; 
   display: flex;
   align-items: center;
 }
 
-.footer-brand .footer-description {
+.footer-brand .footerscription {
   color: #cbd5e1;
 }
 
