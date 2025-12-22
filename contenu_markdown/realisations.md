@@ -1,7 +1,7 @@
 # Réalisations
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/realisations/
+- URL : https://bmsventouse.fr/realisations/
 - Title tag : Nos Références & Productions | BMS Ventouse
 - Meta description : Découvrez nos références prestigieuses en logistique audiovisuelle. Des clients internationaux comme Netflix nous font confiance pour nos solutions sur mesure.
 

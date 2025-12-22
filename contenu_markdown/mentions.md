@@ -1,7 +1,7 @@
 # Mentions légales
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/mentions/
+- URL : https://bmsventouse.fr/mentions/
 - Title tag : Mentions Légales | BMS Ventouse
 - Meta description : Mentions légales du site BMS Ventouse.
 

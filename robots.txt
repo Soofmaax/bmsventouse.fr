@@ -80,4 +80,4 @@ Allow: /
 # l'emplacement du fichier sitemap.xml, qui contient la liste de toutes
 # les pages importantes du site. Cela aide les moteurs de recherche à
 # découvrir et à indexer le contenu plus efficacement.
-Sitemap: https://www.bmsventouse.fr/sitemap.xml
+Sitemap: https://bmsventouse.fr/sitemap.xml

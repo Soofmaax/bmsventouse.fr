@@ -1,7 +1,7 @@
 # Logistique Val d’Oise (95)
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/logistique-val-d-oise/
+- URL : https://bmsventouse.fr/logistique-val-d-oise/
 - Title tag : Entreprise Logistique Val d’Oise | Tournages & événements — BMS Ventouse
 - Meta description : Logistique audiovisuelle dans le Val d’Oise (95) : ventousage, sécurité de plateau, convoyage. Interventions rapides. Devis gratuit.
 

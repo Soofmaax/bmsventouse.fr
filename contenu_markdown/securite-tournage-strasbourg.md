@@ -1,7 +1,7 @@
 # Sécurité de Tournage à Strasbourg
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/securite-tournage-strasbourg/
+- URL : https://bmsventouse.fr/securite-tournage-strasbourg/
 - Title tag : Sécurité de Tournage à Strasbourg | Gardiennage plateau 24/7 - BMS Ventouse
 - Meta description : Agents de sécurité spécialisés, gardiennage plateau 24/7, contrôle d’accès et confidentialité pour tournages à Strasbourg et Grand Est. Devis gratuit.
 

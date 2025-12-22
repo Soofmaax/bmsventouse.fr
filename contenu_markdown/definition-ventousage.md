@@ -1,7 +1,7 @@
 # Définition du ventousage
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/definition-ventousage/
+- URL : https://bmsventouse.fr/definition-ventousage/
 - Title tag : Définition du ventousage (tournage & événementiel) | BMS Ventouse
 - Meta description : Neutralisation temporaire du stationnement pour tournage, publicité, événement. Définition, cadre légal, exemples et FAQ.
 

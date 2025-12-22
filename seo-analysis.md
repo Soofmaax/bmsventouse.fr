@@ -48,7 +48,7 @@ Points d’attention
 Check‑list pour chaque nouvelle page
 - Balises
   - title ≤ 60–65 car., meta description 140–160 car. pertinentes.
-  - canonical absolu (https://www.bmsventouse.fr/xxx/), robots absent ou “index, follow”.
+  - canonical absolu (https://bmsventouse.fr/xxx/), robots absent ou “index, follow”.
   - og:title/description/url/type, og:image 1200x630; twitter:card + twitter:title/description/image.
 - JSON‑LD
   - Service avec provider BMS Ventouse si approprié.

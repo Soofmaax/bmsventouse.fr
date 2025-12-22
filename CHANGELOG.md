@@ -18,4 +18,4 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - CI workflow with Super‑Linter
 
 [Unreleased]: https://github.com/Soofmaax/bmsventouse.fr/compare/1.0.0...HEAD
-[1.0.0]: https://www.bmsventouse.fr/
+[1.0.0]: https://bmsventouse.fr/

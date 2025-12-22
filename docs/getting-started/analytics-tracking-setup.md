@@ -20,7 +20,7 @@ Ce guide t’explique comment configurer le **suivi complet** pour **bmsventouse
 1. Va sur https://analytics.google.com  
 2. Crée (ou réutilise) une **propriété GA4** pour `bmsventouse.fr`.
 3. Dans **Flux de données → Web**, crée un flux :
-   - URL : `https://www.bmsventouse.fr`
+   - URL : `https://bmsventouse.fr`
    - Nom : `BMS Ventouse`
 4. Note l’**ID de mesure** (format `G-XXXXXXX`).
 
@@ -205,7 +205,7 @@ Une fois la propriété validée :
 1. Dans GSC, va dans **Indexation → Sitemaps**.
 2. Ajoute l’URL :
 
-   - `https://www.bmsventouse.fr/sitemap.xml`
+   - `https://bmsventouse.fr/sitemap.xml`
 
 Google suit automatiquement les nouvelles pages et les pages locales (ventousage, sécurité, logistique…).
 
@@ -316,7 +316,7 @@ Pour être opérationnel sur toutes les plateformes :
 
 - [ ] Propriété `bmsventouse.fr` créée (type Domaine).
 - [ ] Vérification DNS OK.
-- [ ] Sitemap soumis : `https://www.bmsventouse.fr/sitemap.xml`.
+- [ ] Sitemap soumis : `https://bmsventouse.fr/sitemap.xml`.
 
 ### Clarity
 

@@ -1,7 +1,7 @@
 # Contact
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/contact/
+- URL : https://bmsventouse.fr/contact/
 - Title tag : Contact & Devis Gratuit 24/7 | BMS Ventouse
 - Meta description : Contactez BMS Ventouse pour un devis gratuit. Joignable 24/7 par téléphone, WhatsApp ou email pour tous vos besoins en logistique de tournage.
 

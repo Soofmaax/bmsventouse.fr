@@ -1,7 +1,7 @@
 # Ventousage à Paris
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/ventousage-paris/
+- URL : https://bmsventouse.fr/ventousage-paris/
 - Title tag : Ventousage à Paris. Nos ventouseurs sont disponibles pour vos tournages, shootings et événements
 - Meta description : Ventousage à Paris : neutralisation du stationnement, panneaux B6 (AGATE), affichage riverains, AOT. 24/7 dans les 1er–20e. Devis gratuit.
 
