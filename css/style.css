@@ -110,16 +110,16 @@ body {
   
 }
 
-/* Liens principaux : contraste minimum 4.5:1 */
+/* Liens principaux : texte orange cohérent avec la charte */
 a {
-  color: #1a56db; /* Bleu foncé accessible */
+  color: var(--color-primary);
   text-decoration: none;
   transition: color 0.3s;
   display: inline-block;
 }
 
 a:hover { 
-  color: #0d3d8f;
+  color: var(--color-primary-dark);
 }
 
 img, svg, video, canvas, audio, iframe, embed, object {
