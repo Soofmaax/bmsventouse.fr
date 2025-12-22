@@ -778,6 +778,12 @@ body.dark-theme .header {
   flex-grow: 1;
 }
 
+/* Petites notes explicatives (tarifs, conditions, etc.) */
+.note-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
 /* Badges */
 .badge {
   background: rgba(255, 140, 66, 0.1);
