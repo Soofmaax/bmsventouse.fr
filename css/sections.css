@@ -1,100 +1,70 @@
 /* ==========================================================================
-   FEUILLE DE STYLE BMS VENTOUSE - VERSION OPTIMISÉE (V8.0)
-   Point d’entrée : le détail est désormais réparti dans :
-   - base.css      → variables, reset, accessibilité
-   - layout.css    → header, nav, sections, footer
-   - components.css→ boutons, cartes, FAQ, animations, etc.
-   - pages.css     → styles spécifiques à certaines pages (page-accueil, page-contact, etc.)
+   SECTIONS & BLOCS SPÉCIFIQUES – BMS VENTOUSE
+   (ex-contents de style.css : hero, carrousels, bannières, etc.)
    ========================================================================== */
 
-@import url('./base.css');
-@import url('./layout.css');
-@import url('./components.css');
-@import url('./sections.css');
-@import url('./pages.css');
-
-/* 
-  NOTE :
-  Les styles historiques restent dans ce fichier pour compatibilité.
-  Progressivement, le code sera migré vers les fichiers ci-dessus.
-*/
-
-
-
-
-/* 4. SECTIONS & BLOCS SPÉCIFIQUES
-   (le détail est désormais dans sections.css) */
-  
-  .hero-buttons .btn {
-    padding: 12px 20px !important;
-    font-size: 0.95rem !important;
-    width: 100% !important;
-    max-width: 280px !important;
-  }
-  
-  .whatsapp-float {
-    width: var(--whatsapp-mobile-size);
-    height: var(--whatsapp-mobile-size);
-    font-size: 1.8rem;
-    bottom: 12px;
-    right: 12px;
-  }
-
-  /* Sur mobile, on décale le bouton Retour en haut pour éviter qu'il soit sous le bouton WhatsApp */
-  .back-to-top {
-    left: 12px;
-    right: auto;
-    bottom: 12px;
-  }
+/* === HERO (texte sur image, image 100% visible, pas rognée) === */
+.hero {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  color: var(--color-light);
+  overflow: hidden;
 }
 
-/* Styles pour le menu mobile: overlay et menu déroulant - CORRIGÉ */
-.nav-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  z-index: var(--z-overlay);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: var(--z-below);
+  pointer-events: none;
+  display: flex;
+  align-items: stretch;
 }
 
-.nav-overlay.active {
-  opacity: 1;
-  visibility: visible;
+.hero-bg img {
+  width: 100vw;
+  height: 100%;
+  max-height: 650px;
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 
-/* nav-links mobile active state - CORRIGÉ (unifié avec patch correctif) */
-.nav-links.active {
-  display: flex !important;
-  flex-direction: column;
-  position: fixed;
-  /* Commence sous la bannière promo et le header */
-  top: calc(var(--promo-banner-height) + var(--header-height)) !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  background-color: var(--color-light);
-  z-index: 1501 !important;
-  padding: 1.5rem 0;
-  box-shadow: var(--box-shadow-base);
-  animation: slideInDown 0.3s forwards;
-  /* Hauteur restante de l'écran (iOS+fallback) */
-  height: calc(100dvh - var(--promo-banner-height) - var(--header-height)) !important;
-  height: calc(100vh - var(--promo-banner-height) - var(--header-height)) !important;
-  overflow-y: auto !important; 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-normal);
+  /* Centrage parfait du contenu */
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.55) 100%);
+  color: #fff;
+  text-align: center;
+  /* Réduction du padding pour remonter le bloc visuellement */
+  padding: 20px 5vw;
+  width: 100vw;
 }
 
-@keyframes slideInDown {
+.hero-overlay .container {
+  z-index: var(--z-above);
+  position: relative;
+  /* Centrer le contenu et éviter un padding latéral excessif */
+  display: grid;
+  place-items: center;
+  padding: 0 clamp(12px, 4vw, 28px);
+  /* Légèrement plus haut que le centre */
+  transform: translateY(-18%);
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -102,25 +72,394 @@
   }
 }
 
-.nav-links.active .nav-link {
-  margin: 0.5rem 1rem;
-  padding: 0.8rem 1rem;
+.hero h1,
+.hero p {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.44);
+}
+
+.hero h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-black);
+  margin-bottom: 1rem;
+  line-height: 1.18;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  margin-bottom: 2rem;
+  opacity: 0.97;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Centrage du bouton CTA "Découvrir tous nos services" */
+.cta-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+/* Grille responsive pour services/réalisations */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--grid-gap);
+}
+
+/* Form sections shown conditionally by JS (prevent FOUC) */
+.service-details { display: none; }
+/* Micro-spacing and readability for dynamic contact groups */
+.service-details label { display: block; margin-top: .5rem; }
+.service-details input,
+.service-details select,
+.service-details textarea { margin-top: .25rem; }
+.service-details .checkbox { display: inline-flex; align-items: center; gap: .5rem; margin-top: .6rem; }
+
+/* Calculator cards shown conditionally by JS (prevent FOUC) */
+.services-grid [data-show] { display: none; }
+/* Consistent spacing inside calculator groups shown dynamically */
+.services-grid [data-show] label { display: block; margin-top: .5rem; }
+.services-grid [data-show] input,
+.services-grid [data-show] select,
+.services-grid [data-show] textarea { margin-top: .25rem; }
+.services-grid [data-show] .checkbox { display: inline-flex; align-items: center; gap: .5rem; margin-top: .6rem; }
+
+/* Témoignages clients */
+.testimonial-card {
+  background: var(--color-light);
+  padding: 2.5rem;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-base);
+  height: 100%;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.testimonial-card p {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.testimonial-card p::before {
+  content: '\201C';
+  font-family: Georgia, serif;
+  position: absolute;
+  left: -30px;
+  top: -20px;
+  font-size: 3rem;
+  color: var(--color-primary);
+  opacity: 0.3;
+}
+
+.testimonial-card footer {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonial-card footer .client-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-card footer span { 
+  color: var(--color-primary); 
+}
+
+/* CTA section */
+.cta-section {
+  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-lighten) 100%);
+  color: var(--color-light);
   text-align: center;
-  width: calc(100% - 2rem);
-  border-radius: var(--border-radius-pill);
 }
 
-/* SUPPRIMÉ : Duplication de .promo-banner - la définition principale est en ligne 224 */
-
-.promo-banner a {
-  color: inherit;
-  text-decoration: underline;
-  margin-left: 0.5rem;
+.cta-section .btn.btn-primary,
+.cta-section .btn.btn-secondary,
+.cta-section .btn.btn-urgent,
+.cta-section .btn.btn-secondary-alt {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: transparent;
+  padding: 0.8rem 1.6rem;
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-base);
+  margin: 0.5rem;
+  transition: var(--transition-base);
 }
 
-.promo-banner a:hover {
-  color: #000;
-  text-decoration: underline;
+.cta-section .btn.btn-primary:hover,
+.cta-section .btn.btn-secondary:hover,
+.cta-section .btn.btn-urgent:hover,
+.cta-section .btn.btn-secondary-alt:hover {
+  background-color: var(--color-light-alt);
+  color: var(--color-primary-dark);
+  transform: translateY(-3px);
+}
+
+/* Études de cas (réalisations) */
+.case-study {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: var(--spacing-section);
+}
+
+.case-study.reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.case-study.reverse .case-study-image { 
+  grid-column: 2; 
+  grid-row: 1; 
+}
+
+.case-study.reverse .case-study-content { 
+  grid-column: 1; 
+  grid-row: 1; 
+}
+
+.case-study-image {
+  position: relative;
+  border-radius: var(--border-radius-large);
+  overflow: hidden;
+}
+
+.case-study-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-base);
+  transition: transform 0.5s;
+}
+
+.case-study:hover .case-study-image img {
+  transform: scale(1.03);
+}
+
+.client-logo { 
+  height: 35px; 
+  margin-bottom: 1.5rem; 
+}
+
+.case-study-content h3 {
+  font-size: 2rem;
+  font-weight: var(--font-weight-black);
+  margin-bottom: 1rem;
+}
+
+.case-challenge {
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.case-solution {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.case-solution li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.case-solution i {
+  color: var(--color-primary);
+  margin-right: 0.8rem;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.testimonial-inline {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.testimonial-inline::before {
+  content: '\201C';
+  font-family: Georgia, serif;
+  position: absolute;
+  left: -15px;
+  top: -20px;
+  font-size: 3rem;
+  color: var(--color-primary);
+  opacity: 0.3;
+}
+
+.testimonial-inline p { 
+  font-style: italic; 
+}
+
+.testimonial-inline footer { 
+  font-weight: var(--font-weight-bold); 
+  margin-top: 0.5rem; 
+}
+
+.references-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.references-logos img {
+  height: 45px;
+  opacity: 0.7;
+  transition: opacity 0.3s, transform 0.3s;
+  filter: grayscale(100%);
+}
+
+.references-logos img:hover { 
+  opacity: 1; 
+  transform: translateY(-3px);
+  filter: grayscale(0%);
+}
+
+/* 5bis. BOUTON WHATSAPP FLOTTANT */
+.whatsapp-float {
+  position: fixed;
+  bottom: var(--whatsapp-margin);
+  right: var(--whatsapp-margin);
+  left: auto;
+  width: var(--whatsapp-size);
+  height: var(--whatsapp-size);
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-whatsapp);
+  font-size: 2.3rem;
+  transition: transform 0.2s, box-shadow 0.2s, bottom 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Variante gaucher : bouton flottant côté gauche */
+body.left-handed .whatsapp-float {
+  left: var(--whatsapp-margin);
+  right: auto;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.23);
+  background: #20ba5a;
+}
+
+.whatsapp-float i {
+  pointer-events: none;
+}
+.whatsapp-float svg {
+  pointer-events: none;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+/* Animation de pulse pour attirer l'attention */
+.whatsapp-float::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #25d366;
+  opacity: 0.7;
+  z-index: -1;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* 6. RESPONSIVE DESIGN (sections) */
+@media (min-width: 600px) {
+  .hero-buttons {
+    flex-direction: row;
+    gap: 1.5rem;
+    width: auto;
+  }
+}
+
+/* Tablet gap tweak: slightly tighter spacing for grids */
+@media (min-width: 600px) and (max-width: 992px) {
+  .services-grid,
+  .services-grid-visual,
+  .references-grid,
+  .zones-grid {
+    gap: clamp(1rem, 2.2vw, 1.2rem);
+  }
+}
+
+/* Mobile gap tweak: tighter spacing on small screens */
+@media (max-width: 600px) {
+  .services-grid,
+  .services-grid-visual,
+  .references-grid,
+  .zones-grid {
+    gap: clamp(0.75rem, 2.5vw, 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .case-study,
+  .case-study.reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .case-study.reverse .case-study-image,
+  .case-study.reverse .case-study-content {
+    grid-column: 1;
+  }
+  
+  .case-study-image {
+    order: -1; /* Image toujours en premier sur mobile */
+  }
 }
 
 /* Statistiques sous forme de cartes */
@@ -438,47 +777,6 @@
   transform: translateY(0);
 }
 
-/* Boutons génériques de carrousel (références + galerie) */
-.carousel-control {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--color-light);
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  font-size: 1rem;
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-control[disabled] {
-  opacity: 0.4;
-  cursor: default;
-  box-shadow: none;
-}
-
-.carousel-control:hover,
-.carousel-control:focus {
-  outline: none;
-  background-color: var(--color-primary);
-  color: white;
-}
-
-.carousel-control.prev {
-  left: 0;
-}
-
-.carousel-control.next {
-  right: 0;
-}
-
 /* Zone d'intervention cartes */
 .zones-grid {
   display: grid;
@@ -564,250 +862,6 @@
   margin-top: 0;
   color: var(--color-primary);
   font-weight: var(--font-weight-bold);
-}
-
-/* Contact cards améliorées */
-.contact-card {
-  background-color: var(--color-light);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-large);
-  box-shadow: var(--box-shadow-base);
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.contact-card .contact-icon {
-  /* Icône bien centrée et mise en valeur sur les cartes de la page contact */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 1rem;
-  border-radius: 50%;
-  background: rgba(255, 140, 66, 0.12);
-  border: 1px solid rgba(255, 140, 66, 0.25);
-  color: var(--color-primary);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-.contact-card .contact-icon i {
-  font-size: 1.75rem;
-  line-height: 1;
-}
-.contact-card .contact-icon svg {
-  width: 1.75rem;
-  height: 1.75rem;
-  flex-shrink: 0;
-  fill: currentColor;
-}
-/* L’icône gagne en relief quand on survole la carte (sans toucher aux boutons) */
-.contact-card:hover .contact-icon {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-  background: rgba(255, 140, 66, 0.16);
-}
-
-@media (max-width: 480px) {
-  .contact-card .contact-icon {
-    width: 64px;
-    height: 64px;
-  }
-  .contact-card .contact-icon i {
-    font-size: 1.6rem;
-  }
-}
-
-/* Cartes de services améliorées */
-.services-grid-visual {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--grid-gap);
-}
-
-.service-card-visual {
-  background-color: var(--color-light);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-large);
-  box-shadow: var(--box-shadow-base);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: var(--transition-smooth);
-  height: 100%;
-}
-
-.service-card-visual:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--box-shadow-hover);
-  border-color: var(--color-primary);
-}
-
-.service-card-visual-image {
-  height: 200px;
-  overflow: hidden;
-}
-
-.service-card-visual-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.service-card-visual:hover .service-card-visual-image img {
-  transform: scale(1.05);
-}
-
-.service-card-visual-content {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.service-card-visual-content h3 {
-  font-size: var(--font-size-h3);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-dark);
-  margin-bottom: 0.5rem;
-}
-
-.service-card-visual-content p {
-  color: var(--color-text-muted);
-  margin-bottom: 1rem;
-}
-
-.service-card-visual-content ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-  margin-top: auto;
-}
-
-.service-card-visual-content ul li {
-  position: relative;
-  padding-left: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.service-card-visual-content ul li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.45rem;
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: var(--color-primary);
-}
-
-/* Cartes de références améliorées */
-.references-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--grid-gap);
-}
-
-.reference-card {
-  background-color: var(--color-light);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-large);
-  box-shadow: var(--box-shadow-base);
-  overflow: hidden;
-  transition: var(--transition-smooth);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.reference-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--box-shadow-hover);
-  border-color: var(--color-primary);
-}
-
-.reference-card-image {
-  height: 200px;
-  overflow: hidden;
-}
-
-.reference-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-
-.reference-card:hover .reference-card-image img {
-  transform: scale(1.05);
-}
-
-.reference-card-content {
-  padding: 1.5rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.reference-card-content h3 {
-  font-size: var(--font-size-h3);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-dark);
-  margin-bottom: 0.5rem;
-}
-
-.reference-card-content p {
-  color: var(--color-text-muted);
-  margin-bottom: 1rem;
-}
-
-.reference-card-content ul.challenge-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-  margin-top: auto;
-}
-
-.reference-card-content ul.challenge-list li {
-  position: relative;
-  padding-left: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.reference-card-content ul.challenge-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.45rem;
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: var(--color-primary);
-}
-
-/* Présentation des clauses légales sous forme de cartes (Mentions Légales) */
-.content-container > h2[id$='title'] {
-  background-color: var(--color-light);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-large) var(--border-radius-large) 0 0;
-  box-shadow: var(--box-shadow-base);
-  padding: 1.5rem 2rem 0.5rem;
-  margin-top: 2rem;
-  color: var(--color-primary);
-}
-
-.content-container > h2[id$='title'] + p,
-.content-container > h2[id$='title'] + p + p {
-  background-color: var(--color-light);
-  border: 1px solid var(--color-border);
-  border-top: none;
-  border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
-  box-shadow: var(--box-shadow-base);
-  padding: 0 2rem 1.5rem;
-  color: var(--color-text-muted);
 }
 
 /* Avantages inclus */
@@ -936,7 +990,7 @@ body.left-handed .back-to-top {
   height: 1.2rem;
 }
 
-/* ================== BLOC FAQ FINAL (UTILISER CE BLOC POUR MAINTENANCE) ================== */
+/* ================== BLOC FAQ FINAL (SECTIONNEL) ================== */
 .faq-container {
   display: grid;
   gap: 1.5rem;
@@ -1013,38 +1067,14 @@ body.left-handed .back-to-top {
 }
 
 @media (max-width: 600px) {
-  :root {
-    --promo-banner-height: 70px;
-  }
-  
-  .promo-banner {
-    font-size: 1rem;
-    padding: 0 0.7rem;
-  }
-  
   .faq-answer, 
   .faq-item.is-open .faq-answer {
     padding-left: 0.7rem;
     padding-right: 0.7rem;
   }
-  
-  .btn {
-    min-width: 0;
-    width: 100%;
-    padding: 0.8rem 1rem;
-  }
-  
-  .hero-buttons {
-    width: 100%;
-  }
-  
-  .footer-bottom-content {
-    flex-direction: column;
-    text-align: center;
-  }
 }
 
-/* ================== FONCTIONNALITÉS NOUVELLES ================== */
+/* ================== FONCTIONNALITÉS SECTIONNELLES ================== */
 
 /* 1. Animation de progression de scroll */
 .scroll-progress {
@@ -1159,7 +1189,8 @@ body.dark-theme .hand-toggle:hover {
 }
 
 /* 6. Style de surbrillance pour recherche */
-mark, .highlight {
+mark,
+.highlight {
   background-color: rgba(255, 140, 66, 0.2);
   color: inherit;
   padding: 0 0.2em;
@@ -1255,7 +1286,7 @@ mark, .highlight {
 }
 
 /* ==========================================================================
-   6. RESPONSIVE & MENU MOBILE (VERSION FINALE)
+   RESPONSIVE & MENU MOBILE (overlay + patch)
    ========================================================================== */
 
 @media (max-width: 768px) {
@@ -1300,7 +1331,8 @@ mark, .highlight {
     border: 1px solid var(--color-border);
   }
 
-  .nav-link:hover, .nav-link.active {
+  .nav-link:hover,
+  .nav-link.active {
     transform: none;
     background-color: var(--color-primary);
     color: var(--color-light);
@@ -1312,25 +1344,82 @@ mark, .highlight {
     width: calc(100% - 4rem);
   }
 }
-/* ==========================================================================
-   === PATCH CORRECTIF POUR MENU MOBILE - V1.0 ===
-   ========================================================================== */
 
-/* 
- * Correction n°1 : Bloquer le scroll de la page quand le menu est ouvert.
- * On cible le `body` quand le menu `.nav-links` a la classe `.active`.
- * Cela nécessite que votre JavaScript ajoute bien la classe `.active` au menu.
-*/
+/* Overlay du menu mobile */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: var(--z-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+}
+
+/* nav-links mobile active state - CORRIGÉ (unifié avec patch correctif) */
+.nav-links.active {
+  display: flex !important;
+  flex-direction: column;
+  position: fixed;
+  /* Commence sous la bannière promo et le header */
+  top: calc(var(--promo-banner-height) + var(--header-height)) !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  background-color: var(--color-light);
+  z-index: 1501 !important;
+  padding: 1.5rem 0;
+  box-shadow: var(--box-shadow-base);
+  animation: slideInDown 0.3s forwards;
+  /* Hauteur restante de l'écran (iOS+fallback) */
+  height: calc(100dvh - var(--promo-banner-height) - var(--header-height)) !important;
+  height: calc(100vh - var(--promo-banner-height) - var(--header-height)) !important;
+  overflow-y: auto !important; 
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-links.active .nav-link {
+  margin: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  width: calc(100% - 2rem);
+  border-radius: var(--border-radius-pill);
+}
+
+/* Liens dans la bannière promo */
+.promo-banner a {
+  color: inherit;
+  text-decoration: underline;
+  margin-left: 0.5rem;
+}
+
+.promo-banner a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* Bloquer le scroll quand le menu mobile est ouvert */
 body:has(.nav-links.active) {
   overflow: hidden;
 }
-
-
-
-
-
-
-
-
-
-
