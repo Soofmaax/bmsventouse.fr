@@ -892,49 +892,7 @@ body.dark-theme .coverage-cta {
   border-color: rgba(148, 163, 184, 0.9);
 }
 
-/* Bouton Retour en haut (Back to Top) */
-.back-to-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  left: auto;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-primary);
-  color: var(--color-light);
-  border-radius: 50%;
-  text-decoration: none;
-  box-shadow: var(--box-shadow-base);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-}
 
-/* Variante gaucher : bouton retour en haut côté gauche */
-body.left-handed .back-to-top {
-  left: 2rem;
-  right: auto;
-}
-
-.back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.back-to-top:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--box-shadow-hover);
-}
-
-.back-to-top svg {
-  pointer-events: none;
-  width: 1.2rem;
-  height: 1.2rem;
-}
 
 /* ================== BLOC FAQ FINAL (UTILISER CE BLOC POUR MAINTENANCE) ================== */
 .faq-container {
