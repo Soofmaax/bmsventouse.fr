@@ -1,6 +1,22 @@
 /* ==========================================================================
-   FEUILLE DE STYLE BMS VENTOUSE - VERSION OPTIMISÉE (V8.0) 
+   FEUILLE DE STYLE BMS VENTOUSE - VERSION OPTIMISÉE (V8.0)
+   Point d’entrée : le détail est désormais réparti dans :
+   - base.css      → variables, reset, accessibilité
+   - layout.css    → header, nav, sections, footer
+   - components.css→ boutons, cartes, FAQ, animations, etc.
+   - pages.css     → styles spécifiques à certaines pages (page-accueil, page-contact, etc.)
    ========================================================================== */
+
+@import url('./base.css');
+@import url('./layout.css');
+@import url('./components.css');
+@import url('./pages.css');
+
+/* 
+  NOTE :
+  Les styles historiques restent dans ce fichier pour compatibilité.
+  Progressivement, le code sera migré vers les fichiers ci-dessus.
+*/
 
 /* 1. VARIABLES GLOBALES & FONDATIONS */
 :root {
