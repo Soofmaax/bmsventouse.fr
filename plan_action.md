@@ -1,6 +1,6 @@
 # Plan d’action SEO/Accessibilité/Qualité - BMS Ventouse
 
-Dernière mise à jour : 2025-12-21
+Dernière mise à jour : 2025-12-22
 
 ## Objectifs
 
@@ -14,12 +14,13 @@ Dernière mise à jour : 2025-12-21
 
 - Harmonisation Open Graph (og:site_name) et Twitter Cards sur pages clés.
 - Suppression des meta keywords résiduels (index, contact).
-- Ajout liens « Infos IA » (llms.txt, ai.txt) en pied de page.
+- Ajout liens « Infos IA » (llms.txt principal, ai.txt alias) en pied de page.
 - Page « Infos IA » lisible humain (/infos-ia/) + ajout au sitemap.
 - Corrections accessibilité/perf (width/height/fetchpriority sur images héros).
 - Ajout contenus de référence (contenu_markdown/*.md).
 - GA4 + Consent Mode v2 en place (ID : G-VCB3QB5P4L).
 - Pages locales principales et pages spécialisées créées (ventousage grandes villes, logistique 93/77/95, shootings & défilés, convoyage, sécurité/gardiennage).
+- Politique IA enrichie dans llms.txt (cibles, personas, zones France+Belgique, déclencheurs) et simplification de ai.txt en alias vers llms.txt.
 
 ### P1 : À faire ensuite (1–2 jours homme)
 

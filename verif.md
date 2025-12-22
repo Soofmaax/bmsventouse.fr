@@ -158,6 +158,7 @@ Exemple de format :
 - 2025-12-22 : Dark mode — liens en orange (var(--color-primary)), texte principal clair, promo-banner avec texte clair lisible sur fond orange.
 - 2025-12-22 : Boutons de toggle (mode sombre + main gauche/droite) — contraste renforcé en dark mode (icônes claires, fond légèrement plus clair et bordure visible dans le header sombre).
 - 2025-12-22 : Icônes WhatsApp (global) — ajout d’un script qui remplace automatiquement tous les anciens SVG Font Awesome (viewBox 0 0 448 512) par l’icône Bootstrap 16x16 (bi-whatsapp) en conservant la taille (width/height) et le style.
+- 2025-12-22 : Vérification code (Genie) — aucune occurrence restante des anciens bleus (#1a56db, #60a5fa) dans les CSS/HTML hors ce fichier de suivi.
 
 À re-tester après merge :
 

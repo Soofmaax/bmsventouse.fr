@@ -8,7 +8,7 @@ Résumé exécutif
 - Accessibilité soignée (skip link, focus visible, sémantique), mais quelques textos et labels peuvent être enrichis.
 - Performance correcte pour un site statique; images critiques dimensionnées, fetchpriority appliqué; quelques opportunités de minification et déplacement de styles inline.
 - Contenus métier riches et bien ciblés; encore des manques mineurs (CGV/CGU, politique confidentialité dédiée, adresse/horaires visibles partout).
-- Préparation IA avancée: llms.txt, ai.txt, page /infos‑ia/ et métadonnées uniformisées.
+- Préparation IA avancée: llms.txt (fichier principal), ai.txt (alias vers llms.txt), page /infos‑ia/ et métadonnées uniformisées.
 
 Recommandations prioritaires (synthèse)
 - Critique: s’assurer qu’aucun lien interne ne casse en prod (CI Lychee OK). Rien de bloquant détecté.
@@ -128,7 +128,7 @@ Arborescence (principale)
 - /ventousage-pantin/
 - /infos-ia/
 - /404.html
-- /robots.txt, /sitemap.xml, /ai.txt, /llms.txt
+- /robots.txt, /sitemap.xml, /ai.txt (alias), /llms.txt (principal)
 
 Navigation
 - Header: Accueil, Services, Références, Contact
@@ -240,7 +240,7 @@ Liens
 
 ## PARTIE 6 - Préparation LLM
 
-- llms.txt et ai.txt: présents, entraînement autorisé, “réponses suggérées” FR
+- llms.txt (fichier principal) et ai.txt (alias): présents, entraînement autorisé, “réponses suggérées” FR
 - Page /infos‑ia/: créée, SEO complet + JSON‑LD + CTA
 - Contenu pages: structuré H2/H3 + FAQs pour parsing automatique
 - Pas de jargon non expliqué côté ventousage (définition fournie)
