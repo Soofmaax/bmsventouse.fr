@@ -2371,7 +2371,7 @@ body.left-handed .back-to-top {
   justify-content: center;
   color: var(--color-dark);
   font-size: 1.2rem;
-  transition: transform 0.3s, background-color 0.3s;
+  transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
 }
 
 .theme-toggle:hover,
@@ -2382,12 +2382,15 @@ body.left-handed .back-to-top {
 
 body.dark-theme .theme-toggle,
 body.dark-theme .hand-toggle {
-  color: var(--color-light);
+  /* Couleur claire explicite pour que les icônes restent visibles sur le header sombre */
+  color: #f9fafb;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background-color: rgba(15, 23, 42, 0.7);
 }
 
 body.dark-theme .theme-toggle:hover,
 body.dark-theme .hand-toggle:hover {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(148,163,184,0.25);
 }
 
 /* 3. Meilleur sélection de texte */

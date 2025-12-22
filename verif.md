@@ -156,6 +156,7 @@ Exemple de format :
 - 2025-12-22 : Icônes WhatsApp de la home — remplacées par l’icône officielle Bootstrap (bi-whatsapp) sur le bouton héros, le bouton flottant et le lien WhatsApp du footer.
 - 2025-12-22 : Couleurs texte/liens — liens globaux passés en orange (var(--color-primary)) en clair et dark mode, suppression des anciens bleus (#1a56db, #60a5fa) y compris pour les boutons secondaires ; liens du footer en orange.
 - 2025-12-22 : Dark mode — liens en orange (var(--color-primary)), texte principal clair, promo-banner avec texte clair lisible sur fond orange.
+- 2025-12-22 : Boutons de toggle (mode sombre + main gauche/droite) — contraste renforcé en dark mode (icônes claires, fond légèrement plus clair et bordure visible dans le header sombre).
 
 À re-tester après merge :
 
@@ -164,5 +165,6 @@ Exemple de format :
 - [ ] Vérifier que la FAQ de la home s’ouvre et se ferme correctement, que le texte est entièrement lisible sans être coupé, sur iPhone / Android / desktop.
 - [ ] Vérifier que les 3 icônes WhatsApp (héros, bouton flottant, footer) sont bien identiques, nets et lisibles en clair et dark mode.
 - [ ] Vérifier qu’il ne reste plus de liens bleus sur la home (texte noir + liens orange en mode clair, texte clair + liens orange en dark mode).
+- [ ] Vérifier que les boutons de toggle (lune = dark mode, main = main gauche/droite) sont bien visibles en dark mode (icône claire sur rond légèrement plus clair que le header).
 
 Au fur et à mesure que nous modifions les pages ensemble, j’ajouterai ici les entrées correspondantes pour que tu puisses facilement re-tester après le merge.
