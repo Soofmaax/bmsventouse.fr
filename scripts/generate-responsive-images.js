@@ -71,6 +71,15 @@ async function generateIcons() {
   await Promise.all(
     iconDefs.map(async ({ out, size }) => {
       const outPath = path.join(projectRoot, out);
+
+      // Évite le cas interdit par sharp : même fichier en entrée et en sortie.
+      // Pour android-chrome-192x192.png, on considère que le fichier de base
+      // dans le dépôt est déjà la bonne version et on ne le régénère pas.
+      if (outPath === baseIcon) {
+        console.log(`[icons] Skipping ${out} (base icon already present).`);
+        return;
+      }
+
       await sharp(baseIcon)
         .resize(size, size, {
           fit: 'contain',
