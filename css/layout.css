@@ -356,8 +356,14 @@ body.dark-theme .header {
 
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1.75rem;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .footer-column h4 {
