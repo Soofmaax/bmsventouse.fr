@@ -546,7 +546,7 @@ body.dark-theme .header {
 }
 
 .footer-column a { 
-  color: #d7dee9; 
+  color: var(--color-primary); 
   transition: color 0.2s, transform 0.2s;
   display: inline-flex;
   align-items: center;
@@ -712,13 +712,13 @@ body.dark-theme .header {
 /* Boutons secondaires */
 .btn-secondary {
   background: transparent;
-  border: 2px solid #1a56db;
-  color: #1a56db;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
   box-shadow: none;
 }
 
 .btn-secondary:hover {
-  background: #1a56db;
+  background: var(--color-primary);
   color: #ffffff;
 }
 
@@ -2741,11 +2741,11 @@ body.dark-theme {
 }
 
 body.dark-theme a {
-  color: #60a5fa;
+  color: var(--color-primary);
 }
 
 body.dark-theme a:hover {
-  color: #93c5fd;
+  color: var(--color-primary-dark);
 }
 
 body.dark-theme .section {
@@ -2774,8 +2774,8 @@ body.dark-theme .faq-answer {
 
 body.dark-theme .btn-secondary {
   background: transparent;
-  border-color: #60a5fa;
-  color: #60a5fa;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 /* Texte lisible sur les blocs d'appel à l'action en mode sombre */
@@ -2801,7 +2801,7 @@ body.dark-theme .footer-bottom-content a {
 
 /* Bannière promo : texte sombre mais non noir pur en mode sombre */
 body.dark-theme .promo-banner {
-  color: #111827 !important;
+  color: #f9fafb !important;
 }
 
 

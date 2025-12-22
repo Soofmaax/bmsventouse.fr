@@ -153,11 +153,16 @@ Exemple de format :
 - 2025-12-22 : Cartes « Services » — texte harmonisé sur les 3 premières cartes (ventousage, gardiennage, régie) pour une longueur plus cohérente.
 - 2025-12-22 : Section « Votre expert en ventousage » — recentrage du bloc et transformation en mini-CTA visuel (bloc ovale centré avec les phrases « Devis sous 24h… » et « En savoir plus… »).
 - 2025-12-22 : FAQ de la home — marges des paragraphes ajustées pour que tout le texte soit visible quand une question est ouverte (plus de texte coupé en bas).
+- 2025-12-22 : Icônes WhatsApp de la home — remplacées par l’icône officielle Bootstrap (bi-whatsapp) sur le bouton héros, le bouton flottant et le lien WhatsApp du footer.
+- 2025-12-22 : Couleurs texte/liens — liens globaux passés en orange (var(--color-primary)) en clair et dark mode, suppression des anciens bleus (#1a56db, #60a5fa) y compris pour les boutons secondaires ; liens du footer en orange.
+- 2025-12-22 : Dark mode — liens en orange (var(--color-primary)), texte principal clair, promo-banner avec texte clair lisible sur fond orange.
 
 À re-tester après merge :
 
 - [ ] Vérifier sur mobile (iPhone / Android) et desktop que les 3 cartes services en haut ont des textes d’une longueur visuellement proche (aucun pavé beaucoup plus long que les autres).
 - [ ] Vérifier que la section « Votre expert en ventousage à Paris et en Île‑de‑France » est bien centrée et lisible en clair et dark mode (le bloc ovale ressemble à un mini-CTA).
 - [ ] Vérifier que la FAQ de la home s’ouvre et se ferme correctement, que le texte est entièrement lisible sans être coupé, sur iPhone / Android / desktop.
+- [ ] Vérifier que les 3 icônes WhatsApp (héros, bouton flottant, footer) sont bien identiques, nets et lisibles en clair et dark mode.
+- [ ] Vérifier qu’il ne reste plus de liens bleus sur la home (texte noir + liens orange en mode clair, texte clair + liens orange en dark mode).
 
 Au fur et à mesure que nous modifions les pages ensemble, j’ajouterai ici les entrées correspondantes pour que tu puisses facilement re-tester après le merge.
