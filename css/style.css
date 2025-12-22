@@ -110,16 +110,16 @@ body {
   
 }
 
-/* Liens principaux : contraste minimum 4.5:1 */
+/* Liens principaux : texte orange cohérent avec la charte */
 a {
-  color: #1a56db; /* Bleu foncé accessible */
+  color: var(--color-primary);
   text-decoration: none;
   transition: color 0.3s;
   display: inline-block;
 }
 
 a:hover { 
-  color: #0d3d8f;
+  color: var(--color-primary-dark);
 }
 
 img, svg, video, canvas, audio, iframe, embed, object {
@@ -546,7 +546,7 @@ body.dark-theme .header {
 }
 
 .footer-column a { 
-  color: #d7dee9; 
+  color: var(--color-primary); 
   transition: color 0.2s, transform 0.2s;
   display: inline-flex;
   align-items: center;
@@ -712,13 +712,13 @@ body.dark-theme .header {
 /* Boutons secondaires */
 .btn-secondary {
   background: transparent;
-  border: 2px solid #1a56db;
-  color: #1a56db;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
   box-shadow: none;
 }
 
 .btn-secondary:hover {
-  background: #1a56db;
+  background: var(--color-primary);
   color: #ffffff;
 }
 
@@ -776,6 +776,12 @@ body.dark-theme .header {
   color: var(--color-text-muted);
   margin-bottom: 0;
   flex-grow: 1;
+}
+
+/* Petites notes explicatives (tarifs, conditions, etc.) */
+.note-text {
+  font-size: 0.9rem;
+  color: var(--color-text);
 }
 
 /* Badges */
@@ -2146,6 +2152,47 @@ body.left-handed .whatsapp-float {
   background: var(--color-primary);
 }
 
+/* Bloc couverture locale / mini-CTA (home) */
+#couverture-locale {
+  text-align: center;
+}
+
+#couverture-locale .section-subtitle {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.coverage-cta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin: 1.5rem auto 0;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+.coverage-cta .coverage-line {
+  font-weight: var(--font-weight-semibold);
+}
+
+.coverage-cta .coverage-links a {
+  font-weight: var(--font-weight-medium);
+}
+
+body.dark-theme #couverture-locale .section-subtitle {
+  color: #e2e8f0;
+}
+
+body.dark-theme .coverage-cta {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(148, 163, 184, 0.9);
+}
+
 /* Bouton Retour en haut (Back to Top) */
 .back-to-top {
   position: fixed;
@@ -2253,6 +2300,14 @@ body.left-handed .back-to-top {
   color: #374151;
 }
 
+.faq-answer p {
+  margin: 0 0 0.75rem;
+}
+
+.faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
 .faq-item.is-open .faq-answer {
   padding: 1rem 1.5rem;
   animation: faqFade 0.2s ease both;
@@ -2322,7 +2377,7 @@ body.left-handed .back-to-top {
   justify-content: center;
   color: var(--color-dark);
   font-size: 1.2rem;
-  transition: transform 0.3s, background-color 0.3s;
+  transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
 }
 
 .theme-toggle:hover,
@@ -2333,12 +2388,15 @@ body.left-handed .back-to-top {
 
 body.dark-theme .theme-toggle,
 body.dark-theme .hand-toggle {
-  color: var(--color-light);
+  /* Couleur claire explicite pour que les icônes restent visibles sur le header sombre */
+  color: #f9fafb;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background-color: rgba(15, 23, 42, 0.7);
 }
 
 body.dark-theme .theme-toggle:hover,
 body.dark-theme .hand-toggle:hover {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(148,163,184,0.25);
 }
 
 /* 3. Meilleur sélection de texte */
@@ -2692,11 +2750,11 @@ body.dark-theme {
 }
 
 body.dark-theme a {
-  color: #60a5fa;
+  color: var(--color-primary);
 }
 
 body.dark-theme a:hover {
-  color: #93c5fd;
+  color: var(--color-primary-dark);
 }
 
 body.dark-theme .section {
@@ -2725,12 +2783,34 @@ body.dark-theme .faq-answer {
 
 body.dark-theme .btn-secondary {
   background: transparent;
-  border-color: #60a5fa;
-  color: #60a5fa;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
+/* Texte lisible sur les blocs d'appel à l'action en mode sombre */
+body.dark-theme .cta-section {
+  background: linear-gradient(135deg, #0b1220 0%, #1e293b 100%);
+  color: #e5edf5;
+}
+
+body.dark-theme .cta-section .cta-title,
+body.dark-theme .cta-section .cta-subtitle,
+body.dark-theme .cta-section p {
+  color: #e5edf5;
+}
+
+/* Lien en bas de page (copyright) plus clair en mode sombre */
+body.dark-theme .footer-bottom-content {
+  color: #cbd5e1;
+}
+
+body.dark-theme .footer-bottom-content a {
+  color: #e5edf5;
+}
+
+/* Bannière promo : texte sombre mais non noir pur en mode sombre */
 body.dark-theme .promo-banner {
-  color: #000000 !important;
+  color: #f9fafb !important;
 }
 
 

@@ -25,6 +25,10 @@ Faits mis en place depuis la première analyse
 - Analytics et conformité
   - GA4 avec Consent Mode v2 (analytics_storage à denied par défaut) et anonymisation d’IP.
   - Événements: phone_click, whatsapp_click, email_click, cta_contact_click.
+- Préparation IA / LLM
+  - llms.txt comme fichier principal (politique IA détaillée: cibles, personas, zones France+Belgique, déclencheurs).
+  - ai.txt simplifié en alias pointant vers llms.txt.
+  - Page /infos-ia/ dédiée (résumé, FAQ IA, liens vers llms.txt / ai.txt).
 - Technique Netlify
   - Correction de la redirection /services → /services/ (301).
   - 404.html personnalisée.
