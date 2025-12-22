@@ -949,8 +949,9 @@ body.dark-theme .coverage-cta {
 /* Bouton Retour en haut (Back to Top) */
 .back-to-top {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  /* Aligné verticalement avec WhatsApp et décalé vers la gauche pour éviter le chevauchement */
+  bottom: var(--whatsapp-margin);
+  right: calc(var(--whatsapp-margin) + var(--whatsapp-size) + 16px);
   left: auto;
   width: 44px;
   height: 44px;
@@ -968,9 +969,9 @@ body.dark-theme .coverage-cta {
   transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
 }
 
-/* Variante gaucher : bouton retour en haut côté gauche */
+/* Variante gaucher : bouton retour en haut côté gauche (miroir du positionnement standard) */
 body.left-handed .back-to-top {
-  left: 2rem;
+  left: calc(var(--whatsapp-margin) + var(--whatsapp-size) + 16px);
   right: auto;
 }
 
