@@ -24,7 +24,7 @@ Ce guide t’explique comment configurer le **suivi complet** pour **bmsventouse
    - Nom : `BMS Ventouse`
 4. Note l’**ID de mesure** (format `G-XXXXXXX`).
 
-Le dépôt utilise actuellement : `G-VCB3QB5P4L`.  
+Le dépôt utilise actuellement : `G-V7QXQC5260`.  
 Si tu crées une nouvelle propriété, remplace cet ID dans les pages HTML où il apparaît.
 
 ### 1.2. Où GA4 est initialisé dans le code
@@ -32,7 +32,7 @@ Si tu crées une nouvelle propriété, remplace cet ID dans les pages HTML où i
 Sur les pages principales (Accueil, Services, Contact, Ventousage, Sécurité, etc.) tu as déjà :
 
 ```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB3QB5P4L"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V7QXQC5260"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -45,13 +45,13 @@ Sur les pages principales (Accueil, Services, Contact, Ventousage, Sécurité, e
     'security_storage': 'granted'
   });
   gtag('js', new Date());
-  gtag('config', 'G-VCB3QB5P4L', { anonymize_ip: true });
+  gtag('config', 'G-V7QXQC5260', { anonymize_ip: true });
 </script>
 ```
 
 Pour utiliser TON ID GA4 :
 
-- Remplace `G-VCB3QB5P4L` par ton ID de mesure sur les templates où ce snippet apparaît.
+- Remplace `G-V7QXQC5260` par ton ID de mesure sur les templates où ce snippet apparaît.
 
 > Consent Mode v2 est déjà en place : analytics est *denied* par défaut, puis mis à jour par la bannière cookies.
 
