@@ -1039,13 +1039,7 @@ function setupUnifiedFooter() {
                 </svg>
                 Disponible&nbsp;24/7&nbsp;— France entière
               </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16" style="margin-right:8px">
-                  <path d="M4.5 2a.5.5 0 0 0 0 1h.8l-.3 1.2a.5.5 0 0 0 .485.623h5a.5.5 0 0 0 .485-.377L11.7 3H12.5a.5.5 0 0 0 0-1h-8z"/>
-                  <path d="M3 4.5A1.5 1.5 0 0 0 1.5 6v7A1.5 1.5 0 0 0 3 14.5h10A1.5 1.5 0 0 0 14.5 13V6A1.5 1.5 0 0 0 13 4.5H3zm1.146 2.646a.5.5 0 0 1 .708 0L8 10.293l3.146-3.147a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 0 1 0-.708z"/>
-                </svg>
-                10&nbsp;Rue de la République, 93700 Drancy, France
-              </li>
+              
             </ul>
           </div>
           <div class="footer-column">
