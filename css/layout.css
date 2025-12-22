@@ -378,7 +378,8 @@ body.dark-theme .header {
 
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* Donne un peu plus de largeur à la colonne "Contact Direct" (3e) et réduit légèrement la colonne "Légal" (4e) */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 0.75fr);
   gap: 1.75rem;
 }
 
