@@ -340,8 +340,8 @@ body.dark-theme .header {
 
 .footer-content {
   display: grid;
-  /* Colonne marque légèrement réduite pour libérer plus d'espace aux 4 colonnes de liens */
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 2.4fr);
+  /* Colonne marque encore un peu plus étroite pour libérer un maximum d'espace aux 4 colonnes de liens */
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2.6fr);
   gap: 3rem;
 }
 
@@ -353,8 +353,8 @@ body.dark-theme .header {
 
 .footer-brand .footer-description {
   color: #cbd5e1;
-  /* Légèrement réduite pour que la première colonne prenne moins de largeur */
-  max-width: 22rem;
+  /* Réduite pour compacter davantage la première colonne */
+  max-width: 20rem;
   line-height: 1.5;
   margin: 0;
 }
