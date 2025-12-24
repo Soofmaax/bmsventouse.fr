@@ -238,7 +238,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const isHome = current === '/';
       const isRealisations = current === '/realisations';
-      const isTarifs = current === '/prix-ventousage-paris' || current === '/devis';
+      const isDevis = current === '/devis';
+      const isTarifs = current === '/prix-ventousage-paris' || isDevis;
       const isContact = current === '/contact';
 
       const navItems = [];
@@ -312,6 +313,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Contact
       navItems.push(
         `<li><a href="/contact/" class="nav-link${isContact ? ' active' : ''}">Contact</a></li>`
+      );
+
+      // CTA Devis gratuit
+      navItems.push(
+        `<li><a href="/devis/" class="nav-link btn${isDevis ? ' active' : ''}">Devis gratuit</a></li>`
       );
 
       // Préférence gaucher / droitier
