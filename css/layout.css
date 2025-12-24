@@ -209,6 +209,12 @@ body.dark-theme .header {
   z-index: var(--z-header);
 }
 
+/* Affichage du sous-menu au survol ou focus clavier sur desktop */
+.nav-links li.has-submenu:hover .nav-submenu,
+.nav-links li.has-submenu:focus-within .nav-submenu {
+  display: block;
+}
+
 .has-submenu.open .nav-submenu { 
   display: block; 
 }
