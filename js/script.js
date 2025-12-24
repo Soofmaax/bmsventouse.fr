@@ -315,11 +315,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         `<li><a href="/contact/" class="nav-link${isContact ? ' active' : ''}">Contact</a></li>`
       );
 
-      // CTA Devis gratuit
-      navItems.push(
-        `<li><a href="/devis/" class="nav-link btn${isDevis ? ' active' : ''}">Devis gratuit</a></li>`
-      );
-
       // Préférence gaucher / droitier
       navItems.push(
         `<li>
