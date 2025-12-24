@@ -1390,7 +1390,7 @@ function setupContactLeadCapture() {
           svc_loges_types: (document.getElementById('svc_loges_types') || {}).value || '',
           svc_loges_location: (document.getElementById('svc_loges_location') || {}).value || ''
         };
-        // On stocke email/phone pour le suivi du lead côté /devis/ si l’utilisateur y va ensuite
+        // On stocke email/phone pour le suivi du lead si l’utilisateur revient plus tard
         try {
           localStorage.setItem('bms_lead_email', payload.email || '');
           localStorage.setItem('bms_lead_phone', payload.phone || '');

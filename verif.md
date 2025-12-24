@@ -15,8 +15,7 @@ Tu peux cocher les cases à la main ou simplement ajouter des commentaires sous 
 
 - `/` – Accueil (index.html)
 - `/services/` – Page Services
-- `/realisations/` – Références / Réalisations
-- `/devis/` – Page Devis
+- `/realisations/` – Réalisations
 - `/contact/` – Page Contact
 - `/mentions/` – Mentions légales
 - `/infos-ia/` – Infos IA (page)
