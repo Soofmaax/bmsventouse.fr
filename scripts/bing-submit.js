@@ -10,7 +10,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const API_KEY = process.env.BING_API_KEY;
-const SITE_URL = process.env.SITE_URL || 'https://www.bmsventouse.fr';
+const SITE_URL = process.env.SITE_URL || 'https://bmsventouse.fr';
 const SITEMAP_PATH = path.resolve(process.cwd(), 'sitemap.xml');
 const ENDPOINT = `https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${API_KEY}`;
 const CHANGED_ONLY = process.argv.includes('--changed-only');

@@ -12,7 +12,7 @@ This project is static by design. However, a few configuration points exist:
 
 ## Analytics (GA4, GTM, Clarity)
 
-- **GA4** is implemented in HTML with **Consent Mode v2** (measurement ID currently `G-VCB3QB5P4L`).
+- **GA4** is implemented in HTML with **Consent Mode v2** (measurement ID currently `G-V7QXQC5260`).
 - The main JS integration lives in `js/script.js`:
   - Consent defaults to **denied** for analytics.
   - A cookie banner (`setupCookieBanner`) lets users accept/refuse analytics and updates Consent Mode.

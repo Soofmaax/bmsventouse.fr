@@ -1,7 +1,7 @@
 # Logistique Seine‑et‑Marne (77)
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/logistique-seine-et-marne/
+- URL : https://bmsventouse.fr/logistique-seine-et-marne/
 - Title tag : Entreprise Logistique Seine‑et‑Marne | Tournages & événements — BMS Ventouse
 - Meta description : Logistique audiovisuelle en Seine‑et‑Marne (77) : ventousage, sécurité de plateau, convoyage. Interventions à Meaux, Melun, Fontainebleau. Devis gratuit.
 

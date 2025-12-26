@@ -1,7 +1,7 @@
 # Transport de Matériel Audiovisuel — Paris
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/transport-materiel-audiovisuel-paris/
+- URL : https://bmsventouse.fr/transport-materiel-audiovisuel-paris/
 - Title tag : Transport de Matériel Audiovisuel à Paris | Convoyage sécurisé 24/7 — BMS Ventouse
 - Meta description : Transport et convoyage de matériel audiovisuel à Paris et Île‑de‑France. Chauffeurs expérimentés, véhicules jusqu’à 22 m³, service 24/7. Devis rapide.
 

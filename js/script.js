@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       navOverlay.classList.toggle('active', isActive);
       hamburger.setAttribute('aria-expanded', isActive);
       document.body.style.overflow = isActive ? 'hidden' : '';
-      if (isActive) {
+      if (isActive && firstFocusableElement) {
         firstFocusableElement.focus();
       }
     };
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         toggleMenu(false);
       }
       // Focus Trap
-      if (e.key === 'Tab' && hamburger.classList.contains('active')) {
+      if (e.key === 'Tab' && hamburger.classList.contains('active') && firstFocusableElement && lastFocusableElement) {
         if (e.shiftKey) { // Shift + Tab
           if (document.activeElement === firstFocusableElement) {
             lastFocusableElement.focus();
@@ -190,6 +190,158 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
     });
+  };
+
+  // --------------------------------------------------------------------------
+  // MODULE: NAVIGATION PRINCIPALE UNIFIÉE (menu + sous-menu Services)
+  // --------------------------------------------------------------------------
+  const setupUnifiedHeaderNav = () => {
+    try {
+      const navLinks = document.getElementById('navLinks');
+      if (!navLinks) return;
+
+      const normalizePath = (p) => {
+        if (!p) return '/';
+        let out = p.split('#')[0].split('?')[0];
+        if (out.length > 1 && out.endsWith('/')) {
+          out = out.slice(0, -1);
+        }
+        return out || '/';
+      };
+
+      const current = normalizePath(window.location.pathname || '/');
+
+      const inServicesSection = (() => {
+        const prefixes = [
+          '/services',
+          '/ventousage',
+          '/affichage-riverains',
+          '/signalisation-barrierage',
+          '/gardiennage',
+          '/securite-plateaux',
+          '/securite-gardiennage',
+          '/convoyage-vehicules-decors',
+          '/regie-materiel',
+          '/loges-confort',
+          '/cantine-catering',
+          '/transport-materiel-audiovisuel-paris',
+          '/autorisation-occupation-domaine-public-tournage-paris',
+          '/ventousage-cinema',
+          '/urban-regie'
+        ];
+        if (prefixes.some(prefix => current === prefix || current.startsWith(prefix + '/'))) return true;
+        if (current.startsWith('/ventousage-')) return true;
+        if (current.startsWith('/securite-tournage-')) return true;
+        if (current.startsWith('/logistique-')) return true;
+        return false;
+      })();
+
+      const isHome = current === '/';
+      const isRealisations = current === '/realisations';
+      const isDevis = current === '/devis';
+      const isTarifs = current === '/prix-ventousage-paris' || isDevis;
+      const isContact = current === '/contact';
+
+      const navItems = [];
+
+      // Accueil
+      navItems.push(
+        `<li><a href="/" class="nav-link${isHome ? ' active' : ''}">Accueil</a></li>`
+      );
+
+      // Services + sous-menu
+      navItems.push(
+        `<li class="has-submenu">
+          <a href="/services/" class="nav-link submenu-trigger${inServicesSection ? ' active' : ''}">
+            Services
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
+              <path d="M1.5 5.5 8 12l6.5-6.5-1.4-1.4L8 9.2 2.9 4.1z"/>
+            </svg>
+          </a>
+          <div class="nav-submenu">
+            <div class="nav-submenu-group">
+              <span class="group-title">Logistique &amp; ventousage</span>
+              <ul class="group-list">
+                <li><a href="/ventousage/">Ventousage &amp; autorisations</a></li>
+                <li><a href="/ventousage-paris/">Ventousage Paris</a></li>
+                <li><a href="/affichage-riverains/">Affichage riverains</a></li>
+                <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
+              </ul>
+            </div>
+            <div class="nav-submenu-group">
+              <span class="group-title">Sécurité &amp; gardiennage</span>
+              <ul class="group-list">
+                <li><a href="/securite-plateaux/">Sécurité de plateaux</a></li>
+                <li><a href="/gardiennage/">Gardiennage</a></li>
+              </ul>
+            </div>
+            <div class="nav-submenu-group">
+              <span class="group-title">Régie &amp; confort</span>
+              <ul class="group-list">
+                <li><a href="/regie-materiel/">Régie &amp; matériel</a></li>
+                <li><a href="/loges-confort/">Loges &amp; confort</a></li>
+                <li><a href="/cantine-catering/">Cantine &amp; catering</a></li>
+              </ul>
+            </div>
+            <div class="nav-submenu-group">
+              <span class="group-title">Transport</span>
+              <ul class="group-list">
+                <li><a href="/convoyage-vehicules-decors/">Convoyage véhicules &amp; décors</a></li>
+                <li><a href="/transport-materiel-audiovisuel-paris/">Transport matériel audiovisuel</a></li>
+              </ul>
+            </div>
+            <div class="nav-submenu-group">
+              <span class="group-title">Tous les services</span>
+              <ul class="group-list">
+                <li><a href="/services/">Voir tous les services</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>`
+      );
+
+      // Réalisations
+      navItems.push(
+        `<li><a href="/realisations/" class="nav-link${isRealisations ? ' active' : ''}">Réalisations</a></li>`
+      );
+
+      // Tarifs & devis
+      navItems.push(
+        `<li><a href="/prix-ventousage-paris/" class="nav-link${isTarifs ? ' active' : ''}">Tarifs &amp; devis</a></li>`
+      );
+
+      // Contact
+      navItems.push(
+        `<li><a href="/contact/" class="nav-link${isContact ? ' active' : ''}">Contact</a></li>`
+      );
+
+      // Préférence gaucher / droitier
+      navItems.push(
+        `<li>
+          <button class="hand-toggle" type="button" aria-label="Basculer en mode gaucher ou droitier">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
+              <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1M8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5 5 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.6 2.6 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046zm2.094 2.025"/>
+            </svg>
+          </button>
+        </li>`
+      );
+
+      // Bouton mode sombre / clair
+      navItems.push(
+        `<li>
+          <button class="theme-toggle" type="button" aria-label="Activer ou désactiver le mode sombre">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
+              <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/>
+              <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
+            </svg>
+          </button>
+        </li>`
+      );
+
+      navLinks.innerHTML = navItems.join('');
+    } catch (_) {
+      // non-bloquant
+    }
   };
 
   // --------------------------------------------------------------------------
@@ -569,13 +721,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://www.bmsventouse.fr/"
+            "item": "https://bmsventouse.fr/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": pageName,
-            "item": `https://www.bmsventouse.fr${path}`
+            "item": `https://bmsventouse.fr${path}`
           }
         ]
       };
@@ -833,7 +985,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupThemeMode();
     setupCookieBanner();
     setupSkipLink();
-    setupHamburgerMenu();
+    setupUnifiedHeader();
     setupUnifiedFooter();
     setupScrollAnimations();
     setupHeroParallax();
@@ -980,7 +1132,7 @@ function setupUnifiedFooter() {
               <li><a href="/prix-ventousage-paris/">Tarifs &amp; devis</a></li>
               <li><a href="/affichage-riverains/">Affichage riverains</a></li>
               <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
-              <li><a href="/realisations/">Références</a></li>
+              <li><a href="/realisations/">Réalisations</a></li>
               <li><a href="/contact/">Contact</a></li>
             </ul>
           </div>
@@ -1028,11 +1180,18 @@ function setupUnifiedFooter() {
               </li>
               <li>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16" style="margin-right:8px">
+                  <path d="M8 0a5.53 5.53 0 0 0-5.5 5.5C2.5 9.028 8 16 8 16s5.5-6.972 5.5-10.5A5.53 5.53 0 0 0 8 0m0 8a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5"/>
+                </svg>
+                10&nbsp;Rue de la République, 93700&nbsp;Drancy, France
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16" style="margin-right:8px">
                   <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
                   <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
                 </svg>
-                Disponible&nbsp;24/7
+                Disponible&nbsp;24/7&nbsp;— France entière
               </li>
+              
             </ul>
           </div>
           <div class="footer-column">
@@ -1231,7 +1390,7 @@ function setupContactLeadCapture() {
           svc_loges_types: (document.getElementById('svc_loges_types') || {}).value || '',
           svc_loges_location: (document.getElementById('svc_loges_location') || {}).value || ''
         };
-        // On stocke email/phone pour le suivi du lead côté /devis/ si l’utilisateur y va ensuite
+        // On stocke email/phone pour le suivi du lead si l’utilisateur revient plus tard
         try {
           localStorage.setItem('bms_lead_email', payload.email || '');
           localStorage.setItem('bms_lead_phone', payload.phone || '');

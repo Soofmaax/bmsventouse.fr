@@ -1,7 +1,7 @@
 # Ventousage Cinéma à Paris & Île‑de‑France
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/ventousage-cinema/
+- URL : https://bmsventouse.fr/ventousage-cinema/
 - Title tag : Ventousage cinéma : stationnement & périmètre | BMS Ventouse
 - Meta description : Réservation et neutralisation d’emplacements, panneaux B6, affichage riverains, coordination autorités/fourrière, preuves photo. Intervention 24/7.
 

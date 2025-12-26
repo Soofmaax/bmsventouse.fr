@@ -1,7 +1,7 @@
 # Ventousage à Pantin (93)
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/ventousage-pantin/
+- URL : https://bmsventouse.fr/ventousage-pantin/
 - Title tag : Ventousage à Pantin : neutralisation & AOT | BMS Ventouse
 - Meta description : Ventousage à Pantin : neutralisation du stationnement, affichage riverains, AOT. Secteurs 93 proches Paris (Canal, 19e) et ZFE. Intervention 24/7.
 

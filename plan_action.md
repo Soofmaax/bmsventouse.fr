@@ -18,15 +18,15 @@ Dernière mise à jour : 2025-12-22
 - Page « Infos IA » lisible humain (/infos-ia/) + ajout au sitemap.
 - Corrections accessibilité/perf (width/height/fetchpriority sur images héros).
 - Ajout contenus de référence (contenu_markdown/*.md).
-- GA4 + Consent Mode v2 en place (ID : G-V7QXQC5260).
+- GA4 + Consent Mode v2 en place (ID : G-V7QXQC5260) et unification de l’ID sur toutes les pages.
 - Pages locales principales et pages spécialisées créées (ventousage grandes villes, logistique 93/77/95, shootings & défilés, convoyage, sécurité/gardiennage).
 - Politique IA enrichie dans llms.txt (cibles, personas, zones France+Belgique, déclencheurs) et simplification de ai.txt en alias vers llms.txt.
+- Page « Politique de confidentialité » dédiée (/politique-confidentialite/) créée, avec lien dans le footer (colonne « Légal »).
+- Lien persistant « Gérer les cookies » dans le footer qui réinitialise le consentement et réaffiche la bannière.
+- Styles du breadcrumb et de la bannière cookies déplacés dans le CSS (plus de styles inline JS).
 
 ### P1 : À faire ensuite (1–2 jours homme)
 
-- Créer une page « Confidentialité / Politique de confidentialité » et l’ajouter au footer.
-- Ajouter un lien persistant « Gérer les cookies » pour rouvrir le choix de consentement.
-- Déporter les styles inline de la bannière cookies et du breadcrumb vers /css/style.css.
 - Soumettre sitemap.xml dans Google Search Console (propriété domaine + URL-prefix).
 - Activer les règles de protection de branche GitHub : PR obligatoire + check CI requis.
 

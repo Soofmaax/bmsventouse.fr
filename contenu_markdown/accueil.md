@@ -1,7 +1,7 @@
 # Accueil
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/
+- URL : https://bmsventouse.fr/
 - Title tag : BMS Ventouse | Expert Logistique pour Tournages en France
 - Meta description : Votre partenaire logistique pour tournages en France. BMS Ventouse gère ventousage, sécurité de plateaux, et convoyage 24/7. Devis gratuit.
 

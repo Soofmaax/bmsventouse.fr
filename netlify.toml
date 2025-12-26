@@ -74,3 +74,37 @@
   from = "/services"
   to = "/services/"
   status = 301
+
+# Canonicalisation et rattrapage des URLs autour de la page Références (/realisations/)
+[[redirects]]
+  from = "/realisations"
+  to = "/realisations/"
+  status = 301
+
+# Toute URL du type /realisations/quelque-chose est redirigée vers la page principale Références
+[[redirects]]
+  from = "/realisations/*"
+  to = "/realisations/"
+  status = 301
+
+# Rattrapage d’anciennes URLs ou erreurs de frappe éventuelles
+[[redirects]]
+  from = "/references"
+  to = "/realisations/"
+  status = 301
+
+[[redirects]]
+  from = "/references/*"
+  to = "/realisations/"
+  status = 301
+
+# Ancienne page /devis/ : redirigée vers la page Tarifs &amp; devis
+[[redirects]]
+  from = "/devis"
+  to = "/prix-ventousage-paris/"
+  status = 301
+
+[[redirects]]
+  from = "/devis/"
+  to = "/prix-ventousage-paris/"
+  status = 301

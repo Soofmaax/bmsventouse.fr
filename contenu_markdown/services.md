@@ -1,7 +1,7 @@
 # Services
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/services/
+- URL : https://bmsventouse.fr/services/
 - Title tag : Nos Services de Logistique Audiovisuelle | BMS Ventouse
 - Meta description : Découvrez nos services experts pour tournages et événements : ventousage, sécurité plateaux, régie technique, convoyage national. Solutions sur mesure pour une production sereine.
 

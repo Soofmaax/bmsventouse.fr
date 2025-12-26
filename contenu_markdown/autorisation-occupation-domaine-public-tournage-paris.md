@@ -1,7 +1,7 @@
 # Autorisation d’Occupation du Domaine Public (AOT) à Paris
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/autorisation-occupation-domaine-public-tournage-paris/
+- URL : https://bmsventouse.fr/autorisation-occupation-domaine-public-tournage-paris/
 - Title tag : Autorisation d’occupation du domaine public (AOT) pour tournage à Paris | BMS Ventouse
 - Meta description : AOT à Paris pour tournages : constitution du dossier, modèle de lettre, délais, coûts, obligations voie publique et affichage. BMS gère vos autorisations.
 

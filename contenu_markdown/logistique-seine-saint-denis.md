@@ -1,7 +1,7 @@
 # Logistique Seine‑Saint‑Denis (93)
 
 ## Meta informations
-- URL : https://www.bmsventouse.fr/logistique-seine-saint-denis/
+- URL : https://bmsventouse.fr/logistique-seine-saint-denis/
 - Title tag : Entreprise Logistique Seine‑Saint‑Denis | Tournages & événements — BMS Ventouse
 - Meta description : Logistique audiovisuelle en Seine‑Saint‑Denis (93) : ventousage, sécurité de plateau, convoyage. Interventions à Drancy, Aubervilliers, Montreuil, Pantin. Devis gratuit.
 
