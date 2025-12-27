@@ -203,6 +203,13 @@
   margin-top: 0.5rem;
 }
 
+/* Bloc de texte central étroit (paragraphes explicatifs, SEO) */
+.content-narrow {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
 /* Badges */
 .badge {
   background: rgba(255, 140, 66, 0.1);
