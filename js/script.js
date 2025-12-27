@@ -260,19 +260,19 @@ document.addEventListener('DOMContentLoaded', async () => {
           </a>
           <div class="nav-submenu">
             <div class="nav-submenu-group">
+              <span class="group-title">Sécurité &amp; gardiennage</span>
+              <ul class="group-list">
+                <li><a href="/securite-plateaux/">Sécurité de plateaux</a></li>
+                <li><a href="/gardiennage/">Gardiennage</a></li>
+              </ul>
+            </div>
+            <div class="nav-submenu-group">
               <span class="group-title">Logistique &amp; ventousage</span>
               <ul class="group-list">
                 <li><a href="/ventousage/">Ventousage &amp; autorisations</a></li>
                 <li><a href="/ventousage-paris/">Ventousage Paris</a></li>
                 <li><a href="/affichage-riverains/">Affichage riverains</a></li>
                 <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
-              </ul>
-            </div>
-            <div class="nav-submenu-group">
-              <span class="group-title">Sécurité &amp; gardiennage</span>
-              <ul class="group-list">
-                <li><a href="/securite-plateaux/">Sécurité de plateaux</a></li>
-                <li><a href="/gardiennage/">Gardiennage</a></li>
               </ul>
             </div>
             <div class="nav-submenu-group">
@@ -339,10 +339,47 @@ document.addEventListener('DOMContentLoaded', async () => {
       );
 
       navLinks.innerHTML = navItems.join('');
+
+      // Interaction du sous-menu Services (au clic sur desktop)
+      const servicesItem = navLinks.querySelector('li.has-submenu');
+      const trigger = servicesItem ? servicesItem.querySelector('.submenu-trigger') : null;
+
+      if (servicesItem && trigger) {
+        const toggleOpen = () => {
+          // Sur desktop uniquement : ouverture/fermeture au clic
+          if (window.innerWidth > 768) {
+            const isOpen = servicesItem.classList.contains('open');
+            servicesItem.classList.toggle('open', !isOpen);
+          }
+        };
+
+        trigger.addEventListener('click', (e) => {
+          if (window.innerWidth > 768) {
+            e.preventDefault();
+            toggleOpen();
+          }
+        });
+
+        trigger.addEventListener('keydown', (e) => {
+          if ((e.key === 'Enter' || e.key === ' ') && window.innerWidth > 768) {
+            e.preventDefault();
+            toggleOpen();
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!servicesItem.contains(e.target)) {
+            servicesItem.classList.remove('open');
+          }
+        });
+      }
     } catch (_) {
       // non-bloquant
     }
   };
+
+  // Alias pour compatibilité avec l'initialisation globale
+  const setupUnifiedHeader = setupUnifiedHeaderNav;
 
   // --------------------------------------------------------------------------
   // MODULE: ANIMATIONS AU DÉFILEMENT (Intersection Observer)
@@ -982,10 +1019,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   // INITIALISATION DE TOUS LES MODULES
   // ==========================================================================
   try {
+    // Construire d'abord le header/nav unifiés, puis activer le mode sombre
+    setupUnifiedHeader();
     setupThemeMode();
     setupCookieBanner();
     setupSkipLink();
-    setupUnifiedHeader();
     setupUnifiedFooter();
     setupScrollAnimations();
     setupHeroParallax();
@@ -1199,6 +1237,7 @@ function setupUnifiedFooter() {
             <ul>
               <li><a href="/mentions/">Mentions Légales</a></li>
               <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
+              <li><a href="/conditions-generales-prestation/">Conditions générales de prestation</a></li>
               <li><a href="/llms.txt">Infos IA (llms.txt)</a></li>
               <li><a href="/ai.txt">Infos IA (ai.txt)</a></li>
               <li><a href="/infos-ia/">Infos IA (page)</a></li>
