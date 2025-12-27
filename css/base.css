@@ -5,8 +5,8 @@
 /* 1. VARIABLES GLOBALES & FONDATIONS */
 :root {
   /* Couleurs principales */
-  --color-primary: #FF8C42;
-  --color-primary-dark: #e67e22;
+  --color-primary: #FF8C42;       /* Orange de marque */
+  --color-primary-dark: #c25a16;  /* Variante plus sombre pour fonds et boutons (meilleur contraste) */
   --color-primary-light: #ffaa70;
   --color-dark: #2c3e50;
   --color-dark-lighten: #34495e;

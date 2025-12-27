@@ -166,9 +166,9 @@ body.dark-theme .header {
 
 .nav-link:hover,
 .nav-link.active {
-  background-color: var(--color-primary);
-  /* Contraste AA/AAA: texte sombre */
-  color: var(--color-dark);
+  /* Fond plus sombre + texte blanc pour un meilleur contraste */
+  background-color: var(--color-primary-dark);
+  color: #ffffff;
   transform: translateY(-2px);
 }
 

@@ -466,8 +466,8 @@
 .carousel-control:hover,
 .carousel-control:focus {
   outline: none;
-  background-color: var(--color-primary);
-  color: white;
+  background-color: var(--color-primary-dark);
+  color: #ffffff;
 }
 
 .carousel-control.prev {
