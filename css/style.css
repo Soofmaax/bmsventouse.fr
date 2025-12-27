@@ -542,6 +542,23 @@
   font-size: 0.95rem;
   color: var(--color-text);
   transition: var(--transition-base);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mise en valeur des éléments importants dans les notes de couverture */
+.coverage-note-card strong {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 600px) {
+  .coverage-note-card {
+    padding: 1.25rem 1.25rem;
+    font-size: 0.9rem;
+    text-align: left;
+  }
 }
 
 .coverage-note-card:hover {
