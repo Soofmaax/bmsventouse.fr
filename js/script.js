@@ -1380,63 +1380,77 @@ function setupContactLeadCapture() {
   try {
     const form = document.querySelector('form[name="contact"]');
     if (!form) return;
+
+    const getValue = (id) => {
+      const el = document.getElementById(id);
+      return el && typeof el.value === 'string' ? el.value : '';
+    };
+
+    const getChecked = (id) => {
+      const el = document.getElementById(id);
+      return !!(el && el.checked);
+    };
+
     form.addEventListener('submit', () => {
       try {
+        const urgency = getValue('urgency');
+
         const payload = {
-          fullname: (document.getElementById('name') || {}).value || '',
-          role: (document.getElementById('role') || {}).value || '',
-          company: (document.getElementById('company') || {}).value || '',
-          email: (document.getElementById('email') || {}).value || '',
-          phone: (document.getElementById('phone') || {}).value || '',
-          service: (document.getElementById('service') || {}).value || '',
-          package: (document.getElementById('package') || {}).value || '',
-          location: (document.getElementById('location') || {}).value || '',
-          address: (document.getElementById('address') || {}).value || '',
-          schedule: (document.getElementById('schedule') || {}).value || '',
-          urgent: ((document.getElementById('urgency') || {}).value || '') === 'urgent_24h' || ((document.getElementById('urgency') || {}).value || '') === 'urgent_72h',
-          urgency: (document.getElementById('urgency') || {}).value || '',
-          date_start: (document.getElementById('date_start') || {}).value || '',
-          date_end: (document.getElementById('date_end') || {}).value || '',
-          payment_preference: (document.getElementById('payment') || {}).value || '',
-          budget: (document.getElementById('budget') || {}).value || '',
-          details: (document.getElementById('details') || {}).value || '',
-          consent: !!((document.getElementById('consent') || {}).checked),
+          fullname: getValue('name'),
+          role: getValue('role'),
+          company: getValue('company'),
+          email: getValue('email'),
+          phone: getValue('phone'),
+          service: getValue('service'),
+          package: getValue('package'),
+          location: getValue('location'),
+          address: getValue('address'),
+          schedule: getValue('schedule'),
+          urgent: urgency === 'urgent_24h' || urgency === 'urgent_72h',
+          urgency,
+          date_start: getValue('date_start'),
+          date_end: getValue('date_end'),
+          payment_preference: getValue('payment'),
+          budget: getValue('budget'),
+          details: getValue('details'),
+          consent: getChecked('consent'),
           source: 'contact_form',
           // Champs spécifiques selon service
-          svc_cantine_people: (document.getElementById('svc_cantine_people') || {}).value || '',
-          svc_cantine_meals: (document.getElementById('svc_cantine_meals') || {}).value || '',
-          svc_cantine_dietary: (document.getElementById('svc_cantine_dietary') || {}).value || '',
-          svc_cantine_hours: (document.getElementById('svc_cantine_hours') || {}).value || '',
-          svc_ventousage_streets: (document.getElementById('svc_ventousage_streets') || {}).value || '',
-          svc_ventousage_zones: (document.getElementById('svc_ventousage_zones') || {}).value || '',
-          svc_ventousage_hours: (document.getElementById('svc_ventousage_hours') || {}).value || '',
-          svc_securite_agents: (document.getElementById('svc_securite_agents') || {}).value || '',
-          svc_securite_hours: (document.getElementById('svc_securite_hours') || {}).value || '',
-          svc_securite_ssiap: !!((document.getElementById('svc_securite_ssiap') || {}).checked),
-          svc_convoyage_pickup: (document.getElementById('svc_convoyage_pickup') || {}).value || '',
-          svc_convoyage_drop: (document.getElementById('svc_convoyage_drop') || {}).value || '',
-          svc_convoyage_schedule: (document.getElementById('svc_convoyage_schedule') || {}).value || '',
-          svc_convoyage_stops: (document.getElementById('svc_convoyage_stops') || {}).value || '',
-          svc_convoyage_volume: (document.getElementById('svc_convoyage_volume') || {}).value || '',
-          svc_regie_equipment: (document.getElementById('svc_regie_equipment') || {}).value || '',
-          svc_regie_agents: (document.getElementById('svc_regie_agents') || {}).value || '',
-          svc_regie_hours: (document.getElementById('svc_regie_hours') || {}).value || '',
-          svc_signalisation_perimeter: (document.getElementById('svc_signalisation_perimeter') || {}).value || '',
-          svc_signalisation_barriers: (document.getElementById('svc_signalisation_barriers') || {}).value || '',
-          svc_signalisation_hours: (document.getElementById('svc_signalisation_hours') || {}).value || '',
-          svc_affichage_streets: (document.getElementById('svc_affichage_streets') || {}).value || '',
-          svc_affichage_posters: (document.getElementById('svc_affichage_posters') || {}).value || '',
-          svc_loges_number: (document.getElementById('svc_loges_number') || {}).value || '',
-          svc_loges_types: (document.getElementById('svc_loges_types') || {}).value || '',
-          svc_loges_location: (document.getElementById('svc_loges_location') || {}).value || ''
+          svc_cantine_people: getValue('svc_cantine_people'),
+          svc_cantine_meals: getValue('svc_cantine_meals'),
+          svc_cantine_dietary: getValue('svc_cantine_dietary'),
+          svc_cantine_hours: getValue('svc_cantine_hours'),
+          svc_ventousage_streets: getValue('svc_ventousage_streets'),
+          svc_ventousage_zones: getValue('svc_ventousage_zones'),
+          svc_ventousage_hours: getValue('svc_ventousage_hours'),
+          svc_securite_agents: getValue('svc_securite_agents'),
+          svc_securite_hours: getValue('svc_securite_hours'),
+          svc_securite_ssiap: getChecked('svc_securite_ssiap'),
+          svc_convoyage_pickup: getValue('svc_convoyage_pickup'),
+          svc_convoyage_drop: getValue('svc_convoyage_drop'),
+          svc_convoyage_schedule: getValue('svc_convoyage_schedule'),
+          svc_convoyage_stops: getValue('svc_convoyage_stops'),
+          svc_convoyage_volume: getValue('svc_convoyage_volume'),
+          svc_regie_equipment: getValue('svc_regie_equipment'),
+          svc_regie_agents: getValue('svc_regie_agents'),
+          svc_regie_hours: getValue('svc_regie_hours'),
+          svc_signalisation_perimeter: getValue('svc_signalisation_perimeter'),
+          svc_signalisation_barriers: getValue('svc_signalisation_barriers'),
+          svc_signalisation_hours: getValue('svc_signalisation_hours'),
+          svc_affichage_streets: getValue('svc_affichage_streets'),
+          svc_affichage_posters: getValue('svc_affichage_posters'),
+          svc_loges_number: getValue('svc_loges_number'),
+          svc_loges_types: getValue('svc_loges_types'),
+          svc_loges_location: getValue('svc_loges_location')
         };
+
         // On stocke email/phone pour le suivi du lead si l’utilisateur revient plus tard
         try {
           localStorage.setItem('bms_lead_email', payload.email || '');
           localStorage.setItem('bms_lead_phone', payload.phone || '');
           localStorage.setItem('bms_lead_fullname', payload.fullname || '');
           localStorage.setItem('bms_lead_company', payload.company || '');
-        } catch (_){}
+        } catch (_) {}
 
         // Envoi email géré par Netlify Forms côté serveur (notifications configurées dans Netlify)
         // Aucun appel API nécessaire côté front pour rester gratuit et sans maintenance.
@@ -1444,8 +1458,8 @@ function setupContactLeadCapture() {
         try {
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'contact_submitted', ...payload });
-        } catch(_){}
-      } catch (_){}
+        } catch (_) {}
+      } catch (_) {}
     });
   } catch (_) {
     // non-bloquant

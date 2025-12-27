@@ -177,3 +177,29 @@ For any future UX feature (new gallery, new toggle, etc.), follow the same patte
 - Clear CSS hooks via classes and body modifiers.
 - Accessible HTML (aria-labels, buttons instead of generic `<div>`s).
 - No hidden global state beyond small, documented keys in `localStorage`.
+
+---
+
+## 4. Conventions générales pour les modules frontend
+
+Pour garder le JS maintenable et compatible avec la CI :
+
+- Tous les modules suivent le pattern `setupXxx()` :
+  - Ils sont définis dans `js/script.js`.
+  - Ils sont appelés **une seule fois** dans le bloc `DOMContentLoaded` (section “INITIALISATION DE TOUS LES MODULES”).
+- Chaque module doit :
+  - Tolérer l’absence d’éléments (`querySelector` qui retourne `null` → on `return` proprement).
+  - Éviter de lancer des erreurs bloquantes (utiliser `try/catch` seulement là où c’est utile).
+  - Ne pas modifier le DOM en profondeur si ce n’est pas nécessaire (préférer ajouter des classes ou des petits fragments ciblés).
+- Les helpers spécifiques à un module (comme `getValue` / `getChecked` pour le formulaire Contact) restent **enfermés dans ce module** pour éviter de polluer l’espace global.
+- L’ordre d’initialisation est important :
+  - Navigation / header (`setupUnifiedHeader`, `setupHamburgerMenu`).
+  - Expérience utilisateur globale (`setupThemeMode`, `setupCookieBanner`, `setupScrollAnimations`, etc.).
+  - Fonctions avancées (GTM, Clarity, PWA, galerie ventousage, etc.) après que la page soit stable.
+
+Avant d’ajouter un nouveau module :
+
+1. Vérifier s’il n’existe pas déjà un module proche (FAQ, carrousel, galerie, etc.) qui peut être adapté.
+2. Le coder sous la forme `const setupMonModule = () => { ... }` ou `function setupMonModule() { ... }`.
+3. L’appeler dans le bloc `DOMContentLoaded` avec les autres `setupXxx()`.
+4. Lancer la CI (ou au minimum ESLint/HTMLHint/Stylelint en local) pour s’assurer qu’il respecte les règles du projet.
