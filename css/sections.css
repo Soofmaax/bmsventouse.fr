@@ -511,6 +511,42 @@ body.dark-theme .section.section-security {
   );
 }
 
+/* Processus d'intervention sous forme de cartes */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--grid-gap);
+  margin-top: 1.25rem;
+}
+
+.process-step {
+  text-align: left;
+}
+
+.process-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background-color: rgba(255, 140, 66, 0.12);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.process-step h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.process-step p {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
 .stat-item {
   background-color: var(--color-light);
   border: 1px solid var(--color-border);
