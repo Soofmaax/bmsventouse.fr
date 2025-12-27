@@ -1237,6 +1237,7 @@ function setupUnifiedFooter() {
             <ul>
               <li><a href="/mentions/">Mentions Légales</a></li>
               <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
+              <li><a href="/conditions-generales-prestation/">Conditions générales de prestation</a></li>
               <li><a href="/llms.txt">Infos IA (llms.txt)</a></li>
               <li><a href="/ai.txt">Infos IA (ai.txt)</a></li>
               <li><a href="/infos-ia/">Infos IA (page)</a></li>
