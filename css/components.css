@@ -196,6 +196,13 @@
   color: var(--color-text);
 }
 
+/* Texte secondaire discret (notes, options, mentions) */
+.text-muted {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
 /* Badges */
 .badge {
   background: rgba(255, 140, 66, 0.1);
