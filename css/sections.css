@@ -78,6 +78,30 @@
   text-shadow: 0 2px 8px rgba(0,0,0,0.44);
 }
 
+/* Petit tag de contexte en haut du hero (ex: Sécurité & gardiennage) */
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* Variante discrète couleur marque pour les pages sécurité */
+.hero-tag--security {
+  background: rgba(255, 140, 66, 0.3);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
 .hero h1 {
   font-size: var(--font-size-h1);
   font-weight: var(--font-weight-black);
@@ -467,6 +491,24 @@ body.left-handed .whatsapp-float {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: var(--grid-gap);
+}
+
+/* Variante très légère pour certaines sections (ex: sécurité) */
+.section.section-security {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 140, 66, 0.03) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+/* Mode sombre : la variante reste discrète mais lisible */
+body.dark-theme .section.section-security {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 1) 0%,
+    rgba(15, 23, 42, 1) 100%
+  );
 }
 
 .stat-item {
