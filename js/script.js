@@ -1021,6 +1021,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     // Construire d'abord le header/nav unifiés, puis activer le mode sombre
     setupUnifiedHeader();
+    setupHamburgerMenu();
     setupThemeMode();
     setupCookieBanner();
     setupSkipLink();
