@@ -344,6 +344,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   };
 
+  // Alias pour compatibilité avec l'initialisation globale
+  const setupUnifiedHeader = setupUnifiedHeaderNav;
+
   // --------------------------------------------------------------------------
   // MODULE: ANIMATIONS AU DÉFILEMENT (Intersection Observer)
   // --------------------------------------------------------------------------
