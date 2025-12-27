@@ -8,7 +8,7 @@
 /* Production logging gate: silence console in production unless window.DEBUG=true */
 (function(){ try{ var DEBUG = !!(window.DEBUG); if(!DEBUG){ ['log','info','debug','warn'].forEach(function(k){ try{ console[k] = function(){}; }catch(e){} }); } window.__BMS_DEBUG__ = DEBUG; }catch(e){} })();
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
 
   // --------------------------------------------------------------------------
   // CONFIGURATION CENTRALISÉE
@@ -952,16 +952,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (_) { /* non-bloquant */ }
   };
 
-  // --------------------------------------------------------------------------
-  // MODULE: SOUS-MENU NAV — toutes les pages regroupées par sections
-  // --------------------------------------------------------------------------
-  const setupAllPagesSubmenu = async () => {
-    // Version simplifiée / désactivée pour l’instant :
-    // le site reste parfaitement utilisable sans ce sous-menu,
-    // et on évite d’ajouter de la complexité JS inutile.
-    return;
-  };
-
+  
   // --------------------------------------------------------------------------
   // MODULE: BARRE DE PROGRESSION DE SCROLL
   // --------------------------------------------------------------------------
@@ -1034,7 +1025,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupAnalyticsEvents();
     setupHandPreference();
     setupBreadcrumbs();
-    await setupAllPagesSubmenu();
     // Barre de progression de scroll uniquement sur desktop pour limiter le travail JS sur mobile
     try {
       if (window.innerWidth >= 1024) {
