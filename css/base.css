@@ -21,7 +21,7 @@
   --color-info: #17a2b8;
 
   /* Typographie */
-  --font-family-base: 'Proxima Nova', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-base: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-heading: 'Anton', var(--font-family-base);
   --font-size-base: clamp(0.95rem, 1vw, 1rem);
   --font-size-sm: clamp(0.8rem, 0.9vw, 0.875rem);
