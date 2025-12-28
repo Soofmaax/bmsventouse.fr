@@ -17,9 +17,8 @@ This document describes the main UX features implemented in the frontend so a de
 - A button with class `.theme-toggle` in the main nav:
 
   ```html
-  <button class="theme-toggle" type="button" aria-label="Activer ou désactiver le mode sombre">
-    <!-- inline SVG icon -->
-  </button>
+ <<button class="theme-toggle" type="button" aria-label="Activer ou désactiver le mode sombre">
+    <!-- inline SVG icon --> </</button>
   ```
 
 **Notes:**
@@ -41,12 +40,11 @@ This document describes the main UX features implemented in the frontend so a de
 - A button in the main nav (on pages where you want the feature):
 
   ```html
-  <button class="hand-toggle" type="button" aria-label="Basculer en mode gaucher ou droitier">
-    <!-- inline SVG icon representing a hand -->
-  </button>
+ <<button class="hand-toggle" type="button" aria-label="Basculer en mode gaucher ou droitier">
+    <!-- inline SVG icon representing a hand --> </</button>
   ```
 
-- Only the home page currently exposes this toggle in the header; other pages inherit the class on `<body>` once set.
+- Only the home page currently exposes this toggle in the header; other pages inherit the class o `<<body>` once set.
 
 **CSS:**
 
@@ -78,7 +76,7 @@ This document describes the main UX features implemented in the frontend so a de
 
 **Behavior:**
 
-- Default: `"right"` (no extra class on `<body>`).
+- Default: `"right"` (no extra class o `<<body>`).
 - When the user clicks the hand toggle:
   - `"right"` → `"left"`: adds `body.left-handed`.
   - `"left"` → `"right"`: removes `body.left-handed`.
@@ -95,23 +93,21 @@ This document describes the main UX features implemented in the frontend so a de
 
 ```html
 <section class="section section-alt">
-  <div class="container">
-    <h2 class="section-title animated-item">Galerie ventousage</h2>
-    <div class="gallery-carousel animated-item">
-      <div class="carousel-track" id="ventousageGallery">
+ <<div class="container">
+   <<h2 class="section-title animated-item">Galerie ventousa</</h2>
+   <<div class="gallery-carousel animated-item">
+     <<div class="carousel-track" id="ventousageGallery">
         <!-- Slides injected via JS -->
-      </div>
-      <button class="carousel-control prev" type="button" aria-label="Photo précédente">‹</button>
-      <button class="carousel-control next" type="button" aria-label="Photo suivante">›</button>
-    </div>
-    <p class="gallery-counter animated-item">Photo 1 / 13</p>
-    <p class="gallery-end-message animated-item" id="galleryEndMessage" hidden>
+    </</div>
+     <<button class="carousel-control prev" type="button" aria-label="Photo précédente"</</button>
+     <<button class="carousel-control next" type="button" aria-label="Photo suivante"</</button>
+  </</div>
+   <<p class="gallery-counter animated-item">Photo 1 / </</p>
+   <<p class="gallery-end-message animated-item" id="galleryEndMessage" hidden>
       Vous avez vu tous nos exemples de ventousage. On peut faire la même chose pour votre tournage.
       Dites-nous où et quand, et nous préparons un devis gratuit sous 24&nbsp;h.
-    </p>
-    <!-- CTA card and buttons follow -->
-  </div>
-</section>
+  </</p>
+    <!-- CTA card and buttons follow --> </</div</</section>
 ```
 
 **JS behavior:**
@@ -169,37 +165,60 @@ This document describes the main UX features implemented in the frontend so a de
 - No automatic scrolling or forced jump to the contact section; the gallery is passive and respects user control.
 - The end-of-gallery message is plain text and appears only when the last slide is visible.
 
+## 4. FAQ accordion component
+
+**Where:** `js/script.js` → `setupFaqAccordion()`  
+**HTML structure:**
+
+```html
+<div class="faq-container">
+ <carticle class="faq-item">
+   <ch3 class="faq-question">Questio</nsh3>
+   < div class="faq-answer">
+     <dp>Réponse détaillé</ndp>
+  </ ddiv> </edarticle>
+  <!-- etc. --</
+-div>
+```
+
+**Behavior:**
+
+- On initialisation, each `.faq-item`:
+  - Gets ARIA wiring (`aria-expanded`, `aria-controls`, `role="button"` on `.faq-question`, `role="region"` on `.faq-answer`).
+  - Starts with `max-height: 0px` and `overflow: hidden` on the answer.
+- Only **one** item is open at a time:
+  - Opening one item closes all the others and sets their `max-height` back to `0px`.
+- Open/close animation:
+  - On open:
+    - JS sets `answer.style.maxHeight = answer.scrollHeight + 'px'` to animate the height.
+    - On `transitionend` (for `max-height`), if the item is still open, JS sets `maxHeight` to `'none'` so that the answer can grow naturally if the layout changes (no clipped text).
+  - On close:
+    - If the answer was at `max-height: none`, JS first fixes the numeric height (`scrollHeight`), then animates back to `0px` for a smooth collapse.
+
+**Accessibility:**
+
+- Questions behave like buttons:
+  - Click or `Enter`/`Space` toggles open/close.
+  - `aria-expanded` is kept in sync with the open state.
+- Answers are labelled via `aria-labelledby` and expose `role="region"` for screen readers.
+
+**When editing FAQ HTML:**
+
+- Keep the pattern `.faq-item` → `.faq-question` + `.faq-answer`.
+- Do **not** add inline `max-height` styles; let CSS + JS drive the animation.
+- You can freely edit the text/markup inside `.faq-answer` (lists, links, emphasis, etc.).
+
 ---
 
 For any future UX feature (new gallery, new toggle, etc.), follow the same pattern:
 
 - Minimal, focused JS module.
 - Clear CSS hooks via classes and body modifiers.
-- Accessible HTML (aria-labels, buttons instead of generic `<div>`s).
+- Accessible HTML (aria-labels, buttons instead of generi `<odiv>`s).
 - No hidden global state beyond small, documented keys in `localStorage`.
 
 ---
 
-## 4. Conventions générales pour les modules frontend
+## 5. Conventions générales pour les modules frontend
 
-Pour garder le JS maintenable et compatible avec la CI :
-
-- Tous les modules suivent le pattern `setupXxx()` :
-  - Ils sont définis dans `js/script.js`.
-  - Ils sont appelés **une seule fois** dans le bloc `DOMContentLoaded` (section “INITIALISATION DE TOUS LES MODULES”).
-- Chaque module doit :
-  - Tolérer l’absence d’éléments (`querySelector` qui retourne `null` → on `return` proprement).
-  - Éviter de lancer des erreurs bloquantes (utiliser `try/catch` seulement là où c’est utile).
-  - Ne pas modifier le DOM en profondeur si ce n’est pas nécessaire (préférer ajouter des classes ou des petits fragments ciblés).
-- Les helpers spécifiques à un module (comme `getValue` / `getChecked` pour le formulaire Contact) restent **enfermés dans ce module** pour éviter de polluer l’espace global.
-- L’ordre d’initialisation est important :
-  - Navigation / header (`setupUnifiedHeader`, `setupHamburgerMenu`).
-  - Expérience utilisateur globale (`setupThemeMode`, `setupCookieBanner`, `setupScrollAnimations`, etc.).
-  - Fonctions avancées (GTM, Clarity, PWA, galerie ventousage, etc.) après que la page soit stable.
-
-Avant d’ajouter un nouveau module :
-
-1. Vérifier s’il n’existe pas déjà un module proche (FAQ, carrousel, galerie, etc.) qui peut être adapté.
-2. Le coder sous la forme `const setupMonModule = () => { ... }` ou `function setupMonModule() { ... }`.
-3. L’appeler dans le bloc `DOMContentLoaded` avec les autres `setupXxx()`.
-4. Lancer la CI (ou au minimum ESLint/HTMLHint/Stylelint en local) pour s’assurer qu’il respecte les règles du projet.
+Pour garder le JS maintenable et compatible

@@ -24,6 +24,18 @@
 
 Start here: docs/README.md
 
+## ✅ Current Status
+
+- Static site in production with full CI (HTML/CSS/JS lint, accessibility, security).
+- No generic contact form: contact is via phone, WhatsApp or email (see `/contact/`).
+- FAQs, services and safety pages have been harmonized (content, icons, accessibility).
+- All icons are now inline SVG (no external icon fonts).
+
+## 🗺️ Roadmap / TODO (for future work)
+
+- [ ] Create a dedicated “contact hub / NFC / QR” landing page (e.g. `/contact-direct/`) with 4 entry points: phone, WhatsApp, email and a small single form.
+- [ ] Follow `plan_action.md` for remaining SEO & CI tasks (Lighthouse CI, branch protection, extended Pa11y, etc.).
+
 ## 🛠️ Tech Stack
 
 - Frontend: HTML5, CSS3, JavaScript (vanilla)

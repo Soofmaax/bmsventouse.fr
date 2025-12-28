@@ -158,14 +158,57 @@ Exemple de format :
 - 2025-12-22 : Boutons de toggle (mode sombre + main gauche/droite) — contraste renforcé en dark mode (icônes claires, fond légèrement plus clair et bordure visible dans le header sombre).
 - 2025-12-22 : Icônes WhatsApp (global) — ajout d’un script qui remplace automatiquement tous les anciens SVG Font Awesome (viewBox 0 0 448 512) par l’icône Bootstrap 16x16 (bi-whatsapp) en conservant la taille (width/height) et le style.
 - 2025-12-22 : Vérification code (Genie) — aucune occurrence restante des anciens bleus (#1a56db, #60a5fa) dans les CSS/HTML hors ce fichier de suivi.
+- 2025-12-28 : Module FAQ global — logique mise à jour pour adapter automatiquement la hauteur de la réponse à la taille réelle du contenu (plus aucun texte coupé, y compris sur mobile ou en cas de changement de mise en page).
+
+### /services/
+
+- 2025-12-28 : Carte « Cantine & catering » — correction de l’attribut alt de l’image (orthographe « cantine et catering »).
+- 2025-12-28 : Encadré « Gardiennage & sécurité de matériel » — balisage accessibilité (role=\"note\" + aria-label explicite) pour harmoniser avec les autres notes.
+
+### /gardiennage/
+
+- 2025-12-28 : Encadré « Note sécurité & conformité » — balisage accessibilité (role=\"note\" + aria-label) pour les lecteurs d’écran.
+
+### /securite-plateaux/
+
+- 2025-12-28 : Correction d’un bloc de texte qui affichait des tags `<strong>` en texte brut (désormais vrai HTML, mieux lisible).
+- 2025-12-28 : Encadrés « Gardiennage & sécurité de matériel » et « Engagement conformité & bonnes pratiques (sécurité) » — ajout de role=\"note\" + aria-label.
+
+### /securite-tournage-paris/
+
+- 2025-12-28 : Encadré « Engagement conformité & bonnes pratiques (sécurité) » — ajout de role=\"note\" + aria-label.
+
+### /signalisation-barrierage/
+
+- 2025-12-28 : Encadré « Note accessibilité & conformité » — ajout de role=\"note\" + aria-label.
+
+### /llms.txt (politique IA)
+
+- 2025-12-28 : Alignement avec la réalité du site — suppression de la mention « formulaire » dans la ligne SLA (seulement email / WhatsApp à ce stade).
 
 À re-tester après merge :
 
 - [ ] Vérifier sur mobile (iPhone / Android) et desktop que les 3 cartes services en haut ont des textes d’une longueur visuellement proche (aucun pavé beaucoup plus long que les autres).
 - [ ] Vérifier que la section « Votre expert en ventousage à Paris et en Île‑de‑France » est bien centrée et lisible en clair et dark mode (le bloc ovale ressemble à un mini-CTA).
 - [ ] Vérifier que la FAQ de la home s’ouvre et se ferme correctement, que le texte est entièrement lisible sans être coupé, sur iPhone / Android / desktop.
+- [ ] Vérifier rapidement l’ouverture/fermeture des FAQ sur 2–3 autres pages (par ex. /ventousage-paris/, /prix-ventousage-paris/, /gardiennage/) pour confirmer qu’aucun texte n’est coupé.
 - [ ] Vérifier que les 3 icônes WhatsApp (héros, bouton flottant, footer) sont bien identiques, nets et lisibles en clair et dark mode.
 - [ ] Vérifier qu’il ne reste plus de liens bleus sur la home (texte noir + liens orange en mode clair, texte clair + liens orange en dark mode).
 - [ ] Vérifier que les boutons de toggle (lune = dark mode, main = main gauche/droite) sont bien visibles en dark mode (icône claire sur rond légèrement plus clair que le header).
 
+### TODO – prochaine évolution « hub NFC/QR »
+
+- Créer une page de contact rapide dédiée (hub NFC/QR), avec un seul endroit où vivre : boutons WhatsApp / téléphone / email + mini‑formulaire léger. Les cartes NFC et QR pointeront vers cette page.
+
 Au fur et à mesure que nous modifions les pages ensemble, j’ajouterai ici les entrées correspondantes pour que tu puisses facilement re-tester après le merge.
+
+### FAQ globales
+
+- 2025-12-28 : Refonte du module JS `setupFaqAccordion` pour que la hauteur des réponses s’adapte automatiquement au contenu (plus de texte coupé), tout en conservant l’animation d’ouverture/fermeture.
+- 2025-12-28 : Harmonisation des blocs FAQ sur les pages Ventousage / Sécurité / Gardiennage (structure HTML, titres, cohérence contenu + JSON-LD).
+
+### Contact & formulaires
+
+- 2025-12-28 : Suppression de toute mention de « formulaire de contact » sur les pages publiques ; modes de contact affichés = téléphone, WhatsApp, email.
+- 2025-12-28 : Politique de confidentialité et `llms.txt` mis à jour pour refléter ce mode de contact (pas de formulaire général actif pour le moment).
+- TODO (future session) : créer une page hub NFC/QR dédiée (par ex. `/contact-direct/`) avec 4 entrées : téléphone, WhatsApp, email, mini‑formulaire unique.

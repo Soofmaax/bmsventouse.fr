@@ -75,9 +75,10 @@ Pistes d’amélioration à moyen terme
   - Stratégie de netlinking localisée et partenariats (studios, régies, loueurs).
 
 Références internes
-- guides et process détaillés dans:
-  - docs/SEO_GUIDE.md
-  - docs/CONTENT_GUIDELINES.md
-  - docs/ACCESSIBILITY.md
-  - docs/RELEASE_CHECKLIST.md
+- guides et process détaillés dans :
+  - docs/README.md (index de la documentation)
+  - docs/patterns.md (patterns de pages & composants)
+  - docs/api/frontend-ux.md (modules JS frontend : thème, hand-toggle, FAQ, galerie, etc.)
+  - README-css.md et README-icons.md (conventions CSS & icônes)
+  - plan_action.md (priorités SEO / accessibilité / qualité et roadmap)
 
