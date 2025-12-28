@@ -463,6 +463,15 @@ document.addEventListener('DOMContentLoaded', () => {
       answer.setAttribute('role', 'region');
       answer.style.maxHeight = '0px';
 
+      // Quand l'ouverture est terminée, on retire la contrainte de hauteur
+      // pour que tout le texte reste visible même si la mise en page évolue
+      answer.addEventListener('transitionend', (e) => {
+        if (e.propertyName !== 'max-height') return;
+        if (item.classList.contains('is-open')) {
+          answer.style.maxHeight = 'none';
+        }
+      });
+
       // Toggle avec transition fluide de la hauteur
       const toggleFAQ = () => {
         const isOpen = item.classList.contains('is-open');
@@ -477,20 +486,29 @@ document.addEventListener('DOMContentLoaded', () => {
               otherQuestion.setAttribute('aria-expanded', 'false');
             }
             if (otherAnswer) {
+              // On remet une hauteur numérique pour permettre l'animation de fermeture
               otherAnswer.style.maxHeight = '0px';
             }
           }
         });
         
-        // Basculer l'élément actuel
-        item.classList.toggle('is-open', !isOpen);
-        question.setAttribute('aria-expanded', String(!isOpen));
-        // Smooth expand/collapse
         if (!isOpen) {
+          // Ouvrir l'élément actuel
+          item.classList.add('is-open');
+          question.setAttribute('aria-expanded', 'true');
+          // On part de 0, puis on anime jusqu'à la hauteur réelle
+          answer.style.maxHeight = '0px';
           requestAnimationFrame(() => {
             answer.style.maxHeight = answer.scrollHeight + 'px';
           });
         } else {
+          // Fermer l'élément actuel
+          item.classList.remove('is-open');
+          question.setAttribute('aria-expanded', 'false');
+          // Si la hauteur était "none", on fixe d'abord la hauteur actuelle,
+          // puis on anime jusqu'à 0 pour éviter les coupures brutales.
+          const currentHeight = answer.scrollHeight;
+          answer.style.maxHeight = currentHeight + 'px';
           requestAnimationFrame(() => {
             answer.style.maxHeight = '0px';
           });
