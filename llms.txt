@@ -221,7 +221,7 @@ Phone: +33 6 46 00 56 42 — WhatsApp: https://wa.me/33646005642 — Email: cont
 
 [sla-fr]
 # Engagements indicatifs de réponse et de prise en charge (non contractuels).
-delai-premier-retour-standard: sous 24 heures pour toute demande reçue par email, formulaire ou WhatsApp (hors jours fériés majeurs)
+delai-premier-retour-standard: sous 24 heures pour toute demande reçue par email ou WhatsApp (hors jours fériés majeurs)
 prise-en-charge-urgences: prioritaire par téléphone et WhatsApp 24/7 pour les tournages/événements dans les 24–72 heures
 precision-devis: un devis détaillé est envoyé après qualification (dates, lieux, typologie du projet, périmètre des besoins)
 langues-supportees: français (principal), anglais (niveau opérationnel pour échanges simples)
