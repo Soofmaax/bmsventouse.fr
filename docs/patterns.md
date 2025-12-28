@@ -205,7 +205,39 @@ Ne pas changer à la main dans le HTML.
 
 ---
 
-### 3.4 Blocs d’options / notes sous cartes (“Options : …”)
+### 3.4 Section FAQ
+
+Pattern standard pour les questions fréquentes :
+
+```html
+<section class="section">
+  <div class="container">
+    <h2 class="section-title animated-item">Questions fréquentes</h2>
+    <div class="faq-container animated-item">
+      <article class="faq-item">
+        <h3 class="faq-question">Question fréquente… ?</h3>
+        <div class="faq-answer">
+          <p>Réponse détaillée, éventuellement sur plusieurs paragraphes.</p>
+        </div>
+      </article>
+      <!-- autres .faq-item -->
+    </div>
+  </div>
+</section>
+```
+
+- La structure attendue par le JS est toujours : `.faq-item` → `.faq-question` + `.faq-answer`.
+- Le module `setupFaqAccordion()` (dans `js/script.js`) :
+  - ajoute les attributs ARIA (`aria-expanded`, `aria-controls`, `role="button"`, `role="region"`) ;
+  - gère l’ouverture/fermeture avec animation de hauteur (`max-height`) ;
+  - garantit que le texte n’est pas coupé même si la mise en page change (largeur d’écran, police, etc.).
+- **Important :**
+  - ne pas ajouter de styles inline sur `.faq-answer` (pas de `max-height` manuel) ;
+  - ne pas mettre d’autres boutons/cliques actifs dans `.faq-question` (c’est déjà l’élément interactif principal).
+
+---
+
+### 3.5 Blocs d’options / notes sous cartes (“Options : …”)
 
 Pattern standard :
 
