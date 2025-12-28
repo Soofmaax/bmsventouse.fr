@@ -130,36 +130,37 @@
     }
     </script>
 </head>
-<body>
+<body class="page-ventousage-paris">
 
 
-<!-- ==========================================================================
-   EN-TÊTE PRINCIPAL
-   ========================================================================== -->
 <header class="header">
   <div class="container">
     <div class="nav">
       <a href="/" class="logo" aria-label="Retour à l'accueil de BMS Ventouse">
         <img src="/android-chrome-192x192.png" alt="Logo BMS Ventouse" width="40" height="40">
-        <span class="logo-text">
-          <span class="bms">BMS</span> <span class="ventouse">Ventouse</span>
-        </span>
+        <span class="logo-text"><span class="bms">BMS</span> <span class="ventouse">Ventouse</span></span>
       </a>
       <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
       <nav>
         <ul id="navLinks" class="nav-links">
-          <li><a href="/" class="nav-link">Accueil</a></li>
+          <li><a href="/" class="nav-link active">Accueil</a></li>
           <li><a href="/services/" class="nav-link">Services</a></li>
           <li><a href="/realisations/" class="nav-link">Réalisations</a></li>
           <li><a href="/contact/" class="nav-link">Contact</a></li>
           <li>
+            <button class="hand-toggle" type="button" aria-label="Basculer en mode gaucher ou droitier">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
+                <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1M8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5 5 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.6 2.6 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046zm2.094 2.025"/>
+              </svg>
+            </button>
+          </li>
+          <li>
             <button class="theme-toggle" type="button" aria-label="Activer ou désactiver le mode sombre">
-              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor">
-                <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79z"></path>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
+                <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/>
+                <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
               </svg>
             </button>
           </li>
@@ -172,7 +173,6 @@
   </div>
 </header>
 
-<!-- Overlay pour le menu mobile -->
 <div class="nav-overlay" id="navOverlay"></div>
 
 <!-- ==========================================================================
@@ -189,6 +189,7 @@
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
+        <span class="hero-tag">Ventousage &amp; stationnement</span>
         <h1>Ventousage à Paris. Nos ventouseurs sont disponibles pour vos tournages, shootings et événements</h1>
         <p>Neutralisation de stationnement, pose de panneaux et autorisations de tournage. Intervention <strong>24/7</strong> dans tous les arrondissements. Basés en <strong>Seine‑Saint‑Denis (93)</strong>, nos <strong>ventouseurs professionnels à Paris</strong> interviennent également en petite couronne.</p>
         
@@ -198,7 +199,7 @@
               <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2zm3.708 6.208L1 11.105V5.383zM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2z"/>
               <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648m-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z"/>
             </svg>
-            Demander un devis
+            Demander un devis ventousage Paris
           </a>
           <a href="https://wa.me/33646005642?text=Bonjour,%20je%20souhaite%20demander%20un%20devis." class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16" style="margin-right:8px">
@@ -212,7 +213,7 @@
   </section>
 
   <!-- Ce que nous faisons -->
-  <section class="section">
+  <section class="section section-security">
     <div class="container">
       <h2 class="section-title animated-item">Ce que comprend notre service de ventousage</h2>
       <div class="services-grid-visual">
@@ -238,16 +239,70 @@
     </div>
   </section>
 
-  <!-- Qu'est-ce que le ventousage à Paris ? -->
+  <!-- Vos avantages à Paris -->
+  <section class="section section-security">
+    <div class="container">
+      <h2 class="section-title animated-item">Vos avantages à Paris</h2>
+      <div class="stats-grid animated-item" style="margin-top:1.5rem;">
+        <div class="stat-item">
+          <div class="stat-number"><span>24/7</span></div>
+          <p class="stat-label">Ventousage, neutralisation et surveillance des emplacements à Paris et en petite couronne, de jour comme de nuit.</p>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><span>AOT</span></div>
+          <p class="stat-label">Accompagnement sur les autorisations (AOT, arrêtés, AGATE) et la pose de signalisation réglementaire conforme.</p>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number"><span>Tournages &amp; événements</span></div>
+          <p class="stat-label">Cinéma, séries, pubs, shootings, mode, corporate, déménagements et événements institutionnels.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qu’est-ce que le ventousage à Paris ? -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title animated-item">Qu'est-ce que le ventousage à Paris ?</h2>
-      <p class="animated-item" style="max-width:900px; margin:0 auto 1rem; line-height:1.7;">
-        Le ventousage à Paris consiste à neutraliser temporairement le stationnement sur la voie publique pour permettre un tournage ou un événement. Cette opération nécessite la pose de panneaux B6 (AGATE) au moins 48&nbsp;heures à l'avance et l'obtention d'une autorisation d'occupation temporaire (AOT) auprès de la mairie ou de la préfecture.
+      <h2 class="section-title animated-item">Qu’est-ce que le ventousage à Paris&nbsp;?</h2>
+      <p class="animated-item content-narrow">
+        À Paris, le ventousage consiste à <strong>réserver et neutraliser temporairement</strong> des places de stationnement
+        ou des tronçons de rue pour les besoins d’un tournage, d’un shooting ou d’un événement. Cela passe par
+        des <strong>autorisations administratives</strong> (AOT, arrêtés temporaires), une <strong>signalisation réglementaire</strong>
+        (panneaux, affichage riverains) et une <strong>présence humaine</strong> le jour J.
       </p>
-      <p class="animated-item" style="max-width:900px; margin:0 auto 0; line-height:1.7;">
-        BMS Ventouse gère l'ensemble du processus&nbsp;: demande d'autorisation, pose de signalisation réglementaire, affichage riverains et surveillance du périmètre pendant toute la durée de votre installation.
+      <p class="animated-item content-narrow" style="margin-top:1rem;">
+        Nos équipes interviennent sur les <strong>20 arrondissements de Paris</strong> ainsi qu’en petite couronne, en coordination
+        avec vos régies d’extérieur, producteurs et responsables de lieux.
       </p>
+    </div>
+  </section>
+
+  <!-- Processus de ventousage -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Processus de ventousage</h2>
+      <div class="process-grid animated-item" style="margin-top:1rem;">
+        <div class="service-card process-step">
+          <div class="process-step-number">01</div>
+          <h3>Brief &amp; périmètre</h3>
+          <p>Vous nous transmettez le périmètre, les dates, les horaires et les besoins (véhicules techniques, régie, loges, cantine…).</p>
+        </div>
+        <div class="service-card process-step">
+          <div class="process-step-number">02</div>
+          <h3>AOT &amp; signalisation</h3>
+          <p>Si nécessaire, nous préparons ou accompagnons l’AOT, posons les panneaux B6 et l’affichage riverains dans les délais réglementaires.</p>
+        </div>
+        <div class="service-card process-step">
+          <div class="process-step-number">03</div>
+          <h3>Ventousage jour J</h3>
+          <p>Les ventouseurs veillent au périmètre, occupent les places réservées, gèrent la diplomatie avec riverains et commerçants et ajustent le jalonnage.</p>
+        </div>
+        <div class="service-card process-step">
+          <div class="process-step-number">04</div>
+          <h3>Clôture &amp; livrables</h3>
+          <p>Retrait de la signalisation, remise en état des lieux, photos horodatées et, si besoin, retour d’expérience pour vos prochaines dates.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -255,7 +310,7 @@
   <section class="section section-alt">
     <div class="container">
       <h2 class="section-title animated-item">Le ventousage à Paris, en pratique</h2>
-      <p class="animated-item" style="max-width:900px; margin:0 auto 1rem; line-height:1.7;">
+      <p class="animated-item content-narrow" style="margin-bottom:1rem;">
         Le ventousage consiste à <strong>neutraliser temporairement</strong> l’espace public afin d’assurer un
         <strong>champ libre à la caméra</strong> et des emplacements techniques (véhicules, loges, cantine). À Paris,
         nos équipes jalonnent, affichent et coordonnent pour un périmètre <strong>conforme</strong> et <strong>opérationnel</strong>.
@@ -290,27 +345,64 @@
       </div>
     </div>
   </section>
-
-  <!-- Tarifs & devis ventousage Paris -->
+...
+  <!-- Gardiennage & sécurité de matériel -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title animated-item">Tarifs et devis ventousage Paris</h2>
-      <p class="animated-item" style="max-width:900px; margin:0 auto 1rem; line-height:1.7;">
-        <strong>Tarifs directs, sans surcoût d'agence.</strong> En traitant directement avec nous, vous évitez les marges d'intermédiaire. Dispositif calibré au besoin réel pour vos <strong>tarifs de ventousage</strong> à Paris&nbsp;: longueur de rue, nombre de faces, durée, horaires, zone sensible ou non. Chaque devis ventousage Paris est détaillé poste par poste, généralement établi sous 24h, avec une équipe disponible 7j/7 pour les demandes urgentes.
+      <h2 class="section-title animated-item">Gardiennage plateau à Paris &amp; sécurité de matériel</h2>
+      <p class="animated-item content-narrow" style="margin-bottom:1rem;">
+        Surveillance de votre <strong>régie</strong>, de vos <strong>décors</strong>, <strong>véhicules</strong> et équipements pendant le tournage.
+        Agents qualifiés <strong>jour/nuit</strong>, coordination avec <a href="/securite-plateaux/">Sécurité de plateaux</a> et protocoles adaptés au site.
       </p>
-      <p class="animated-item" style="max-width:900px; margin:0 auto 1.5rem; line-height:1.6;">
-        Nous gérons aussi le ventousage Paris urgent, y compris de nuit, le week‑end et les jours fériés. Pour les tournages de dernière minute, contactez‑nous&nbsp;: chiffrage rapide en moins de 2h.
+      <div class="services-grid animated-item" style="margin-top:1rem;">
+        <div class="service-card"><h3>Surveillance sur site</h3><p>Présence continue ou à la demande selon planning.</p></div>
+        <div class="service-card"><h3>Protection des équipements</h3><p>Zones sensibles sécurisées, contrôle des accès.</p></div>
+        <div class="service-card"><h3>Coordination sécurité</h3><p>Liaison avec régie, autorités et partenaires.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ventousage événementiel, clé en main -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Ventousage événementiel, clé en main</h2>
+      <p class="animated-item content-narrow" style="margin-bottom:1rem;">
+        Ventousage tournage à Paris pour vos productions audiovisuelles&nbsp;: fiction, clips musicaux, publicités, shootings photo et défilés de mode. Neutralisation de stationnement dédiée avec signalisation complète.
       </p>
-      <p class="animated-item" style="max-width:900px; margin:0 auto 1.5rem; line-height:1.6;">
-        Pour une idée plus précise de vos coûts, consultez notre
-        <a href="/prix-ventousage-paris/">grille tarifaire ventousage Paris</a> avec exemples de budgets.
+      <div class="services-grid animated-item" style="margin-top:1rem;">
+        <div class="service-card">
+          <h3>Repérage &amp; préparation</h3>
+          <ul class="benefits-list">
+            <li>Identification des emplacements stratégiques (véhicules techniques, régie, loges)</li>
+            <li>Analyse des contraintes locales (piétons, livraisons, voies sensibles)</li>
+            <li>Optimisation des délais en fonction de votre planning</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Surveillance &amp; diplomatie</h3>
+          <ul class="benefits-list">
+            <li>Présence humaine pour veiller aux emplacements réservés (jour &amp; nuit)</li>
+            <li>Dialogue avec riverains et commerçants pour un climat apaisé</li>
+            <li>Coordination avec <a href="/securite-plateaux/">Sécurité de plateaux</a> si requis</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <h3>Matériel &amp; signalisation</h3>
+          <ul class="benefits-list">
+            <li>Cônes, rubalise, <strong>panneaux B6</strong> co… inclus après acceptation du devis.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+...
+  <!-- Convoyage camion, service complémentaire -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Convoyage camion, service complémentaire</h2>
+      <p class="animated-item content-narrow" style="line-height:1.7;">
+        Transport <strong>audiovisuel</strong> de vos décors et équipements partout en France, chauffeurs expérimentés, <strong>multistops</strong> et accès complexes.
+        En savoir plus : <a href="/convoyage-vehicules-decors/">Convoyage véhicules &amp; décors</a>.
       </p>
-      <ul class="benefits-list animated-item" style="max-width:900px; margin:0 auto;">
-        <li><strong>Tarifs directs, sans surcoût d'agence</strong>.</li>
-        <li><strong>Devis sous 24h</strong> pour Paris et la petite couronne, avec les options clairement identifiées.</li>
-        <li>Solutions adaptées aux <strong>demandes urgentes</strong> (tournages de nuit, week‑end, changements de planning).</li>
-        <li>Dispositif dimensionné au besoin réel pour maîtriser le <strong>prix du ventousage</strong> sans compromettre la conformité.</li>
-      </ul>
     </div>
   </section>
 
@@ -318,7 +410,7 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title animated-item">Pourquoi BMS Ventouse à Paris&nbsp;?</h2>
-      <ul class="animated-item" style="margin:0 auto; max-width:900px; line-height:1.7;">
+      <ul class="animated-item content-narrow">
         <li><strong>Expérience plateau</strong> et adaptation aux contraintes fiction, publicité, mode, événement</li>
         <li><strong>Réactivité 24/7</strong> et interventions Paris intra‑muros et petite couronne</li>
         <li><strong>Tarifs directs, sans surcoût d'agence.</strong> En traitant directement avec nous, vous évitez les marges d'intermédiaire. Devis ventousage Paris clair, détaillé poste par poste, généralement sous 24h, avec une équipe disponible 7j/7.</li>
@@ -326,10 +418,10 @@
         <li><strong>Discrétion et diplomatie</strong> auprès des riverains et partenaires</li>
         <li><strong>Transparence</strong> sur le périmètre, les délais et les options (sécurité, périmètres étendus)</li>
       </ul>
-      <p class="animated-item" style="max-width:900px; margin:1.5rem auto 0; line-height:1.7;">
+      <p class="animated-item content-narrow" style="margin-top:1.5rem; line-height:1.7;">
         Au-delà d'une journée de tournage, nous proposons une solution multisite pour suivre une production sur plusieurs jours, plusieurs semaines ou plusieurs mois, avec des blocs de tournage répétés à Paris, en Île-de-France ou dans d’autres régions. Pour un long métrage ou une série qui se tourne par séquences sur 3 à 6 mois, vous retrouvez les mêmes interlocuteurs, les mêmes process et une vision claire des coûts sur la durée.
       </p>
-      <p class="animated-item" style="max-width:900px; margin:1rem auto 0; line-height:1.7;">
+      <p class="animated-item content-narrow" style="margin-top:1rem; line-height:1.7;">
         Nous accompagnons aussi des productions longues et des coproductions qui alternent Paris et d’autres pays européens. Dans ce cadre, nous prenons en charge le ventousage et la logistique de stationnement sur le territoire français et nous coordonnons le convoyage et le planning avec vos équipes à l'étranger, pour garder un fil conducteur logistique unique pendant toute la durée du projet.
       </p>
     </div>
@@ -364,7 +456,7 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title animated-item">Gardiennage plateau à Paris &amp; sécurité de matériel</h2>
-      <p class="animated-item" style="max-width:900px; margin:0 auto 1rem; line-height:1.7;">
+      <p class="animated-item content-narrow" style="margin-bottom:1rem; line-height:1.7;">
         Surveillance de votre <strong>régie</strong>, de vos <strong>décors</strong>, <strong>véhicules</strong> et équipements pendant le tournage.
         Agents qualifiés <strong>jour/nuit</strong>, coordination avec <a href="/securite-plateaux/">Sécurité de plateaux</a> et protocoles adaptés au site.
       </p>
@@ -380,7 +472,7 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title animated-item">Ventousage événementiel, clé en main</h2>
-      <p class="animated-item" style="max-width:900px; margin:0 auto 1rem; line-height:1.7;">
+      <p class="animated-item content-narrow" style="margin-bottom:1rem; line-height:1.7;">
         Ventousage tournage à Paris pour vos productions audiovisuelles&nbsp;: fiction, clips musicaux, publicités, shootings photo et défilés de mode. Neutralisation de stationnement dédiée avec signalisation complète.
       </p>
       <div class="services-grid animated-item" style="margin-top:1rem;">
@@ -409,7 +501,7 @@
           </ul>
         </div>
       </div>
-      <p class="animated-item" style="max-width:900px; margin:1rem auto 0; line-height:1.6;">
+      <p class="animated-item content-narrow" style="margin-top:1rem; line-height:1.6;">
         Nous pouvons aussi organiser un ventousage <strong>multi-sites</strong> à Paris, par exemple pour une journée de tournage ou de shootings répartie sur plusieurs quartiers. Un seul interlocuteur pilote les différents périmètres, les horaires et les changements de lieu afin de garder votre planning fluide.
       </p>
       <p class="animated-item note-text" style="margin-top:1rem;">
@@ -429,14 +521,14 @@
         Quelques exemples de ventousage réalisés pour des tournages, shootings et événements, à Paris et dans d’autres villes. Les photos sont données à titre illustratif&nbsp;:
         chaque dispositif est adapté à votre périmètre, vos horaires et vos contraintes.
       </p>
-      <div class="gallery-carousel animated-item">
+      <div class="gallery-carousel animated-item" role="region" aria-label="Galerie de photos de ventousage à Paris">
         <div class="carousel-track" id="ventousageGallery">
           <!-- Images injectées en JavaScript à partir du dossier /images/ventousage-galerie/ -->
         </div>
         <button class="carousel-control prev" type="button" aria-label="Photo précédente">‹</button>
         <button class="carousel-control next" type="button" aria-label="Photo suivante">›</button>
       </div>
-      <p class="gallery-counter animated-item">Photo 1 / 13</p>
+      <p class="gallery-counter animated-item" aria-live="polite">Photo 1 / 13</p>
       <p class="section-subtitle animated-item" style="font-size:0.9rem; margin-top:1rem;">
         Pour ajouter de nouvelles photos, il suffit de les déposer dans le dossier <code>/images/ventousage-galerie/</code> et de les référencer
         dans le petit tableau prévu dans le fichier <code>js/script.js</code>. Nous nous adaptons à toutes les demandes, du petit dispositif à plusieurs
@@ -492,7 +584,7 @@
   <!-- Section FAQ -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title animated-item">FAQ Ventousage Paris</h2>
+      <h2 class="section-title animated-item">Questions fréquentes — Ventousage à Paris</h2>
       <div class="faq-container">
         <div class="faq-item animated-item">
           <h3 class="faq-question">Comment réserver un ventousage à Paris ?</h3>
@@ -513,8 +605,16 @@
   <!-- Note budget & conformité -->
   <section class="section">
     <div class="container">
-      <div class="coverage-note-card">
-        <strong>Note budget &amp; conformité :</strong> Les démarches <strong>AOT</strong>, les affichages riverains et la signalisation sont prises en charge sur devis. Les <strong>taxes et redevances publiques</strong> (stationnement, occupation du domaine public, frais municipaux) restent à la charge du client. Le jour J, si un véhicule bloque malgré l’arrêté, la <strong>coordination avec les autorités et la fourrière</strong> est assurée selon les procédures locales.
+      <div class="coverage-note-card" role="note" aria-label="Note budget et conformité">
+        <strong>Note budget &amp; conformité :</strong>
+        BMS Ventouse prend en charge, pour votre compte, la préparation et le suivi des dossiers liés au ventousage
+        (<strong>AOT</strong>, affichages riverains, signalisation temporaire), ainsi que la mise en place opérationnelle sur site.<br><br>
+        En revanche, les <strong>taxes et redevances d’occupation du domaine public</strong> sont déterminées par chaque collectivité
+        (Ville de Paris, mairies, etc.) et restent <strong>à la charge du client</strong>. Elles sont réglées <strong>directement auprès de la collectivité</strong>
+        – par exemple, à Paris, via un lien de paiement transmis par la Ville.<br><br>
+        Ces montants étant variables selon la ville, la zone, la durée et le périmètre demandé, ils ne peuvent pas être intégrés ni garantis
+        à l’avance dans notre devis. Notre chiffrage porte exclusivement sur la <strong>prestation BMS</strong> (ventousage, affichage, signalisation,
+        présence sur site, coordination).
       </div>
     </div>
   </section>
@@ -523,7 +623,7 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title animated-item">Convoyage camion, service complémentaire</h2>
-      <p class="animated-item" style="max-width:900px; margin:0 auto; line-height:1.7;">
+      <p class="animated-item content-narrow" style="line-height:1.7;">
         Transport <strong>audiovisuel</strong> de vos décors et équipements partout en France, chauffeurs expérimentés, <strong>multistops</strong> et accès complexes.
         En savoir plus : <a href="/convoyage-vehicules-decors/">Convoyage véhicules &amp; décors</a>.
       </p>
@@ -542,7 +642,7 @@
             <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2zm3.708 6.208L1 11.105V5.383zM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2z"/>
             <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648m-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z"/>
           </svg>
-          Nous contacter
+          Demander un devis ventousage Paris
         </a>
         <a href="/services/" class="btn btn-secondary-alt">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16" style="margin-right:8px">
@@ -639,9 +739,12 @@
             <h4>Légal</h4>
             <ul>
               <li><a href="/mentions/">Mentions Légales</a></li>
+              <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
+              <li><a href="/conditions-generales-prestation/">Conditions générales de prestation</a></li>
               <li><a href="/llms.txt">Infos IA (llms.txt)</a></li>
               <li><a href="/ai.txt">Infos IA (ai.txt)</a></li>
               <li><a href="/infos-ia/">Infos IA (page)</a></li>
+              <li><a href="#" class="manage-cookies" data-cookie="manage">Gérer les cookies</a></li>
             </ul>
           </div>
         </div>

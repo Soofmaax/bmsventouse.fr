@@ -166,9 +166,9 @@ body.dark-theme .header {
 
 .nav-link:hover,
 .nav-link.active {
-  background-color: var(--color-primary);
-  /* Contraste AA/AAA: texte sombre */
-  color: var(--color-dark);
+  /* Fond plus sombre + texte blanc pour un meilleur contraste */
+  background-color: var(--color-primary-dark);
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
@@ -206,7 +206,8 @@ body.dark-theme .header {
   overflow-y: auto;
   padding: .5rem;
   display: none;
-  z-index: var(--z-header);
+  /* Au-dessus de la bannière promo et du header */
+  z-index: var(--z-promo);
 }
 
 /* Affichage du sous-menu au survol ou focus clavier sur desktop */

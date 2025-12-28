@@ -1,6 +1,8 @@
-# Frontend UX – Dark Mode, Hand Preference & Galleries
+# Frontend UX – Dark Mode, Hand Preference, Galleries & FAQ
 
 This document describes the main UX features implemented in the frontend so a developer can safely maintain or extend them.
+
+---
 
 ## 1. Theme Mode (Light / Dark)
 
@@ -14,18 +16,20 @@ This document describes the main UX features implemented in the frontend so a de
 
 **HTML:**
 
-- A button with class `.theme-toggle` in the main nav:
+A button with class `.theme-toggle` in the main nav:
 
-  ```html
-  <button class="theme-toggle" type="button" aria-label="Activer ou désactiver le mode sombre">
-    <!-- inline SVG icon -->
-  </button>
-  ```
+```html
+<button class="theme-toggle" type="button" aria-label="Activer ou désactiver le mode sombre">
+  <!-- inline SVG icon -->
+</button>
+```
 
 **Notes:**
 
 - If no `.theme-toggle` is present on a page, the script simply does nothing for that part.
 - Colors are driven by CSS variables; `body.dark-theme` switches palettes.
+
+---
 
 ## 2. Hand Preference (Left / Right Hand Navigation)
 
@@ -38,43 +42,41 @@ This document describes the main UX features implemented in the frontend so a de
 
 **HTML:**
 
-- A button in the main nav (on pages where you want the feature):
+A button in the main nav (on pages where you want the feature):
 
-  ```html
-  <button class="hand-toggle" type="button" aria-label="Basculer en mode gaucher ou droitier">
-    <!-- inline SVG icon representing a hand -->
-  </button>
-  ```
+```html
+<button class="hand-toggle" type="button" aria-label="Basculer en mode gaucher ou droitier">
+  <!-- inline SVG icon representing a hand -->
+</button>
+```
 
-- Only the home page currently exposes this toggle in the header; other pages inherit the class on `<body>` once set.
+Only the home page currently exposes this toggle in the header; other pages inherit the class on `<body>` once set.
 
-**CSS:**
+**CSS (excerpt):**
 
-- Buttons affected (example):
+```css
+.whatsapp-float {
+  bottom: var(--whatsapp-margin);
+  right: var(--whatsapp-margin);
+  left: auto;
+}
 
-  ```css
-  .whatsapp-float {
-    bottom: var(--whatsapp-margin);
-    right: var(--whatsapp-margin);
-    left: auto;
-  }
+body.left-handed .whatsapp-float {
+  left: var(--whatsapp-margin);
+  right: auto;
+}
 
-  body.left-handed .whatsapp-float {
-    left: var(--whatsapp-margin);
-    right: auto;
-  }
+.back-to-top {
+  bottom: 2rem;
+  right: 2rem;
+  left: auto;
+}
 
-  .back-to-top {
-    bottom: 2rem;
-    right: 2rem;
-    left: auto;
-  }
-
-  body.left-handed .back-to-top {
-    left: 2rem;
-    right: auto;
-  }
-  ```
+body.left-handed .back-to-top {
+  left: 2rem;
+  right: auto;
+}
+```
 
 **Behavior:**
 
@@ -84,12 +86,14 @@ This document describes the main UX features implemented in the frontend so a de
   - `"left"` → `"right"`: removes `body.left-handed`.
 - The choice persists between visits for the same browser.
 
+---
+
 ## 3. Ventousage Gallery (Paris)
 
 **Where:**
 
 - HTML: `ventousage-paris/index.html` (section “Galerie ventousage”).
-- JS: `js/script.js` → `setupVentousageParisGallery()` (module name may slightly differ but is scoped to that page).
+- JS: `js/script.js` → `setupVentousageParisGallery()`.
 
 **Structure (simplified HTML):**
 
@@ -114,7 +118,7 @@ This document describes the main UX features implemented in the frontend so a de
 </section>
 ```
 
-**JS behavior:**
+**JS behavior (high level):**
 
 - Computes slide width based on the first slide’s width + margin.
 - Maintains an internal `currentIndex` and total number of slides.
@@ -171,9 +175,78 @@ This document describes the main UX features implemented in the frontend so a de
 
 ---
 
-For any future UX feature (new gallery, new toggle, etc.), follow the same pattern:
+## 4. FAQ interactive
 
-- Minimal, focused JS module.
-- Clear CSS hooks via classes and body modifiers.
-- Accessible HTML (aria-labels, buttons instead of generic `<div>`s).
-- No hidden global state beyond small, documented keys in `localStorage`.
+**Where:** `js/script.js` → `setupFaqAccordion()`  
+
+**HTML pattern:**
+
+```html
+<section class="section">
+  <div class="container">
+    <h2 class="section-title animated-item">Questions fréquentes</h2>
+    <div class="faq-container animated-item">
+      <article class="faq-item">
+        <h3 class="faq-question">Question fréquente… ?</h3>
+        <div class="faq-answer">
+          <p>Réponse détaillée, éventuellement sur plusieurs paragraphes.</p>
+        </div>
+      </article>
+      <!-- autres .faq-item -->
+    </div>
+  </div>
+</section>
+```
+
+**Behavior:**
+
+- `.faq-item` elements are initialized on page load.
+- For each item:
+  - The question gets `role="button"`, `tabindex="0"`, `aria-expanded="true/false"` and a unique `id`.
+  - The answer gets `role="region"`, `aria-labelledby="…"` and a unique `id`, with its height controlled via `max-height`.
+- Only one item is open at a time (opening one closes the others).
+- Open/close animation:
+  - On open:
+    - JS sets `answer.style.maxHeight = answer.scrollHeight + 'px'` to animate the height.
+    - On `transitionend` (for `max-height`), if the item is still open, JS sets `maxHeight` to `'none'` so that the answer can grow naturally if the layout changes (no clipped text).
+  - On close:
+    - If the answer was at `max-height: none`, JS first fixes the numeric height (`scrollHeight`), then animates back to `0px` for a smooth collapse.
+
+**Accessibility:**
+
+- Questions behave like buttons:
+  - Click or `Enter`/`Space` toggles open/close.
+  - `aria-expanded` is kept in sync with the open state.
+- Answers are labelled via `aria-labelledby` and expose `role="region"` for screen readers.
+
+**When editing FAQ HTML:**
+
+- Keep the pattern `.faq-item` → `.faq-question` + `.faq-answer`.
+- Do **not** add inline `max-height` styles; let CSS + JS drive the animation.
+- You can freely edit the text/markup inside `.faq-answer` (lists, links, emphasis, etc.).
+
+---
+
+## 5. Conventions générales pour les modules frontend
+
+Pour garder le JS maintenable et compatible avec la CI :
+
+- Tous les modules suivent le pattern `setupXxx()` :
+  - Ils sont définis dans `js/script.js`.
+  - Ils sont appelés **une seule fois** dans le bloc `DOMContentLoaded` (section “INITIALISATION DE TOUS LES MODULES”).
+- Chaque module doit :
+  - Tolérer l’absence d’éléments (`querySelector` qui retourne `null` → on `return` proprement).
+  - Éviter de lancer des erreurs bloquantes (utiliser `try/catch` seulement là où c’est utile).
+  - Ne pas modifier le DOM en profondeur si ce n’est pas nécessaire (préférer ajouter des classes ou des petits fragments ciblés).
+- Les helpers spécifiques à un module (comme `getValue` / `getChecked` pour le formulaire Contact) restent **enfermés dans ce module** pour éviter de polluer l’espace global.
+- L’ordre d’initialisation est important :
+  - Navigation / header (`setupUnifiedHeader`, `setupHamburgerMenu`).
+  - Expérience utilisateur globale (`setupThemeMode`, `setupCookieBanner`, `setupScrollAnimations`, etc.).
+  - Fonctions avancées (GTM, Clarity, PWA, galerie ventousage, etc.) après que la page soit stable.
+
+Avant d’ajouter un nouveau module :
+
+1. Vérifier s’il n’existe pas déjà un module proche (FAQ, carrousel, galerie, etc.) qui peut être adapté.
+2. Le coder sous la forme `const setupMonModule = () => { ... }` ou `function setupMonModule() { ... }`.
+3. L’appeler dans le bloc `DOMContentLoaded` avec les autres `setupXxx()`.
+4. Lancer la CI (ou au minimum ESLint/HTMLHint/Stylelint en local) pour s’assurer qu’il respecte les règles du projet.

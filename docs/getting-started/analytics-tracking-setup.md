@@ -84,12 +84,13 @@ Dans `js/script.js`, le module `setupAnalyticsEvents()` et la capture du formula
     - `event_label: texte du lien (bouton)`
 
 - `contact_submitted`  
-  - Lors de la soumission du formulaire `/contact/`.
-  - Paramètres (payload complet) :
+  - Réservé pour la future page de contact rapide (hub NFC/QR) avec mini‑formulaire dédié.
+  - Le code JS (`setupContactLeadCapture()`) est déjà en place, mais il n’y a **pas de formulaire actif** dans le markup actuel : cet événement n’est donc pas émis tant que cette page n’est pas créée.
+  - Une fois la page hub mise en place, l’événement pourra transporter un payload complet :
     - `fullname`, `company`, `email`, `phone`,
     - `service`, `location`, `urgency`, `details`,
     - et des champs détaillés selon le service (ventousage, sécurité, convoyage, etc.).
-  - L’événement est aussi poussé dans le `dataLayer` :
+  - L’événement sera aussi poussé dans le `dataLayer` :
 
     ```js
     window.dataLayer.push({ event: 'contact_submitted', ...payload });
@@ -123,13 +124,7 @@ Le code du site supporte **GTM en option** (tu n’es pas obligé de l’utilise
 
 ### 2.2. Connecter le site à ton container
 
-Dans les templates HTML principaux (Accueil, Services, Contact, Ventousage, etc.) tu as :
-
-```html
-<meta name="gtm-id" content="">
-```
-
-Et dans `js/script.js` :
+Le code supporte GTM côté JS via une meta optionnelle `gtm-id` :
 
 ```js
 function setupGTM() {
@@ -147,10 +142,11 @@ function setupGTM() {
 }
 ```
 
+Actuellement, les templates HTML **n’incluent plus** de meta `gtm-id` (GTM est donc désactivé par défaut).  
 Pour activer GTM :
 
 1. Édite les templates clés (ex. `index.html`, `services/index.html`, `contact/index.html`, etc.).
-2. Renseigne ton ID GTM :
+2. Ajoute ou renseigne ton ID GTM dans le `<head>` :
 
    ```html
    <meta name="gtm-id" content="GTM-ABCD123">
@@ -300,8 +296,9 @@ Pour être opérationnel sur toutes les plateformes :
 - [ ] Propriété et flux Web créés.
 - [ ] ID de mesure (format `G-XXXXXXX`) renseigné dans le snippet `gtag`.
 - [ ] Événements visibles :  
-  `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`, `contact_submitted`.
-- [ ] `contact_submitted` marqué en **Conversion** (lead principal).
+  `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`  
+  (puis `contact_submitted` une fois la future page hub NFC/QR en ligne).
+- [ ] `contact_submitted` marqué en **Conversion** (lead principal) dès que le mini‑formulaire du hub est en production.
 
 ### GTM
 

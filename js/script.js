@@ -8,7 +8,7 @@
 /* Production logging gate: silence console in production unless window.DEBUG=true */
 (function(){ try{ var DEBUG = !!(window.DEBUG); if(!DEBUG){ ['log','info','debug','warn'].forEach(function(k){ try{ console[k] = function(){}; }catch(e){} }); } window.__BMS_DEBUG__ = DEBUG; }catch(e){} })();
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
 
   // --------------------------------------------------------------------------
   // CONFIGURATION CENTRALISÉE
@@ -260,19 +260,19 @@ document.addEventListener('DOMContentLoaded', async () => {
           </a>
           <div class="nav-submenu">
             <div class="nav-submenu-group">
+              <span class="group-title">Sécurité &amp; gardiennage</span>
+              <ul class="group-list">
+                <li><a href="/securite-plateaux/">Sécurité de plateaux</a></li>
+                <li><a href="/gardiennage/">Gardiennage</a></li>
+              </ul>
+            </div>
+            <div class="nav-submenu-group">
               <span class="group-title">Logistique &amp; ventousage</span>
               <ul class="group-list">
                 <li><a href="/ventousage/">Ventousage &amp; autorisations</a></li>
                 <li><a href="/ventousage-paris/">Ventousage Paris</a></li>
                 <li><a href="/affichage-riverains/">Affichage riverains</a></li>
                 <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
-              </ul>
-            </div>
-            <div class="nav-submenu-group">
-              <span class="group-title">Sécurité &amp; gardiennage</span>
-              <ul class="group-list">
-                <li><a href="/securite-plateaux/">Sécurité de plateaux</a></li>
-                <li><a href="/gardiennage/">Gardiennage</a></li>
               </ul>
             </div>
             <div class="nav-submenu-group">
@@ -339,10 +339,47 @@ document.addEventListener('DOMContentLoaded', async () => {
       );
 
       navLinks.innerHTML = navItems.join('');
+
+      // Interaction du sous-menu Services (au clic sur desktop)
+      const servicesItem = navLinks.querySelector('li.has-submenu');
+      const trigger = servicesItem ? servicesItem.querySelector('.submenu-trigger') : null;
+
+      if (servicesItem && trigger) {
+        const toggleOpen = () => {
+          // Sur desktop uniquement : ouverture/fermeture au clic
+          if (window.innerWidth > 768) {
+            const isOpen = servicesItem.classList.contains('open');
+            servicesItem.classList.toggle('open', !isOpen);
+          }
+        };
+
+        trigger.addEventListener('click', (e) => {
+          if (window.innerWidth > 768) {
+            e.preventDefault();
+            toggleOpen();
+          }
+        });
+
+        trigger.addEventListener('keydown', (e) => {
+          if ((e.key === 'Enter' || e.key === ' ') && window.innerWidth > 768) {
+            e.preventDefault();
+            toggleOpen();
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!servicesItem.contains(e.target)) {
+            servicesItem.classList.remove('open');
+          }
+        });
+      }
     } catch (_) {
       // non-bloquant
     }
   };
+
+  // Alias pour compatibilité avec l'initialisation globale
+  const setupUnifiedHeader = setupUnifiedHeaderNav;
 
   // --------------------------------------------------------------------------
   // MODULE: ANIMATIONS AU DÉFILEMENT (Intersection Observer)
@@ -426,6 +463,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       answer.setAttribute('role', 'region');
       answer.style.maxHeight = '0px';
 
+      // Quand l'ouverture est terminée, on retire la contrainte de hauteur
+      // pour que tout le texte reste visible même si la mise en page évolue
+      answer.addEventListener('transitionend', (e) => {
+        if (e.propertyName !== 'max-height') return;
+        if (item.classList.contains('is-open')) {
+          answer.style.maxHeight = 'none';
+        }
+      });
+
       // Toggle avec transition fluide de la hauteur
       const toggleFAQ = () => {
         const isOpen = item.classList.contains('is-open');
@@ -440,20 +486,29 @@ document.addEventListener('DOMContentLoaded', async () => {
               otherQuestion.setAttribute('aria-expanded', 'false');
             }
             if (otherAnswer) {
+              // On remet une hauteur numérique pour permettre l'animation de fermeture
               otherAnswer.style.maxHeight = '0px';
             }
           }
         });
         
-        // Basculer l'élément actuel
-        item.classList.toggle('is-open', !isOpen);
-        question.setAttribute('aria-expanded', String(!isOpen));
-        // Smooth expand/collapse
         if (!isOpen) {
+          // Ouvrir l'élément actuel
+          item.classList.add('is-open');
+          question.setAttribute('aria-expanded', 'true');
+          // On part de 0, puis on anime jusqu'à la hauteur réelle
+          answer.style.maxHeight = '0px';
           requestAnimationFrame(() => {
             answer.style.maxHeight = answer.scrollHeight + 'px';
           });
         } else {
+          // Fermer l'élément actuel
+          item.classList.remove('is-open');
+          question.setAttribute('aria-expanded', 'false');
+          // Si la hauteur était "none", on fixe d'abord la hauteur actuelle,
+          // puis on anime jusqu'à 0 pour éviter les coupures brutales.
+          const currentHeight = answer.scrollHeight;
+          answer.style.maxHeight = currentHeight + 'px';
           requestAnimationFrame(() => {
             answer.style.maxHeight = '0px';
           });
@@ -862,70 +917,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // --------------------------------------------------------------------------
-  // MODULE: MIGRATION DES ICÔNES FONT AWESOME -> SVG inline
-  // --------------------------------------------------------------------------
-  const removeFontAwesomeLink = () => {
-    try {
-      document.querySelectorAll('link[rel="stylesheet"][href*="font-awesome"]').forEach(link => {
-        try { link.remove(); } catch (_) {}
-      });
-    } catch (_) { /* non-bloquant */ }
-  };
-
-  const migrateFAIconsToInlineSVG = () => {
-    try {
-      const map = {
-        'fa-envelope': { vb: '0 0 512 512', d: 'M502.3 190.8L327.4 338.6c-15.6 13.3-39.2 13.3-54.8 0L9.7 190.8C3.9 186.2 0 178.8 0 171V104c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v67c0 7.8-3.9 15.2-9.7 19.8z' },
-        'fa-whatsapp': {
-          vb: '0 0 16 16',
-          d: 'M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232'
-        },
-        'fa-phone-alt': { vb: '0 0 512 512', d: 'M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z' },
-        'fa-phone': { vb: '0 0 512 512', d: 'M511.1 382.9l-23.6 54.1c-6.3 14.3-20.9 23-36.6 22-61.3-3.8-120.6-24.8-171.2-60.6-45.1-31.9-83.7-73.4-113.7-121.1-25.1-39.6-43.3-83.2-53.6-128.7-3.5-15.7 5.8-31.6 21-36.5l56.2-18.2c12.6-4.1 26.4.9 33.6 12.1l31.8 49.3c6.8 10.6 5.7 24.4-2.7 33.7l-21.7 24.3c22.7 39.7 54.7 71.8 93.9 95.1l24.3-21.7c9.4-8.4 23.2-9.5 33.7-2.7l49.3 31.8c11.3 7.3 16.3 21.1 12.2 33.7z' },
-        'fa-city': { vb: '0 0 448 512', d: 'M128 148v-40c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12v40h24c13.3 0 24 10.7 24 24v296H80V172c0-13.3 10.7-24 24-24h24zm64-28v36h64v-36h-64zM96 480h256v16c0 8.8-7.2 16-16 16H112c-8.8 0-16-7.2-16-16v-16z' },
-        'fa-road': { vb: '0 0 640 512', d: 'M640 480H0l240-320 96 128 64-64 240 256z' },
-        'fa-map': { vb: '0 0 512 512', d: 'M256 24C180 86 64 232 64 312c0 79.5 64.5 144 144 144s144-64.5 144-144C352 232 236 86 256 24z' },
-        'fa-list': { vb: '0 0 512 512', d: 'M96 64h320c17.7 0 32 14.3 32 32v320c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32zm48 64v64h64v-64h-64zm160 0v64h64v-64h-64zM144 256v64h64v-64h-64zm160 0v64h64v-64h-64z' }
-      };
-      const isFA = (cls) => cls.startsWith('fa-') && cls !== 'fas' && cls !== 'far' && cls !== 'fab';
-      let replaced = 0;
-      document.querySelectorAll('i[class*="fa-"]').forEach(i => {
-        try {
-          const c = Array.from(i.classList).find(isFA);
-          if (!c || !map[c]) return;
-          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-          svg.setAttribute('viewBox', map[c].vb);
-          svg.setAttribute('width', '1em');
-          svg.setAttribute('height', '1em');
-          svg.setAttribute('fill', 'currentColor');
-          svg.setAttribute('aria-hidden', 'true');
-          svg.setAttribute('focusable', 'false');
-          svg.style.verticalAlign = 'middle';
-          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-          path.setAttribute('d', map[c].d);
-          svg.appendChild(path);
-          i.replaceWith(svg);
-          replaced++;
-        } catch (_) { /* noop */ }
-      });
-      if (replaced > 0) {
-        // Retirer la feuille FA pour éviter chargement inutile
-        removeFontAwesomeLink();
-      }
-    } catch (_) { /* non-bloquant */ }
-  };
-
-  // --------------------------------------------------------------------------
-  // MODULE: SOUS-MENU NAV — toutes les pages regroupées par sections
-  // --------------------------------------------------------------------------
-  const setupAllPagesSubmenu = async () => {
-    // Version simplifiée / désactivée pour l’instant :
-    // le site reste parfaitement utilisable sans ce sous-menu,
-    // et on évite d’ajouter de la complexité JS inutile.
-    return;
-  };
-
-  // --------------------------------------------------------------------------
   // MODULE: BARRE DE PROGRESSION DE SCROLL
   // --------------------------------------------------------------------------
   const setupScrollProgress = () => {
@@ -982,10 +973,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // INITIALISATION DE TOUS LES MODULES
   // ==========================================================================
   try {
+    // Construire d'abord le header/nav unifiés, puis activer le mode sombre
+    setupUnifiedHeader();
+    setupHamburgerMenu();
     setupThemeMode();
     setupCookieBanner();
     setupSkipLink();
-    setupUnifiedHeader();
     setupUnifiedFooter();
     setupScrollAnimations();
     setupHeroParallax();
@@ -995,7 +988,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupAnalyticsEvents();
     setupHandPreference();
     setupBreadcrumbs();
-    await setupAllPagesSubmenu();
     // Barre de progression de scroll uniquement sur desktop pour limiter le travail JS sur mobile
     try {
       if (window.innerWidth >= 1024) {
@@ -1077,15 +1069,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (_) {
       // non-bloquant
     }
-    try {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(migrateFAIconsToInlineSVG);
-      } else {
-        setTimeout(migrateFAIconsToInlineSVG, 1500);
-      }
-    } catch (_) {
-      // non-bloquant
-    }
   }
 });
 
@@ -1156,9 +1139,9 @@ function setupUnifiedFooter() {
               <li>
                 <a href="tel:+33646005642">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16" style="margin-right:8px">
-                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 0 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5"/>
+                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 1 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5"/>
                   </svg>
-                  +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42
+                  +33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42&nbsp;(Béna)
                 </a>
               </li>
               <li>
@@ -1199,6 +1182,7 @@ function setupUnifiedFooter() {
             <ul>
               <li><a href="/mentions/">Mentions Légales</a></li>
               <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
+              <li><a href="/conditions-generales-prestation/">Conditions générales de prestation</a></li>
               <li><a href="/llms.txt">Infos IA (llms.txt)</a></li>
               <li><a href="/ai.txt">Infos IA (ai.txt)</a></li>
               <li><a href="/infos-ia/">Infos IA (page)</a></li>
@@ -1340,63 +1324,77 @@ function setupContactLeadCapture() {
   try {
     const form = document.querySelector('form[name="contact"]');
     if (!form) return;
+
+    const getValue = (id) => {
+      const el = document.getElementById(id);
+      return el && typeof el.value === 'string' ? el.value : '';
+    };
+
+    const getChecked = (id) => {
+      const el = document.getElementById(id);
+      return !!(el && el.checked);
+    };
+
     form.addEventListener('submit', () => {
       try {
+        const urgency = getValue('urgency');
+
         const payload = {
-          fullname: (document.getElementById('name') || {}).value || '',
-          role: (document.getElementById('role') || {}).value || '',
-          company: (document.getElementById('company') || {}).value || '',
-          email: (document.getElementById('email') || {}).value || '',
-          phone: (document.getElementById('phone') || {}).value || '',
-          service: (document.getElementById('service') || {}).value || '',
-          package: (document.getElementById('package') || {}).value || '',
-          location: (document.getElementById('location') || {}).value || '',
-          address: (document.getElementById('address') || {}).value || '',
-          schedule: (document.getElementById('schedule') || {}).value || '',
-          urgent: ((document.getElementById('urgency') || {}).value || '') === 'urgent_24h' || ((document.getElementById('urgency') || {}).value || '') === 'urgent_72h',
-          urgency: (document.getElementById('urgency') || {}).value || '',
-          date_start: (document.getElementById('date_start') || {}).value || '',
-          date_end: (document.getElementById('date_end') || {}).value || '',
-          payment_preference: (document.getElementById('payment') || {}).value || '',
-          budget: (document.getElementById('budget') || {}).value || '',
-          details: (document.getElementById('details') || {}).value || '',
-          consent: !!((document.getElementById('consent') || {}).checked),
+          fullname: getValue('name'),
+          role: getValue('role'),
+          company: getValue('company'),
+          email: getValue('email'),
+          phone: getValue('phone'),
+          service: getValue('service'),
+          package: getValue('package'),
+          location: getValue('location'),
+          address: getValue('address'),
+          schedule: getValue('schedule'),
+          urgent: urgency === 'urgent_24h' || urgency === 'urgent_72h',
+          urgency,
+          date_start: getValue('date_start'),
+          date_end: getValue('date_end'),
+          payment_preference: getValue('payment'),
+          budget: getValue('budget'),
+          details: getValue('details'),
+          consent: getChecked('consent'),
           source: 'contact_form',
           // Champs spécifiques selon service
-          svc_cantine_people: (document.getElementById('svc_cantine_people') || {}).value || '',
-          svc_cantine_meals: (document.getElementById('svc_cantine_meals') || {}).value || '',
-          svc_cantine_dietary: (document.getElementById('svc_cantine_dietary') || {}).value || '',
-          svc_cantine_hours: (document.getElementById('svc_cantine_hours') || {}).value || '',
-          svc_ventousage_streets: (document.getElementById('svc_ventousage_streets') || {}).value || '',
-          svc_ventousage_zones: (document.getElementById('svc_ventousage_zones') || {}).value || '',
-          svc_ventousage_hours: (document.getElementById('svc_ventousage_hours') || {}).value || '',
-          svc_securite_agents: (document.getElementById('svc_securite_agents') || {}).value || '',
-          svc_securite_hours: (document.getElementById('svc_securite_hours') || {}).value || '',
-          svc_securite_ssiap: !!((document.getElementById('svc_securite_ssiap') || {}).checked),
-          svc_convoyage_pickup: (document.getElementById('svc_convoyage_pickup') || {}).value || '',
-          svc_convoyage_drop: (document.getElementById('svc_convoyage_drop') || {}).value || '',
-          svc_convoyage_schedule: (document.getElementById('svc_convoyage_schedule') || {}).value || '',
-          svc_convoyage_stops: (document.getElementById('svc_convoyage_stops') || {}).value || '',
-          svc_convoyage_volume: (document.getElementById('svc_convoyage_volume') || {}).value || '',
-          svc_regie_equipment: (document.getElementById('svc_regie_equipment') || {}).value || '',
-          svc_regie_agents: (document.getElementById('svc_regie_agents') || {}).value || '',
-          svc_regie_hours: (document.getElementById('svc_regie_hours') || {}).value || '',
-          svc_signalisation_perimeter: (document.getElementById('svc_signalisation_perimeter') || {}).value || '',
-          svc_signalisation_barriers: (document.getElementById('svc_signalisation_barriers') || {}).value || '',
-          svc_signalisation_hours: (document.getElementById('svc_signalisation_hours') || {}).value || '',
-          svc_affichage_streets: (document.getElementById('svc_affichage_streets') || {}).value || '',
-          svc_affichage_posters: (document.getElementById('svc_affichage_posters') || {}).value || '',
-          svc_loges_number: (document.getElementById('svc_loges_number') || {}).value || '',
-          svc_loges_types: (document.getElementById('svc_loges_types') || {}).value || '',
-          svc_loges_location: (document.getElementById('svc_loges_location') || {}).value || ''
+          svc_cantine_people: getValue('svc_cantine_people'),
+          svc_cantine_meals: getValue('svc_cantine_meals'),
+          svc_cantine_dietary: getValue('svc_cantine_dietary'),
+          svc_cantine_hours: getValue('svc_cantine_hours'),
+          svc_ventousage_streets: getValue('svc_ventousage_streets'),
+          svc_ventousage_zones: getValue('svc_ventousage_zones'),
+          svc_ventousage_hours: getValue('svc_ventousage_hours'),
+          svc_securite_agents: getValue('svc_securite_agents'),
+          svc_securite_hours: getValue('svc_securite_hours'),
+          svc_securite_ssiap: getChecked('svc_securite_ssiap'),
+          svc_convoyage_pickup: getValue('svc_convoyage_pickup'),
+          svc_convoyage_drop: getValue('svc_convoyage_drop'),
+          svc_convoyage_schedule: getValue('svc_convoyage_schedule'),
+          svc_convoyage_stops: getValue('svc_convoyage_stops'),
+          svc_convoyage_volume: getValue('svc_convoyage_volume'),
+          svc_regie_equipment: getValue('svc_regie_equipment'),
+          svc_regie_agents: getValue('svc_regie_agents'),
+          svc_regie_hours: getValue('svc_regie_hours'),
+          svc_signalisation_perimeter: getValue('svc_signalisation_perimeter'),
+          svc_signalisation_barriers: getValue('svc_signalisation_barriers'),
+          svc_signalisation_hours: getValue('svc_signalisation_hours'),
+          svc_affichage_streets: getValue('svc_affichage_streets'),
+          svc_affichage_posters: getValue('svc_affichage_posters'),
+          svc_loges_number: getValue('svc_loges_number'),
+          svc_loges_types: getValue('svc_loges_types'),
+          svc_loges_location: getValue('svc_loges_location')
         };
+
         // On stocke email/phone pour le suivi du lead si l’utilisateur revient plus tard
         try {
           localStorage.setItem('bms_lead_email', payload.email || '');
           localStorage.setItem('bms_lead_phone', payload.phone || '');
           localStorage.setItem('bms_lead_fullname', payload.fullname || '');
           localStorage.setItem('bms_lead_company', payload.company || '');
-        } catch (_){}
+        } catch (_) {}
 
         // Envoi email géré par Netlify Forms côté serveur (notifications configurées dans Netlify)
         // Aucun appel API nécessaire côté front pour rester gratuit et sans maintenance.
@@ -1404,8 +1402,8 @@ function setupContactLeadCapture() {
         try {
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'contact_submitted', ...payload });
-        } catch(_){}
-      } catch (_){}
+        } catch (_) {}
+      } catch (_) {}
     });
   } catch (_) {
     // non-bloquant
