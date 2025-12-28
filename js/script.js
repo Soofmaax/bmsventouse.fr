@@ -1051,15 +1051,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (_) {
       // non-bloquant
     }
-    try {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(migrateFAIconsToInlineSVG);
-      } else {
-        setTimeout(migrateFAIconsToInlineSVG, 1500);
-      }
-    } catch (_) {
-      // non-bloquant
-    }
   }
 });
 
