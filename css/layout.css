@@ -102,6 +102,7 @@ body.dark-theme .header {
   align-items: center;
   font-size: 1.5rem;
   font-weight: var(--font-weight-black);
+  font-family: var(--font-family-heading);
   text-decoration: none;
   color: var(--color-dark);
 }
@@ -140,6 +141,7 @@ body.dark-theme .header {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
+  font-family: var(--font-family-heading);
 }
 
 .footer-bms { 

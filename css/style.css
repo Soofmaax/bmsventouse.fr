@@ -7,6 +7,7 @@
    - pages.css     → styles spécifiques à certaines pages (page-accueil, page-contact, etc.)
    ========================================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('./base.css');
 @import url('./layout.css');
 @import url('./components.css');
