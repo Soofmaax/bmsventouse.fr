@@ -21,14 +21,15 @@
   --color-info: #17a2b8;
 
   /* Typographie */
-  --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-base: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-heading: 'Anton', var(--font-family-base);
   --font-size-base: clamp(0.95rem, 1vw, 1rem);
   --font-size-sm: clamp(0.8rem, 0.9vw, 0.875rem);
   --font-size-h1: clamp(2.2rem, 6vw, 3.5rem);
   --font-size-h2: clamp(1.8rem, 4vw, 2.5rem);  
   --font-size-h3: clamp(1.3rem, 3vw, 1.4rem);
   --line-height-base: 1.7;
-  --line-height-heading: 1.3;
+  --line-height-heading: 1.2;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
@@ -192,4 +193,18 @@ input, button, textarea, select {
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 clamp(15px, 3vw, 20px);
+}
+
+/* Titres globaux : utilisent la police d’affichage de la marque */
+h1,
+h2,
+h3 {
+  font-family: var(--font-family-heading);
+  line-height: var(--line-height-heading);
+  letter-spacing: 0.03em;
+}
+
+/* Texte courant légèrement allégé avec Poppins */
+p {
+  font-weight: 300;
 }
