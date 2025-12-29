@@ -76,7 +76,7 @@ Qualité / CI
 
 Sécurité
 
-- Renforcer et centraliser la CSP via `netlify.toml` (headers) et **supprimer les meta CSP redondantes** dans les HTML.
+- CSP consolidée via `netlify.toml` (headers) et meta CSP résiduelles supprimées dans les HTML (à surveiller lors des prochaines évolutions pour ne pas les réintroduire).
 
 UX / contenu
 
@@ -109,7 +109,7 @@ Icônes / assets
   - [x] Styles du breadcrumb en CSS (supprimer styles inline JS)
   - [ ] Pa11y URLs étendues
 - Technique
-  - [ ] CSP finalisée uniquement via `netlify.toml` (suppression des meta CSP dans les HTML)
+  - [x] CSP finalisée uniquement via `netlify.toml` (meta CSP supprimées dans les HTML)
   - [x] Variables CONFIG pour constantes (JS) documentées
 - Contenu
   - [ ] Pages locales nouvelles (3+) + intégration sitemap + liens internes

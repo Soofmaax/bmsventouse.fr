@@ -30,6 +30,20 @@
     "http://localhost:8080/autorisation-occupation-domaine-public-tournage-paris/",
     "http://localhost:8080/definition-ventousage/",
     "http://localhost:8080/ventousage-pantin/",
+    "http://localhost:8080/ventousage-lyon/",
+    "http://localhost:8080/ventousage-marseille/",
+    "http://localhost:8080/ventousage-bordeaux/",
+    "http://localhost:8080/ventousage-lille/",
+    "http://localhost:8080/ventousage-nice/",
+    "http://localhost:8080/ventousage-strasbourg/",
+    "http://localhost:8080/ventousage-toulouse/",
+    "http://localhost:8080/securite-tournage-paris/",
+    "http://localhost:8080/securite-tournage-lyon/",
+    "http://localhost:8080/securite-tournage-marseille/",
+    "http://localhost:8080/securite-tournage-bordeaux/",
+    "http://localhost:8080/securite-tournage-lille/",
+    "http://localhost:8080/securite-tournage-nice/",
+    "http://localhost:8080/securite-tournage-toulouse/",
     "http://localhost:8080/404.html"
   ]
 }

@@ -307,6 +307,26 @@ jobs:
           path: pa11y-report.json
           if-no-files-found: warn
 
+  lighthouse:
+    name: Lighthouse CI (non-blocking)
+    runs-on: ubuntu-latest
+    needs: [lint]
+    continue-on-error: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Lighthouse CI CLI and http-server
+        run: npm i --no-save @lhci/cli http-server
+
+      - name: Run Lighthouse CI on key URLs
+        run: npx lhci autorun --config=lighthouserc.json
+
   npm_audit:
     name: Dependencies Audit (npm audit)
     runs-on: ubuntu-latest
