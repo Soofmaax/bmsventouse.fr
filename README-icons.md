@@ -20,8 +20,8 @@
 9. Les couleurs et hover sont gérés par le CSS (via `currentColor`), pas dans le SVG : ça garantit un rendu correct en **mode clair** et **mode sombre**.
 10. En cas de doute : tu m’envoies ton SVG (ou le lien Bootstrap Icons), et je l’intègre dans le bon composant et au bon endroit dans le CSS/HTML.
 
-_Note sur la normalisation automatique :_ le module JS `enhanceImages()` (dans `js/script.js`) applique par défaut `loading="lazy"` et `decoding="async"` sur les `<img>` (hors héros) **et** remplace à la volée les anciens SVG WhatsApp Font Awesome (`viewBox="0 0 448 512"`) par un SVG `bi-whatsapp` 16×16 basé sur Bootstrap Icons.  
-L’objectif long terme est de **supprimer les dernières occurrences de SVG Font Awesome dans le HTML** et de garder `enhanceImages()` surtout pour l’optimisation des images.
+_Note sur la normalisation automatique :_ le module JS `enhanceImages()` (dans `js/script.js`) applique par défaut `loading="lazy"` et `decoding="async"` sur les `<img>` (hors héros). Il conserve aussi un filet de sécurité pour les très anciens SVG WhatsApp Font Awesome (`viewBox="0 0 448 512"`) en les remplaçant, s’il en rencontre encore, par un SVG `bi-whatsapp` 16×16 basé sur Bootstrap Icons.  
+Dans le code actuel, tous les icônes WhatsApp ont déjà été migrés vers ce SVG unique dans le HTML ; `enhanceImages()` sert donc principalement à l’optimisation des images.
 
 11. 
 Voici la cartographie des icônes présentes sur le site, regroupées par rôle, avec pour chacune :

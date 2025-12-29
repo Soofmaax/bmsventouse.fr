@@ -262,11 +262,11 @@ Avant d’ajouter un nouveau module :
 - For all `<img>` elements:
   - Adds `loading="lazy"` to non‑hero images (images outside `.hero-bg`).
   - Ensures `decoding="async"` is set.
-- For legacy WhatsApp icons:
-  - Detects old Font Awesome WhatsApp SVGs (`viewBox="0 0 448 512"` with the FA WhatsApp path).
+- As a safeguard for legacy WhatsApp icons:
+  - Detects old Font Awesome WhatsApp SVGs (`viewBox="0 0 448 512"` with the FA WhatsApp path), if any are still present.
   - Replaces them in‑place with a 16×16 Bootstrap‑style `bi-whatsapp` SVG using `fill="currentColor"`.
 
-This module acts as a **safety net** while HTML is being cleaned up. The long‑term goal is to remove the last Font Awesome‑based WhatsApp SVGs from the templates so this normalization becomes unnecessary and `enhanceImages()` can focus purely on image perf.
+All WhatsApp icons in the templates have now been migrated to this Bootstrap‑style SVG, so this second part mostly acts as a safety net (par exemple pour d’éventuels fragments HTML très anciens). À terme, `enhanceImages()` est surtout destiné à l’optimisation de la perf des images.
 
 ---
 
