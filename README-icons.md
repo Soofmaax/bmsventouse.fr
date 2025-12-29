@@ -365,7 +365,7 @@ ou truck-front si tu veux une icône très lisible même en tout petit.
 Ces icônes viennent des anciennes classes Font Awesome fa-list et sont déjà mappées dans migrateFAIconsToInlineSVG.
 Où
 
-Dans de nombreuses pages de service ou locales (ventousage-pantin, logistique-*, securite-tournage-*, urban-regie, etc.) sur les boutons :
+Dans de nombreuses pages de service ou locales (ventousage-pantin, logistique-[ville], securite-tournage-[ville], urban-regie, etc.) sur les boutons :
 « Voir nos services »
 « Voir nos autres services »
 « Découvrir nos services »
