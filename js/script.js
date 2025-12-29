@@ -1399,6 +1399,12 @@ function setupContactLeadCapture() {
         // Envoi email géré par Netlify Forms côté serveur (notifications configurées dans Netlify)
         // Aucun appel API nécessaire côté front pour rester gratuit et sans maintenance.
 
+        // Événement de lead : envoi direct vers GA4 (gtag) + dataLayer pour GTM
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'contact_submitted', payload);
+          }
+        } catch (_) {}
         try {
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'contact_submitted', ...payload });
