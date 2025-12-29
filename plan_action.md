@@ -1,6 +1,9 @@
 # Plan d’action SEO/Accessibilité/Qualité - BMS Ventouse
 
-Dernière mise à jour : 2025-12-28rnière mise à jour : 2025-12-28
+Dernière mise à jour : 2025-12-29
+
+> Ce fichier est le **backlog vivant** SEO/A11y/Qualité.  
+> Les audits historiques détaillés sont dans `rapport_audit_complet.md` et `seo-analysis.md`.
 
 ## Objectifs
 
@@ -38,7 +41,7 @@ Tracking / conformité
 - GA4 + Consent Mode v2 en place (ID : G-V7QXQC5260) et unification de l’ID sur toutes les pages.
 - Lien persistant « Gérer les cookies » dans le footer qui réinitialise le consentement et réaffiche la bannière.
 - Styles du breadcrumb et de la bannière cookies déplacés dans le CSS (plus de styles inline JS).
-- Événements Analytics paramétrés : `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`, `contact_submitted` (en attente d’activation conversion GA4).
+- Événements Analytics paramétrés : `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`, `contact_submitted` (événement prévu pour la future page hub contact).
 
 Icônes / assets
 
@@ -49,44 +52,44 @@ Contact / formulaires
 
 - Suppression de toute référence à un « formulaire » dans les pages publiques (HTML).
 - Mise en cohérence de la Politique de confidentialité et de `llms.txt` avec la réalité : contact via téléphone / WhatsApp / email, pas de formulaire général pour le moment.
-- Le module JS de formulaire complexe (multi-services) reste dans `script.js` mais n’est plus utilisé par aucune page (prêt pour une future page dédiée si besoin).
+- Le module JS de formulaire complexe (multi-services) reste dans `script.js` mais n’est plus utilisé par aucune page (prêt pour une future page hub dédiée).
 
 ### P1 : À faire ensuite (1–2 jours homme)
 
-(tâches côté outils externes / CI, non gérables par le code seul)
+Tâches côté outils externes / CI (non gérables uniquement par le code) :
 
-- Soumettre sitemap.xml dans Google Search Console (propriété domaine + URL-prefix).
+- Soumettre `sitemap.xml` dans Google Search Console (propriété domaine + URL-prefix).
 - Activer les règles de protection de branche GitHub : PR obligatoire + check CI requis.
+- Créer/configurer proprement les comptes externes :
+  - GA4 : vérifier la propriété dédiée BMS Ventouse, déclarer `contact_submitted` comme conversion principale (pour le futur formulaire hub) + micro‑conversions `phone_click` / `whatsapp_click`, et créer 1–2 audiences utiles (ventousage Paris, shootings & défilés).
+  - Google Search Console : propriété domaine, rapports réguliers (performances, couvertures, sitemaps).
+  - Bing Webmaster Tools : ajouter le site, déclarer le sitemap (couvre Bing / Yahoo / DuckDuckGo / Brave Search) et vérifier le flux IndexNow.
+  - Microsoft Clarity : confirmer l’ID de projet, filtrer les IP internes si besoin, vérifier au moins une session réelle.
 
 ### P2 : À planifier (semaine à venir)
 
-- Mettre en place Lighthouse CI (perf/SEO/A11Y) sur PR non bloquant au début.
-- Étendre Pa11y (AAA) à davantage d’URLs internes (pages locales).
-- Uniformiser « Twitter Cards » sur toutes les futures pages (gabarit commun).
-- Renforcer CSP via netlify.toml (et retirer les meta CSP redondantes).
-- Ajouter une page 404 plus riche (liens vers pages locales supplémentaires).
-- Remplacer globalement les anciennes icônes Font Awesome `<i class="fas …">` par les SVG inline déjà utilisés (CTA, cartes, zones), pour un rendu cohérent et sans dépendance externe.
-- Créer une page de contact rapide dédiée (hub NFC/QR) regroupant WhatsApp, téléphone, email et un mini‑formulaire unique. : À planifier (semaine à venir)
-
-Améliorations techniques & outils
+Qualité / CI
 
 - Mettre en place Lighthouse CI (perf/SEO/A11Y) sur PR non bloquant au début.
 - Étendre Pa11y (AAA) à davantage d’URLs internes (pages locales).
 - Uniformiser « Twitter Cards » sur toutes les futures pages (gabarit commun).
-- Renforcer CSP via netlify.toml (et retirer les meta CSP redondantes).
-- Ajouter une page 404 plus riche (liens vers pages locales supplémentaires).
-- Créer/configurer proprement les comptes externes :
-  - GA4 : vérifier la propriété dédiée BMS Ventouse, déclarer `contact_submitted` comme conversion principale + micro‑conversions `phone_click` / `whatsapp_click`, et créer 1–2 audiences utiles (ventousage Paris, shootings & défilés).
-  - Google Search Console : propriété domaine déjà prévue en P1, compléter avec quelques rapports réguliers (performances, couvertures, sitemaps).
-  - Bing Webmaster Tools : ajouter le site, déclarer le sitemap (couvre Bing / Yahoo / DuckDuckGo / Brave Search) et vérifier que le flux IndexNow du dépôt fonctionne bien.
-  - Microsoft Clarity : confirmer l’ID de projet, filtrer les IP internes si besoin, vérifier au moins une session de navigation réelle.
 
-Nouveau flux contact (NFC / QR)
+Sécurité
 
-- Créer une landing « hub contact » dédiée (ex. `/contact-direct/` ou similaire) pensée pour les cartes NFC / QR :
-  - 4 entrées claires : téléphone, WhatsApp, email, mini-formulaire unique.
-  - Garder cette page comme **seul endroit** où un formulaire peut vivre à terme.
-  - Prévoir un texte court + FAQ micro pour rassurer (RGPD, réponse sous 24h, etc.).
+- Renforcer et centraliser la CSP via `netlify.toml` (headers) et **supprimer les meta CSP redondantes** dans les HTML.
+
+UX / contenu
+
+- Ajouter une page 404 plus riche (liens vers pages locales supplémentaires, mini FAQ ou bloc explicatif).
+- Nouveau flux contact (NFC / QR) :
+  - Créer une landing « hub contact » dédiée (ex. `/contact-direct/`) pensée pour les cartes NFC / QR :
+    - 4 entrées claires : téléphone, WhatsApp, email, mini‑formulaire unique.
+    - Garder cette page comme **seul endroit** où un formulaire vit à terme.
+    - Prévoir un texte court + mini FAQ pour rassurer (RGPD, réponse sous 24h, etc.).
+
+Icônes / assets
+
+- Remplacer globalement les derniers SVG WhatsApp hérités de Font Awesome dans le HTML par les SVG inline Bootstrap déjà utilisés (CTA, cartes, zones), pour un rendu cohérent et sans dépendance à la normalisation JS.
 
 ### P3 : Opportunités
 
@@ -106,13 +109,13 @@ Nouveau flux contact (NFC / QR)
   - [x] Styles du breadcrumb en CSS (supprimer styles inline JS)
   - [ ] Pa11y URLs étendues
 - Technique
-  - [ ] CSP via netlify.toml (script-src, style-src, img-src, font-src)
+  - [ ] CSP finalisée uniquement via `netlify.toml` (suppression des meta CSP dans les HTML)
   - [x] Variables CONFIG pour constantes (JS) documentées
 - Contenu
   - [ ] Pages locales nouvelles (3+) + intégration sitemap + liens internes
   - [ ] Témoignages visibles (si activation schema AggregateRating à terme)
-  - [ ] Page de contact rapide / hub NFC (WhatsApp, téléphone, email + formulaire léger)
-  - [ ] Landing « hub contact » NFC/QR dédiée (ex. `/contact-direct/`) avec 4 entrées (téléphone, WhatsApp, email, mini-formulaire unique)
+  - [ ] Page de contact rapide / hub NFC (WhatsApp, téléphone, email + formulaire léger) via `/contact-direct/`
+  - [ ] Landing « hub contact » NFC/QR dédiée (ex. `/contact-direct/`) avec 4 entrées (téléphone, WhatsApp, email, mini‑formulaire unique)
 
 ## Estimation
 
@@ -122,8 +125,8 @@ Nouveau flux contact (NFC / QR)
 
 ## Ordre d’exécution recommandé
 
-1) Côté outils externes : GSC (sitemap), règles de protection de branche GitHub.
+1) Côté outils externes : GSC (sitemap), règles de protection de branche GitHub, paramétrage GA4/Clarity/Bing.
 2) Mettre en place Lighthouse CI non bloquant + étendre Pa11y.
-3) Renforcer CSP via headers/netlify.toml.
-4) Créer la landing « hub contact » NFC/QR et la brancher sur `/contact/` / supports physiques.
+3) Finaliser la CSP via headers `netlify.toml` (et retirer les meta CSP redondantes).
+4) Créer la landing « hub contact » NFC/QR (`/contact-direct/`) et la brancher sur `/contact/` / supports physiques.
 5) Continuer les pages locales + maillage interne + mise à jour sitemap.
