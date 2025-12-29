@@ -41,7 +41,7 @@ Tracking / conformité
 - GA4 + Consent Mode v2 en place (ID : G-V7QXQC5260) et unification de l’ID sur toutes les pages.
 - Lien persistant « Gérer les cookies » dans le footer qui réinitialise le consentement et réaffiche la bannière.
 - Styles du breadcrumb et de la bannière cookies déplacés dans le CSS (plus de styles inline JS).
-- Événements Analytics paramétrés : `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`, `contact_submitted` (événement prévu pour la future page hub contact).
+- Événements Analytics paramétrés : `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`, `contact_submitted` (émis par le mini‑formulaire de la page hub `/contact-direct/`).
 
 Icônes / assets
 

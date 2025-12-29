@@ -18,7 +18,7 @@ This project is static by design. However, a few configuration points exist:
   - A cookie banner (`setupCookieBanner`) lets users accept/refuse analytics and updates Consent Mode.
   - Events tracked out of the box (via `gtag` and/or `dataLayer`) include:
     - `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`
-    - `contact_submitted`, reserved for the future contact hub page (no public form currently emits this event).
+    - `contact_submitted`, emitted by the mini contact form on the private hub page `/contact-direct/`.
 - **Google Tag Manager (GTM)** support is **optional**:
   - The function `setupGTM()` reads an ID from a `<meta name="gtm-id" content="GTM-XXXXXXX">` tag **if you add it** in the `<head>`, or from `window.GTM_ID`.
   - By default, the HTML templates do **not** include this meta, so GTM is disabled.

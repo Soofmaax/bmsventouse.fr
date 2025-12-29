@@ -307,21 +307,23 @@ Le code inclut un module de **formulaire de contact multi‑services** pensé po
   - Permet de montrer des champs supplémentaires pour ventousage, sécurité, convoyage, etc.
 
 - `setupContactLeadCapture()`  
-  - Écoute la soumission du formulaire `form[name="contact"]`.
+  - Écoute la soumission du formulaire `form[name=\"contact\"]` (actuellement celui de la page hub `/contact-direct/`).
   - Construit un `payload` riche (identité, coordonnées, service, lieux, dates, budget, détail, flags par service).
   - Sauvegarde quelques champs clés dans `localStorage` pour un éventuel suivi de lead.
-  - Pousse l’événement dans le `dataLayer` pour GTM et GA4 :
+  - Envoie un événement GA4 direct puis pousse l’événement dans le `dataLayer` pour GTM :
 
     ```js
+    if (typeof gtag === 'function') {
+      gtag('event', 'contact_submitted', payload);
+    }
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'contact_submitted', ...payload });
     ```
 
-  - La soumission serveur est prévue pour être gérée par **Netlify Forms** (aucun appel API custom nécessaire).
+  - La soumission serveur est gérée par **Netlify Forms** (aucun appel API custom nécessaire).
 
-Tant que la page hub de contact n’est pas créée et qu’aucun formulaire `name="contact"` n’est présent dans le HTML, **aucun événement `contact_submitted` n’est réellement émis**. Dès que cette page existera, il suffira :
+Sur la page `/contact-direct/`, l’événement `contact_submitted` est donc déjà émis à chaque envoi du mini‑formulaire. Il suffit de :
 
-1. de reprendre la structure de formulaire attendue par `setupContactLeadCapture()`,
-2. de la placer sur la page hub,
-3. de s’assurer que Netlify Forms est configuré pour ce formulaire,
-4. d’activer la conversion `contact_submitted` côté GA4/GTM.
+1. conserver la structure de formulaire attendue par `setupContactLeadCapture()` (ids/`name` existants),
+2. laisser Netlify Forms gérer l’envoi (via `data-netlify=\"true\"` et `form-name=\"contact\"`),
+3. déclarer `contact_submitted` comme **conversion** côté GA4/GTM.
