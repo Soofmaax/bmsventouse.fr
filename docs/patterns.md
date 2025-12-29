@@ -231,6 +231,7 @@ Pattern standard pour les questions fréquentes :
   - ajoute les attributs ARIA (`aria-expanded`, `aria-controls`, `role="button"`, `role="region"`) ;
   - gère l’ouverture/fermeture avec animation de hauteur (`max-height`) ;
   - garantit que le texte n’est pas coupé même si la mise en page change (largeur d’écran, police, etc.).
+- Les styles de la FAQ sont centralisés dans le CSS (bloc dédié en fin de `css/style.css` et fichier `css/faq.css` prévu pour isoler ce module) : la refonte combine une animation `max-height` côté CSS et une gestion fine de la hauteur côté JS pour éviter tout texte tronqué.
 - **Important :**
   - ne pas ajouter de styles inline sur `.faq-answer` (pas de `max-height` manuel) ;
   - ne pas mettre d’autres boutons/cliques actifs dans `.faq-question` (c’est déjà l’élément interactif principal).

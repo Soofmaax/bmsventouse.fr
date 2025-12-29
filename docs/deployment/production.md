@@ -7,7 +7,7 @@ This project targets Netlify for production hosting.
 - [ ] Main branch is green on CI (quality gate)
 - [ ] `sitemap.xml` updated (new pages)
 - [ ] `robots.txt` references the public sitemap
-- [ ] Security headers and CSP defined in `netlify.toml`
+- [ ] Security headers and CSP defined in `netlify.toml` (no leftover `<meta http-equiv="Content-Security-Policy">` tags in HTML)
 - [ ] Analytics (GA4) ID verified
 - [ ] No secrets present (Gitleaks passes)
 
@@ -17,5 +17,6 @@ This project targets Netlify for production hosting.
 - Spot-check LCP and CLS in Lighthouse
 - Validate structured data (Rich Results Test)
 - Confirm robots and sitemap live URLs
+- Open the browser console on a few pages and check for CSP violations (especially GA4 / Clarity). If something is blocked, update the CSP directives in `netlify.toml` rather than adding `<meta http-equiv="Content-Security-Policy">` tags.
 
 SmarterLogicWeb — https://smarterlogicweb.com
