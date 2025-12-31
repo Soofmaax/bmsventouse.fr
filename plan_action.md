@@ -1,6 +1,6 @@
 # Plan d’action SEO/Accessibilité/Qualité - BMS Ventouse
 
-Dernière mise à jour : 2025-12-29
+Dernière mise à jour : 2025-12-31
 
 > Ce fichier est le **backlog vivant** SEO/A11y/Qualité.  
 > Les audits historiques détaillés sont dans `rapport_audit_complet.md` et `seo-analysis.md`.
@@ -70,26 +70,26 @@ Tâches côté outils externes / CI (non gérables uniquement par le code) :
 
 Qualité / CI
 
-- Mettre en place Lighthouse CI (perf/SEO/A11Y) sur PR non bloquant au début.
-- Étendre Pa11y (AAA) à davantage d’URLs internes (pages locales).
-- Uniformiser « Twitter Cards » sur toutes les futures pages (gabarit commun).
+- [x] Lighthouse CI (perf/SEO/A11Y) en place via GitHub Actions (non bloquant, rapports sur URLs clés).
+- [x] Pa11y (AAA) étendu à davantage d’URLs internes (pages locales ventousage/sécurité principales).
+- Uniformiser « Twitter Cards » sur toutes les futures pages (gabarit commun) — à garder comme réflexe lors de la création de nouvelles pages.
 
 Sécurité
 
-- CSP consolidée via `netlify.toml` (headers) et meta CSP résiduelles supprimées dans les HTML (à surveiller lors des prochaines évolutions pour ne pas les réintroduire).
+- [x] CSP consolidée via `netlify.toml` (headers) et meta CSP résiduelles supprimées dans les HTML (à surveiller lors des prochaines évolutions pour ne pas les réintroduire).
 
 UX / contenu
 
-- Ajouter une page 404 plus riche (liens vers pages locales supplémentaires, mini FAQ ou bloc explicatif).
-- Nouveau flux contact (NFC / QR) :
-  - Créer une landing « hub contact » dédiée (ex. `/contact-direct/`) pensée pour les cartes NFC / QR :
+- [x] Page 404 enrichie (liens vers pages ventousage villes, sécurité tournage, logistique + texte d’accompagnement).
+- [x] Nouveau flux contact (NFC / QR) :
+  - Landing « hub contact » dédiée (`/contact-direct/`) pensée pour les cartes NFC / QR :
     - 4 entrées claires : téléphone, WhatsApp, email, mini‑formulaire unique.
-    - Garder cette page comme **seul endroit** où un formulaire vit à terme.
-    - Prévoir un texte court + mini FAQ pour rassurer (RGPD, réponse sous 24h, etc.).
+    - Cette page est le **seul endroit** où un formulaire public vit (mini‑form).
+    - Texte court + micro‑explications intégrés, `contact_submitted` envoyé vers GA4 + dataLayer.
 
 Icônes / assets
 
-- Remplacer globalement les derniers SVG WhatsApp hérités de Font Awesome dans le HTML par les SVG inline Bootstrap déjà utilisés (CTA, cartes, zones), pour un rendu cohérent et sans dépendance à la normalisation JS.
+- [x] Remplacement des derniers SVG WhatsApp hérités de Font Awesome dans le HTML par des SVG inline Bootstrap (`bi-whatsapp`), normalisation finale via HTML + fallback JS dans `enhanceImages()`.
 
 ### P3 : Opportunités
 
@@ -102,20 +102,19 @@ Icônes / assets
 
 - SEO
   - [x] Page Confidentialité + lien footer
-  - [ ] Lighthouse CI (performance/SEO/accessibilité)
-  - [ ] GSC : vérification, sitemaps, inspection d’URLs
+  - [x] Lighthouse CI (performance/SEO/accessibilité) intégré en CI (non bloquant, URLs clés)
 - Accessibilité/UX
   - [x] Lien « Gérer les cookies » (ouvre consent manager)
   - [x] Styles du breadcrumb en CSS (supprimer styles inline JS)
-  - [ ] Pa11y URLs étendues
+  - [x] Pa11y URLs étendues (pages locales et services principaux)
 - Technique
   - [x] CSP finalisée uniquement via `netlify.toml` (meta CSP supprimées dans les HTML)
   - [x] Variables CONFIG pour constantes (JS) documentées
 - Contenu
   - [ ] Pages locales nouvelles (3+) + intégration sitemap + liens internes
   - [ ] Témoignages visibles (si activation schema AggregateRating à terme)
-  - [ ] Page de contact rapide / hub NFC (WhatsApp, téléphone, email + formulaire léger) via `/contact-direct/`
-  - [ ] Landing « hub contact » NFC/QR dédiée (ex. `/contact-direct/`) avec 4 entrées (téléphone, WhatsApp, email, mini‑formulaire unique)
+  - [x] Page de contact rapide / hub NFC (WhatsApp, téléphone, email + formulaire léger) via `/contact-direct/`
+  - [x] Landing « hub contact » NFC/QR dédiée (`/contact-direct/`) avec 4 entrées (téléphone, WhatsApp, email, mini‑formulaire unique)
 
 ## Estimation
 
