@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Production-ready static website for BMS Ventouse, maintained by SmarterLogicWeb.",
-  "author": "SmarterLogicWeb <[email]>",
+  "author": "SmarterLogicWeb <contact@bmsventouse.fr>",
   "homepage": "https://smarterlogicweb.com",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   },
   "bugs": {
     "url": "https://github.com/Soofmaax/bmsventouse.fr/issues",
-    "email": "[email]"
+    "email": "contact@bmsventouse.fr"
   },
   "license": "MIT",
   "scripts": {
