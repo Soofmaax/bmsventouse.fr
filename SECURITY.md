@@ -18,7 +18,7 @@ We monitor and maintain:
 
 If you discover a security vulnerability within this project or its deployment (bmsventouse.fr), please **report it responsibly** by emailing:
 
-- Email: security@bmsventouse.fr
+- Email: contact@bmsventouse.fr
 - Subject line: `[Security] bmsventouse.fr – vulnerability report`
 
 If you believe you’ve found a security vulnerability, please email us with details, including (when possible):
@@ -61,4 +61,4 @@ We will acknowledge your report within 5 business days and keep you updated on p
 
 SmarterLogicWeb  
 Website: https://smarterlogicweb.com  
-Security: security@bmsventouse.fr
+Security: contact@bmsventouse.fr
