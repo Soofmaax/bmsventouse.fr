@@ -17,6 +17,7 @@ Tu peux cocher les cases à la main ou simplement ajouter des commentaires sous 
 - `/services/` – Page Services
 - `/realisations/` – Réalisations
 - `/contact/` – Page Contact
+- `/contact-direct/` – Hub contact NFC/QR (page dédiée scan, non indexée)
 - `/mentions/` – Mentions légales
 - `/infos-ia/` – Infos IA (page)
 - `/404.html` – Page 404 (tester en appelant une URL inexistante)
@@ -165,6 +166,11 @@ Exemple de format :
 - 2025-12-28 : Carte « Cantine & catering » — correction de l’attribut alt de l’image (orthographe « cantine et catering »).
 - 2025-12-28 : Encadré « Gardiennage & sécurité de matériel » — balisage accessibilité (role=\"note\" + aria-label explicite) pour harmoniser avec les autres notes.
 
+### /contact-direct/
+
+- 2025-12-22 : Création de la page hub NFC/QR `/contact-direct/` avec boutons téléphone, WhatsApp, email et mini-formulaire léger pour les cartes NFC/QR.
+- 2025-12-22 : Intégration du suivi Analytics `contact_submitted` (gtag + dataLayer) déclenché à chaque envoi du formulaire.
+
 ### /gardiennage/
 
 - 2025-12-28 : Encadré « Note sécurité & conformité » — balisage accessibilité (role=\"note\" + aria-label) pour les lecteurs d’écran.
@@ -196,9 +202,9 @@ Exemple de format :
 - [ ] Vérifier qu’il ne reste plus de liens bleus sur la home (texte noir + liens orange en mode clair, texte clair + liens orange en dark mode).
 - [ ] Vérifier que les boutons de toggle (lune = dark mode, main = main gauche/droite) sont bien visibles en dark mode (icône claire sur rond légèrement plus clair que le header).
 
-### TODO – prochaine évolution « hub NFC/QR »
+### Hub NFC/QR « contact-direct »
 
-- Créer une page de contact rapide dédiée (hub NFC/QR), avec un seul endroit où vivre : boutons WhatsApp / téléphone / email + mini‑formulaire léger. Les cartes NFC et QR pointeront vers cette page.
+- 2025-12-22 : Création de la page de contact rapide dédiée (hub NFC/QR) `/contact-direct/` avec un seul endroit où vivent les boutons WhatsApp / téléphone / email + mini-formulaire léger. Les cartes NFC et QR pointeront vers cette page.
 
 Au fur et à mesure que nous modifions les pages ensemble, j’ajouterai ici les entrées correspondantes pour que tu puisses facilement re-tester après le merge.
 
@@ -211,4 +217,4 @@ Au fur et à mesure que nous modifions les pages ensemble, j’ajouterai ici les
 
 - 2025-12-28 : Suppression de toute mention de « formulaire de contact » sur les pages publiques ; modes de contact affichés = téléphone, WhatsApp, email.
 - 2025-12-28 : Politique de confidentialité et `llms.txt` mis à jour pour refléter ce mode de contact (pas de formulaire général actif pour le moment).
-- TODO (future session) : créer une page hub NFC/QR dédiée (par ex. `/contact-direct/`) avec 4 entrées : téléphone, WhatsApp, email, mini‑formulaire unique.
+- 2025-12-22 : Création de la page hub NFC/QR `/contact-direct/` avec 4 entrées : téléphone, WhatsApp, email, mini-formulaire unique.

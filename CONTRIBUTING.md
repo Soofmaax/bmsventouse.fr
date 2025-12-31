@@ -70,4 +70,4 @@ By participating, you agree to abide by our Code of Conduct. See CODE_OF_CONDUCT
 
 ## Questions?
 
-Open a discussion or issue, or contact SmarterLogicWeb at [email].
+Open a discussion or issue, or contact SmarterLogicWeb at contact@bmsventouse.fr.
