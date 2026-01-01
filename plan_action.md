@@ -111,6 +111,10 @@ Icônes / assets
   - [x] CSP finalisée uniquement via `netlify.toml` (meta CSP supprimées dans les HTML)
   - [x] Variables CONFIG pour constantes (JS) documentées
 - Contenu
+  - Idée future : pages locales nouvelles (3+) + intégration sitemap + liens internes
+  - Idée future : témoignages visibles (si activation schema AggregateRating à terme)
+  - [x] Page de contact rapide / hub NFC (WhatsApp, téléphone, email + formulaire léger) via `/contact-direct/`
+  - [x] Landing « hub contact » NFC/QR dédiée (`/contact-direct/`) avec 4 entrées (téléphone, WhatsApp, email, mini-formulaire unique)enu
   - [ ] Pages locales nouvelles (3+) + intégration sitemap + liens internes
   - [ ] Témoignages visibles (si activation schema AggregateRating à terme)
   - [x] Page de contact rapide / hub NFC (WhatsApp, téléphone, email + formulaire léger) via `/contact-direct/`

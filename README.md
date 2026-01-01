@@ -14,12 +14,12 @@
 - FAQs, services and safety pages have been harmonized (content, icons, accessibility).
 - All icons are now inline SVG (no external icon fonts).
 
-## 🗺️ Roadmap / TODO (for future work)
+## 🗺️ Roadmap / future work
 
-- [x] Create a dedicated “contact hub / NFC / QR” landing page (`/contact-direct/`) with 4 entry points: phone, WhatsApp, email and a small single form.
-- [ ] Follow `plan_action.md` for remaining SEO & CI tasks (Lighthouse CI, branch protection, extended Pa11y, etc.).
-- [ ] Consider adding a lightweight blog or case studies section for SEO in the future. https://bmsventouse.fr/
-- Screenshots/GIFs: add in docs or this section
+- Contact hub / NFC / QR (`/contact-direct/`) créé et en production.
+- Les évolutions SEO, accessibilité et qualité sont désormais suivies dans `plan_action.md`.
+- Éventuel futur : ajouter un mini blog ou des études de cas pour renforcer le SEO.
+- Screenshots/GIFs : à ajouter plus tard dans la doc ou dans cette section.
 
 ## 🚀 Quick Start
 
@@ -38,17 +38,7 @@
 
 Start here: docs/README.md
 
-## ✅ Current Status
 
-- Static site in production with full CI (HTML/CSS/JS lint, accessibility, security).
-- No generic contact form: contact is via phone, WhatsApp or email (see `/contact/`).
-- FAQs, services and safety pages have been harmonized (content, icons, accessibility).
-- All icons are now inline SVG (no external icon fonts).
-
-## 🗺️ Roadmap / TODO (for future work)
-
-- [ ] Create a dedicated “contact hub / NFC / QR” landing page (e.g. `/contact-direct/`) with 4 entry points: phone, WhatsApp, email and a small single form.
-- [ ] Follow `plan_action.md` for remaining SEO & CI tasks (Lighthouse CI, branch protection, extended Pa11y, etc.).
 
 ## 🛠️ Tech Stack
 
