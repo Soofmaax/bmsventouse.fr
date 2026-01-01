@@ -31,10 +31,24 @@ Run linters locally:
 
 ## Branching & Commits
 
-- Branch from `main`: `feature/<brief-name>` or `fix/<brief-name>`
+- Branch from `main`: `feature/&lt;brief-name&gt;` or `fix/&lt;brief-name&gt;`
 - Conventional commit style encouraged:
   - `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `ci:`
 - Keep commit messages imperative and scoped
+
+### Branch protection on `main`
+
+Branch protection is managed in GitHub settings (not in this repo). Recommended configuration:
+
+1. Go to **Settings → Branches → Branch protection rules**.
+2. Add a rule for branch name pattern `main`.
+3. Enable:
+   - “Require a pull request before merging” (no direct pushes to `main`),
+   - “Require status checks to pass before merging” and select the workflow named **“CI - Full Quality Gate”**,
+   - (Optionnel) “Require branches to be up to date before merging” to avoid merging outdated PRs.
+4. Save the rule.
+
+With this in place, any change to production must go through a PR and a green CI run.
 
 ## Pull Request Process
 
@@ -56,4 +70,4 @@ By participating, you agree to abide by our Code of Conduct. See CODE_OF_CONDUCT
 
 ## Questions?
 
-Open a discussion or issue, or contact SmarterLogicWeb at [email].
+Open a discussion or issue, or contact SmarterLogicWeb at contact@bmsventouse.fr.

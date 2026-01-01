@@ -20,4 +20,16 @@
 - See logs for the specific linter failing (HTML, CSS, JS, MD, Actions)
 - Run the corresponding linter locally with the project config
 
+## 6) CSP blocks GA4 or Clarity
+- Symptoms:
+  - GA4 hits missing in real‑time reports.
+  - Clarity sessions not recorded.
+  - Errors like “Refused to load the script because it violates the following Content Security Policy directive…” in the browser console.
+- Checks:
+  - Open DevTools → Console and look for CSP errors on `https://www.googletagmanager.com`, `https://www.google-analytics.com` or `https://www.clarity.ms`.
+  - Inspect the response headers to confirm CSP is coming from `netlify.toml` and that there is **no** conflicting `<meta http-equiv="Content-Security-Policy">` tag in the HTML.
+- Fix:
+  - Update the `Content-Security-Policy` header in `netlify.toml` to explicitly allow the required scripts/images/fonts.
+  - Avoid adding or keeping CSP `<meta>` tags in individual HTML files; keep CSP centralized in Netlify headers.
+
 SmarterLogicWeb — https://smarterlogicweb.com

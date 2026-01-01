@@ -291,6 +291,20 @@ document.addEventListener('DOMContentLoaded', () => {
               </ul>
             </div>
             <div class="nav-submenu-group">
+              <span class="group-title">Territoires</span>
+              <ul class="group-list">
+                <li><a href="/ventousage-paris/">Paris</a></li>
+                <li><a href="/ventousage-pantin/">Pantin</a></li>
+                <li><a href="/ventousage-lyon/">Lyon</a></li>
+                <li><a href="/ventousage-marseille/">Marseille</a></li>
+                <li><a href="/ventousage-bordeaux/">Bordeaux</a></li>
+                <li><a href="/ventousage-strasbourg/">Strasbourg</a></li>
+                <li><a href="/ventousage-nice/">Nice</a></li>
+                <li><a href="/ventousage-toulouse/">Toulouse</a></li>
+                <li><a href="/ventousage-lille/">Lille</a></li>
+              </ul>
+            </div>
+            <div class="nav-submenu-group">
               <span class="group-title">Tous les services</span>
               <ul class="group-list">
                 <li><a href="/services/">Voir tous les services</a></li>
@@ -1399,6 +1413,12 @@ function setupContactLeadCapture() {
         // Envoi email géré par Netlify Forms côté serveur (notifications configurées dans Netlify)
         // Aucun appel API nécessaire côté front pour rester gratuit et sans maintenance.
 
+        // Événement de lead : envoi direct vers GA4 (gtag) + dataLayer pour GTM
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'contact_submitted', payload);
+          }
+        } catch (_) {}
         try {
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'contact_submitted', ...payload });

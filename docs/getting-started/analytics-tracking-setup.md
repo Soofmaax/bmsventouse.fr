@@ -84,15 +84,19 @@ Dans `js/script.js`, le module `setupAnalyticsEvents()` et la capture du formula
     - `event_label: texte du lien (bouton)`
 
 - `contact_submitted`  
-  - Réservé pour la future page de contact rapide (hub NFC/QR) avec mini‑formulaire dédié.
-  - Le code JS (`setupContactLeadCapture()`) est déjà en place, mais il n’y a **pas de formulaire actif** dans le markup actuel : cet événement n’est donc pas émis tant que cette page n’est pas créée.
-  - Une fois la page hub mise en place, l’événement pourra transporter un payload complet :
+  - Utilisé par la page de contact rapide (hub NFC/QR) `/contact-direct/` via un mini‑formulaire dédié.
+  - Le code JS (`setupContactLeadCapture()`) est déjà branché sur ce formulaire (`form[name="contact"]`) et émet l’événement à chaque envoi réel.
+  - L’événement transporte un payload complet :
     - `fullname`, `company`, `email`, `phone`,
     - `service`, `location`, `urgency`, `details`,
     - et des champs détaillés selon le service (ventousage, sécurité, convoyage, etc.).
-  - L’événement sera aussi poussé dans le `dataLayer` :
+  - L’événement est envoyé à la fois vers GA4 et dans le `dataLayer` pour GTM :
 
     ```js
+    if (typeof gtag === 'function') {
+      gtag('event', 'contact_submitted', payload);
+    }
+    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'contact_submitted', ...payload });
     ```
 
@@ -296,9 +300,8 @@ Pour être opérationnel sur toutes les plateformes :
 - [ ] Propriété et flux Web créés.
 - [ ] ID de mesure (format `G-XXXXXXX`) renseigné dans le snippet `gtag`.
 - [ ] Événements visibles :  
-  `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`  
-  (puis `contact_submitted` une fois la future page hub NFC/QR en ligne).
-- [ ] `contact_submitted` marqué en **Conversion** (lead principal) dès que le mini‑formulaire du hub est en production.
+  `phone_click`, `whatsapp_click`, `email_click`, `cta_contact_click`, `contact_submitted` (mini‑formulaire du hub `/contact-direct/`).
+- [ ] `contact_submitted` marqué en **Conversion** (lead principal) pour suivre les demandes de devis issues du hub NFC/QR.
 
 ### GTM
 

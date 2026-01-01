@@ -19,6 +19,10 @@
 8. Si un même SVG est utilisé partout (ex : WhatsApp), on choisit **une seule version de référence** et on la réutilise sur toutes les pages pour garder une iconographie cohérente.
 9. Les couleurs et hover sont gérés par le CSS (via `currentColor`), pas dans le SVG : ça garantit un rendu correct en **mode clair** et **mode sombre**.
 10. En cas de doute : tu m’envoies ton SVG (ou le lien Bootstrap Icons), et je l’intègre dans le bon composant et au bon endroit dans le CSS/HTML.
+
+_Note sur la normalisation automatique :_ le module JS `enhanceImages()` (dans `js/script.js`) applique par défaut `loading="lazy"` et `decoding="async"` sur les `<img>` (hors héros). Il conserve aussi un filet de sécurité pour les très anciens SVG WhatsApp Font Awesome (`viewBox="0 0 448 512"`) en les remplaçant, s’il en rencontre encore, par un SVG `bi-whatsapp` 16×16 basé sur Bootstrap Icons.  
+Dans le code actuel, tous les icônes WhatsApp ont déjà été migrés vers ce SVG unique dans le HTML ; `enhanceImages()` sert donc principalement à l’optimisation des images.
+
 11. 
 Voici la cartographie des icônes présentes sur le site, regroupées par rôle, avec pour chacune :
 
@@ -361,7 +365,7 @@ ou truck-front si tu veux une icône très lisible même en tout petit.
 Ces icônes viennent des anciennes classes Font Awesome fa-list et sont déjà mappées dans migrateFAIconsToInlineSVG.
 Où
 
-Dans de nombreuses pages de service ou locales (ventousage-pantin, logistique-*, securite-tournage-*, urban-regie, etc.) sur les boutons :
+Dans de nombreuses pages de service ou locales (ventousage-pantin, logistique-[ville], securite-tournage-[ville], urban-regie, etc.) sur les boutons :
 « Voir nos services »
 « Voir nos autres services »
 « Découvrir nos services »

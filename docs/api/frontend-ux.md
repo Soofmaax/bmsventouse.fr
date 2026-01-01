@@ -250,3 +250,80 @@ Avant d’ajouter un nouveau module :
 2. Le coder sous la forme `const setupMonModule = () => { ... }` ou `function setupMonModule() { ... }`.
 3. L’appeler dans le bloc `DOMContentLoaded` avec les autres `setupXxx()`.
 4. Lancer la CI (ou au minimum ESLint/HTMLHint/Stylelint en local) pour s’assurer qu’il respecte les règles du projet.
+
+---
+
+## 6. Optimisation des images & normalisation WhatsApp (`enhanceImages()`)
+
+**Where:** `js/script.js` → `enhanceImages()`  
+
+**What it does:**
+
+- For all `<img>` elements:
+  - Adds `loading="lazy"` to non‑hero images (images outside `.hero-bg`).
+  - Ensures `decoding="async"` is set.
+- As a safeguard for legacy WhatsApp icons:
+  - Detects old Font Awesome WhatsApp SVGs (`viewBox="0 0 448 512"` with the FA WhatsApp path), if any are still present.
+  - Replaces them in‑place with a 16×16 Bootstrap‑style `bi-whatsapp` SVG using `fill="currentColor"`.
+
+All WhatsApp icons in the templates have now been migrated to this Bootstrap‑style SVG, so this second part mostly acts as a safety net (par exemple pour d’éventuels fragments HTML très anciens). À terme, `enhanceImages()` est surtout destiné à l’optimisation de la perf des images.
+
+---
+
+## 7. Header et footer unifiés
+
+### `setupUnifiedHeader()`
+
+- Injecte un header cohérent sur l’ensemble des pages standards :
+  - Logo + navigation principale (Accueil, Services, Références, Contact…),
+  - Bannière promotionnelle (“Devis gratuit sous 24h”) au‑dessus du header,
+  - Bouton hamburger mobile attendu par `setupHamburgerMenu()`.
+
+Les pages qui ont besoin d’un header complètement spécifique peuvent s’écarter de ce pattern, mais dans ce cas il faut vérifier que les hooks JS (id/classes du menu) restent cohérents.
+
+### `setupUnifiedFooter()`
+
+- Reconstruit le footer dans une mise en page unique :
+  - Bloc marque (logo, description courte, liens vers Instagram / X),
+  - Liens de navigation (Accueil, Services, Réalisations, Contact, pages de services),
+  - Bloc “Territoires” listant les principales pages locales de ventousage,
+  - Bloc “Contact Direct” (téléphone, WhatsApp, email, adresse, disponibilité 24/7),
+  - Bloc “Légal” : Mentions légales, Politique de confidentialité, Conditions générales de prestation, fichiers IA (`llms.txt`, `ai.txt`), page `/infos-ia/`, lien “Gérer les cookies”.
+
+La page Urban Régie possède un footer spécifique ; le module détecte ce cas et ne remplace pas son contenu.
+
+---
+
+## 8. Formulaire de contact avancé (prêt mais non utilisé)
+
+Le code inclut un module de **formulaire de contact multi‑services** pensé pour une future page hub (type `/contact-direct/`). Il n’est actuellement branché sur **aucune** page publique (aucun `<form name="contact">` dans le HTML), mais il est prêt à être réutilisé :
+
+- `setupContactSuccessNotice()`  
+  - Affiche un message de succès lorsqu’on arrive avec `?success=1` dans l’URL.
+  - Insère une carte de confirmation en haut du conteneur du formulaire (ou du `<main>`).
+
+- `setupContactServiceDetails()`  
+  - Affiche/masque des blocs `.service-details` en fonction de la valeur du champ `#service`.
+  - Permet de montrer des champs supplémentaires pour ventousage, sécurité, convoyage, etc.
+
+- `setupContactLeadCapture()`  
+  - Écoute la soumission du formulaire `form[name=\"contact\"]` (actuellement celui de la page hub `/contact-direct/`).
+  - Construit un `payload` riche (identité, coordonnées, service, lieux, dates, budget, détail, flags par service).
+  - Sauvegarde quelques champs clés dans `localStorage` pour un éventuel suivi de lead.
+  - Envoie un événement GA4 direct puis pousse l’événement dans le `dataLayer` pour GTM :
+
+    ```js
+    if (typeof gtag === 'function') {
+      gtag('event', 'contact_submitted', payload);
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'contact_submitted', ...payload });
+    ```
+
+  - La soumission serveur est gérée par **Netlify Forms** (aucun appel API custom nécessaire).
+
+Sur la page `/contact-direct/`, l’événement `contact_submitted` est donc déjà émis à chaque envoi du mini‑formulaire. Il suffit de :
+
+1. conserver la structure de formulaire attendue par `setupContactLeadCapture()` (ids/`name` existants),
+2. laisser Netlify Forms gérer l’envoi (via `data-netlify=\"true\"` et `form-name=\"contact\"`),
+3. déclarer `contact_submitted` comme **conversion** côté GA4/GTM.

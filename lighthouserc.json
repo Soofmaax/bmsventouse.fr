@@ -1,0 +1,43 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npx http-server -p 8080 .",
+      "url": [
+        "http://localhost:8080/",
+        "http://localhost:8080/services/",
+        "http://localhost:8080/ventousage-paris/",
+        "http://localhost:8080/securite-tournage-paris/",
+        "http://localhost:8080/logistique-seine-saint-denis/",
+        "http://localhost:8080/contact/",
+        "http://localhost:8080/politique-confidentialite/"
+      ],
+      "numberOfRuns": 1
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "categories:performance": [
+          "warn",
+          {
+            "minScore": 0.8
+          }
+        ],
+        "categories:accessibility": [
+          "warn",
+          {
+            "minScore": 0.9
+          }
+        ],
+        "categories:seo": [
+          "warn",
+          {
+            "minScore": 0.9
+          }
+        ]
+      }
+    }
+  }
+}

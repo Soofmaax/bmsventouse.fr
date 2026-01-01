@@ -7,6 +7,20 @@
 - Production: https://bmsventouse.fr/
 - Screenshots/GIFs: add in docs or this section
 
+## ✅ Current Status
+
+- Static site in production with full CI (HTML/CSS/JS lint, accessibility, security).
+- No generic contact form on public pages: contact is via phone, WhatsApp or email (see `/contact/`). A lightweight mini-form exists only on the private hub `/contact-direct/` for NFC/QR cards.
+- FAQs, services and safety pages have been harmonized (content, icons, accessibility).
+- All icons are now inline SVG (no external icon fonts).
+
+## 🗺️ Roadmap / future work
+
+- Contact hub / NFC / QR (`/contact-direct/`) créé et en production.
+- Les évolutions SEO, accessibilité et qualité sont désormais suivies dans `plan_action.md`.
+- Éventuel futur : ajouter un mini blog ou des études de cas pour renforcer le SEO.
+- Screenshots/GIFs : à ajouter plus tard dans la doc ou dans cette section.
+
 ## 🚀 Quick Start
 
 - Serve locally (no build step):
@@ -24,17 +38,7 @@
 
 Start here: docs/README.md
 
-## ✅ Current Status
 
-- Static site in production with full CI (HTML/CSS/JS lint, accessibility, security).
-- No generic contact form: contact is via phone, WhatsApp or email (see `/contact/`).
-- FAQs, services and safety pages have been harmonized (content, icons, accessibility).
-- All icons are now inline SVG (no external icon fonts).
-
-## 🗺️ Roadmap / TODO (for future work)
-
-- [ ] Create a dedicated “contact hub / NFC / QR” landing page (e.g. `/contact-direct/`) with 4 entry points: phone, WhatsApp, email and a small single form.
-- [ ] Follow `plan_action.md` for remaining SEO & CI tasks (Lighthouse CI, branch protection, extended Pa11y, etc.).
 
 ## 🛠️ Tech Stack
 
@@ -61,7 +65,7 @@ Note: textual content, logos and images may have specific copyrights.
 
 - Company: SmarterLogicWeb (https://smarterlogicweb.com)
 - Mission: Solutions web intelligentes, sécurisées et sur‑mesure
-- Contact: [email]
+- Contact: contact@bmsventouse.fr
 
 ---
 
@@ -69,11 +73,11 @@ Note: textual content, logos and images may have specific copyrights.
   <p>Made with ❤️ by <strong>SmarterLogicWeb</strong></p>
   <p>
     🌐 <a href="https://smarterlogicweb.com">Website</a> •
-    📧 <a href="mailto:[email]">Contact</a> •
+    📧 <a href="mailto:contact@bmsventouse.fr">Contact</a> •
     💼 <a href="https://linkedin.com/company/smarterlogicweb">LinkedIn</a>
   </p>
   <p>
-    <sub>© 2025 SmarterLogicWeb. All rights reserved.</sub>
+    <small>Ce dépôt est optimisé pour la qualité, la sécurité et l’accessibilité. N’hésite pas à ouvrir une issue ou une PR si tu repères un point à améliorer.</small>
   </p>
 </div>
 
