@@ -29,23 +29,9 @@
 
 /* === BLOC CORRIGÉ POUR LA BANNIÈRE ET LE HEADER === */
 
-/* Bannière promo repositionnée en relative */
+/* Bannière promo désactivée (message intégré dans la nav via un badge) */
 .promo-banner {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  height: var(--promo-banner-height);
-  background-color: var(--color-primary);
-  /* Contraste renforcé: noir quasi pur sur fond orange */
-  color: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  text-align: center;
-  font-weight: var(--font-weight-medium);
+  display: none;
 }
 
 /* Header repositionné en sticky */
@@ -189,6 +175,36 @@ body.dark-theme .header {
   background: var(--color-primary-dark);
   color: var(--color-light);
   transform: scale(1.04);
+}
+
+/* Petit badge \"Réponse rapide sous 24h\" dans la nav (remplace la barre promo) */
+.nav-promo {
+  display: none;
+}
+
+.nav-promo-badge {
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-medium);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-primary-dark);
+  color: var(--color-primary-dark);
+  background-color: #fff7f0;
+  white-space: nowrap;
+}
+
+/* Afficher le badge à partir du breakpoint tablette/desktop */
+@media (min-width: 768px) {
+  .nav-promo {
+    display: block;
+  }
+}
+
+/* Variante en thème sombre */
+body.dark-theme .nav-promo-badge {
+  background-color: rgba(255, 140, 66, 0.15);
+  color: var(--color-light);
+  border-color: var(--color-primary-light);
 }
 
 /* Sous-menu de navigation (toutes les pages) */
