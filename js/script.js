@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Contact
       navItems.push(
-        `<li><a href="/contact/" class="nav-link${isContact ? ' active' : ''}\">Contact</a></li>`
+        `<li><a href="/contact/" class="nav-link${isContact ? ' active' : ''}">Contact</a></li>`
       );
 
       // Préférence gaucher / droitier
