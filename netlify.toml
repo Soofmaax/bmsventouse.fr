@@ -98,13 +98,24 @@
   to = "/realisations/"
   status = 301
 
-# Ancienne page /devis/ : redirigée vers la page Tarifs &amp; devis
+# Ancienne page /devis/ : redirigée vers la page Contact
 [[redirects]]
   from = "/devis"
-  to = "/prix-ventousage-paris/"
+  to = "/contact/"
   status = 301
 
 [[redirects]]
   from = "/devis/"
-  to = "/prix-ventousage-paris/"
+  to = "/contact/"
+  status = 301
+
+# Ancienne page /prix-ventousage-paris/ : redirigée vers la page Contact
+[[redirects]]
+  from = "/prix-ventousage-paris"
+  to = "/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/prix-ventousage-paris/"
+  to = "/contact/"
   status = 301

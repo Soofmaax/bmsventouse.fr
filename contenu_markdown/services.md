@@ -9,7 +9,7 @@
 
 ### Héros
 - Titre : Solutions Logistiques Complètes pour Productions Audiovisuelles
-- Texte : Que vous soyez régisseur de long métrage, de série, de publicité ou d'événementiel, nous avons la solution. Basés en Seine‑Saint‑Denis (93), nous intervenons principalement à Paris et en Île‑de‑France avec des tarifs directs, sans surcoût d’agence.
+- Texte : Que vous soyez régisseur de long métrage, de série, de publicité ou d'événementiel, nous avons la solution. Basés en Seine‑Saint‑Denis (93), nous intervenons principalement à Paris et en Île‑de‑France avec des conditions directes, sans surcoût d’agence.
 
 ### Catalogue de prestations (cartes)
 - Sécurité Plateaux & Gardiennage  
@@ -24,7 +24,7 @@
   - Liens : /cantine-catering/, /services/
 - Ventousage & Stationnement  
   - Gestion d’AOT, neutralisation de stationnement, pose de panneaux, affichage riverains, signalisation temporaire.  
-  - Liens : /ventousage/, /ventousage-paris/, /affichage-riverains/, /signalisation-barrierage/, /prix-ventousage-paris/
+  - Liens : /ventousage/, /ventousage-paris/, /affichage-riverains/, /signalisation-barrierage/
 - Convoyage Véhicules & Décors  
   - Convoyage de véhicules techniques (jusqu’à 22 m³, poids lourds) et transport de décors/matériels entre sites de tournage.  
   - Liens : /convoyage-vehicules-decors/, /transport-materiel-audiovisuel-paris/, /contact/
@@ -37,17 +37,17 @@
   - Lien : /regie-materiel/
 - Solutions Packagées & Offres Partenaires  
   - Packages logistique + sécurité + régie, ajustés au besoin réel.  
-  - Tarifs directs sans surcoût d’agence, devis poste par poste.  
+  - Conditions directes sans surcoût d’agence, devis poste par poste.  
   - Lien : /contact/
 
 ### Avantages inclus
-- Devis gratuit sous 24h ouvrées sur les demandes standard.
-- Signalisation (pose de panneaux, affichage, périmètre) souvent offerte après acceptation du devis (cas précisés par échange).
+- Réponse rapide sous 24h ouvrées sur les demandes standard.
+- Signalisation (pose de panneaux, affichage, périmètre) souvent proposée après acceptation du devis (cas précisés par échange).
 - Support 7j/7 pour ajuster le dispositif selon la réalité plateau.
-- Tarifs directs, sans surcoût d’agence.
+- Conditions directes, sans surcoût d’agence.
 
 ### CTA
-- Devis gratuit (Contact) → /contact/
+- Demander un devis (Contact) → /contact/
 - WhatsApp Direct → https://wa.me/33646005642
 
 ## Éléments notables

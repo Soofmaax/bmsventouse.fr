@@ -47,9 +47,9 @@ Tu peux cocher les cases à la main ou simplement ajouter des commentaires sous 
 - `/affichage-riverains/` – Affichage riverains
 - `/signalisation-barrierage/` – Signalisation & barriérage
 
-### 1.5. Pages tarifaires
+### 1.5. Anciennes pages tarifaires (désactivées)
 
-- `/prix-ventousage-paris/` – Tarifs / prix ventousage Paris
+- `/prix-ventousage-paris/` – Ancienne page tarifs ventousage Paris (supprimée, redirigée vers `/contact/`)
 
 ---
 
@@ -197,7 +197,7 @@ Exemple de format :
 - [ ] Vérifier sur mobile (iPhone / Android) et desktop que les 3 cartes services en haut ont des textes d’une longueur visuellement proche (aucun pavé beaucoup plus long que les autres).
 - [ ] Vérifier que la section « Votre expert en ventousage à Paris et en Île‑de‑France » est bien centrée et lisible en clair et dark mode (le bloc ovale ressemble à un mini-CTA).
 - [ ] Vérifier que la FAQ de la home s’ouvre et se ferme correctement, que le texte est entièrement lisible sans être coupé, sur iPhone / Android / desktop.
-- [ ] Vérifier rapidement l’ouverture/fermeture des FAQ sur 2–3 autres pages (par ex. /ventousage-paris/, /prix-ventousage-paris/, /gardiennage/) pour confirmer qu’aucun texte n’est coupé.
+- [ ] Vérifier rapidement l’ouverture/fermeture des FAQ sur 2–3 autres pages (par ex. /ventousage-paris/, /gardiennage/, /affichage-riverains/) pourur confirmer qu’aucun texte n’est coupé.
 - [ ] Vérifier que les 3 icônes WhatsApp (héros, bouton flottant, footer) sont bien identiques, nets et lisibles en clair et dark mode.
 - [ ] Vérifier qu’il ne reste plus de liens bleus sur la home (texte noir + liens orange en mode clair, texte clair + liens orange en dark mode).
 - [ ] Vérifier que les boutons de toggle (lune = dark mode, main = main gauche/droite) sont bien visibles en dark mode (icône claire sur rond légèrement plus clair que le header).
