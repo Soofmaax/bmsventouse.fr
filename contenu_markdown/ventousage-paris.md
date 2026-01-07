@@ -3,15 +3,15 @@
 ## Meta informations
 - URL : https://bmsventouse.fr/ventousage-paris/
 - Title tag : Ventousage à Paris. Nos ventouseurs sont disponibles pour vos tournages, shootings et événements
-- Meta description : Ventousage à Paris : neutralisation du stationnement, panneaux B6 (AGATE), affichage riverains, AOT. 24/7 dans les 1er–20e. Devis gratuit.
+- Meta description : Ventousage à Paris : neutralisation du stationnement, panneaux B6 (AGATE), affichage riverains, AOT. 24/7 dans les 1er–20e. Réponse rapide sous 24 h.
 
 ## Contenu principal
 
 ### Héros
-- Titre : Ventousage à Paris : devis rapide, tarifs directs, sans surcoût d'agence et intervention 24/7
+- Titre : Ventousage à Paris : devis rapide, conditions directes, sans surcoût d'agence et intervention 24/7
 - Texte : Neutralisation de stationnement, pose de panneaux et autorisations de tournage. Intervention 24/7 dans tous les arrondissements. Basés en Seine‑Saint‑Denis (93), nos ventouseurs professionnels à Paris interviennent aussi en petite couronne.
 - CTA :
-  - Devis gratuit → /contact/
+  - Demander un devis → /contact/
   - WhatsApp Direct → https://wa.me/33646005642?text=Bonjour,%20j'aimerais%20un%20ventousage%20%C3%A0%20Paris.
 - Image : /images/hero-background-custom.jpg  
   - Alt : Rue parisienne neutralisée pour un tournage avec signalisation réglementaire.
@@ -35,11 +35,10 @@
   - Gestion des AOT sur demande.
   - Respect des arrêtés temporaires et contraintes locales (PMR, sorties de garage, passages piétons).
 
-### Tarifs & devis ventousage Paris
-- Tarifs directs, sans surcoût d’agence ; dispositif dimensionné au besoin réel (longueur de rue, faces, durée, horaires, zone).
+### Devis ventousage Paris
+- Conditions directes, sans surcoût d’agence ; dispositif dimensionné au besoin réel (longueur de rue, faces, durée, horaires, zone).
 - Devis ventousage Paris détaillé poste par poste, en général sous 24 h.
 - Solutions adaptées aux demandes urgentes (nuit, week‑end, changements de planning).
-- Référence interne : /prix-ventousage-paris/ pour exemples de budgets.
 
 ### Zones d’intervention
 - Paris intra‑muros (1er–20e).
