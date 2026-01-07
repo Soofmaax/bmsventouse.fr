@@ -347,39 +347,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       navLinks.innerHTML = navItems.join('');
 
-      // Interaction du sous-menu Services (au clic sur desktop)
-      const servicesItem = navLinks.querySelector('li.has-submenu');
-      const trigger = servicesItem ? servicesItem.querySelector('.submenu-trigger') : null;
-
-      if (servicesItem && trigger) {
-        const toggleOpen = () => {
-          // Sur desktop uniquement : ouverture/fermeture au clic
-          if (window.innerWidth > 768) {
-            const isOpen = servicesItem.classList.contains('open');
-            servicesItem.classList.toggle('open', !isOpen);
-          }
-        };
-
-        trigger.addEventListener('click', (e) => {
-          if (window.innerWidth > 768) {
-            e.preventDefault();
-            toggleOpen();
-          }
-        });
-
-        trigger.addEventListener('keydown', (e) => {
-          if ((e.key === 'Enter' || e.key === ' ') && window.innerWidth > 768) {
-            e.preventDefault();
-            toggleOpen();
-          }
-        });
-
-        document.addEventListener('click', (e) => {
-          if (!servicesItem.contains(e.target)) {
-            servicesItem.classList.remove('open');
-          }
-        });
-      }
+      // Interaction du sous-menu Services :
+      // gérée en CSS (hover + focus-within) pour garder "Services" cliquable vers /services/.
+      // Aucun blocage de clic n'est appliqué côté JS.
     } catch (_) {
       // non-bloquant
     }
