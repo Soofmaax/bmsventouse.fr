@@ -238,8 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const isHome = current === '/';
       const isRealisations = current === '/realisations';
-      const isDevis = current === '/devis';
-      const isTarifs = current === '/prix-ventousage-paris' || isDevis;
       const isContact = current === '/contact';
 
       const navItems = [];
@@ -319,14 +317,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `<li><a href="/realisations/" class="nav-link${isRealisations ? ' active' : ''}">Réalisations</a></li>`
       );
 
-      // Tarifs & devis
-      navItems.push(
-        `<li><a href="/prix-ventousage-paris/" class="nav-link${isTarifs ? ' active' : ''}">Tarifs &amp; devis</a></li>`
-      );
-
       // Contact
       navItems.push(
-        `<li><a href="/contact/" class="nav-link${isContact ? ' active' : ''}">Contact</a></li>`
+        `<li><a href="/contact/" class="nav-link${isContact ? ' active' : ''}\">Contact</a></li>`
       );
 
       // Préférence gaucher / droitier
@@ -1126,7 +1119,6 @@ function setupUnifiedFooter() {
               <li><a href="/">Accueil</a></li>
               <li><a href="/services/">Services</a></li>
               <li><a href="/ventousage-paris/">Ventousage Paris</a></li>
-              <li><a href="/prix-ventousage-paris/">Tarifs &amp; devis</a></li>
               <li><a href="/affichage-riverains/">Affichage riverains</a></li>
               <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
               <li><a href="/realisations/">Réalisations</a></li>
