@@ -99,3 +99,14 @@ body.page-contact-nfc .hero-contact-nfc .hero-buttons .btn {
   width: 100%;
   max-width: none;
 }
+
+/* Logo dans la carte (page NFC) : centré et en blanc sur fond sombre */
+body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo {
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo .ventouse {
+  color: #ffffff;
+}
