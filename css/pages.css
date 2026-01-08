@@ -49,18 +49,26 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
   margin: 0 auto;
   padding: 1.5rem 1.25rem;
   border-radius: 24px;
-  background: rgba(0, 0, 0, 0.9);
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.75);
+  /* Overlay orangé premium, cohérent avec la charte BMS */
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #ff8c42 40%, #f97316 100%);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.20);
   backdrop-filter: blur(10px);
   transform: none; /* pas de décalage vertical pour garder tout le contenu visible */
 }
 
-/* Ligne devis mise en avant : réutilise le style .badge du site */
+/* Ligne devis mise en avant : réutilise le style .badge du site
+   mais on renforce le contraste sur fond orangé */
 body.page-contact-nfc .hero-devis {
   margin-top: 0.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+body.page-contact-nfc .hero-contact-nfc .hero-devis.badge {
+  background: #ffffff;
+  color: #111827;
+  border-radius: 999px;
 }
 
 /* Sous-note du hero (ligne Paris / France) */
@@ -100,7 +108,7 @@ body.page-contact-nfc .hero-contact-nfc .hero-buttons .btn {
   max-width: none;
 }
 
-/* Logo dans la carte (page NFC) : centré et en blanc sur fond sombre */
+/* Logo dans la carte (page NFC) : centré et lisible sur overlay orangé */
 body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo {
   justify-content: center;
   margin-bottom: 0.75rem;
@@ -109,4 +117,33 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo {
 
 body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo .ventouse {
   color: #ffffff;
+}
+
+/* Variante DARK THEME pour les utilisateurs en mode sombre */
+body.dark-theme.page-contact-nfc .hero-contact-nfc {
+  background: #020617;
+}
+
+body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-overlay {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
+  background: radial-gradient(circle at top, #111827 0%, #020617 60%, #000000 100%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 140, 66, 0.35);
+}
+
+body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-logo {
+  color: #f9fafb;
+}
+
+body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-logo .ventouse {
+  color: #f9fafb;
+}
+
+body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-devis.badge {
+  background: rgba(255, 140, 66, 0.16);
+  color: #fed7aa;
 }
