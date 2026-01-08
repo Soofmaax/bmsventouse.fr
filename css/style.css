@@ -43,8 +43,13 @@
     font-size: 0.9rem !important;
     white-space: nowrap;
     /* On aligne le contenu à gauche pour garder une colonne d'icônes nette,
-       le texte s'étend vers la droite comme tu le souhaites. */
+       le texte s'étend vers la droite comme tu le souhaites,
+       mais le bouton lui-même est centré dans la carte. */
     justify-content: flex-start;
+    width: 100% !important;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Icônes alignées et homogènes dans les boutons de la carte NFC */
