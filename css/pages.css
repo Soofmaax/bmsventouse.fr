@@ -136,21 +136,25 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo .ventouse {
 body.page-contact-nfc .hero-contact-nfc .dev-credit {
   margin-top: 1rem;
   font-size: 0.8rem;
-  color: #9ca3af;
+  color: #4b5563; /* plus contrasté, reste cohérent avec le site */
   text-align: center;
   letter-spacing: 0.03em;
+  font-weight: var(--font-weight-medium);
 }
 
 body.page-contact-nfc .hero-contact-nfc .dev-credit a {
-  color: #9ca3af;
+  color: var(--color-primary); /* met en valeur \"SmarterLogicWeb\" */
   text-decoration: underline;
-  text-decoration-style: dotted;
   text-underline-offset: 2px;
 }
 
 body.page-contact-nfc .hero-contact-nfc .dev-credit a:hover,
 body.page-contact-nfc .hero-contact-nfc .dev-credit a:focus {
-  color: #6b7280;
+  color: var(--color-primary-dark);
+}
+
+body.dark-theme.page-contact-nfc .hero-contact-nfc .dev-credit {
+  color: #374151;
 }
 
 /* Variante DARK THEME pour les utilisateurs en mode sombre
