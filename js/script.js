@@ -661,6 +661,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    const getLeadOrigin = () => {
+      const path = window.location.pathname || '/';
+      if (path.startsWith('/contact-direct')) return 'contact_direct';
+      if (path.startsWith('/contact-nfc')) return 'nfc';
+      return 'site';
+    };
+
     // Clics téléphone
     document.querySelectorAll('a[href^="tel:"]').forEach(a => {
       a.addEventListener('click', () => {
@@ -668,6 +675,8 @@ document.addEventListener('DOMContentLoaded', () => {
           event_category: 'Contact',
           event_label: a.getAttribute('href')
         });
+        // Lead unifié
+        trackLeadContact('phone', getLeadOrigin());
       });
     });
 
@@ -678,10 +687,12 @@ document.addEventListener('DOMContentLoaded', () => {
           event_category: 'Contact',
           event_label: a.getAttribute('href')
         });
+        // Lead unifié
+        trackLeadContact('whatsapp', getLeadOrigin());
       });
     });
 
-    // Clics vers la page Contact
+    // Clics vers la page Contact (micro-conversion, pas un lead direct)
     document.querySelectorAll('a[href="/contact/"]').forEach(a => {
       a.addEventListener('click', () => {
         track('cta_contact_click', {
@@ -698,6 +709,8 @@ document.addEventListener('DOMContentLoaded', () => {
           event_category: 'Contact',
           event_label: a.getAttribute('href')
         });
+        // Lead unifié
+        trackLeadContact('email', getLeadOrigin());
       });
     });
   };
@@ -740,6 +753,8 @@ document.addEventListener('DOMContentLoaded', () => {
             page_location: window.location.href,
             page_path: window.location.pathname
           });
+          // Lead unifié pour les contacts via la page NFC
+          trackLeadContact(type, 'nfc');
         });
       };
 
@@ -1107,6 +1122,33 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --------------------------------------------------------------------------
+// UTIL: Événement unifié de lead (lead_contact)
+// --------------------------------------------------------------------------
+function trackLeadContact(contactMethod, leadOrigin, extraParams) {
+  try {
+    const base = {
+      contact_method: contactMethod || 'unknown',
+      lead_origin: leadOrigin || 'site',
+      page_path: window.location.pathname,
+      page_location: window.location.href
+    };
+    const params = Object.assign(base, extraParams || {});
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'lead_contact', params);
+    }
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'lead_contact', ...params });
+    } catch (_) {
+      // non-bloquant
+    }
+  } catch (_) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
 // MODULE: FOOTER UNIFIÉ BMS VENTOUSE
 // --------------------------------------------------------------------------
 function setupUnifiedFooter() {
@@ -1442,6 +1484,12 @@ function setupContactLeadCapture() {
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'contact_submitted', ...payload });
         } catch (_) {}
+
+        // Lead unifié pour le formulaire contact (demande structurée)
+        trackLeadContact('form', 'contact_form', {
+          lead_service: payload.service || '',
+          lead_urgency: payload.urgency || ''
+        });
       } catch (_) {}
     });
   } catch (_) {
