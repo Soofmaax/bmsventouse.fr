@@ -132,6 +132,15 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo .ventouse {
   color: var(--color-dark);
 }
 
+/* Mention dev en bas de la carte NFC */
+body.page-contact-nfc .hero-contact-nfc .dev-credit {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
 /* Variante DARK THEME pour les utilisateurs en mode sombre
    → la page NFC garde le même rendu clair (pas de carte noire) */
 body.dark-theme.page-contact-nfc .hero-contact-nfc {
@@ -160,4 +169,8 @@ body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-logo .ventouse {
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-devis.badge {
   background: #ffffff;
   color: #111827;
+}
+
+body.dark-theme.page-contact-nfc .hero-contact-nfc .dev-credit {
+  color: #6b7280;
 }
