@@ -774,6 +774,8 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const path = window.location.pathname;
       if (path === '/' || path === '') return; // Pas de breadcrumb sur la home
+      // Pas de breadcrumb sur la page funnel NFC
+      if (document.body && document.body.classList.contains('page-contact-nfc')) return;
 
       const header = document.querySelector('header.header');
       if (!header) return;
