@@ -42,7 +42,9 @@
     padding: 0.7rem 1rem !important;
     font-size: 0.9rem !important;
     white-space: nowrap;
-    justify-content: center;
+    /* On aligne le contenu à gauche pour garder une colonne d'icônes nette,
+       le texte s'étend vers la droite comme tu le souhaites. */
+    justify-content: flex-start;
   }
 
   /* Icônes alignées et homogènes dans les boutons de la carte NFC */
