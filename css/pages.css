@@ -16,7 +16,13 @@
    UX mobile simplifiée et premium : hero card, boutons pleine largeur
    -------------------------------------------------------------------------- */
 
-/* HERO : contenu centré dans une \"carte\" premium */
+/* HERO : section pleine hauteur, défilement autorisé même si le contenu dépasse */
+body.page-contact-nfc .hero-contact-nfc {
+  overflow: visible;
+  min-height: 100vh;
+}
+
+/* HERO : contenu centré dans une "carte" premium */
 body.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
   max-width: 480px;
   width: 100%;
