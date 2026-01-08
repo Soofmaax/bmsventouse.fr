@@ -141,6 +141,18 @@ body.page-contact-nfc .hero-contact-nfc .dev-credit {
   letter-spacing: 0.03em;
 }
 
+body.page-contact-nfc .hero-contact-nfc .dev-credit a {
+  color: #9ca3af;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+body.page-contact-nfc .hero-contact-nfc .dev-credit a:hover,
+body.page-contact-nfc .hero-contact-nfc .dev-credit a:focus {
+  color: #6b7280;
+}
+
 /* Variante DARK THEME pour les utilisateurs en mode sombre
    → la page NFC garde le même rendu clair (pas de carte noire) */
 body.dark-theme.page-contact-nfc .hero-contact-nfc {
