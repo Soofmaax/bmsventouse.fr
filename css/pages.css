@@ -49,12 +49,10 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
   margin: 0 auto;
   padding: 1.5rem 1.25rem;
   border-radius: 24px;
-  /* Carte blanche avec léger accent orangé (lisible et lumineuse) */
-  background: #ffffff;
-  border: 1px solid rgba(255, 140, 66, 0.18);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
-  backdrop-filter: blur(10px);
-  transform: none; /* pas de décalage vertical pour garder tout le contenu visible */
+  /* Carte blanche avec voile orangé très léger (lisible et lumineuse) */
+  background: linear-gradient(135deg, #fff7ef 0%, #ffffff 45%, #fff4e8 100%);
+  border: 1px solid rgba(255, 140, 66, 0.25);
+  box-shadow: 0 16px 36 transform: none; /* pas de décalage vertical pour garder tout le contenu visible */
 }
 
 /* Ligne devis mise en avant : réutilise le style .badge du site
@@ -127,31 +125,32 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo .ventouse {
   color: var(--color-primary);
 }
 
-/* Variante DARK THEME pour les utilisateurs en mode sombre */
+/* Variante DARK THEME pour les utilisateurs en mode sombre
+   → la page NFC garde le même rendu clair (pas de carte noire) */
 body.dark-theme.page-contact-nfc .hero-contact-nfc {
-  background: #020617;
+  background: #ffffff;
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-overlay {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
-  background: radial-gradient(circle at top, #111827 0%, #020617 60%, #000000 100%);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
-  border: 1px solid rgba(255, 140, 66, 0.35);
+  background: linear-gradient(135deg, #fff7ef 0%, #ffffff 45%, #fff4e8 100%);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(255, 140, 66, 0.25);
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-logo {
-  color: #f9fafb;
+  color: var(--color-dark);
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-logo .ventouse {
-  color: #f9fafb;
+  color: var(--color-primary);
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-devis.badge {
-  background: rgba(255, 140, 66, 0.16);
-  color: #fed7aa;
+  background: #ffffff;
+  color: #111827;
 }
