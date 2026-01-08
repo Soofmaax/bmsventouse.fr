@@ -49,10 +49,12 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
   margin: 0 auto;
   padding: 1.5rem 1.25rem;
   border-radius: 24px;
-  /* Carte blanche avec voile orangé très léger (lisible et lumineuse) */
-  background: linear-gradient(135deg, #fff7ef 0%, #ffffff 45%, #fff4e8 100%);
-  border: 1px solid rgba(255, 140, 66, 0.25);
-  box-shadow: 0 16px 36 transform: none; /* pas de décalage vertical pour garder tout le contenu visible */
+  /* Carte blanche avec voile orangé très léger, plus clair en haut, un peu plus marqué en bas */
+  background: linear-gradient(180deg, #ffffff 0%, #fff8f0 40%, #ffe9d6 100%);
+  border: 1px solid rgba(255, 140, 66, 0.22);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(10px);
+  transform: none; /* pas de décalage vertical pour garder tout le contenu visible */
 }
 
 /* Ligne devis mise en avant : réutilise le style .badge du site
@@ -137,9 +139,9 @@ body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-overlay {
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
-  background: linear-gradient(135deg, #fff7ef 0%, #ffffff 45%, #fff4e8 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fff8f0 40%, #ffe9d6 100%);
   box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
-  border: 1px solid rgba(255, 140, 66, 0.25);
+  border: 1px solid rgba(255, 140, 66, 0.22);
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-logo {
