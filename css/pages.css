@@ -16,6 +16,12 @@
    UX mobile simplifiée et premium : hero card, boutons pleine largeur
    -------------------------------------------------------------------------- */
 
+/* Corps de page spécifique : on verrouille le fond et on évite tout débordement horizontal */
+body.page-contact-nfc {
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
 /* HERO : section pleine hauteur, défilement autorisé même si le contenu dépasse */
 body.page-contact-nfc .hero-contact-nfc {
   overflow: visible;
@@ -159,6 +165,10 @@ body.dark-theme.page-contact-nfc .hero-contact-nfc .dev-credit {
 
 /* Variante DARK THEME pour les utilisateurs en mode sombre
    → version réellement dark, lisible et cohérente avec le reste du site */
+body.dark-theme.page-contact-nfc {
+  background-color: #020617;
+}
+
 body.dark-theme.page-contact-nfc .hero-contact-nfc {
   background: radial-gradient(circle at top, #020617 0%, #020617 60%, #000000 100%);
 }
