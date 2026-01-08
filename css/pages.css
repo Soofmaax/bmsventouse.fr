@@ -55,14 +55,9 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
   transform: none; /* pas de décalage vertical pour garder tout le contenu visible */
 }
 
-/* Ligne devis mise en avant */
+/* Ligne devis mise en avant : réutilise le style .badge du site */
 body.page-contact-nfc .hero-devis {
-  font-size: 0.95rem;
-  font-weight: 500;
   margin-top: 0.75rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
   display: inline-flex;
   align-items: center;
   justify-content: center;
