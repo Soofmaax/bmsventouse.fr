@@ -689,6 +689,56 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --------------------------------------------------------------------------
+  // MODULE: TRACKING SPÉCIFIQUE PAGE NFC /contact-nfc/
+  // --------------------------------------------------------------------------
+  const setupNfcPageTracking = () => {
+    try {
+      const body = document.body;
+      if (!body || !body.classList.contains('page-contact-nfc')) return;
+
+      const track = (eventName, params) => {
+        const p = params || {};
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', eventName, p);
+          }
+          if (Array.isArray(window.dataLayer)) {
+            window.dataLayer.push({ event: eventName, ...p });
+          }
+        } catch (_) {
+          // non-bloquant
+        }
+      };
+
+      // Event dédié pour les visites provenant de la carte
+      track('nfc_page_view', {
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+        nfc_source: 'business_card'
+      });
+
+      const bindClick = (id, type) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('click', () => {
+          track('nfc_contact_click', {
+            cta_type: type,
+            page_location: window.location.href,
+            page_path: window.location.pathname
+          });
+        });
+      };
+
+      // CTA principaux du hero NFC
+      bindClick('nfc-phone', 'phone');
+      bindClick('nfc-whatsapp', 'whatsapp');
+      bindClick('nfc-email', 'email');
+    } catch (_) {
+      // non-bloquant
+    }
+  };
+
+  // --------------------------------------------------------------------------
   // MODULE: BREADCRUMB visible + JSON-LD (basique)
   // --------------------------------------------------------------------------
   const setupBreadcrumbs = () => {
@@ -955,6 +1005,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupReferencesCarousel();
     setupBackToTop();
     setupAnalyticsEvents();
+    setupNfcPageTracking();
     setupHandPreference();
     setupBreadcrumbs();
     // Barre de progression de scroll uniquement sur desktop pour limiter le travail JS sur mobile
