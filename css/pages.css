@@ -35,6 +35,19 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
   transform: translateY(-6%); /* légèrement au-dessus du centre, mais moins agressif */
 }
 
+/* Ligne devis mise en avant */
+body.page-contact-nfc .hero-devis {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 0.75rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Sous-note du hero (ligne Paris / France) */
 body.page-contact-nfc .hero-subnote {
   font-size: 0.9rem;
