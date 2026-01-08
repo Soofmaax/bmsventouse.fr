@@ -20,7 +20,8 @@
 body.page-contact-nfc .hero-contact-nfc {
   overflow: visible;
   min-height: 100vh;
-  background: radial-gradient(circle at top, #111827 0%, #020617 55%, #000000 100%);
+  /* Fond clair et neutre pour mettre la carte en valeur (plus de \"fond noir\") */
+  background: linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 40%, #f9fafb 100%);
 }
 
 /* Sur la page NFC, on supprime l'image de fond pour une meilleure lisibilité */
