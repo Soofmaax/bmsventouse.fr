@@ -16,9 +16,9 @@
    UX mobile simplifiée et premium : hero card, boutons pleine largeur
    -------------------------------------------------------------------------- */
 
-/* Corps de page spécifique : on verrouille le fond et on évite tout débordement horizontal */
+/* Corps de page spécifique : on évite tout débordement horizontal.
+   La couleur de fond reste gérée par le thème global (clair / dark). */
 body.page-contact-nfc {
-  background-color: #ffffff;
   overflow-x: hidden;
 }
 
