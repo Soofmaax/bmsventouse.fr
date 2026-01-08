@@ -10,3 +10,37 @@
 
    Ajoutez vos règles de page spécifiques sous ce bloc si nécessaire.
 */
+
+/* --------------------------------------------------------------------------
+   PAGE CONTACT NFC – /contact-nfc/
+   UX mobile simplifiée : boutons pleine largeur, grille de cartes claire
+   -------------------------------------------------------------------------- */
+
+/* HERO : pile les boutons en colonne sur mobile, pleine largeur */
+body.page-contact-nfc .hero-contact-nfc .hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 420px;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+body.page-contact-nfc .hero-contact-nfc .hero-buttons .btn {
+  width: 100%;
+  max-width: none;
+}
+
+/* Grille de cartes contact : colonne unique par défaut, responsive au‑delà de 768px */
+body.page-contact-nfc .contact-direct-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  body.page-contact-nfc .contact-direct-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+}
