@@ -16,9 +16,9 @@
    UX mobile simplifiée et premium : hero card, boutons pleine largeur
    -------------------------------------------------------------------------- */
 
-/* Corps de page spécifique : on évite tout débordement horizontal.
-   La couleur de fond reste gérée par le thème global (clair / dark). */
+/* Corps de page spécifique : on verrouille le fond et on évite tout débordement horizontal */
 body.page-contact-nfc {
+  background-color: #ffffff;
   overflow-x: hidden;
 }
 
@@ -26,7 +26,6 @@ body.page-contact-nfc {
 body.page-contact-nfc .hero-contact-nfc {
   overflow: visible;
   min-height: 100vh;
-  display: block; /* on neutralise le flex du hero global pour un layout plus simple */
   /* Fond très clair avec un léger rappel de l'orange de la marque */
   background: radial-gradient(circle at top, rgba(255, 140, 66, 0.05) 0%, #ffffff 55%, #fff7f0 100%);
 }
@@ -41,9 +40,8 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay {
   inset: auto;
   background: transparent; /* supprime le dégradé sombre global */
   width: 100%;
-  display: block;          /* on neutralise le grid du hero global */
   /* on réduit la marge haute pour remonter la carte dans le viewport */
-  padding: 1rem 1rem 1.5rem;
+  padding: 1.25rem 1rem 1.75rem;
 }
 
 /* Sur la page NFC, on supprime l'image de fond pour une meilleure lisibilité */
@@ -178,8 +176,7 @@ body.dark-theme.page-contact-nfc {
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc {
-  display: flex;
-  align-items: flex-start;
+  background: radial-gradient(circle at top
   justify-content: center;
   background: radial-gradient(circle at top, #020617 0%, #020617 60%, #000000 
 }
