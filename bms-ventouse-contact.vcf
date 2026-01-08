@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Ventouse;BMS;;;
+FN:BMS Ventouse
+ORG:BMS Ventouse
+TITLE:Logistique &amp; sécurité tournages
+TEL;TYPE=CELL,VOICE:+33646005642
+EMAIL;TYPE=WORK,INTERNET:contact@bmsventouse.fr
+ADR;TYPE=WORK:;;10 Rue de la République;Drancy;;93700;France
+URL:https://bmsventouse.fr/
+END:VCARD

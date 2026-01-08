@@ -762,6 +762,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bindClick('nfc-phone', 'phone');
       bindClick('nfc-whatsapp', 'whatsapp');
       bindClick('nfc-email', 'email');
+      bindClick('nfc-add-contact', 'contact_card');
     } catch (_) {
       // non-bloquant
     }
