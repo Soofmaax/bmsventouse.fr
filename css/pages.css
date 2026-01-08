@@ -49,9 +49,9 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
   margin: 0 auto;
   padding: 1.5rem 1.25rem;
   border-radius: 24px;
-  /* Overlay orangé premium, cohérent avec la charte BMS */
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #ff8c42 40%, #f97316 100%);
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.20);
+  /* Overlay orangé clair, sans noir, pour un rendu plus lumineux */
+  background: linear-gradient(135deg, #ff8c42 0%, #ff9b57 45%, #ffb980 100%);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
   backdrop-filter: blur(10px);
   transform: none; /* pas de décalage vertical pour garder tout le contenu visible */
 }
