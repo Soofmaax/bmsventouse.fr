@@ -49,9 +49,10 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
   margin: 0 auto;
   padding: 1.5rem 1.25rem;
   border-radius: 24px;
-  /* Overlay orangé clair, sans noir, pour un rendu plus lumineux */
-  background: linear-gradient(135deg, #ff8c42 0%, #ff9b57 45%, #ffb980 100%);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  /* Carte blanche avec léger accent orangé (lisible et lumineuse) */
+  background: #ffffff;
+  border: 1px solid rgba(255, 140, 66, 0.18);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
   backdrop-filter: blur(10px);
   transform: none; /* pas de décalage vertical pour garder tout le contenu visible */
 }
@@ -93,6 +94,13 @@ body.page-contact-nfc .hero h1 {
   font-size: clamp(1.6rem, 5vw, 2.1rem);
 }
 
+/* Sur la page NFC, on force un texte foncé lisible dans la carte blanche */
+body.page-contact-nfc .hero-contact-nfc h1,
+body.page-contact-nfc .hero-contact-nfc p {
+  color: #111827;
+  text-shadow: none;
+}
+
 /* HERO : pile les boutons en colonne sur mobile, pleine largeur */
 body.page-contact-nfc .hero-contact-nfc .hero-buttons {
   display: flex;
@@ -108,15 +116,15 @@ body.page-contact-nfc .hero-contact-nfc .hero-buttons .btn {
   max-width: none;
 }
 
-/* Logo dans la carte (page NFC) : centré et lisible sur overlay orangé */
+/* Logo dans la carte (page NFC) : centré et lisible sur carte blanche */
 body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo {
   justify-content: center;
   margin-bottom: 0.75rem;
-  color: #ffffff;
+  color: var(--color-dark);
 }
 
 body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo .ventouse {
-  color: #ffffff;
+  color: var(--color-primary);
 }
 
 /* Variante DARK THEME pour les utilisateurs en mode sombre */
