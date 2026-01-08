@@ -454,6 +454,20 @@ body.dark-theme .btn-secondary {
   color: var(--color-primary);
 }
 
+/* Bouton WhatsApp assombri en mode sombre pour réduire le contraste avec l'orange */
+body.dark-theme .btn-whatsapp {
+  background-color: #15803d;
+  border-color: #15803d;
+  color: #e5e7eb;
+}
+
+body.dark-theme .btn-whatsapp:hover,
+body.dark-theme .btn-whatsapp:focus {
+  background-color: #166534;
+  border-color: #166534;
+  color: #f9fafb;
+}
+
 /* Texte lisible sur les blocs d'appel à l'action en mode sombre */
 body.dark-theme .cta-section {
   background: linear-gradient(135deg, #0b1220 0%, #1e293b 100%);
