@@ -597,8 +597,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="cookie-banner__content">
           <p class="cookie-banner__text">
             Nous utilisons un cookie de mesure d’audience (Google Analytics) pour améliorer le site.
-            Aucune publicité, et IP anonymisée. Vous pouvez refuser.
-            <a class="cookie-banner__link" href="/mentions/">En savoir plus</a>.
+            Aucune publicité, IP anonymisée. Vous pouvez refuser à tout moment.
+            <a class="cookie-banner__link" href="/politique-confidentialite/">En savoir plus</a>.
           </p>
           <div class="cookie-banner__actions">
             <button id="cookie-decline" class="btn">Refuser</button>
@@ -615,6 +615,20 @@ document.addEventListener('DOMContentLoaded', () => {
       acceptBtn.addEventListener('click', () => {
         localStorage.setItem(KEY, 'accepted');
         applyConsent('accepted');
+
+        // Suivi du consentement (uniquement en cas d'acceptation)
+        try {
+          if (typeof gtag === 'function') {
+            gtag('event', 'cookie_consent', {
+              event_category: 'Consent',
+              consent_status: 'accepted',
+              consent_method: 'banner'
+            });
+          }
+        } catch (_) {
+          // non-bloquant
+        }
+
         banner.remove();
       });
 
