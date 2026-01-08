@@ -33,6 +33,16 @@
     width: 100% !important;
     max-width: 280px !important;
   }
+
+  /* Ajustement spécifique pour la carte /contact-nfc/ :
+     - boutons légèrement plus compacts
+     - texte un peu plus petit pour tenir sur une ligne
+     - toujours centrés et responsives */
+  body.page-contact-nfc .hero-contact-nfc .hero-buttons .btn {
+    padding: 0.7rem 1rem !important;
+    font-size: 0.9rem !important;
+    white-space: nowrap;
+  }
   
   .whatsapp-float {
     width: var(--whatsapp-mobile-size);

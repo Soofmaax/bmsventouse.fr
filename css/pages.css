@@ -40,7 +40,8 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay {
   inset: auto;
   background: transparent; /* supprime le dégradé sombre global */
   width: 100%;
-  padding: 2rem 1rem;
+  /* on réduit légèrement le padding pour que toute la carte tienne plus facilement à l'écran */
+  padding: 1.5rem 1rem;
 }
 
 /* Sur la page NFC, on supprime l'image de fond pour une meilleure lisibilité */
@@ -53,7 +54,8 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem;
+  /* padding légèrement réduit pour gagner de la hauteur sans nuire au confort de lecture */
+  padding: 1.25rem 1.15rem;
   border-radius: 24px;
   text-align: center;
   /* Carte blanche avec voile orangé léger, plus clair en haut, un peu plus orangé en bas */
@@ -179,8 +181,8 @@ body.dark-theme.page-contact-nfc .hero-contact-nfc {
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-overlay {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 body.dark-theme.page-contact-nfc .hero-contact-nfc .hero-overlay .container {
