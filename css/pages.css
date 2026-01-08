@@ -24,6 +24,19 @@ body.page-contact-nfc .hero-contact-nfc {
   background: #ffffff;
 }
 
+/* Sur la page NFC, on supprime l'image de fond et on neutralise l'overlay sombre */
+body.page-contact-nfc .hero-contact-nfc .hero-bg {
+  display: none;
+}
+
+body.page-contact-nfc .hero-contact-nfc .hero-overlay {
+  position: static;        /* plus d'overlay en pleine page, la carte se place dans le flux normal */
+  inset: auto;
+  background: transparent; /* supprime le dégradé sombre global */
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
 /* Sur la page NFC, on supprime l'image de fond pour une meilleure lisibilité */
 body.page-contact-nfc .hero-contact-nfc .hero-bg {
   display: none;
@@ -60,6 +73,11 @@ body.page-contact-nfc .hero-subnote {
   font-size: 0.9rem;
   opacity: 0.85;
   margin-top: 0.5rem;
+}
+
+/* Header centré sur la page NFC pour un rendu plus équilibré */
+body.page-contact-nfc .header.header-nfc .nav {
+  justify-content: center;
 }
 
 /* Ajustement du tag et du titre pour ce funnel */
