@@ -41,6 +41,9 @@ body.page-contact-nfc .hero-contact-nfc .hero-overlay {
   background: transparent; /* supprime le dégradé sombre global */
   width: 100%;
   padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Sur la page NFC, on supprime l'image de fond pour une meilleure lisibilité */
