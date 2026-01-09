@@ -6,7 +6,7 @@
  *  - Network-first for HTML
  *  - Cache-first with runtime caching for assets
  */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE_NAME = `bms-cache-${VERSION}-${Date.now()}`;
 const CORE_ASSETS = [
   '/', '/index.html',
