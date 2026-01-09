@@ -33,6 +33,7 @@ Accessibilité / UX
 - Corrections accessibilité/perf (width/height/fetchpriority sur images héros).
 - Menu unifié injecté par JS (`setupUnifiedHeader` + `setupHamburgerMenu`) sur toutes les pages standards.
 - Footer unifié injecté par JS (coordonnées, liens légaux, liens villes).
+- Héros visuel unifié sur les pages principales (Accueil, Services, Réalisations, Contact, pages légales) avec le fond rue de nuit `hero-background-custom-*` (WebP + JPEG responsive).
 - FAQs harmonisées (titres, structure HTML `.faq-item` / `.faq-question` / `.faq-answer`, contenu cohérent par page).
 - Module JS FAQ (`setupFaqAccordion`) refondu pour que la hauteur des réponses s’adapte automatiquement (plus de texte coupé) tout en gardant l’animation d’ouverture/fermeture.
 
