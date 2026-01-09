@@ -117,8 +117,11 @@ Dans GA4 :
 La page dédiée aux cartes de visite (`/contact-nfc/`) a un module JS séparé (`setupNfcPageTracking()`) qui envoie :
 
 - `nfc_page_view`  
-  - à chaque visite de `/contact-nfc/`;
-  - avec les paramètres de contexte (`page_location`, `page_path`, `nfc_source`).
+  - à chaque visite de `/contact-nfc/` (quel que soit le paramètre de query `?q1`, `?q2`, etc.) ;
+  - avec les paramètres de contexte :
+    - `page_location` (URL complète, ex. `https://bmsventouse.fr/contact-nfc?q1`),
+    - `page_path` (toujours `/contact-nfc/`),
+    - `nfc_source` (actuellement `business_card`).
 
 - `nfc_contact_click`  
   - à chaque clic sur les CTA de la carte NFC ;
@@ -128,12 +131,21 @@ La page dédiée aux cartes de visite (`/contact-nfc/`) a un module JS séparé 
     - `email` (clic email prérempli),
     - `contact_card` (clic sur le bouton « Ajouter à mes contacts » qui télécharge la vCard).
 
+En plus, à chaque clic CTA sur la page NFC, le module appelle aussi :
+
+```js
+trackLeadContact(type, 'nfc');
+```
+
+ce qui émet un événement `lead_contact` global, avec `lead_origin = "nfc"`.
+
 Ces événements sont envoyés à la fois vers GA4 et dans `dataLayer`.  
 Tu peux :
 
 - filtrer dans GA4 sur `page_path = /contact-nfc/` + `event_name = nfc_contact_click`,
 - regarder quelles actions sont les plus utilisées (`cta_type`) pour optimiser la carte à terme,
-- marquer `nfc_contact_click` comme **conversion** si tu veux suivre les leads issus des cartes NFC.
+- filtrer par version de carte via `page_location` (par ex. URLs contenant `?q1`, `?q2`, …),
+- marquer `nfc_contact_click` (et/ou `lead_contact` avec `lead_origin = "nfc"`) comme **conversion** si tu veux suivre les leads issus des cartes NFC.
 
 ---
 

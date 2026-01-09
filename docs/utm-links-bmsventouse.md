@@ -86,20 +86,49 @@ https://bmsventouse.fr/contact-direct/?utm_source=whatsapp&utm_medium=business_p
 ## 4. Cartes de visite NFC — page dédiée
 
 La page spéciale cartes NFC est : `/contact-nfc/`.  
-Elle a déjà un tracking spécifique côté site (`nfc_page_view` + `nfc_contact_click`).  
-On peut en plus ajouter des UTM pour identifier clairement ce canal dans GA4.
+Elle a déjà un tracking spécifique côté site (`nfc_page_view` + `nfc_contact_click` + `lead_contact` avec `lead_origin = "nfc"`).
 
-### Carte de visite Béna — NFC
+### 4.1. Version recommandée (URL propre, sans UTM)
+
+Pour les **cartes de visite NFC** (et les QR codes imprimés sur ces cartes), on utilise une URL courte et lisible, avec un petit paramètre de version :
+
+- **Batch 1 (cartes actuelles)**  
+  ```text
+  https://bmsventouse.fr/contact-nfc?q1
+  ```
+
+- **Batch 2, 3, … (futures impressions)**  
+  ```text
+  https://bmsventouse.fr/contact-nfc?q2
+  https://bmsventouse.fr/contact-nfc?q3
+  ```
+
+Dans GA4, tu peux alors :
+
+- filtrer sur `event_name = nfc_page_view` ou `nfc_contact_click`,  
+- ajouter `page_location` en dimension,  
+- filtrer sur `page_location` qui contient `?q1`, `?q2`, etc. pour comparer les versions de cartes.
+
+> Avantages :  
+> - URL courte (ne ressemble pas à un lien de tracking marketing),  
+> - versionnement simple par batch (`q1`, `q2`, …),  
+> - aucun changement de code nécessaire côté site.
+
+### 4.2. Option avancée : UTM sur QR codes (facultatif)
+
+Si un jour tu veux des QR codes séparés (par exemple QR sur une affiche, sur un flyer, etc.), tu peux **garder `/contact-nfc/`** et ajouter des UTM **uniquement pour ces supports** :
 
 ```text
-https://bmsventouse.fr/contact-nfc/?utm_source=nfc&utm_medium=offline&utm_campaign=carte_bena
+https://bmsventouse.fr/contact-nfc/?utm_source=nfc&utm_medium=offline&utm_campaign=affiche_salon
 ```
 
-> À programmer sur le tag **NTAG213** et à utiliser pour les QR codes éventuels.  
-> Dans GA4, tu pourras filtrer à la fois sur :
-> - `page_path = /contact-nfc/`
-> - `source = nfc`, `medium = offline`
-> - et les événements `nfc_page_view` / `nfc_contact_click`.
+Dans ce cas, tu pourras filtrer dans GA4 à la fois par :
+
+- `page_path = /contact-nfc/`,
+- `source = nfc`, `medium = offline`,
+- et, si besoin, `campaign = affiche_salon`.
+
+Pour les cartes de visite physiques, la recommandation reste : **URL courte avec `?q1`, `?q2`, …, sans UTM**.
 
 ---
 
