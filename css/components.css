@@ -68,10 +68,25 @@
   box-shadow: none;
 }
 
+/* Variante plus douce pour les boutons secondaires alternatifs (ex : email sur /contact-nfc/) */
+.btn-secondary-alt {
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: #111827;
+  box-shadow: none;
+}
+
 .btn-secondary:hover,
 .btn-secondary:focus {
   background: var(--color-primary-dark);
   color: #ffffff;
+}
+
+.btn-secondary-alt:hover,
+.btn-secondary-alt:focus {
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.3);
+  color: #111827;
 }
 
 .btn-whatsapp {
@@ -452,6 +467,27 @@ body.dark-theme .btn-secondary {
   background: transparent;
   border-color: var(--color-primary);
   color: var(--color-primary);
+}
+
+/* Variante dark pour les boutons secondaires alternatifs (email, etc.) */
+body.dark-theme .btn-secondary-alt {
+  background: #111827;
+  border: 1px solid #4b5563;
+  color: #e5e7eb;
+}
+
+/* Bouton WhatsApp assombri en mode sombre pour réduire le contraste avec l'orange */
+body.dark-theme .btn-whatsapp {
+  background-color: #15803d;
+  border-color: #15803d;
+  color: #e5e7eb;
+}
+
+body.dark-theme .btn-whatsapp:hover,
+body.dark-theme .btn-whatsapp:focus {
+  background-color: #166534;
+  border-color: #166534;
+  color: #f9fafb;
 }
 
 /* Texte lisible sur les blocs d'appel à l'action en mode sombre */

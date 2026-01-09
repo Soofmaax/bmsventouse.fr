@@ -33,6 +33,31 @@
     width: 100% !important;
     max-width: 280px !important;
   }
+
+  /* Ajustement spécifique pour la carte /contact-nfc/ :
+     - boutons légèrement plus compacts
+     - texte un peu plus petit pour tenir sur une ligne
+     - toujours centrés et responsives */
+  body.page-contact-nfc .hero-contact-nfc .hero-buttons .btn {
+    padding: 0.7rem 1rem !important;
+    font-size: 0.9rem !important;
+    white-space: nowrap;
+    /* On aligne le contenu à gauche pour garder une colonne d'icônes nette,
+       le texte s'étend vers la droite comme tu le souhaites,
+       mais le bouton lui-même est centré dans la carte. */
+    justify-content: flex-start;
+    width: 100% !important;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Icônes alignées et homogènes dans les boutons de la carte NFC */
+  body.page-contact-nfc .hero-contact-nfc .hero-buttons .btn svg {
+    margin-right: 0.6rem;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
   
   .whatsapp-float {
     width: var(--whatsapp-mobile-size);

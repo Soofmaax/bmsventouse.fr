@@ -97,6 +97,7 @@ Icônes / assets
 - Ajouter témoignages clients visibles si vous souhaitez activer des Ratings plus tard (AggregateRating).
 - Blog court « opérations / tournage » (glossaire, procédures, checklists).
 - Pages « coulisses » / études de cas détaillées (reliées aux Réalisations).
+- [TODO prochaine session] Internationalisation ciblée : définir une stratégie propre pour le terme « ventousage » (notranslate côté FR + vocabulaire clair côté EN, sans mentionner la thérapie par ventouses sur la version française).
 
 ## Découpage par tâches
 

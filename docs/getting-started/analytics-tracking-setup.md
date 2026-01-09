@@ -112,6 +112,41 @@ Dans GA4 :
    - `contact_submitted` (conversion principale : demande de devis),
    - éventuellement `phone_click` et `whatsapp_click` (micro‑conversions).
 
+### 1.5. Tracking spécifique de la page NFC `/contact-nfc/`
+
+La page dédiée aux cartes de visite (`/contact-nfc/`) a un module JS séparé (`setupNfcPageTracking()`) qui envoie :
+
+- `nfc_page_view`  
+  - à chaque visite de `/contact-nfc/` (quel que soit le paramètre de query `?q1`, `?q2`, etc.) ;
+  - avec les paramètres de contexte :
+    - `page_location` (URL complète, ex. `https://bmsventouse.fr/contact-nfc?q1`),
+    - `page_path` (toujours `/contact-nfc/`),
+    - `nfc_source` (actuellement `business_card`).
+
+- `nfc_contact_click`  
+  - à chaque clic sur les CTA de la carte NFC ;
+  - avec le paramètre `cta_type` parmi :
+    - `phone` (clic sur le numéro de téléphone),
+    - `whatsapp` (clic WhatsApp direct),
+    - `email` (clic email prérempli),
+    - `contact_card` (clic sur le bouton « Ajouter à mes contacts » qui télécharge la vCard).
+
+En plus, à chaque clic CTA sur la page NFC, le module appelle aussi :
+
+```js
+trackLeadContact(type, 'nfc');
+```
+
+ce qui émet un événement `lead_contact` global, avec `lead_origin = "nfc"`.
+
+Ces événements sont envoyés à la fois vers GA4 et dans `dataLayer`.  
+Tu peux :
+
+- filtrer dans GA4 sur `page_path = /contact-nfc/` + `event_name = nfc_contact_click`,
+- regarder quelles actions sont les plus utilisées (`cta_type`) pour optimiser la carte à terme,
+- filtrer par version de carte via `page_location` (par ex. URLs contenant `?q1`, `?q2`, …),
+- marquer `nfc_contact_click` (et/ou `lead_contact` avec `lead_origin = "nfc"`) comme **conversion** si tu veux suivre les leads issus des cartes NFC.
+
 ---
 
 ## 2. Google Tag Manager (GTM)

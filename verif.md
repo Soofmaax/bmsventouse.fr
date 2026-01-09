@@ -202,9 +202,14 @@ Exemple de format :
 - [ ] Vérifier qu’il ne reste plus de liens bleus sur la home (texte noir + liens orange en mode clair, texte clair + liens orange en dark mode).
 - [ ] Vérifier que les boutons de toggle (lune = dark mode, main = main gauche/droite) sont bien visibles en dark mode (icône claire sur rond légèrement plus clair que le header).
 
-### Hub NFC/QR « contact-direct »
+### Hub NFC/QR & cartes de visite
 
-- 2025-12-22 : Création de la page de contact rapide dédiée (hub NFC/QR) `/contact-direct/` avec un seul endroit où vivent les boutons WhatsApp / téléphone / email + mini-formulaire léger. Les cartes NFC et QR pointeront vers cette page.
+- 2025-12-22 : Création de la page de contact rapide dédiée (hub NFC/QR) `/contact-direct/` avec un seul endroit où vivent les boutons WhatsApp / téléphone / email + mini-formulaire léger (usage principal : QR codes génériques, liens dans la signature, etc.).
+- 2026-01-XX : Création/optimisation de la page dédiée aux cartes de visite `/contact-nfc/` avec :
+  - carte de visite numérique compacte (visible sans scroll sur mobile),
+  - bouton « Ajouter à mes contacts » (téléchargement vCard),
+  - tracking dédié `nfc_page_view` + `nfc_contact_click` + `lead_contact` (`lead_origin = "nfc"`),
+  - possibilité de versionner les cartes physiques via `?q1`, `?q2`, etc. (filtrage par `page_location` dans GA4).
 
 Au fur et à mesure que nous modifions les pages ensemble, j’ajouterai ici les entrées correspondantes pour que tu puisses facilement re-tester après le merge.
 
