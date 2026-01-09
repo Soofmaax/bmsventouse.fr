@@ -115,13 +115,27 @@ Dès que tu vois `max-width:900px; margin:0 auto; line-height:1.7;` → utiliser
 ```html
 <section class="hero">
   <picture class="hero-bg">
-    <!-- sources responsive -->
-    <img src="/images/…jpg"
-         alt="Description accessible"
+    <!-- Hero unifié sur le site (fond rue de nuit), variantes responsive WebP + JPEG -->
+    <source type="image/webp"
+            srcset="/images/hero-background-custom-640.webp 640w,
+                    /images/hero-background-custom-960.webp 960w,
+                    /images/hero-background-custom-1280.webp 1280w,
+                    /images/hero-background-custom-1920.webp 1920w"
+            sizes="100vw">
+    <source type="image/jpeg"
+            srcset="/images/hero-background-custom-640.jpg 640w,
+                    /images/hero-background-custom-960.jpg 960w,
+                    /images/hero-background-custom-1280.jpg 1280w,
+                    /images/hero-background-custom-1920.jpg 1920w"
+            sizes="100vw">
+    <img src="/images/hero-background-custom.jpg"
+         alt="Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain"
          loading="eager"
          fetchpriority="high"
          width="1920"
-         height="1080">
+         height="1080"
+         sizes="100vw"
+         decoding="async">
   </picture>
 
   <div class="hero-overlay">
@@ -141,6 +155,7 @@ Dès que tu vois `max-width:900px; margin:0 auto; line-height:1.7;` → utiliser
 ```
 
 - Tout ce qui est positionnement / fond est géré par `css/sections.css` (`.hero`, `.hero-bg`, `.hero-overlay`).
+- Le **fond Héros** est maintenant **unifié** sur les pages principales (Accueil, Services, Réalisations, Contact, pages légales) avec `hero-background-custom-*`.
 - Ne pas rajouter de `style` inline ici sauf cas très particulier.
 
 ---

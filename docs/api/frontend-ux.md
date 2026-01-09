@@ -270,16 +270,25 @@ All WhatsApp icons in the templates have now been migrated to this Bootstrap‑s
 
 ---
 
-## 7. Header et footer unifiés
+## 7. Header, footer et héros unifiés
 
 ### `setupUnifiedHeader()`
 
-- Injecte un header cohérent sur l’ensemble des pages standards :
-  - Logo + navigation principale (Accueil, Services, Références, Contact…),
-  - Bannière promotionnelle (“Devis gratuit sous 24h”) au‑dessus du header,
-  - Bouton hamburger mobile attendu par `setupHamburgerMenu()`.
+- Construit une navigation cohérente sur l’ensemble des pages standards :
+  - Logo + navigation principale (Accueil, Services, Réalisations, Contact, CTA “Demander un devis”),
+  - Bouton hamburger mobile attendu par `setupHamburgerMenu()`,
+  - Bouton de bascule de thème (`.theme-toggle`) dans la nav.
 
-Les pages qui ont besoin d’un header complètement spécifique peuvent s’écarter de ce pattern, mais dans ce cas il faut vérifier que les hooks JS (id/classes du menu) restent cohérents.
+Les pages qui ont besoin d’un header complètement spécifique peuvent s’écarter de ce pattern, mais dans ce cas il faut vérifier que les hooks JS (id/classes du menu) restent cohérents (ids `hamburger`, `navLinks`, `navOverlay`, bouton `.theme-toggle`).
+
+### Héros / images de fond
+
+- Le visuel héros principal du site est désormais **unifié** :
+  - Fond rue de nuit : fichiers `hero-background-custom.jpg` + variantes responsive (`hero-background-custom-640/960/1280/1920` en JPEG et WebP),
+  - Utilisé sur l’accueil ainsi que sur les pages Services, Réalisations, Contact et la plupart des pages légales.
+- Les blocs `<picture class="hero-bg">` de ces pages suivent le pattern décrit dans `docs/patterns.md` (section 3.1), avec les deux sources WebP/JPEG et un `img` de fallback.
+
+Des visuels spécifiques peuvent encore être utilisés sur certaines pages “spéciales” (galerie ventousage, etc.), mais le héros par défaut est ce fond unifié.
 
 ### `setupUnifiedFooter()`
 
