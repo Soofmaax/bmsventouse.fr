@@ -1,6 +1,6 @@
 # Plan d’action SEO/Accessibilité/Qualité - BMS Ventouse
 
-Dernière mise à jour : 2025-12-31
+Dernière mise à jour : 2026-01-10
 
 > Ce fichier est le **backlog vivant** SEO/A11y/Qualité.  
 > Les audits historiques détaillés sont dans `rapport_audit_complet.md` et `seo-analysis.md`.
@@ -27,6 +27,7 @@ SEO / contenu
 - Politique IA enrichie dans llms.txt (cibles, personas, zones France+Belgique, déclencheurs) et simplification de ai.txt en alias vers llms.txt.
 - Page « Politique de confidentialité » dédiée (/politique-confidentialite/) créée, avec lien dans le footer (colonne « Légal »).
 - Conditions Générales de Prestation publiées (/conditions-generales-prestation/), avec lien footer.
+- Page « Définition du ventousage » optimisée (CTA vers les services de ventousage + maillage interne renforcé) et page « Mentions légales » passée en `index, follow` pour être éligible à l’index.
 
 Accessibilité / UX
 
@@ -55,6 +56,10 @@ Contact / formulaires
 - Mise en cohérence de la Politique de confidentialité et de `llms.txt` avec la réalité : contact via téléphone / WhatsApp / email, pas de formulaire général pour le moment.
 - Le module JS de formulaire complexe (multi-services) reste dans `script.js` mais n’est plus utilisé par aucune page (prêt pour une future page hub dédiée).
 
+Technique / Netlify
+
+- Redirections Netlify consolidées : normalisation `www` → domaine nu, rattrapage des anciennes URLs `/services/...` (ventousage, régie, cantine, loges, etc.) et de `/en` vers les pages canoniques, afin de nettoyer progressivement les 404 dans Search Console.
+
 ### P1 : À faire ensuite (1–2 jours homme)
 
 Tâches côté outils externes / CI (non gérables uniquement par le code) :
@@ -66,6 +71,7 @@ Tâches côté outils externes / CI (non gérables uniquement par le code) :
   - Google Search Console : propriété domaine, rapports réguliers (performances, couvertures, sitemaps).
   - Bing Webmaster Tools : ajouter le site, déclarer le sitemap (couvre Bing / Yahoo / DuckDuckGo / Brave Search) et vérifier le flux IndexNow.
   - Microsoft Clarity : confirmer l’ID de projet, filtrer les IP internes si besoin, vérifier au moins une session réelle.
+- Sur 3–4 semaines, suivre dans Search Console les performances des pages `/definition-ventousage/`, `/ventousage-cinema/` et `/convoyage-vehicules-decors/` (requêtes, CTR, positions) et ajuster le plan (nouvelles définitions, renforcement du maillage) en fonction des retours.
 
 ### P2 : À planifier (semaine à venir)
 
@@ -98,7 +104,9 @@ Icônes / assets
 - Ajouter témoignages clients visibles si vous souhaitez activer des Ratings plus tard (AggregateRating).
 - Blog court « opérations / tournage » (glossaire, procédures, checklists).
 - Pages « coulisses » / études de cas détaillées (reliées aux Réalisations).
-- [TODO prochaine session] Internationalisation ciblée : définir une stratégie propre pour le terme « ventousage » (notranslate côté FR + vocabulaire clair côté EN, sans mentionner la thérapie par ventouses sur la version française).
+- Glossaire / définitions : après quelques semaines de données Search Console, envisager la création d’une page `/definition-ventouseur/` (voire AOT / gardiennage) et d’un bloc « En résumé » sur `/definition-ventousage/` pour capter davantage d’extraits enrichis.
+- Off‑site / annuaires : utiliser `docs/annuaires-prestataires-bmsventouse.md` pour préparer et déposer des fiches prestataire (Film Paris Region, KFTV, The Location Guide, commissions du film régionales) quand du temps est disponible.
+- [TODO prochaine session] Internationalisation ciblée : côté FR déjà en place (tags `notranslate` sur « ventousage » et la marque, redirection de `/en` vers `/`), côté EN à construire plus tard (page explicative en anglais + stratégie `hreflang` propre).
 
 ## Découpage par tâches
 
