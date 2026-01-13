@@ -28,7 +28,7 @@ Tu pourras copier-coller ces blocs dans les fiches prestataires au fur et à mes
 > – Possibilité de coupler avec des prestations de **sécurité de plateaux / gardiennage**, **régie matériel** et **convoyage de véhicules / décors**.  
 >  
 > Basés en Île‑de‑France, nous intervenons **24/7 à Paris, en petite couronne et dans les grandes villes de France**, avec une approche terrain très opérationnelle : repérage du périmètre, conseil sur les emplacements, adaptation aux contraintes locales (zones sensibles, rues au repos, ZFE, etc.) et livrables documentés (photos, récapitulatif de périmètre).  
->  
+>
 > L’objectif : **sécuriser votre périmètre ventousé, limiter les imprévus et vous faire gagner du temps côté régie**, en restant discret et diplomate sur le terrain.
 
 ---
@@ -54,7 +54,7 @@ Pour les annuaires en anglais (KFTV, The Location Guide, etc.).
 > – Optional add‑ons: **set / unit security and guarding**, **equipment / unit base logistics**, **vehicle & set convoying**.  
 >  
 > Based in Île‑de‑France, we operate **24/7 in Paris and across France**, with a very practical, production‑oriented approach: location scouting for parking layouts, advice on perimeter size and feasibility, local constraints (sensitive areas, “rest” streets, low‑emission zones) and clear deliverables (photo reports, perimeter recaps).  
->  
+>
 > Our goal is to **secure your lock‑off area, reduce last‑minute issues and save time for the production team**, while remaining discreet and diplomatic on the ground.
 
 ---
