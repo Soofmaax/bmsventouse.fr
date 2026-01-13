@@ -339,6 +339,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </li>`
       );
 
+      // Injecte le menu construit dans le <ul id="navLinks">
+      if (navItems.length) {
+        navLinks.innerHTML = navItems.join('');
+      }
+
       // Interaction du sous-menu Services :
       // gérée en CSS (hover + focus-within) pour garder "Services" cliquable vers /services/.
       // Aucun blocage de clic n'est appliqué côté JS.
