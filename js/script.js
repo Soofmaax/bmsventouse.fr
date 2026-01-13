@@ -998,8 +998,8 @@ document.addEventListener('DOMContentLoaded', () => {
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "tm9ex1xsa4");
-      console.log('✅ Microsoft Clarity chargé');
+      })(window, document, "clarity", "script", "v0wk7109ix");
+      console.log('✅ Microsoft Clarity chargé (ID v0wk7109ix)');
     } catch (e) {
       // non-bloquant
     }
