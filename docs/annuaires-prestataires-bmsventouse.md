@@ -18,7 +18,7 @@ Tu pourras copier-coller ces blocs dans les fiches prestataires au fur et à mes
 À utiliser dans les champs “Description détaillée”, “About”, etc.
 
 > **BMS Ventouse** est un prestataire spécialisé dans la logistique de tournage et l’occupation du domaine public.  
->  
+>
 > Nous organisons le **ventousage** pour les tournages de fiction, séries, publicités, shootings photo, événements et défilés :  
 > – **Neutralisation temporaire du stationnement** (emplacements camions, loges, cantine, régie, motion control, base vie),  
 > – Gestion des **AOT** (autorisation d’occupation temporaire du domaine public) en lien avec les villes et les services compétents,  
@@ -44,7 +44,7 @@ Pour les annuaires en anglais (KFTV, The Location Guide, etc.).
 ## 4. Long description (EN)
 
 > **BMS Ventouse** is a French service company specialised in **parking lock‑off, public space management and filming logistics** for feature films, series, commercials, fashion shoots and events.  
->  
+>
 > We handle the full **ventousage** process (French term for temporary parking neutralisation for filming):  
 > – **Parking lock‑off** for technical trucks, unit base, catering, make‑up & costume, motion control and support vehicles,  
 > – Management of **AOT** permits (temporary occupation of public space) with local authorities,  
