@@ -119,3 +119,85 @@
   from = "/prix-ventousage-paris/"
   to = "/contact/"
   status = 301
+
+# --------------------------------------------------------------------------
+# Rattrapage des anciennes URLs 404 vers les nouvelles pages pertinentes
+# --------------------------------------------------------------------------
+
+# Ancienne tentative de version anglaise
+[[redirects]]
+  from = "/en"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/en/"
+  to = "/"
+  status = 301
+
+# Anciennes URLs de services sous /services/...
+[[redirects]]
+  from = "/services/ventousage"
+  to = "/ventousage/"
+  status = 301
+
+[[redirects]]
+  from = "/services/ventousage/"
+  to = "/ventousage/"
+  status = 301
+
+[[redirects]]
+  from = "/services/plateau-gardiennage"
+  to = "/securite-plateaux/"
+  status = 301
+
+[[redirects]]
+  from = "/services/plateau-gardiennage/"
+  to = "/securite-plateaux/"
+  status = 301
+
+[[redirects]]
+  from = "/services/logistique-evenementielle"
+  to = "/services/"
+  status = 301
+
+[[redirects]]
+  from = "/services/logistique-evenementielle/"
+  to = "/services/"
+  status = 301
+
+[[redirects]]
+  from = "/services/regie-materiel"
+  to = "/regie-materiel/"
+  status = 301
+
+[[redirects]]
+  from = "/services/regie-materiel/"
+  to = "/regie-materiel/"
+  status = 301
+
+[[redirects]]
+  from = "/services/cantine-catering"
+  to = "/cantine-catering/"
+  status = 301
+
+[[redirects]]
+  from = "/services/cantine-catering/"
+  to = "/cantine-catering/"
+  status = 301
+
+[[redirects]]
+  from = "/services/loges-confort"
+  to = "/loges-confort/"
+  status = 301
+
+[[redirects]]
+  from = "/services/loges-confort/"
+  to = "/loges-confort/"
+  status = 301
+
+# Fichier offline.html demandé par certains clients / SW : renvoyé vers la home
+[[redirects]]
+  from = "/offline.html"
+  to = "/"
+  status = 301

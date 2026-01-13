@@ -265,10 +265,10 @@ document.addEventListener('DOMContentLoaded', () => {
               </ul>
             </div>
             <div class="nav-submenu-group">
-              <span class="group-title">Logistique &amp; ventousage</span>
+              <span class="group-title">Logistique &amp; <span class="notranslate" translate="no">ventousage</span></span>
               <ul class="group-list">
-                <li><a href="/ventousage/">Ventousage &amp; autorisations</a></li>
-                <li><a href="/ventousage-paris/">Ventousage Paris</a></li>
+                <li><a href="/ventousage/"><span class="notranslate" translate="no">Ventousage</span> &amp; autorisations</a></li>
+                <li><a href="/ventousage-paris/"><span class="notranslate" translate="no">Ventousage</span> Paris</a></li>
                 <li><a href="/affichage-riverains/">Affichage riverains</a></li>
                 <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
               </ul>
@@ -338,6 +338,11 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
         </li>`
       );
+
+      // Injecte le menu construit dans le <ul id="navLinks">
+      if (navItems.length) {
+        navLinks.innerHTML = navItems.join('');
+      }
 
       // Interaction du sous-menu Services :
       // gérée en CSS (hover + focus-within) pour garder "Services" cliquable vers /services/.
@@ -993,8 +998,8 @@ document.addEventListener('DOMContentLoaded', () => {
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "tm9ex1xsa4");
-      console.log('✅ Microsoft Clarity chargé');
+      })(window, document, "clarity", "script", "v0wk7109ix");
+      console.log('✅ Microsoft Clarity chargé (ID v0wk7109ix)');
     } catch (e) {
       // non-bloquant
     }
@@ -1077,6 +1082,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupVentousageParisGallery();
     // Perf: améliorer le lazy/decoding des images (hors héros)
     enhanceImages();
+    // Protéger les termes métier (ventousage...) des traductions automatiques approximatives
+    protectVentousageTerms();
 
     // Debug/override consent via query string: ?consent=granted|denied
     try {
@@ -1170,7 +1177,7 @@ function setupUnifiedFooter() {
         <div class="footer-brand">
           <div class="footer-logo">
             <img src="/android-chrome-192x192.png" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
-            <div class="footer-brand-text">
+            <div class="footer-brand-text notranslate" translate="no">
               <span class="footer-bms">BMS</span><span class="footer-ventouse">Ventouse</span>
             </div>
           </div>
@@ -1190,7 +1197,7 @@ function setupUnifiedFooter() {
             <ul>
               <li><a href="/">Accueil</a></li>
               <li><a href="/services/">Services</a></li>
-              <li><a href="/ventousage-paris/">Ventousage Paris</a></li>
+              <li><a href="/ventousage-paris/"><span class="notranslate" translate="no">Ventousage Paris</span></a></li>
               <li><a href="/affichage-riverains/">Affichage riverains</a></li>
               <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
               <li><a href="/realisations/">Réalisations</a></li>
@@ -1711,6 +1718,83 @@ function setupVentousageParisGallery() {
 
     prevBtn.addEventListener('click', () => {
       scrollToIndex(currentIndex - 1);
+    });
+  } catch (_) {
+    // non-bloquant
+  }
+}
+
+function protectVentousageTerms() {
+  try {
+    if (!document.body) return;
+
+    const TERM_REGEX = /(Ventousage|ventousage|Ventouseurs?|ventouseurs?|Ventousé(?:e|es|s)?|ventousé(?:e|es|s)?|Ventouser|ventouser)/g;
+
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          if (!node.nodeValue || !TERM_REGEX.test(node.nodeValue)) {
+            TERM_REGEX.lastIndex = 0;
+            return NodeFilter.FILTER_SKIP;
+          }
+          TERM_REGEX.lastIndex = 0;
+
+          let el = node.parentElement;
+          while (el) {
+            if (el.classList && el.classList.contains('notranslate')) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            const tag = el.tagName;
+            if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') {
+              return NodeFilter.FILTER_REJECT;
+            }
+            el = el.parentElement;
+          }
+
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    const nodes = [];
+    let current;
+    while ((current = walker.nextNode())) {
+      nodes.push(current);
+    }
+
+    nodes.forEach(node => {
+      const text = node.nodeValue;
+      TERM_REGEX.lastIndex = 0;
+
+      const frag = document.createDocumentFragment();
+      let lastIndex = 0;
+      let match;
+
+      while ((match = TERM_REGEX.exec(text))) {
+        const index = match.index;
+
+        if (index > lastIndex) {
+          frag.appendChild(document.createTextNode(text.slice(lastIndex, index)));
+        }
+
+        const span = document.createElement('span');
+        span.className = 'notranslate';
+        span.setAttribute('translate', 'no');
+        span.textContent = match[0];
+        frag.appendChild(span);
+
+        lastIndex = index + match[0].length;
+      }
+
+      if (lastIndex < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+      }
+
+      if (node.parentNode) {
+        node.parentNode.replaceChild(frag, node);
+      }
     });
   } catch (_) {
     // non-bloquant

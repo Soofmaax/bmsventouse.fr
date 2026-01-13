@@ -15,6 +15,13 @@
 @import url('./sections.css');
 @import url('./pages.css');
 
+/* Indique aux outils de traduction (Google Translate, etc.) de ne pas traduire
+   les éléments marqués, afin de préserver des termes métier comme « ventousage ». */
+.notranslate[translate="no"],
+.notranslate {
+  /* Pas de style visuel, uniquement un marqueur pour les traducteurs. */
+}
+
 /* 
   NOTE :
   Les styles historiques restent dans ce fichier pour compatibilité.

@@ -9,6 +9,12 @@ Mise à jour rapide (2025-12-22)
 - Lien persistant « Gérer les cookies » ajouté au footer, permettant de réouvrir la bannière de consentement.
 - Styles du breadcrumb et de la bannière cookies désormais gérés en CSS (plus de styles inline injectés).
 
+Mise à jour rapide (2026-01-10)
+- Page « Définition du ventousage » enrichie (CTA vers les services + maillage interne renforcé) pour capter davantage de requêtes d’information.
+- Page « Mentions légales » passée en `index, follow` (au lieu de `noindex`) afin de permettre son indexation si Google le juge pertinent.
+- Redirections Netlify complétées pour les anciennes URLs `/services/...` (ventousage, régie, cantine, loges, etc.) et `/en` vers les pages canoniques, afin de réduire les 404 et clarifier la structure d’URL.
+- Ajout du document `docs/annuaires-prestataires-bmsventouse.md` regroupant les textes standard (FR/EN) et les cibles d’annuaires métiers (Film Paris Region, KFTV, The Location Guide, commissions régionales), pour faciliter le netlinking qualitatif ultérieur.
+
 Résumé exécutif
 - Base SEO et technique solide (Open Graph, Twitter Cards, JSON‑LD, sitemap, robots).
 - Accessibilité soignée (skip link, focus visible, sémantique), mais quelques textos et labels peuvent être enrichis.

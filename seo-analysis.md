@@ -1,5 +1,12 @@
 # Audit SEO - BMS Ventouse (état au 2025-09-30)
 
+Mise à jour rapide (2026-01-10)
+- Page « Définition du ventousage » enrichie (CTA vers les services de ventousage + maillage interne renforcé).
+- Page « Mentions légales » passée en `index, follow` pour permettre son éventuelle indexation.
+- Pages « Ventousage cinéma » et « Convoyage véhicules & décors » structurées comme landings SEO dédiées (Service + FAQ + CTA).
+- Redirections Netlify ajoutées pour normaliser les anciennes URLs `/services/...` et `/en` vers les URLs canoniques, afin de réduire les 404 dans Search Console.
+- Nouveau document `docs/annuaires-prestataires-bmsventouse.md` ajouté pour centraliser textes et cibles d’annuaires métiers (Film Paris Region, KFTV, The Location Guide, commissions régionales).
+
 Vue d’ensemble
 - Base SEO solide, site statique rapide (Netlify).
 - Pages clés couvertes: Accueil, Services, Réalisations, Contact, Mentions, pages locales.
@@ -79,6 +86,7 @@ Références internes
   - docs/README.md (index de la documentation)
   - docs/patterns.md (patterns de pages & composants)
   - docs/api/frontend-ux.md (modules JS frontend : thème, hand-toggle, FAQ, galerie, etc.)
+  - docs/annuaires-prestataires-bmsventouse.md (texte standard et cibles pour les annuaires métiers)
   - README-css.md et README-icons.md (conventions CSS & icônes)
   - plan_action.md (priorités SEO / accessibilité / qualité et roadmap)
 
