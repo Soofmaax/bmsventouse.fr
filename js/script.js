@@ -265,10 +265,10 @@ document.addEventListener('DOMContentLoaded', () => {
               </ul>
             </div>
             <div class="nav-submenu-group">
-              <span class="group-title">Logistique &amp; ventousage</span>
+              <span class="group-title">Logistique &amp; <span class="notranslate" translate="no">ventousage</span></span>
               <ul class="group-list">
-                <li><a href="/ventousage/">Ventousage &amp; autorisations</a></li>
-                <li><a href="/ventousage-paris/">Ventousage Paris</a></li>
+                <li><a href="/ventousage/"><span class="notranslate" translate="no">Ventousage</span> &amp; autorisations</a></li>
+                <li><a href="/ventousage-paris/"><span class="notranslate" translate="no">Ventousage</span> Paris</a></li>
                 <li><a href="/affichage-riverains/">Affichage riverains</a></li>
                 <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
               </ul>
