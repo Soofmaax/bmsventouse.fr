@@ -12,6 +12,15 @@
 */
 
 /* --------------------------------------------------------------------------
+   PAGE ACCUEIL – / (index)
+   Ajuste la position verticale du bloc héros pour rendre le H1 plus visible
+   sans sortir les boutons du viewport.
+   -------------------------------------------------------------------------- */
+body.page-accueil .hero-overlay .container {
+  transform: translateY(4%);
+}
+
+/* --------------------------------------------------------------------------
    PAGE CONTACT NFC – /contact-nfc/
    UX mobile simplifiée et premium : hero card, boutons pleine largeur
    -------------------------------------------------------------------------- */
