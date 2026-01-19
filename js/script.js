@@ -1851,15 +1851,12 @@ function setupFashionWeekPopup() {
       popup.innerHTML = `
         <div class="fw-popup-content" role="dialog" aria-modal="true" aria-labelledby="fwPopupTitle">
           <button class="fw-popup-close" type="button" aria-label="Fermer l'offre Paris Fashion Week 2026">×</button>
-          <h2 id="fwPopupTitle">Offre Paris Fashion Week 2026</h2>
+          <h2 id="fwPopupTitle">Paris Fashion Week 2026 – Offre ventousage</h2>
           <p>
             Pendant la <strong>Paris Fashion Week 2026</strong> à Paris
-            (mode masculine du <strong>20 au 25 janvier 2026</strong> et mode féminine du
-            <strong>2 au 10 mars 2026</strong>), bénéficiez de
-            <strong>-10&nbsp;% sur les frais de mise en place de ventousage</strong>
-            pour vos défilés, shows et shootings.
-            Offre valable pour toute demande confirmée avant le
-            <strong>10 mars 2026</strong>. Mentionnez simplement
+            (homme&nbsp;20–25&nbsp;janvier, femme&nbsp;2–10&nbsp;mars),
+            profitez de <strong>-10&nbsp;% sur les frais de ventousage</strong>
+            pour vos défilés, shows et shootings. Mentionnez
             <strong>FASHION WEEK</strong> dans votre message.
           </p>
           <div class="fw-popup-actions">
