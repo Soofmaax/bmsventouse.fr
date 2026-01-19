@@ -327,6 +327,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `<li><a href="/contact/" class="nav-link btn nav-cta">Demander un devis</a></li>`
       );
 
+      // Lien version anglaise (mini switch EN)
+      navItems.push(
+        `<li><a href="/en/" class="nav-link">EN</a></li>`
+      );
+
       // Bouton mode sombre / clair
       navItems.push(
         `<li>
