@@ -1810,11 +1810,23 @@ function setupFashionWeekPopup() {
   try {
     if (!document.body) return;
 
-    // Campagne élargie pour maximiser les appels :
-    // on garde 2026 comme année cible, mais sans couper strictement au 10 mars
     const now = new Date();
-    const endDate = new Date('2026-12-31T23:59:59');
-    if (now > endDate) return;
+
+    // Fenêtres réelles de la Paris Fashion Week 2026 (FHCM) :
+    // - Mode masculine A/H 2026-2027 : 20–25 janvier 2026
+    // - Mode féminine A/H 2026-2027 : 2–10 mars 2026
+    const fwMenStart  = new Date('2026-01-20T00:00:00');
+    const fwMenEnd    = new Date('2026-01-25T23:59:59');
+    const fwWomenStart = new Date('2026-03-02T00:00:00');
+    const fwWomenEnd   = new Date('2026-03-10T23:59:59');
+
+    const inJanuaryFW =
+      now >= fwMenStart && now <= fwMenEnd;
+    const inMarchFW =
+      now >= fwWomenStart && now <= fwWomenEnd;
+
+    // En dehors des vraies dates de Fashion Week 2026, on ne montre rien
+    if (!inJanuaryFW && !inMarchFW) return;
 
     const STORAGE_KEY = 'bms_fw_popup_last_shown';
     const todayStr = now.toISOString().slice(0, 10); // format AAAA-MM-JJ
