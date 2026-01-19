@@ -1804,20 +1804,25 @@ function protectVentousageTerms() {
 }
 
 // --------------------------------------------------------------------------
-// MODULE: Pop-up Paris Fashion Week 2026 (offre temporaire, affichée une fois par session)
+// MODULE: Pop-up Paris Fashion Week 2026 (offre temporaire, affichée une fois par jour)
 // --------------------------------------------------------------------------
 function setupFashionWeekPopup() {
   try {
     if (!document.body) return;
 
-    // Désactiver automatiquement la pop-up après la période de Fashion Week 2026
+    // Campagne élargie pour maximiser les appels :
+    // on garde 2026 comme année cible, mais sans couper strictement au 10 mars
     const now = new Date();
-    const endDate = new Date('2026-03-10T23:59:59');
+    const endDate = new Date('2026-12-31T23:59:59');
     if (now > endDate) return;
 
-    const STORAGE_KEY = 'bms_fw_popup_shown';
+    const STORAGE_KEY = 'bms_fw_popup_last_shown';
+    const todayStr = now.toISOString().slice(0, 10); // format AAAA-MM-JJ
+
     try {
-      if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+      const lastShown = localStorage.getItem(STORAGE_KEY);
+      // Si déjà affichée aujourd'hui, ne pas réafficher pour limiter l'agacement
+      if (lastShown === todayStr) {
         return;
       }
     } catch (_) {
@@ -1865,14 +1870,14 @@ function setupFashionWeekPopup() {
     const showPopup = () => {
       popup.setAttribute('aria-hidden', 'false');
       try {
-        sessionStorage.setItem(STORAGE_KEY, '1');
+        localStorage.setItem(STORAGE_KEY, todayStr);
       } catch (_) {
         // non-bloquant
       }
     };
 
-    // Afficher la pop-up après quelques secondes pour ne pas couper l'arrivée
-    setTimeout(showPopup, 8000);
+    // Afficher la pop-up rapidement (3 secondes) pour maximiser les contacts
+    setTimeout(showPopup, 3000);
 
     const closeBtn = popup.querySelector('.fw-popup-close');
     if (closeBtn) {
