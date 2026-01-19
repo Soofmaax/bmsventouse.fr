@@ -1082,6 +1082,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupVentousageParisGallery();
     // Perf: améliorer le lazy/decoding des images (hors héros)
     enhanceImages();
+    // Pop-up Fashion Week 2026 (offre temporaire, affichée une seule fois par session)
+    setupFashionWeekPopup();
     // Protéger les termes métier (ventousage...) des traductions automatiques approximatives
     protectVentousageTerms();
 
@@ -1796,6 +1798,88 @@ function protectVentousageTerms() {
         node.parentNode.replaceChild(frag, node);
       }
     });
+  } catch (_) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Pop-up Paris Fashion Week 2026 (offre temporaire, affichée une fois par session)
+// --------------------------------------------------------------------------
+function setupFashionWeekPopup() {
+  try {
+    if (!document.body) return;
+
+    // Désactiver automatiquement la pop-up après la période de Fashion Week 2026
+    const now = new Date();
+    const endDate = new Date('2026-03-10T23:59:59');
+    if (now > endDate) return;
+
+    const STORAGE_KEY = 'bms_fw_popup_shown';
+    try {
+      if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+        return;
+      }
+    } catch (_) {
+      // non-bloquant
+    }
+
+    let popup = document.getElementById('fwPopup');
+    if (!popup) {
+      popup = document.createElement('div');
+      popup.id = 'fwPopup';
+      popup.className = 'fw-popup';
+      popup.setAttribute('aria-hidden', 'true');
+
+      popup.innerHTML = `
+        <div class="fw-popup-content" role="dialog" aria-modal="true" aria-labelledby="fwPopupTitle">
+          <button class="fw-popup-close" type="button" aria-label="Fermer l'offre Paris Fashion Week 2026">×</button>
+          <h2 id="fwPopupTitle">Offre Paris Fashion Week 2026</h2>
+          <p>
+            Pendant la <strong>Paris Fashion Week 2026</strong> à Paris
+            (mode masculine du <strong>20 au 25 janvier 2026</strong> et mode féminine du
+            <strong>2 au 10 mars 2026</strong>), bénéficiez de
+            <strong>-10&nbsp;% sur les frais de mise en place de ventousage</strong>
+            pour vos défilés, shows et shootings.
+            Offre valable pour toute demande confirmée avant le
+            <strong>10 mars 2026</strong>. Mentionnez simplement
+            <strong>FASHION WEEK</strong> dans votre message.
+          </p>
+          <div class="fw-popup-actions">
+            <a href="/contact/" class="btn btn-primary">
+              Parler de mon défilé
+            </a>
+            <a href="https://wa.me/33646005642?text=Bonjour,%20je%20pr%C3%A9pare%20un%20d%C3%A9fil%C3%A9%20ou%20shooting%20pendant%20la%20Paris%20Fashion%20Week%202026%20%C3%A0%20Paris%20et%20je%20souhaite%20profiter%20de%20l'offre%20FASHION%20WEEK."
+               class="btn btn-secondary-alt"
+               target="_blank"
+               rel="noopener noreferrer">
+              WhatsApp Fashion Week
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    document.body.appendChild(popup);
+
+    const showPopup = () => {
+      popup.setAttribute('aria-hidden', 'false');
+      try {
+        sessionStorage.setItem(STORAGE_KEY, '1');
+      } catch (_) {
+        // non-bloquant
+      }
+    };
+
+    // Afficher la pop-up après quelques secondes pour ne pas couper l'arrivée
+    setTimeout(showPopup, 8000);
+
+    const closeBtn = popup.querySelector('.fw-popup-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        popup.setAttribute('aria-hidden', 'true');
+      });
+    }
   } catch (_) {
     // non-bloquant
   }
