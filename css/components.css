@@ -515,3 +515,129 @@ body.dark-theme .footer-bottom-content a {
 body.dark-theme .promo-banner {
   color: #f9fafb !important;
 }
+
+/* ================== POP-UP PARIS FASHION WEEK 2026 ================== */
+
+.fw-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1.5rem;
+}
+
+.fw-popup[aria-hidden="false"] {
+  display: flex;
+}
+
+.fw-popup-content {
+  position: relative;
+  background: var(--color-surface, #ffffff);
+  color: var(--color-text, #111111);
+  max-width: 520px;
+  width: 100%;
+  padding: 1.9rem 1.8rem 1.6rem;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.35);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.fw-popup-content h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.75rem;
+}
+
+.fw-popup-content p {
+  margin: 0 0 1.1rem;
+  line-height: 1.7;
+  font-size: 0.98rem;
+}
+
+.fw-popup-content strong {
+  font-weight: var(--font-weight-bold);
+}
+
+.fw-popup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.fw-popup-actions .btn {
+  min-width: 0;
+  flex: 1 1 48%;
+}
+
+.fw-popup-close {
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.9rem;
+  cursor: pointer;
+  line-height: 1;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+}
+
+.fw-popup-close:hover,
+.fw-popup-close:focus {
+  color: #4b5563;
+}
+
+/* Mobile: pop-up pleine largeur, boutons empilés */
+@media (max-width: 600px) {
+  .fw-popup {
+    padding: 0.75rem;
+    align-items: flex-end;
+  }
+
+  .fw-popup-content {
+    width: 100%;
+    border-radius: 18px 18px 0 0;
+    padding: 1.6rem 1.3rem 1.4rem;
+    max-height: 80vh;
+  }
+
+  .fw-popup-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .fw-popup-content p {
+    font-size: 0.95rem;
+  }
+
+  .fw-popup-actions {
+    flex-direction: column;
+  }
+
+  .fw-popup-actions .btn {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .fw-popup-close {
+    top: 0.5rem;
+    right: 0.8rem;
+  }
+}
+
+/* Variante en mode sombre pour garder un bon contraste */
+body.dark-theme .fw-popup-content {
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+body.dark-theme .fw-popup-close {
+  color: #9ca3af;
+}
+
+body.dark-theme .fw-popup-close:hover,
+body.dark-theme .fw-popup-close:focus {
+  color: #e5e7eb;
+}

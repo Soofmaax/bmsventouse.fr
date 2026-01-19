@@ -327,6 +327,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `<li><a href="/contact/" class="nav-link btn nav-cta">Demander un devis</a></li>`
       );
 
+      // Lien version anglaise (mini switch EN)
+      navItems.push(
+        `<li><a href="/en/" class="nav-link">EN</a></li>`
+      );
+
       // Bouton mode sombre / clair
       navItems.push(
         `<li>
@@ -1082,6 +1087,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupVentousageParisGallery();
     // Perf: améliorer le lazy/decoding des images (hors héros)
     enhanceImages();
+    // Pop-up Fashion Week 2026 (offre temporaire, affichée une seule fois par session)
+    setupFashionWeekPopup();
     // Protéger les termes métier (ventousage...) des traductions automatiques approximatives
     protectVentousageTerms();
 
@@ -1796,6 +1803,102 @@ function protectVentousageTerms() {
         node.parentNode.replaceChild(frag, node);
       }
     });
+  } catch (_) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: Pop-up Paris Fashion Week 2026 (offre temporaire, affichée une fois par jour)
+// --------------------------------------------------------------------------
+function setupFashionWeekPopup() {
+  try {
+    if (!document.body) return;
+
+    const now = new Date();
+
+    // Fenêtres réelles de la Paris Fashion Week 2026 (FHCM) :
+    // - Mode masculine A/H 2026-2027 : 20–25 janvier 2026
+    // - Mode féminine A/H 2026-2027 : 2–10 mars 2026
+    const fwMenStart  = new Date('2026-01-20T00:00:00');
+    const fwMenEnd    = new Date('2026-01-25T23:59:59');
+    const fwWomenStart = new Date('2026-03-02T00:00:00');
+    const fwWomenEnd   = new Date('2026-03-10T23:59:59');
+
+    const inJanuaryFW =
+      now >= fwMenStart && now <= fwMenEnd;
+    const inMarchFW =
+      now >= fwWomenStart && now <= fwWomenEnd;
+
+    // En dehors des vraies dates de Fashion Week 2026, on ne montre rien
+    if (!inJanuaryFW && !inMarchFW) return;
+
+    const STORAGE_KEY = 'bms_fw_popup_last_shown';
+    const todayStr = now.toISOString().slice(0, 10); // format AAAA-MM-JJ
+
+    try {
+      const lastShown = localStorage.getItem(STORAGE_KEY);
+      // Si déjà affichée aujourd'hui, ne pas réafficher pour limiter l'agacement
+      if (lastShown === todayStr) {
+        return;
+      }
+    } catch (_) {
+      // non-bloquant
+    }
+
+    let popup = document.getElementById('fwPopup');
+    if (!popup) {
+      popup = document.createElement('div');
+      popup.id = 'fwPopup';
+      popup.className = 'fw-popup';
+      popup.setAttribute('aria-hidden', 'true');
+
+      popup.innerHTML = `
+        <div class="fw-popup-content" role="dialog" aria-modal="true" aria-labelledby="fwPopupTitle">
+          <button class="fw-popup-close" type="button" aria-label="Fermer l'offre Paris Fashion Week 2026">×</button>
+          <h2 id="fwPopupTitle">Paris Fashion Week 2026 – Offre ventousage</h2>
+          <p>
+            Pendant la <strong>Paris Fashion Week 2026</strong> à Paris
+            (homme&nbsp;20–25&nbsp;janvier, femme&nbsp;2–10&nbsp;mars),
+            profitez de <strong>-10&nbsp;% sur les frais de ventousage</strong>
+            pour vos défilés, shows et shootings. Mentionnez
+            <strong>FASHION WEEK</strong> dans votre message.
+          </p>
+          <div class="fw-popup-actions">
+            <a href="/contact/" class="btn btn-primary">
+              Parler de mon défilé
+            </a>
+            <a href="https://wa.me/33646005642?text=Bonjour,%20je%20pr%C3%A9pare%20un%20d%C3%A9fil%C3%A9%20ou%20shooting%20pendant%20la%20Paris%20Fashion%20Week%202026%20%C3%A0%20Paris%20et%20je%20souhaite%20profiter%20de%20l'offre%20FASHION%20WEEK."
+               class="btn btn-secondary-alt"
+               target="_blank"
+               rel="noopener noreferrer">
+              WhatsApp Fashion Week
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    document.body.appendChild(popup);
+
+    const showPopup = () => {
+      popup.setAttribute('aria-hidden', 'false');
+      try {
+        localStorage.setItem(STORAGE_KEY, todayStr);
+      } catch (_) {
+        // non-bloquant
+      }
+    };
+
+    // Afficher la pop-up rapidement (3 secondes) pour maximiser les contacts
+    setTimeout(showPopup, 3000);
+
+    const closeBtn = popup.querySelector('.fw-popup-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        popup.setAttribute('aria-hidden', 'true');
+      });
+    }
   } catch (_) {
     // non-bloquant
   }

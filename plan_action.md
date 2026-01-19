@@ -1,6 +1,6 @@
 # Plan d’action SEO/Accessibilité/Qualité - BMS Ventouse
 
-Dernière mise à jour : 2026-01-10
+Dernière mise à jour : 2026-01-19
 
 > Ce fichier est le **backlog vivant** SEO/A11y/Qualité.  
 > Les audits historiques détaillés sont dans `rapport_audit_complet.md` et `seo-analysis.md`.
@@ -28,6 +28,7 @@ SEO / contenu
 - Page « Politique de confidentialité » dédiée (/politique-confidentialite/) créée, avec lien dans le footer (colonne « Légal »).
 - Conditions Générales de Prestation publiées (/conditions-generales-prestation/), avec lien footer.
 - Page « Définition du ventousage » optimisée (CTA vers les services de ventousage + maillage interne renforcé) et page « Mentions légales » passée en `index, follow` pour être éligible à l’index.
+- Pop-up « Paris Fashion Week 2026 » ajoutée côté JS/CSS, responsive (desktop/mobile), n’apparaissant qu’aux vraies dates FHCM (homme 20–25 janvier, femme 2–10 mars) et au plus une fois par jour et par visiteur.
 
 Accessibilité / UX
 
