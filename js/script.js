@@ -1623,21 +1623,22 @@ function setupVentousageParisGallery() {
     const wrapper = track.closest('.gallery-carousel');
 
     // Photos de ventousage (logo déjà intégré, plaques floutées, clients non identifiables)
-    // Pour en ajouter ou en retirer :
-    //  - déposer / supprimer les fichiers dans /images/ventousage-galerie/
-{ src: '/images/ventousage-galerie/ventousage-paris-stationnement-neutralise-panneaux-b6-1.jpg', alt: 'Exemple de ventousage avec stationnement neutralisé et panneaux B6' },
-{ src: '/images/ventousage-galerie/ventousage-paris-perimetre-jalonne-tournage-2.jpg', alt: 'Exemple de ventousage avec périmètre jalonné pour tournage' },
-{ src: '/images/ventousage-galerie/ventousage-paris-signalisation-reglementaire-3.jpg', alt: 'Exemple de ventousage avec signalisation réglementaire en place' },
-{ src: '/images/ventousage-galerie/ventousage-paris-emplacements-vehicules-techniques-4.jpg', alt: 'Exemple de ventousage pour emplacement de véhicules techniques' },
-{ src: '/images/ventousage-galerie/ventousage-paris-cones-rubalise-voirie-5.jpg', alt: 'Exemple de ventousage avec cônes et rubalise en voirie' },
-{ src: '/images/ventousage-galerie/ventousage-paris-preparation-tournage-6.jpg', alt: 'Exemple de ventousage en amont d’un tournage' },
-{ src: '/images/ventousage-galerie/ventousage-paris-zone-urbaine-panneaux-temporaires-7.jpg', alt: 'Exemple de ventousage en zone urbaine avec panneaux temporaires' },
-{ src: '/images/ventousage-galerie/ventousage-paris-signalisation-production-audiovisuelle-8.jpg', alt: 'Exemple de ventousage avec signalisation pour production audiovisuelle' },
-{ src: '/images/ventousage-galerie/ventousage-paris-emplacement-reserve-equipe-tournage-9.jpg', alt: 'Exemple de ventousage avec emplacement réservé pour l’équipe de tournage' },
-{ src: '/images/ventousage-galerie/ventousage-paris-neutralisation-multiple-places-stationnement-10.jpg', alt: 'Exemple de ventousage avec neutralisation de plusieurs places de stationnement' },
-{ src: '/images/ventousage-galerie/ventousage-paris-dispositif-complet-stationnement-reserve-11.jpg', alt: 'Exemple de ventousage montrant un dispositif complet de stationnement réservé' },
-{ src: '/images/ventousage-galerie/ventousage-paris-panneaux-jalonnage-trottoir-chaussee-12.jpg', alt: 'Exemple de ventousage avec panneaux et jalonnage sur trottoir et chaussée' },
-{ src: '/images/ventousage-galerie/ventousage-paris-perimetre-materialise-tournage-13.jpg', alt: 'Exemple de ventousage pour un tournage, avec périmètre matérialisé' }
+// Pour en ajouter ou en retirer :
+//  - déposer / supprimer les fichiers dans /images/ventousage-galerie/
+    const IMAGES = [
+      { src: '/images/ventousage-galerie/ventousage-paris-stationnement-neutralise-panneaux-b6-1.jpg', alt: 'Exemple de ventousage avec stationnement neutralisé et panneaux B6' },
+      { src: '/images/ventousage-galerie/ventousage-paris-perimetre-jalonne-tournage-2.jpg', alt: 'Exemple de ventousage avec périmètre jalonné pour tournage' },
+      { src: '/images/ventousage-galerie/ventousage-paris-signalisation-reglementaire-3.jpg', alt: 'Exemple de ventousage avec signalisation réglementaire en place' },
+      { src: '/images/ventousage-galerie/ventousage-paris-emplacements-vehicules-techniques-4.jpg', alt: 'Exemple de ventousage pour emplacement de véhicules techniques' },
+      { src: '/images/ventousage-galerie/ventousage-paris-cones-rubalise-voirie-5.jpg', alt: 'Exemple de ventousage avec cônes et rubalise en voirie' },
+      { src: '/images/ventousage-galerie/ventousage-paris-preparation-tournage-6.jpg', alt: 'Exemple de ventousage en amont d’un tournage' },
+      { src: '/images/ventousage-galerie/ventousage-paris-zone-urbaine-panneaux-temporaires-7.jpg', alt: 'Exemple de ventousage en zone urbaine avec panneaux temporaires' },
+      { src: '/images/ventousage-galerie/ventousage-paris-signalisation-production-audiovisuelle-8.jpg', alt: 'Exemple de ventousage avec signalisation pour production audiovisuelle' },
+      { src: '/images/ventousage-galerie/ventousage-paris-emplacement-reserve-equipe-tournage-9.jpg', alt: 'Exemple de ventousage avec emplacement réservé pour l’équipe de tournage' },
+      { src: '/images/ventousage-galerie/ventousage-paris-neutralisation-multiple-places-stationnement-10.jpg', alt: 'Exemple de ventousage avec neutralisation de plusieurs places de stationnement' },
+      { src: '/images/ventousage-galerie/ventousage-paris-dispositif-complet-stationnement-reserve-11.jpg', alt: 'Exemple de ventousage montrant un dispositif complet de stationnement réservé' },
+      { src: '/images/ventousage-galerie/ventousage-paris-panneaux-jalonnage-trottoir-chaussee-12.jpg', alt: 'Exemple de ventousage avec panneaux et jalonnage sur trottoir et chaussée' },
+      { src: '/images/ventousage-galerie/ventousage-paris-perimetre-materialise-tournage-13.jpg', alt: 'Exemple de ventousage pour un tournage, avec périmètre matérialisé' }
     ];
 
     // Si aucune image n'est déclarée, on masque complètement la section
