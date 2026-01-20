@@ -38,14 +38,14 @@
   position: absolute;
   inset: 0;
   z-index: var(--z-normal);
-  /* Centrage parfait du contenu */
+  /* Centrage du contenu sur l'image de fond */
   display: grid;
   place-items: center;
   background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.55) 100%);
   color: #fff;
   text-align: center;
-  /* Réduction du padding pour remonter le bloc visuellement */
-  padding: 20px 5vw;
+  /* Plus d'espace en haut/bas pour éviter que le texte ou les boutons semblent collés au bord */
+  padding: 40px 5vw;
   width: 100vw;
 }
 
