@@ -43,16 +43,15 @@
 
   /* Ajustement spécifique pour la carte /contact-nfc/ :
      - boutons légèrement plus compacts
-     - texte un peu plus petit pour tenir sur une ligne
+     - texte un peu plus petit
      - toujours centrés et responsives */
   body.page-contact-nfc .hero-contact-nfc .hero-buttons .btn {
     padding: 0.7rem 1rem !important;
     font-size: 0.9rem !important;
-    white-space: nowrap;
-    /* On aligne le contenu à gauche pour garder une colonne d'icônes nette,
-       le texte s'étend vers la droite comme tu le souhaites,
-       mais le bouton lui-même est centré dans la carte. */
-    justify-content: flex-start;
+    /* On laisse le texte passer sur deux lignes si nécessaire,
+       plutôt que de forcer une seule ligne qui pourrait déborder. */
+    white-space: normal;
+    justify-content: center;
     width: 100% !important;
     max-width: 320px;
     margin-left: auto;
