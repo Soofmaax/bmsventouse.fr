@@ -27,6 +27,24 @@
   margin-right: auto;
 }
 
+/* Ajustements typographiques globaux sur mobile :
+   - sections un peu plus compactes
+   - titres et sous-titres avec marges réduites pour garder plus de contenu "au pli" */
+@media (max-width: 600px) {
+  .section {
+    padding: 40px 0;
+  }
+
+  .section-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
 /* === BLOC CORRIGÉ POUR LA BANNIÈRE ET LE HEADER === */
 
 /* Bannière promo désactivée (message intégré dans la nav via un badge) */

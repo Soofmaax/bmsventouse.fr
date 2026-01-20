@@ -27,6 +27,17 @@
   z-index: var(--z-normal);
 }
 
+/* Sur très petits écrans, on autorise des boutons plus compacts
+   pour éviter de casser la mise en page (tout en gardant des cibles tactiles confortables) */
+@media (max-width: 480px) {
+  .btn {
+    min-width: 0;
+    width: 100%;
+    font-size: 0.98rem;
+    padding: 0.8rem 1.2rem;
+  }
+}
+
 /* Effet ripple sur boutons */
 .btn::after {
   content: '';

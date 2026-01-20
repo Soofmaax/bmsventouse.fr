@@ -42,7 +42,7 @@
     <meta name="twitter:title" content="Ventousage à Lille — Neutralisation &amp; AOT | BMS Ventouse">
    <<meta name="twitter:description" content="Ventousage et gardiennage plateau à Lille — neutralisation du stationains, AOT. Grand’Place &amp; Vieux‑Lille, rues étroites. Intervention 24/7.">
     <meta name="twitter:image" content="https://bmsventouse.fr/images/hero-background-custom.jpg">
-    <meta name="twitter:image:alt" content="Rue neutralisée pour un tournage à Lille (image héro)">
+    <meta name="twitter:image:alt" content="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire">
 
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -70,7 +70,11 @@
         "name": "Ventousage à Lille — ventouseur à Lille",
         "description": "Neutralisation du stationnement, AOT, signalisation réglementaire. Intervention 24/7.",
         "provider": { "@type": "Organization", "name": "BMS Ventouse", "url": "https://bmsventouse.fr" },
-        "areaServed": { "@type": "City", "name": "Lille" },
+        "areaServed": {
+          "@type": "City",
+          "name": "Lille",
+          "sameAs": "https://fr.wikipedia.org/wiki/Lille"
+        },
         "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://bmsventouse.fr/contact/" }
       },
       {
@@ -131,9 +135,19 @@
   <!-- HERO -->
   <section class="hero">
     <picture class="hero-bg">
-      <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <img src="/images/hero-background-custom.jpg" alt="Neutralisation temporaire de places de stationnement à Lille pour tournage" loading="eager" fetchpriority="high" width="1920" height="1080">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
+      <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
@@ -191,6 +205,25 @@
           <p class="stat-label">Cinéma, séries, pubs, shootings, mode, corporate et événements spéciaux à Lille et dans les Hauts‑de‑France.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Lille, métropole de tournage -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Lille, métropole de tournage</h2>
+      <p class="animated-item content-narrow" style="margin-bottom:1rem; line-height:1.7;">
+        À moins d’une heure de Paris en train, <strong>Lille</strong> est devenue une véritable <strong>terre d’accueil des tournages</strong>.
+        La ville mêle Grand’Place, Vieux-Lille pavé, quartiers industriels reconvertis, parcs, équipements culturels et sportifs :
+        un concentré de décors urbains dans un périmètre compact, très recherché par les productions.
+      </p>
+      <p class="animated-item content-narrow" style="line-height:1.7;">
+        La stratégie municipale en faveur de l’accueil des tournages s’appuie sur un <strong>bureau d’accueil dédié</strong> qui accompagne
+        chaque année de nombreux projets (longs métrages, séries TV, téléfilms, clips, courts-métrages, films étudiants…).
+        Le volume de tournages ne cesse de croître, avec plusieurs centaines de jours de tournage par an sur le territoire lillois.
+        Dans ce contexte, un <span class="notranslate" translate="no">ventousage</span> rigoureux (stationnement réservé, signalisation, coordination locale) est indispensable
+        pour tenir les plannings sans bloquer la ville.
+      </p>
     </div>
   </section>
 
@@ -302,6 +335,23 @@
     </div>
   </section>
 
+  <!-- Spécificités techniques Lille -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Spécificités techniques à Lille</h2>
+      <p class="animated-item content-narrow" style="line-height:1.7;">
+        Dans le <strong>Vieux-Lille</strong>, les rues pavées et les trottoirs étroits exigent un <strong>calage spécifique des groupes électrogènes</strong>,
+        des camions techniques et des rampes d’accès. Nous ajustons les implantations pour limiter les vibrations, protéger le bâti ancien
+        et maintenir des cheminements piétons sûrs, tout en respectant les accès livraisons.
+      </p>
+      <p class="animated-item content-narrow" style="line-height:1.7; margin-top:0.75rem;">
+        La proximité avec la <strong>Belgique</strong> en fait également un point de passage pour les coproductions et les tournages internationaux.
+        Nous sécurisons les périmètres de stationnement lors de ces allers-retours transfrontaliers et coordonnons les dispositifs
+        entre Lille, la MEL, l’Île-de-France et les axes vers la Belgique.
+      </p>
+    </div>
+  </section>
+
   <!-- Guide pratique — tournage &amp; ventousage à Lille -->
   <section class="section">
     <div class="container">
@@ -311,6 +361,7 @@
           <h3>1. Avant de déposer votre demande</h3>
           <ul class="benefits-list">
             <li>Définir les jours, horaires, rues et besoins (véhicules techniques, régie, loges, cantine, prises de vue spécifiques).</li>
+            <li>Savoir que la demande d’autorisation concerne aussi bien les <strong>professionnels</strong> (cinéma, publicité, TV) que les <strong>particuliers amateurs, associations, étudiants</strong> souhaitant filmer sur l’espace public.</li>
             <li>Vérifier si votre projet est un <strong>tournage simple</strong> (moins de 11 personnes, sans occupation du domaine public ni fermeture de voirie) ou un <strong>tournage complexe</strong> (emprise au sol, stationnement, fermeture de rue, prises aériennes).</li>
             <li>Identifier les lieux municipaux concernés : rues, places, parcs, équipements culturels, musées, équipements sportifs, cimetières, etc.</li>
           </ul>
@@ -321,11 +372,10 @@
             <li>Pour les <strong>tournages simples</strong> (moins de 11 personnes, sans occupation du domaine public), une démarche simplifiée est disponible via le bouton «&nbsp;Accéder à la démarche&nbsp;» sur la page officielle :
               <a href="https://www.lille.fr/Annuaire-des-demarches/Autorisation-de-tournage-shooting-photo" target="_blank" rel="noopener noreferrer">Autorisation de tournage / shooting photo</a>.
             </li>
-            <li>Pour les <strong>tournages complexes</strong> (emprise au sol, stationnement, fermeture de voirie, prises aériennes, équipe &gt; 10 personnes), la Ville demande de remplir le document spécifique d’occupation du domaine public et de le transmettre au bureau d’accueil des tournages.</li>
-            <li>Le bureau d’accueil des tournages accompagne les projets, délivre les autorisations pour les lieux municipaux et fait l’interface avec les services de la Ville.</li>
-            <li>Au niveau régional, la <strong>commission du film Pictanovo</strong> (Hauts‑de‑France) accompagne gratuitement les productions (repérages, décors, techniciens, autorisations) sur l’ensemble du territoire, Lille et MEL compris. Informations sur :
-              <a href="https://www.filmfrance.net/en/plan-your-production/film-commissions/pictanovo-2/" target="_blank" rel="noopener noreferrer">Pictanovo — Commission du film Hauts‑de‑France</a>.
-            </li>
+            <li>Pour les <strong>tournages complexes</strong> (emprise au sol : caméras, spots lumière, décors, etc., stationnement, fermeture de voirie, prises de vue aériennes et/ou équipe &gt; 10 personnes), la Ville demande de remplir le document spécifique d’occupation du domaine public et de le transmettre au bureau d’accueil des tournages.</li>
+            <li>Le <strong>bureau d’accueil des tournages</strong> (Pôle Culture) est votre premier interlocuteur : il accueille et accompagne les projets audiovisuels, délivre les autorisations pour les lieux municipaux (espaces culturels, monuments historiques, musées, parcs et jardins, équipements sportifs, cimetières, etc.) et assure l’interface avec les services de la Ville pour que le tournage se déroule dans de bonnes conditions de sécurité pour les passants et le public.</li>
+            <li>Pour la <strong>recherche de décors</strong>, la Ville met à disposition une carte interactive avec plus de 800 équipements et sites, accessible depuis la page «&nbsp;Autorisation de tournage / shooting photo&nbsp;».</li>
+            <li>Contact bureau d’accueil des tournages (Ville de Lille, Pôle Culture) : <strong>tournages@mairie-lille.fr</strong> · Tél. <strong>03&nbsp;20&nbsp;49&nbsp;55&nbsp;76</strong> (Bertrand Saingier, Morgane Vandamme).</li>
             <li>Les demandes sont à déposer avec un délai suffisant pour permettre l’étude du projet et la mise en place des éventuels arrêtés de circulation et de stationnement.</li>
           </ul>
         </div>
@@ -426,6 +476,25 @@
     <div class="container">
       <h2 class="section-title animated-item">Interventions dans le Nord</h2>
       <p class="animated-item">Nous intervenons dans tout le 59. Contact direct via <a href="/contact/">la page contact</a> ou <a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+    </div>
+  </section>
+
+  <!-- Axe Nord (A1) : Lille, Pantin & Paris -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Axe Nord (A1)&nbsp;: Lille, Pantin &amp; Paris</h2>
+      <p class="animated-item content-narrow" style="margin-bottom:0.75rem;">
+        De nombreux tournages situés dans le Nord partent ou se terminent en Île-de-France. Nous opérons sur tout l’axe
+        <strong>Lille ↔ Pantin ↔ Paris</strong> (A1), en reliant vos plateaux lillois à votre base logistique en Seine-Saint-Denis.
+      </p>
+      <ul class="benefits-list animated-item">
+        <li><strong>Hub 93</strong> : notre base de <a href="/ventousage-pantin/">ventousage à Pantin</a> sert de point d’ancrage pour les camions et la signalisation avant départ vers Lille.</li>
+        <li><strong>Continuité de service</strong> : mêmes équipes et mêmes standards de <a href="/ventousage-paris/">ventousage à Paris</a>, en région parisienne et dans le Nord.</li>
+        <li><strong>Trajets optimisés</strong> : coordination des horaires de départ, d’arrivée et de pose des panneaux pour aligner AOT, flux camions et impératifs plateau.</li>
+      </ul>
+      <p class="animated-item note-text" style="margin-top:0.75rem;">
+        <em>Les interventions sur l’axe Lille ↔ Pantin ↔ Paris donnent lieu à des <strong>frais de déplacement</strong> (trajets, péages, hébergement éventuel) détaillés dans le devis.</em>
+      </p>
     </div>
   </section>
 

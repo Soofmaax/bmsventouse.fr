@@ -68,13 +68,25 @@
   <!-- HERO SPÉCIAL CARTE DE VISITE -->
   <section class="hero hero-contact-nfc">
     <picture class="hero-bg">
-      <source media="(min-width: 768px)" srcset="/images/contact-hero-background-desktop.webp" type="image/webp">
-      <source media="(max-width: 767px)" srcset="/images/contact-hero-background-mobile.webp" type="image/webp">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
       <img src="/images/hero-background-custom.jpg"
            alt="Carte de visite BMS Ventouse scannée avec un smartphone"
            loading="eager"
            fetchpriority="high"
-           width="1920" height="1080">
+           width="1920" height="1080"
+           sizes="100vw"
+           decoding="async">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">

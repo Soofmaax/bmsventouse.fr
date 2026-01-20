@@ -42,7 +42,7 @@
     <meta name="twitter:title" content="Ventousage à Bordeaux — Neutralisation &amp; AOT | BMS Ventouse">
     <meta name="twitter:description" content="Ventousage et gardiennage plateau à Bordeaux — neutralisation du stationnement, affichage riverains, AOT. Hyper‑centre piéton &amp; tram : coordination adaptée. Intervention 24/7.">
     <meta name="twitter:image" content="https://bmsventouse.fr/images/hero-background-custom.jpg">
-    <meta name="twitter:image:alt" content="Rue neutralisée pour un tournage à Bordeaux (image héro)">
+    <meta name="twitter:image:alt" content="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire">
 
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -70,7 +70,11 @@
         "name": "Ventousage à Bordeaux — ventouseur à Bordeaux",
         "description": "Neutralisation du stationnement, AOT, signalisation réglementaire. Intervention 24/7.",
         "provider": { "@type": "Organization", "name": "BMS Ventouse", "url": "https://bmsventouse.fr" },
-        "areaServed": { "@type": "City", "name": "Bordeaux" },
+        "areaServed": {
+          "@type": "City",
+          "name": "Bordeaux",
+          "sameAs": "https://fr.wikipedia.org/wiki/Bordeaux"
+        },
         "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://bmsventouse.fr/contact/" }
       },
       {
@@ -131,9 +135,19 @@
   <!-- HERO -->
   <section class="hero">
     <picture class="hero-bg">
-      <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <img src="/images/hero-background-custom.jpg" alt="Neutralisation temporaire de places de stationnement à Bordeaux pour tournage" loading="eager" fetchpriority="high" width="1920" height="1080">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
+      <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
@@ -260,8 +274,9 @@
             </li>
             <li>Le formulaire spécifique «&nbsp;Demande d’autorisation de tournage ou de prises de vue&nbsp;» est à remplir et à envoyer par mail au Centre des manifestations publiques (adresse indiquée sur le formulaire).</li>
             <li>Pour une <strong>manifestation publique</strong> (fête, animation, installation avec public), la Ville demande un dossier dédié avec plan, sécurité, secours, etc.</li>
-            <li>Pour les tournages professionnels (cinéma, télévision, publicité) souhaitant un accompagnement plus large en Gironde et en Nouvelle‑Aquitaine, le <strong>Bureau d’accueil des tournages de la Gironde</strong> (Gironde Tournages, intégré au réseau <strong>ALCA Nouvelle‑Aquitaine</strong>) propose un appui gratuit (repérages, décors, mise en relation avec les services). Informations et contacts sur :
-              <a href="https://alca-nouvelle-aquitaine.fr/fr/cinema-audiovisuel/commission-regionale-du-film/le-reseau-des-bureaux-d-accueil-des-tournages" target="_blank" rel="noopener noreferrer">le réseau des bureaux d’accueil des tournages — ALCA</a>.
+            <li>Pour les tournages professionnels (cinéma, télévision, publicité) souhaitant un accompagnement plus large en Gironde et en Nouvelle‑Aquitaine, le <strong>Bureau d’accueil des tournages de la Gironde</strong> (Gironde Tournages, intégré au réseau de la commission régionale du film <strong>ALCA Nouvelle‑Aquitaine</strong>, ex‑Écla) propose un appui gratuit (repérages, décors, mise en relation avec les services). Informations et contacts sur :
+              <a href="https://alca-nouvelle-aquitaine.fr/fr/cinema-audiovisuel/commission-regionale-du-film/le-reseau-des-bureaux-d-accueil-des-tournages" target="_blank" rel="noopener noreferrer">le réseau des bureaux d’accueil des tournages — ALCA</a>
+              et la fiche dédiée «&nbsp;Gironde Film Commission&nbsp;» sur Film France.
             </li>
             <li>Selon l’ampleur, le dossier peut être soumis à une commission et donner lieu à des redevances d’occupation ou de services.</li>
           </ul>
@@ -351,6 +366,19 @@
     </div>
   </section>
 
+  <!-- Spécificités techniques Bordeaux -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Spécificités techniques à Bordeaux</h2>
+      <p class="animated-item content-narrow">
+        Dans le centre historique de Bordeaux, le <strong>secteur piéton</strong> est contrôlé par des <strong>bornes amovibles</strong> et des accès
+        réservés (LAPI, cartes, créneaux livraisons). Un <span class="notranslate" translate="no">ventousage</span> autour de la Place de la Bourse, de la
+        rue Sainte-Catherine ou des quais demande d’anticiper ces contraintes&nbsp;: positionnement des camions en périphérie de la zone
+        à trafic limité, jalonnage clair vers les accès autorisés et coordination avec la Ville et Bordeaux Métropole.
+      </p>
+    </div>
+  </section>
+
   <!-- Repérage & mapping du périmètre -->
   <section class="section">
     <div class="container">
@@ -434,6 +462,25 @@
     <div class="container">
       <h2 class="section-title animated-item">Interventions en Gironde</h2>
       <p class="animated-item">Nous intervenons dans tout le 33. Contact direct via <a href="/contact/">la page contact</a> ou <a href="https://wa.me/33646005642" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+    </div>
+  </section>
+
+  <!-- Axe Sud-Ouest (A10) -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Axe Sud‑Ouest (A10)&nbsp;: Orléans, Bordeaux &amp; Toulouse</h2>
+      <p class="animated-item content-narrow" style="margin-bottom:0.75rem;">
+        De nombreuses productions structurent leurs tournages sur l’axe <strong>Paris – Orléans – Bordeaux – Toulouse</strong> via l’A10 et les
+        autoroutes du Sud‑Ouest. BMS Ventouse accompagne vos convois techniques et vos besoins de <span class="notranslate" translate="no">ventousage</span> sur l’ensemble de ce corridor.
+      </p>
+      <ul class="benefits-list animated-item">
+        <li><strong>Relais Centre → Sud‑Ouest</strong> : continuité entre nos dispositifs de <a href="/ventousage-orleans/">ventousage à Orléans</a> et vos dates bordelaises.</li>
+        <li><strong>Prolongement vers l’Occitanie</strong> : coordination avec vos étapes <a href="/ventousage-toulouse/">à Toulouse</a> pour les séries ou longs trajets de convois.</li>
+        <li><strong>Un seul interlocuteur</strong> : même méthode de travail, mêmes livrables et même chef de projet pour suivre vos périmètres de stationnement réservé sur tout l’axe.</li>
+      </ul>
+      <p class="animated-item note-text" style="margin-top:0.75rem;">
+        <em>Les déplacements sur l’axe Paris – Orléans – Bordeaux – Toulouse impliquent des <strong>frais de route et de déplacement</strong> (trajets, péages, hébergement éventuel) chiffrés au cas par cas dans le devis.</em>
+      </p>
     </div>
   </section>
 

@@ -42,7 +42,7 @@
     <meta name="twitter:title" content="Ventousage à Toulouse — Neutralisation &amp; AOT | BMS Ventouse">
     <meta name="twitter:description" content="Ventousage et gardiennage plateau à Toulouse — neutralisation du stationnement, affichage riverains, AOT. Capitole, secteurs piétons &amp; couloirs bus prioritaires. Intervention 24/7.">
     <meta name="twitter:image" content="https://bmsventouse.fr/images/hero-background-custom.jpg">
-    <meta name="twitter:image:alt" content="Rue neutralisée pour un tournage à Toulouse (image héro)">
+    <meta name="twitter:image:alt" content="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire">
 
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -70,7 +70,11 @@
         "name": "Ventousage à Toulouse — ventouseur à Toulouse",
         "description": "Neutralisation du stationnement, AOT, signalisation réglementaire. Intervention 24/7.",
         "provider": { "@type": "Organization", "name": "BMS Ventouse", "url": "https://bmsventouse.fr" },
-        "areaServed": { "@type": "City", "name": "Toulouse" },
+        "areaServed": {
+          "@type": "City",
+          "name": "Toulouse",
+          "sameAs": "https://fr.wikipedia.org/wiki/Toulouse"
+        },
         "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://bmsventouse.fr/contact/" }
       },
       {
@@ -131,9 +135,19 @@
   <!-- HERO -->
   <section class="hero">
     <picture class="hero-bg">
-      <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <img src="/images/hero-background-custom.jpg" alt="Neutralisation temporaire de places de stationnement à Toulouse pour tournage" loading="eager" fetchpriority="high" width="1920" height="1080">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
+      <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
@@ -394,6 +408,25 @@
         <li><strong>Discrétion & diplomatie</strong> auprès des riverains et partenaires</li>
         <li><strong>Transparence</strong> sur le périmètre, les délais et les options (sécurité, périmètres étendus)</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- Axe Sud-Ouest (A10) -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Axe Sud‑Ouest (A10)&nbsp;: Orléans, Bordeaux &amp; Toulouse</h2>
+      <p class="animated-item content-narrow" style="margin-bottom:0.75rem;">
+        De nombreux tournages structurent leur logistique sur l’axe Paris – <a href="/ventousage-orleans/">Orléans</a> –
+        <a href="/ventousage-bordeaux/">Bordeaux</a> – Toulouse, via l’A10 et les autoroutes du Sud‑Ouest. BMS Ventouse peut suivre vos
+        convois techniques et vos besoins de <span class="notranslate" translate="no">ventousage</span> sur l’ensemble de ce trajet.
+      </p>
+      <ul class="benefits-list animated-item">
+        <li><strong>Continuité des périmètres</strong> : mêmes standards de signalisation et de preuves photo sur chaque ville de l’axe.</li>
+        <li><strong>Coordination convoi</strong> : alignement des horaires de départ, d’arrivée et des poses de panneaux avec les créneaux d’AOT locaux.</li>
+      </ul>
+      <p class="animated-item note-text" style="margin-top:0.75rem;">
+        <em>Les trajets Paris – Orléans – Bordeaux – Toulouse impliquent des <strong>frais de déplacement</strong> (transport équipes, véhicules, péages, hébergement éventuel) intégrés et détaillés dans notre chiffrage.</em>
+      </p>
     </div>
   </section>
 

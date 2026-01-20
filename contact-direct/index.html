@@ -55,9 +55,7 @@
     <link rel="dns-prefetch" href="//wa.me">
 
     <!-- Preload de l'image héros -->
-    <link rel="preload" as="image" href="/images/contact-hero-background-desktop.webp"
-          imagesrcset="/images/contact-hero-background-mobile.webp 767w, /images/contact-hero-background-desktop.webp 1920w"
-          imagesizes="(max-width: 767px ) 100vw, 100vw">
+    <link rel="preload" as="image" href="/images/hero-background-custom.jpg">
 
     <!-- FAVICONS & MANIFESTE -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -138,8 +136,12 @@
     <!-- Section Héros : pensée pour QR / NFC -->
     <section id="hero-contact-direct" class="hero">
         <picture class="hero-bg">
-            <source media="(min-width: 768px )" srcset="/images/contact-hero-background-desktop.webp" type="image/webp">
-            <source media="(max-width: 767px)" srcset="/images/contact-hero-background-mobile.webp" type="image/webp">
+            <source type="image/webp"
+                    srcset="/images/hero-background-custom-640.webp 640w,
+                            /images/hero-background-custom-960.webp 960w,
+                            /images/hero-background-custom-1280.webp 1280w,
+                            /images/hero-background-custom-1920.webp 1920w"
+                    sizes="100vw">
             <source type="image/jpeg"
                     srcset="/images/hero-background-custom-640.jpg 640w,
                             /images/hero-background-custom-960.jpg 960w,

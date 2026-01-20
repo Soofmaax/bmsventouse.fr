@@ -44,7 +44,7 @@
     <meta name="twitter:title" content="Ventousage à Strasbourg — Neutralisation & AOT | BMS Ventouse">
     <meta name="twitter:description" content="Ventousage et gardiennage plateau à Strasbourg — neutralisation du stationnement, affichage riverains, AOT. Hyper‑centre & Petite France, coordination tram. Intervention 24/7.">
     <meta name="twitter:image" content="https://bmsventouse.fr/images/hero-background-custom.jpg">
-    <meta name="twitter:image:alt" content="Rue neutralisée pour un tournage à Strasbourg (image héro)">
+    <meta name="twitter:image:alt" content="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire">
 
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -72,7 +72,11 @@
         "name": "Ventousage à Strasbourg — ventouseur à Strasbourg",
         "description": "Neutralisation du stationnement, AOT, signalisation réglementaire. Intervention 24/7.",
         "provider": { "@type": "Organization", "name": "BMS Ventouse", "url": "https://bmsventouse.fr" },
-        "areaServed": { "@type": "City", "name": "Strasbourg" },
+        "areaServed": {
+          "@type": "City",
+          "name": "Strasbourg",
+          "sameAs": "https://fr.wikipedia.org/wiki/Strasbourg"
+        },
         "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://bmsventouse.fr/contact/" }
       },
       {
@@ -133,9 +137,19 @@
   <!-- HERO -->
   <section class="hero">
     <picture class="hero-bg">
-      <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <img src="/images/hero-background-custom.jpg" alt="Neutralisation temporaire de places de stationnement à Strasbourg pour tournage" loading="eager" fetchpriority="high" width="1920" height="1080">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
+      <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
@@ -309,6 +323,24 @@
     </div>
   </section>
 
+  <!-- Spécificités techniques Strasbourg -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Spécificités techniques à Strasbourg</h2>
+      <p class="animated-item content-narrow">
+        La <strong>Grande Île de Strasbourg</strong>, classée au <strong>patrimoine mondial de l’UNESCO</strong>, et le quartier de la
+        <strong>Petite France</strong> offrent des décors uniques mais rendent le stationnement quasi impossible sans dispositif de
+        <span class="notranslate" translate="no">ventousage</span> très encadré. L’accès motorisé y est fortement restreint, les parkings sont en périphérie
+        et le tramway traverse le centre.
+      </p>
+      <p class="animated-item content-narrow" style="margin-top:0.75rem;">
+        Nous travaillons en coordination avec la Ville, l’Eurométropole et le <strong>Bureau des images Grand Est</strong>
+        (tournagesgrandest.fr) pour positionner les camions sur les axes autorisés, jalonner les accès et limiter l’impact
+        sur les flux piétons et les événements institutionnels.
+      </p>
+    </div>
+  </section>
+
   <!-- Guide pratique — tournage &amp; ventousage à Strasbourg -->
   <section class="section">
     <div class="container">
@@ -332,6 +364,7 @@
             </li>
             <li>Pour les tournages audiovisuels (cinéma, télévision, publicité, documentaire) souhaitant bénéficier d’un appui local, l’interlocuteur dédié est le <strong>Bureau d’accueil des tournages</strong> (Département audiovisuel et cinéma, Ville de Strasbourg), joignable via le formulaire et les coordonnées indiqués sur la page&nbsp;:
               <a href="https://www.strasbourg.eu/contact-bureau-accueil-tournages" target="_blank" rel="noopener noreferrer">Bureau d’accueil des tournages — Strasbourg.eu</a>.
+              Au niveau régional, le <strong>Bureau des images Grand Est</strong> (tournagesgrandest.fr) accompagne également les productions sur l’ensemble de la région (Champagne, Lorraine, Alsace), en lien avec les collectivités.
             </li>
             <li>Pour les travaux et occupations liées à des chantiers, ainsi que pour les mesures de circulation et de stationnement, les informations sont détaillées sur la page
               <a href="https://www.strasbourg.eu/autorisation-occupation-domaine-public-arretes-circulation" target="_blank" rel="noopener noreferrer">Autorisation d’occupation du domaine public et arrêtés de circulation</a>.
@@ -396,7 +429,7 @@
       <div class="zones-grid">
         <div class="zone-card animated-item">
           <h3>Strasbourg intra‑muros</h3>
-          <p>Centre historique, Petite France, secteurs piétons et zones à trafic limité.</p>
+          <p>Centre historique, Grande Île, Petite France, secteurs piétons et zones à trafic limité.</p>
         </div>
         <div class="zone-card animated-item">
           <h3>Bas‑Rhin</h3>
@@ -407,6 +440,25 @@
           <p>ZAC, zones industrielles et sites événementiels autour de Strasbourg.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Axe Est (A4) : Reims & Strasbourg -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animated-item">Axe Est (A4)&nbsp;: Reims &amp; Strasbourg</h2>
+      <p class="animated-item content-narrow" style="margin-bottom:0.75rem;">
+        L’autoroute de l’Est (<strong>A4</strong>) relie directement Paris, <a href="/ventousage-reims/">Reims</a> et Strasbourg.
+        Nous assurons le <span class="notranslate" translate="no">ventousage</span> et la logistique de stationnement sur tout cet axe pour les productions
+        qui passent de la Champagne à l’Alsace.
+      </p>
+      <ul class="benefits-list animated-item">
+        <li><strong>Couverture Champagne ↔ Alsace</strong> : coordination possible entre vos dates de tournage à Reims et vos plateaux strasbourgeois.</li>
+        <li><strong>Un même référent</strong> : un chef de projet unique suit vos AOT, affichages et périmètres sur l’ensemble de l’axe.</li>
+      </ul>
+      <p class="animated-item note-text" style="margin-top:0.75rem;">
+        <em>Les opérations sur l’axe Paris – Reims – Strasbourg engendrent des <strong>frais de déplacement</strong> (trajets, péages, hébergement éventuel) indiqués clairement dans nos devis.</em>
+      </p>
     </div>
   </section>
 

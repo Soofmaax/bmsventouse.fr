@@ -11,10 +11,9 @@
 - Titre : Un Projet ? Une Urgence ?
 - Texte principal : Devis gratuit sous 24h. Réponse rapide aux demandes urgentes. Contactez‑nous directement. Notre équipe est disponible 24h/24 pour répondre à vos besoins.
 - Image :
-  - /images/contact-hero-background-desktop.webp
-  - /images/contact-hero-background-mobile.webp
+  - /images/hero-background-custom-640.webp, /images/hero-background-custom-960.webp, /images/hero-background-custom-1280.webp, /images/hero-background-custom-1920.webp
   - Fallback : /images/hero-background-custom.jpg
-  - Alt : Personne utilisant un téléphone pour contacter un service (image héro)
+  - Alt : Rue parisienne neutralisée la nuit pour un tournage, avec plots et éclairage urbain
 
 ### Urgence
 - Bandeau urgence : icône alerte + message.

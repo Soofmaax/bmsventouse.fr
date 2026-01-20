@@ -5,6 +5,15 @@
  * Gère toutes les interactions du site avec une architecture modulaire,
  * performante et accessible (Focus Trap, Escape Key, etc.).
  */
+
+/* Google Tag Manager : chargement global via script principal */
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KD4HDWX4');
+/* Fin Google Tag Manager */
+
 /* Production logging gate: silence console in production unless window.DEBUG=true */
 (function(){ try{ var DEBUG = !!(window.DEBUG); if(!DEBUG){ ['log','info','debug','warn'].forEach(function(k){ try{ console[k] = function(){}; }catch(e){} }); } window.__BMS_DEBUG__ = DEBUG; }catch(e){} })();
 
@@ -114,8 +123,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // MODULE: SKIP LINK (Aller au contenu) pour accessibilité
   // --------------------------------------------------------------------------
   const setupSkipLink = () => {
-    // Désactivé à la demande : plus de création automatique du bouton "Aller au contenu"
-    return;
+    try {
+      // Ne rien faire si un skip-link existe déjà
+      if (document.querySelector('.skip-link')) return;
+
+      const main =
+        document.getElementById('main-content') ||
+        document.querySelector('main');
+
+      if (!main) return;
+
+      // S'assurer que la cible a un id
+      if (!main.id) {
+        main.id = 'main-content';
+      }
+
+      const link = document.createElement('a');
+      link.href = `#${main.id}`;
+      link.className = 'skip-link';
+      link.textContent = 'Aller au contenu principal';
+
+      // On place le lien tout en haut du body, avant le header
+      const body = document.body;
+      if (body.firstChild) {
+        body.insertBefore(link, body.firstChild);
+      } else {
+        body.appendChild(link);
+      }
+    } catch (_) {
+      // non-bloquant
+    }
   };
 
   // --------------------------------------------------------------------------
@@ -300,6 +337,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="/ventousage-nice/">Nice</a></li>
                 <li><a href="/ventousage-toulouse/">Toulouse</a></li>
                 <li><a href="/ventousage-lille/">Lille</a></li>
+                <li><a href="/ventousage-rennes/">Rennes</a></li>
+                <li><a href="/ventousage-nantes/">Nantes</a></li>
+                <li><a href="/ventousage-reims/">Reims</a></li>
+                <li><a href="/ventousage-rouen/">Rouen</a></li>
+                <li><a href="/ventousage-orleans/">Orléans</a></li>
               </ul>
             </div>
             <div class="nav-submenu-group">
@@ -518,6 +560,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (!track || slides.length === 0 || !prevBtn || !nextBtn) {
       return;
+    }
+
+    // Accessibilité des contrôles de carrousel
+    [prevBtn, nextBtn].forEach((btn) => {
+      if (!btn) return;
+      if (!btn.hasAttribute('type')) {
+        btn.setAttribute('type', 'button');
+      }
+    });
+    if (!prevBtn.getAttribute('aria-label')) {
+      prevBtn.setAttribute('aria-label', 'Slide précédent');
+    }
+    if (!nextBtn.getAttribute('aria-label')) {
+      nextBtn.setAttribute('aria-label', 'Slide suivant');
     }
 
     let currentIndex = 0;
@@ -1609,23 +1665,22 @@ function setupVentousageParisGallery() {
     const wrapper = track.closest('.gallery-carousel');
 
     // Photos de ventousage (logo déjà intégré, plaques floutées, clients non identifiables)
-    // Pour en ajouter ou en retirer :
-    //  - déposer / supprimer les fichiers dans /images/ventousage-galerie/
-    //  - ajuster la liste ci-dessous
+// Pour en ajouter ou en retirer :
+//  - déposer / supprimer les fichiers dans /images/ventousage-galerie/
     const IMAGES = [
-      { src: '/images/ventousage-galerie/1.jpg', alt: 'Exemple de ventousage avec stationnement neutralisé et panneaux B6' },
-      { src: '/images/ventousage-galerie/2.jpg', alt: 'Exemple de ventousage avec périmètre jalonné pour tournage' },
-      { src: '/images/ventousage-galerie/3.jpg', alt: 'Exemple de ventousage avec signalisation réglementaire en place' },
-      { src: '/images/ventousage-galerie/4.jpg', alt: 'Exemple de ventousage pour emplacement de véhicules techniques' },
-      { src: '/images/ventousage-galerie/5.jpg', alt: 'Exemple de ventousage avec cônes et rubalise en voirie' },
-      { src: '/images/ventousage-galerie/6.jpg', alt: 'Exemple de ventousage en amont d’un tournage' },
-      { src: '/images/ventousage-galerie/7.jpg', alt: 'Exemple de ventousage en zone urbaine avec panneaux temporaires' },
-      { src: '/images/ventousage-galerie/8.jpg', alt: 'Exemple de ventousage avec signalisation pour production audiovisuelle' },
-      { src: '/images/ventousage-galerie/9.jpg', alt: 'Exemple de ventousage avec emplacement réservé pour l’équipe de tournage' },
-      { src: '/images/ventousage-galerie/10.jpg', alt: 'Exemple de ventousage avec neutralisation de plusieurs places de stationnement' },
-      { src: '/images/ventousage-galerie/11.jpg', alt: 'Exemple de ventousage montrant un dispositif complet de stationnement réservé' },
-      { src: '/images/ventousage-galerie/12.jpg', alt: 'Exemple de ventousage avec panneaux et jalonnage sur trottoir et chaussée' },
-      { src: '/images/ventousage-galerie/13.jpg', alt: 'Exemple de ventousage pour un tournage, avec périmètre matérialisé' }
+      { src: '/images/ventousage-galerie/ventousage-paris-stationnement-neutralise-panneaux-b6-1.jpg', alt: 'Exemple de ventousage avec stationnement neutralisé et panneaux B6' },
+      { src: '/images/ventousage-galerie/ventousage-paris-perimetre-jalonne-tournage-2.jpg', alt: 'Exemple de ventousage avec périmètre jalonné pour tournage' },
+      { src: '/images/ventousage-galerie/ventousage-paris-signalisation-reglementaire-3.jpg', alt: 'Exemple de ventousage avec signalisation réglementaire en place' },
+      { src: '/images/ventousage-galerie/ventousage-paris-emplacements-vehicules-techniques-4.jpg', alt: 'Exemple de ventousage pour emplacement de véhicules techniques' },
+      { src: '/images/ventousage-galerie/ventousage-paris-cones-rubalise-voirie-5.jpg', alt: 'Exemple de ventousage avec cônes et rubalise en voirie' },
+      { src: '/images/ventousage-galerie/ventousage-paris-preparation-tournage-6.jpg', alt: 'Exemple de ventousage en amont d’un tournage' },
+      { src: '/images/ventousage-galerie/ventousage-paris-zone-urbaine-panneaux-temporaires-7.jpg', alt: 'Exemple de ventousage en zone urbaine avec panneaux temporaires' },
+      { src: '/images/ventousage-galerie/ventousage-paris-signalisation-production-audiovisuelle-8.jpg', alt: 'Exemple de ventousage avec signalisation pour production audiovisuelle' },
+      { src: '/images/ventousage-galerie/ventousage-paris-emplacement-reserve-equipe-tournage-9.jpg', alt: 'Exemple de ventousage avec emplacement réservé pour l’équipe de tournage' },
+      { src: '/images/ventousage-galerie/ventousage-paris-neutralisation-multiple-places-stationnement-10.jpg', alt: 'Exemple de ventousage avec neutralisation de plusieurs places de stationnement' },
+      { src: '/images/ventousage-galerie/ventousage-paris-dispositif-complet-stationnement-reserve-11.jpg', alt: 'Exemple de ventousage montrant un dispositif complet de stationnement réservé' },
+      { src: '/images/ventousage-galerie/ventousage-paris-panneaux-jalonnage-trottoir-chaussee-12.jpg', alt: 'Exemple de ventousage avec panneaux et jalonnage sur trottoir et chaussée' },
+      { src: '/images/ventousage-galerie/ventousage-paris-perimetre-materialise-tournage-13.jpg', alt: 'Exemple de ventousage pour un tournage, avec périmètre matérialisé' }
     ];
 
     // Si aucune image n'est déclarée, on masque complètement la section
@@ -1666,6 +1721,20 @@ function setupVentousageParisGallery() {
     const nextBtn = wrapper.querySelector('.carousel-control.next');
     const counter = wrapper.querySelector('.gallery-counter');
     if (!prevBtn || !nextBtn) return;
+
+    // Accessibilité des contrôles de carrousel (galerie ventousage)
+    [prevBtn, nextBtn].forEach((btn) => {
+      if (!btn) return;
+      if (!btn.hasAttribute('type')) {
+        btn.setAttribute('type', 'button');
+      }
+    });
+    if (!prevBtn.getAttribute('aria-label')) {
+      prevBtn.setAttribute('aria-label', 'Photo précédente');
+    }
+    if (!nextBtn.getAttribute('aria-label')) {
+      nextBtn.setAttribute('aria-label', 'Photo suivante');
+    }
 
     const total = slides.length;
     let currentIndex = 0;

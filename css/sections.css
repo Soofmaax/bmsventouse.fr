@@ -6,7 +6,11 @@
 /* === HERO (texte sur image, image 100% visible, pas rognée) === */
 .hero {
   position: relative;
-  min-height: 420px;
+  /* Hauteur minimale responsive :
+     - au moins 420px
+     - jusqu'à ~70% de la hauteur de l'écran
+     - sans dépasser 650px pour éviter les héros trop hauts sur grands écrans */
+  min-height: clamp(420px, 70vh, 650px);
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -38,14 +42,14 @@
   position: absolute;
   inset: 0;
   z-index: var(--z-normal);
-  /* Centrage parfait du contenu */
+  /* Centrage du contenu sur l'image de fond */
   display: grid;
   place-items: center;
   background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.55) 100%);
   color: #fff;
   text-align: center;
-  /* Réduction du padding pour remonter le bloc visuellement */
-  padding: 20px 5vw;
+  /* Plus d'espace en haut/bas pour éviter que le texte ou les boutons semblent collés au bord */
+  padding: 40px 5vw;
   width: 100vw;
 }
 
@@ -56,9 +60,46 @@
   display: grid;
   place-items: center;
   padding: 0 clamp(12px, 4vw, 28px);
-  /* Légèrement plus haut que le centre */
-  transform: translateY(-18%);
+  /* Par défaut, le contenu est centré verticalement */
+  transform: none;
   animation: fadeInUp 1s ease-out;
+}
+
+/* Sur grands écrans, on remonte légèrement le bloc pour un rendu plus dynamique,
+   tout en laissant assez de place pour que le bas (boutons) reste visible */
+@media (min-width: 1024px) {
+  .hero-overlay .container {
+    transform: translateY(-10%);
+  }
+}
+
+/* Sur petits écrans (iPhone, mobiles), on remonte le bloc sous le header
+   et on évite que les boutons soient coupés par le haut ou le bas du hero */
+@media (max-width: 600px) {
+  .hero {
+    /* Hauteur minimum réduite et overflow visible pour que les boutons ne soient
+       jamais coupés en bas sur les petits écrans (iPhone, etc.) */
+    min-height: 420px;
+    overflow: visible;
+  }
+
+  .hero-overlay {
+    /* On aligne le contenu vers le haut, centré horizontalement */
+    align-items: flex-start;
+    justify-items: center;
+    /* Marge suffisante sous le header + un peu d'espace au-dessus du titre */
+    padding: calc(var(--header-height) + 1.2rem) 5vw 2.5rem;
+  }
+
+  .hero-overlay .container {
+    /* On supprime le décalage vers le haut pour éviter que le bas (les boutons)
+       soit rogné sur les petits écrans */
+    transform: none;
+  }
+
+  .hero-buttons {
+    margin-top: 0.5rem;
+  }
 }
 
 @keyframes fadeInUp {
@@ -116,6 +157,14 @@
   max-width: 90vw;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Sur écrans ≥ 768px, on limite la largeur du texte du hero
+   pour une meilleure lisibilité (lignes plus courtes) */
+@media (min-width: 768px) {
+  .hero p {
+    max-width: 38rem;
+  }
 }
 
 .hero-buttons {
