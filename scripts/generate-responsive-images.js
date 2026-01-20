@@ -99,7 +99,17 @@ async function main() {
   // Variants widths tuned for mobile-first LCP improvements
   const widths = [640, 960, 1280, 1920];
 
-  await generateVariants(heroJpg, 'hero-background-custom', widths, ['webp', 'jpg']);
+  try {
+    await fs.access(heroJpg);
+    await generateVariants(heroJpg, 'hero-background-custom', widths, ['webp', 'jpg']);
+  } catch (err) {
+    if (err && err.code === 'ENOENT') {
+      console.warn(`[images] Base hero image not found at ${heroJpg}, skipping responsive image generation.`);
+    } else {
+      throw err;
+    }
+  }
+
   await generateIcons();
 }
 
