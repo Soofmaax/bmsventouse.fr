@@ -309,6 +309,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="/ventousage-nice/">Nice</a></li>
                 <li><a href="/ventousage-toulouse/">Toulouse</a></li>
                 <li><a href="/ventousage-lille/">Lille</a></li>
+                <li><a href="/ventousage-rennes/">Rennes</a></li>
+                <li><a href="/ventousage-nantes/">Nantes</a></li>
+                <li><a href="/ventousage-reims/">Reims</a></li>
+                <li><a href="/ventousage-rouen/">Rouen</a></li>
+                <li><a href="/ventousage-orleans/">Orléans</a></li>
               </ul>
             </div>
             <div class="nav-submenu-group">

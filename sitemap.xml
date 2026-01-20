@@ -87,12 +87,6 @@
         <priority>0.8</priority>
       </url>
       <url>
-        <loc>https://bmsventouse.fr/infos-ia/</loc>
-        <lastmod>2025-09-30T00:00:00.000Z</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-      </url>
-      <url>
         <loc>https://bmsventouse.fr/ventousage-nice/</loc>
         <lastmod>2025-10-06T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
@@ -133,6 +127,36 @@
         <lastmod>2025-10-06T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
+      </url>
+      <url>
+        <loc>https://bmsventouse.fr/ventousage-rennes/</loc>
+        <lastmod>2026-01-20T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://bmsventouse.fr/ventousage-nantes/</loc>
+        <lastmod>2026-01-20T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://bmsventouse.fr/ventousage-reims/</loc>
+        <lastmod>2026-01-20T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://bmsventouse.fr/ventousage-rouen/</loc>
+        <lastmod>2026-01-20T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://bmsventouse.fr/ventousage-orleans/</loc>
+        <lastmod>2026-01-20T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
       </url>
       <url>
         <loc>https://bmsventouse.fr/ventousage/</loc>
