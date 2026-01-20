@@ -43,7 +43,7 @@
     <meta name="twitter:title" content="Ventousage à Rennes — Grand Ouest &amp; lien Paris | BMS Ventouse">
     <meta name="twitter:description" content="Ventousage à Rennes et Grand Ouest pour tournages et événements : neutralisation du stationnement, affichage riverains, AOT, ventouseurs 24/7.">
     <meta name="twitter:image" content="https://bmsventouse.fr/images/hero-background-custom.jpg">
-    <meta name="twitter:image:alt" content="Rue neutralisée pour un tournage en centre-ville, panneaux d’interdiction temporaires">
+    <meta name="twitter:image:alt" content="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire">
 
     <!-- PERFORMANCE & RESSOURCES -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -148,9 +148,19 @@
   <!-- HERO -->
   <section class="hero">
     <picture class="hero-bg">
-      <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <img src="/images/hero-background-custom.jpg" alt="Neutralisation temporaire de stationnement pour un tournage en centre-ville" loading="eager" fetchpriority="high" width="1920" height="1080">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
+      <img src="/images/hero-background-custom.jpg" alt="Rue parisienne neutralisée pour un tournage avec signalisation réglementaire" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
