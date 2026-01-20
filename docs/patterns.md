@@ -156,6 +156,8 @@ Dès que tu vois `max-width:900px; margin:0 auto; line-height:1.7;` → utiliser
 
 - Tout ce qui est positionnement / fond est géré par `css/sections.css` (`.hero`, `.hero-bg`, `.hero-overlay`).
 - Le **fond Héros** est maintenant **unifié** sur les pages principales (Accueil, Services, Réalisations, Contact, pages légales) avec `hero-background-custom-*`.
+- La hauteur du hero est responsive : `min-height: clamp(420px, 70vh, 650px)` ; sur mobile, le contenu est aligné sous le header sticky et `overflow: visible` pour éviter de couper les boutons.
+- Le texte du hero (`<p>`) est limité en largeur sur desktop (`max-width: 38rem` à partir de 768px) pour garder des lignes lisibles.
 - Ne pas rajouter de `style` inline ici sauf cas très particulier.
 
 ---

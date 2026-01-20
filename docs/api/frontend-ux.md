@@ -270,25 +270,30 @@ All WhatsApp icons in the templates have now been migrated to this Bootstrap‑s
 
 ---
 
-## 7. Header, footer et héros unifiés
+## 7. Header, footer, héros & boutons unifiés
 
 ### `setupUnifiedHeader()`
 
 - Construit une navigation cohérente sur l’ensemble des pages standards :
   - Logo + navigation principale (Accueil, Services, Réalisations, Contact, CTA “Demander un devis”),
   - Bouton hamburger mobile attendu par `setupHamburgerMenu()`,
-  - Bouton de bascule de thème (`.theme-toggle`) dans la nav.
+  - Bouton de bascule de thème (`.theme-toggle`) dans la nav,
+  - (optionnel) bouton de préférence gaucher/droitier (`.hand-toggle`).
 
-Les pages qui ont besoin d’un header complètement spécifique peuvent s’écarter de ce pattern, mais dans ce cas il faut vérifier que les hooks JS (id/classes du menu) restent cohérents (ids `hamburger`, `navLinks`, `navOverlay`, bouton `.theme-toggle`).
+Les pages qui ont besoin d’un header complètement spécifique peuvent s’écarter de ce pattern, mais dans ce cas il faut vérifier que les hooks JS (id/classes du menu) restent cohérents (ids `hamburger`, `navLinks`, `navOverlay`, bouton `.theme-toggle` / `.hand-toggle`).
 
-### Héros / images de fond
+### Héros / images de fond & typographie
 
 - Le visuel héros principal du site est désormais **unifié** :
   - Fond rue de nuit : fichiers `hero-background-custom.jpg` + variantes responsive (`hero-background-custom-640/960/1280/1920` en JPEG et WebP),
   - Utilisé sur l’accueil ainsi que sur les pages Services, Réalisations, Contact et la plupart des pages légales.
 - Les blocs `<picture class="hero-bg">` de ces pages suivent le pattern décrit dans `docs/patterns.md` (section 3.1), avec les deux sources WebP/JPEG et un `img` de fallback.
+- Le bloc texte du héros (`.hero-overlay .container`) est géré exclusivement par CSS :
+  - Hauteur du héros : `min-height: clamp(420px, 70vh, 650px)` pour rester lisible sur mobile comme sur desktop.
+  - Texte du hero `<p>` limité en largeur sur desktop : `max-width: 38rem` dès `min-width: 768px` pour éviter les lignes trop longues.
+  - Sur mobile (`max-width: 600px`), le contenu du hero est aligné sous le header sticky et `overflow: visible` pour éviter de couper les boutons.
 
-Des visuels spécifiques peuvent encore être utilisés sur certaines pages “spéciales” (galerie ventousage, etc.), mais le héros par défaut est ce fond unifié.
+La typographie globale repose sur `--font-size-base: clamp(1rem, 1.05vw, 1.05rem)` dans `base.css`, ce qui garantit un texte lisible sur mobile et légèrement plus grand sur grands écrans.
 
 ### `setupUnifiedFooter()`
 
@@ -300,6 +305,61 @@ Des visuels spécifiques peuvent encore être utilisés sur certaines pages “s
   - Bloc “Légal” : Mentions légales, Politique de confidentialité, Conditions générales de prestation, fichiers IA (`llms.txt`, `ai.txt`), page `/infos-ia/`, lien “Gérer les cookies”.
 
 La page Urban Régie possède un footer spécifique ; le module détecte ce cas et ne remplace pas son contenu.
+
+### Boutons & CTA (typographie / responsivité)
+
+- Les boutons utilisent un pattern unifié dans `css/components.css` :
+
+  ```css
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7em;
+    font-weight: var(--font-weight-bold);
+    font-size: 1.05rem;
+    border-radius: var(--border-radius-pill);
+    padding: 0.9rem 1.7rem;
+    min-width: 210px;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary-dark);
+    color: #ffffff;
+    border-color: var(--color-primary-dark);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--color-primary-dark);
+    color: var(--color-primary-dark);
+  }
+
+  .btn-secondary-alt {
+    background: rgba(15, 23, 42, 0.03);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    color: #111827;
+  }
+
+  .btn-whatsapp {
+    background-color: #25d366;
+    color: #fff;
+    border-color: #25d366;
+  }
+
+  @media (max-width: 480px) {
+    .btn {
+      min-width: 0;
+      width: 100%;
+      font-size: 0.98rem;
+      padding: 0.8rem 1.2rem;
+    }
+  }
+  ```
+
+- Sur petits écrans (≤ 480px), tous les boutons `.btn` passent automatiquement en largeur 100 % avec une typographie légèrement réduite, ce qui évite les débordements tout en gardant des cibles tactiles confortables.
+- Dans le Héros et les cartes, aucune largeur spécifique n’est codée en dur dans le HTML : le comportement responsive est entièrement porté par le CSS.
+- Les CTA principaux du site utilisent systématiquement `.btn btn-primary` pour rester cohérents avec la charte (orange foncé + texte blanc) et assurer un bon contraste WCAG.
 
 ---
 
