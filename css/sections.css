@@ -65,14 +65,18 @@
    et on évite que les boutons soient coupés par le haut ou le bas du hero */
 @media (max-width: 600px) {
   .hero {
-    min-height: 480px;
+    /* Hauteur minimum réduite et overflow visible pour que les boutons ne soient
+       jamais coupés en bas sur les petits écrans (iPhone, etc.) */
+    min-height: 420px;
+    overflow: visible;
   }
 
   .hero-overlay {
     /* On aligne le contenu vers le haut, centré horizontalement */
     align-items: flex-start;
     justify-items: center;
-    padding-top: calc(var(--header-height) + 1.2rem);
+    /* Marge suffisante sous le header + un peu d'espace au-dessus du titre */
+    padding: calc(var(--header-height) + 1.2rem) 5vw 2.5rem;
   }
 
   .hero-overlay .container {
