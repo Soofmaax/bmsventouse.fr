@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const HOST = 'www.bmsventouse.fr';
+const HOST = 'bmsventouse.fr';
 // Resolve IndexNow key without hard-coding secrets:
 // 1) Prefer env var INDEXNOW_KEY
 // 2) Fallback: detect key from file name at repo root: indexnow-<KEY>.txt
