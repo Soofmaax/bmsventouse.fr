@@ -123,8 +123,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // MODULE: SKIP LINK (Aller au contenu) pour accessibilité
   // --------------------------------------------------------------------------
   const setupSkipLink = () => {
-    // Désactivé à la demande : plus de création automatique du bouton "Aller au contenu"
-    return;
+    try {
+      // Ne rien faire si un skip-link existe déjà
+      if (document.querySelector('.skip-link')) return;
+
+      const main =
+        document.getElementById('main-content') ||
+        document.querySelector('main');
+
+      if (!main) return;
+
+      // S'assurer que la cible a un id
+      if (!main.id) {
+        main.id = 'main-content';
+      }
+
+      const link = document.createElement('a');
+      link.href = `#${main.id}`;
+      link.className = 'skip-link';
+      link.textContent = 'Aller au contenu principal';
+
+      // On place le lien tout en haut du body, avant le header
+      const body = document.body;
+      if (body.firstChild) {
+        body.insertBefore(link, body.firstChild);
+      } else {
+        body.appendChild(link);
+      }
+    } catch (_) {
+      // non-bloquant
+    }
   };
 
   // --------------------------------------------------------------------------
@@ -532,6 +560,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (!track || slides.length === 0 || !prevBtn || !nextBtn) {
       return;
+    }
+
+    // Accessibilité des contrôles de carrousel
+    [prevBtn, nextBtn].forEach((btn) => {
+      if (!btn) return;
+      if (!btn.hasAttribute('type')) {
+        btn.setAttribute('type', 'button');
+      }
+    });
+    if (!prevBtn.getAttribute('aria-label')) {
+      prevBtn.setAttribute('aria-label', 'Slide précédent');
+    }
+    if (!nextBtn.getAttribute('aria-label')) {
+      nextBtn.setAttribute('aria-label', 'Slide suivant');
     }
 
     let currentIndex = 0;
@@ -1679,6 +1721,20 @@ function setupVentousageParisGallery() {
     const nextBtn = wrapper.querySelector('.carousel-control.next');
     const counter = wrapper.querySelector('.gallery-counter');
     if (!prevBtn || !nextBtn) return;
+
+    // Accessibilité des contrôles de carrousel (galerie ventousage)
+    [prevBtn, nextBtn].forEach((btn) => {
+      if (!btn) return;
+      if (!btn.hasAttribute('type')) {
+        btn.setAttribute('type', 'button');
+      }
+    });
+    if (!prevBtn.getAttribute('aria-label')) {
+      prevBtn.setAttribute('aria-label', 'Photo précédente');
+    }
+    if (!nextBtn.getAttribute('aria-label')) {
+      nextBtn.setAttribute('aria-label', 'Photo suivante');
+    }
 
     const total = slides.length;
     let currentIndex = 0;

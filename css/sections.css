@@ -159,6 +159,14 @@
   margin-right: auto;
 }
 
+/* Sur écrans ≥ 768px, on limite la largeur du texte du hero
+   pour une meilleure lisibilité (lignes plus courtes) */
+@media (min-width: 768px) {
+  .hero p {
+    max-width: 38rem;
+  }
+}
+
 .hero-buttons {
   display: flex;
   flex-direction: column;
