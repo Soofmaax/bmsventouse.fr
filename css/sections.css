@@ -56,9 +56,34 @@
   display: grid;
   place-items: center;
   padding: 0 clamp(12px, 4vw, 28px);
-  /* Légèrement plus haut que le centre */
+  /* Légèrement plus haut que le centre sur desktop */
   transform: translateY(-18%);
   animation: fadeInUp 1s ease-out;
+}
+
+/* Sur petits écrans (iPhone, mobiles), on remonte le bloc sous le header
+   et on évite que les boutons soient coupés par le haut ou le bas du hero */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 480px;
+  }
+
+  .hero-overlay {
+    /* On aligne le contenu vers le haut, centré horizontalement */
+    align-items: flex-start;
+    justify-items: center;
+    padding-top: calc(var(--header-height) + 1.2rem);
+  }
+
+  .hero-overlay .container {
+    /* On supprime le décalage vers le haut pour éviter que le bas (les boutons)
+       soit rogné sur les petits écrans */
+    transform: none;
+  }
+
+  .hero-buttons {
+    margin-top: 0.5rem;
+  }
 }
 
 @keyframes fadeInUp {
