@@ -311,14 +311,23 @@ body.dark-theme .header {
   position: relative;
 }
 
-/* Forcer l'affichage du hamburger sur mobile et petits écrans (jusqu'aux petits laptops) */
+/* Forcer l'affichage du hamburger sur mobile et petits écrans (jusqu'aux petits laptops)
+   tout en laissant le menu visible (fallback si le JS ne s'exécute pas, par exemple en prévisualisation) */
 @media (max-width: 1200px) {
   .hamburger {
     display: flex !important;
   }
-  
+
+  /* On laisse .nav-links affiché mais on compacte la mise en page pour éviter le chevauchement */
   .nav-links {
-    display: none;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
   }
 }
 
