@@ -1424,8 +1424,9 @@ body.dark-theme .fw-popup-close:focus {
 }
 
 /* Ajustement des titres de Héros pour éviter le texte tronqué sur mobile
-   tout en restant lisible */
-@media (max-width: 768px) {
+   tout en restant lisible — limité aux petits écrans (smartphones) pour
+   préserver le rendu “grand format” sur tablette/desktop */
+@media (max-width: 600px) {
   .hero h1 {
     font-size: clamp(1.6rem, 5.2vw, 2.3rem);
     line-height: 1.18;
