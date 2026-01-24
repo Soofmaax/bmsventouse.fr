@@ -273,8 +273,8 @@ body.dark-theme .header {
   margin: 0; 
 }
 
-/* Sous-menu en mode mobile */
-@media (max-width: 768px) {
+/* Sous-menu en mode mobile (et petits laptops) */
+@media (max-width: 992px) {
   .nav-links li.has-submenu { width: 100%; }
 
   .nav-submenu {
@@ -311,8 +311,8 @@ body.dark-theme .header {
   position: relative;
 }
 
-/* Forcer l'affichage du hamburger sur mobile */
-@media (max-width: 768px) {
+/* Forcer l'affichage du hamburger sur mobile et petits écrans */
+@media (max-width: 992px) {
   .hamburger {
     display: flex !important;
   }

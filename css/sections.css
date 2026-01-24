@@ -507,7 +507,7 @@ body.left-handed .whatsapp-float {
   }
 }
 
-/* Tablet gap tweak: slightly tighter spacing for grids */
+/* Tablet / small laptop gap tweak: slightly tighter spacing for grids */
 @media (min-width: 600px) and (max-width: 992px) {
   .services-grid,
   .services-grid-visual,
@@ -527,7 +527,8 @@ body.left-handed .whatsapp-float {
   }
 }
 
-@media (max-width: 768px) {
+/* Études de cas en colonne unique sur tablettes et mobiles */
+@media (max-width: 992px) {
   .case-study,
   .case-study.reverse {
     grid-template-columns: 1fr;
