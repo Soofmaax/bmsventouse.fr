@@ -192,6 +192,14 @@
   gap: var(--grid-gap);
 }
 
+/* Variante visuelle (image + texte) utilisée sur la page Services et certaines landings */
+.services-grid-visual {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
 /* Form sections shown conditionally by JS (prevent FOUC) */
 .service-details { display: none; }
 /* Micro-spacing and readability for dynamic contact groups */
@@ -499,7 +507,7 @@ body.left-handed .whatsapp-float {
   }
 }
 
-/* Tablet gap tweak: slightly tighter spacing for grids */
+/* Tablet / small laptop gap tweak: slightly tighter spacing for grids */
 @media (min-width: 600px) and (max-width: 992px) {
   .services-grid,
   .services-grid-visual,
@@ -519,7 +527,8 @@ body.left-handed .whatsapp-float {
   }
 }
 
-@media (max-width: 768px) {
+/* Études de cas en colonne unique sur tablettes et mobiles */
+@media (max-width: 992px) {
   .case-study,
   .case-study.reverse {
     grid-template-columns: 1fr;
