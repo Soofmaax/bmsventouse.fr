@@ -60,17 +60,28 @@
     <meta name="ICBM" content="48.8566, 2.3522">
     
     <!-- PERFORMANCE & RESSOURCES -->
+    <!-- Chargement non bloquant de la feuille de style principale -->
     <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <!-- Fallback sûr pour Safari iOS: charge la feuille si le preload+onload ne se déclenche pas -->
-    <link rel="stylesheet" href="/css/style.css">
     <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+
+    <!-- Préchargement léger de pages clés pour améliorer la navigation -->
     <link rel="prefetch" href="/services/" as="document">
+    <link rel="prefetch" href="/contact/" as="document">
+
+    <!-- Préconnexion aux domaines tiers utilisés (polices, analytics) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.google-analytics.com">
-    <!-- Préfetch des pages clés pour améliorer la navigation -->
-    <link rel="prefetch" href="/contact/" as="document">
+
+    <!-- Préchargement des polices Google (Anton + Poppins) sans bloquer le rendu -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap">
+    </noscript>
+
     <!-- Preload de l'image héros pour optimiser le LCP -->
     <link rel="preload" as="image" href="/images/hero-background-custom-1920.jpg">
     <!-- Font Awesome pour les icônes -->
