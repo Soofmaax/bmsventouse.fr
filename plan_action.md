@@ -1,6 +1,6 @@
 # Plan d’action SEO/Accessibilité/Qualité - BMS Ventouse
 
-Dernière mise à jour : 2026-01-19
+Dernière mise à jour : 2026-01-24
 
 > Ce fichier est le **backlog vivant** SEO/A11y/Qualité.  
 > Les audits historiques détaillés sont dans `rapport_audit_complet.md` et `seo-analysis.md`.
@@ -19,6 +19,10 @@ Dernière mise à jour : 2026-01-19
 SEO / contenu
 
 - Harmonisation Open Graph (og:site_name) et Twitter Cards sur pages clés (services principaux, villes, sécurité, logistique).
+- Création de la page régionale `/ventousage-ile-de-france/` (Service + FAQ + JSON-LD) pour couvrir explicitement l’Île-de-France et les départements proches de Paris (Oise, Somme, Aisne, Eure, Eure-et-Loir, Loiret, Yonne, Aube, Marne).
+- Mise à jour des pages `ventousage-paris/` et `ventousage/` pour mieux refléter la couverture Paris + Île-de-France + villes proches (Fontainebleau, Melun, Nemours, Étampes, etc.) et renforcer le maillage interne.
+- Enrichissement du `areaServed` JSON-LD de la home (LocalBusiness) avec les principales villes et départements proches de Paris où BMS intervient.
+- Ajustement des H1 des sections héros (Accueil, Services, etc.) + règles CSS responsive pour éviter le texte tronqué sur mobile tout en gardant une bonne lisibilité.
 - Suppression des meta keywords résiduels (index, contact).
 - Ajout liens « Infos IA » (llms.txt principal, ai.txt alias) en pied de page.
 - Page « Infos IA » lisible humain (/infos-ia/) + ajout au sitemap.
@@ -118,16 +122,14 @@ Icônes / assets
   - [x] Lien « Gérer les cookies » (ouvre consent manager)
   - [x] Styles du breadcrumb en CSS (supprimer styles inline JS)
   - [x] Pa11y URLs étendues (pages locales et services principaux)
+  - [x] Skip-link « Aller au contenu principal » en place sur les pages clés (et automatiquement injecté sur les autres via JS) pour améliorer la navigation clavier/lecteur d’écran.
+  - [x] Héros (titres H1 + textes) revus pour limiter les lignes trop longues et éviter les coupures de texte sur mobile (CSS responsive global + ajustements sur Accueil/Services).
 - Technique
   - [x] CSP finalisée uniquement via `netlify.toml` (meta CSP supprimées dans les HTML)
   - [x] Variables CONFIG pour constantes (JS) documentées
 - Contenu
   - Idée future : pages locales nouvelles (3+) + intégration sitemap + liens internes
   - Idée future : témoignages visibles (si activation schema AggregateRating à terme)
-  - [x] Page de contact rapide / hub NFC (WhatsApp, téléphone, email + formulaire léger) via `/contact-direct/`
-  - [x] Landing « hub contact » NFC/QR dédiée (`/contact-direct/`) avec 4 entrées (téléphone, WhatsApp, email, mini-formulaire unique)enu
-  - [ ] Pages locales nouvelles (3+) + intégration sitemap + liens internes
-  - [ ] Témoignages visibles (si activation schema AggregateRating à terme)
   - [x] Page de contact rapide / hub NFC (WhatsApp, téléphone, email + formulaire léger) via `/contact-direct/`
   - [x] Landing « hub contact » NFC/QR dédiée (`/contact-direct/`) avec 4 entrées (téléphone, WhatsApp, email, mini‑formulaire unique)
 

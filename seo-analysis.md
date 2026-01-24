@@ -1,6 +1,14 @@
 # Audit SEO - BMS Ventouse (état au 2025-09-30)
 
-Mise à jour rapide (2026-01-10)
+Mise à jour rapide (2026-01-24)
+- Création de la page régionale « Ventousage Île-de-France & départements proches » (`/ventousage-ile-de-france/`) avec JSON-LD Service + FAQ, ciblant explicitement Paris, l’Île-de-France et les départements limitrophes (Oise, Somme, Aisne, Eure, Eure-et-Loir, Loiret, Yonne, Aube, Marne).
+- Mise à jour des pages « Ventousage Paris » (`/ventousage-paris/`) et « Ventousage » (`/ventousage/`) pour mieux refléter la couverture Paris + Île-de-France + villes proches (Fontainebleau, Melun, Nemours, Étampes…) et renforcer le maillage interne.
+- Enrichissement du JSON-LD LocalBusiness de la home avec un `areaServed` détaillé (Île-de-France + principales villes et départements proches de Paris où BMS intervient).
+- Maillage interne renforcé depuis la home et la page Services vers les pages ventousage Paris / Île-de-France / villes locales.
+- Ajustement des H1 des sections héros (Accueil, Services, etc.) + CSS responsive pour limiter les lignes trop longues et éviter les coupures de texte sur mobile, tout en conservant la lisibilité.
+- Skip-link « Aller au contenu principal » présent sur les pages clés et injecté automatiquement (via JS) lorsqu’il n’est pas explicitement présent dans le HTML.
+
+Mises à jour précédentes (2026-01-10)
 - Page « Définition du ventousage » enrichie (CTA vers les services de ventousage + maillage interne renforcé).
 - Page « Mentions légales » passée en `index, follow` pour permettre son éventuelle indexation.
 - Pages « Ventousage cinéma » et « Convoyage véhicules & décors » structurées comme landings SEO dédiées (Service + FAQ + CTA).
