@@ -1239,7 +1239,7 @@ function setupUnifiedFooter() {
     const html = `
         <div class="footer-brand">
           <div class="footer-logo">
-            <img src="/android-chrome-192x192.png" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
+            <img src="/android-chrome-192x192.webp" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
             <div class="footer-brand-text notranslate" translate="no">
               <span class="footer-bms">BMS</span><span class="footer-ventouse">Ventouse</span>
             </div>
