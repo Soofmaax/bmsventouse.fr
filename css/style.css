@@ -883,6 +883,23 @@ body.dark-theme .header {
   flex-direction: column;
   height: 100%;
   transition: var(--transition-smooth);
+  position: relative;
+}
+
+/* Lien couvrant toute la carte pour rendre la carte cliquable sans casser l'accessibilité */
+.service-card-visual-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* On s'assure que le contenu reste au-dessus du lien pour rester sélectionnable et lisible */
+.service-card-visual-image,
+.service-card-visual-content {
+  position: relative;
+  z-index: 2;
 }
 
 .service-card-visual-image img {
