@@ -1144,7 +1144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Perf: améliorer le lazy/decoding des images (hors héros)
     enhanceImages();
     // Pop-up Fashion Week 2026 (offre temporaire, affichée une seule fois par session)
-    setupFashionWeekPopup();
+    // setupFashionWeekPopup();
     // Protéger les termes métier (ventousage...) des traductions automatiques approximatives
     protectVentousageTerms();
 
