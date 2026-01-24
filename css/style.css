@@ -329,6 +329,33 @@ body.dark-theme .header {
   color: var(--color-primary); 
 }
 
+/* Ajustements responsives pour éviter que "BMS Ventouse" soit tronqué */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .logo-text {
+    gap: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.15rem;
+  }
+
+  .logo img {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+
+  .logo-text {
+    gap: 0.2rem;
+  }
+}
+
 /* Texte de marque */
 .logo-text {
   display: inline-flex;
