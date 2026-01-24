@@ -97,6 +97,8 @@ html {
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
+  /* Empêche tout défilement horizontal parasite sur mobile */
+  overflow-x: hidden;
 }
 
 body {
@@ -325,6 +327,33 @@ body.dark-theme .header {
 
 .logo .bms { 
   color: var(--color-primary); 
+}
+
+/* Ajustements responsives pour éviter que "BMS Ventouse" soit tronqué */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .logo-text {
+    gap: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.15rem;
+  }
+
+  .logo img {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+
+  .logo-text {
+    gap: 0.2rem;
+  }
 }
 
 /* Texte de marque */
@@ -1546,12 +1575,20 @@ body.dark-theme .fw-popup-close:focus {
   gap: var(--grid-gap);
 }
 
-/* Form sections hidden by default */
-.service-details { display: none; }
-.service-details label { display: block; margin-top: .5rem; }
-.service-details input,
-.service-details select,
-.service-details textarea { margin-top: .25rem; }
+/* Variante visuelle (image + texte) utilisée sur la page Services et certaines landings
+   Par défaut : 1 carte par ligne sur mobile, 2 cartes par ligne à partir de la tablette */
+.services-grid-visual {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .services-grid-visual {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 .service-details .checkbox { display: inline-flex; align-items: center; gap: .5rem; margin-top: .6rem; }
 
 .services-grid [data-show] { display: none; }
@@ -2221,6 +2258,74 @@ body.dark-theme.page-contact-nfc .hero-contact-nfc .dev-credit a:focus {
 
 /* Ajustements spécifiques NFC, WhatsApp mobile et menu mobile
    (déjà en grande partie redéfinis plus haut, conservés pour compatibilité) */
+
+/* Menu mobile : overlay semi-transparent plein écran */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: var(--z-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Conteneur du menu mobile lorsqu'il est ouvert */
+.nav-links.active {
+  display: flex !important;
+  flex-direction: column;
+  position: fixed;
+  /* Commence sous le header (et la bannière promo si elle est réactivée) */
+  top: calc(var(--promo-banner-height) + var(--header-height));
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: var(--color-light);
+  z-index: 1501;
+  padding: 1.5rem 0;
+  box-shadow: var(--box-shadow-base);
+  animation: slideInDown 0.3s forwards;
+  /* Hauteur restante de l'écran (iOS + fallback) */
+  height: calc(100dvh - var(--promo-banner-height) - var(--header-height));
+  height: calc(100vh - var(--promo-banner-height) - var(--header-height));
+  overflow-y: auto;
+}
+
+/* Animation d'apparition du menu mobile */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Liens à l'intérieur du menu mobile ouvert */
+.nav-links.active .nav-link {
+  margin: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  width: calc(100% - 2rem);
+  border-radius: var(--border-radius-pill);
+}
+
+/* Bloquer le scroll de fond quand le menu mobile est ouvert */
+body:has(.nav-links.active) {
+  overflow: hidden;
+}
 
 
 
