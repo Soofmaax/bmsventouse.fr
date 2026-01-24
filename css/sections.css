@@ -192,6 +192,14 @@
   gap: var(--grid-gap);
 }
 
+/* Variante visuelle (image + texte) utilisée sur la page Services et certaines landings */
+.services-grid-visual {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
 /* Form sections shown conditionally by JS (prevent FOUC) */
 .service-details { display: none; }
 /* Micro-spacing and readability for dynamic contact groups */
