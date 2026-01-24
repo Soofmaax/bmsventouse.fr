@@ -37,13 +37,13 @@
     <meta property="og:description" content="Ventousage, stationnement réservé, panneaux B6, affichage riverains et logistique pour shootings photo, campagnes mode, défilés et Fashion Week à Paris. Intervention 24/7, réponse rapide sous 24 h.">
     <meta property="og:url" content="https://bmsventouse.fr/ventousage-shootings-defiles-paris/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta property="og:image" content="https://bmsventouse.fr/images/hero-background-custom-1920.jpg">
 ...
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ventousage et logistique pour défilés et shootings à Paris">
     <meta name="twitter:description" content="Ventousage et logistique pour défilés de mode, shootings photo et vidéo à Paris. Neutralisation du stationnement, panneaux B6, affichage riverains, autorisations, sécurité plateaux et régie. Spécial Fashion Week et événements premium. Réponse rapide sous 24 h.">
-    <meta name="twitter:image" content="https://bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta name="twitter:image" content="https://bmsventouse.fr/images/hero-background-custom-1920.jpg">
     <meta name="twitter:image:alt" content="Rue parisienne préparée pour un défilé de mode avec stationnement neutralisé et signalisation">
 
     <!-- PERFORMANCE & RESSOURCES -->
@@ -153,7 +153,7 @@
   <div class="container">
     <div class="nav">
       <a href="/" class="logo" aria-label="Retour à l'accueil de BMS Ventouse">
-        <img src="/android-chrome-192x192.png" alt="Logo BMS Ventouse" width="40" height="40">
+        <img src="/android-chrome-192x192.webp" alt="Logo BMS Ventouse" width="40" height="40">
         <span class="logo-text notranslate" translate="no">
           <span class="bms">BMS</span> <span class="ventouse">Ventouse</span>
         </span>
@@ -190,9 +190,19 @@
   <!-- HERO -->
   <section class="hero">
     <picture class="hero-bg">
-      <source type="image/jpeg" media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg">
-      <source type="image/jpeg" media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg">
-      <img src="/images/hero-background-custom.jpg" alt="Rue parisienne préparée pour un défilé avec stationnement neutralisé et signalisation temporaire" loading="eager" fetchpriority="high" width="1920" height="1080">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
+      <img src="/images/hero-background-custom-1920.jpg" alt="Rue parisienne préparée pour un défilé de mode, avec signalisation temporaire" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
@@ -401,7 +411,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <div class="footer-logo">
-            <img src="/android-chrome-192x192.png" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
+            <img src="/android-chrome-192x192.webp" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
             <div class="footer-brand-text notranslate" translate="no"><span class="footer-bms">BMS</span><span class="footer-ventouse">Ventouse</span></div>
           </div>
           <p class="footer-description">Votre partenaire logistique et sécurité pour des productions sereines et efficaces, partout en France.</p>

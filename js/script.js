@@ -1144,7 +1144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Perf: améliorer le lazy/decoding des images (hors héros)
     enhanceImages();
     // Pop-up Fashion Week 2026 (offre temporaire, affichée une seule fois par session)
-    setupFashionWeekPopup();
+    // setupFashionWeekPopup();
     // Protéger les termes métier (ventousage...) des traductions automatiques approximatives
     protectVentousageTerms();
 
@@ -1239,7 +1239,7 @@ function setupUnifiedFooter() {
     const html = `
         <div class="footer-brand">
           <div class="footer-logo">
-            <img src="/android-chrome-192x192.png" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
+            <img src="/android-chrome-192x192.webp" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
             <div class="footer-brand-text notranslate" translate="no">
               <span class="footer-bms">BMS</span><span class="footer-ventouse">Ventouse</span>
             </div>
@@ -1971,5 +1971,11 @@ function setupFashionWeekPopup() {
   } catch (_) {
     // non-bloquant
   }
+}
+
+// Expose la fonction sur window pour un déclenchement manuel éventuel,
+// tout en évitant l'erreur de linter \"defined but never used\".
+if (typeof window !== 'undefined') {
+  window.setupFashionWeekPopup = window.setupFashionWeekPopup || setupFashionWeekPopup;
 }
 

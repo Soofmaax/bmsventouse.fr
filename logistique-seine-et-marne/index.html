@@ -35,7 +35,7 @@
     <meta property="og:description" content="Logistique audiovisuelle en Seine‑et‑Marne (77) pour tournages &amp; événements : ventousage, sécurité &amp; gardiennage de plateaux, transport &amp; convoyage. Interventions à Meaux, Melun, Fontainebleau. Réponse rapide sous 24 h.">
     <meta property="og:url" content="https://bmsventouse.fr/logistique-seine-et-marne/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta property="og:image" content="https://bmsventouse.fr/images/hero-background-custom-1920.jpg">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="BMS Ventouse">
 
@@ -43,7 +43,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Entreprise logistique Seine‑et‑Marne (77) | Tournages &amp; événements — BMS Ventouse">
     <meta name="twitter:description" content="Logistique audiovisuelle en Seine‑et‑Marne (77) pour tournages &amp; événements : ventousage, sécurité &amp; gardiennage de plateaux, transport &amp; convoyage. Interventions à Meaux, Melun, Fontainebleau. Réponse rapide sous 24 h.">
-    <meta name="twitter:image" content="https://bmsventouse.fr/images/hero-background-custom.jpg">
+    <meta name="twitter:image" content="https://bmsventouse.fr/images/hero-background-custom-1920.jpg">
     <meta name="twitter:image:alt" content="Neutralisation de stationnement et sécurité de tournage en Seine‑et‑Marne">
 
     <!-- PERFORMANCE & RESSOURCES -->
@@ -101,7 +101,7 @@
   <div class="container">
     <div class="nav">
       <a href="/" class="logo" aria-label="Retour à l'accueil de BMS Ventouse">
-        <img src="/android-chrome-192x192.png" alt="Logo BMS Ventouse" width="40" height="40">
+        <img src="/android-chrome-192x192.webp" alt="Logo BMS Ventouse" width="40" height="40">
         <span class="logo-text"><span class="bms">BMS</span> <span class="ventouse">Ventouse</span></span>
       </a>
       <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
@@ -127,9 +127,19 @@
 <main id="main-content">
   <section class="hero">
     <picture class="hero-bg">
-      <source media="(min-width: 768px )" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <source media="(max-width: 767px)" srcset="/images/hero-background-custom.jpg" type="image/jpeg">
-      <img src="/images/hero-background-custom.jpg" alt="Neutralisation de stationnement et sécurité de tournage en Seine-et-Marne" loading="eager" fetchpriority="high" width="1920" height="1080">
+      <source type="image/webp"
+              srcset="/images/hero-background-custom-640.webp 640w,
+                      /images/hero-background-custom-960.webp 960w,
+                      /images/hero-background-custom-1280.webp 1280w,
+                      /images/hero-background-custom-1920.webp 1920w"
+              sizes="100vw">
+      <source type="image/jpeg"
+              srcset="/images/hero-background-custom-640.jpg 640w,
+                      /images/hero-background-custom-960.jpg 960w,
+                      /images/hero-background-custom-1280.jpg 1280w,
+                      /images/hero-background-custom-1920.jpg 1920w"
+              sizes="100vw">
+      <img src="/images/hero-background-custom-1920.jpg" alt="Neutralisation de stationnement et sécurité de tournage en Seine-et-Marne" loading="eager" fetchpriority="high" width="1920" height="1080" sizes="100vw" decoding="async">
     </picture>
     <div class="hero-overlay">
       <div class="container animated-item">
@@ -230,7 +240,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <div class="footer-logo">
-            <img src="/android-chrome-192x192.png" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
+            <img src="/android-chrome-192x192.webp" alt="BMS Ventouse" width="40" height="40" class="footer-logo-img">
             <div class="footer-brand-text"><span class="footer-bms">BMS</span><span class="footer-ventouse">Ventouse</span></div>
           </div>
           <p class="footer-description">Votre partenaire logistique et sécurité pour des productions sereines et efficaces, partout en France.</p>
