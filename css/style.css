@@ -1165,6 +1165,10 @@ body.dark-theme .header {
   position: relative;
 }
 
+.zone-card svg {
+  margin-bottom: 0.5rem;
+}
+
 .service-card::before,
 .service-card-visual::before,
 .reference-card::before,
