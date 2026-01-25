@@ -1250,11 +1250,6 @@ function setupUnifiedFooter() {
     const footerContent = document.querySelector('.footer .footer-content');
     const footerBottom = document.querySelector('.footer-bottom-content p');
 
-    // Ne pas écraser le footer spécifique Urban Régie
-    if (footerBottom && footerBottom.textContent && footerBottom.textContent.indexOf('Urban Régie') !== -1) {
-      return;
-    }
-
     if (!footerContent) return;
 
     const html = `

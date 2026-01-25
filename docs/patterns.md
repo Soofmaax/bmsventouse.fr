@@ -310,7 +310,7 @@ Pour rester propre et cohérent :
   - `font-size:0.95rem; margin-top:.5rem;` → utiliser `.text-muted`.
 
 - **Ne pas dupliquer** la structure du header / footer :
-  - Le JS (`setupUnifiedHeader`, `setupUnifiedFooter`) reconstruit la nav et le footer sur toutes les pages, sauf cas volontaire (Urban Régie).
+  - Le JS (`setupUnifiedHeader`, `setupUnifiedFooter`) reconstruit la nav et le footer sur toutes les pages.
 
 - **Ne pas ajouter** de nouveaux boutons ou styles CTA en dehors des patterns `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-secondary-alt`.
 

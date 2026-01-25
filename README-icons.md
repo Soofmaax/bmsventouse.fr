@@ -380,13 +380,12 @@ Icônes Bootstrap possibles
 list-ul (liste à puces)
 ou list-task (liste + cases, un peu plus moderne).
  
-7. Icônes spécifiques Urban Régie
-La page /urban-regie/ réutilise la plupart des icônes déjà listées :
-Téléphone (fa-phone, même path que le reste du site) → telephone-fill.
+7. Icônes Urban Régie
+La page /urban-regie/ est une page interne qui réutilise les mêmes icônes que le reste du site :
+Téléphone → telephone-fill.
 WhatsApp → whatsapp.
 Email → envelope-fill.
-Adresse (fa-map-marker-alt) → geo-alt ou geo-alt-fill.
-Tu peux donc reprendre exactement les mêmes icônes Bootstrap que pour BMS pour garder une cohérence visuelle entre les deux entités.
+Adresse → geo-alt ou geo-alt-fill.
 
  
 8. Résumé rapide des familles d’icônes & suggestions
