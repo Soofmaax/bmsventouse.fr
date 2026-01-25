@@ -268,6 +268,9 @@ p {
 .mt-lg { margin-top: 1.5rem !important; }
 .mt-xl { margin-top: 2rem !important; }
 
+/* Line-height utility for texte légèrement plus serré que la base */
+.lh-tight { line-height: 1.6 !important; }
+
 .mb-xs { margin-bottom: 0.5rem !important; }
 .mb-sm { margin-bottom: 0.75rem !important; }
 .mb-md { margin-bottom: 1rem !important; }
