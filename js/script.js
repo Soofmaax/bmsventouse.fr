@@ -1379,17 +1379,54 @@ function setupHeroLayout() {
     const lang = (docEl && docEl.lang) ? docEl.lang.toLowerCase() : '';
     const isEnglish = lang.indexOf('en') === 0;
 
+    // Applique le design de CTA héro (mêmes classes que la home)
+    const applyHeroCTADesign = (heroButtonsEl) => {
+      try {
+        if (!heroButtonsEl) return;
+        // Le conteneur reste strictement .hero-buttons (pas de variantes locales)
+        heroButtonsEl.className = 'hero-buttons';
+
+        const ctas = Array.from(heroButtonsEl.querySelectorAll('a, button'));
+        if (!ctas.length) return;
+
+        ctas.forEach((cta, idx) => {
+          if (!cta) return;
+          // CTA principal : même style que le bouton principal de la home
+          // CTA secondaires : même style que le bouton secondaire de la home
+          if (idx === 0) {
+            cta.className = 'btn btn-primary';
+          } else {
+            cta.className = 'btn btn-secondary';
+          }
+        });
+      } catch (_) {
+        // non-bloquant
+      }
+    };
+
     heroSections.forEach((hero) => {
-      if (!hero || hero.dataset.heroNormalized === '1') return;
+      if (!hero) return;
 
       const overlay = hero.querySelector('.hero-overlay');
       const container = overlay ? overlay.querySelector('.container') : null;
-      const h1 = container ? container.querySelector('h1') : null;
-      if (!container || !h1) return;
-
-      hero.dataset.heroNormalized = '1';
+      if (!container) return;
 
       let heroButtons = container.querySelector('.hero-buttons');
+
+      // Uniformise systématiquement le style des CTA présents dans le HERO
+      if (heroButtons) {
+        applyHeroCTADesign(heroButtons);
+      }
+
+      // Évite une double normalisation structurelle
+      if (hero.dataset.heroNormalized === '1') return;
+
+      const h1 = container.querySelector('h1');
+      // Si aucun H1 n'est présent (cas de certaines pages spéciales), on ne
+      // touche pas à la structure mais on a déjà harmonisé les CTA ci‑dessus.
+      if (!h1) return;
+
+      hero.dataset.heroNormalized = '1';
 
       const nodesToMove = [];
       Array.from(container.children).forEach((child) => {
@@ -1437,7 +1474,7 @@ function setupHeroLayout() {
 
           const secondary = document.createElement('a');
           secondary.href = 'https://wa.me/33646005642?text=Hi,%20I%27m%20preparing%20a%20shoot%20or%20event%20in%20France%20and%20would%20like%20to%20discuss%20logistics%20with%20BMS%20Ventouse.';
-          secondary.className = 'btn btn-secondary-alt';
+          secondary.className = 'btn btn-secondary';
           secondary.target = '_blank';
           secondary.rel = 'noopener noreferrer';
           secondary.textContent = 'WhatsApp (English / French)';
@@ -1451,7 +1488,7 @@ function setupHeroLayout() {
 
           const secondary = document.createElement('a');
           secondary.href = 'https://wa.me/33646005642?text=Bonjour,%20je%20souhaite%20parler%20de%20mon%20projet.';
-          secondary.className = 'btn btn-secondary-alt';
+          secondary.className = 'btn btn-secondary';
           secondary.target = '_blank';
           secondary.rel = 'noopener noreferrer';
           secondary.textContent = 'WhatsApp Direct';
@@ -1468,6 +1505,8 @@ function setupHeroLayout() {
         } else {
           container.appendChild(heroButtons);
         }
+        // Après création / repositionnement, on réapplique le design unifié
+        applyHeroCTADesign(heroButtons);
       }
     });
   } catch (_) {
