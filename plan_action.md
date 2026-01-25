@@ -98,6 +98,7 @@ UX / contenu
     - 4 entrées claires : téléphone, WhatsApp, email, mini‑formulaire unique.
     - Cette page est le **seul endroit** où un formulaire public vit (mini‑form).
     - Texte court + micro‑explications intégrés, `contact_submitted` envoyé vers GA4 + dataLayer.
+    - Le menu principal (`navLinks`) et le contenu de footer y sont injectés au runtime via `setupUnifiedHeaderNav()` et `setupUnifiedFooter()` dans `js/script.js` (HTML source volontairement minimal).
 
 Icônes / assets
 

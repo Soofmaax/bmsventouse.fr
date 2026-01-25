@@ -154,7 +154,8 @@ input, button, textarea, select {
   top: 8px; 
 }
 
-.visually-hidden {
+.visually-hidden,
+.hidden {
   position: absolute !important;
   width: 1px; 
   height: 1px;
