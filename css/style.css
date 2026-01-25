@@ -154,7 +154,8 @@ input, button, textarea, select {
   top: 8px; 
 }
 
-.visually-hidden {
+.visually-hidden,
+.hidden {
   position: absolute !important;
   width: 1px; 
   height: 1px;
@@ -256,6 +257,25 @@ p {
 .promo-banner {
   display: none;
 }
+
+/* Utilitaires de spacing (marges verticales) */
+.mt-0 { margin-top: 0 !important; }
+.mb-0 { margin-bottom: 0 !important; }
+
+.mt-xs { margin-top: 0.5rem !important; }
+.mt-sm { margin-top: 0.75rem !important; }
+.mt-md { margin-top: 1rem !important; }
+.mt-lg { margin-top: 1.5rem !important; }
+.mt-xl { margin-top: 2rem !important; }
+
+/* Line-height utility for texte légèrement plus serré que la base */
+.lh-tight { line-height: 1.6 !important; }
+
+.mb-xs { margin-bottom: 0.5rem !important; }
+.mb-sm { margin-bottom: 0.75rem !important; }
+.mb-md { margin-bottom: 1rem !important; }
+.mb-lg { margin-bottom: 1.5rem !important; }
+.mb-xl { margin-bottom: 2rem !important; }
 
 /* Header sticky */
 .header {
@@ -1146,6 +1166,10 @@ body.dark-theme .header {
 .stat-item,
 .coverage-note-card {
   position: relative;
+}
+
+.zone-card svg {
+  margin-bottom: 0.5rem;
 }
 
 .service-card::before,

@@ -10,7 +10,7 @@
 ## ✅ Current Status
 
 - Static site in production with full CI (HTML/CSS/JS lint, accessibility, security).
-- No generic contact form on public pages: contact is via phone, WhatsApp or email (see `/contact/`). A lightweight mini-form exists only on the private hub `/contact-direct/` for NFC/QR cards.
+- No contact form on the site: contact is via phone, WhatsApp or email (see `/contact/` and `/contact-direct/`). `/contact-direct/` is a focused contact hub (NFC/QR), without Netlify form.
 - FAQs, services and safety pages have been harmonized (content, icons, accessibility).
 - All icons are now inline SVG (no external icon fonts).
 
@@ -46,7 +46,27 @@ Start here: docs/README.md
 - Hosting: Netlify
 - Quality: HTMLHint, Stylelint, ESLint, Markdownlint, Pa11y
 - Security: CodeQL (SAST), Gitleaks, Security headers
-- CI: GitHub Actions - monthly quality gate + manual runs
+- CI: GitHub Actions — workflow “CI - Full Quality Gate”
+
+## 🧪 CI & Quality Gate
+
+- Workflow: `.github/workflows/ci.yml` (“CI - Full Quality Gate”)
+- Triggers:
+  - `push` sur `main`
+  - `pull_request` vers `main`
+  - `workflow_dispatch` (manuel)
+  - `schedule` mensuel (cron)
+- Jobs principaux :
+  - **Lint** : Super-Linter (HTML/CSS/Markdown/JSON/YAML/Gitleaks) + rapports Stylelint / HTMLHint / Markdownlint
+  - **Accessibility** : `pa11y-ci` sur un panel d’URLs (config `.pa11yci.json`)
+  - **Lighthouse CI** : perf / SEO / accessibilité (config `lighthouserc.json`)
+  - **CodeQL** : analyse SAST JavaScript
+  - **npm audit** : audit des dépendances (niveau `high` et +)
+- Pour rejouer localement (optionnel) :
+  - Servir le site : `npx http-server -p 8080 .`
+  - Lint HTML : `npx htmlhint --config .htmlhintrc "**/*.html"`
+  - Accessibilité : `npx pa11y-ci`
+  - Lighthouse : `npx lhci autorun --config=lighthouserc.json`
 
 ## 🤝 Contributing
 

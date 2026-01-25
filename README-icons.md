@@ -307,86 +307,13 @@ Où
 
 Footer home (NAP : adresse complète Drancy).
 Carte « Partout ailleurs en France » sur /contact/.
-Page Urban Régie : fa-map-marker-alt.
-CTA du type « Ventousage à Paris » ou « Voir le ventousage à Paris » (fa-map-pin, fa-map-signs).
-Rôle
+7. Icônes spécifiques aux pages internes diverses
 
-Position géographique précise (adresse, point sur carte).
-Lien vers une page spécifique de ventousage dans une ville.
-Ce que ça doit évoquer
-
-Pin de carte, localisation.
-Icônes Bootstrap possibles
-
-geo-alt ou geo-alt-fill (pin de carte standard)
-pour « Voir le ventousage à Paris » (signalisations/itinéraires) : signpost-fill ou signpost-2.
- 
-5. Icônes de cas d’usage (page ventousage)
-Sur /ventousage/, section « Cas d’usage concrets », trois cartes utilisent des icônes spécifiques :
-5.1. « Fiction nocturne »
-Rôle
-
-Tournage de fiction de nuit, ambiance nocturne, neutralisation discrète.
-Ce que ça doit évoquer
-
-Nuit, lune, tournage.
-Icônes Bootstrap possibles
-
-moon-stars / moon-stars-fill
-ou, si tu veux plus d’orientation « cinéma », film ou camera-reels (mais moon-stars colle très bien au texte).
- 
-
-5.2. « Fashion Week »
-Rôle
-
-Défilés, mode, Fashion Week, gestion de flux et logistique événementielle.
-Ce que ça doit évoquer
-
-Mode, événement, public, coulisses.
-Icônes Bootstrap possibles
-
-bag-fill (sac → univers mode / retail)
-ou people-fill (public / foule / événement).
- 
-
-5.3. « Déménagement sensible »
-Rôle
-
-Réservations de stationnement, déménagements compliqués, pose rapide de signalisation.
-Ce que ça doit évoquer
-
-Camion de déménagement, mouvement, transport.
-Icônes Bootstrap possibles
-
-truck
-ou truck-front si tu veux une icône très lisible même en tout petit.
- 
-6. Icônes de navigation vers les services (boutons « Voir nos services »)
-Ces icônes viennent des anciennes classes Font Awesome fa-list et sont déjà mappées dans migrateFAIconsToInlineSVG.
-Où
-
-Dans de nombreuses pages de service ou locales (ventousage-pantin, logistique-[ville], securite-tournage-[ville], urban-regie, etc.) sur les boutons :
-« Voir nos services »
-« Voir nos autres services »
-« Découvrir nos services »
-Rôle
-
-Indiquer un lien vers la liste complète des services.
-Ce que ça doit évoquer
-
-Liste / catalogue.
-Icônes Bootstrap possibles
-
-list-ul (liste à puces)
-ou list-task (liste + cases, un peu plus moderne).
- 
-7. Icônes spécifiques Urban Régie
-La page /urban-regie/ réutilise la plupart des icônes déjà listées :
-Téléphone (fa-phone, même path que le reste du site) → telephone-fill.
+Certaines pages internes réutilisent les mêmes icônes que le reste du site :
+Téléphone → telephone-fill.
 WhatsApp → whatsapp.
 Email → envelope-fill.
-Adresse (fa-map-marker-alt) → geo-alt ou geo-alt-fill.
-Tu peux donc reprendre exactement les mêmes icônes Bootstrap que pour BMS pour garder une cohérence visuelle entre les deux entités.
+Adresse → geo-alt ou geo-alt-fill.
 
  
 8. Résumé rapide des familles d’icônes & suggestions
