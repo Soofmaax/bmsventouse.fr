@@ -1118,6 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCookieBanner();
     setupSkipLink();
     setupUnifiedFooter();
+    setupHeroLayout();
     setupScrollAnimations();
     setupHeroParallax();
     setupFaqAccordion();
@@ -1361,6 +1362,153 @@ function setupUnifiedFooter() {
     if (footerBottom) {
       footerBottom.innerHTML = '&copy; 2025 BMS Ventouse. Tous droits réservés. Site réalisé par <a href="https://smarterlogicweb.com" target="_blank" rel="noopener noreferrer">SmarterLogicWeb</a>.';
     }
+  } catch (_) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: HERO — STRUCTURE H1 + CTA + SECTION INTRO
+// --------------------------------------------------------------------------
+function setupHeroLayout() {
+  try {
+    const heroSections = document.querySelectorAll('section.hero');
+    if (!heroSections.length) return;
+
+    const docEl = document.documentElement || document.body;
+    const lang = (docEl && docEl.lang) ? docEl.lang.toLowerCase() : '';
+    const isEnglish = lang.indexOf('en') === 0;
+
+    // Applique le design de CTA héro (mêmes classes que la home)
+    const applyHeroCTADesign = (heroButtonsEl) => {
+      try {
+        if (!heroButtonsEl) return;
+        // Le conteneur reste strictement .hero-buttons (pas de variantes locales)
+        heroButtonsEl.className = 'hero-buttons';
+
+        const ctas = Array.from(heroButtonsEl.querySelectorAll('a, button'));
+        if (!ctas.length) return;
+
+        ctas.forEach((cta, idx) => {
+          if (!cta) return;
+          // CTA principal : même style que le bouton principal de la home
+          // CTA secondaires : même style que le bouton secondaire de la home
+          if (idx === 0) {
+            cta.className = 'btn btn-primary';
+          } else {
+            cta.className = 'btn btn-secondary';
+          }
+        });
+      } catch (_) {
+        // non-bloquant
+      }
+    };
+
+    heroSections.forEach((hero) => {
+      if (!hero) return;
+
+      const overlay = hero.querySelector('.hero-overlay');
+      const container = overlay ? overlay.querySelector('.container') : null;
+      if (!container) return;
+
+      let heroButtons = container.querySelector('.hero-buttons');
+
+      // Uniformise systématiquement le style des CTA présents dans le HERO
+      if (heroButtons) {
+        applyHeroCTADesign(heroButtons);
+      }
+
+      // Évite une double normalisation structurelle
+      if (hero.dataset.heroNormalized === '1') return;
+
+      const h1 = container.querySelector('h1');
+      // Si aucun H1 n'est présent (cas de certaines pages spéciales), on ne
+      // touche pas à la structure mais on a déjà harmonisé les CTA ci‑dessus.
+      if (!h1) return;
+
+      hero.dataset.heroNormalized = '1';
+
+      const nodesToMove = [];
+      Array.from(container.children).forEach((child) => {
+        if (child === h1 || child === heroButtons) return;
+        if (child.nodeType !== 1) return;
+        nodesToMove.push(child);
+      });
+
+      const parent = hero.parentNode;
+      if (!parent) return;
+
+      const introSection = document.createElement('section');
+      introSection.className = 'section section-hero-intro';
+
+      const introContainer = document.createElement('div');
+      introContainer.className = 'container';
+
+      const h2 = document.createElement('h2');
+      h2.className = 'section-title animated-item';
+      h2.innerHTML = h1.innerHTML;
+      introContainer.appendChild(h2);
+
+      nodesToMove.forEach((node) => {
+        introContainer.appendChild(node);
+      });
+
+      introSection.appendChild(introContainer);
+
+      if (hero.nextSibling) {
+        parent.insertBefore(introSection, hero.nextSibling);
+      } else {
+        parent.appendChild(introSection);
+      }
+
+      if (!heroButtons) {
+        heroButtons = document.createElement('div');
+        heroButtons.className = 'hero-buttons';
+
+        if (isEnglish) {
+          const primary = document.createElement('a');
+          primary.href = '/contact/';
+          primary.className = 'btn btn-primary';
+          primary.textContent = 'Contact us';
+          heroButtons.appendChild(primary);
+
+          const secondary = document.createElement('a');
+          secondary.href = 'https://wa.me/33646005642?text=Hi,%20I%27m%20preparing%20a%20shoot%20or%20event%20in%20France%20and%20would%20like%20to%20discuss%20logistics%20with%20BMS%20Ventouse.';
+          secondary.className = 'btn btn-secondary';
+          secondary.target = '_blank';
+          secondary.rel = 'noopener noreferrer';
+          secondary.textContent = 'WhatsApp (English / French)';
+          heroButtons.appendChild(secondary);
+        } else {
+          const primary = document.createElement('a');
+          primary.href = '/contact/';
+          primary.className = 'btn btn-primary';
+          primary.textContent = 'Nous contacter';
+          heroButtons.appendChild(primary);
+
+          const secondary = document.createElement('a');
+          secondary.href = 'https://wa.me/33646005642?text=Bonjour,%20je%20souhaite%20parler%20de%20mon%20projet.';
+          secondary.className = 'btn btn-secondary';
+          secondary.target = '_blank';
+          secondary.rel = 'noopener noreferrer';
+          secondary.textContent = 'WhatsApp Direct';
+          heroButtons.appendChild(secondary);
+        }
+
+        container.appendChild(heroButtons);
+      }
+
+      if (heroButtons) {
+        const referenceNode = h1.nextSibling;
+        if (referenceNode) {
+          container.insertBefore(heroButtons, referenceNode);
+        } else {
+          container.appendChild(heroButtons);
+        }
+        // Après création / repositionnement, on réapplique le design unifié
+        applyHeroCTADesign(heroButtons);
+      }
+    });
   } catch (_) {
     // non-bloquant
   }
