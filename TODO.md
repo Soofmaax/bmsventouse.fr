@@ -24,24 +24,24 @@ Convention commits :
 ## GLOBAL
 
 - [x] (P0) GLOBAL — charger les polices Anton &amp; Poppins sur toutes les pages — vérifier dans DevTools (Computed › font-family) que le texte de base est en Poppins et les titres en Anton sur au moins 5 pages (home, services, ventousage, sécurité, contact).
-- [ ] (P0) GLOBAL — unifier le header et le footer sur la base du modèle home — vérifier que toutes les pages standard (hors pages spéciales comme `/contact-nfc/`) ont le même logo, navigation, boutons (hand-toggle/theme-toggle selon la décision), bannière promo et colonnes de footer.
-- [ ] (P1) GLOBAL — définir une règle claire pour l’`active state` de la navigation principale et l’appliquer partout — vérifier sur `/`, `/services/`, `/contact/` et une landing ventousage/sécurité que la classe `active` correspond bien à la page courante selon la règle choisie.
+- [x] (P0) GLOBAL — unifier le header et le footer sur la base du modèle home — vérifier que toutes les pages standard (hors pages spéciales comme `/contact-nfc/`) ont le même logo, navigation, boutons (hand-toggle/theme-toggle selon la décision), bannière promo et colonnes de footer (via `setupUnifiedHeader()` et `setupUnifiedFooter()`).
+- [x] (P1) GLOBAL — définir une règle claire pour l’`active state` de la navigation principale et l’appliquer partout — vérifier sur `/`, `/services/`, `/contact/` et une landing ventousage/sécurité que la classe `active` correspond bien à la page courante selon la règle choisie.
 - [x] (P1) GLOBAL — introduire/utiliser des utilitaires de spacing (margin/padding) pour remplacer les `style="margin-..."` inline — vérifier via une recherche globale qu’il ne reste plus de styles inline de marge/padding dans les fichiers HTML.
-- [ ] (P1) GLOBAL — décider du sort de `hand-toggle` (conserver et l’injecter partout / supprimer complètement la feature) — vérifier qu’aucun code JS/CSS mort ne subsiste après décision.
-- [ ] (P2) GLOBAL — choisir un modèle de footer canonique (avec ou sans colonne “Territoires”) et l’appliquer à toutes les pages — vérifier visuellement sur un échantillon de pages ventousage/sécurité/contact que les colonnes et liens de footer sont identiques (hors cas spéciaux explicitement exclus).
+- [x] (P1) GLOBAL — décider du sort de `hand-toggle` (conserver et l’injecter partout / supprimer complètement la feature) — vérifier qu’aucun code JS/CSS mort ne subsiste après décision.
+- [x] (P2) GLOBAL — choisir un modèle de footer canonique (avec ou sans colonne “Territoires”) et l’appliquer à toutes les pages — vérifier visuellement sur un échantillon de pages ventousage/sécurité/contact que les colonnes et liens de footer sont identiques (hors cas spéciaux explicitement exclus).
 
 ---
 
 ## HOME
 
-- [ ] (P0) /index.html — corriger le JSON-LD `areaServed` invalide (bloc `{ ,` dans la liste des villes) — valider `index.html` avec l’outil de test de résultats enrichis Google (aucune erreur sur la section `LocalBusiness/ProfessionalService`).
+- [x] (P0) /index.html — corriger le JSON-LD `areaServed` invalide (bloc `{ ,` dans la liste des villes) — valider `index.html` avec l’outil de test de résultats enrichis Google (aucune erreur sur la section `LocalBusiness/ProfessionalService`).
 
 ---
 
 ## SERVICES
 
-- [ ] (P1) /services/index.html — supprimer la double inclusion de `/js/script.js` en pied de page — vérifier dans l’onglet Network que `script.js` n’est chargé qu’une seule fois et que le menu mobile fonctionne toujours.
-- [ ] (P2) /services/index.html — corriger le texte prérempli du lien WhatsApp flottant (paramètre `?text=…`) pour utiliser une phrase complète du type « Bonjour, je souhaite parler de mon projet. » — cliquer sur le bouton depuis un mobile ou simulateur et vérifier que le message WhatsApp affiché est correct et lisible.
+- [x] (P1) /services/index.html — supprimer la double inclusion de `/js/script.js` en pied de page — vérifier dans l’onglet Network que `script.js` n’est chargé qu’une seule fois et que le menu mobile fonctionne toujours.
+- [x] (P2) /services/index.html — (N/A) la page ne comporte plus de bouton WhatsApp flottant dédié ; les CTA WhatsApp utilisent désormais un message standard (« Bonjour, je souhaite parler de mon projet. ») ou une variante métier selon la page.
 
 ---
 
@@ -50,18 +50,18 @@ Convention commits :
 
 ### /contact/
 
-- [ ] (P1) /contact/index.html — aligner le texte de la bannière promo (`promo-banner`) sur le wording global choisi (« Réponse rapide sous 24h » ou « Devis gratuit sous 24h ») — vérifier que la bannière affiche le même message sur home, services, contact et au moins une landing ventousage/sécurité.
+- [x] (P1) /contact/index.html — aligner le texte de la bannière promo (`promo-banner`) sur le wording global choisi (« Réponse rapide sous 24h » ou « Devis gratuit sous 24h ») — vérifier que la bannière affiche le même message sur home, services, contact et au moins une landing ventousage/sécurité.
 
 ### /contact-direct/
 
-- [ ] (P1) /contact-direct/index.html — s’assurer que la classe `.hidden` utilisée pour le champ honeypot Netlify masque visuellement le champ sans gêner l’accessibilité (visually-hidden) — vérifier dans le navigateur que le champ n’est pas visible ni focusable au clavier, tout en restant présent pour les bots.
-- [ ] (P1) /contact-direct/index.html — tester le flux formulaire Netlify (`data-netlify="true"`, `action="/contact-direct/?success=1"`) — soumettre un formulaire de test et vérifier la redirection `?success=1` ainsi que l’apparition de la note de succès à l’endroit prévu.
-- [ ] (P2) /contact-direct/index.html — documenter (dans `plan_action.md` ou `verif.md`) le choix d’utiliser un header/footer injectés en JS plutôt qu’un header/footer statiques — vérifier que la doc mentionne clairement ce comportement particulier et les hooks JS (`setupUnifiedHeaderNav`, `setupUnifiedFooter`).
+- [x] (P1) /contact-direct/index.html — (N/A) la page ne comporte plus de formulaire Netlify ni de champ honeypot ; le flux contact repose désormais uniquement sur téléphone / WhatsApp / email. Si un formulaire est réintroduit plus tard, prévoir un honeypot `.visually-hidden` et une revue accessibilité.
+- [x] (P1) /contact-direct/index.html — (N/A) le flux formulaire Netlify a été retiré au profit d’un hub de contact direct (téléphone, WhatsApp, email) ; plus aucune redirection `?success=1` n’est utilisée sur cette page.
+- [x] (P2) /contact-direct/index.html — documenter (dans `plan_action.md` ou `verif.md`) le choix d’utiliser un header/footer injectés en JS plutôt qu’un header/footer statiques — vérifier que la doc mentionne clairement ce comportement particulier et les hooks JS (`setupUnifiedHeaderNav`, `setupUnifiedFooter`).
 
 ### /contact-nfc/
 
-- [ ] (P0) /contact-nfc/index.html — remplacer le placeholder `GTM-XXXXXXX` dans la meta `gtm-id` par l’ID réel du conteneur ou supprimer proprement cette meta si GTM n’est plus utilisé sur cette page — vérifier dans l’interface GTM (si utilisé) que les hits sont bien reçus ou, à défaut, que la page ne tente pas de charger de conteneur inexistant.
-- [ ] (P2) /contact-nfc/index.html — confirmer dans la doc interne que cette page est volontairement sans header/footer global (pattern “landing carte de visite”) — vérifier que `meta name="robots" content="noindex,nofollow"` est bien conservé pour empêcher l’indexation.
+- [x] (P0) /contact-nfc/index.html — remplacer le placeholder `GTM-XXXXXXX` dans la meta `gtm-id` par l’ID réel du conteneur ou supprimer proprement cette meta si GTM n’est plus utilisé sur cette page — vérifier dans l’interface GTM (si utilisé) que les hits sont bien reçus ou, à défaut, que la page ne tente pas de charger de conteneur inexistant.
+- [x] (P2) /contact-nfc/index.html — confirmer dans la doc interne que cette page est volontairement sans header/footer global (pattern “landing carte de visite”) — vérifier que `meta name="robots" content="noindex,nofollow"` est bien conservé pour empêcher l’indexation.
 
 ---
 

@@ -204,12 +204,13 @@ Exemple de format :
 
 ### Hub NFC/QR & cartes de visite
 
-- 2025-12-22 : Création de la page de contact rapide dédiée (hub NFC/QR) `/contact-direct/` avec un seul endroit où vivent les boutons WhatsApp / téléphone / email + mini-formulaire léger (usage principal : QR codes génériques, liens dans la signature, etc.).
+- 2025-12-22 : Création de la page de contact rapide dédiée (hub NFC/QR) `/contact-direct/` avec 4 entrées : téléphone, WhatsApp, email, mini-formulaire unique (usage principal : QR codes génériques, liens dans la signature, etc.).
 - 2026-01-XX : Création/optimisation de la page dédiée aux cartes de visite `/contact-nfc/` avec :
   - carte de visite numérique compacte (visible sans scroll sur mobile),
   - bouton « Ajouter à mes contacts » (téléchargement vCard),
-  - tracking dédié `nfc_page_view` + `nfc_contact_click` + `lead_contact` (`lead_origin = "nfc"`),
-  - possibilité de versionner les cartes physiques via `?q1`, `?q2`, etc. (filtrage par `page_location` dans GA4).
+  - tracking dédié `nfc_page_view` + `nfc_contact_click` + `lead_contact` (`lead_origin = \"nfc\"`),
+  - possibilité de versionner les cartes physiques via `?q1`, `?q2`, etc. (filtrage par `page_location` dans GA4),
+  - page volontairement sans header/footer global (pattern « carte de visite ») et balisée `noindex,nofollow`.
 
 Au fur et à mesure que nous modifions les pages ensemble, j’ajouterai ici les entrées correspondantes pour que tu puisses facilement re-tester après le merge.
 
@@ -223,3 +224,20 @@ Au fur et à mesure que nous modifions les pages ensemble, j’ajouterai ici les
 - 2025-12-28 : Suppression de toute mention de « formulaire de contact » sur les pages publiques ; modes de contact affichés = téléphone, WhatsApp, email.
 - 2025-12-28 : Politique de confidentialité et `llms.txt` mis à jour pour refléter ce mode de contact (pas de formulaire général actif pour le moment).
 - 2025-12-22 : Création de la page hub NFC/QR `/contact-direct/` avec 4 entrées : téléphone, WhatsApp, email, mini-formulaire unique.
+
+### /ventousage-paris/
+
+- 2026-01-25 : Ajout d’une question/réponse FAQ visible et JSON-LD sur l’optimisation du budget ventousage à Paris (conditions directes, enveloppes de production, respect des règles de la Ville de Paris).
+- 2026-01-25 : Enrichissement de la note « Budget & conformité » pour distinguer clairement la prestation BMS (ventousage, affichage, signalisation, présence terrain) et les taxes/redevances d’occupation facturées directement par les collectivités.
+
+### /ventousage/
+
+- 2026-01-25 : Mise à jour du paragraphe d’introduction pour mentionner les « conditions directes » (sans surcoût d’agence) et le lien vers la page dédiée « Ventousage Paris ».
+
+### /definition-ventousage/
+
+- 2026-01-25 : Ajout d’une phrase sur les « conditions directes » qui aident les régisseurs à rester dans leurs budgets pour les productions longues, tout en restant dans un ton métier.
+
+### /realisations/
+
+- 2026-01-25 : Ajout des références cinéma « Les Misérables » (réalisation Fred Cavayé, avec Vincent Lindon et Tahar Rahim) et « Le Teckel » (Mathieu Sapin, avec Franck Dubosc), avec détails sur les dispositifs de ventousage associés et mise à jour du JSON-LD `CreativeWork`.
