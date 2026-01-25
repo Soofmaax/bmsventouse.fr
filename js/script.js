@@ -1118,6 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCookieBanner();
     setupSkipLink();
     setupUnifiedFooter();
+    setupHeroLayout();
     setupScrollAnimations();
     setupHeroParallax();
     setupFaqAccordion();
@@ -1361,6 +1362,114 @@ function setupUnifiedFooter() {
     if (footerBottom) {
       footerBottom.innerHTML = '&copy; 2025 BMS Ventouse. Tous droits réservés. Site réalisé par <a href="https://smarterlogicweb.com" target="_blank" rel="noopener noreferrer">SmarterLogicWeb</a>.';
     }
+  } catch (_) {
+    // non-bloquant
+  }
+}
+
+// --------------------------------------------------------------------------
+// MODULE: HERO — STRUCTURE H1 + CTA + SECTION INTRO
+// --------------------------------------------------------------------------
+function setupHeroLayout() {
+  try {
+    const heroSections = document.querySelectorAll('section.hero');
+    if (!heroSections.length) return;
+
+    const docEl = document.documentElement || document.body;
+    const lang = (docEl && docEl.lang) ? docEl.lang.toLowerCase() : '';
+    const isEnglish = lang.indexOf('en') === 0;
+
+    heroSections.forEach((hero) => {
+      if (!hero || hero.dataset.heroNormalized === '1') return;
+
+      const overlay = hero.querySelector('.hero-overlay');
+      const container = overlay ? overlay.querySelector('.container') : null;
+      const h1 = container ? container.querySelector('h1') : null;
+      if (!container || !h1) return;
+
+      hero.dataset.heroNormalized = '1';
+
+      let heroButtons = container.querySelector('.hero-buttons');
+
+      const nodesToMove = [];
+      Array.from(container.children).forEach((child) => {
+        if (child === h1 || child === heroButtons) return;
+        if (child.nodeType !== 1) return;
+        nodesToMove.push(child);
+      });
+
+      const parent = hero.parentNode;
+      if (!parent) return;
+
+      const introSection = document.createElement('section');
+      introSection.className = 'section section-hero-intro';
+
+      const introContainer = document.createElement('div');
+      introContainer.className = 'container';
+
+      const h2 = document.createElement('h2');
+      h2.className = 'section-title animated-item';
+      h2.innerHTML = h1.innerHTML;
+      introContainer.appendChild(h2);
+
+      nodesToMove.forEach((node) => {
+        introContainer.appendChild(node);
+      });
+
+      introSection.appendChild(introContainer);
+
+      if (hero.nextSibling) {
+        parent.insertBefore(introSection, hero.nextSibling);
+      } else {
+        parent.appendChild(introSection);
+      }
+
+      if (!heroButtons) {
+        heroButtons = document.createElement('div');
+        heroButtons.className = 'hero-buttons';
+
+        if (isEnglish) {
+          const primary = document.createElement('a');
+          primary.href = '/contact/';
+          primary.className = 'btn btn-primary';
+          primary.textContent = 'Contact us';
+          heroButtons.appendChild(primary);
+
+          const secondary = document.createElement('a');
+          secondary.href = 'https://wa.me/33646005642?text=Hi,%20I%27m%20preparing%20a%20shoot%20or%20event%20in%20France%20and%20would%20like%20to%20discuss%20logistics%20with%20BMS%20Ventouse.';
+          secondary.className = 'btn btn-secondary-alt';
+          secondary.target = '_blank';
+          secondary.rel = 'noopener noreferrer';
+          secondary.textContent = 'WhatsApp (English / French)';
+          heroButtons.appendChild(secondary);
+        } else {
+          const primary = document.createElement('a');
+          primary.href = '/contact/';
+          primary.className = 'btn btn-primary';
+          primary.textContent = 'Nous contacter';
+          heroButtons.appendChild(primary);
+
+          const secondary = document.createElement('a');
+          secondary.href = 'https://wa.me/33646005642?text=Bonjour,%20je%20souhaite%20parler%20de%20mon%20projet.';
+          secondary.className = 'btn btn-secondary-alt';
+          secondary.target = '_blank';
+          secondary.rel = 'noopener noreferrer';
+          secondary.textContent = 'WhatsApp Direct';
+          heroButtons.appendChild(secondary);
+        }
+
+        container.appendChild(heroButtons);
+      }
+
+      if (heroButtons) {
+        const referenceNode = h1.nextSibling;
+        if (referenceNode) {
+          container.insertBefore(heroButtons, referenceNode);
+        } else {
+          container.appendChild(heroButtons);
+        }
+      }
+    });
   } catch (_) {
     // non-bloquant
   }
