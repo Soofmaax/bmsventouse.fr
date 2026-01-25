@@ -304,7 +304,7 @@ La typographie globale repose sur `--font-size-base: clamp(1rem, 1.05vw, 1.05rem
   - Bloc “Contact Direct” (téléphone, WhatsApp, email, adresse, disponibilité 24/7),
   - Bloc “Légal” : Mentions légales, Politique de confidentialité, Conditions générales de prestation, fichiers IA (`llms.txt`, `ai.txt`), page `/infos-ia/`, lien “Gérer les cookies”.
 
-La page Urban Régie possède un footer spécifique ; le module détecte ce cas et ne remplace pas son contenu.
+Historiquement, une page spécifique utilisait un footer dédié ; ce cas a été supprimé et le footer unifié est désormais appliqué partout.
 
 ### Boutons & CTA (typographie / responsivité)
 
