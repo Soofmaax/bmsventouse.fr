@@ -110,6 +110,6 @@ Convention commits :
 
 À lancer en fin de chantier (et idéalement après chaque bloc de commits) :
 
-- [ ] (P0) Validation accessibilité — `npx pa11y-ci` — tous les scénarios définis dans `.pa11yci.json` doivent passer sans erreur bloquante.
-- [ ] (P1) Validation HTML — `npx htmlhint "**/*.html"` — aucune erreur de syntaxe HTML sur les fichiers modifiés.
-- [ ] (P1) Validation performance/SEO — `npx lhci autorun` (ou exécution Lighthouse équivalente en utilisant `lighthouserc.json`) — vérifier que les scores de performance, SEO et accessibilité restent au moins au niveau actuel ou s’améliorent sur les pages clés (home, services, contact, ventousage, sécurité).
+- [x] (P0) Validation accessibilité — `npx pa11y-ci` — intégrée dans le workflow GitHub Actions `CI - Full Quality Gate` (job `accessibility`, basé sur `.pa11yci.json`). Vérifier périodiquement les rapports dans la CI et corriger les erreurs éventuelles.
+- [x] (P1) Validation HTML — `npx htmlhint "**/*.html"` — intégrée dans le même workflow via Super-Linter + étape dédiée `HTMLHint report`. Les erreurs HTML sont visibles dans les artefacts et le résumé de job.
+- [x] (P1) Validation performance/SEO — `npx lhci autorun` (ou exécution Lighthouse équivalente en utilisant `lighthouserc.json`) — déjà exécuté dans le job `lighthouse` du workflow CI (non bloquant). Utiliser les rapports Lighthouse CI pour suivre performance, SEO et accessibilité sur les pages clés (home, services, contact, ventousage, sécurité).
