@@ -23,7 +23,7 @@ Convention commits :
 
 ## GLOBAL
 
-- [ ] (P0) GLOBAL — charger les polices Anton &amp; Poppins sur toutes les pages — vérifier dans DevTools (Computed › font-family) que le texte de base est en Poppins et les titres en Anton sur au moins 5 pages (home, services, ventousage, sécurité, contact).
+- [x] (P0) GLOBAL — charger les polices Anton &amp; Poppins sur toutes les pages — vérifier dans DevTools (Computed › font-family) que le texte de base est en Poppins et les titres en Anton sur au moins 5 pages (home, services, ventousage, sécurité, contact).
 - [ ] (P0) GLOBAL — unifier le header et le footer sur la base du modèle home — vérifier que toutes les pages standard (hors pages spéciales comme `/contact-nfc/`) ont le même logo, navigation, boutons (hand-toggle/theme-toggle selon la décision), bannière promo et colonnes de footer.
 - [ ] (P1) GLOBAL — définir une règle claire pour l’`active state` de la navigation principale et l’appliquer partout — vérifier sur `/`, `/services/`, `/contact/` et une landing ventousage/sécurité que la classe `active` correspond bien à la page courante selon la règle choisie.
 - [x] (P1) GLOBAL — introduire/utiliser des utilitaires de spacing (margin/padding) pour remplacer les `style="margin-..."` inline — vérifier via une recherche globale qu’il ne reste plus de styles inline de marge/padding dans les fichiers HTML.
