@@ -170,7 +170,7 @@
                 <h1>Contact direct BMS Ventouse</h1>
                 <p class="hero-usp">Vous venez de scanner un QR code ou un tag NFC&nbsp;? Vous êtes au bon endroit.</p>
                 <p class="content-narrow">
-                    Choisissez le canal le plus simple pour vous : appel, WhatsApp, email ou mini‑formulaire.
+                    Choisissez le canal le plus simple pour vous : appel, WhatsApp ou email.
                     Nous revenons vers vous sous 24–48&nbsp;h ouvrées, plus vite si votre demande est urgente.
                 </p>
                 <div class="hero-buttons">
@@ -197,10 +197,10 @@
     <!-- Section cartes de contact rapides -->
     <section id="contact-direct-options" class="section">
         <div class="container">
-            <h2 class="section-title animated-item">4 façons de nous joindre</h2>
+            <h2 class="section-title animated-item">3 façons de nous joindre</h2>
             <p class="section-subtitle animated-item">
-                Si vous êtes sur un plateau ou en repérage, faites simple&nbsp;: appelez, écrivez sur WhatsApp, envoyez un email
-                ou utilisez le formulaire ci‑dessous. Tout arrive à la même équipe.
+                Si vous êtes sur un plateau ou en repérage, faites simple&nbsp;: appelez, écrivez sur WhatsApp ou envoyez un email.
+                Tout arrive à la même équipe.
             </p>
 
             <div class="contact-direct-grid">
@@ -243,135 +243,52 @@
                        class="btn btn-secondary-alt">Envoyer un email</a>
                 </article>
 
-                <article class="contact-card animated-item">
-                    <div class="contact-icon">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
-                        <path d="M3.5 0A1.5 1.5 0 0 0 2 1.5v13A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 12.5 0zm0 1h9a.5.5 0 0 1 .5.5V3H3V1.5a.5.5 0 0 1 .5-.5M3 4h10v8H3zm0 9h10v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"/>
-                      </svg>
-                    </div>
-                    <h3>Mini‑formulaire</h3>
-                    <p>Si vous préférez, complétez le formulaire ci‑dessous avec les infos essentielles.</p>
-                    <p class="contact-note">Idéal quand vous ne pouvez pas appeler tout de suite.</p>
-                    <a href="#contact-form" class="btn btn-secondary-alt">Remplir le formulaire</a>
-                </article>
+                
             </div>
         </div>
     </section>
 
-    <!-- Section formulaire rapide : déclenche contact_submitted -->
+    <!-- Section infos rapides à la place du formulaire -->
     <section id="contact-form-section" class="section section-alt">
         <div class="container">
-            <h2 id="contact-form" class="section-title animated-item">Formulaire rapide après scan</h2>
+            <h2 class="section-title animated-item">Comment nous envoyer les infos</h2>
             <p class="section-subtitle animated-item">
-                Donnez‑nous simplement quelques informations clés, on s’occupe du reste.
-                Les champs marqués d’un * sont obligatoires.
+                Après un scan QR ou NFC, le plus simple reste un appel, un message WhatsApp ou un email.
+                Si vous préférez préparer votre message, ce mémo peut vous aider.
             </p>
 
-            <!-- Note de succès (injectée dynamiquement si ?success=1) -->
-            <!-- setupContactSuccessNotice() ajoutera une .coverage-note-card au dessus du formulaire -->
+            <div class="services-grid animated-item">
+                <article class="contact-card">
+                    <h3>Pour un appel ou un message rapide</h3>
+                    <p>Notez simplement :</p>
+                    <ul class="benefits-list">
+                        <li>ville / lieu principal</li>
+                        <li>dates et horaires</li>
+                        <li>type de besoin (ventousage, sécurité, convoyage, régie…)</li>
+                        <li>niveau d’urgence</li>
+                    </ul>
+                    <p class="contact-note">Nous complétons avec vous le reste au téléphone ou sur WhatsApp.</p>
+                </article>
 
-            <form name="contact"
-                  method="POST"
-                  data-netlify="true"
-                  netlify-honeypot="bot-field"
-                  action="/contact-direct/?success=1"
-                  class="contact-form animated-item">
-
-                <input type="hidden" name="form-name" value="contact">
-
-                <!-- Champ honeypot Netlify -->
-                <p class="hidden">
-                    <label>Ne pas remplir ce champ : <input name="bot-field"></label>
-                </p>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="name">Nom et prénom *</label>
-                        <input id="name" name="name" type="text" required autocomplete="name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="company">Société / Production</label>
-                        <input id="company" name="company" type="text" autocomplete="organization">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input id="email" name="email" type="email" required autocomplete="email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Téléphone mobile *</label>
-                        <input id="phone" name="phone" type="tel" required autocomplete="tel">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="service">Type de besoin *</label>
-                        <select id="service" name="service" required>
-                            <option value="">Sélectionner…</option>
-                            <option value="Ventousage / stationnement">Ventousage / stationnement</option>
-                            <option value="Sécurité / gardiennage">Sécurité / gardiennage</option>
-                            <option value="Convoyage / transport">Convoyage / transport</option>
-                            <option value="Régie / logistique">Régie / logistique</option>
-                            <option value="Cantine / catering">Cantine / catering</option>
-                            <option value="Autre">Autre</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="location">Ville / lieu principal *</label>
-                        <input id="location" name="location" type="text" required placeholder="Paris 11e, Marseille, Bordeaux…">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="schedule">Dates / horaires prévus</label>
-                        <input id="schedule" name="schedule" type="text" placeholder="Ex. : Nuit du 12 au 13, 18h–6h">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="urgency">Niveau d’urgence *</label>
-                        <select id="urgency" name="urgency" required>
-                            <option value="">Sélectionner…</option>
-                            <option value="standard">Standard (plus de 72h)</option>
-                            <option value="urgent_72h">Urgent (moins de 72h)</option>
-                            <option value="urgent_24h">Très urgent (moins de 24h)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group form-group-full">
-                        <label for="details">Détaillez brièvement votre besoin *</label>
-                        <textarea id="details" name="details" rows="4" required placeholder="Type de tournage, nombre de véhicules, zones à ventouser, contraintes particulières…"></textarea>
-                    </div>
-
-                    <!-- Champs optionnels mappés mais non obligatoires -->
-                    <div class="form-group">
-                        <label for="role">Votre rôle (prod, régie, location…)</label>
-                        <input id="role" name="role" type="text">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="budget">Budget indicatif (facultatif)</label>
-                        <input id="budget" name="budget" type="text">
-                    </div>
-                </div>
-
-                <div class="form-group form-group-full">
-                    <label class="checkbox-label">
-                        <input id="consent" name="consent" type="checkbox" required>
-                        <span>J’accepte que mes données soient utilisées pour traiter ma demande, conformément à la <a href="/politique-confidentialite/">politique de confidentialité</a>. *</span>
-                    </label>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">
-                        Envoyer ma demande
-                    </button>
-                    <p class="text-muted">
-                        Vous recevrez une première réponse sous 24–48&nbsp;h ouvrées (plus rapide si votre demande est marquée urgente).
+                <article class="contact-card">
+                    <h3>Modèle à copier/coller</h3>
+                    <p>Vous pouvez copier/coller ce modèle dans votre email ou votre message WhatsApp :</p>
+                    <pre class="contact-template" aria-label="Modèle de message rapide après scan">
+Ville / lieu :
+Dates / horaires :
+Type de projet (tournage, shooting, événement...) :
+Besoins (ventousage, sécurité, convoyage, régie...) :
+Niveau d'urgence :
+                    </pre>
+                    <p class="contact-note">
+                        Envoyez-le à
+                        <a href="mailto:contact@bmsventouse.fr?subject=Contact%20après%20scan%20QR%20code">contact@bmsventouse.fr</a>
+                        ou collez-le dans WhatsApp au
+                        <a href="https://wa.me/33646005642?text=Bonjour,%20je%20viens%20de%20scanner%20votre%20QR%20code%20et%20je%20souhaite%20parler%20de%20mon%20projet."
+                           target="_blank" rel="noopener noreferrer">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</a>.
                     </p>
-                </div>
-
-            </form>
+                </article>
+            </div>
         </div>
     </section>
 
