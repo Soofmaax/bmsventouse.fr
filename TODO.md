@@ -75,8 +75,8 @@ Convention commits :
 
 ### Ventousage villes (Lyon, Marseille, Bordeaux, etc.)
 
-- [ ] (P1) VENTOUSAGE villes — harmoniser les sections hero/CTA des pages `ventousage-*/index.html` sur le modèle `/ventousage-paris/` (structure, composants, boutons) — vérifier visuellement sur au moins 4 villes (Lyon, Marseille, Bordeaux, Toulouse) que le squelette UI est identique et que seules les mentions locales changent.
-- [ ] (P2) VENTOUSAGE villes — harmoniser les footers des pages `ventousage-*/index.html` avec le modèle de footer choisi en section GLOBAL — vérifier que toutes les pages ventousage-* affichent les mêmes colonnes et liens de footer (hors éventuelles pages volontairement simplifiées et documentées).
+- [x] (P1) VENTOUSAGE villes — harmoniser les sections hero/CTA des pages `ventousage-*/index.html` sur le modèle `/ventousage-paris/` (structure, composants, boutons) — vérifier visuellement sur au moins 4 villes (Lyon, Marseille, Bordeaux, Toulouse) que le squelette UI est identique et que seules les mentions locales changent.
+- [x] (P2) VENTOUSAGE villes — harmoniser les footers des pages `ventousage-*/index.html` avec le modèle de footer choisi en section GLOBAL — vérifier que toutes les pages ventousage-* affichent les mêmes colonnes et liens de footer (hors éventuelles pages volontairement simplifiées et documentées).
 
 ### Ventousage Toulouse (HTML invalide)
 
