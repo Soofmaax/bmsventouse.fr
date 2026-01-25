@@ -70,8 +70,8 @@ Convention commits :
 
 ### Ventousage générique &amp; Paris
 
-- [ ] (P1) /ventousage/index.html — vérifier et compléter la section « Livrables &amp; preuves » pour s’assurer que la liste et le texte sont correctement structurés (aucune phrase tronquée, listes complètes) — valider le fichier avec `htmlhint` et faire une revue visuelle de cette section.
-- [ ] (P1) /ventousage-paris/index.html — harmoniser le hero (titres, sous-titres, boutons) avec le modèle de hero global (structure, classes, tailles de texte), tout en conservant le contenu spécifique à Paris — vérifier sur desktop et mobile que le hero de Paris et celui de la home donnent une impression de “même famille”.
+- [x] (P1) /ventousage/index.html — vérifier et compléter la section « Livrables &amp; preuves » pour s’assurer que la liste et le texte sont correctement structurés (aucune phrase tronquée, listes complètes) — valider le fichier avec `htmlhint` et faire une revue visuelle de cette section.
+- [x] (P1) /ventousage-paris/index.html — harmoniser le hero (titres, sous-titres, boutons) avec le modèle de hero global (structure, classes, tailles de texte), tout en conservant le contenu spécifique à Paris — vérifier sur desktop et mobile que le hero de Paris et celui de la home donnent une impression de “même famille”.
 
 ### Ventousage villes (Lyon, Marseille, Bordeaux, etc.)
 
@@ -80,7 +80,7 @@ Convention commits :
 
 ### Ventousage Toulouse (HTML invalide)
 
-- [ ] (P0) /ventousage-toulouse/index.html — corriger le HTML invalide (balise `&lt;&lt;meta`, section dupliquée dont une version est mal échappée) — valider la page avec `htmlhint` ou le validateur W3C et vérifier que le DOM s’affiche sans erreurs dans le navigateur.
+- [x] (P0) /ventousage-toulouse/index.html — corriger le HTML invalide (balise `&lt;&lt;meta`, section dupliquée dont une version est mal échappée) — valider la page avec `htmlhint` ou le validateur W3C et vérifier que le DOM s’affiche sans erreurs dans le navigateur.
 
 ---
 
