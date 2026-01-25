@@ -96,7 +96,7 @@ Tu peux cocher les cases à la main ou simplement ajouter des commentaires sous 
 
 ## 5. Autres pages “marque”
 
-- `/urban-regie/` – (ancienne) page Urban Régie — utilise désormais le même design system et footer que le reste du site (pas de partenaire externe actif)
+- (aucune page marque spécifique en production à ce jour)
 
 ---
 
