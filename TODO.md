@@ -89,20 +89,20 @@ Convention commits :
 
 ### Sécurité &amp; gardiennage `/securite-gardiennage/`
 
-- [ ] (P1) /securite-gardiennage/index.html — revoir le contenu du JSON-LD (FAQ) pour corriger les éventuelles répétitions ou formulations bancales (ex. SSIAP “1/2/ spécialisés, SSIAP 1/2/3”) — valider le JSON-LD avec l’outil de test de données structurées Google.
+- [x] (P1) /securite-gardiennage/index.html — revoir le contenu du JSON-LD (FAQ) pour corriger les éventuelles répétitions ou formulations bancales (ex. SSIAP “1/2/ spécialisés, SSIAP 1/2/3”) — valider le JSON-LD avec l’outil de test de données structurées Google.
 
 ### Sécurité de plateaux `/securite-plateaux/`
 
-- [ ] (P1) /securite-plateaux/index.html — vérifier la cohérence des avantages, process et FAQ avec `/securite-gardiennage/` (pas de contradiction sur délais, disponibilité 24/7, SSIAP/maîtres-chiens) — revue éditoriale commune des deux pages.
+- [x] (P1) /securite-plateaux/index.html — vérifier la cohérence des avantages, process et FAQ avec `/securite-gardiennage/` (pas de contradiction sur délais, disponibilité 24/7, SSIAP/maîtres-chiens) — revue éditoriale commune des deux pages.
 
 ### Sécurité tournage Paris `/securite-tournage-paris/`
 
-- [ ] (P1) /securite-tournage-paris/index.html — harmoniser la bannière promo (`promo-banner`) avec la décision globale (conserver « Devis gratuit sous 24h » comme variation ou l’aligner sur « Réponse rapide sous 24h ») — vérifier que le wording choisi est cohérent sur l’ensemble des pages sécurité.
-- [ ] (P2) /securite-tournage-paris/index.html — aligner le footer sur le modèle sécurité (plateaux/gardiennage) ou sur le footer global choisi (présence ou non de colonne Territoires) — vérifier que, à l’intérieur du “cluster sécurité”, les footers sont homogènes.
+- [x] (P1) /securite-tournage-paris/index.html — harmoniser la bannière promo (`promo-banner`) avec la décision globale (conserver « Devis gratuit sous 24h » comme variation ou l’aligner sur « Réponse rapide sous 24h ») — vérifier que le wording choisi est cohérent sur l’ensemble des pages sécurité.
+- [x] (P2) /securite-tournage-paris/index.html — aligner le footer sur le modèle sécurité (plateaux/gardiennage) ou sur le footer global choisi (présence ou non de colonne Territoires) — vérifier que, à l’intérieur du “cluster sécurité”, les footers sont homogènes.
 
 ### Cluster sécurité (ensemble)
 
-- [ ] (P2) SÉCURITÉ (plateaux/gardiennage/tournage-paris) — vérifier que les trois pages utilisent les mêmes composants structurants (`section-security`, `stats-grid`, `faq-container`, cartes de services) avec une hiérarchie visuelle homogène — revue visuelle croisée des trois pages sur desktop et mobile.
+- [x] (P2) SÉCURITÉ (plateaux/gardiennage/tournage-paris) — vérifier que les trois pages utilisent les mêmes composants structurants (`section-security`, `stats-grid`, `faq-container`, cartes de services) avec une hiérarchie visuelle homogène — revue visuelle croisée des trois pages sur desktop et mobile.
 
 ---
 
