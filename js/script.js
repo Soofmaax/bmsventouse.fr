@@ -476,82 +476,67 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------------------------------
   const setupFaqAccordion = () => {
     const faqItems = document.querySelectorAll('.faq-item');
-    
-    if (faqItems.length === 0) {
-      console.warn("Aucun élément FAQ trouvé.");
+    if (!faqItems.length) {
       return;
     }
 
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
+    faqItems.forEach((item, index) => {
+      let question = item.querySelector('.faq-question');
       const answer = item.querySelector('.faq-answer');
-      
       if (!question || !answer) return;
 
-      // Accessibilité
-      const questionId = `faq-question-${Math.random().toString(36).substr(2, 9)}`;
-      const answerId = `faq-answer-${Math.random().toString(36).substr(2, 9)}`;
-      
-      question.setAttribute('id', questionId);
-      question.setAttribute('aria-expanded', 'false');
-      question.setAttribute('aria-controls', answerId);
-      question.setAttribute('role', 'button');
-      question.setAttribute('tabindex', '0');
-      
-      answer.setAttribute('id', answerId);
-      answer.setAttribute('aria-labelledby', questionId);
-      answer.setAttribute('role', 'region');
-      answer.style.maxHeight = '0px';
-
-      // Quand l'ouverture est terminée, on retire la contrainte de hauteur
-      // pour que tout le texte reste visible même si la mise en page évolue
-      answer.addEventListener('transitionend', (e) => {
-        if (e.propertyName !== 'max-height') return;
-        if (item.classList.contains('is-open')) {
-          answer.style.maxHeight = 'none';
+      // Si la question n'est pas déjà un bouton, on la transforme en <button>
+      if (question.tagName.toLowerCase() !== 'button') {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = question.className || 'faq-question';
+        btn.innerHTML = question.innerHTML;
+        if (question.parentNode) {
+          question.parentNode.replaceChild(btn, question);
         }
-      });
+        question = btn;
+      } else if (!question.hasAttribute('type')) {
+        question.setAttribute('type', 'button');
+      }
 
-      // Toggle avec transition fluide de la hauteur
+      const questionId = question.id || `faq-question-${index + 1}`;
+      const answerId = answer.id || `faq-answer-${index + 1}`;
+
+      question.id = questionId;
+      question.setAttribute('aria-controls', answerId);
+      answer.id = answerId;
+      answer.setAttribute('role', 'region');
+      answer.setAttribute('aria-labelledby', questionId);
+
+      // Par défaut, on replie les réponses et on aligne aria-expanded
+      if (!answer.hasAttribute('hidden')) {
+        answer.setAttribute('hidden', '');
+      }
+      question.setAttribute('aria-expanded', answer.hasAttribute('hidden') ? 'false' : 'true');
+
       const toggleFAQ = () => {
-        const isOpen = item.classList.contains('is-open');
-        
-        // Fermer les autres éléments
+        const isExpanded = question.getAttribute('aria-expanded') === 'true';
+        const nextState = !isExpanded;
+
+        // Ferme les autres éléments de la FAQ (accordéon exclusif)
         faqItems.forEach(otherItem => {
-          if (otherItem !== item) {
-            otherItem.classList.remove('is-open');
-            const otherQuestion = otherItem.querySelector('.faq-question');
-            const otherAnswer = otherItem.querySelector('.faq-answer');
-            if (otherQuestion) {
-              otherQuestion.setAttribute('aria-expanded', 'false');
-            }
-            if (otherAnswer) {
-              // On remet une hauteur numérique pour permettre l'animation de fermeture
-              otherAnswer.style.maxHeight = '0px';
-            }
-          }
+          if (otherItem === item) return;
+          const otherQuestion = otherItem.querySelector('.faq-question');
+          const otherAnswer = otherItem.querySelector('.faq-answer');
+          if (!otherQuestion || !otherAnswer) return;
+          otherQuestion.setAttribute('aria-expanded', 'false');
+          otherAnswer.setAttribute('hidden', '');
+          otherItem.classList.remove('is-open');
         });
-        
-        if (!isOpen) {
-          // Ouvrir l'élément actuel
+
+        // Bascule l'élément courant
+        question.setAttribute('aria-expanded', nextState ? 'true' : 'false');
+        if (nextState) {
+          answer.removeAttribute('hidden');
           item.classList.add('is-open');
-          question.setAttribute('aria-expanded', 'true');
-          // On part de 0, puis on anime jusqu'à la hauteur réelle
-          answer.style.maxHeight = '0px';
-          requestAnimationFrame(() => {
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-          });
         } else {
-          // Fermer l'élément actuel
+          answer.setAttribute('hidden', '');
           item.classList.remove('is-open');
-          question.setAttribute('aria-expanded', 'false');
-          // Si la hauteur était "none", on fixe d'abord la hauteur actuelle,
-          // puis on anime jusqu'à 0 pour éviter les coupures brutales.
-          const currentHeight = answer.scrollHeight;
-          answer.style.maxHeight = currentHeight + 'px';
-          requestAnimationFrame(() => {
-            answer.style.maxHeight = '0px';
-          });
         }
       };
 
@@ -564,8 +549,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
-
-    console.log(`✅ FAQ interactive initialisée pour ${faqItems.length} éléments`);
   };
 
   // --------------------------------------------------------------------------
@@ -656,10 +639,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const KEY = 'bms_cookie_consent';
 
       const applyConsent = (value) => {
-        // Met à jour uniquement le stockage analytics (pas de pubs)
-        if (typeof gtag === 'function') {
+        const granted = value === 'accepted' || value === 'granted' || value === true;
+        if (typeof updateAnalyticsConsent === 'function') {
+          updateAnalyticsConsent(granted);
+        } else if (typeof gtag === 'function') {
+          // Fallback si updateAnalyticsConsent n'est pas disponible
           gtag('consent', 'update', {
-            analytics_storage: value === 'accepted' ? 'granted' : 'denied'
+            analytics_storage: granted ? 'granted' : 'denied'
           });
         }
       };
@@ -698,8 +684,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const declineBtn = banner.querySelector('#cookie-decline');
 
       acceptBtn.addEventListener('click', () => {
-        localStorage.setItem(KEY, 'accepted');
-        applyConsent('accepted');
+        localStorage.setItem(KEY, 'granted');
+        applyConsent('granted');
 
         // Suivi du consentement (uniquement en cas d'acceptation)
         try {
@@ -1089,7 +1075,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const KEY = 'bms_cookie_consent';
       const saved = localStorage.getItem(KEY);
-      if (saved === 'accepted') {
+      if (saved === 'accepted' || saved === 'granted') {
         setupClarity();
         return;
       }
@@ -1191,16 +1177,26 @@ document.addEventListener('DOMContentLoaded', () => {
       // non-bloquant
     }
 
-    // Lien "Gérer les cookies" en footer: permet de rouvrir la bannière de consentement
+    // Lien "Gérer les cookies" : gestion du consentement via une boîte de dialogue minimale
     try {
       document.querySelectorAll('.manage-cookies,[data-cookie="manage"]').forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
-          // Réinitialise le consentement et réaffiche la bannière
+          const granted = window.confirm("Autoriser les cookies de mesure d'audience (Google Analytics) ?");
           try {
-            localStorage.removeItem('bms_cookie_consent');
-          } catch (_) {}
-          setupCookieBanner();
+            if (typeof updateAnalyticsConsent === 'function') {
+              updateAnalyticsConsent(granted === true);
+            }
+          } catch (_) {
+            // non-bloquant
+          }
+          if (granted === true) {
+            try {
+              setupClarity();
+            } catch (_) {
+              // non-bloquant
+            }
+          }
         });
       });
     } catch (_) {
@@ -1222,6 +1218,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+function updateAnalyticsConsent(granted) {
+  try {
+    var status = granted === true ? 'granted' : 'denied';
+
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', {
+        analytics_storage: status,
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+    }
+
+    try {
+      localStorage.setItem('bms_cookie_consent', status);
+    } catch (_) {
+      // non-bloquant
+    }
+  } catch (_) {
+    // non-bloquant
+  }
+}
 
 // --------------------------------------------------------------------------
 // UTIL: Événement unifié de lead (lead_contact)
