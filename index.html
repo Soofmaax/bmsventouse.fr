@@ -82,8 +82,12 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap">
     </noscript>
 
-    <!-- Preload de l'image héros pour optimiser le LCP -->
-    <link rel="preload" as="image" href="/images/hero-background-custom-1920.jpg">
+    <!-- Preload de l'image héros pour optimiser le LCP (alignée sur la variante WebP 960w utilisée en mobile) -->
+    <link rel="preload"
+          as="image"
+          href="/images/hero-background-custom-960.webp"
+          imagesrcset="/images/hero-background-custom-640.webp 640w, /images/hero-background-custom-960.webp 960w, /images/hero-background-custom-1280.webp 1280w, /images/hero-background-custom-1920.webp 1920w"
+          imagesizes="100vw">
     <!-- Font Awesome pour les icônes -->
     <!-- Supprimé Font Awesome CSS sur la page d'accueil pour améliorer FCP/TBT et éviter le chargement de polices -->
 

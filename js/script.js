@@ -6,13 +6,11 @@
  * performante et accessible (Focus Trap, Escape Key, etc.).
  */
 
-/* Google Tag Manager : chargement global via script principal */
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KD4HDWX4');
-/* Fin Google Tag Manager */
+/* Google Tag Manager : configuration globale (chargement différé via setupGTM) */
+if (typeof window !== 'undefined') {
+  window.GTM_ID = window.GTM_ID || 'GTM-KD4HDWX4';
+}
+/* Fin configuration Google Tag Manager */
 
 /* Production logging gate: silence console in production unless window.DEBUG=true */
 (function(){ try{ var DEBUG = !!(window.DEBUG); if(!DEBUG){ ['log','info','debug','warn'].forEach(function(k){ try{ console[k] = function(){}; }catch(e){} }); } window.__BMS_DEBUG__ = DEBUG; }catch(e){} })();
@@ -1149,8 +1147,17 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (_) {
       // non-bloquant
     }
-    // Google Tag Manager (GTM) - chargement dynamique si un ID est fourni
-    setupGTM();
+    // Google Tag Manager (GTM) - chargement dynamique différé pour limiter l'impact sur le thread principal
+    try {
+      const startGTM = () => { setupGTM(); };
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(startGTM, { timeout: 2000 });
+      } else {
+        setTimeout(startGTM, 1000);
+      }
+    } catch (_) {
+      // non-bloquant
+    }
     // Message de succès pour le formulaire Contact (?success=1)
     setupContactSuccessNotice();
     // Détails dynamiques selon service sur le formulaire Contact
@@ -1372,6 +1379,12 @@ function setupUnifiedFooter() {
 // --------------------------------------------------------------------------
 function setupHeroLayout() {
   try {
+    // La home a déjà une structure de héros optimisée et stable ; on évite toute
+    // restructuration DOM ici pour supprimer les layout shifts (CLS).
+    if (document.body && document.body.classList.contains('page-accueil')) {
+      return;
+    }
+
     const heroSections = document.querySelectorAll('section.hero');
     if (!heroSections.length) return;
 
