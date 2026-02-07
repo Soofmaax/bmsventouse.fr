@@ -297,6 +297,12 @@
         <priority>0.8</priority>
       </url>
       <url>
+        <loc>https://bmsventouse.fr/panneaux-demenagement/</loc>
+        <lastmod>2026-02-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.80</priority>
+      </url>
+      <url>
         <loc>https://bmsventouse.fr/loges-confort/</loc>
         <lastmod>2025-11-16T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
