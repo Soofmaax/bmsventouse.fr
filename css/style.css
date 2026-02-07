@@ -141,8 +141,8 @@ input, button, textarea, select {
   position: absolute;
   top: -40px;
   left: 8px;
-  background: var(--color-primary);
-  color: #fff;
+  background: #111827;
+  color: #ffffff;
   padding: 8px 14px;
   border-radius: var(--border-radius-base);
   z-index: 10000;
@@ -647,6 +647,7 @@ body.dark-theme .header {
   }
 }
 
+.footer-column h3,
 .footer-column h4 {
   color: var(--color-primary);
   margin-bottom: 0.75rem;
@@ -654,6 +655,7 @@ body.dark-theme .header {
   position: relative;
 }
 
+.footer-column h3::after,
 .footer-column h4::after {
   content: '';
   position: absolute;
@@ -673,7 +675,7 @@ body.dark-theme .header {
 }
 
 .footer-column a { 
-  color: var(--color-primary); 
+  color: #e5e7eb; 
   transition: color 0.2s, transform 0.2s;
   display: inline-flex;
   align-items: center;
@@ -729,9 +731,10 @@ body.dark-theme .header {
   border-radius: var(--border-radius-pill);
   padding: 0.9rem 1.7rem;
   cursor: pointer;
-  transition: background 0.2s ease-in-out, 
-              transform 0.2s ease-out,
-              box-shadow 0.2s ease;
+  transition: transform 0.2s ease-out,
+              box-shadow 0.2s ease,
+              background-color 0.2s ease-in-out,
+              color 0.2s ease-in-out;
   box-shadow: 0 2px 12px rgba(0,0,0,0.12);
   text-decoration: none;
   min-width: 210px;
@@ -870,7 +873,11 @@ body.dark-theme .header {
   text-align: center;
   padding: 2.5rem 2rem;
   box-shadow: var(--box-shadow-base);
-  transition: var(--transition-smooth);
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease,
+              background-color 0.3s ease,
+              color 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -931,7 +938,11 @@ body.dark-theme .header {
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: var(--transition-smooth);
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease,
+              background-color 0.3s ease,
+              color 0.3s ease;
   position: relative;
 }
 
@@ -1693,7 +1704,10 @@ body.dark-theme .fw-popup-close:focus {
   font-weight: var(--font-weight-medium);
   border-radius: var(--border-radius-base);
   margin: 0.5rem;
-  transition: var(--transition-base);
+  transition: transform 0.2s ease-out,
+              box-shadow 0.2s ease,
+              background-color 0.2s ease-in-out,
+              color 0.2s ease-in-out;
 }
 
 .cta-section .btn.btn-primary:hover,

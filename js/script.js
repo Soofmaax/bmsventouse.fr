@@ -1299,7 +1299,7 @@ function setupUnifiedFooter() {
         </div>
         <div class="footer-links">
           <div class="footer-column">
-            <h4>Navigation</h4>
+            <h3>Navigation</h3>
             <ul>
               <li><a href="/">Accueil</a></li>
               <li><a href="/services/">Services</a></li>
@@ -1311,7 +1311,7 @@ function setupUnifiedFooter() {
             </ul>
           </div>
           <div class="footer-column">
-            <h4>Territoires</h4>
+            <h3>Territoires</h3>
             <ul>
               <li><a href="/ventousage-paris/">Paris</a></li>
               <li><a href="/ventousage-pantin/">Pantin</a></li>
@@ -1325,7 +1325,7 @@ function setupUnifiedFooter() {
             </ul>
           </div>
           <div class="footer-column">
-            <h4>Contact Direct</h4>
+            <h3>Contact Direct</h3>
             <ul>
               <li>
                 <a href="tel:+33646005642">
@@ -1369,7 +1369,7 @@ function setupUnifiedFooter() {
             </ul>
           </div>
           <div class="footer-column">
-            <h4>Légal</h4>
+            <h3>Légal</h3>
             <ul>
               <li><a href="/mentions/">Mentions Légales</a></li>
               <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>

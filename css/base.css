@@ -139,8 +139,8 @@ input, button, textarea, select {
   position: absolute;
   top: -40px;
   left: 8px;
-  background: var(--color-primary);
-  color: #fff;
+  background: #111827;
+  color: #ffffff;
   padding: 8px 14px;
   border-radius: var(--border-radius-base);
   z-index: 10000;
