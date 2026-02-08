@@ -253,9 +253,27 @@ p {
   }
 }
 
-/* Bannière promo désactivée */
+/* Bannière promo active : bandeau fin sous le header */
 .promo-banner {
-  display: none;
+  display: block;
+  background: #111827;
+  color: #f9fafb;
+  text-align: center;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+.promo-banner p {
+  margin: 0.2rem 0;
+}
+
+/* Texte promo spécifique par langue */
+html[lang="fr"] .promo-banner strong::after {
+  content: " — -10% sur votre prochain tournage de film";
+}
+
+html[lang="en"] .promo-banner strong::after {
+  content: " — -10% on your next film shoot in France";
 }
 
 /* Utilitaires de spacing (marges verticales) */
