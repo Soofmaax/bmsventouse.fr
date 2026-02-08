@@ -1437,7 +1437,7 @@ body.dark-theme .fw-popup-close:focus {
 /* Hero */
 .hero {
   position: relative;
-  min-height: clamp(420px, 70vh, 650px);
+  min-height: clamp(460px, 65vh, 820px);
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -1448,7 +1448,7 @@ body.dark-theme .fw-popup-close:focus {
 .hero-bg {
   position: absolute;
   inset: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   z-index: var(--z-below);
   pointer-events: none;
@@ -1457,9 +1457,9 @@ body.dark-theme .fw-popup-close:focus {
 }
 
 .hero-bg img {
-  width: 100vw;
+  width: 100%;
   height: 100%;
-  max-height: 650px;
+  max-height: 820px;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -1469,20 +1469,25 @@ body.dark-theme .fw-popup-close:focus {
   position: absolute;
   inset: 0;
   z-index: var(--z-normal);
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.75rem, 2.4vh, 1.5rem);
   background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.55) 100%);
   color: #fff;
   text-align: center;
-  padding: 40px 5vw;
-  width: 100vw;
+  padding: 40px 5vw clamp(24px, 6vh, 64px);
+  width: 100%;
 }
 
 .hero-overlay .container {
   z-index: var(--z-above);
   position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.75rem, 2vh, 1.5rem);
   padding: 0 clamp(12px, 4vw, 28px);
   transform: none;
   animation: fadeInUp 1s ease-out;
@@ -1495,15 +1500,10 @@ body.dark-theme .fw-popup-close:focus {
 }
 
 @media (max-width: 600px) {
-  .hero {
-    min-height: 420px;
-    overflow: visible;
-  }
-
   .hero-overlay {
-    align-items: flex-start;
-    justify-items: center;
-    padding: calc(var(--header-height) + 1.2rem) 5vw 2.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    padding: calc(var(--header-height) + 1.2rem) 5vw clamp(24px, 6vh, 64px);
   }
 
   .hero-overlay .container {
@@ -1573,11 +1573,15 @@ body.dark-theme .fw-popup-close:focus {
 
 .hero p {
   font-size: clamp(1rem, 2vw, 1.2rem);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   opacity: 0.97;
   max-width: 90vw;
   margin-left: auto;
   margin-right: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -1589,10 +1593,18 @@ body.dark-theme .fw-popup-close:focus {
 .hero-buttons {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 1.1rem;
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+.hero-buttons .btn {
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .cta-container {
