@@ -1459,7 +1459,6 @@ body.dark-theme .fw-popup-close:focus {
 .hero-bg img {
   width: 100%;
   height: 100%;
-  max-height: 820px;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -1561,7 +1560,58 @@ body.dark-theme .fw-popup-close:focus {
   line-height: 1.18;
 }
 
-/* Ajustement des titres de Héros pour éviter le texte tronqué sur mobile
+@media (min-width: 768px) {
+  .hero p {
+    max-width: 38rem;
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 601px) {
+  .hero-buttons {
+    flex-direction: row;
+  }
+}
+
+.hero-buttons .btn {
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+ax-</old_code><new_code>.hero-buttons {
+  display: flex;
+  flex-wrap: wrap column;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-buttons .btn {
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+</old_code><new_code>/* Ajustement des titres de Héros pour éviter le texte tronqué sur mobile
    tout en restant lisible — limité aux petits écrans (smartphones) pour
    préserver le rendu “grand format” sur tablette/desktop */
 @media (max-width: 600px) {
@@ -1592,7 +1642,67 @@ body.dark-theme .fw-popup-close:focus {
 
 .hero-buttons {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 601px) {
+  .hero-buttons {
+    flex-direction: row;
+  }
+}
+
+.hero-buttons .btn {
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+} </old_code><new_code>@media (min-width: 768px) {
+  .hero p {
+    max-width: 38rem;
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 601px) {
+  .hero-buttons {
+    flex-direction: row;
+  }
+}
+
+.hero-buttons .btn {
+  max-width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+ax-</old_code><new_code>.hero-buttons {
+  display: flex;
+  flex-wrap: wrap column;
   flex-wrap: wrap;
   gap: 1.1rem;
   justify-content: center;
@@ -2178,20 +2288,30 @@ body.page-contact-nfc .hero-contact-nfc p {
 
 body.page-contact-nfc .hero-contact-nfc .hero-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  max-width: 420px;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  margin-top: 0.6rem;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: stretch;
 }
 
-body.page-contact-nfc .hero-contact-nfc .hero-buttons .btn {
-  width: 100%;
-  max-width: none;
+@media (max-width: 600px) {
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 601px) {
+  .hero-buttons {
+    flex-direction: row;
+  }
+}
+
+.hero-buttons .btn {
+  max-width: 100%;
   min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 body.page-contact-nfc .hero-contact-nfc .hero-overlay .hero-logo {
