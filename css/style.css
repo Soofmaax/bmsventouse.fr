@@ -268,12 +268,20 @@ p {
 }
 
 /* Texte promo spécifique par langue */
-html[lang="fr"] .promo-banner strong::after {
-  content: " — -10% sur votre prochain tournage de film";
+.promo-banner strong {
+  font-size: 0;
 }
 
-html[lang="en"] .promo-banner strong::after {
-  content: " — -10% on your next film shoot in France";
+html[lang="fr"] .promo-banner strong::before {
+  content: "-10% sur votre prochain tournage de film";
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+html[lang="en"] .promo-banner strong::before {
+  content: "-10% on your next film shoot in France";
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 /* Utilitaires de spacing (marges verticales) */
