@@ -271,7 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
           '/transport-materiel-audiovisuel-paris',
           '/autorisation-occupation-domaine-public-tournage-paris',
           '/ventousage-cinema',
-          '/urban-regie'
+          '/urban-regie',
+          '/demenagement-aot',
+          '/panneaux-demenagement'
         ];
         if (prefixes.some(prefix => current === prefix || current.startsWith(prefix + '/'))) return true;
         if (current.startsWith('/ventousage-')) return true;
@@ -316,6 +318,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="/ventousage-paris/"><span class="notranslate" translate="no">Ventousage</span> Paris</a></li>
                 <li><a href="/affichage-riverains/">Affichage riverains</a></li>
                 <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
+                <li><a href="/demenagement-aot/">Déménagement + AOT</a></li>
+                <li><a href="/panneaux-demenagement/">Panneaux de déménagement</a></li>
               </ul>
             </div>
             <div class="nav-submenu-group">
