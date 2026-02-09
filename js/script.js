@@ -319,6 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="/affichage-riverains/">Affichage riverains</a></li>
                 <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
                 <li><a href="/demenagement-aot/">Déménagement + AOT</a></li>
+                <li><a href="/panneaux-demenagement/">Panneaux de déménagement</a></li>
               </ul>
             </div>
             <div class="nav-submenu-group">
