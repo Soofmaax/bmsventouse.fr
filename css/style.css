@@ -273,7 +273,7 @@ p {
 }
 
 html[lang="fr"] .promo-banner strong::before {
-  content: "-10% sur votre prochain tournage de film";
+  content: "Réponse en moins de 24H";
   font-size: 0.95rem;
   font-weight: 700;
 }
