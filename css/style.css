@@ -273,7 +273,7 @@ p {
 }
 
 html[lang="fr"] .promo-banner strong::before {
-  content: "-10% sur votre prochain tournage de film";
+  content: "Réponse en moins de 24H";
   font-size: 0.95rem;
   font-weight: 700;
 }
@@ -800,9 +800,10 @@ body.dark-theme .header {
 }
 
 .btn-primary {
-  background-color: var(--color-primary-dark);
+  background-color: #ba5312;
   color: #ffffff;
-  border-color: var(--color-primary-dark);
+  border-color: #ba5312;
+  font-weight: 800;
 }
 
 .btn-primary:hover,
@@ -840,15 +841,16 @@ body.dark-theme .header {
 }
 
 .btn-whatsapp {
-  background-color: #25d366;
+  background-color: #075e54;
   color: #fff;
-  border-color: #25d366;
+  border-color: #075e54;
 }
 
 .btn-whatsapp:hover,
 .btn-whatsapp:focus {
-  background-color: #1ebd5a;
+  background-color: #064c44;
   color: #fff;
+  border-color: #064c44;
 }
 
 .btn svg {
@@ -1144,6 +1146,7 @@ body.dark-theme .header {
 }
 
 .faq-item.is-open .faq-answer {
+  max-height: 1000px;  /* Suffisant pour tous les contenus */
   padding: 1rem 1.5rem;
   animation: faqFade 0.2s ease both;
 }
@@ -2311,9 +2314,6 @@ body.dark-theme.page-contact-nfc .hero-contact-nfc .dev-credit a:focus {
 body:has(.nav-links.active) {
   overflow: hidden;
 }
-
-
-
 
 
 

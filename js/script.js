@@ -15,6 +15,38 @@ if (typeof window !== 'undefined') {
 /* Production logging gate: silence console in production unless window.DEBUG=true */
 (function(){ try{ var DEBUG = !!(window.DEBUG); if(!DEBUG){ ['log','info','debug','warn'].forEach(function(k){ try{ console[k] = function(){}; }catch(e){} }); } window.__BMS_DEBUG__ = DEBUG; }catch(e){} })();
 
+const BMS_TRUSTED_TYPES = (() => {
+  const fallback = {
+    html: (value) => value,
+    script: (value) => value,
+    scriptURL: (value) => value
+  };
+
+  try {
+    if (
+      typeof window === 'undefined' ||
+      !window.trustedTypes ||
+      typeof window.trustedTypes.createPolicy !== 'function'
+    ) {
+      return fallback;
+    }
+
+    const policy = window.trustedTypes.createPolicy('default', {
+      createHTML: (value) => value,
+      createScript: (value) => value,
+      createScriptURL: (value) => value
+    });
+
+    return {
+      html: (value) => policy.createHTML(value),
+      script: (value) => policy.createScript(value),
+      scriptURL: (value) => policy.createScriptURL(value)
+    };
+  } catch (_) {
+    return fallback;
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // --------------------------------------------------------------------------
@@ -265,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
           '/securite-plateaux',
           '/securite-gardiennage',
           '/convoyage-vehicules-decors',
-          '/regie-materiel',
+          '/regie-manutention',
           '/loges-confort',
           '/cantine-catering',
           '/transport-materiel-audiovisuel-paris',
@@ -325,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="nav-submenu-group">
               <span class="group-title">Régie &amp; confort</span>
               <ul class="group-list">
-                <li><a href="/regie-materiel/">Régie &amp; matériel</a></li>
+                <li><a href="/regie-manutention/">Régie &amp; matériel</a></li>
                 <li><a href="/loges-confort/">Loges &amp; confort</a></li>
                 <li><a href="/cantine-catering/">Cantine &amp; catering</a></li>
               </ul>
@@ -411,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Injecte le menu construit dans le <ul id="navLinks">
       if (navItems.length) {
-        navLinks.innerHTML = navItems.join('');
+        navLinks.innerHTML = BMS_TRUSTED_TYPES.html(navItems.join(''));
       }
 
       // Interaction du sous-menu Services :
@@ -494,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = question.className || 'faq-question';
-        btn.innerHTML = question.innerHTML;
+        btn.innerHTML = BMS_TRUSTED_TYPES.html(question.innerHTML);
         if (question.parentNode) {
           question.parentNode.replaceChild(btn, question);
         }
@@ -668,7 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
       banner.setAttribute('aria-live', 'polite');
       banner.setAttribute('aria-label', 'Bannière de consentement aux cookies');
 
-      banner.innerHTML = `
+      banner.innerHTML = BMS_TRUSTED_TYPES.html(`
         <div class="cookie-banner__content">
           <p class="cookie-banner__text">
             Nous utilisons un cookie de mesure d’audience (Google Analytics) pour améliorer le site.
@@ -680,7 +712,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button id="cookie-accept" class="btn btn-primary">Accepter</button>
           </div>
         </div>
-      `;
+      `);
 
       document.body.appendChild(banner);
 
@@ -914,7 +946,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       const script = document.createElement('script');
       script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(ld);
+      script.textContent = BMS_TRUSTED_TYPES.script(JSON.stringify(ld));
       document.head.appendChild(script);
     } catch (e) {
       // non-bloquant
@@ -1066,7 +1098,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        t=l.createElement(r);t.async=1;t.src=BMS_TRUSTED_TYPES.scriptURL("https://www.clarity.ms/tag/"+i);
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
       })(window, document, "clarity", "script", "v0wk7109ix");
       console.log('✅ Microsoft Clarity chargé (ID v0wk7109ix)');
@@ -1310,6 +1342,7 @@ function setupUnifiedFooter() {
               <li><a href="/ventousage-paris/"><span class="notranslate" translate="no">Ventousage Paris</span></a></li>
               <li><a href="/affichage-riverains/">Affichage riverains</a></li>
               <li><a href="/signalisation-barrierage/">Signalisation &amp; barriérage</a></li>
+              <li><a href="/evenementiel-luxe/">Événementiel de Luxe</a></li>
               <li><a href="/realisations/">Réalisations</a></li>
               <li><a href="/contact/">Contact</a></li>
             </ul>
@@ -1387,10 +1420,10 @@ function setupUnifiedFooter() {
         </div>
     `;
 
-    footerContent.innerHTML = html;
+    footerContent.innerHTML = BMS_TRUSTED_TYPES.html(html);
 
     if (footerBottom) {
-      footerBottom.innerHTML = '&copy; 2025 BMS Ventouse. Tous droits réservés. Site réalisé par <a href="https://smarterlogicweb.com" target="_blank" rel="noopener noreferrer">SmarterLogicWeb</a>.';
+      footerBottom.innerHTML = BMS_TRUSTED_TYPES.html('&copy; 2026 BMS Ventouse. Tous droits réservés. Site réalisé par <a href="https://smarterlogicweb.com" target="_blank" rel="noopener noreferrer">SmarterLogicWeb</a>.');
     }
   } catch (_) {
     // non-bloquant
@@ -1482,7 +1515,7 @@ function setupHeroLayout() {
 
       const h2 = document.createElement('h2');
       h2.className = 'section-title animated-item';
-      h2.innerHTML = h1.innerHTML;
+      h2.innerHTML = BMS_TRUSTED_TYPES.html(h1.innerHTML);
       introContainer.appendChild(h2);
 
       nodesToMove.forEach((node) => {
@@ -1601,7 +1634,7 @@ function setupGTM() {
     window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
     const s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(id);
+    s.src = BMS_TRUSTED_TYPES.scriptURL('https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(id));
     document.head.appendChild(s);
   } catch (e) {
     // non-bloquant
@@ -1627,7 +1660,7 @@ function setupContactSuccessNotice() {
     note.setAttribute('role', 'status');
     note.setAttribute('aria-live', 'polite');
     note.style.marginBottom = '1rem';
-    note.innerHTML = '<strong>Merci !</strong> Votre demande a été envoyée. Nous revenons vers vous sous 24–48&nbsp;h ouvrées. Vous pouvez aussi nous joindre directement au <a href="tel:+33646005642">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</a>.';
+    note.innerHTML = BMS_TRUSTED_TYPES.html('<strong>Merci !</strong> Votre demande a été envoyée. Nous revenons vers vous sous 24–48&nbsp;h ouvrées. Vous pouvez aussi nous joindre directement au <a href="tel:+33646005642">+33&nbsp;6&nbsp;46&nbsp;00&nbsp;56&nbsp;42</a>.');
 
     container.insertBefore(note, container.firstChild);
   } catch (e) {
@@ -2122,7 +2155,7 @@ function setupFashionWeekPopup() {
       popup.className = 'fw-popup';
       popup.setAttribute('aria-hidden', 'true');
 
-      popup.innerHTML = `
+      popup.innerHTML = BMS_TRUSTED_TYPES.html(`
         <div class="fw-popup-content" role="dialog" aria-modal="true" aria-labelledby="fwPopupTitle">
           <button class="fw-popup-close" type="button" aria-label="Fermer l'offre Paris Fashion Week 2026">×</button>
           <h2 id="fwPopupTitle">Paris Fashion Week 2026 – Offre ventousage</h2>
@@ -2145,7 +2178,7 @@ function setupFashionWeekPopup() {
             </a>
           </div>
         </div>
-      `;
+      `);
     }
 
     document.body.appendChild(popup);
@@ -2178,4 +2211,3 @@ function setupFashionWeekPopup() {
 if (typeof window !== 'undefined') {
   window.setupFashionWeekPopup = window.setupFashionWeekPopup || setupFashionWeekPopup;
 }
-

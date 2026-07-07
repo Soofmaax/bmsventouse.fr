@@ -273,8 +273,8 @@
         <priority>0.8</priority>
       </url>
       <url>
-        <loc>https://bmsventouse.fr/regie-materiel/</loc>
-        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <loc>https://bmsventouse.fr/regie-manutention/</loc>
+        <lastmod>2026-07-07T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
       </url>
@@ -331,6 +331,12 @@
         <lastmod>2026-01-19T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
+      </url>
+      <url>
+        <loc>https://bmsventouse.fr/evenementiel-luxe/</loc>
+        <lastmod>2026-07-07T00:00:00.000Z</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
       </url>
       
 </urlset>
