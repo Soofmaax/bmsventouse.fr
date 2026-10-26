@@ -15,6 +15,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "test": "node --test tests/*.test.cjs",
     "build": "node scripts/generate-responsive-images.js && node scripts/replace-email.js",
     "replace-email": "node scripts/replace-email.js"
   },
